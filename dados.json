@@ -1,0 +1,90 @@
+{
+  "gerado_em": "04/05/2026 18:30",
+  "total": 6,
+  "convenios": [
+    {
+      "numero": "781089",
+      "objeto": "IMPLANTACAO DE INFRAESTRUTURA ESPORTIVA no Municipio de Monsenhor Hipolito  PI",
+      "vigencia": "2026-09-30",
+      "vigencia_fmt": "30/09/2026",
+      "dias": 149,
+      "status": "NORMAL",
+      "situacao": "EM EXECUÇÃO",
+      "v_total": "",
+      "v_liberado": "390.000,00",
+      "pct_exec": "",
+      "autor_emenda": "",
+      "prestacao": ""
+    },
+    {
+      "numero": "889040",
+      "objeto": "PAVIMENTACAO EM PARALELEPIPEDO EM VIAS PUBLICAS NOS MUNICIPIOS DE ESPERANTINA - PI, UNIAO - PI, BARRAS -PI, CABECEIRAS - PI, MIGUEL ALVES - PI E SAO JOAO DO ARRAIAL - PI.",
+      "vigencia": "2025-12-06",
+      "vigencia_fmt": "06/12/2025",
+      "dias": -149,
+      "status": "VENCIDO",
+      "situacao": "NORMAL",
+      "v_total": "",
+      "v_liberado": "5.730.000,00",
+      "pct_exec": "",
+      "autor_emenda": "",
+      "prestacao": ""
+    },
+    {
+      "numero": "906442",
+      "objeto": "PAVIMENTACAO EM PARALELEPIPEDO EM VIAS PUBLICAS NA ZONA RURAL DO MUNICIPIO DE SAO BRAZ DO PIAUI - PI.",
+      "vigencia": "2025-12-29",
+      "vigencia_fmt": "29/12/2025",
+      "dias": -126,
+      "status": "VENCIDO",
+      "situacao": "NORMAL",
+      "v_total": "",
+      "v_liberado": "384.205,00",
+      "pct_exec": "",
+      "autor_emenda": "",
+      "prestacao": ""
+    },
+    {
+      "numero": "916598",
+      "objeto": "PAVIMENTACAO EM PARALELEPIPEDO EM VIAS PUBLICAS NO PERIMETRO URBANO DO MUNICIPIO DE TERESINA - PI.",
+      "vigencia": "2026-09-30",
+      "vigencia_fmt": "30/09/2026",
+      "dias": 149,
+      "status": "NORMAL",
+      "situacao": "EM EXECUÇÃO",
+      "v_total": "",
+      "v_liberado": "345.377,48",
+      "pct_exec": "",
+      "autor_emenda": "",
+      "prestacao": ""
+    },
+    {
+      "numero": "917537",
+      "objeto": "PAVIMENTACAO E ADEQUACAO DE VIAS PUBLICAS NO PERIMETRO URBANO NO MUNICIPIO DE TERESINA - PI.",
+      "vigencia": "2026-12-30",
+      "vigencia_fmt": "30/12/2026",
+      "dias": 240,
+      "status": "NORMAL",
+      "situacao": "EM EXECUÇÃO",
+      "v_total": "",
+      "v_liberado": "16.088.906,00",
+      "pct_exec": "",
+      "autor_emenda": "",
+      "prestacao": ""
+    },
+    {
+      "numero": "902704",
+      "objeto": "OBRA DE CONSTRUCAO, ADEQUACAO E/OU READEQUACAO DE ESTRADAS VICINAIS NO MUNICIPIO DE CAMPINAS-PI.",
+      "vigencia": "2025-04-11",
+      "vigencia_fmt": "11/04/2025",
+      "dias": null,
+      "status": "FINALIZADO",
+      "situacao": "PRESTAÇÃO DE CONTAS ENVIADA PARA ANÁLISE",
+      "v_total": "",
+      "v_liberado": "477.500,00",
+      "pct_exec": "",
+      "autor_emenda": "",
+      "prestacao": ""
+    }
+  ]
+}

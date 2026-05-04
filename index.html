@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Painel de Vigências — IDEPI</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#f0f4f8;--surface:#fff;--surface2:#f8fafc;--border:#e2e8f0;--text:#1e293b;--muted:#64748b;--light:#94a3b8;--brand:#1e40af;--brand-light:#dbeafe;--n-bg:#f0fdf4;--n-bd:#22c55e;--n-tx:#15803d;--a-bg:#eff6ff;--a-bd:#3b82f6;--a-tx:#1d4ed8;--at-bg:#fefce8;--at-bd:#eab308;--at-tx:#a16207;--c-bg:#fff7ed;--c-bd:#f97316;--c-tx:#c2410c;--v-bg:#fef2f2;--v-bd:#ef4444;--v-tx:#b91c1c;--f-bg:#f8fafc;--f-bd:#94a3b8;--f-tx:#475569;--r:10px;--sh:0 1px 3px rgba(0,0,0,.08);--sh2:0 10px 25px rgba(0,0,0,.12)}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+.header{background:var(--brand);padding:0 32px;height:60px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 2px 8px rgba(30,64,175,.3)}
+.logo{display:flex;align-items:center;gap:12px;color:#fff;font-weight:700;font-size:18px}
+.logo span{font-weight:400;opacity:.7;font-size:14px}
+.hright{display:flex;align-items:center;gap:12px}
+.hbadge{background:rgba(255,255,255,.15);color:#fff;font-size:12px;padding:4px 12px;border-radius:20px;border:1px solid rgba(255,255,255,.2)}
+.hinfo{color:rgba(255,255,255,.7);font-size:12px}
+.overlay{position:fixed;inset:0;background:rgba(15,23,42,.75);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:9999;gap:14px}
+.overlay.hide{display:none}
+.spin{width:44px;height:44px;border:4px solid rgba(255,255,255,.2);border-top-color:#fff;border-radius:50%;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.overlay p{color:#fff;font-size:15px;font-weight:500}
+.overlay small{color:rgba(255,255,255,.6);font-size:13px;text-align:center;max-width:360px}
+.main{max-width:1340px;margin:0 auto;padding:28px 24px}
+.ptitle{font-size:20px;font-weight:700;display:flex;align-items:center;gap:10px;margin-bottom:4px}
+.ptitle i{color:var(--brand);font-size:17px}
+.psub{color:var(--muted);font-size:13px;margin-bottom:22px}
+.urgency{background:var(--v-bg);border:1px solid var(--v-bd);border-radius:var(--r);padding:12px 16px;margin-bottom:18px;display:flex;align-items:center;gap:12px;font-size:13px}
+.urgency.hide{display:none}
+.urgency i{color:var(--v-tx);font-size:18px}
+.urgency strong{color:var(--v-tx)}
+.kgrid{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;margin-bottom:22px}
+.kcard{background:var(--surface);border-radius:var(--r);border:1.5px solid var(--border);padding:16px;cursor:pointer;transition:transform .15s,box-shadow .15s;position:relative;overflow:hidden;box-shadow:var(--sh)}
+.kcard:hover{transform:translateY(-2px);box-shadow:var(--sh2)}
+.kcard.active{border-width:2.5px}
+.kcard::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:currentColor}
+.kcard.n{color:var(--n-bd);background:var(--n-bg);border-color:var(--n-bd)}
+.kcard.a{color:var(--a-bd);background:var(--a-bg);border-color:var(--a-bd)}
+.kcard.at{color:var(--at-bd);background:var(--at-bg);border-color:var(--at-bd)}
+.kcard.c{color:var(--c-bd);background:var(--c-bg);border-color:var(--c-bd)}
+.kcard.v{color:var(--v-bd);background:var(--v-bg);border-color:var(--v-bd)}
+.kcard.f{color:var(--f-bd);background:var(--f-bg);border-color:var(--f-bd)}
+.klabel{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.6px;opacity:.75;margin-bottom:8px}
+.kcount{font-size:36px;font-weight:700;line-height:1;margin-bottom:4px}
+.kdesc{font-size:11px;opacity:.7}
+.kicon{position:absolute;right:12px;top:14px;font-size:22px;opacity:.12}
+.totals{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:14px 20px;margin-bottom:22px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px;box-shadow:var(--sh)}
+.titem label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;display:block;margin-bottom:3px}
+.titem span{font-size:18px;font-weight:700;color:var(--brand)}
+.prow{display:grid;grid-template-columns:290px 1fr;gap:18px;margin-bottom:24px}
+.panel{background:var(--surface);border-radius:var(--r);border:1px solid var(--border);box-shadow:var(--sh);overflow:hidden}
+.phead{padding:14px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.phtitle{font-size:13px;font-weight:600;display:flex;align-items:center;gap:7px}
+.phtitle i{color:var(--brand)}
+.pbody{padding:16px}
+#cWrap{position:relative;width:210px;height:210px;margin:0 auto 12px}
+.cleg{display:flex;flex-direction:column;gap:5px;margin-top:4px}
+.citem{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted);padding:4px 8px;border-radius:6px;cursor:pointer;transition:background .15s}
+.citem:hover{background:var(--surface2)}
+.cdot{width:10px;height:10px;border-radius:3px;flex-shrink:0}
+.cname{flex:1}.cval{font-weight:600;color:var(--text)}
+.sbar{display:flex;align-items:center;gap:8px;padding:10px 14px;border-bottom:1px solid var(--border)}
+.sbar i{color:var(--light);font-size:14px}
+.sbar input{border:none;outline:none;font-size:13px;color:var(--text);background:transparent;flex:1;font-family:'Inter',sans-serif}
+.sbar input::placeholder{color:var(--light)}
+.chips{display:flex;gap:6px;flex-wrap:wrap;padding:10px 14px;border-bottom:1px solid var(--border)}
+.chip{font-size:11px;font-weight:500;padding:4px 10px;border-radius:20px;cursor:pointer;transition:all .15s;border:1.5px solid transparent}
+.chip.all{background:var(--brand-light);color:var(--brand);border-color:var(--brand)}
+.chip.cn{background:var(--n-bg);color:var(--n-tx);border-color:var(--n-bd)}
+.chip.ca{background:var(--a-bg);color:var(--a-tx);border-color:var(--a-bd)}
+.chip.cat{background:var(--at-bg);color:var(--at-tx);border-color:var(--at-bd)}
+.chip.cc{background:var(--c-bg);color:var(--c-tx);border-color:var(--c-bd)}
+.chip.cv{background:var(--v-bg);color:var(--v-tx);border-color:var(--v-bd)}
+.chip.cf{background:var(--f-bg);color:var(--f-tx);border-color:var(--f-bd)}
+.twrap{overflow-x:auto;max-height:430px;overflow-y:auto}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{position:sticky;top:0;background:var(--surface2);padding:10px 14px;text-align:left;font-weight:600;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;border-bottom:1px solid var(--border);z-index:1;white-space:nowrap}
+td{padding:10px 14px;border-bottom:1px solid var(--border);vertical-align:middle}
+tr:last-child td{border-bottom:none}
+tr.drow:hover td{background:var(--surface2);cursor:pointer}
+.badge{display:inline-flex;align-items:center;padding:3px 9px;border-radius:20px;font-size:11px;font-weight:600;white-space:nowrap}
+.badge.n{background:var(--n-bg);color:var(--n-tx)}.badge.a{background:var(--a-bg);color:var(--a-tx)}
+.badge.at{background:var(--at-bg);color:var(--at-tx)}.badge.c{background:var(--c-bg);color:var(--c-tx)}
+.badge.v{background:var(--v-bg);color:var(--v-tx)}.badge.f{background:var(--f-bg);color:var(--f-tx)}
+.cd{font-weight:600;font-size:13px}
+.cd.n{color:var(--n-tx)}.cd.a{color:var(--a-tx)}.cd.at{color:var(--at-tx)}
+.cd.c{color:var(--c-tx)}.cd.v{color:var(--v-tx)}.cd.f{color:var(--f-tx)}
+.num{font-weight:600;color:var(--brand);font-size:12px;white-space:nowrap}
+.obj{max-width:250px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.val{font-size:12px;color:var(--muted);white-space:nowrap}
+.erow{display:none;background:var(--surface2)}.erow.open{display:table-row}
+.ebody{padding:14px 18px}
+.egrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;font-size:12px}
+.egrid .full{grid-column:1/-1}
+.ef label{color:var(--muted);display:block;margin-bottom:2px;font-size:11px;text-transform:uppercase;letter-spacing:.5px}
+.ef span{color:var(--text);font-weight:500}
+.empty{text-align:center;padding:48px 24px;color:var(--muted)}
+.empty i{font-size:40px;opacity:.3;margin-bottom:12px;display:block}
+.srow{display:flex;gap:6px;align-items:center;font-size:12px;color:var(--muted);padding:8px 14px;border-top:1px solid var(--border);flex-wrap:wrap}
+.srow strong{color:var(--text)}
+@media(max-width:900px){.kgrid{grid-template-columns:repeat(3,1fr)}.prow{grid-template-columns:1fr}.totals{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+
+<div class="overlay" id="ov">
+  <div class="spin"></div>
+  <p>Carregando dados...</p>
+  <small>Buscando convênios atualizados</small>
+</div>
+
+<div class="header">
+  <div class="logo"><i class="fa-solid fa-handshake" style="font-size:20px;"></i>IDEPI <span>| Instituto de Desenvolvimento do Piauí</span></div>
+  <div class="hright">
+    <span class="hinfo" id="hinfo"></span>
+    <span class="hbadge"><i class="fa-regular fa-clock" style="margin-right:5px;"></i>Painel de Vigências</span>
+  </div>
+</div>
+
+<div class="main">
+  <div class="ptitle"><i class="fa-solid fa-chart-bar"></i> Monitoramento de Vigência — Convênios Federais</div>
+  <div class="psub">Dados atualizados automaticamente pelo script Python · IDEPI-PI</div>
+
+  <div class="urgency hide" id="urg">
+    <i class="fa-solid fa-triangle-exclamation"></i>
+    <div><strong id="urgTxt"></strong> — verifique aditivos de prazo com urgência.</div>
+  </div>
+
+  <div class="kgrid">
+    <div class="kcard n"  onclick="fil('normal')"     id="kn"> <i class="fa-solid fa-circle-check kicon"></i>    <div class="klabel">Normal</div>    <div class="kcount" id="cn">—</div>  <div class="kdesc">&gt; 90 dias</div></div>
+    <div class="kcard a"  onclick="fil('alerta')"     id="ka"> <i class="fa-solid fa-bell kicon"></i>            <div class="klabel">Alerta</div>    <div class="kcount" id="ca">—</div>  <div class="kdesc">60–90 dias</div></div>
+    <div class="kcard at" onclick="fil('atencao')"    id="kat"><i class="fa-solid fa-exclamation kicon"></i>     <div class="klabel">Atenção</div>   <div class="kcount" id="cat">—</div> <div class="kdesc">30–60 dias</div></div>
+    <div class="kcard c"  onclick="fil('critico')"    id="kc"> <i class="fa-solid fa-fire kicon"></i>           <div class="klabel">Crítico</div>   <div class="kcount" id="cc">—</div>  <div class="kdesc">&lt; 30 dias</div></div>
+    <div class="kcard v"  onclick="fil('vencido')"    id="kv"> <i class="fa-solid fa-skull kicon"></i>          <div class="klabel">Vencido</div>   <div class="kcount" id="cv">—</div>  <div class="kdesc">Prazo expirado</div></div>
+    <div class="kcard f"  onclick="fil('finalizado')" id="kf"> <i class="fa-solid fa-flag-checkered kicon"></i> <div class="klabel">Finalizado</div><div class="kcount" id="cf">—</div>  <div class="kdesc">Concluído</div></div>
+  </div>
+
+  <div class="totals">
+    <div class="titem"><label><i class="fa-solid fa-sack-dollar" style="margin-right:4px;"></i> Valor Total em Carteira</label><span id="tt">—</span></div>
+    <div class="titem"><label><i class="fa-solid fa-arrow-right-to-bracket" style="margin-right:4px;"></i> Total Liberado</label><span id="tl">—</span></div>
+    <div class="titem"><label><i class="fa-solid fa-percent" style="margin-right:4px;"></i> Execução Média</label><span id="te">—</span></div>
+  </div>
+
+  <div class="prow">
+    <div class="panel">
+      <div class="phead"><div class="phtitle"><i class="fa-solid fa-chart-pie"></i> Distribuição</div></div>
+      <div class="pbody">
+        <div id="cWrap"><canvas id="donut" role="img" aria-label="Distribuição de status de vigência"></canvas></div>
+        <div class="cleg" id="leg"></div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="phead">
+        <div class="phtitle"><i class="fa-solid fa-list"></i> Instrumentos <span id="tcnt" style="font-weight:400;color:#94a3b8;font-size:11px;margin-left:4px;"></span></div>
+        <button onclick="rst()" style="font-size:11px;color:#94a3b8;background:none;border:none;cursor:pointer;display:flex;align-items:center;gap:4px;"><i class="fa-solid fa-xmark"></i> Limpar filtro</button>
+      </div>
+      <div class="sbar">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" id="busca" placeholder="Buscar por número, objeto ou autor da emenda..." oninput="render()">
+      </div>
+      <div class="chips">
+        <span class="chip all" onclick="fil('all')">Todos</span>
+        <span class="chip cn"  onclick="fil('normal')">Normal</span>
+        <span class="chip ca"  onclick="fil('alerta')">Alerta</span>
+        <span class="chip cat" onclick="fil('atencao')">Atenção</span>
+        <span class="chip cc"  onclick="fil('critico')">Crítico</span>
+        <span class="chip cv"  onclick="fil('vencido')">Vencido</span>
+        <span class="chip cf"  onclick="fil('finalizado')">Finalizado</span>
+      </div>
+      <div class="twrap">
+        <table>
+          <thead><tr>
+            <th style="width:34px;"></th>
+            <th>Nº Instrumento</th>
+            <th>Objeto / Autor</th>
+            <th>Vigência</th>
+            <th>Dias</th>
+            <th>Valor Total</th>
+            <th>% Exec.</th>
+            <th>Status</th>
+          </tr></thead>
+          <tbody id="tbody"></tbody>
+        </table>
+        <div class="empty" id="empty" style="display:none;"><i class="fa-solid fa-inbox"></i><p>Nenhum convênio encontrado.</p></div>
+      </div>
+      <div class="srow" id="srow"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ═══════════════════════════════════════════════════════
+//  CONFIGURAÇÃO — só altere estas duas linhas
+const USUARIO = "COLE_SEU_USUARIO_GITHUB";
+const REPO    = "painel-idepi";
+// ═══════════════════════════════════════════════════════
+
+let dados=[],filtro='all',chart=null;
+const CLS={normal:'n',alerta:'a',atencao:'at',critico:'c',vencido:'v',finalizado:'f'};
+const LBL={normal:'Normal (>90d)',alerta:'Alerta (60–90d)',atencao:'Atenção (30–60d)',critico:'Crítico (<30d)',vencido:'Vencido',finalizado:'Finalizado'};
+const COR={normal:'#22c55e',alerta:'#3b82f6',atencao:'#eab308',critico:'#f97316',vencido:'#ef4444',finalizado:'#94a3b8'};
+const NOME={normal:'Normal',alerta:'Alerta',atencao:'Atenção',critico:'Crítico',vencido:'Vencido',finalizado:'Finalizado'};
+const KIDS={normal:'kn',alerta:'ka',atencao:'kat',critico:'kc',vencido:'kv',finalizado:'kf'};
+
+function mapSt(s){
+  if(!s)return'finalizado';const u=s.toUpperCase();
+  if(u.includes('NORMAL'))return'normal';
+  if(u.includes('ALERTA'))return'alerta';
+  if(u.includes('ATEN'))return'atencao';
+  if(u.includes('CRÍT')||u.includes('CRIT'))return'critico';
+  if(u.includes('VENCIDO'))return'vencido';
+  return'finalizado';
+}
+
+async function carregar(){
+  const url=`https://raw.githubusercontent.com/${USUARIO}/${REPO}/main/dados.json?t=${Date.now()}`;
+  try{
+    const r=await fetch(url);
+    if(!r.ok)throw new Error(`HTTP ${r.status}`);
+    const j=await r.json();
+    document.getElementById('hinfo').textContent=`Atualizado: ${j.gerado_em||'—'}`;
+    dados=(j.convenios||[]).map(c=>({...c,_st:mapSt(c.status)}));
+    document.getElementById('ov').classList.add('hide');
+    atualizar();
+  }catch(e){
+    document.getElementById('ov').innerHTML=`
+      <div style="color:#fca5a5;font-size:48px;margin-bottom:8px;"><i class="fa-solid fa-triangle-exclamation"></i></div>
+      <p style="color:#fff;font-size:15px;">Erro ao carregar dados.json</p>
+      <small>Verifique se o repositório <strong>${USUARIO}/${REPO}</strong> existe e se o Python já rodou ao menos uma vez.</small>`;
+  }
+}
+
+function atualizar(){
+  const ct={normal:0,alerta:0,atencao:0,critico:0,vencido:0,finalizado:0};
+  let sT=0,sL=0,sE=0,nE=0;
+  dados.forEach(d=>{
+    ct[d._st]=(ct[d._st]||0)+1;
+    const vt=parseFloat((d.v_total||'').replace(/\./g,'').replace(',','.'))||0;
+    const vl=parseFloat((d.v_liberado||'').replace(/\./g,'').replace(',','.'))||0;
+    const pe=parseFloat((d.pct_exec||'').replace('%',''))||0;
+    sT+=vt;sL+=vl;if(pe>0){sE+=pe;nE++;}
+  });
+  document.getElementById('cn').textContent=ct.normal;
+  document.getElementById('ca').textContent=ct.alerta;
+  document.getElementById('cat').textContent=ct.atencao;
+  document.getElementById('cc').textContent=ct.critico;
+  document.getElementById('cv').textContent=ct.vencido;
+  document.getElementById('cf').textContent=ct.finalizado;
+  const urg=ct.critico+ct.vencido;
+  const urgEl=document.getElementById('urg');
+  if(urg>0){urgEl.classList.remove('hide');document.getElementById('urgTxt').textContent=`${urg} instrumento(s) crítico(s) ou vencido(s)`;}
+  else urgEl.classList.add('hide');
+  document.getElementById('tt').textContent=sT>0?`R$ ${fmtN(sT)}`:'—';
+  document.getElementById('tl').textContent=sL>0?`R$ ${fmtN(sL)}`:'—';
+  document.getElementById('te').textContent=nE>0?`${(sE/nE).toFixed(1)}%`:'—';
+  desenharGraf(ct);render();
+}
+
+function fmtN(n){return n.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2});}
+
+function desenharGraf(ct){
+  const keys=['normal','alerta','atencao','critico','vencido','finalizado'];
+  const vals=keys.map(k=>ct[k]||0),cors=keys.map(k=>COR[k]);
+  const tot=vals.reduce((a,b)=>a+b,0);
+  if(chart)chart.destroy();
+  chart=new Chart(document.getElementById('donut'),{
+    type:'doughnut',
+    data:{labels:keys.map(k=>LBL[k]),datasets:[{data:vals,backgroundColor:cors,borderWidth:2,borderColor:'#fff',hoverOffset:6}]},
+    options:{cutout:'68%',responsive:true,maintainAspectRatio:true,plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>` ${ctx.raw} (${tot>0?Math.round(ctx.raw/tot*100):0}%)`}}}},
+    plugins:[{id:'ct',afterDraw(ch){
+      const{ctx,chartArea:{left,top,width,height}}=ch,cx=left+width/2,cy=top+height/2;
+      ctx.save();ctx.textAlign='center';ctx.textBaseline='middle';
+      ctx.fillStyle='#1e293b';ctx.font='700 26px Inter';ctx.fillText(tot,cx,cy-8);
+      ctx.fillStyle='#94a3b8';ctx.font='400 11px Inter';ctx.fillText('instrumentos',cx,cy+13);
+      ctx.restore();
+    }}]
+  });
+  document.getElementById('leg').innerHTML=keys.map((k,i)=>{
+    const pct=tot>0?Math.round(vals[i]/tot*100):0;
+    return`<div class="citem" onclick="fil('${k}')"><span class="cdot" style="background:${cors[i]}"></span><span class="cname">${LBL[k]}</span><span class="cval">${vals[i]} <span style="color:#94a3b8;font-weight:400;">(${pct}%)</span></span></div>`;
+  }).join('');
+}
+
+function fil(s){
+  filtro=s;document.getElementById('busca').value='';
+  Object.values(KIDS).forEach(id=>document.getElementById(id).classList.remove('active'));
+  if(KIDS[s])document.getElementById(KIDS[s]).classList.add('active');
+  render();
+}
+function rst(){
+  filtro='all';document.getElementById('busca').value='';
+  Object.values(KIDS).forEach(id=>document.getElementById(id).classList.remove('active'));
+  render();
+}
+
+function render(){
+  const q=(document.getElementById('busca').value||'').toLowerCase();
+  let rows=dados;
+  if(filtro!=='all')rows=rows.filter(r=>r._st===filtro);
+  if(q)rows=rows.filter(r=>(r.numero||'').toLowerCase().includes(q)||(r.objeto||'').toLowerCase().includes(q)||(r.autor_emenda||'').toLowerCase().includes(q));
+  rows.sort((a,b)=>{const o={critico:0,vencido:1,atencao:2,alerta:3,normal:4,finalizado:5};return(o[a._st]||9)-(o[b._st]||9)||((a.dias||9999)-(b.dias||9999));});
+  const tb=document.getElementById('tbody'),em=document.getElementById('empty');
+  document.getElementById('tcnt').textContent=rows.length>0?`(${rows.length})`:'';
+  if(!rows.length){tb.innerHTML='';em.style.display='block';document.getElementById('srow').innerHTML='';return;}
+  em.style.display='none';
+  tb.innerHTML=rows.map((r,i)=>{
+    const cl=CLS[r._st]||'f',nm=NOME[r._st]||r._st;
+    const dTx=r.dias!=null?(r.dias<0?`${Math.abs(r.dias)}d vencido`:`${r.dias}d`):'—';
+    return`<tr class="drow" onclick="exp(${i})">
+      <td style="text-align:center;"><i class="fa-solid fa-chevron-right" id="ic${i}" style="font-size:10px;color:#94a3b8;transition:transform .2s;"></i></td>
+      <td><span class="num">${r.numero||'—'}</span></td>
+      <td><div class="obj" title="${(r.objeto||'').replace(/"/g,"'")}">${r.objeto||'—'}</div>${r.autor_emenda?`<div style="font-size:11px;color:#94a3b8;margin-top:2px;"><i class="fa-solid fa-user" style="font-size:10px;"></i> ${r.autor_emenda}</div>`:''}</td>
+      <td style="white-space:nowrap;">${r.vigencia_fmt||r.vigencia||'—'}</td>
+      <td><span class="cd ${cl}">${dTx}</span></td>
+      <td><span class="val">${r.v_total?'R$ '+r.v_total:'—'}</span></td>
+      <td><span class="val">${r.pct_exec||'—'}</span></td>
+      <td><span class="badge ${cl}">${nm}</span></td>
+    </tr>
+    <tr class="erow" id="er${i}"><td colspan="8"><div class="ebody"><div class="egrid">
+      <div class="ef"><label>Nº do instrumento</label><span>${r.numero||'—'}</span></div>
+      <div class="ef"><label>Situação oficial</label><span>${r.situacao||'—'}</span></div>
+      <div class="ef"><label>Prestação de contas</label><span>${r.prestacao||'—'}</span></div>
+      <div class="ef full"><label>Objeto completo</label><span>${r.objeto||'—'}</span></div>
+      <div class="ef"><label>Vigência até</label><span>${r.vigencia_fmt||r.vigencia||'—'}</span></div>
+      <div class="ef"><label>Valor total</label><span>${r.v_total?'R$ '+r.v_total:'—'}</span></div>
+      <div class="ef"><label>Valor liberado</label><span>${r.v_liberado?'R$ '+r.v_liberado:'—'}</span></div>
+      <div class="ef"><label>% Execução</label><span>${r.pct_exec||'—'}</span></div>
+      <div class="ef"><label>Autor da emenda</label><span>${r.autor_emenda||'—'}</span></div>
+      <div class="ef"><label>Status</label><span><span class="badge ${cl}">${nm}</span></span></div>
+    </div></div></td></tr>`;
+  }).join('');
+  const cu={critico:0,vencido:0};
+  rows.forEach(r=>{if(cu[r._st]!==undefined)cu[r._st]++;});
+  document.getElementById('srow').innerHTML=`<i class="fa-solid fa-circle-info" style="color:#94a3b8;font-size:11px;"></i> Mostrando <strong>${rows.length}</strong> instrumento(s)${cu.critico>0?` · <span style="color:#c2410c;font-weight:600;">${cu.critico} crítico(s)</span>`:''}${cu.vencido>0?` · <span style="color:#b91c1c;font-weight:600;">${cu.vencido} vencido(s)</span>`:''}`;
+}
+
+function exp(i){
+  const er=document.getElementById('er'+i),ic=document.getElementById('ic'+i);
+  const op=er.classList.contains('open');
+  document.querySelectorAll('.erow.open').forEach(r=>r.classList.remove('open'));
+  document.querySelectorAll('[id^=ic]').forEach(e=>{e.style.transform='';});
+  if(!op){er.classList.add('open');ic.style.transform='rotate(90deg)';}
+}
+
+carregar();
+</script>
+</body>
+</html>

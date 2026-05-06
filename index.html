@@ -11,15 +11,16 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
   --bg:#f0f4f8;--surface:#fff;--surface2:#f8fafc;--border:#e2e8f0;
-  --text:#1e293b;--muted:#64748b;--light:#94a3b8;--brand:#1e40af;--brand-light:#dbeafe;
+  --text:#1e293b;--muted:#64748b;--light:#94a3b8;
+  --brand:#1e40af;--brand-light:#dbeafe;
   --n-bg:#f0fdf4;--n-bd:#22c55e;--n-tx:#15803d;
   --a-bg:#eff6ff;--a-bd:#3b82f6;--a-tx:#1d4ed8;
   --at-bg:#fefce8;--at-bd:#eab308;--at-tx:#a16207;
   --c-bg:#fff7ed;--c-bd:#f97316;--c-tx:#c2410c;
   --v-bg:#fef2f2;--v-bd:#ef4444;--v-tx:#b91c1c;
   --f-bg:#f8fafc;--f-bd:#94a3b8;--f-tx:#475569;
-  --sus-bg:#fdf4ff;--sus-bd:#a855f7;--sus-tx:#7e22ce;
-  --r:10px;--sh:0 1px 3px rgba(0,0,0,.08);--sh2:0 10px 25px rgba(0,0,0,.12)
+  --s-bg:#f5f3ff;--s-bd:#8b5cf6;--s-tx:#5b21b6;
+  --r:10px;--sh:0 1px 3px rgba(0,0,0,.08);--sh2:0 10px 25px rgba(0,0,0,.12);
 }
 body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
 .header{background:var(--brand);padding:0 32px;height:60px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 2px 8px rgba(30,64,175,.3)}
@@ -34,7 +35,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-h
 @keyframes spin{to{transform:rotate(360deg)}}
 .overlay p{color:#fff;font-size:15px;font-weight:500}
 .overlay small{color:rgba(255,255,255,.6);font-size:13px;text-align:center;max-width:360px}
-.main{max-width:1340px;margin:0 auto;padding:28px 24px}
+.main{max-width:1400px;margin:0 auto;padding:28px 24px}
 .ptitle{font-size:20px;font-weight:700;display:flex;align-items:center;gap:10px;margin-bottom:4px}
 .ptitle i{color:var(--brand);font-size:17px}
 .psub{color:var(--muted);font-size:13px;margin-bottom:22px}
@@ -42,6 +43,8 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-h
 .urgency.hide{display:none}
 .urgency i{color:var(--v-tx);font-size:18px}
 .urgency strong{color:var(--v-tx)}
+
+/* KPI */
 .kgrid{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;margin-bottom:22px}
 .kcard{background:var(--surface);border-radius:var(--r);border:1.5px solid var(--border);padding:16px;cursor:pointer;transition:transform .15s,box-shadow .15s;position:relative;overflow:hidden;box-shadow:var(--sh)}
 .kcard:hover{transform:translateY(-2px);box-shadow:var(--sh2)}
@@ -57,12 +60,16 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-h
 .kcount{font-size:36px;font-weight:700;line-height:1;margin-bottom:4px}
 .kdesc{font-size:11px;opacity:.7}
 .kicon{position:absolute;right:12px;top:14px;font-size:22px;opacity:.12}
+
+/* TOTALS */
 .totals{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:14px 20px;margin-bottom:22px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px;box-shadow:var(--sh)}
 .titem label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;display:block;margin-bottom:3px}
 .titem span{font-size:18px;font-weight:700;color:var(--brand)}
-.prow{display:grid;grid-template-columns:290px 1fr;gap:18px;margin-bottom:24px}
+
+/* PANELS */
+.prow{display:grid;grid-template-columns:280px 1fr;gap:18px;margin-bottom:24px}
 .panel{background:var(--surface);border-radius:var(--r);border:1px solid var(--border);box-shadow:var(--sh);overflow:hidden}
-.phead{padding:14px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.phead{padding:14px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}
 .phtitle{font-size:13px;font-weight:600;display:flex;align-items:center;gap:7px}
 .phtitle i{color:var(--brand)}
 .pbody{padding:16px}
@@ -72,10 +79,14 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-h
 .citem:hover{background:var(--surface2)}
 .cdot{width:10px;height:10px;border-radius:3px;flex-shrink:0}
 .cname{flex:1}.cval{font-weight:600;color:var(--text)}
+
+/* SEARCH */
 .sbar{display:flex;align-items:center;gap:8px;padding:10px 14px;border-bottom:1px solid var(--border)}
 .sbar i{color:var(--light);font-size:14px}
 .sbar input{border:none;outline:none;font-size:13px;color:var(--text);background:transparent;flex:1;font-family:'Inter',sans-serif}
 .sbar input::placeholder{color:var(--light)}
+
+/* STATUS CHIPS */
 .chips{display:flex;gap:6px;flex-wrap:wrap;padding:10px 14px;border-bottom:1px solid var(--border)}
 .chip{font-size:11px;font-weight:500;padding:4px 10px;border-radius:20px;cursor:pointer;transition:all .15s;border:1.5px solid transparent}
 .chip.all{background:var(--brand-light);color:var(--brand);border-color:var(--brand)}
@@ -84,57 +95,63 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-h
 .chip.cat{background:var(--at-bg);color:var(--at-tx);border-color:var(--at-bd)}
 .chip.cc{background:var(--c-bg);color:var(--c-tx);border-color:var(--c-bd)}
 .chip.cv{background:var(--v-bg);color:var(--v-tx);border-color:var(--v-bd)}
+.chip.cs{background:var(--s-bg);color:var(--s-tx);border-color:var(--s-bd)}
 .chip.cf{background:var(--f-bg);color:var(--f-tx);border-color:var(--f-bd)}
-.twrap{overflow-x:auto;max-height:430px;overflow-y:auto}
+
+/* COLUMN FILTERS BAR */
+.col-filters{display:flex;gap:6px;flex-wrap:wrap;padding:8px 14px;border-bottom:1px solid var(--border);background:var(--surface2);align-items:center}
+.col-filters label{font-size:11px;color:var(--muted);font-weight:500;white-space:nowrap}
+.col-filter-select{font-size:11px;border:1px solid var(--border);border-radius:6px;padding:3px 22px 3px 8px;background:var(--surface);color:var(--text);cursor:pointer;font-family:'Inter',sans-serif;appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%2394a3b8'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 6px center;min-width:110px;max-width:180px}
+.col-filter-select:focus{outline:none;border-color:var(--brand)}
+.col-filter-select.active{border-color:var(--brand);background-color:var(--brand-light);color:var(--brand)}
+.clear-filters-btn{font-size:11px;color:var(--muted);background:none;border:1px solid var(--border);border-radius:6px;padding:3px 8px;cursor:pointer;font-family:'Inter',sans-serif;white-space:nowrap}
+.clear-filters-btn:hover{border-color:var(--brand);color:var(--brand)}
+
+/* TABLE */
+.twrap{overflow-x:auto;max-height:440px;overflow-y:auto}
 table{width:100%;border-collapse:collapse;font-size:13px}
 th{position:sticky;top:0;background:var(--surface2);padding:10px 14px;text-align:left;font-weight:600;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;border-bottom:1px solid var(--border);z-index:1;white-space:nowrap}
 td{padding:10px 14px;border-bottom:1px solid var(--border);vertical-align:middle}
 tr:last-child td{border-bottom:none}
 tr.drow:hover td{background:var(--surface2);cursor:pointer}
+
 .badge{display:inline-flex;align-items:center;padding:3px 9px;border-radius:20px;font-size:11px;font-weight:600;white-space:nowrap}
-.badge.n{background:var(--n-bg);color:var(--n-tx)}.badge.a{background:var(--a-bg);color:var(--a-tx)}
-.badge.at{background:var(--at-bg);color:var(--at-tx)}.badge.c{background:var(--c-bg);color:var(--c-tx)}
-.badge.v{background:var(--v-bg);color:var(--v-tx)}.badge.f{background:var(--f-bg);color:var(--f-tx)}
-.badge.sus{background:var(--sus-bg);color:var(--sus-tx);border:1px solid var(--sus-bd)}
+.badge.n{background:var(--n-bg);color:var(--n-tx)}
+.badge.a{background:var(--a-bg);color:var(--a-tx)}
+.badge.at{background:var(--at-bg);color:var(--at-tx)}
+.badge.c{background:var(--c-bg);color:var(--c-tx)}
+.badge.v{background:var(--v-bg);color:var(--v-tx)}
+.badge.s{background:var(--s-bg);color:var(--s-tx)}
+.badge.f{background:var(--f-bg);color:var(--f-tx)}
+
 .cd{font-weight:600;font-size:13px}
 .cd.n{color:var(--n-tx)}.cd.a{color:var(--a-tx)}.cd.at{color:var(--at-tx)}
-.cd.c{color:var(--c-tx)}.cd.v{color:var(--v-tx)}.cd.f{color:var(--f-tx)}
+.cd.c{color:var(--c-tx)}.cd.v{color:var(--v-tx)}.cd.s{color:var(--s-tx)}.cd.f{color:var(--f-tx)}
+
+.susp-tag{display:inline-flex;align-items:center;gap:3px;font-size:11px;font-weight:500;color:var(--s-tx);background:var(--s-bg);border:1px solid var(--s-bd);border-radius:6px;padding:2px 7px;white-space:nowrap}
+.susp-tag i{font-size:10px}
+
 .num{font-weight:600;color:var(--brand);font-size:12px;white-space:nowrap}
-.obj{max-width:250px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.obj{max-width:240px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .val{font-size:12px;color:var(--muted);white-space:nowrap}
+
+/* DIAS VENCIDO */
+.dias-vencido{font-weight:700;font-size:12px;color:var(--v-tx);line-height:1.3;text-align:center}
+.dias-vencido small{display:block;font-weight:500;font-size:10px;opacity:.8}
+
 .erow{display:none;background:var(--surface2)}.erow.open{display:table-row}
 .ebody{padding:14px 18px}
 .egrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;font-size:12px}
 .egrid .full{grid-column:1/-1}
 .ef label{color:var(--muted);display:block;margin-bottom:2px;font-size:11px;text-transform:uppercase;letter-spacing:.5px}
 .ef span{color:var(--text);font-weight:500}
+
 .empty{text-align:center;padding:48px 24px;color:var(--muted)}
 .empty i{font-size:40px;opacity:.3;margin-bottom:12px;display:block}
 .srow{display:flex;gap:6px;align-items:center;font-size:12px;color:var(--muted);padding:8px 14px;border-top:1px solid var(--border);flex-wrap:wrap}
 .srow strong{color:var(--text)}
-/* Suspensiva inline no detail panel */
-.sus-box{background:var(--sus-bg);border:1px solid var(--sus-bd);border-radius:8px;padding:12px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-.sus-box label{color:var(--sus-tx);font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.5px;display:block;margin-bottom:4px}
-.sus-input{border:1.5px solid var(--sus-bd);border-radius:6px;padding:5px 10px;font-size:13px;font-family:'Inter',sans-serif;color:var(--text);background:#fff;outline:none;width:140px}
-.sus-input:focus{border-color:#7e22ce;box-shadow:0 0 0 3px rgba(168,85,247,.15)}
-.sus-btn{background:var(--sus-tx);color:#fff;border:none;border-radius:6px;padding:6px 14px;font-size:12px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;display:flex;align-items:center;gap:6px;transition:opacity .15s}
-.sus-btn:hover{opacity:.85}
-.sus-del{background:#fef2f2;color:var(--v-tx);border:1.5px solid var(--v-bd);border-radius:6px;padding:6px 10px;font-size:12px;cursor:pointer;font-family:'Inter',sans-serif;display:flex;align-items:center;gap:5px;transition:opacity .15s}
-.sus-del:hover{opacity:.8}
-.sus-current{font-size:12px;color:var(--sus-tx);font-weight:600;background:rgba(168,85,247,.1);padding:3px 10px;border-radius:20px;border:1px solid var(--sus-bd)}
-/* Modal suspensiva */
-.modal-bg{position:fixed;inset:0;background:rgba(15,23,42,.6);z-index:8000;display:flex;align-items:center;justify-content:center}
-.modal-bg.hide{display:none}
-.modal{background:#fff;border-radius:12px;padding:28px;width:420px;box-shadow:var(--sh2)}
-.modal h3{font-size:16px;font-weight:700;color:var(--sus-tx);margin-bottom:6px;display:flex;align-items:center;gap:8px}
-.modal p{font-size:13px;color:var(--muted);margin-bottom:18px}
-.modal input[type=date]{width:100%;border:1.5px solid var(--sus-bd);border-radius:8px;padding:10px 14px;font-size:14px;font-family:'Inter',sans-serif;color:var(--text);outline:none;margin-bottom:16px}
-.modal input[type=date]:focus{border-color:#7e22ce;box-shadow:0 0 0 3px rgba(168,85,247,.15)}
-.modal-row{display:flex;gap:10px;justify-content:flex-end}
-.modal-cancel{background:var(--surface2);color:var(--muted);border:1px solid var(--border);border-radius:8px;padding:8px 18px;font-size:13px;cursor:pointer;font-family:'Inter',sans-serif}
-.modal-save{background:var(--sus-tx);color:#fff;border:none;border-radius:8px;padding:8px 18px;font-size:13px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;display:flex;align-items:center;gap:6px}
-.modal-del{background:#fef2f2;color:var(--v-tx);border:1.5px solid var(--v-bd);border-radius:8px;padding:8px 18px;font-size:13px;cursor:pointer;font-family:'Inter',sans-serif;display:flex;align-items:center;gap:6px}
-@media(max-width:900px){.kgrid{grid-template-columns:repeat(3,1fr)}.prow{grid-template-columns:1fr}.totals{grid-template-columns:1fr 1fr}}
+
+@media(max-width:1000px){.kgrid{grid-template-columns:repeat(3,1fr)}.prow{grid-template-columns:1fr}.totals{grid-template-columns:1fr 1fr}}
 </style>
 </head>
 <body>
@@ -143,20 +160,6 @@ tr.drow:hover td{background:var(--surface2);cursor:pointer}
   <div class="spin"></div>
   <p>Carregando dados...</p>
   <small>Buscando convênios atualizados</small>
-</div>
-
-<!-- Modal de suspensiva -->
-<div class="modal-bg hide" id="modBg">
-  <div class="modal">
-    <h3><i class="fa-solid fa-hourglass-half"></i> Cláusula Suspensiva</h3>
-    <p id="modDesc">Defina a data da cláusula suspensiva. Ela terá prioridade sobre a vigência quando for anterior a ela.</p>
-    <input type="date" id="modDate" />
-    <div class="modal-row">
-      <button class="modal-del" id="modDel" onclick="salvarSuspensiva(null)"><i class="fa-solid fa-trash"></i> Apagar</button>
-      <button class="modal-cancel" onclick="fecharModal()">Cancelar</button>
-      <button class="modal-save" onclick="salvarSuspensivaModal()"><i class="fa-solid fa-floppy-disk"></i> Salvar</button>
-    </div>
-  </div>
 </div>
 
 <div class="header">
@@ -169,7 +172,7 @@ tr.drow:hover td{background:var(--surface2);cursor:pointer}
 
 <div class="main">
   <div class="ptitle"><i class="fa-solid fa-chart-bar"></i> Monitoramento de Vigência — Convênios Federais</div>
-  <div class="psub">Dados atualizados automaticamente pelo script Python · IDEPI-PI</div>
+  <div class="psub">Dados atualizados automaticamente pelo script Python · IDEPI-PI · <i class="fa-solid fa-triangle-exclamation" style="color:var(--s-tx);font-size:11px;"></i> Status considera Vigência Suspensiva quando presente</div>
 
   <div class="urgency hide" id="urg">
     <i class="fa-solid fa-triangle-exclamation"></i>
@@ -177,12 +180,12 @@ tr.drow:hover td{background:var(--surface2);cursor:pointer}
   </div>
 
   <div class="kgrid">
-    <div class="kcard n"  onclick="fil('normal')"     id="kn"> <i class="fa-solid fa-circle-check kicon"></i>    <div class="klabel">Normal</div>    <div class="kcount" id="cn">—</div>  <div class="kdesc">&gt; 90 dias</div></div>
-    <div class="kcard a"  onclick="fil('alerta')"     id="ka"> <i class="fa-solid fa-bell kicon"></i>            <div class="klabel">Alerta</div>    <div class="kcount" id="ca">—</div>  <div class="kdesc">60–90 dias</div></div>
-    <div class="kcard at" onclick="fil('atencao')"    id="kat"><i class="fa-solid fa-exclamation kicon"></i>     <div class="klabel">Atenção</div>   <div class="kcount" id="cat">—</div> <div class="kdesc">30–60 dias</div></div>
-    <div class="kcard c"  onclick="fil('critico')"    id="kc"> <i class="fa-solid fa-fire kicon"></i>           <div class="klabel">Crítico</div>   <div class="kcount" id="cc">—</div>  <div class="kdesc">&lt; 30 dias</div></div>
-    <div class="kcard v"  onclick="fil('vencido')"    id="kv"> <i class="fa-solid fa-skull kicon"></i>          <div class="klabel">Vencido</div>   <div class="kcount" id="cv">—</div>  <div class="kdesc">Prazo expirado</div></div>
-    <div class="kcard f"  onclick="fil('finalizado')" id="kf"> <i class="fa-solid fa-flag-checkered kicon"></i> <div class="klabel">Finalizado</div><div class="kcount" id="cf">—</div>  <div class="kdesc">Concluído</div></div>
+    <div class="kcard n"  onclick="fil('normal')"     id="kn"><i class="fa-solid fa-circle-check kicon"></i><div class="klabel">Normal</div><div class="kcount" id="cn">—</div><div class="kdesc">&gt; 90 dias</div></div>
+    <div class="kcard a"  onclick="fil('alerta')"     id="ka"><i class="fa-solid fa-bell kicon"></i><div class="klabel">Alerta</div><div class="kcount" id="ca">—</div><div class="kdesc">60–90 dias</div></div>
+    <div class="kcard at" onclick="fil('atencao')"    id="kat"><i class="fa-solid fa-exclamation kicon"></i><div class="klabel">Atenção</div><div class="kcount" id="cat">—</div><div class="kdesc">30–60 dias</div></div>
+    <div class="kcard c"  onclick="fil('critico')"    id="kc"><i class="fa-solid fa-fire kicon"></i><div class="klabel">Crítico</div><div class="kcount" id="cc">—</div><div class="kdesc">&lt; 30 dias</div></div>
+    <div class="kcard v"  onclick="fil('vencido')"    id="kv"><i class="fa-solid fa-skull kicon"></i><div class="klabel">Vencido</div><div class="kcount" id="cv">—</div><div class="kdesc">Prazo expirado</div></div>
+    <div class="kcard f"  onclick="fil('finalizado')" id="kf"><i class="fa-solid fa-flag-checkered kicon"></i><div class="klabel">Finalizado</div><div class="kcount" id="cf">—</div><div class="kdesc">Concluído</div></div>
   </div>
 
   <div class="totals">
@@ -192,6 +195,7 @@ tr.drow:hover td{background:var(--surface2);cursor:pointer}
   </div>
 
   <div class="prow">
+    <!-- CHART -->
     <div class="panel">
       <div class="phead"><div class="phtitle"><i class="fa-solid fa-chart-pie"></i> Distribuição</div></div>
       <div class="pbody">
@@ -200,24 +204,49 @@ tr.drow:hover td{background:var(--surface2);cursor:pointer}
       </div>
     </div>
 
+    <!-- TABLE -->
     <div class="panel">
       <div class="phead">
         <div class="phtitle"><i class="fa-solid fa-list"></i> Instrumentos <span id="tcnt" style="font-weight:400;color:#94a3b8;font-size:11px;margin-left:4px;"></span></div>
-        <button onclick="rst()" style="font-size:11px;color:#94a3b8;background:none;border:none;cursor:pointer;display:flex;align-items:center;gap:4px;"><i class="fa-solid fa-xmark"></i> Limpar filtro</button>
+        <button onclick="rst()" style="font-size:11px;color:#94a3b8;background:none;border:none;cursor:pointer;display:flex;align-items:center;gap:4px;"><i class="fa-solid fa-xmark"></i> Limpar filtros</button>
       </div>
+
+      <!-- Busca -->
       <div class="sbar">
         <i class="fa-solid fa-magnifying-glass"></i>
         <input type="text" id="busca" placeholder="Buscar por número, objeto ou autor da emenda..." oninput="render()">
       </div>
+
+      <!-- Chips de status -->
       <div class="chips">
-        <span class="chip all" onclick="fil('all')">Todos</span>
-        <span class="chip cn"  onclick="fil('normal')">Normal</span>
-        <span class="chip ca"  onclick="fil('alerta')">Alerta</span>
-        <span class="chip cat" onclick="fil('atencao')">Atenção</span>
-        <span class="chip cc"  onclick="fil('critico')">Crítico</span>
-        <span class="chip cv"  onclick="fil('vencido')">Vencido</span>
-        <span class="chip cf"  onclick="fil('finalizado')">Finalizado</span>
+        <span class="chip all" onclick="setStatus('all')">Todos</span>
+        <span class="chip cn"  onclick="setStatus('normal')">Normal</span>
+        <span class="chip ca"  onclick="setStatus('alerta')">Alerta</span>
+        <span class="chip cat" onclick="setStatus('atencao')">Atenção</span>
+        <span class="chip cc"  onclick="setStatus('critico')">Crítico</span>
+        <span class="chip cv"  onclick="setStatus('vencido')">Vencido</span>
+        <span class="chip cs"  onclick="setStatus('suspensiva')">Com Suspensiva</span>
+        <span class="chip cf"  onclick="setStatus('finalizado')">Finalizado</span>
       </div>
+
+      <!-- Filtros por coluna -->
+      <div class="col-filters" id="colFilters">
+        <label><i class="fa-solid fa-filter" style="font-size:10px;"></i> Filtrar:</label>
+        <select class="col-filter-select" id="fMandataria" onchange="render()" title="Mandatária">
+          <option value="">Mandatária</option>
+        </select>
+        <select class="col-filter-select" id="fEmenda" onchange="render()" title="Emenda">
+          <option value="">Emenda</option>
+        </select>
+        <select class="col-filter-select" id="fSituacao" onchange="render()" title="Situação">
+          <option value="">Situação</option>
+        </select>
+        <select class="col-filter-select" id="fFiscal" onchange="render()" title="Fiscal">
+          <option value="">Fiscal</option>
+        </select>
+        <button class="clear-filters-btn" onclick="clearColFilters()"><i class="fa-solid fa-xmark"></i> Limpar</button>
+      </div>
+
       <div class="twrap">
         <table>
           <thead><tr>
@@ -233,7 +262,7 @@ tr.drow:hover td{background:var(--surface2);cursor:pointer}
           </tr></thead>
           <tbody id="tbody"></tbody>
         </table>
-        <div class="empty" id="empty" style="display:none;"><i class="fa-solid fa-inbox"></i><p>Nenhum convênio encontrado.</p></div>
+        <div class="empty" id="empty" style="display:none;"><i class="fa-solid fa-inbox"></i><p>Nenhum convênio encontrado com os filtros aplicados.</p></div>
       </div>
       <div class="srow" id="srow"></div>
     </div>
@@ -242,118 +271,70 @@ tr.drow:hover td{background:var(--surface2);cursor:pointer}
 
 <script>
 // ═══════════════════════════════════════════════════════
-//  CONFIGURAÇÃO — só altere estas duas linhas
+//  CONFIGURAÇÃO
 const USUARIO = "Ruan-Vitor";
 const REPO    = "painel-idepi";
 // ═══════════════════════════════════════════════════════
 
-let dados=[], filtro='all', chart=null, modalIdx=-1;
+let dados=[], filtroStatus='all', chart=null;
 
-// Suspensivas salvas localmente (sobrepõem as do JSON enquanto a planilha não atualiza)
-// Armazenadas em memória + sessionStorage para persistir durante a sessão
-let suspensivas = {};
-try { suspensivas = JSON.parse(sessionStorage.getItem('idepi_sus') || '{}'); } catch(e) {}
+// Mapeamento de status interno → classe CSS
+const CLS ={normal:'n',alerta:'a',atencao:'at',critico:'c',vencido:'v',finalizado:'f',suspensiva:'s'};
+const LBL ={normal:'Normal (>90d)',alerta:'Alerta (60–90d)',atencao:'Atenção (30–60d)',critico:'Crítico (<30d)',vencido:'Vencido',finalizado:'Finalizado'};
+const COR ={normal:'#22c55e',alerta:'#3b82f6',atencao:'#eab308',critico:'#f97316',vencido:'#ef4444',finalizado:'#94a3b8'};
+const NOME={normal:'Normal',alerta:'Alerta',atencao:'Atenção',critico:'Crítico',vencido:'Vencido',finalizado:'Finalizado'};
+const KIDS={normal:'kn',alerta:'ka',atencao:'kat',critico:'kc',vencido:'kv',finalizado:'kf'};
 
-const CLS  = {normal:'n',alerta:'a',atencao:'at',critico:'c',vencido:'v',finalizado:'f'};
-const LBL  = {normal:'Normal (>90d)',alerta:'Alerta (60–90d)',atencao:'Atenção (30–60d)',critico:'Crítico (<30d)',vencido:'Vencido',finalizado:'Finalizado'};
-const COR  = {normal:'#22c55e',alerta:'#3b82f6',atencao:'#eab308',critico:'#f97316',vencido:'#ef4444',finalizado:'#94a3b8'};
-const NOME = {normal:'Normal',alerta:'Alerta',atencao:'Atenção',critico:'Crítico',vencido:'Vencido',finalizado:'Finalizado'};
-const KIDS = {normal:'kn',alerta:'ka',atencao:'kat',critico:'kc',vencido:'kv',finalizado:'kf'};
-
-// ── STATUS ─────────────────────────────────────────────
-function mapSt(s) {
-  if (!s) return 'finalizado';
-  const u = s.toUpperCase()
-    .normalize('NFD').replace(/[\u0300-\u036f]/g, ''); // remove acentos para comparação
-  if (u.includes('FINALIZADO') || u.includes('CONCLUIDO') || u.includes('ENCERRADO') ||
-      u.includes('PRESTACAO DE CONTAS') || u.includes('PRESTACÃO DE CONTAS') ||
-      u.includes('RESCINDIDO') || u.includes('INADIMPLENTE') ||
-      u.includes('TOMADA DE CONTAS')) return 'finalizado';
-  if (u.includes('SUSP') && u.includes('VENCIDO')) return 'vencido';
-  if (u.includes('SUSP') && u.includes('CRITI')) return 'critico';
-  if (u.includes('SUSP') && u.includes('ATEN')) return 'atencao';
-  if (u.includes('SUSP') && u.includes('ALERTA')) return 'alerta';
-  if (u.includes('SUSP') && u.includes('NORMAL')) return 'normal';
-  if (u.includes('VENCIDO')) return 'vencido';
-  if (u.includes('CRITI')) return 'critico';
-  if (u.includes('ATEN') && !u.includes('ALERTA')) return 'atencao';
-  if (u.includes('ALERTA')) return 'alerta';
-  if (u.includes('NORMAL')) return 'normal';
-  return 'finalizado';
-}
-
-// Recalcula status localmente a partir da data de suspensiva
-function recalcStatus(conv) {
-  const susRaw = suspensivas[conv.numero] || conv.suspensiva || '';
-  const vigRaw = conv.vigencia || '';
-
-  // Finalizado por situação → não muda
-  const sit = (conv.situacao || '').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
-  const finalizadoKws = ['prestacao de contas','finalizado','concluido','encerrado','rescindido','inadimplente','tomada de contas'];
-  if (finalizadoKws.some(k => sit.includes(k))) return { st:'finalizado', dias: null, susPrioridade: false, susData: susRaw };
-
-  const hoje = new Date(); hoje.setHours(0,0,0,0);
-
-  let dataEfetiva = null;
-  let susPrioridade = false;
-
-  if (susRaw) {
-    try {
-      const dSus = parseDateBR(susRaw);
-      if (dSus) {
-        if (vigRaw) {
-          const dVig = new Date(vigRaw);
-          if (dSus <= dVig) { dataEfetiva = dSus; susPrioridade = true; }
-          else { dataEfetiva = dVig; }
-        } else { dataEfetiva = dSus; susPrioridade = true; }
-      }
-    } catch(e) {}
-  }
-
-  if (!dataEfetiva && vigRaw) {
-    try { dataEfetiva = new Date(vigRaw); } catch(e) {}
-  }
-
-  if (!dataEfetiva) return { st:'finalizado', dias: null, susPrioridade: false, susData: susRaw };
-
-  const dias = Math.round((dataEfetiva - hoje) / 86400000);
-  let st;
-  if      (dias < 0)   st = 'vencido';
-  else if (dias <= 30) st = 'critico';
-  else if (dias <= 60) st = 'atencao';
-  else if (dias <= 90) st = 'alerta';
-  else                 st = 'normal';
-
-  return { st, dias, susPrioridade, susData: susRaw };
-}
+// ── LÓGICA DE STATUS COM SUSPENSIVA ─────────────────────────────────────────
+// Recalcula o status diretamente no browser a partir das datas brutas.
+// A data efetiva = suspensiva SE existir (prazo mais restritivo).
+// O campo "status" vindo da API pode estar errado (bug reportado), então
+// recalculamos sempre aqui com base nas datas.
 
 function parseDateBR(s) {
   if (!s) return null;
-  s = s.trim();
-  // DD/MM/YYYY
-  const m1 = s.match(/^(\d{2})\/(\d{2})\/(\d{4})$/);
-  if (m1) return new Date(`${m1[3]}-${m1[2]}-${m1[1]}`);
-  // YYYY-MM-DD
-  const m2 = s.match(/^(\d{4})-(\d{2})-(\d{2})/);
-  if (m2) return new Date(`${m2[1]}-${m2[2]}-${m2[3]}`);
-  return null;
+  // Aceita DD/MM/AAAA ou AAAA-MM-DD
+  if (s.includes('/')) {
+    const [d, m, y] = s.split('/');
+    return new Date(y, m - 1, d);
+  }
+  return new Date(s);
 }
 
-function fmtDateBR(isoOrBR) {
-  if (!isoOrBR) return '';
-  const d = parseDateBR(isoOrBR);
-  if (!d || isNaN(d)) return isoOrBR;
-  return `${String(d.getDate()).padStart(2,'0')}/${String(d.getMonth()+1).padStart(2,'0')}/${d.getFullYear()}`;
+const hoje = new Date();
+hoje.setHours(0, 0, 0, 0);
+
+function calcStatus(conv) {
+  const sit = (conv.situacao || '').toLowerCase();
+  if (sit.includes('prestação') || sit.includes('finaliz') || sit.includes('concluíd') || sit.includes('encerrad') || sit.includes('rescindid')) {
+    return { st: 'finalizado', dias: null, temSusp: false, dataEfetiva: null };
+  }
+
+  const vigStr  = conv.vigencia_fmt || conv.vigencia || '';
+  const suspStr = conv.vigencia_suspensiva || '';
+
+  if (!vigStr) return { st: 'finalizado', dias: null, temSusp: false, dataEfetiva: null };
+
+  const dVig  = parseDateBR(vigStr);
+  const dSusp = suspStr ? parseDateBR(suspStr) : null;
+
+  // Data efetiva = suspensiva SE existir (pode ser antes ou depois da vigência)
+  const temSusp = !!dSusp;
+  const dataEfetiva = dSusp || dVig;
+
+  const dias = Math.round((dataEfetiva - hoje) / 86400000);
+
+  let st;
+  if (dias < 0)       st = 'vencido';
+  else if (dias <= 30) st = 'critico';
+  else if (dias <= 60) st = 'atencao';
+  else if (dias <= 90) st = 'alerta';
+  else                  st = 'normal';
+
+  return { st, dias, temSusp, dataEfetiva };
 }
 
-function toIso(s) {
-  if (!s) return '';
-  const d = parseDateBR(s);
-  if (!d || isNaN(d)) return '';
-  return d.toISOString().slice(0,10);
-}
-
-// ── CARREGAMENTO ───────────────────────────────────────
+// ── CARREGAMENTO ─────────────────────────────────────────────────────────────
 async function carregar() {
   const url = `https://raw.githubusercontent.com/${USUARIO}/${REPO}/main/dados.json?t=${Date.now()}`;
   try {
@@ -361,8 +342,15 @@ async function carregar() {
     if (!r.ok) throw new Error(`HTTP ${r.status}`);
     const j = await r.json();
     document.getElementById('hinfo').textContent = `Atualizado: ${j.gerado_em || '—'}`;
-    dados = (j.convenios || []).map(c => ({ ...c }));
+
+    // Processa cada convênio recalculando o status pelas datas
+    dados = (j.convenios || []).map(c => {
+      const { st, dias, temSusp, dataEfetiva } = calcStatus(c);
+      return { ...c, _st: st, _dias: dias, _temSusp: temSusp, _dataEfetiva: dataEfetiva };
+    });
+
     document.getElementById('ov').classList.add('hide');
+    popularFiltros();
     atualizar();
   } catch(e) {
     document.getElementById('ov').innerHTML = `
@@ -372,232 +360,251 @@ async function carregar() {
   }
 }
 
+// ── POPULAR SELECTS DE FILTRO ────────────────────────────────────────────────
+function popularFiltros() {
+  const campos = {
+    fMandataria: d => d.mandataria || d.mandatária || '',
+    fEmenda:     d => d.emenda || '',
+    fSituacao:   d => d.situacao || '',
+    fFiscal:     d => d.fiscal || '',
+  };
+
+  for (const [id, fn] of Object.entries(campos)) {
+    const sel = document.getElementById(id);
+    const label = sel.options[0].text; // preserva o placeholder
+    const vals = [...new Set(dados.map(fn).filter(Boolean).map(v => v.trim()))].sort();
+    sel.innerHTML = `<option value="">${label}</option>` +
+      vals.map(v => `<option value="${v}">${v}</option>`).join('');
+  }
+}
+
+// ── DASHBOARD ────────────────────────────────────────────────────────────────
 function atualizar() {
-  const ct = {normal:0,alerta:0,atencao:0,critico:0,vencido:0,finalizado:0};
+  const ct = { normal:0, alerta:0, atencao:0, critico:0, vencido:0, finalizado:0 };
   let sT=0, sL=0, sE=0, nE=0;
+
   dados.forEach(d => {
-    const r = recalcStatus(d);
-    d._st  = r.st;
-    d._dias = r.dias;
-    d._susPrioridade = r.susPrioridade;
-    d._susData = r.susData;
     ct[d._st] = (ct[d._st] || 0) + 1;
-    const vt = parseFloat((d.v_total||'').replace(/\./g,'').replace(',','.'))||0;
-    const vl = parseFloat((d.v_liberado||'').replace(/\./g,'').replace(',','.'))||0;
-    const pe = parseFloat((d.pct_exec||'').replace('%',''))||0;
-    sT+=vt; sL+=vl; if(pe>0){sE+=pe;nE++;}
+    const vt = parseFloat((d.v_total||'').replace(/\./g,'').replace(',','.')) || 0;
+    const vl = parseFloat((d.v_liberado||'').replace(/\./g,'').replace(',','.')) || 0;
+    const pe = parseFloat((d.pct_exec||'').replace('%','')) || 0;
+    sT += vt; sL += vl;
+    if (pe > 0) { sE += pe; nE++; }
   });
-  ['cn','ca','cat','cc','cv','cf'].forEach((id,i)=>{
-    document.getElementById(id).textContent = ct[Object.keys(ct)[i]];
-  });
+
+  document.getElementById('cn').textContent  = ct.normal;
+  document.getElementById('ca').textContent  = ct.alerta;
+  document.getElementById('cat').textContent = ct.atencao;
+  document.getElementById('cc').textContent  = ct.critico;
+  document.getElementById('cv').textContent  = ct.vencido;
+  document.getElementById('cf').textContent  = ct.finalizado;
+
   const urg = ct.critico + ct.vencido;
   const urgEl = document.getElementById('urg');
-  if (urg>0) { urgEl.classList.remove('hide'); document.getElementById('urgTxt').textContent=`${urg} instrumento(s) crítico(s) ou vencido(s)`; }
-  else urgEl.classList.add('hide');
-  document.getElementById('tt').textContent = sT>0 ? `R$ ${fmtN(sT)}` : '—';
-  document.getElementById('tl').textContent = sL>0 ? `R$ ${fmtN(sL)}` : '—';
-  document.getElementById('te').textContent = nE>0 ? `${(sE/nE).toFixed(1)}%` : '—';
+  if (urg > 0) {
+    urgEl.classList.remove('hide');
+    document.getElementById('urgTxt').textContent = `${urg} instrumento(s) crítico(s) ou vencido(s)`;
+  } else {
+    urgEl.classList.add('hide');
+  }
+
+  document.getElementById('tt').textContent = sT > 0 ? `R$ ${fmtN(sT)}` : '—';
+  document.getElementById('tl').textContent = sL > 0 ? `R$ ${fmtN(sL)}` : '—';
+  document.getElementById('te').textContent = nE > 0 ? `${(sE/nE).toFixed(1)}%` : '—';
+
   desenharGraf(ct);
   render();
 }
 
-function fmtN(n) { return n.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2}); }
+function fmtN(n) {
+  return n.toLocaleString('pt-BR', { minimumFractionDigits:2, maximumFractionDigits:2 });
+}
 
+// ── GRÁFICO ──────────────────────────────────────────────────────────────────
 function desenharGraf(ct) {
-  const keys = ['normal','alerta','atencao','critico','vencido','finalizado'];
-  const vals = keys.map(k=>ct[k]||0), cors = keys.map(k=>COR[k]);
-  const tot  = vals.reduce((a,b)=>a+b,0);
+  const keys  = ['normal','alerta','atencao','critico','vencido','finalizado'];
+  const vals  = keys.map(k => ct[k] || 0);
+  const cors  = keys.map(k => COR[k]);
+  const tot   = vals.reduce((a,b) => a+b, 0);
   if (chart) chart.destroy();
   chart = new Chart(document.getElementById('donut'), {
-    type:'doughnut',
-    data:{labels:keys.map(k=>LBL[k]),datasets:[{data:vals,backgroundColor:cors,borderWidth:2,borderColor:'#fff',hoverOffset:6}]},
-    options:{cutout:'68%',responsive:true,maintainAspectRatio:true,plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>` ${ctx.raw} (${tot>0?Math.round(ctx.raw/tot*100):0}%)`}}}},
-    plugins:[{id:'ct',afterDraw(ch){
-      const{ctx,chartArea:{left,top,width,height}}=ch,cx=left+width/2,cy=top+height/2;
-      ctx.save();ctx.textAlign='center';ctx.textBaseline='middle';
-      ctx.fillStyle='#1e293b';ctx.font='700 26px Inter';ctx.fillText(tot,cx,cy-8);
-      ctx.fillStyle='#94a3b8';ctx.font='400 11px Inter';ctx.fillText('instrumentos',cx,cy+13);
+    type: 'doughnut',
+    data: { labels: keys.map(k=>LBL[k]), datasets:[{ data:vals, backgroundColor:cors, borderWidth:2, borderColor:'#fff', hoverOffset:6 }] },
+    options: { cutout:'68%', responsive:true, maintainAspectRatio:true,
+      plugins:{ legend:{display:false}, tooltip:{callbacks:{label:ctx=>` ${ctx.raw} (${tot>0?Math.round(ctx.raw/tot*100):0}%)`}} } },
+    plugins:[{ id:'ct', afterDraw(ch) {
+      const{ctx,chartArea:{left,top,width,height}}=ch, cx=left+width/2, cy=top+height/2;
+      ctx.save(); ctx.textAlign='center'; ctx.textBaseline='middle';
+      ctx.fillStyle='#1e293b'; ctx.font='700 26px Inter'; ctx.fillText(tot,cx,cy-8);
+      ctx.fillStyle='#94a3b8'; ctx.font='400 11px Inter'; ctx.fillText('instrumentos',cx,cy+13);
       ctx.restore();
     }}]
   });
   document.getElementById('leg').innerHTML = keys.map((k,i) => {
-    const pct = tot>0 ? Math.round(vals[i]/tot*100) : 0;
-    return `<div class="citem" onclick="fil('${k}')"><span class="cdot" style="background:${cors[i]}"></span><span class="cname">${LBL[k]}</span><span class="cval">${vals[i]} <span style="color:#94a3b8;font-weight:400;">(${pct}%)</span></span></div>`;
+    const pct = tot > 0 ? Math.round(vals[i]/tot*100) : 0;
+    return `<div class="citem" onclick="setStatus('${k}')">
+      <span class="cdot" style="background:${cors[i]}"></span>
+      <span class="cname">${LBL[k]}</span>
+      <span class="cval">${vals[i]} <span style="color:#94a3b8;font-weight:400;">(${pct}%)</span></span>
+    </div>`;
   }).join('');
 }
 
-// ── FILTROS ────────────────────────────────────────────
-function fil(s) {
-  filtro=s; document.getElementById('busca').value='';
-  Object.values(KIDS).forEach(id=>document.getElementById(id).classList.remove('active'));
-  if(KIDS[s]) document.getElementById(KIDS[s]).classList.add('active');
-  render();
-}
-function rst() {
-  filtro='all'; document.getElementById('busca').value='';
-  Object.values(KIDS).forEach(id=>document.getElementById(id).classList.remove('active'));
+// ── FILTROS ──────────────────────────────────────────────────────────────────
+function setStatus(s) {
+  filtroStatus = s;
+  document.getElementById('busca').value = '';
+  Object.values(KIDS).forEach(id => document.getElementById(id).classList.remove('active'));
+  if (KIDS[s]) document.getElementById(KIDS[s]).classList.add('active');
   render();
 }
 
-// ── RENDER TABELA ──────────────────────────────────────
+// Também vincula os cards KPI ao filtro de status
+function fil(s) { setStatus(s); }
+
+function clearColFilters() {
+  ['fMandataria','fEmenda','fSituacao','fFiscal'].forEach(id => {
+    document.getElementById(id).value = '';
+    document.getElementById(id).classList.remove('active');
+  });
+  render();
+}
+
+function rst() {
+  filtroStatus = 'all';
+  document.getElementById('busca').value = '';
+  Object.values(KIDS).forEach(id => document.getElementById(id).classList.remove('active'));
+  clearColFilters();
+}
+
+// ── RENDER DA TABELA ─────────────────────────────────────────────────────────
 function render() {
-  const q = (document.getElementById('busca').value||'').toLowerCase();
-  let rows = dados;
-  if (filtro !== 'all') rows = rows.filter(r => r._st === filtro);
-  if (q) rows = rows.filter(r =>
-    (r.numero||'').toLowerCase().includes(q) ||
-    (r.objeto||'').toLowerCase().includes(q) ||
-    (r.autor_emenda||'').toLowerCase().includes(q)
-  );
-  rows.sort((a,b) => {
-    const o={critico:0,vencido:1,atencao:2,alerta:3,normal:4,finalizado:5};
-    return (o[a._st]||9)-(o[b._st]||9) || ((a._dias||9999)-(b._dias||9999));
+  const q         = (document.getElementById('busca').value || '').toLowerCase();
+  const fMand     = document.getElementById('fMandataria').value;
+  const fEmend    = document.getElementById('fEmenda').value;
+  const fSit      = document.getElementById('fSituacao').value;
+  const fFisc     = document.getElementById('fFiscal').value;
+
+  // Marca selects ativos
+  ['fMandataria','fEmenda','fSituacao','fFiscal'].forEach(id => {
+    document.getElementById(id).classList.toggle('active', !!document.getElementById(id).value);
   });
 
-  const tb = document.getElementById('tbody'), em = document.getElementById('empty');
-  document.getElementById('tcnt').textContent = rows.length>0 ? `(${rows.length})` : '';
-  if (!rows.length) { tb.innerHTML=''; em.style.display='block'; document.getElementById('srow').innerHTML=''; return; }
-  em.style.display='none';
+  let rows = dados;
+
+  // Filtro por status / suspensiva
+  if (filtroStatus === 'suspensiva') {
+    rows = rows.filter(r => r._temSusp);
+  } else if (filtroStatus !== 'all') {
+    rows = rows.filter(r => r._st === filtroStatus);
+  }
+
+  // Busca global
+  if (q) {
+    rows = rows.filter(r =>
+      (r.numero||'').toLowerCase().includes(q) ||
+      (r.objeto||'').toLowerCase().includes(q) ||
+      (r.autor_emenda||'').toLowerCase().includes(q)
+    );
+  }
+
+  // Filtros por coluna
+  if (fMand) rows = rows.filter(r => (r.mandataria||r.mandatária||'').trim() === fMand);
+  if (fEmend) rows = rows.filter(r => (r.emenda||'').trim() === fEmend);
+  if (fSit)  rows = rows.filter(r => (r.situacao||'').trim() === fSit);
+  if (fFisc) rows = rows.filter(r => (r.fiscal||'').trim() === fFisc);
+
+  // Ordenação: vencido → crítico → atenção → alerta → normal → finalizado
+  // Dentro de cada grupo: dias crescente (mais urgente primeiro)
+  rows.sort((a, b) => {
+    const o = { critico:0, vencido:1, atencao:2, alerta:3, normal:4, finalizado:5 };
+    const diff = (o[a._st]||9) - (o[b._st]||9);
+    if (diff !== 0) return diff;
+    return ((a._dias ?? 9999) - (b._dias ?? 9999));
+  });
+
+  const tb = document.getElementById('tbody');
+  const em = document.getElementById('empty');
+  document.getElementById('tcnt').textContent = rows.length > 0 ? `(${rows.length})` : '';
+
+  if (!rows.length) {
+    tb.innerHTML = '';
+    em.style.display = 'block';
+    document.getElementById('srow').innerHTML = '';
+    return;
+  }
+  em.style.display = 'none';
 
   tb.innerHTML = rows.map((r, i) => {
-    const cl   = CLS[r._st]||'f';
-    const nm   = r._susPrioridade ? `⚠️ SUSP · ${NOME[r._st]||r._st}` : (NOME[r._st]||r._st);
-    const dTx  = r._dias != null ? (r._dias<0 ? `${Math.abs(r._dias)}d vencido` : `${r._dias}d`) : '—';
-    const susDisplay = r._susData ? `<span class="sus-current"><i class="fa-solid fa-hourglass-half" style="font-size:10px;margin-right:3px;"></i>${fmtDateBR(r._susData)}</span>` : `<span style="color:#94a3b8;font-size:11px;">—</span>`;
-    const badgeCls = r._susPrioridade ? 'sus' : cl;
+    const cl   = CLS[r._st] || 'f';
+    const nm   = NOME[r._st] || r._st;
+    const dias = r._dias;
 
-    return `<tr class="drow" onclick="exp(${i},event)">
+    let diasHtml;
+    if (dias === null || dias === undefined) {
+      diasHtml = `<span class="val">—</span>`;
+    } else if (dias < 0) {
+      diasHtml = `<div class="dias-vencido">${Math.abs(dias)}d<small>vencido</small></div>`;
+    } else {
+      diasHtml = `<span class="cd ${cl}">${dias}d</span>`;
+    }
+
+    const suspHtml = r._temSusp
+      ? `<span class="susp-tag"><i class="fa-solid fa-hourglass-half"></i>${r.vigencia_suspensiva||'—'}</span>`
+      : `<span style="color:#94a3b8;">—</span>`;
+
+    return `<tr class="drow" onclick="exp(${i})">
       <td style="text-align:center;"><i class="fa-solid fa-chevron-right" id="ic${i}" style="font-size:10px;color:#94a3b8;transition:transform .2s;"></i></td>
       <td><span class="num">${r.numero||'—'}</span></td>
-      <td><div class="obj" title="${(r.objeto||'').replace(/"/g,"'")}">${r.objeto||'—'}</div>${r.autor_emenda?`<div style="font-size:11px;color:#94a3b8;margin-top:2px;"><i class="fa-solid fa-user" style="font-size:10px;"></i> ${r.autor_emenda}</div>`:''}</td>
-      <td style="white-space:nowrap;">${r.vigencia_fmt||r.vigencia||'—'}</td>
-      <td>${susDisplay}</td>
-      <td><span class="cd ${cl}">${dTx}</span></td>
-      <td><span class="val">${r.v_total?'R$ '+r.v_total:'—'}</span></td>
-      <td><span class="val">${r.pct_exec||'—'}</span></td>
-      <td><span class="badge ${badgeCls}">${nm}</span></td>
+      <td>
+        <div class="obj" title="${(r.objeto||'').replace(/"/g,"'")}">${r.objeto||'—'}</div>
+        ${r.autor_emenda ? `<div style="font-size:11px;color:#94a3b8;margin-top:2px;"><i class="fa-solid fa-user" style="font-size:10px;"></i> ${r.autor_emenda}</div>` : ''}
+      </td>
+      <td style="white-space:nowrap;font-size:12px;">${r.vigencia_fmt||r.vigencia||'—'}</td>
+      <td>${suspHtml}</td>
+      <td style="text-align:center;">${diasHtml}</td>
+      <td><span class="val">${r.v_total ? 'R$ '+r.v_total : '—'}</span></td>
+      <td style="text-align:center;"><span class="val">${r.pct_exec||'—'}</span></td>
+      <td><span class="badge ${cl}">${nm}${r._temSusp ? ' <i class="fa-solid fa-hourglass-half" style="font-size:9px;margin-left:3px;"></i>' : ''}</span></td>
     </tr>
-    <tr class="erow" id="er${i}"><td colspan="9"><div class="ebody">
-      <div class="egrid">
-        <div class="ef"><label>Nº do instrumento</label><span>${r.numero||'—'}</span></div>
-        <div class="ef"><label>Situação oficial</label><span>${r.situacao||'—'}</span></div>
-        <div class="ef"><label>Prestação de contas</label><span>${r.prestacao||'—'}</span></div>
-        <div class="ef full"><label>Objeto completo</label><span>${r.objeto||'—'}</span></div>
-        <div class="ef"><label>Vigência até</label><span>${r.vigencia_fmt||r.vigencia||'—'}</span></div>
-        <div class="ef"><label>Valor total</label><span>${r.v_total?'R$ '+r.v_total:'—'}</span></div>
-        <div class="ef"><label>Valor liberado</label><span>${r.v_liberado?'R$ '+r.v_liberado:'—'}</span></div>
-        <div class="ef"><label>% Execução</label><span>${r.pct_exec||'—'}</span></div>
-        <div class="ef"><label>Autor da emenda</label><span>${r.autor_emenda||'—'}</span></div>
-        <div class="ef"><label>Status</label><span><span class="badge ${badgeCls}">${nm}</span></span></div>
-      </div>
-      <!-- Bloco de suspensiva -->
-      <div style="margin-top:14px;">
-        <div class="sus-box">
-          <div>
-            <label><i class="fa-solid fa-hourglass-half" style="margin-right:4px;"></i>Cláusula Suspensiva</label>
-            <div style="font-size:12px;color:#64748b;margin-top:2px;">${r._susData ? `Ativa: <strong style="color:#7e22ce;">${fmtDateBR(r._susData)}</strong> — tem prioridade sobre a vigência` : 'Nenhuma suspensiva definida para este convênio.'}</div>
-          </div>
-          <button class="sus-btn" onclick="abrirModal(${i});event.stopPropagation();">
-            <i class="fa-solid fa-${r._susData ? 'pen' : 'plus'}"></i>
-            ${r._susData ? 'Editar' : 'Definir'}
-          </button>
-          ${r._susData ? `<button class="sus-del" onclick="salvarSuspensiva(null,${i});event.stopPropagation();"><i class="fa-solid fa-trash"></i> Apagar</button>` : ''}
-        </div>
-        ${r._susPrioridade ? `<div style="margin-top:8px;font-size:12px;background:#fdf4ff;border:1px solid #a855f7;border-radius:6px;padding:6px 10px;color:#7e22ce;"><i class="fa-solid fa-triangle-exclamation" style="margin-right:5px;"></i><strong>Atenção:</strong> A cláusula suspensiva (${fmtDateBR(r._susData)}) vence antes da vigência contratual (${r.vigencia_fmt||r.vigencia||'—'}). O status é calculado pela suspensiva.</div>` : ''}
-      </div>
-    </div></td></tr>`;
+    <tr class="erow" id="er${i}"><td colspan="9"><div class="ebody"><div class="egrid">
+      <div class="ef"><label>Nº do instrumento</label><span>${r.numero||'—'}</span></div>
+      <div class="ef"><label>Situação oficial</label><span>${r.situacao||'—'}</span></div>
+      <div class="ef"><label>Prestação de contas</label><span>${r.prestacao||'—'}</span></div>
+      <div class="ef full"><label>Objeto completo</label><span>${r.objeto||'—'}</span></div>
+      <div class="ef"><label>Vigência final</label><span>${r.vigencia_fmt||r.vigencia||'—'}</span></div>
+      <div class="ef"><label>Vigência suspensiva</label><span style="color:${r._temSusp?'var(--s-tx)':'inherit'};font-weight:${r._temSusp?'600':'400'}">${r._temSusp ? (r.vigencia_suspensiva||'—') : '—'}</span></div>
+      <div class="ef"><label>Dias p/ data efetiva</label><span>${dias !== null ? (dias < 0 ? Math.abs(dias)+'d vencido' : dias+'d restantes') : '—'}</span></div>
+      <div class="ef"><label>Valor total</label><span>${r.v_total ? 'R$ '+r.v_total : '—'}</span></div>
+      <div class="ef"><label>Valor liberado</label><span>${r.v_liberado ? 'R$ '+r.v_liberado : '—'}</span></div>
+      <div class="ef"><label>% Execução</label><span>${r.pct_exec||'—'}</span></div>
+      <div class="ef"><label>Autor da emenda</label><span>${r.autor_emenda||'—'}</span></div>
+      <div class="ef"><label>Status calculado</label><span><span class="badge ${cl}">${nm}</span>${r._temSusp ? ' <span style="font-size:11px;color:var(--s-tx);margin-left:4px;">(pela suspensiva)</span>' : ''}</span></div>
+    </div></div></td></tr>`;
   }).join('');
 
-  const cu = {critico:0, vencido:0, sus:0};
+  const cu = { critico:0, vencido:0, suspensiva:0 };
   rows.forEach(r => {
-    if (cu[r._st] !== undefined) cu[r._st]++;
-    if (r._susPrioridade) cu.sus++;
+    if (r._st === 'critico')   cu.critico++;
+    if (r._st === 'vencido')   cu.vencido++;
+    if (r._temSusp)            cu.suspensiva++;
   });
+
   document.getElementById('srow').innerHTML = `
     <i class="fa-solid fa-circle-info" style="color:#94a3b8;font-size:11px;"></i>
     Mostrando <strong>${rows.length}</strong> instrumento(s)
-    ${cu.critico>0 ? ` · <span style="color:#c2410c;font-weight:600;">${cu.critico} crítico(s)</span>` : ''}
-    ${cu.vencido>0 ? ` · <span style="color:#b91c1c;font-weight:600;">${cu.vencido} vencido(s)</span>` : ''}
-    ${cu.sus>0 ? ` · <span style="color:#7e22ce;font-weight:600;"><i class="fa-solid fa-hourglass-half" style="font-size:10px;margin-right:2px;"></i>${cu.sus} com suspensiva</span>` : ''}`;
+    ${cu.critico > 0 ? ` · <span style="color:#c2410c;font-weight:600;">${cu.critico} crítico(s)</span>` : ''}
+    ${cu.vencido > 0 ? ` · <span style="color:#b91c1c;font-weight:600;">${cu.vencido} vencido(s)</span>` : ''}
+    ${cu.suspensiva > 0 ? ` · <span style="color:#5b21b6;font-weight:600;">${cu.suspensiva} c/ suspensiva</span>` : ''}`;
 }
 
-// ── EXPAND ROW ─────────────────────────────────────────
-function exp(i, ev) {
-  if (ev && ev.target.closest('.sus-btn, .sus-del, button')) return;
-  const er = document.getElementById('er'+i), ic = document.getElementById('ic'+i);
-  const op = er.classList.contains('open');
+function exp(i) {
+  const er=document.getElementById('er'+i), ic=document.getElementById('ic'+i);
+  const op=er.classList.contains('open');
   document.querySelectorAll('.erow.open').forEach(r=>r.classList.remove('open'));
   document.querySelectorAll('[id^=ic]').forEach(e=>{e.style.transform='';});
-  if (!op) { er.classList.add('open'); ic.style.transform='rotate(90deg)'; }
+  if(!op){er.classList.add('open');ic.style.transform='rotate(90deg)';}
 }
-
-// ── MODAL SUSPENSIVA ───────────────────────────────────
-function abrirModal(idx) {
-  const rows = getDadosFiltrados();
-  const r    = rows[idx];
-  if (!r) return;
-  modalIdx = dados.indexOf(r);
-  document.getElementById('modDesc').textContent = `Convênio ${r.numero} — define a data em que a cláusula suspensiva encerra o instrumento.`;
-  const iso = toIso(r._susData || '');
-  document.getElementById('modDate').value = iso;
-  document.getElementById('modDel').style.display = iso ? 'flex' : 'none';
-  document.getElementById('modBg').classList.remove('hide');
-}
-
-function fecharModal() {
-  document.getElementById('modBg').classList.add('hide');
-  modalIdx = -1;
-}
-
-function salvarSuspensivaModal() {
-  const val = document.getElementById('modDate').value; // YYYY-MM-DD ou ''
-  salvarSuspensiva(val || null);
-}
-
-function salvarSuspensiva(isoVal, renderedIdx) {
-  // Se chamado da linha expandida diretamente, precisamos encontrar o índice no dados[]
-  let dadoIdx = modalIdx;
-  if (renderedIdx !== undefined) {
-    const rows = getDadosFiltrados();
-    const r = rows[renderedIdx];
-    if (r) dadoIdx = dados.indexOf(r);
-  }
-  if (dadoIdx < 0) { fecharModal(); return; }
-
-  const conv = dados[dadoIdx];
-  if (isoVal) {
-    suspensivas[conv.numero] = isoVal; // guarda em YYYY-MM-DD
-  } else {
-    delete suspensivas[conv.numero];
-  }
-  try { sessionStorage.setItem('idepi_sus', JSON.stringify(suspensivas)); } catch(e) {}
-
-  fecharModal();
-
-  // Recalcula apenas este convênio e re-renderiza
-  atualizar();
-}
-
-function getDadosFiltrados() {
-  const q = (document.getElementById('busca').value||'').toLowerCase();
-  let rows = dados;
-  if (filtro !== 'all') rows = rows.filter(r => r._st === filtro);
-  if (q) rows = rows.filter(r =>
-    (r.numero||'').toLowerCase().includes(q) ||
-    (r.objeto||'').toLowerCase().includes(q) ||
-    (r.autor_emenda||'').toLowerCase().includes(q)
-  );
-  rows.sort((a,b) => {
-    const o = {critico:0,vencido:1,atencao:2,alerta:3,normal:4,finalizado:5};
-    return (o[a._st]||9)-(o[b._st]||9) || ((a._dias||9999)-(b._dias||9999));
-  });
-  return rows;
-}
-
-// Fecha modal ao clicar fora
-document.getElementById('modBg').addEventListener('click', function(e){
-  if (e.target === this) fecharModal();
-});
 
 carregar();
 </script>

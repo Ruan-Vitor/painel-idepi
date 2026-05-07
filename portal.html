@@ -3,435 +3,550 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>IDEPI — Painel de Convênios Federais</title>
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<title>IDEPI — Convênios Federais</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0d1f3c;--navy2:#162847;--navy3:#1e3a5f;
+  --green:#0d5c3a;--green2:#0f7a4e;
+  --accent:#f5a623;--accent2:#e8961a;
+  --brand:#1a3a6e;
+  --surface:#fff;--border:#e0e8f4;
+  --text:#1a2640;--muted:#5a6a82;
+  --r:14px;
+}
 html,body{height:100%;overflow:hidden}
-body{
-  font-family:'DM Sans',sans-serif;
-  background:#0f1f3d;
-  display:flex;flex-direction:column;
-  min-height:100vh;
-}
+body{font-family:'DM Sans',sans-serif;background:var(--navy);color:var(--text);display:flex;flex-direction:column;height:100vh}
 
-/* ── HEADER ─── */
-.hd{
-  background:#0f1f3d;
-  border-bottom:1px solid rgba(255,255,255,.08);
-  padding:0 40px;height:60px;
-  display:flex;align-items:center;justify-content:space-between;
-  flex-shrink:0;
-}
-.hd-left{display:flex;align-items:center;gap:16px}
-.hd-logo{display:flex;align-items:center;gap:10px}
-.hd-logo-icon{
-  width:36px;height:36px;border-radius:8px;
-  background:linear-gradient(135deg,#1a4a8a,#0d6e4a);
+/* ─── LOGIN SCREEN ─────────────────────────────────────── */
+#login-screen{
+  position:fixed;inset:0;z-index:100;
   display:flex;align-items:center;justify-content:center;
-  font-size:16px;color:#fff;
+  background:linear-gradient(135deg,var(--navy) 0%,#142038 40%,var(--green) 100%);
+  overflow:hidden;
 }
-.hd-title{font-family:'Sora',sans-serif;font-size:15px;font-weight:700;color:#fff;line-height:1.1}
-.hd-sub{font-size:11px;color:rgba(255,255,255,.45);font-weight:400}
-.hd-sep{width:1px;height:28px;background:rgba(255,255,255,.12)}
-.hd-scope{
-  display:flex;align-items:center;gap:7px;
-  background:rgba(255,255,255,.07);
+#login-screen::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 60% 50% at 80% 20%,rgba(245,166,35,.07) 0%,transparent 70%),
+             radial-gradient(ellipse 50% 60% at 10% 80%,rgba(13,92,58,.3) 0%,transparent 60%);
+}
+.login-grid{position:absolute;inset:0;opacity:.04;
+  background-image:linear-gradient(rgba(255,255,255,.6) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.6) 1px,transparent 1px);
+  background-size:40px 40px}
+.login-deco{position:absolute;right:-60px;bottom:-80px;width:500px;height:500px;border-radius:50%;border:1px solid rgba(255,255,255,.04);animation:rotdeco 30s linear infinite}
+.login-deco::before{content:'';position:absolute;inset:40px;border-radius:50%;border:1px solid rgba(255,255,255,.04)}
+.login-deco::after{content:'';position:absolute;inset:100px;border-radius:50%;border:1px solid rgba(255,255,255,.04)}
+@keyframes rotdeco{to{transform:rotate(360deg)}}
+
+.login-box{
+  position:relative;z-index:1;
+  background:rgba(255,255,255,.04);
   border:1px solid rgba(255,255,255,.1);
-  border-radius:20px;padding:4px 12px;
-  font-size:11px;color:rgba(255,255,255,.6);
+  border-radius:24px;
+  padding:44px 48px;
+  width:420px;
+  backdrop-filter:blur(20px);
+  box-shadow:0 40px 80px rgba(0,0,0,.4);
+  animation:fadein .5s ease;
 }
-.hd-scope i{color:#4ade80;font-size:9px}
-.hd-right{display:flex;align-items:center;gap:10px}
-.hd-stat{text-align:right}
-.hd-stat strong{font-family:'Sora',sans-serif;font-size:18px;font-weight:700;color:#fff;display:block;line-height:1}
-.hd-stat span{font-size:10px;color:rgba(255,255,255,.4)}
-.hd-divider{width:1px;height:28px;background:rgba(255,255,255,.12)}
-.hd-ts{font-size:11px;color:rgba(255,255,255,.35);text-align:right}
+@keyframes fadein{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
 
-/* ── MAIN AREA ─── */
-.body{
-  flex:1;display:flex;gap:0;overflow:hidden;
+.lb-logo{display:flex;align-items:center;gap:14px;margin-bottom:32px;justify-content:center}
+.lb-icon{
+  width:52px;height:52px;border-radius:14px;
+  background:linear-gradient(135deg,var(--brand),var(--green));
+  display:flex;align-items:center;justify-content:center;
+  font-size:22px;color:#fff;box-shadow:0 4px 20px rgba(13,92,58,.4);
 }
+.lb-text{display:flex;flex-direction:column}
+.lb-text strong{font-family:'Sora',sans-serif;font-size:18px;font-weight:800;color:#fff;line-height:1.1}
+.lb-text span{font-size:11px;color:rgba(255,255,255,.45);margin-top:2px}
 
-/* ── SIDEBAR ─── */
-.sidebar{
-  width:220px;flex-shrink:0;
-  background:#0a1628;
-  border-right:1px solid rgba(255,255,255,.07);
-  display:flex;flex-direction:column;
-  padding:20px 12px;gap:4px;
-}
-.sb-section{
-  font-size:10px;font-weight:600;
-  color:rgba(255,255,255,.25);
-  letter-spacing:.8px;text-transform:uppercase;
-  padding:8px 12px 4px;
-  margin-top:8px;
-}
-.sb-section:first-child{margin-top:0}
-.sb-item{
-  display:flex;align-items:center;gap:10px;
-  padding:9px 12px;border-radius:8px;
-  font-size:13px;color:rgba(255,255,255,.55);
-  text-decoration:none;cursor:pointer;
-  transition:all .15s;position:relative;
-}
-.sb-item:hover{background:rgba(255,255,255,.06);color:rgba(255,255,255,.8)}
-.sb-item.active{background:#1a3a6e;color:#fff}
-.sb-item.active i{color:#60a5fa}
-.sb-item i{font-size:15px;width:18px;text-align:center;flex-shrink:0}
-.sb-item .soon{
-  margin-left:auto;font-size:9px;font-weight:600;
-  background:rgba(255,255,255,.08);color:rgba(255,255,255,.3);
-  padding:2px 7px;border-radius:10px;
-}
-.sb-item.active .soon{display:none}
-.sb-bottom{margin-top:auto;padding-top:16px;border-top:1px solid rgba(255,255,255,.07)}
-.sb-info{padding:10px 12px;border-radius:8px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06)}
-.sb-info p{font-size:11px;color:rgba(255,255,255,.3);line-height:1.5}
-.sb-info strong{color:rgba(255,255,255,.5);display:block;font-size:11px;margin-bottom:2px}
+.lb-title{font-family:'Sora',sans-serif;font-size:22px;font-weight:700;color:#fff;text-align:center;margin-bottom:6px}
+.lb-sub{font-size:13px;color:rgba(255,255,255,.45);text-align:center;margin-bottom:28px}
 
-/* ── CONTENT ─── */
-.content{
-  flex:1;display:flex;flex-direction:column;
-  overflow:hidden;background:#f0f4fb;
+.lb-field{position:relative;margin-bottom:14px}
+.lb-field label{display:block;font-size:12px;font-weight:600;color:rgba(255,255,255,.5);margin-bottom:7px;letter-spacing:.3px}
+.lb-field input{
+  width:100%;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);
+  border-radius:10px;padding:13px 44px 13px 16px;
+  font-size:14px;color:#fff;font-family:'DM Sans',sans-serif;
+  outline:none;transition:all .2s;
 }
+.lb-field input::placeholder{color:rgba(255,255,255,.25)}
+.lb-field input:focus{border-color:rgba(245,166,35,.6);background:rgba(255,255,255,.1);box-shadow:0 0 0 3px rgba(245,166,35,.1)}
+.lb-field .eye{
+  position:absolute;right:14px;bottom:14px;
+  color:rgba(255,255,255,.3);cursor:pointer;font-size:15px;
+  transition:color .15s;
+}
+.lb-field .eye:hover{color:rgba(255,255,255,.7)}
 
-/* ── PAGE HEADER ─── */
-.pg-head{
-  background:#fff;border-bottom:1px solid #e0e6f0;
-  padding:20px 32px;display:flex;align-items:center;justify-content:space-between;
-  flex-shrink:0;
+.lb-error{
+  display:none;background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.25);
+  border-radius:8px;padding:9px 12px;font-size:13px;color:#fca5a5;
+  margin-bottom:14px;display:flex;align-items:center;gap:8px;
 }
-.pg-title{font-family:'Sora',sans-serif;font-size:20px;font-weight:700;color:#1a2640}
-.pg-sub{font-size:12px;color:#8a99b0;margin-top:2px;display:flex;align-items:center;gap:8px}
-.pg-sub i{font-size:11px}
-.pg-btn{
-  display:flex;align-items:center;gap:7px;
-  background:#1a3a6e;color:#fff;border:none;
-  padding:9px 18px;border-radius:8px;font-size:13px;font-weight:600;
-  cursor:pointer;text-decoration:none;font-family:'DM Sans',sans-serif;
-  transition:background .15s;
-}
-.pg-btn:hover{background:#1e4a8a}
-.pg-btn i{font-size:14px}
+.lb-error.visible{display:flex}
+.lb-error:not(.visible){display:none}
 
-/* ── STATS ROW ─── */
-.stats{
-  display:grid;grid-template-columns:repeat(6,1fr);gap:12px;
-  padding:20px 32px;flex-shrink:0;
+.lb-btn{
+  width:100%;background:linear-gradient(135deg,var(--accent),var(--accent2));
+  border:none;border-radius:10px;padding:14px;
+  font-family:'Sora',sans-serif;font-size:15px;font-weight:700;color:#1a1a00;
+  cursor:pointer;transition:all .2s;box-shadow:0 4px 16px rgba(245,166,35,.3);
+  margin-top:4px;display:flex;align-items:center;justify-content:center;gap:8px;
 }
-.stat{
-  background:#fff;border:1px solid #e0e6f0;border-radius:12px;
-  padding:14px 16px;cursor:pointer;transition:all .15s;
-  border-top:3px solid transparent;
-}
-.stat:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(26,58,110,.08)}
-.stat.s-n{border-top-color:#22c55e}
-.stat.s-a{border-top-color:#3b82f6}
-.stat.s-at{border-top-color:#eab308}
-.stat.s-c{border-top-color:#f97316}
-.stat.s-v{border-top-color:#ef4444}
-.stat.s-f{border-top-color:#94a3b8}
-.stat-label{font-size:10px;font-weight:600;color:#8a99b0;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px}
-.stat-num{font-family:'Sora',sans-serif;font-size:26px;font-weight:700;color:#1a2640;line-height:1}
-.stat-desc{font-size:10px;color:#b0bbc8;margin-top:3px}
+.lb-btn:hover{transform:translateY(-1px);box-shadow:0 6px 24px rgba(245,166,35,.45)}
+.lb-btn:active{transform:none}
+.lb-btn.loading{opacity:.7;pointer-events:none}
+.lb-btn i{font-size:14px}
 
-/* ── TABLE AREA ─── */
-.table-wrap{flex:1;overflow:hidden;padding:0 32px 20px;display:flex;flex-direction:column}
-.tw-head{
+.lb-footer{margin-top:24px;text-align:center;font-size:11px;color:rgba(255,255,255,.2)}
+.lb-footer span{color:rgba(255,255,255,.3)}
+
+/* ─── MENU SCREEN ──────────────────────────────────────── */
+#menu-screen{
+  display:none;flex-direction:column;height:100vh;
+  background:linear-gradient(160deg,var(--navy) 0%,#121e35 60%,#0d1e14 100%);
+}
+#menu-screen.visible{display:flex}
+
+/* TOP BAR */
+.topbar{
+  height:56px;background:rgba(255,255,255,.04);
+  border-bottom:1px solid rgba(255,255,255,.07);
   display:flex;align-items:center;justify-content:space-between;
-  margin-bottom:10px;
+  padding:0 32px;flex-shrink:0;
 }
-.tw-head span{font-size:13px;color:#5a6a82;font-weight:500}
-.tw-filters{display:flex;gap:6px}
-.chip{
-  font-size:11px;font-weight:600;padding:4px 12px;border-radius:20px;
-  cursor:pointer;border:1.5px solid;transition:all .15s;
+.tb-left{display:flex;align-items:center;gap:14px}
+.tb-icon{
+  width:34px;height:34px;border-radius:8px;
+  background:linear-gradient(135deg,var(--brand),var(--green));
+  display:flex;align-items:center;justify-content:center;
+  font-size:14px;color:#fff;
 }
-.chip-all{background:#e8f0fe;color:#1a3a6e;border-color:#1a3a6e}
-.chip-n{background:#f0fdf4;color:#166534;border-color:#22c55e}
-.chip-a{background:#eff6ff;color:#1d4ed8;border-color:#3b82f6}
-.chip-at{background:#fefce8;color:#a16207;border-color:#eab308}
-.chip-c{background:#fff7ed;color:#c2410c;border-color:#f97316}
-.chip-v{background:#fef2f2;color:#b91c1c;border-color:#ef4444}
-.chip-f{background:#f8fafc;color:#475569;border-color:#94a3b8}
-.tw-inner{flex:1;background:#fff;border:1px solid #e0e6f0;border-radius:12px;overflow:hidden}
-table{width:100%;border-collapse:collapse;font-size:13px}
-thead tr{background:#f8fafc}
-th{padding:10px 14px;text-align:left;font-size:10px;font-weight:700;color:#8a99b0;text-transform:uppercase;letter-spacing:.5px;border-bottom:1px solid #e0e6f0;white-space:nowrap}
-td{padding:9px 14px;border-bottom:1px solid #f0f4fb;vertical-align:middle}
-tr:last-child td{border-bottom:none}
-tr:hover td{background:#f8fbff}
-.badge{display:inline-flex;align-items:center;padding:2px 9px;border-radius:20px;font-size:11px;font-weight:700}
-.b-n{background:#f0fdf4;color:#166534}
-.b-a{background:#eff6ff;color:#1d4ed8}
-.b-at{background:#fefce8;color:#a16207}
-.b-c{background:#fff7ed;color:#c2410c}
-.b-v{background:#fef2f2;color:#b91c1c}
-.b-f{background:#f8fafc;color:#475569}
-.num-link{color:#1a3a6e;font-weight:700;font-size:12px}
-.obj-cell{max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#3a4a5c}
-.days-ok{font-weight:700;color:#166534}
-.days-warn{font-weight:700;color:#a16207}
-.days-crit{font-weight:700;color:#c2410c}
-.days-over{font-weight:700;color:#b91c1c}
-.days-done{color:#94a3b8}
-.sus-tag{font-size:10px;background:#fdf4ff;color:#7e22ce;border:1px solid #a855f7;border-radius:10px;padding:2px 8px;white-space:nowrap}
-.empty{text-align:center;padding:32px;color:#8a99b0;font-size:13px}
+.tb-title{font-family:'Sora',sans-serif;font-size:14px;font-weight:700;color:#fff}
+.tb-sub{font-size:11px;color:rgba(255,255,255,.35);margin-top:1px}
+.tb-right{display:flex;align-items:center;gap:16px}
+.tb-live{display:flex;align-items:center;gap:6px;font-size:11px;color:rgba(255,255,255,.4)}
+.tb-live-dot{width:7px;height:7px;border-radius:50%;background:#22c55e;animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.tb-user{display:flex;align-items:center;gap:8px;cursor:pointer}
+.tb-avatar{width:30px;height:30px;border-radius:50%;background:var(--brand);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#fff}
+.tb-uname{font-size:12px;color:rgba(255,255,255,.5)}
+.tb-logout{font-size:12px;color:rgba(255,255,255,.3);cursor:pointer;border:1px solid rgba(255,255,255,.1);border-radius:6px;padding:4px 10px;transition:all .15s;background:none;font-family:'DM Sans',sans-serif}
+.tb-logout:hover{border-color:rgba(255,255,255,.3);color:rgba(255,255,255,.7)}
+
+/* MENU CONTENT */
+.menu-content{
+  flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:24px 32px;gap:28px;overflow:hidden;
+}
+
+.menu-hero{text-align:center}
+.menu-hero h1{font-family:'Sora',sans-serif;font-size:28px;font-weight:800;color:#fff;line-height:1.2;margin-bottom:6px}
+.menu-hero h1 em{color:var(--accent);font-style:normal}
+.menu-hero p{font-size:13px;color:rgba(255,255,255,.4);max-width:400px;margin:0 auto}
+
+/* STATS ROW */
+.menu-stats{
+  display:flex;gap:20px;
+  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);
+  border-radius:16px;padding:16px 28px;
+}
+.ms-item{text-align:center;padding:0 20px}
+.ms-item:not(:last-child){border-right:1px solid rgba(255,255,255,.08)}
+.ms-num{font-family:'Sora',sans-serif;font-size:26px;font-weight:800;color:#fff;line-height:1}
+.ms-label{font-size:11px;color:rgba(255,255,255,.35);margin-top:3px}
+.ms-num.green{color:#4ade80}
+.ms-num.yellow{color:var(--accent)}
+.ms-num.red{color:#f87171}
+
+/* CARDS GRID */
+.cards-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;width:100%;max-width:900px;
+}
+
+.mcard{
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.09);
+  border-radius:18px;padding:22px 24px;
+  cursor:pointer;transition:all .2s;
+  text-decoration:none;color:inherit;
+  display:flex;flex-direction:column;gap:12px;
+  position:relative;overflow:hidden;
+}
+.mcard::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:var(--card-color,rgba(255,255,255,.1));
+  transition:height .2s;
+}
+.mcard:hover{transform:translateY(-3px);background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.18);box-shadow:0 12px 40px rgba(0,0,0,.4)}
+.mcard:hover::before{height:4px}
+.mcard.disabled{opacity:.4;cursor:not-allowed;pointer-events:none}
+.mcard.live{--card-color:#22c55e}
+.mcard.future{--card-color:rgba(255,255,255,.15)}
+.mcard.active-now{--card-color:var(--accent)}
+
+.mc-top{display:flex;align-items:flex-start;justify-content:space-between}
+.mc-icon{
+  width:44px;height:44px;border-radius:12px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:20px;flex-shrink:0;
+}
+.mc-icon.c-blue{background:rgba(59,130,246,.15);color:#60a5fa}
+.mc-icon.c-green{background:rgba(34,197,94,.12);color:#4ade80}
+.mc-icon.c-orange{background:rgba(245,158,11,.12);color:#fbbf24}
+.mc-icon.c-purple{background:rgba(139,92,246,.12);color:#a78bfa}
+.mc-icon.c-teal{background:rgba(20,184,166,.12);color:#2dd4bf}
+.mc-icon.c-rose{background:rgba(244,63,94,.12);color:#fb7185}
+
+.mc-badge{font-size:9px;font-weight:700;padding:3px 8px;border-radius:10px;text-transform:uppercase;letter-spacing:.5px;white-space:nowrap}
+.mc-badge.live{background:rgba(34,197,94,.15);color:#4ade80;border:1px solid rgba(34,197,94,.2)}
+.mc-badge.soon{background:rgba(255,255,255,.07);color:rgba(255,255,255,.3);border:1px solid rgba(255,255,255,.1)}
+
+.mc-title{font-family:'Sora',sans-serif;font-size:15px;font-weight:700;color:#fff;line-height:1.25}
+.mc-desc{font-size:12px;color:rgba(255,255,255,.38);line-height:1.5;flex:1}
+.mc-foot{display:flex;align-items:center;justify-content:space-between}
+.mc-src{font-size:10px;color:rgba(255,255,255,.2);display:flex;align-items:center;gap:4px}
+.mc-arrow{color:rgba(255,255,255,.2);font-size:14px;transition:all .2s}
+.mcard:hover .mc-arrow{color:rgba(255,255,255,.7);transform:translateX(3px)}
+
+/* FOOTER BAR */
+.menu-footer{
+  height:36px;background:rgba(0,0,0,.2);border-top:1px solid rgba(255,255,255,.05);
+  display:flex;align-items:center;justify-content:center;padding:0 32px;flex-shrink:0;
+  gap:24px;
+}
+.mf-item{font-size:11px;color:rgba(255,255,255,.2);display:flex;align-items:center;gap:6px}
+.mf-item i{font-size:10px}
+.mf-sep{width:1px;height:14px;background:rgba(255,255,255,.07)}
 </style>
 </head>
 <body>
 
-<!-- Header -->
-<div class="hd">
-  <div class="hd-left">
-    <div class="hd-logo">
-      <div class="hd-logo-icon"><i class="fa-solid fa-handshake"></i></div>
-      <div>
-        <div class="hd-title">IDEPI</div>
-        <div class="hd-sub">Convênios Federais</div>
+<!-- ═══════════════════════════════════ LOGIN ══════════════════════════════════ -->
+<div id="login-screen">
+  <div class="login-grid"></div>
+  <div class="login-deco"></div>
+
+  <div class="login-box">
+    <div class="lb-logo">
+      <div class="lb-icon"><i class="fa-solid fa-handshake"></i></div>
+      <div class="lb-text">
+        <strong>IDEPI</strong>
+        <span>Convênios Federais · Gestão Digital</span>
       </div>
     </div>
-    <div class="hd-sep"></div>
-    <div class="hd-scope"><i class="fa-solid fa-circle"></i> Dados ao vivo — Portal da Transparência · CGU</div>
-  </div>
-  <div class="hd-right">
-    <div class="hd-stat"><strong id="hs-lib">—</strong><span>Total liberado</span></div>
-    <div class="hd-divider"></div>
-    <div class="hd-stat"><strong id="hs-tot">—</strong><span>Instrumentos</span></div>
-    <div class="hd-divider"></div>
-    <div class="hd-ts" id="hd-ts">—</div>
+
+    <div class="lb-title">Acesso ao Portal</div>
+    <div class="lb-sub">Área restrita — Setor de Convênios</div>
+
+    <div class="lb-field">
+      <label>SENHA DE ACESSO</label>
+      <input type="password" id="pw-input" placeholder="Digite a senha" onkeydown="if(event.key==='Enter')doLogin()">
+      <i class="fa-regular fa-eye eye" onclick="togglePw(this)"></i>
+    </div>
+
+    <div class="lb-error" id="lb-error">
+      <i class="fa-solid fa-circle-xmark"></i>
+      <span>Senha incorreta. Tente novamente.</span>
+    </div>
+
+    <button class="lb-btn" onclick="doLogin()">
+      <i class="fa-solid fa-arrow-right-to-bracket"></i> Entrar
+    </button>
+
+    <div class="lb-footer">
+      Portal interno · <span>Instituto de Desenvolvimento do Piauí</span>
+    </div>
   </div>
 </div>
 
-<!-- Body -->
-<div class="body">
+<!-- ═══════════════════════════════════ MENU ═══════════════════════════════════ -->
+<div id="menu-screen">
 
-  <!-- Sidebar -->
-  <nav class="sidebar">
-    <div class="sb-section">Convênios Federais</div>
-
-    <a class="sb-item active" href="index.html">
-      <i class="fa-solid fa-clock-rotate-left"></i> Vigências
-    </a>
-    <div class="sb-item">
-      <i class="fa-solid fa-chart-line"></i> Execução Financeira
-      <span class="soon">em breve</span>
-    </div>
-    <div class="sb-item">
-      <i class="fa-solid fa-file-invoice"></i> Prestação de Contas
-      <span class="soon">em breve</span>
-    </div>
-    <div class="sb-item">
-      <i class="fa-solid fa-landmark-dome"></i> Emendas Parlamentares
-      <span class="soon">em breve</span>
-    </div>
-    <div class="sb-item">
-      <i class="fa-solid fa-map-location-dot"></i> Mapa de Obras
-      <span class="soon">em breve</span>
-    </div>
-
-    <div class="sb-bottom">
-      <div class="sb-info">
-        <strong>Instituto de Desenvolvimento do Piauí</strong>
-        <p>R. Altos, 277 — Primavera<br>Teresina-PI · idepi@idepi.pi.gov.br</p>
+  <!-- Top bar -->
+  <div class="topbar">
+    <div class="tb-left">
+      <div class="tb-icon"><i class="fa-solid fa-handshake"></i></div>
+      <div>
+        <div class="tb-title">IDEPI — Gestão Digital</div>
+        <div class="tb-sub">Portal de Monitoramento · Convênios Federais</div>
       </div>
     </div>
-  </nav>
+    <div class="tb-right">
+      <div class="tb-live"><div class="tb-live-dot"></div>Sistema ativo</div>
+      <div class="tb-user">
+        <div class="tb-avatar">RV</div>
+        <div class="tb-uname">Ruan Vitor</div>
+      </div>
+      <button class="tb-logout" onclick="logout()"><i class="fa-solid fa-right-from-bracket" style="margin-right:5px;font-size:11px;"></i>Sair</button>
+    </div>
+  </div>
 
   <!-- Content -->
-  <div class="content">
+  <div class="menu-content">
 
-    <!-- Page header -->
-    <div class="pg-head">
-      <div>
-        <div class="pg-title">Monitoramento de Vigências</div>
-        <div class="pg-sub"><i class="fa-solid fa-rotate"></i> Atualizado automaticamente pelo script Python diariamente</div>
-      </div>
-      <a class="pg-btn" href="index.html"><i class="fa-solid fa-table-list"></i> Abrir painel completo</a>
+    <div class="menu-hero">
+      <h1>Dashboard <em>Convênios Federais</em></h1>
+      <p>Selecione o módulo que deseja acessar</p>
     </div>
 
-    <!-- Stats -->
-    <div class="stats">
-      <div class="stat s-n" onclick="fil('normal')">
-        <div class="stat-label">Normal</div>
-        <div class="stat-num" id="sn">—</div>
-        <div class="stat-desc">&gt; 90 dias</div>
+    <!-- Stats resumidos -->
+    <div class="menu-stats">
+      <div class="ms-item">
+        <div class="ms-num" id="ms-total">—</div>
+        <div class="ms-label">Instrumentos</div>
       </div>
-      <div class="stat s-a" onclick="fil('alerta')">
-        <div class="stat-label">Alerta</div>
-        <div class="stat-num" id="sa">—</div>
-        <div class="stat-desc">60–90 dias</div>
+      <div class="ms-item">
+        <div class="ms-num green" id="ms-ok">—</div>
+        <div class="ms-label">Vigentes OK</div>
       </div>
-      <div class="stat s-at" onclick="fil('atencao')">
-        <div class="stat-label">Atenção</div>
-        <div class="stat-num" id="sat">—</div>
-        <div class="stat-desc">30–60 dias</div>
+      <div class="ms-item">
+        <div class="ms-num yellow" id="ms-alert">—</div>
+        <div class="ms-label">Em alerta / atenção</div>
       </div>
-      <div class="stat s-c" onclick="fil('critico')">
-        <div class="stat-label">Crítico</div>
-        <div class="stat-num" id="sc">—</div>
-        <div class="stat-desc">&lt; 30 dias</div>
+      <div class="ms-item">
+        <div class="ms-num red" id="ms-urg">—</div>
+        <div class="ms-label">Críticos / Vencidos</div>
       </div>
-      <div class="stat s-v" onclick="fil('vencido')">
-        <div class="stat-label">Vencido</div>
-        <div class="stat-num" id="sv">—</div>
-        <div class="stat-desc">Expirado</div>
-      </div>
-      <div class="stat s-f" onclick="fil('finalizado')">
-        <div class="stat-label">Finalizado</div>
-        <div class="stat-num" id="sf">—</div>
-        <div class="stat-desc">Concluído</div>
+      <div class="ms-item">
+        <div class="ms-num" id="ms-lib" style="font-size:18px;">—</div>
+        <div class="ms-label">Total liberado</div>
       </div>
     </div>
 
-    <!-- Table -->
-    <div class="table-wrap">
-      <div class="tw-head">
-        <span id="tw-info">Carregando...</span>
-        <div class="tw-filters">
-          <span class="chip chip-all" onclick="fil('all')">Todos</span>
-          <span class="chip chip-n"  onclick="fil('normal')">Normal</span>
-          <span class="chip chip-a"  onclick="fil('alerta')">Alerta</span>
-          <span class="chip chip-at" onclick="fil('atencao')">Atenção</span>
-          <span class="chip chip-c"  onclick="fil('critico')">Crítico</span>
-          <span class="chip chip-v"  onclick="fil('vencido')">Vencido</span>
-          <span class="chip chip-f"  onclick="fil('finalizado')">Finalizado</span>
+    <!-- Cards de módulos -->
+    <div class="cards-grid">
+
+      <!-- VIGÊNCIAS — ativo -->
+      <a class="mcard live" href="index.html">
+        <div class="mc-top">
+          <div class="mc-icon c-blue"><i class="fa-solid fa-clock-rotate-left"></i></div>
+          <span class="mc-badge live"><i class="fa-solid fa-circle" style="font-size:7px;margin-right:3px;"></i>Ativo</span>
+        </div>
+        <div class="mc-title">Vigência dos Convênios</div>
+        <div class="mc-desc">Monitoramento de prazos, cláusulas suspensivas e alertas de vencimento.</div>
+        <div class="mc-foot">
+          <div class="mc-src"><i class="fa-solid fa-database"></i>Portal CGU · Transparência</div>
+          <i class="fa-solid fa-arrow-right mc-arrow"></i>
+        </div>
+      </a>
+
+      <!-- EXECUÇÃO FINANCEIRA — em breve -->
+      <div class="mcard future disabled">
+        <div class="mc-top">
+          <div class="mc-icon c-green"><i class="fa-solid fa-chart-line"></i></div>
+          <span class="mc-badge soon">Em breve</span>
+        </div>
+        <div class="mc-title">Execução Financeira</div>
+        <div class="mc-desc">Valores liberados, contrapartida e % de execução por instrumento.</div>
+        <div class="mc-foot">
+          <div class="mc-src"><i class="fa-solid fa-lock"></i>Em desenvolvimento</div>
+          <i class="fa-solid fa-arrow-right mc-arrow"></i>
         </div>
       </div>
-      <div class="tw-inner" style="overflow-y:auto">
-        <table>
-          <thead>
-            <tr>
-              <th>Nº Instrumento</th>
-              <th>Objeto</th>
-              <th>Vigência</th>
-              <th>Suspensiva</th>
-              <th>Dias</th>
-              <th>% Exec.</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody id="tbody">
-            <tr><td colspan="7" class="empty"><i class="fa-solid fa-rotate fa-spin" style="margin-right:8px;color:#94a3b8"></i>Buscando dados...</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
 
+      <!-- PRESTAÇÃO DE CONTAS — em breve -->
+      <div class="mcard future disabled">
+        <div class="mc-top">
+          <div class="mc-icon c-orange"><i class="fa-solid fa-file-invoice"></i></div>
+          <span class="mc-badge soon">Em breve</span>
+        </div>
+        <div class="mc-title">Prestação de Contas</div>
+        <div class="mc-desc">Prazos de prestação, documentos pendentes e irregularidades.</div>
+        <div class="mc-foot">
+          <div class="mc-src"><i class="fa-solid fa-lock"></i>Em desenvolvimento</div>
+          <i class="fa-solid fa-arrow-right mc-arrow"></i>
+        </div>
+      </div>
+
+      <!-- EMENDAS — em breve -->
+      <div class="mcard future disabled">
+        <div class="mc-top">
+          <div class="mc-icon c-purple"><i class="fa-solid fa-landmark-dome"></i></div>
+          <span class="mc-badge soon">Em breve</span>
+        </div>
+        <div class="mc-title">Emendas Parlamentares</div>
+        <div class="mc-desc">Rastreamento por autor, programa e execução das emendas.</div>
+        <div class="mc-foot">
+          <div class="mc-src"><i class="fa-solid fa-lock"></i>Em desenvolvimento</div>
+          <i class="fa-solid fa-arrow-right mc-arrow"></i>
+        </div>
+      </div>
+
+      <!-- MAPA DE OBRAS — em breve -->
+      <div class="mcard future disabled">
+        <div class="mc-top">
+          <div class="mc-icon c-teal"><i class="fa-solid fa-map-location-dot"></i></div>
+          <span class="mc-badge soon">Em breve</span>
+        </div>
+        <div class="mc-title">Mapa de Obras</div>
+        <div class="mc-desc">Localização territorial das obras por município e tipologia.</div>
+        <div class="mc-foot">
+          <div class="mc-src"><i class="fa-solid fa-lock"></i>Em desenvolvimento</div>
+          <i class="fa-solid fa-arrow-right mc-arrow"></i>
+        </div>
+      </div>
+
+      <!-- RELATÓRIO PDF -->
+      <a class="mcard active-now" href="http://www.idepi.pi.gov.br/download/202410/RELATORIO_IDEPI.pdf" target="_blank">
+        <div class="mc-top">
+          <div class="mc-icon c-rose"><i class="fa-solid fa-file-pdf"></i></div>
+          <span class="mc-badge live" style="background:rgba(251,113,133,.15);color:#fb7185;border-color:rgba(251,113,133,.2);">PDF</span>
+        </div>
+        <div class="mc-title">Relatório de Gestão 2024</div>
+        <div class="mc-desc">Relatório anual com resultados e execução orçamentária do IDEPI.</div>
+        <div class="mc-foot">
+          <div class="mc-src"><i class="fa-solid fa-file-pdf"></i>idepi.pi.gov.br</div>
+          <i class="fa-solid fa-arrow-right mc-arrow"></i>
+        </div>
+      </a>
+
+    </div>
   </div>
+
+  <!-- Footer -->
+  <div class="menu-footer">
+    <div class="mf-item"><i class="fa-solid fa-building-columns"></i>Instituto de Desenvolvimento do Piauí — IDEPI</div>
+    <div class="mf-sep"></div>
+    <div class="mf-item"><i class="fa-solid fa-location-dot"></i>R. Altos, 277 — Primavera, Teresina-PI</div>
+    <div class="mf-sep"></div>
+    <div class="mf-item"><i class="fa-solid fa-envelope"></i>idepi@idepi.pi.gov.br</div>
+    <div class="mf-sep"></div>
+    <div class="mf-item"><i class="fa-regular fa-copyright"></i>2026 · Portal interno · Convênios Federais</div>
+  </div>
+
 </div>
 
 <script>
-const USUARIO = "Ruan-Vitor", REPO = "painel-idepi";
-let dados = [], filtro = 'all';
+// ── CONFIG ─────────────────────────────────────────────────────────
+// Para mudar a senha: altere o valor abaixo
+const SENHA = "idepi2026";
+const USUARIO_NOME = "Ruan Vitor";
+const USUARIO_INI  = "RV";
+const USUARIO = "Ruan-Vitor";
+const REPO    = "painel-idepi";
+// ──────────────────────────────────────────────────────────────────
 
-function parseDateBR(s) {
+// Verifica se já está logado na sessão atual
+if (sessionStorage.getItem('idepi_auth') === '1') {
+  document.getElementById('login-screen').style.display = 'none';
+  document.getElementById('menu-screen').classList.add('visible');
+  carregarStats();
+}
+
+function doLogin() {
+  const btn = document.querySelector('.lb-btn');
+  const err = document.getElementById('lb-error');
+  const pw  = document.getElementById('pw-input').value;
+
+  btn.classList.add('loading');
+  btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Verificando...';
+
+  setTimeout(() => {
+    if (pw === SENHA) {
+      sessionStorage.setItem('idepi_auth', '1');
+      document.getElementById('login-screen').style.animation = 'fadeout .4s ease forwards';
+      setTimeout(() => {
+        document.getElementById('login-screen').style.display = 'none';
+        document.getElementById('menu-screen').classList.add('visible');
+        carregarStats();
+      }, 400);
+    } else {
+      err.classList.add('visible');
+      document.getElementById('pw-input').value = '';
+      document.getElementById('pw-input').focus();
+      btn.classList.remove('loading');
+      btn.innerHTML = '<i class="fa-solid fa-arrow-right-to-bracket"></i> Entrar';
+      setTimeout(() => err.classList.remove('visible'), 3000);
+    }
+  }, 600);
+}
+
+function logout() {
+  sessionStorage.removeItem('idepi_auth');
+  location.reload();
+}
+
+function togglePw(el) {
+  const inp = document.getElementById('pw-input');
+  if (inp.type === 'password') {
+    inp.type = 'text';
+    el.classList.replace('fa-eye','fa-eye-slash');
+  } else {
+    inp.type = 'password';
+    el.classList.replace('fa-eye-slash','fa-eye');
+  }
+}
+
+// Permite enter no campo de senha
+document.addEventListener('keydown', e => {
+  if (e.key === 'Enter' && document.getElementById('login-screen').style.display !== 'none') doLogin();
+});
+
+@keyframes fadeout{to{opacity:0;transform:scale(1.03)}}
+
+// Carrega estatísticas do dados.json
+function carregarStats() {
+  const hoje = new Date(); hoje.setHours(0,0,0,0);
+
+  fetch(`https://raw.githubusercontent.com/${USUARIO}/${REPO}/main/dados.json?t=${Date.now()}`)
+    .then(r => r.ok ? r.json() : null)
+    .then(j => {
+      if (!j) return;
+      const conv = j.convenios || [];
+      let ok=0, alert=0, urg=0, lib=0;
+
+      conv.forEach(c => {
+        const sit = (c.situacao||'').toLowerCase();
+        if (/prestação|finaliz|concluíd|encerrad|rescindid/.test(sit)) return;
+
+        const dVig  = parseD(c.vigencia_fmt || c.vigencia);
+        const dSusp = parseD(c.vigencia_suspensiva);
+        const dataEf = dSusp || dVig;
+        if (!dataEf) return;
+        const dias = Math.round((dataEf - hoje) / 86400000);
+
+        if (dias < 0 || dias <= 30) urg++;
+        else if (dias <= 90) alert++;
+        else ok++;
+
+        const v = parseFloat((c.v_liberado||'').replace(/\./g,'').replace(',','.'));
+        if (v) lib += v;
+      });
+
+      set('ms-total', conv.length);
+      set('ms-ok',    ok);
+      set('ms-alert', alert);
+      set('ms-urg',   urg);
+      document.getElementById('ms-lib').textContent = lib > 0
+        ? 'R$ ' + (lib/1e6).toFixed(1).replace('.',',') + ' M'
+        : '—';
+    })
+    .catch(() => {});
+}
+
+function parseD(s) {
   if (!s) return null;
   s = String(s).trim();
   let m = s.match(/^(\d{2})\/(\d{2})\/(\d{4})$/);
-  if (m) return new Date(`${m[3]}-${m[2]}-${m[1]}`);
+  if (m) return new Date(+m[3], +m[2]-1, +m[1]);
   m = s.match(/^(\d{4})-(\d{2})-(\d{2})/);
-  if (m) return new Date(`${m[1]}-${m[2]}-${m[3]}`);
+  if (m) return new Date(+m[1], +m[2]-1, +m[3]);
   return null;
 }
 
-function calcSt(c) {
-  const sit = (c.situacao||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
-  if (/prestacao\s*de\s*contas|finaliz|concluido|encerrad|rescindid|inadimplent/.test(sit))
-    return {st:'finalizado', dias:null, sus:false};
-
-  const hoje = new Date(); hoje.setHours(0,0,0,0);
-  const dVig  = parseDateBR(c.vigencia_fmt || c.vigencia);
-  const dSus  = parseDateBR(c.suspensiva_fmt || c.suspensiva);
-
-  let dataEf = dVig, sus = false;
-  if (dSus && (!dVig || dSus <= dVig)) { dataEf = dSus; sus = true; }
-  if (!dataEf) return {st:'finalizado', dias:null, sus:false};
-
-  const dias = Math.round((dataEf - hoje) / 86400000);
-  let st = dias < 0 ? 'vencido' : dias <= 30 ? 'critico' : dias <= 60 ? 'atencao' : dias <= 90 ? 'alerta' : 'normal';
-  return {st, dias, sus};
+function set(id, val) {
+  const el = document.getElementById(id);
+  if (el) el.textContent = val;
 }
-
-function fmtDias(dias, st) {
-  if (dias === null) return '<span class="days-done">—</span>';
-  if (st === 'vencido') return `<span class="days-over">${Math.abs(dias)}d atraso</span>`;
-  if (st === 'critico') return `<span class="days-crit">${dias}d</span>`;
-  if (st === 'atencao') return `<span class="days-warn">${dias}d</span>`;
-  return `<span class="days-ok">${dias}d</span>`;
-}
-
-const BG = {normal:'b-n', alerta:'b-a', atencao:'b-at', critico:'b-c', vencido:'b-v', finalizado:'b-f'};
-const LB = {normal:'Normal', alerta:'Alerta', atencao:'Atenção', critico:'Crítico', vencido:'Vencido', finalizado:'Finalizado'};
-
-function render() {
-  let rows = dados;
-  if (filtro !== 'all') rows = rows.filter(r => r._st === filtro);
-  rows.sort((a,b) => {
-    const o = {critico:0,vencido:1,atencao:2,alerta:3,normal:4,finalizado:5};
-    return (o[a._st]||9)-(o[b._st]||9) || ((a._dias??9999)-(b._dias??9999));
-  });
-
-  document.getElementById('tw-info').textContent = `${rows.length} instrumento(s) exibido(s)`;
-
-  if (!rows.length) {
-    document.getElementById('tbody').innerHTML = '<tr><td colspan="7" class="empty">Nenhum resultado.</td></tr>';
-    return;
-  }
-
-  document.getElementById('tbody').innerHTML = rows.map(r => {
-    const susHtml = r._sus
-      ? `<span class="sus-tag"><i class="fa-solid fa-hourglass-half" style="font-size:9px;margin-right:3px"></i>${r.suspensiva_fmt||r.suspensiva}</span>`
-      : '<span style="color:#c0cbd8;font-size:11px;">—</span>';
-
-    return `<tr>
-      <td><span class="num-link">${r.numero||'—'}</span></td>
-      <td><div class="obj-cell" title="${(r.objeto||'').replace(/"/g,"'")}">${r.objeto||'—'}</div></td>
-      <td style="white-space:nowrap;color:#5a6a82;font-size:12px">${r.vigencia_fmt||r.vigencia||'—'}</td>
-      <td>${susHtml}</td>
-      <td>${fmtDias(r._dias, r._st)}</td>
-      <td style="color:#5a6a82;font-size:12px">${r.pct_exec||'—'}</td>
-      <td><span class="badge ${BG[r._st]||'b-f'}">${r._sus?'⚠ SUSP · ':''} ${LB[r._st]||r._st}</span></td>
-    </tr>`;
-  }).join('');
-}
-
-function fil(f) { filtro = f; render(); }
-
-fetch(`https://raw.githubusercontent.com/${USUARIO}/${REPO}/main/dados.json?t=${Date.now()}`)
-  .then(r => r.ok ? r.json() : Promise.reject())
-  .then(j => {
-    document.getElementById('hd-ts').innerHTML = `Atualizado<br>${j.gerado_em||'—'}`;
-    dados = (j.convenios||[]).map(c => {
-      const r = calcSt(c);
-      return {...c, _st:r.st, _dias:r.dias, _sus:r.sus};
-    });
-
-    const ct = {normal:0,alerta:0,atencao:0,critico:0,vencido:0,finalizado:0};
-    let lib = 0;
-    dados.forEach(d => {
-      ct[d._st] = (ct[d._st]||0) + 1;
-      const v = parseFloat((d.v_liberado||'').replace(/\./g,'').replace(',','.'));
-      if (v) lib += v;
-    });
-
-    ['n','a','at','c','v','f'].forEach((k,i) => {
-      document.getElementById('s'+k).textContent = ct[Object.keys(ct)[i]];
-    });
-    document.getElementById('hs-tot').textContent = dados.length;
-    document.getElementById('hs-lib').textContent = lib > 0
-      ? 'R$' + (lib/1e6).toFixed(1).replace('.',',')+'M' : '—';
-
-    render();
-  })
-  .catch(() => {
-    document.getElementById('tbody').innerHTML = '<tr><td colspan="7" class="empty">Erro ao carregar dados. Verifique se o Python já rodou.</td></tr>';
-    document.getElementById('tw-info').textContent = 'Erro ao carregar';
-  });
 </script>
 </body>
 </html>

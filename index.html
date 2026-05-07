@@ -324,18 +324,29 @@ const hoje = (() => { const d = new Date(); d.setHours(0,0,0,0); return d; })();
 
 // ── CALCULA STATUS CONSIDERANDO SUSPENSIVA ───────────────────────────────────
 function calcStatus(c) {
-  const sit = (c.situacao || '').toLowerCase();
-  if (/prestação|finaliz|concluíd|encerrad|rescindid/.test(sit))
+  // Normaliza situação removendo acentos para comparação robusta
+  const sit = (c.situacao || '')
+    .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase();
+  if (/prestacao\s*de\s*contas|finaliz|concluíd|concluido|encerrad|rescindid|inadimplent|tomada\s*de\s*contas/.test(sit))
     return { st:'finalizado', dias:null, temSusp:false };
 
   const dVig  = parseDate(c.vigencia_fmt || c.vigencia);
-  const dSusp = parseDate(c.vigencia_suspensiva);
+  // ✅ CORREÇÃO: o JSON publica como "suspensiva" e "suspensiva_fmt"
+  const dSusp = parseDate(c.suspensiva_fmt || c.suspensiva || c.vigencia_suspensiva);
 
   if (!dVig && !dSusp) return { st:'finalizado', dias:null, temSusp:false };
 
-  const temSusp = !!dSusp;
-  // Data efetiva = suspensiva se existir (prazo mais restritivo — pode ser antes da vigência final)
-  const dataEf = dSusp || dVig;
+  // Suspensiva só tem prioridade se for ANTERIOR à vigência final
+  let temSusp = false;
+  let dataEf  = dVig;
+  if (dSusp) {
+    if (!dVig || dSusp <= dVig) {
+      dataEf  = dSusp;
+      temSusp = true;
+    }
+  }
+
   const dias = Math.round((dataEf - hoje) / 86400000);
 
   let st;
@@ -492,7 +503,7 @@ function getVal(r, col) {
     return d ? d.getTime() : 99999999999;
   }
   if (col === 'vigencia_suspensiva') {
-    const d = parseDate(r.vigencia_suspensiva);
+    const d = parseDate(r.suspensiva_fmt || r.suspensiva);
     return d ? d.getTime() : 99999999999;
   }
   if (col === 'v_total') {
@@ -565,7 +576,7 @@ function render() {
     else diasHtml = `<span class="cd ${cl}">${dias}d</span>`;
 
     const suspHtml = r._temSusp
-      ? `<span class="susp-tag"><i class="fa-solid fa-hourglass-half"></i>${r.vigencia_suspensiva||'—'}</span>`
+      ? `<span class="susp-tag"><i class="fa-solid fa-hourglass-half"></i>${r.suspensiva_fmt||r.suspensiva||'—'}</span>`
       : `<span style="color:#94a3b8;font-size:11px;">—</span>`;
 
     return `<tr class="drow" onclick="exp(${i})">
@@ -589,7 +600,7 @@ function render() {
       <div class="ef"><label>Autor da emenda</label><span>${r.autor_emenda||'—'}</span></div>
       <div class="ef full"><label>Objeto completo</label><span>${r.objeto||'—'}</span></div>
       <div class="ef"><label>Vigência final</label><span>${r.vigencia_fmt||r.vigencia||'—'}</span></div>
-      <div class="ef"><label>Vigência suspensiva</label><span style="color:${r._temSusp?'var(--s-tx)':'inherit'};font-weight:${r._temSusp?700:400}">${r.vigencia_suspensiva||'—'}</span></div>
+      <div class="ef"><label>Vigência suspensiva</label><span style="color:${r._temSusp?'var(--s-tx)':'inherit'};font-weight:${r._temSusp?700:400}">${r.suspensiva_fmt||r.suspensiva||'—'}</span></div>
       <div class="ef"><label>Dias p/ data efetiva</label><span>${dias!==null?(dias<0?Math.abs(dias)+'d vencido':dias+'d restantes'):'—'}</span></div>
       <div class="ef"><label>Valor total</label><span>${r.v_total?'R$ '+r.v_total:'—'}</span></div>
       <div class="ef"><label>Valor liberado</label><span>${r.v_liberado?'R$ '+r.v_liberado:'—'}</span></div>

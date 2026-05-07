@@ -23,30 +23,43 @@
   --r:10px;--sh:0 1px 3px rgba(0,0,0,.08);--sh2:0 10px 25px rgba(0,0,0,.12);
 }
 body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
-.header{background:var(--brand);padding:0 32px;height:60px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 2px 8px rgba(30,64,175,.3)}
-.logo{display:flex;align-items:center;gap:12px;color:#fff;font-weight:700;font-size:18px}
-.logo span{font-weight:400;opacity:.7;font-size:14px}
-.hright{display:flex;align-items:center;gap:12px}
-.hbadge{background:rgba(255,255,255,.15);color:#fff;font-size:12px;padding:4px 12px;border-radius:20px;border:1px solid rgba(255,255,255,.2)}
-.hinfo{color:rgba(255,255,255,.7);font-size:12px}
+
+/* HEADER */
+.header{background:var(--brand);padding:0 24px;height:60px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 2px 8px rgba(30,64,175,.3);gap:12px}
+.logo{display:flex;align-items:center;gap:12px;color:#fff;font-weight:700;font-size:17px;white-space:nowrap}
+.logo span{font-weight:400;opacity:.7;font-size:13px}
+.hright{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.hbadge{background:rgba(255,255,255,.15);color:#fff;font-size:12px;padding:4px 12px;border-radius:20px;border:1px solid rgba(255,255,255,.2);white-space:nowrap}
+.hinfo{color:rgba(255,255,255,.7);font-size:11px;white-space:nowrap}
+
+/* BOTÃO MENU */
+.btn-menu{display:flex;align-items:center;gap:7px;background:rgba(255,255,255,.18);color:#fff;border:1px solid rgba(255,255,255,.35);border-radius:8px;padding:7px 14px;font-size:12px;font-weight:600;cursor:pointer;transition:all .2s;white-space:nowrap;font-family:'Inter',sans-serif;text-decoration:none}
+.btn-menu:hover{background:rgba(255,255,255,.30);border-color:rgba(255,255,255,.6)}
+.btn-menu i{font-size:14px}
+
+/* LOADING */
 .overlay{position:fixed;inset:0;background:rgba(15,23,42,.75);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:9999;gap:14px}
 .overlay.hide{display:none}
 .spin{width:44px;height:44px;border:4px solid rgba(255,255,255,.2);border-top-color:#fff;border-radius:50%;animation:spin .8s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
 .overlay p{color:#fff;font-size:15px;font-weight:500}
 .overlay small{color:rgba(255,255,255,.6);font-size:13px;text-align:center;max-width:360px}
-.main{max-width:1400px;margin:0 auto;padding:28px 24px}
-.ptitle{font-size:20px;font-weight:700;display:flex;align-items:center;gap:10px;margin-bottom:4px}
-.ptitle i{color:var(--brand);font-size:17px}
-.psub{color:var(--muted);font-size:13px;margin-bottom:22px}
-.urgency{background:var(--v-bg);border:1px solid var(--v-bd);border-radius:var(--r);padding:12px 16px;margin-bottom:18px;display:flex;align-items:center;gap:12px;font-size:13px}
+
+/* MAIN */
+.main{max-width:1400px;margin:0 auto;padding:24px}
+.ptitle{font-size:19px;font-weight:700;display:flex;align-items:center;gap:10px;margin-bottom:4px}
+.ptitle i{color:var(--brand);font-size:16px}
+.psub{color:var(--muted);font-size:12px;margin-bottom:20px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+
+/* URGENCY */
+.urgency{background:var(--v-bg);border:1px solid var(--v-bd);border-radius:var(--r);padding:12px 16px;margin-bottom:16px;display:flex;align-items:center;gap:12px;font-size:13px}
 .urgency.hide{display:none}
 .urgency i{color:var(--v-tx);font-size:18px}
 .urgency strong{color:var(--v-tx)}
 
 /* KPI */
-.kgrid{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;margin-bottom:22px}
-.kcard{background:var(--surface);border-radius:var(--r);border:1.5px solid var(--border);padding:16px;cursor:pointer;transition:transform .15s,box-shadow .15s;position:relative;overflow:hidden;box-shadow:var(--sh)}
+.kgrid{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-bottom:18px}
+.kcard{background:var(--surface);border-radius:var(--r);border:1.5px solid var(--border);padding:14px;cursor:pointer;transition:transform .15s,box-shadow .15s;position:relative;overflow:hidden;box-shadow:var(--sh)}
 .kcard:hover{transform:translateY(-2px);box-shadow:var(--sh2)}
 .kcard.active{border-width:2.5px}
 .kcard::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:currentColor}
@@ -56,39 +69,37 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-h
 .kcard.c{color:var(--c-bd);background:var(--c-bg);border-color:var(--c-bd)}
 .kcard.v{color:var(--v-bd);background:var(--v-bg);border-color:var(--v-bd)}
 .kcard.f{color:var(--f-bd);background:var(--f-bg);border-color:var(--f-bd)}
-.klabel{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.6px;opacity:.75;margin-bottom:8px}
-.kcount{font-size:36px;font-weight:700;line-height:1;margin-bottom:4px}
-.kdesc{font-size:11px;opacity:.7}
-.kicon{position:absolute;right:12px;top:14px;font-size:22px;opacity:.12}
+.klabel{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.6px;opacity:.75;margin-bottom:6px}
+.kcount{font-size:32px;font-weight:700;line-height:1;margin-bottom:3px}
+.kdesc{font-size:10px;opacity:.7}
+.kicon{position:absolute;right:10px;top:12px;font-size:20px;opacity:.12}
 
 /* TOTALS */
-.totals{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:14px 20px;margin-bottom:22px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px;box-shadow:var(--sh)}
-.titem label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;display:block;margin-bottom:3px}
-.titem span{font-size:18px;font-weight:700;color:var(--brand)}
+.totals{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:12px 20px;margin-bottom:18px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px;box-shadow:var(--sh)}
+.titem label{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;display:block;margin-bottom:3px}
+.titem span{font-size:17px;font-weight:700;color:var(--brand)}
 
 /* PANELS */
-.prow{display:grid;grid-template-columns:280px 1fr;gap:18px;margin-bottom:24px}
+.prow{display:grid;grid-template-columns:268px 1fr;gap:16px;margin-bottom:24px}
 .panel{background:var(--surface);border-radius:var(--r);border:1px solid var(--border);box-shadow:var(--sh);overflow:hidden}
-.phead{padding:14px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.phead{padding:12px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}
 .phtitle{font-size:13px;font-weight:600;display:flex;align-items:center;gap:7px}
 .phtitle i{color:var(--brand)}
-.pbody{padding:16px}
-#cWrap{position:relative;width:210px;height:210px;margin:0 auto 12px}
-.cleg{display:flex;flex-direction:column;gap:5px;margin-top:4px}
-.citem{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted);padding:4px 8px;border-radius:6px;cursor:pointer;transition:background .15s}
+.pbody{padding:14px}
+#cWrap{position:relative;width:200px;height:200px;margin:0 auto 10px}
+.cleg{display:flex;flex-direction:column;gap:4px;margin-top:4px}
+.citem{display:flex;align-items:center;gap:8px;font-size:11px;color:var(--muted);padding:3px 6px;border-radius:6px;cursor:pointer;transition:background .15s}
 .citem:hover{background:var(--surface2)}
-.cdot{width:10px;height:10px;border-radius:3px;flex-shrink:0}
+.cdot{width:9px;height:9px;border-radius:3px;flex-shrink:0}
 .cname{flex:1}.cval{font-weight:600;color:var(--text)}
 
-/* SEARCH */
-.sbar{display:flex;align-items:center;gap:8px;padding:10px 14px;border-bottom:1px solid var(--border)}
-.sbar i{color:var(--light);font-size:14px}
-.sbar input{border:none;outline:none;font-size:13px;color:var(--text);background:transparent;flex:1;font-family:'Inter',sans-serif}
+/* SEARCH + CHIPS */
+.sbar{display:flex;align-items:center;gap:8px;padding:9px 14px;border-bottom:1px solid var(--border)}
+.sbar i{color:var(--light);font-size:13px}
+.sbar input{border:none;outline:none;font-size:12px;color:var(--text);background:transparent;flex:1;font-family:'Inter',sans-serif}
 .sbar input::placeholder{color:var(--light)}
-
-/* STATUS CHIPS */
-.chips{display:flex;gap:6px;flex-wrap:wrap;padding:10px 14px;border-bottom:1px solid var(--border)}
-.chip{font-size:11px;font-weight:500;padding:4px 10px;border-radius:20px;cursor:pointer;transition:all .15s;border:1.5px solid transparent}
+.chips{display:flex;gap:5px;flex-wrap:wrap;padding:8px 14px;border-bottom:1px solid var(--border)}
+.chip{font-size:11px;font-weight:500;padding:3px 9px;border-radius:20px;cursor:pointer;transition:all .15s;border:1.5px solid transparent}
 .chip.all{background:var(--brand-light);color:var(--brand);border-color:var(--brand)}
 .chip.cn{background:var(--n-bg);color:var(--n-tx);border-color:var(--n-bd)}
 .chip.ca{background:var(--a-bg);color:var(--a-tx);border-color:var(--a-bd)}
@@ -98,24 +109,32 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-h
 .chip.cs{background:var(--s-bg);color:var(--s-tx);border-color:var(--s-bd)}
 .chip.cf{background:var(--f-bg);color:var(--f-tx);border-color:var(--f-bd)}
 
-/* COLUMN FILTERS BAR */
-.col-filters{display:flex;gap:6px;flex-wrap:wrap;padding:8px 14px;border-bottom:1px solid var(--border);background:var(--surface2);align-items:center}
+/* COLUMN FILTERS */
+.col-filters{display:flex;gap:6px;flex-wrap:wrap;padding:7px 14px;border-bottom:1px solid var(--border);background:var(--surface2);align-items:center}
 .col-filters label{font-size:11px;color:var(--muted);font-weight:500;white-space:nowrap}
-.col-filter-select{font-size:11px;border:1px solid var(--border);border-radius:6px;padding:3px 22px 3px 8px;background:var(--surface);color:var(--text);cursor:pointer;font-family:'Inter',sans-serif;appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%2394a3b8'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 6px center;min-width:110px;max-width:180px}
+.col-filter-select{font-size:11px;border:1px solid var(--border);border-radius:6px;padding:3px 20px 3px 7px;background:var(--surface);color:var(--text);cursor:pointer;font-family:'Inter',sans-serif;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%2394a3b8'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 5px center;min-width:100px;max-width:160px}
 .col-filter-select:focus{outline:none;border-color:var(--brand)}
 .col-filter-select.active{border-color:var(--brand);background-color:var(--brand-light);color:var(--brand)}
-.clear-filters-btn{font-size:11px;color:var(--muted);background:none;border:1px solid var(--border);border-radius:6px;padding:3px 8px;cursor:pointer;font-family:'Inter',sans-serif;white-space:nowrap}
-.clear-filters-btn:hover{border-color:var(--brand);color:var(--brand)}
+.clear-col-btn{font-size:11px;color:var(--muted);background:none;border:1px solid var(--border);border-radius:6px;padding:3px 7px;cursor:pointer;font-family:'Inter',sans-serif}
+.clear-col-btn:hover{border-color:var(--brand);color:var(--brand)}
 
 /* TABLE */
 .twrap{overflow-x:auto;max-height:440px;overflow-y:auto}
-table{width:100%;border-collapse:collapse;font-size:13px}
-th{position:sticky;top:0;background:var(--surface2);padding:10px 14px;text-align:left;font-weight:600;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;border-bottom:1px solid var(--border);z-index:1;white-space:nowrap}
-td{padding:10px 14px;border-bottom:1px solid var(--border);vertical-align:middle}
+table{width:100%;border-collapse:collapse;font-size:12px}
+
+/* SORTABLE HEADERS */
+th{position:sticky;top:0;background:var(--surface2);padding:9px 12px;text-align:left;font-weight:600;font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;border-bottom:1px solid var(--border);z-index:1;white-space:nowrap;cursor:pointer;user-select:none;transition:background .15s}
+th:hover{background:#e8edf3;color:var(--brand)}
+th.sorted-asc::after{content:' ▲';color:var(--brand);font-size:9px}
+th.sorted-desc::after{content:' ▼';color:var(--brand);font-size:9px}
+th.no-sort{cursor:default}
+th.no-sort:hover{background:var(--surface2);color:var(--muted)}
+
+td{padding:9px 12px;border-bottom:1px solid var(--border);vertical-align:middle}
 tr:last-child td{border-bottom:none}
 tr.drow:hover td{background:var(--surface2);cursor:pointer}
 
-.badge{display:inline-flex;align-items:center;padding:3px 9px;border-radius:20px;font-size:11px;font-weight:600;white-space:nowrap}
+.badge{display:inline-flex;align-items:center;gap:3px;padding:3px 8px;border-radius:20px;font-size:10px;font-weight:600;white-space:nowrap}
 .badge.n{background:var(--n-bg);color:var(--n-tx)}
 .badge.a{background:var(--a-bg);color:var(--a-tx)}
 .badge.at{background:var(--at-bg);color:var(--at-tx)}
@@ -124,31 +143,28 @@ tr.drow:hover td{background:var(--surface2);cursor:pointer}
 .badge.s{background:var(--s-bg);color:var(--s-tx)}
 .badge.f{background:var(--f-bg);color:var(--f-tx)}
 
-.cd{font-weight:600;font-size:13px}
+.cd{font-weight:600;font-size:12px}
 .cd.n{color:var(--n-tx)}.cd.a{color:var(--a-tx)}.cd.at{color:var(--at-tx)}
 .cd.c{color:var(--c-tx)}.cd.v{color:var(--v-tx)}.cd.s{color:var(--s-tx)}.cd.f{color:var(--f-tx)}
 
-.susp-tag{display:inline-flex;align-items:center;gap:3px;font-size:11px;font-weight:500;color:var(--s-tx);background:var(--s-bg);border:1px solid var(--s-bd);border-radius:6px;padding:2px 7px;white-space:nowrap}
-.susp-tag i{font-size:10px}
+.susp-tag{display:inline-flex;align-items:center;gap:3px;font-size:10px;font-weight:600;color:var(--s-tx);background:var(--s-bg);border:1px solid var(--s-bd);border-radius:6px;padding:2px 6px;white-space:nowrap}
+.num{font-weight:600;color:var(--brand);font-size:11px;white-space:nowrap}
+.obj{max-width:230px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.val{font-size:11px;color:var(--muted);white-space:nowrap}
+.dias-vencido{font-weight:700;font-size:11px;color:var(--v-tx);line-height:1.3;text-align:center}
+.dias-vencido small{display:block;font-weight:500;font-size:9px;opacity:.8}
 
-.num{font-weight:600;color:var(--brand);font-size:12px;white-space:nowrap}
-.obj{max-width:240px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.val{font-size:12px;color:var(--muted);white-space:nowrap}
-
-/* DIAS VENCIDO */
-.dias-vencido{font-weight:700;font-size:12px;color:var(--v-tx);line-height:1.3;text-align:center}
-.dias-vencido small{display:block;font-weight:500;font-size:10px;opacity:.8}
-
+/* EXPAND */
 .erow{display:none;background:var(--surface2)}.erow.open{display:table-row}
-.ebody{padding:14px 18px}
-.egrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;font-size:12px}
+.ebody{padding:12px 16px}
+.egrid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;font-size:11px}
 .egrid .full{grid-column:1/-1}
-.ef label{color:var(--muted);display:block;margin-bottom:2px;font-size:11px;text-transform:uppercase;letter-spacing:.5px}
+.ef label{color:var(--muted);display:block;margin-bottom:2px;font-size:10px;text-transform:uppercase;letter-spacing:.5px}
 .ef span{color:var(--text);font-weight:500}
 
-.empty{text-align:center;padding:48px 24px;color:var(--muted)}
-.empty i{font-size:40px;opacity:.3;margin-bottom:12px;display:block}
-.srow{display:flex;gap:6px;align-items:center;font-size:12px;color:var(--muted);padding:8px 14px;border-top:1px solid var(--border);flex-wrap:wrap}
+.empty{text-align:center;padding:40px 24px;color:var(--muted)}
+.empty i{font-size:36px;opacity:.3;margin-bottom:10px;display:block}
+.srow{display:flex;gap:6px;align-items:center;font-size:11px;color:var(--muted);padding:7px 14px;border-top:1px solid var(--border);flex-wrap:wrap}
 .srow strong{color:var(--text)}
 
 @media(max-width:1000px){.kgrid{grid-template-columns:repeat(3,1fr)}.prow{grid-template-columns:1fr}.totals{grid-template-columns:1fr 1fr}}
@@ -163,52 +179,67 @@ tr.drow:hover td{background:var(--surface2);cursor:pointer}
 </div>
 
 <div class="header">
-  <div class="logo"><i class="fa-solid fa-handshake" style="font-size:20px;"></i>IDEPI <span>| Instituto de Desenvolvimento do Piauí</span></div>
+  <div class="logo">
+    <i class="fa-solid fa-handshake" style="font-size:19px;"></i>
+    IDEPI <span>| Instituto de Desenvolvimento do Piauí</span>
+  </div>
   <div class="hright">
+    <a href="#" class="btn-menu" title="Ir para o Menu Principal">
+      <i class="fa-solid fa-grid-2"></i> Menu Principal
+    </a>
     <span class="hinfo" id="hinfo"></span>
-    <span class="hbadge"><i class="fa-regular fa-clock" style="margin-right:5px;"></i>Painel de Vigências</span>
+    <span class="hbadge"><i class="fa-regular fa-clock" style="margin-right:5px;"></i>Vigências</span>
   </div>
 </div>
 
 <div class="main">
   <div class="ptitle"><i class="fa-solid fa-chart-bar"></i> Monitoramento de Vigência — Convênios Federais</div>
-  <div class="psub">Dados atualizados automaticamente pelo script Python · IDEPI-PI · <i class="fa-solid fa-triangle-exclamation" style="color:var(--s-tx);font-size:11px;"></i> Status considera Vigência Suspensiva quando presente</div>
+  <div class="psub">
+    Dados atualizados automaticamente pelo script Python · IDEPI-PI
+    <span style="color:var(--s-tx);background:var(--s-bg);border:1px solid var(--s-bd);border-radius:10px;padding:1px 8px;font-size:11px;">
+      <i class="fa-solid fa-hourglass-half"></i> Status considera Suspensiva quando presente
+    </span>
+  </div>
 
   <div class="urgency hide" id="urg">
     <i class="fa-solid fa-triangle-exclamation"></i>
     <div><strong id="urgTxt"></strong> — verifique aditivos de prazo com urgência.</div>
   </div>
 
+  <!-- KPI CARDS -->
   <div class="kgrid">
-    <div class="kcard n"  onclick="fil('normal')"     id="kn"><i class="fa-solid fa-circle-check kicon"></i><div class="klabel">Normal</div><div class="kcount" id="cn">—</div><div class="kdesc">&gt; 90 dias</div></div>
-    <div class="kcard a"  onclick="fil('alerta')"     id="ka"><i class="fa-solid fa-bell kicon"></i><div class="klabel">Alerta</div><div class="kcount" id="ca">—</div><div class="kdesc">60–90 dias</div></div>
-    <div class="kcard at" onclick="fil('atencao')"    id="kat"><i class="fa-solid fa-exclamation kicon"></i><div class="klabel">Atenção</div><div class="kcount" id="cat">—</div><div class="kdesc">30–60 dias</div></div>
-    <div class="kcard c"  onclick="fil('critico')"    id="kc"><i class="fa-solid fa-fire kicon"></i><div class="klabel">Crítico</div><div class="kcount" id="cc">—</div><div class="kdesc">&lt; 30 dias</div></div>
-    <div class="kcard v"  onclick="fil('vencido')"    id="kv"><i class="fa-solid fa-skull kicon"></i><div class="klabel">Vencido</div><div class="kcount" id="cv">—</div><div class="kdesc">Prazo expirado</div></div>
-    <div class="kcard f"  onclick="fil('finalizado')" id="kf"><i class="fa-solid fa-flag-checkered kicon"></i><div class="klabel">Finalizado</div><div class="kcount" id="cf">—</div><div class="kdesc">Concluído</div></div>
+    <div class="kcard n"  onclick="setStatus('normal')"     id="kn"><i class="fa-solid fa-circle-check kicon"></i><div class="klabel">Normal</div><div class="kcount" id="cn">—</div><div class="kdesc">&gt; 90 dias</div></div>
+    <div class="kcard a"  onclick="setStatus('alerta')"     id="ka"><i class="fa-solid fa-bell kicon"></i><div class="klabel">Alerta</div><div class="kcount" id="ca">—</div><div class="kdesc">60–90 dias</div></div>
+    <div class="kcard at" onclick="setStatus('atencao')"    id="kat"><i class="fa-solid fa-exclamation kicon"></i><div class="klabel">Atenção</div><div class="kcount" id="cat">—</div><div class="kdesc">30–60 dias</div></div>
+    <div class="kcard c"  onclick="setStatus('critico')"    id="kc"><i class="fa-solid fa-fire kicon"></i><div class="klabel">Crítico</div><div class="kcount" id="cc">—</div><div class="kdesc">&lt; 30 dias</div></div>
+    <div class="kcard v"  onclick="setStatus('vencido')"    id="kv"><i class="fa-solid fa-skull kicon"></i><div class="klabel">Vencido</div><div class="kcount" id="cv">—</div><div class="kdesc">Prazo expirado</div></div>
+    <div class="kcard f"  onclick="setStatus('finalizado')" id="kf"><i class="fa-solid fa-flag-checkered kicon"></i><div class="klabel">Finalizado</div><div class="kcount" id="cf">—</div><div class="kdesc">Concluído</div></div>
   </div>
 
+  <!-- TOTAIS -->
   <div class="totals">
-    <div class="titem"><label><i class="fa-solid fa-sack-dollar" style="margin-right:4px;"></i> Valor Total em Carteira</label><span id="tt">—</span></div>
-    <div class="titem"><label><i class="fa-solid fa-arrow-right-to-bracket" style="margin-right:4px;"></i> Total Liberado</label><span id="tl">—</span></div>
-    <div class="titem"><label><i class="fa-solid fa-percent" style="margin-right:4px;"></i> Execução Média</label><span id="te">—</span></div>
+    <div class="titem"><label><i class="fa-solid fa-sack-dollar" style="margin-right:4px;"></i>Valor Total em Carteira</label><span id="tt">—</span></div>
+    <div class="titem"><label><i class="fa-solid fa-arrow-right-to-bracket" style="margin-right:4px;"></i>Total Liberado</label><span id="tl">—</span></div>
+    <div class="titem"><label><i class="fa-solid fa-percent" style="margin-right:4px;"></i>Execução Média</label><span id="te">—</span></div>
   </div>
 
   <div class="prow">
-    <!-- CHART -->
+    <!-- GRÁFICO -->
     <div class="panel">
-      <div class="phead"><div class="phtitle"><i class="fa-solid fa-chart-pie"></i> Distribuição</div></div>
+      <div class="phead"><div class="phtitle"><i class="fa-solid fa-chart-pie"></i>Distribuição</div></div>
       <div class="pbody">
         <div id="cWrap"><canvas id="donut" role="img" aria-label="Distribuição de status de vigência"></canvas></div>
         <div class="cleg" id="leg"></div>
       </div>
     </div>
 
-    <!-- TABLE -->
+    <!-- TABELA -->
     <div class="panel">
       <div class="phead">
-        <div class="phtitle"><i class="fa-solid fa-list"></i> Instrumentos <span id="tcnt" style="font-weight:400;color:#94a3b8;font-size:11px;margin-left:4px;"></span></div>
-        <button onclick="rst()" style="font-size:11px;color:#94a3b8;background:none;border:none;cursor:pointer;display:flex;align-items:center;gap:4px;"><i class="fa-solid fa-xmark"></i> Limpar filtros</button>
+        <div class="phtitle"><i class="fa-solid fa-list"></i>Instrumentos <span id="tcnt" style="font-weight:400;color:#94a3b8;font-size:11px;margin-left:4px;"></span></div>
+        <button onclick="rst()" style="font-size:11px;color:#94a3b8;background:none;border:none;cursor:pointer;display:flex;align-items:center;gap:4px;font-family:'Inter',sans-serif;">
+          <i class="fa-solid fa-xmark"></i> Limpar filtros
+        </button>
       </div>
 
       <!-- Busca -->
@@ -230,39 +261,32 @@ tr.drow:hover td{background:var(--surface2);cursor:pointer}
       </div>
 
       <!-- Filtros por coluna -->
-      <div class="col-filters" id="colFilters">
-        <label><i class="fa-solid fa-filter" style="font-size:10px;"></i> Filtrar:</label>
-        <select class="col-filter-select" id="fMandataria" onchange="render()" title="Mandatária">
-          <option value="">Mandatária</option>
-        </select>
-        <select class="col-filter-select" id="fEmenda" onchange="render()" title="Emenda">
-          <option value="">Emenda</option>
-        </select>
-        <select class="col-filter-select" id="fSituacao" onchange="render()" title="Situação">
-          <option value="">Situação</option>
-        </select>
-        <select class="col-filter-select" id="fFiscal" onchange="render()" title="Fiscal">
-          <option value="">Fiscal</option>
-        </select>
-        <button class="clear-filters-btn" onclick="clearColFilters()"><i class="fa-solid fa-xmark"></i> Limpar</button>
+      <div class="col-filters">
+        <label><i class="fa-solid fa-filter" style="font-size:9px;"></i> Filtrar:</label>
+        <select class="col-filter-select" id="fMandataria" onchange="render()"><option value="">Mandatária</option></select>
+        <select class="col-filter-select" id="fEmenda"     onchange="render()"><option value="">Emenda</option></select>
+        <select class="col-filter-select" id="fSituacao"   onchange="render()"><option value="">Situação</option></select>
+        <select class="col-filter-select" id="fFiscal"     onchange="render()"><option value="">Fiscal</option></select>
+        <button class="clear-col-btn" onclick="clearColFilters()"><i class="fa-solid fa-xmark"></i> Limpar</button>
       </div>
 
+      <!-- Tabela com cabeçalhos clicáveis para ordenação -->
       <div class="twrap">
         <table>
           <thead><tr>
-            <th style="width:34px;"></th>
-            <th>Nº Instrumento</th>
-            <th>Objeto / Autor</th>
-            <th>Vigência</th>
-            <th>Suspensiva</th>
-            <th>Dias</th>
-            <th>Valor Total</th>
-            <th>% Exec.</th>
-            <th>Status</th>
+            <th class="no-sort" style="width:32px;"></th>
+            <th onclick="sortBy('numero')"           id="th-numero">Nº Instrumento</th>
+            <th onclick="sortBy('objeto')"           id="th-objeto">Objeto / Autor</th>
+            <th onclick="sortBy('vigencia')"         id="th-vigencia">Vigência</th>
+            <th onclick="sortBy('vigencia_suspensiva')" id="th-vigencia_suspensiva">Suspensiva</th>
+            <th onclick="sortBy('_dias')"            id="th-_dias" style="text-align:center;">Dias</th>
+            <th onclick="sortBy('v_total')"          id="th-v_total">Valor Total</th>
+            <th onclick="sortBy('pct_exec')"         id="th-pct_exec" style="text-align:center;">% Exec.</th>
+            <th onclick="sortBy('_st')"              id="th-_st">Status</th>
           </tr></thead>
           <tbody id="tbody"></tbody>
         </table>
-        <div class="empty" id="empty" style="display:none;"><i class="fa-solid fa-inbox"></i><p>Nenhum convênio encontrado com os filtros aplicados.</p></div>
+        <div class="empty" id="empty" style="display:none;"><i class="fa-solid fa-inbox"></i><p>Nenhum convênio encontrado.</p></div>
       </div>
       <div class="srow" id="srow"></div>
     </div>
@@ -270,68 +294,58 @@ tr.drow:hover td{background:var(--surface2);cursor:pointer}
 </div>
 
 <script>
-// ═══════════════════════════════════════════════════════
-//  CONFIGURAÇÃO
+// ═══════════════════════════════════════
 const USUARIO = "Ruan-Vitor";
 const REPO    = "painel-idepi";
-// ═══════════════════════════════════════════════════════
+// ═══════════════════════════════════════
 
-let dados=[], filtroStatus='all', chart=null;
+let dados = [], filtroStatus = 'all', chart = null;
+let sortCol = null, sortDir = 1; // 1 = asc, -1 = desc
 
-// Mapeamento de status interno → classe CSS
-const CLS ={normal:'n',alerta:'a',atencao:'at',critico:'c',vencido:'v',finalizado:'f',suspensiva:'s'};
-const LBL ={normal:'Normal (>90d)',alerta:'Alerta (60–90d)',atencao:'Atenção (30–60d)',critico:'Crítico (<30d)',vencido:'Vencido',finalizado:'Finalizado'};
-const COR ={normal:'#22c55e',alerta:'#3b82f6',atencao:'#eab308',critico:'#f97316',vencido:'#ef4444',finalizado:'#94a3b8'};
-const NOME={normal:'Normal',alerta:'Alerta',atencao:'Atenção',critico:'Crítico',vencido:'Vencido',finalizado:'Finalizado'};
-const KIDS={normal:'kn',alerta:'ka',atencao:'kat',critico:'kc',vencido:'kv',finalizado:'kf'};
+const CLS  = {normal:'n',alerta:'a',atencao:'at',critico:'c',vencido:'v',finalizado:'f',suspensiva:'s'};
+const LBL  = {normal:'Normal (>90d)',alerta:'Alerta (60–90d)',atencao:'Atenção (30–60d)',critico:'Crítico (<30d)',vencido:'Vencido',finalizado:'Finalizado'};
+const COR  = {normal:'#22c55e',alerta:'#3b82f6',atencao:'#eab308',critico:'#f97316',vencido:'#ef4444',finalizado:'#94a3b8'};
+const NOME = {normal:'Normal',alerta:'Alerta',atencao:'Atenção',critico:'Crítico',vencido:'Vencido',finalizado:'Finalizado'};
+const KIDS = {normal:'kn',alerta:'ka',atencao:'kat',critico:'kc',vencido:'kv',finalizado:'kf'};
 
-// ── LÓGICA DE STATUS COM SUSPENSIVA ─────────────────────────────────────────
-// Recalcula o status diretamente no browser a partir das datas brutas.
-// A data efetiva = suspensiva SE existir (prazo mais restritivo).
-// O campo "status" vindo da API pode estar errado (bug reportado), então
-// recalculamos sempre aqui com base nas datas.
-
-function parseDateBR(s) {
+// ── PARSE DE DATA ────────────────────────────────────────────────────────────
+function parseDate(s) {
   if (!s) return null;
-  // Aceita DD/MM/AAAA ou AAAA-MM-DD
+  s = s.trim();
   if (s.includes('/')) {
-    const [d, m, y] = s.split('/');
-    return new Date(y, m - 1, d);
+    const [d,m,y] = s.split('/');
+    return new Date(+y, +m-1, +d);
   }
-  return new Date(s);
+  if (s.includes('-')) return new Date(s.slice(0,10));
+  return null;
 }
 
-const hoje = new Date();
-hoje.setHours(0, 0, 0, 0);
+const hoje = (() => { const d = new Date(); d.setHours(0,0,0,0); return d; })();
 
-function calcStatus(conv) {
-  const sit = (conv.situacao || '').toLowerCase();
-  if (sit.includes('prestação') || sit.includes('finaliz') || sit.includes('concluíd') || sit.includes('encerrad') || sit.includes('rescindid')) {
-    return { st: 'finalizado', dias: null, temSusp: false, dataEfetiva: null };
-  }
+// ── CALCULA STATUS CONSIDERANDO SUSPENSIVA ───────────────────────────────────
+function calcStatus(c) {
+  const sit = (c.situacao || '').toLowerCase();
+  if (/prestação|finaliz|concluíd|encerrad|rescindid/.test(sit))
+    return { st:'finalizado', dias:null, temSusp:false };
 
-  const vigStr  = conv.vigencia_fmt || conv.vigencia || '';
-  const suspStr = conv.vigencia_suspensiva || '';
+  const dVig  = parseDate(c.vigencia_fmt || c.vigencia);
+  const dSusp = parseDate(c.vigencia_suspensiva);
 
-  if (!vigStr) return { st: 'finalizado', dias: null, temSusp: false, dataEfetiva: null };
+  if (!dVig && !dSusp) return { st:'finalizado', dias:null, temSusp:false };
 
-  const dVig  = parseDateBR(vigStr);
-  const dSusp = suspStr ? parseDateBR(suspStr) : null;
-
-  // Data efetiva = suspensiva SE existir (pode ser antes ou depois da vigência)
   const temSusp = !!dSusp;
-  const dataEfetiva = dSusp || dVig;
-
-  const dias = Math.round((dataEfetiva - hoje) / 86400000);
+  // Data efetiva = suspensiva se existir (prazo mais restritivo — pode ser antes da vigência final)
+  const dataEf = dSusp || dVig;
+  const dias = Math.round((dataEf - hoje) / 86400000);
 
   let st;
-  if (dias < 0)       st = 'vencido';
-  else if (dias <= 30) st = 'critico';
-  else if (dias <= 60) st = 'atencao';
-  else if (dias <= 90) st = 'alerta';
+  if      (dias < 0)    st = 'vencido';
+  else if (dias <= 30)  st = 'critico';
+  else if (dias <= 60)  st = 'atencao';
+  else if (dias <= 90)  st = 'alerta';
   else                  st = 'normal';
 
-  return { st, dias, temSusp, dataEfetiva };
+  return { st, dias, temSusp };
 }
 
 // ── CARREGAMENTO ─────────────────────────────────────────────────────────────
@@ -342,25 +356,22 @@ async function carregar() {
     if (!r.ok) throw new Error(`HTTP ${r.status}`);
     const j = await r.json();
     document.getElementById('hinfo').textContent = `Atualizado: ${j.gerado_em || '—'}`;
-
-    // Processa cada convênio recalculando o status pelas datas
     dados = (j.convenios || []).map(c => {
-      const { st, dias, temSusp, dataEfetiva } = calcStatus(c);
-      return { ...c, _st: st, _dias: dias, _temSusp: temSusp, _dataEfetiva: dataEfetiva };
+      const { st, dias, temSusp } = calcStatus(c);
+      return { ...c, _st:st, _dias:dias, _temSusp:temSusp };
     });
-
     document.getElementById('ov').classList.add('hide');
     popularFiltros();
     atualizar();
   } catch(e) {
     document.getElementById('ov').innerHTML = `
-      <div style="color:#fca5a5;font-size:48px;margin-bottom:8px;"><i class="fa-solid fa-triangle-exclamation"></i></div>
-      <p style="color:#fff;font-size:15px;">Erro ao carregar dados.json</p>
-      <small>Verifique se o repositório <strong>${USUARIO}/${REPO}</strong> existe e se o Python já rodou ao menos uma vez.</small>`;
+      <div style="color:#fca5a5;font-size:44px;margin-bottom:8px;"><i class="fa-solid fa-triangle-exclamation"></i></div>
+      <p style="color:#fff;">Erro ao carregar dados.json</p>
+      <small>Repositório: <strong>${USUARIO}/${REPO}</strong><br>Verifique se o Python já rodou ao menos uma vez.</small>`;
   }
 }
 
-// ── POPULAR SELECTS DE FILTRO ────────────────────────────────────────────────
+// ── POPULAR SELECTS ──────────────────────────────────────────────────────────
 function popularFiltros() {
   const campos = {
     fMandataria: d => d.mandataria || d.mandatária || '',
@@ -368,81 +379,62 @@ function popularFiltros() {
     fSituacao:   d => d.situacao || '',
     fFiscal:     d => d.fiscal || '',
   };
-
   for (const [id, fn] of Object.entries(campos)) {
     const sel = document.getElementById(id);
-    const label = sel.options[0].text; // preserva o placeholder
-    const vals = [...new Set(dados.map(fn).filter(Boolean).map(v => v.trim()))].sort();
-    sel.innerHTML = `<option value="">${label}</option>` +
-      vals.map(v => `<option value="${v}">${v}</option>`).join('');
+    const ph  = sel.options[0].text;
+    const vals = [...new Set(dados.map(fn).filter(Boolean).map(v=>v.trim()))].sort();
+    sel.innerHTML = `<option value="">${ph}</option>` + vals.map(v=>`<option value="${v}">${v}</option>`).join('');
   }
 }
 
 // ── DASHBOARD ────────────────────────────────────────────────────────────────
 function atualizar() {
-  const ct = { normal:0, alerta:0, atencao:0, critico:0, vencido:0, finalizado:0 };
-  let sT=0, sL=0, sE=0, nE=0;
-
+  const ct = {normal:0,alerta:0,atencao:0,critico:0,vencido:0,finalizado:0};
+  let sT=0,sL=0,sE=0,nE=0;
   dados.forEach(d => {
-    ct[d._st] = (ct[d._st] || 0) + 1;
+    ct[d._st] = (ct[d._st]||0)+1;
     const vt = parseFloat((d.v_total||'').replace(/\./g,'').replace(',','.')) || 0;
     const vl = parseFloat((d.v_liberado||'').replace(/\./g,'').replace(',','.')) || 0;
     const pe = parseFloat((d.pct_exec||'').replace('%','')) || 0;
-    sT += vt; sL += vl;
-    if (pe > 0) { sE += pe; nE++; }
+    sT+=vt; sL+=vl; if(pe>0){sE+=pe;nE++;}
   });
-
-  document.getElementById('cn').textContent  = ct.normal;
-  document.getElementById('ca').textContent  = ct.alerta;
-  document.getElementById('cat').textContent = ct.atencao;
-  document.getElementById('cc').textContent  = ct.critico;
-  document.getElementById('cv').textContent  = ct.vencido;
-  document.getElementById('cf').textContent  = ct.finalizado;
-
+  ['cn','ca','cat','cc','cv','cf'].forEach((id,i)=>{
+    const keys=['normal','alerta','atencao','critico','vencido','finalizado'];
+    document.getElementById(id).textContent = ct[keys[i]];
+  });
   const urg = ct.critico + ct.vencido;
-  const urgEl = document.getElementById('urg');
-  if (urg > 0) {
-    urgEl.classList.remove('hide');
-    document.getElementById('urgTxt').textContent = `${urg} instrumento(s) crítico(s) ou vencido(s)`;
-  } else {
-    urgEl.classList.add('hide');
-  }
-
-  document.getElementById('tt').textContent = sT > 0 ? `R$ ${fmtN(sT)}` : '—';
-  document.getElementById('tl').textContent = sL > 0 ? `R$ ${fmtN(sL)}` : '—';
-  document.getElementById('te').textContent = nE > 0 ? `${(sE/nE).toFixed(1)}%` : '—';
-
-  desenharGraf(ct);
-  render();
+  document.getElementById('urg').classList.toggle('hide', urg===0);
+  if(urg>0) document.getElementById('urgTxt').textContent=`${urg} instrumento(s) crítico(s) ou vencido(s)`;
+  document.getElementById('tt').textContent = sT>0?`R$ ${fN(sT)}`:'—';
+  document.getElementById('tl').textContent = sL>0?`R$ ${fN(sL)}`:'—';
+  document.getElementById('te').textContent = nE>0?`${(sE/nE).toFixed(1)}%`:'—';
+  graf(ct); render();
 }
 
-function fmtN(n) {
-  return n.toLocaleString('pt-BR', { minimumFractionDigits:2, maximumFractionDigits:2 });
-}
+function fN(n){return n.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2})}
 
 // ── GRÁFICO ──────────────────────────────────────────────────────────────────
-function desenharGraf(ct) {
-  const keys  = ['normal','alerta','atencao','critico','vencido','finalizado'];
-  const vals  = keys.map(k => ct[k] || 0);
-  const cors  = keys.map(k => COR[k]);
-  const tot   = vals.reduce((a,b) => a+b, 0);
-  if (chart) chart.destroy();
-  chart = new Chart(document.getElementById('donut'), {
-    type: 'doughnut',
-    data: { labels: keys.map(k=>LBL[k]), datasets:[{ data:vals, backgroundColor:cors, borderWidth:2, borderColor:'#fff', hoverOffset:6 }] },
-    options: { cutout:'68%', responsive:true, maintainAspectRatio:true,
-      plugins:{ legend:{display:false}, tooltip:{callbacks:{label:ctx=>` ${ctx.raw} (${tot>0?Math.round(ctx.raw/tot*100):0}%)`}} } },
-    plugins:[{ id:'ct', afterDraw(ch) {
-      const{ctx,chartArea:{left,top,width,height}}=ch, cx=left+width/2, cy=top+height/2;
-      ctx.save(); ctx.textAlign='center'; ctx.textBaseline='middle';
-      ctx.fillStyle='#1e293b'; ctx.font='700 26px Inter'; ctx.fillText(tot,cx,cy-8);
-      ctx.fillStyle='#94a3b8'; ctx.font='400 11px Inter'; ctx.fillText('instrumentos',cx,cy+13);
+function graf(ct) {
+  const keys=['normal','alerta','atencao','critico','vencido','finalizado'];
+  const vals=keys.map(k=>ct[k]||0), cors=keys.map(k=>COR[k]);
+  const tot=vals.reduce((a,b)=>a+b,0);
+  if(chart) chart.destroy();
+  chart=new Chart(document.getElementById('donut'),{
+    type:'doughnut',
+    data:{labels:keys.map(k=>LBL[k]),datasets:[{data:vals,backgroundColor:cors,borderWidth:2,borderColor:'#fff',hoverOffset:6}]},
+    options:{cutout:'68%',responsive:true,maintainAspectRatio:true,
+      plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>` ${ctx.raw} (${tot>0?Math.round(ctx.raw/tot*100):0}%)`}}}},
+    plugins:[{id:'ct',afterDraw(ch){
+      const{ctx,chartArea:{left,top,width,height}}=ch,cx=left+width/2,cy=top+height/2;
+      ctx.save();ctx.textAlign='center';ctx.textBaseline='middle';
+      ctx.fillStyle='#1e293b';ctx.font='700 24px Inter';ctx.fillText(tot,cx,cy-7);
+      ctx.fillStyle='#94a3b8';ctx.font='400 10px Inter';ctx.fillText('instrumentos',cx,cy+12);
       ctx.restore();
     }}]
   });
-  document.getElementById('leg').innerHTML = keys.map((k,i) => {
-    const pct = tot > 0 ? Math.round(vals[i]/tot*100) : 0;
-    return `<div class="citem" onclick="setStatus('${k}')">
+  document.getElementById('leg').innerHTML=keys.map((k,i)=>{
+    const pct=tot>0?Math.round(vals[i]/tot*100):0;
+    return`<div class="citem" onclick="setStatus('${k}')">
       <span class="cdot" style="background:${cors[i]}"></span>
       <span class="cname">${LBL[k]}</span>
       <span class="cval">${vals[i]} <span style="color:#94a3b8;font-weight:400;">(${pct}%)</span></span>
@@ -450,152 +442,171 @@ function desenharGraf(ct) {
   }).join('');
 }
 
-// ── FILTROS ──────────────────────────────────────────────────────────────────
+// ── FILTROS DE STATUS ────────────────────────────────────────────────────────
 function setStatus(s) {
-  filtroStatus = s;
-  document.getElementById('busca').value = '';
-  Object.values(KIDS).forEach(id => document.getElementById(id).classList.remove('active'));
-  if (KIDS[s]) document.getElementById(KIDS[s]).classList.add('active');
+  filtroStatus=s;
+  document.getElementById('busca').value='';
+  Object.values(KIDS).forEach(id=>document.getElementById(id).classList.remove('active'));
+  if(KIDS[s]) document.getElementById(KIDS[s]).classList.add('active');
   render();
 }
 
-// Também vincula os cards KPI ao filtro de status
-function fil(s) { setStatus(s); }
-
 function clearColFilters() {
-  ['fMandataria','fEmenda','fSituacao','fFiscal'].forEach(id => {
-    document.getElementById(id).value = '';
-    document.getElementById(id).classList.remove('active');
+  ['fMandataria','fEmenda','fSituacao','fFiscal'].forEach(id=>{
+    const el=document.getElementById(id); el.value=''; el.classList.remove('active');
   });
   render();
 }
 
 function rst() {
-  filtroStatus = 'all';
-  document.getElementById('busca').value = '';
-  Object.values(KIDS).forEach(id => document.getElementById(id).classList.remove('active'));
+  filtroStatus='all';
+  document.getElementById('busca').value='';
+  Object.values(KIDS).forEach(id=>document.getElementById(id).classList.remove('active'));
   clearColFilters();
+}
+
+// ── ORDENAÇÃO POR COLUNA ─────────────────────────────────────────────────────
+function sortBy(col) {
+  // Alterna direção se clicar na mesma coluna
+  if (sortCol === col) sortDir *= -1;
+  else { sortCol = col; sortDir = 1; }
+
+  // Atualiza visual dos cabeçalhos
+  document.querySelectorAll('th[id^="th-"]').forEach(th => {
+    th.classList.remove('sorted-asc','sorted-desc');
+  });
+  const thEl = document.getElementById('th-'+col);
+  if (thEl) thEl.classList.add(sortDir===1 ? 'sorted-asc' : 'sorted-desc');
+
+  render();
+}
+
+function getVal(r, col) {
+  if (col === '_dias') return r._dias ?? 99999;
+  if (col === '_st') {
+    const order = {critico:0,vencido:1,atencao:2,alerta:3,normal:4,finalizado:5};
+    return order[r._st] ?? 9;
+  }
+  if (col === 'vigencia') {
+    const d = parseDate(r.vigencia_fmt || r.vigencia);
+    return d ? d.getTime() : 99999999999;
+  }
+  if (col === 'vigencia_suspensiva') {
+    const d = parseDate(r.vigencia_suspensiva);
+    return d ? d.getTime() : 99999999999;
+  }
+  if (col === 'v_total') {
+    return parseFloat((r.v_total||'').replace(/\./g,'').replace(',','.')) || 0;
+  }
+  if (col === 'pct_exec') {
+    return parseFloat((r.pct_exec||'').replace('%','')) || 0;
+  }
+  return (r[col] || '').toString().toLowerCase();
 }
 
 // ── RENDER DA TABELA ─────────────────────────────────────────────────────────
 function render() {
-  const q         = (document.getElementById('busca').value || '').toLowerCase();
-  const fMand     = document.getElementById('fMandataria').value;
-  const fEmend    = document.getElementById('fEmenda').value;
-  const fSit      = document.getElementById('fSituacao').value;
-  const fFisc     = document.getElementById('fFiscal').value;
+  const q      = (document.getElementById('busca').value||'').toLowerCase();
+  const fMand  = document.getElementById('fMandataria').value;
+  const fEmend = document.getElementById('fEmenda').value;
+  const fSit   = document.getElementById('fSituacao').value;
+  const fFisc  = document.getElementById('fFiscal').value;
 
-  // Marca selects ativos
-  ['fMandataria','fEmenda','fSituacao','fFiscal'].forEach(id => {
+  ['fMandataria','fEmenda','fSituacao','fFiscal'].forEach(id=>{
     document.getElementById(id).classList.toggle('active', !!document.getElementById(id).value);
   });
 
   let rows = dados;
 
-  // Filtro por status / suspensiva
-  if (filtroStatus === 'suspensiva') {
-    rows = rows.filter(r => r._temSusp);
-  } else if (filtroStatus !== 'all') {
-    rows = rows.filter(r => r._st === filtroStatus);
-  }
+  if (filtroStatus === 'suspensiva') rows = rows.filter(r => r._temSusp);
+  else if (filtroStatus !== 'all')   rows = rows.filter(r => r._st === filtroStatus);
 
-  // Busca global
-  if (q) {
-    rows = rows.filter(r =>
-      (r.numero||'').toLowerCase().includes(q) ||
-      (r.objeto||'').toLowerCase().includes(q) ||
-      (r.autor_emenda||'').toLowerCase().includes(q)
-    );
-  }
+  if (q) rows = rows.filter(r =>
+    (r.numero||'').toLowerCase().includes(q) ||
+    (r.objeto||'').toLowerCase().includes(q) ||
+    (r.autor_emenda||'').toLowerCase().includes(q)
+  );
 
-  // Filtros por coluna
   if (fMand) rows = rows.filter(r => (r.mandataria||r.mandatária||'').trim() === fMand);
   if (fEmend) rows = rows.filter(r => (r.emenda||'').trim() === fEmend);
   if (fSit)  rows = rows.filter(r => (r.situacao||'').trim() === fSit);
   if (fFisc) rows = rows.filter(r => (r.fiscal||'').trim() === fFisc);
 
-  // Ordenação: vencido → crítico → atenção → alerta → normal → finalizado
-  // Dentro de cada grupo: dias crescente (mais urgente primeiro)
-  rows.sort((a, b) => {
-    const o = { critico:0, vencido:1, atencao:2, alerta:3, normal:4, finalizado:5 };
-    const diff = (o[a._st]||9) - (o[b._st]||9);
-    if (diff !== 0) return diff;
-    return ((a._dias ?? 9999) - (b._dias ?? 9999));
-  });
-
-  const tb = document.getElementById('tbody');
-  const em = document.getElementById('empty');
-  document.getElementById('tcnt').textContent = rows.length > 0 ? `(${rows.length})` : '';
-
-  if (!rows.length) {
-    tb.innerHTML = '';
-    em.style.display = 'block';
-    document.getElementById('srow').innerHTML = '';
-    return;
+  // Ordenação
+  if (sortCol) {
+    rows = [...rows].sort((a,b) => {
+      const va = getVal(a, sortCol), vb = getVal(b, sortCol);
+      if (va < vb) return -1 * sortDir;
+      if (va > vb) return  1 * sortDir;
+      return 0;
+    });
+  } else {
+    // Padrão: urgência primeiro
+    rows = [...rows].sort((a,b) => {
+      const o={critico:0,vencido:1,atencao:2,alerta:3,normal:4,finalizado:5};
+      return ((o[a._st]||9)-(o[b._st]||9)) || ((a._dias??9999)-(b._dias??9999));
+    });
   }
-  em.style.display = 'none';
 
-  tb.innerHTML = rows.map((r, i) => {
-    const cl   = CLS[r._st] || 'f';
-    const nm   = NOME[r._st] || r._st;
+  const tb=document.getElementById('tbody'), em=document.getElementById('empty');
+  document.getElementById('tcnt').textContent = rows.length>0?`(${rows.length})`:'';
+
+  if (!rows.length) { tb.innerHTML=''; em.style.display='block'; document.getElementById('srow').innerHTML=''; return; }
+  em.style.display='none';
+
+  tb.innerHTML = rows.map((r,i) => {
+    const cl  = CLS[r._st]||'f';
+    const nm  = NOME[r._st]||r._st;
     const dias = r._dias;
 
     let diasHtml;
-    if (dias === null || dias === undefined) {
-      diasHtml = `<span class="val">—</span>`;
-    } else if (dias < 0) {
-      diasHtml = `<div class="dias-vencido">${Math.abs(dias)}d<small>vencido</small></div>`;
-    } else {
-      diasHtml = `<span class="cd ${cl}">${dias}d</span>`;
-    }
+    if (dias===null||dias===undefined) diasHtml = `<span class="val">—</span>`;
+    else if (dias<0) diasHtml = `<div class="dias-vencido">${Math.abs(dias)}d<small>vencido</small></div>`;
+    else diasHtml = `<span class="cd ${cl}">${dias}d</span>`;
 
     const suspHtml = r._temSusp
       ? `<span class="susp-tag"><i class="fa-solid fa-hourglass-half"></i>${r.vigencia_suspensiva||'—'}</span>`
-      : `<span style="color:#94a3b8;">—</span>`;
+      : `<span style="color:#94a3b8;font-size:11px;">—</span>`;
 
     return `<tr class="drow" onclick="exp(${i})">
-      <td style="text-align:center;"><i class="fa-solid fa-chevron-right" id="ic${i}" style="font-size:10px;color:#94a3b8;transition:transform .2s;"></i></td>
+      <td style="text-align:center;"><i class="fa-solid fa-chevron-right" id="ic${i}" style="font-size:9px;color:#94a3b8;transition:transform .2s;"></i></td>
       <td><span class="num">${r.numero||'—'}</span></td>
       <td>
         <div class="obj" title="${(r.objeto||'').replace(/"/g,"'")}">${r.objeto||'—'}</div>
-        ${r.autor_emenda ? `<div style="font-size:11px;color:#94a3b8;margin-top:2px;"><i class="fa-solid fa-user" style="font-size:10px;"></i> ${r.autor_emenda}</div>` : ''}
+        ${r.autor_emenda?`<div style="font-size:10px;color:#94a3b8;margin-top:2px;"><i class="fa-solid fa-user" style="font-size:9px;"></i> ${r.autor_emenda}</div>`:''}
       </td>
-      <td style="white-space:nowrap;font-size:12px;">${r.vigencia_fmt||r.vigencia||'—'}</td>
+      <td style="white-space:nowrap;font-size:11px;">${r.vigencia_fmt||r.vigencia||'—'}</td>
       <td>${suspHtml}</td>
       <td style="text-align:center;">${diasHtml}</td>
-      <td><span class="val">${r.v_total ? 'R$ '+r.v_total : '—'}</span></td>
+      <td><span class="val">${r.v_total?'R$ '+r.v_total:'—'}</span></td>
       <td style="text-align:center;"><span class="val">${r.pct_exec||'—'}</span></td>
-      <td><span class="badge ${cl}">${nm}${r._temSusp ? ' <i class="fa-solid fa-hourglass-half" style="font-size:9px;margin-left:3px;"></i>' : ''}</span></td>
+      <td><span class="badge ${cl}">${nm}${r._temSusp?'<i class="fa-solid fa-hourglass-half" style="font-size:8px;margin-left:2px;"></i>':''}</span></td>
     </tr>
     <tr class="erow" id="er${i}"><td colspan="9"><div class="ebody"><div class="egrid">
       <div class="ef"><label>Nº do instrumento</label><span>${r.numero||'—'}</span></div>
       <div class="ef"><label>Situação oficial</label><span>${r.situacao||'—'}</span></div>
       <div class="ef"><label>Prestação de contas</label><span>${r.prestacao||'—'}</span></div>
+      <div class="ef"><label>Autor da emenda</label><span>${r.autor_emenda||'—'}</span></div>
       <div class="ef full"><label>Objeto completo</label><span>${r.objeto||'—'}</span></div>
       <div class="ef"><label>Vigência final</label><span>${r.vigencia_fmt||r.vigencia||'—'}</span></div>
-      <div class="ef"><label>Vigência suspensiva</label><span style="color:${r._temSusp?'var(--s-tx)':'inherit'};font-weight:${r._temSusp?'600':'400'}">${r._temSusp ? (r.vigencia_suspensiva||'—') : '—'}</span></div>
-      <div class="ef"><label>Dias p/ data efetiva</label><span>${dias !== null ? (dias < 0 ? Math.abs(dias)+'d vencido' : dias+'d restantes') : '—'}</span></div>
-      <div class="ef"><label>Valor total</label><span>${r.v_total ? 'R$ '+r.v_total : '—'}</span></div>
-      <div class="ef"><label>Valor liberado</label><span>${r.v_liberado ? 'R$ '+r.v_liberado : '—'}</span></div>
+      <div class="ef"><label>Vigência suspensiva</label><span style="color:${r._temSusp?'var(--s-tx)':'inherit'};font-weight:${r._temSusp?700:400}">${r.vigencia_suspensiva||'—'}</span></div>
+      <div class="ef"><label>Dias p/ data efetiva</label><span>${dias!==null?(dias<0?Math.abs(dias)+'d vencido':dias+'d restantes'):'—'}</span></div>
+      <div class="ef"><label>Valor total</label><span>${r.v_total?'R$ '+r.v_total:'—'}</span></div>
+      <div class="ef"><label>Valor liberado</label><span>${r.v_liberado?'R$ '+r.v_liberado:'—'}</span></div>
       <div class="ef"><label>% Execução</label><span>${r.pct_exec||'—'}</span></div>
-      <div class="ef"><label>Autor da emenda</label><span>${r.autor_emenda||'—'}</span></div>
-      <div class="ef"><label>Status calculado</label><span><span class="badge ${cl}">${nm}</span>${r._temSusp ? ' <span style="font-size:11px;color:var(--s-tx);margin-left:4px;">(pela suspensiva)</span>' : ''}</span></div>
+      <div class="ef"><label>Status</label><span><span class="badge ${cl}">${nm}</span>${r._temSusp?'<span style="font-size:10px;color:var(--s-tx);margin-left:4px;">(pela suspensiva)</span>':''}</span></div>
     </div></div></td></tr>`;
   }).join('');
 
-  const cu = { critico:0, vencido:0, suspensiva:0 };
-  rows.forEach(r => {
-    if (r._st === 'critico')   cu.critico++;
-    if (r._st === 'vencido')   cu.vencido++;
-    if (r._temSusp)            cu.suspensiva++;
-  });
-
-  document.getElementById('srow').innerHTML = `
-    <i class="fa-solid fa-circle-info" style="color:#94a3b8;font-size:11px;"></i>
+  const cu={critico:0,vencido:0,susp:0};
+  rows.forEach(r=>{if(r._st==='critico')cu.critico++;if(r._st==='vencido')cu.vencido++;if(r._temSusp)cu.susp++;});
+  document.getElementById('srow').innerHTML=`
+    <i class="fa-solid fa-circle-info" style="color:#94a3b8;font-size:10px;"></i>
     Mostrando <strong>${rows.length}</strong> instrumento(s)
-    ${cu.critico > 0 ? ` · <span style="color:#c2410c;font-weight:600;">${cu.critico} crítico(s)</span>` : ''}
-    ${cu.vencido > 0 ? ` · <span style="color:#b91c1c;font-weight:600;">${cu.vencido} vencido(s)</span>` : ''}
-    ${cu.suspensiva > 0 ? ` · <span style="color:#5b21b6;font-weight:600;">${cu.suspensiva} c/ suspensiva</span>` : ''}`;
+    ${cu.critico>0?` · <span style="color:#c2410c;font-weight:600;">${cu.critico} crítico(s)</span>`:''}
+    ${cu.vencido>0?` · <span style="color:#b91c1c;font-weight:600;">${cu.vencido} vencido(s)</span>`:''}
+    ${cu.susp>0?` · <span style="color:#5b21b6;font-weight:600;">${cu.susp} c/ suspensiva</span>`:''}
+    ${sortCol?`<span style="margin-left:auto;color:var(--light);font-size:10px;"><i class="fa-solid fa-sort"></i> Ordenado por: ${sortCol.replace('_','').replace('vigencia','vigência').replace('dias','dias')} ${sortDir===1?'↑':'↓'}</span>`:''}`;
 }
 
 function exp(i) {

@@ -22,6 +22,23 @@
   --s-bg:#f5f3ff;--s-bd:#8b5cf6;--s-tx:#5b21b6;
   --r:10px;--sh:0 1px 3px rgba(0,0,0,.08);--sh2:0 10px 25px rgba(0,0,0,.12);
 }
+.th-info{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:14px;height:14px;border-radius:50%;
+  background:#3b82f6;color:#fff;font-size:9px;font-weight:700;
+  cursor:help;margin-left:3px;vertical-align:middle;font-style:normal;
+  position:relative;
+}
+.th-info:hover::after{
+  content:attr(title);
+  position:absolute;top:18px;left:0;z-index:99;
+  background:#1e293b;color:#fff;
+  font-size:11px;font-weight:400;line-height:1.5;
+  padding:8px 12px;border-radius:8px;
+  width:260px;white-space:normal;
+  box-shadow:0 4px 16px rgba(0,0,0,.3);
+  text-transform:none;letter-spacing:0;font-family:'Inter',sans-serif;
+}
 body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
 
 /* HEADER */
@@ -184,7 +201,7 @@ tr.drow:hover td{background:var(--surface2);cursor:pointer}
     IDEPI <span>| Instituto de Desenvolvimento do Piauí</span>
   </div>
   <div class="hright">
-    <a href="portal.html" class="btn-menu" title="Ir para o Menu Principal">
+    <a href="#" class="btn-menu" title="Ir para o Menu Principal">
       <i class="fa-solid fa-grid-2"></i> Menu Principal
     </a>
     <span class="hinfo" id="hinfo"></span>
@@ -278,7 +295,7 @@ tr.drow:hover td{background:var(--surface2);cursor:pointer}
             <th onclick="sortBy('numero')"           id="th-numero">Nº Instrumento</th>
             <th onclick="sortBy('objeto')"           id="th-objeto">Objeto / Autor</th>
             <th onclick="sortBy('vigencia')"         id="th-vigencia">Vigência</th>
-            <th onclick="sortBy('vigencia_suspensiva')" id="th-vigencia_suspensiva">Suspensiva</th>
+            <th onclick="sortBy('vigencia_suspensiva')" id="th-vigencia_suspensiva">Suspensiva <span class="th-info" title="Preencha a data da cláusula suspensiva manualmente na coluna M da planilha Google Sheets e rode o script Python para atualizar.">ℹ</span></th>
             <th onclick="sortBy('_dias')"            id="th-_dias" style="text-align:center;">Dias</th>
             <th onclick="sortBy('v_total')"          id="th-v_total">Valor Total</th>
             <th onclick="sortBy('pct_exec')"         id="th-pct_exec" style="text-align:center;">% Exec.</th>
@@ -324,18 +341,29 @@ const hoje = (() => { const d = new Date(); d.setHours(0,0,0,0); return d; })();
 
 // ── CALCULA STATUS CONSIDERANDO SUSPENSIVA ───────────────────────────────────
 function calcStatus(c) {
-  const sit = (c.situacao || '').toLowerCase();
-  if (/prestação|finaliz|concluíd|encerrad|rescindid/.test(sit))
+  // Normaliza situação removendo acentos para comparação robusta
+  const sit = (c.situacao || '')
+    .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase();
+  if (/prestacao\s*de\s*contas|finaliz|concluíd|concluido|encerrad|rescindid|inadimplent|tomada\s*de\s*contas/.test(sit))
     return { st:'finalizado', dias:null, temSusp:false };
 
   const dVig  = parseDate(c.vigencia_fmt || c.vigencia);
+  // ✅ CORREÇÃO: o JSON publica como "vigencia_suspensiva" (nome definido no main.py)
   const dSusp = parseDate(c.vigencia_suspensiva);
 
   if (!dVig && !dSusp) return { st:'finalizado', dias:null, temSusp:false };
 
-  const temSusp = !!dSusp;
-  // Data efetiva = suspensiva se existir (prazo mais restritivo — pode ser antes da vigência final)
-  const dataEf = dSusp || dVig;
+  // Suspensiva só tem prioridade se for ANTERIOR à vigência final
+  let temSusp = false;
+  let dataEf  = dVig;
+  if (dSusp) {
+    if (!dVig || dSusp <= dVig) {
+      dataEf  = dSusp;
+      temSusp = true;
+    }
+  }
+
   const dias = Math.round((dataEf - hoje) / 86400000);
 
   let st;
@@ -618,6 +646,68 @@ function exp(i) {
 }
 
 carregar();
+</script>
+
+<!-- ── PROTEÇÃO POR SENHA ─────────────────────────────── -->
+<div id="lockscreen" style="
+  position:fixed;inset:0;z-index:9999;
+  background:#1e293b;
+  display:flex;align-items:center;justify-content:center;
+">
+  <div style="
+    background:#fff;border:1px solid #e2e8f0;
+    border-radius:16px;padding:40px;width:340px;text-align:center;
+    box-shadow:0 20px 60px rgba(0,0,0,.25);
+  ">
+    <div style="
+      width:52px;height:52px;border-radius:14px;
+      background:#1e40af;
+      display:flex;align-items:center;justify-content:center;
+      font-size:22px;color:#fff;margin:0 auto 16px;
+    "><i class="fa-solid fa-lock"></i></div>
+    <div style="font-size:17px;font-weight:700;color:#1e293b;margin-bottom:4px;">IDEPI — Convênios Federais</div>
+    <div style="font-size:12px;color:#64748b;margin-bottom:24px;">Acesso restrito. Digite a senha para continuar.</div>
+    <input id="pwd-input" type="password" placeholder="Senha de acesso"
+      style="
+        width:100%;padding:11px 16px;border-radius:8px;
+        border:1.5px solid #e2e8f0;
+        background:#f8fafc;color:#1e293b;
+        font-size:14px;font-family:'Inter',sans-serif;
+        outline:none;margin-bottom:10px;
+      "
+      onkeydown="if(event.key==='Enter')checkPwd()"
+    />
+    <div id="pwd-err" style="font-size:12px;color:#ef4444;min-height:16px;margin-bottom:10px;"></div>
+    <button onclick="checkPwd()" style="
+      width:100%;padding:11px;border-radius:8px;border:none;
+      background:#1e40af;color:#fff;font-size:14px;font-weight:600;
+      cursor:pointer;font-family:'Inter',sans-serif;
+    ">Entrar</button>
+    <div style="margin-top:16px;font-size:11px;color:#94a3b8;">
+      ⚠️ Esta senha protege apenas o acesso visual.<br>
+      Para segurança real, use um repositório GitHub privado.
+    </div>
+  </div>
+</div>
+
+<script>
+// ─── SENHA — altere aqui para mudar ────────────────────
+const SENHA_HASH = "idepi2026";
+// ───────────────────────────────────────────────────────
+if (sessionStorage.getItem('idepi_auth') === '1') {
+  document.getElementById('lockscreen').style.display = 'none';
+}
+function checkPwd() {
+  const v = document.getElementById('pwd-input').value;
+  if (v === SENHA_HASH) {
+    sessionStorage.setItem('idepi_auth','1');
+    document.getElementById('lockscreen').style.display = 'none';
+  } else {
+    document.getElementById('pwd-err').textContent = 'Senha incorreta. Tente novamente.';
+    document.getElementById('pwd-input').value = '';
+    document.getElementById('pwd-input').focus();
+  }
+}
 </script>
 </body>
 </html>

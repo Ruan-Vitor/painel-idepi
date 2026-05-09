@@ -310,13 +310,14 @@ tr:hover td{background:#f8fbff}
               <th>Objeto</th>
               <th>Vigência</th>
               <th>Suspensiva</th>
+              <th>Nº SEI</th>
               <th>Dias</th>
               <th>% Exec.</th>
               <th>Status</th>
             </tr>
           </thead>
           <tbody id="tbody">
-            <tr><td colspan="7" class="empty"><i class="fa-solid fa-rotate fa-spin" style="margin-right:8px;color:#94a3b8"></i>Buscando dados...</td></tr>
+            <tr><td colspan="8" class="empty"><i class="fa-solid fa-rotate fa-spin" style="margin-right:8px;color:#94a3b8"></i>Buscando dados...</td></tr>
           </tbody>
         </table>
       </div>
@@ -341,7 +342,7 @@ function parseDateBR(s) {
 }
 
 function normSit(s) {
-  return (s || "").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+  return (s || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
 }
 
 function calcSt(c) {
@@ -390,7 +391,7 @@ function render() {
   document.getElementById("tw-info").textContent = rows.length + " instrumento(s) exibido(s)";
 
   if (!rows.length) {
-    document.getElementById("tbody").innerHTML = '<tr><td colspan="7" class="empty">Nenhum resultado.</td></tr>';
+    document.getElementById("tbody").innerHTML = '<tr><td colspan="8" class="empty">Nenhum resultado.</td></tr>';
     return;
   }
 
@@ -407,11 +408,16 @@ function render() {
     var bgCl    = BG[r._st] || "b-f";
     var lbTxt   = (r._sus ? "\u26a0 SUSP \u00b7 " : "") + (LB[r._st] || r._st);
 
+    var seiHtml = r.sei
+      ? '<span style="font-family:monospace;font-size:11px;color:#1a4a8a;font-weight:600">' + r.sei + '</span>'
+      : '<span style="color:#c0cbd8;font-size:11px;">\u2014</span>';
+
     html += "<tr>";
     html += "<td><span class=\"num-link\">" + numero + "</span></td>";
     html += "<td><div class=\"obj-cell\" title=\"" + objeto.replace(/"/g, "'") + "\">" + objeto + "</div></td>";
     html += "<td style=\"white-space:nowrap;color:#5a6a82;font-size:12px\">" + vigFmt + "</td>";
     html += "<td>" + susHtml + "</td>";
+    html += "<td>" + seiHtml + "</td>";
     html += "<td>" + fmtDias(r._dias, r._st) + "</td>";
     html += "<td style=\"color:#5a6a82;font-size:12px\">" + pct + "</td>";
     html += "<td><span class=\"badge " + bgCl + "\">" + lbTxt + "</span></td>";
@@ -464,7 +470,7 @@ fetch(url)
     render();
   })
   .catch(function() {
-    document.getElementById("tbody").innerHTML = '<tr><td colspan="7" class="empty">Erro ao carregar dados. Verifique se o Python j\u00e1 rodou.</td></tr>';
+    document.getElementById("tbody").innerHTML = '<tr><td colspan="8" class="empty">Erro ao carregar dados. Verifique se o Python j\u00e1 rodou.</td></tr>';
     document.getElementById("tw-info").textContent = "Erro ao carregar";
   });
 </script>

@@ -1,5 +1,5 @@
 {
-  "gerado_em": "08/05/2026 07:24",
+  "gerado_em": "08/05/2026 23:14",
   "total": 93,
   "convenios": [
     {
@@ -7,6 +7,8 @@
       "objeto": "IMPLANTACAO DE INFRAESTRUTURA ESPORTIVA no Municipio de Monsenhor Hipolito  PI",
       "vigencia": "2026-09-30",
       "vigencia_fmt": "30/09/2026",
+      "vigencia_suspensiva": "",
+      "sei": "00119.001068/2025-45",
       "dias": 145,
       "status": "NORMAL",
       "situacao": "EM EXECUÇÃO",
@@ -14,15 +16,15 @@
       "v_liberado": "390.000,00",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": "",
-      "suspensiva": "",
-      "suspensiva_fmt": ""
+      "prestacao": ""
     },
     {
       "numero": "889040",
       "objeto": "PAVIMENTACAO EM PARALELEPIPEDO EM VIAS PUBLICAS NOS MUNICIPIOS DE ESPERANTINA - PI, UNIAO - PI, BARRAS -PI, CABECEIRAS - PI, MIGUEL ALVES - PI E SAO JOAO DO ARRAIAL - PI.",
       "vigencia": "2025-12-06",
       "vigencia_fmt": "06/12/2025",
+      "vigencia_suspensiva": "",
+      "sei": "",
       "dias": -153,
       "status": "VENCIDO",
       "situacao": "NORMAL",
@@ -30,15 +32,15 @@
       "v_liberado": "5.730.000,00",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": "",
-      "suspensiva": "",
-      "suspensiva_fmt": ""
+      "prestacao": ""
     },
     {
       "numero": "897425",
       "objeto": "PAVIMENTACAO EM PARALELEPIPEDO DE DIVERSAS VIAS PUBLICAS NO MUNICIPIO DE ESPERANTINA - PI.",
       "vigencia": "2026-09-30",
       "vigencia_fmt": "30/09/2026",
+      "vigencia_suspensiva": "",
+      "sei": "",
       "dias": 145,
       "status": "NORMAL",
       "situacao": "EM EXECUÇÃO",
@@ -46,15 +48,15 @@
       "v_liberado": "2.387.500,00",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": "",
-      "suspensiva": "",
-      "suspensiva_fmt": ""
+      "prestacao": ""
     },
     {
       "numero": "897099",
       "objeto": "PAVIMENTACAO EM PARALELEPIPEDO DE DIVERSAS VIAS PUBLICAS NOS MUNICIPIOS DE BATALHA, COLONIA DO GURGUEIA, LAGOA DO PIAUI, ALVORADA DO GURGUEIA E FLORESTA DO PIAUI, TODAS NO ESTADO DO PIAUI.",
       "vigencia": "2026-09-30",
       "vigencia_fmt": "30/09/2026",
+      "vigencia_suspensiva": "",
+      "sei": "",
       "dias": 145,
       "status": "NORMAL",
       "situacao": "EM EXECUÇÃO",
@@ -62,15 +64,15 @@
       "v_liberado": "2.387.500,00",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": "",
-      "suspensiva": "",
-      "suspensiva_fmt": ""
+      "prestacao": ""
     },
     {
       "numero": "900822",
       "objeto": "1a ETAPA DO MELHORAMENTO DA IMPLANTACAO E PAVIMENTACAO ASFALTICA EM TRATAMENTO SUPERFICIAL DUPLO - TSD COM BANHO DILUIDO NA PISTA DE ROLAMENTO E TRATAMENTO SUPERFICIAL SIMPLES - TSS COM BANHO DILUIDO NOS ACOSTAMENTOS, DA RODOVIA PI-213, NO TRECHO: ESPERANTINA / ENTRONC. PI-305 (VOLTA DA JUREMA), COM 75,600 KM DE EXTENSAO.",
       "vigencia": "2026-09-30",
       "vigencia_fmt": "30/09/2026",
+      "vigencia_suspensiva": "",
+      "sei": "",
       "dias": 145,
       "status": "NORMAL",
       "situacao": "EM EXECUÇÃO",
@@ -78,15 +80,15 @@
       "v_liberado": "10.610.025,00",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": "",
-      "suspensiva": "",
-      "suspensiva_fmt": ""
+      "prestacao": ""
     },
     {
       "numero": "906442",
       "objeto": "PAVIMENTACAO EM PARALELEPIPEDO EM VIAS PUBLICAS NA ZONA RURAL DO MUNICIPIO DE SAO BRAZ DO PIAUI - PI.",
       "vigencia": "2025-12-29",
       "vigencia_fmt": "29/12/2025",
+      "vigencia_suspensiva": "",
+      "sei": "",
       "dias": -130,
       "status": "VENCIDO",
       "situacao": "NORMAL",
@@ -94,15 +96,15 @@
       "v_liberado": "384.205,00",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": "",
-      "suspensiva": "",
-      "suspensiva_fmt": ""
+      "prestacao": ""
     },
     {
       "numero": "916598",
       "objeto": "PAVIMENTACAO EM PARALELEPIPEDO EM VIAS PUBLICAS NO PERIMETRO URBANO DO MUNICIPIO DE TERESINA - PI.",
       "vigencia": "2026-09-30",
       "vigencia_fmt": "30/09/2026",
+      "vigencia_suspensiva": "",
+      "sei": "",
       "dias": 145,
       "status": "NORMAL",
       "situacao": "EM EXECUÇÃO",
@@ -110,15 +112,15 @@
       "v_liberado": "345.377,48",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": "",
-      "suspensiva": "",
-      "suspensiva_fmt": ""
+      "prestacao": ""
     },
     {
       "numero": "917537",
       "objeto": "PAVIMENTACAO E ADEQUACAO DE VIAS PUBLICAS NO PERIMETRO URBANO NO MUNICIPIO DE TERESINA - PI.",
       "vigencia": "2026-12-30",
       "vigencia_fmt": "30/12/2026",
+      "vigencia_suspensiva": "",
+      "sei": "",
       "dias": 236,
       "status": "NORMAL",
       "situacao": "EM EXECUÇÃO",
@@ -126,15 +128,15 @@
       "v_liberado": "16.088.906,00",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": "",
-      "suspensiva": "",
-      "suspensiva_fmt": ""
+      "prestacao": ""
     },
     {
       "numero": "902704",
       "objeto": "OBRA DE CONSTRUCAO, ADEQUACAO E/OU READEQUACAO DE ESTRADAS VICINAIS NO MUNICIPIO DE CAMPINAS-PI.",
       "vigencia": "2025-04-11",
       "vigencia_fmt": "11/04/2025",
+      "vigencia_suspensiva": "",
+      "sei": "",
       "dias": null,
       "status": "FINALIZADO",
       "situacao": "PRESTAÇÃO DE CONTAS ENVIADA PARA ANÁLISE",
@@ -142,15 +144,15 @@
       "v_liberado": "477.500,00",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": "",
-      "suspensiva": "",
-      "suspensiva_fmt": ""
+      "prestacao": ""
     },
     {
       "numero": "902705",
       "objeto": "OBRA DE CONSTRUCAO, ADEQUACAO E/OU READEQUACAO DE ESTRADAS VICINAIS NO MUNICIPIO DE JACOBINA-PI.",
       "vigencia": "2025-12-31",
       "vigencia_fmt": "31/12/2025",
+      "vigencia_suspensiva": "",
+      "sei": "",
       "dias": null,
       "status": "FINALIZADO",
       "situacao": "AGUARDANDO PRESTAÇÃO DE CONTAS",
@@ -158,15 +160,15 @@
       "v_liberado": "477.500,00",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": "",
-      "suspensiva": "",
-      "suspensiva_fmt": ""
+      "prestacao": ""
     },
     {
       "numero": "838065",
       "objeto": "Implantacao de Melhorias Sanitarios Domiciliares.",
       "vigencia": "2026-12-31",
       "vigencia_fmt": "31/12/2026",
+      "vigencia_suspensiva": "",
+      "sei": "",
       "dias": 237,
       "status": "NORMAL",
       "situacao": "EM EXECUÇÃO",
@@ -174,15 +176,15 @@
       "v_liberado": "2.283.948,69",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": "",
-      "suspensiva": "",
-      "suspensiva_fmt": ""
+      "prestacao": ""
     },
     {
       "numero": "907472",
       "objeto": "IMPLANTACAO DE MELHORIAS HABITACIONAIS PARA OCONTROLE DE CHAGAS  NO MUNICIPIO DE DOM INOCENCIO - PI.",
       "vigencia": "2026-12-31",
       "vigencia_fmt": "31/12/2026",
+      "vigencia_suspensiva": "",
+      "sei": "",
       "dias": 237,
       "status": "NORMAL",
       "situacao": "EM EXECUÇÃO",
@@ -190,15 +192,15 @@
       "v_liberado": "",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": "",
-      "suspensiva": "",
-      "suspensiva_fmt": ""
+      "prestacao": ""
     },
     {
       "numero": "907471",
       "objeto": "IMPLANTACAO DE MELHORIAS HABITACIONAIS PARA OCONTROLE DE CHAGAS NO MUNICIPIO DE LAGOA DE SAO FRANCISCO - PI.",
       "vigencia": "2026-12-31",
       "vigencia_fmt": "31/12/2026",
+      "vigencia_suspensiva": "",
+      "sei": "",
       "dias": 237,
       "status": "NORMAL",
       "situacao": "EM EXECUÇÃO",
@@ -206,15 +208,15 @@
       "v_liberado": "",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": "",
-      "suspensiva": "",
-      "suspensiva_fmt": ""
+      "prestacao": ""
     },
     {
       "numero": "907470",
       "objeto": "IMPLANTACAO DE MELHORIAS HABITACIONAIS PARA O CONTROLE DE CHAGAS NO MUNICIPIO CAMPO ALEGRE DO FIDALGO - PI.",
       "vigencia": "2026-12-31",
       "vigencia_fmt": "31/12/2026",
+      "vigencia_suspensiva": "",
+      "sei": "",
       "dias": 237,
       "status": "NORMAL",
       "situacao": "EM EXECUÇÃO",
@@ -222,15 +224,15 @@
       "v_liberado": "",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": "",
-      "suspensiva": "",
-      "suspensiva_fmt": ""
+      "prestacao": ""
     },
     {
       "numero": "907469",
       "objeto": "IMPLANTACAO DE MELHORIAS HABITACIONAIS PARA O CONTROLE DE CHAGAS NO MUNICIPIO DE AROEIRAS DO ITAIM - PI.",
       "vigencia": "2026-12-31",
       "vigencia_fmt": "31/12/2026",
+      "vigencia_suspensiva": "",
+      "sei": "",
       "dias": 237,
       "status": "NORMAL",
       "situacao": "EM EXECUÇÃO",
@@ -238,15 +240,15 @@
       "v_liberado": "",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": "",
-      "suspensiva": "",
-      "suspensiva_fmt": ""
+      "prestacao": ""
     },
     {
       "numero": "907008",
       "objeto": "IMPLANTACAO DE MELHORIAS SANITARIAS DOMICILIARES EM AREAS RURAIS DO MUNICIPIO DE CURIMATA, ESTADO DO PIAUI.",
       "vigencia": "2026-12-31",
       "vigencia_fmt": "31/12/2026",
+      "vigencia_suspensiva": "",
+      "sei": "",
       "dias": 237,
       "status": "NORMAL",
       "situacao": "EM EXECUÇÃO",
@@ -254,15 +256,15 @@
       "v_liberado": "196.670,00",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": "",
-      "suspensiva": "",
-      "suspensiva_fmt": ""
+      "prestacao": ""
     },
     {
       "numero": "907015",
       "objeto": "IMPLANTACAO DE MELHORIAS SANITARIAS DOMICILIARES EM AREAS RURAIS DO MUNICIPIO DE CANTO DO BURITI, ESTADO DO PIAUI.",
       "vigencia": "2026-12-31",
       "vigencia_fmt": "31/12/2026",
+      "vigencia_suspensiva": "",
+      "sei": "",
       "dias": 237,
       "status": "NORMAL",
       "situacao": "EM EXECUÇÃO",
@@ -270,15 +272,15 @@
       "v_liberado": "",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": "",
-      "suspensiva": "",
-      "suspensiva_fmt": ""
+      "prestacao": ""
     },
     {
       "numero": "907031",
       "objeto": "IMPLANTACAO DE MELHORIAS SANITARIAS DOMICILIARES EM AREAS RURAIS DO MUNICIPIO DE MURICI DOS PORTELAS, ESTADO DO PIAUI.",
       "vigencia": "2026-12-31",
       "vigencia_fmt": "31/12/2026",
+      "vigencia_suspensiva": "",
+      "sei": "",
       "dias": 237,
       "status": "NORMAL",
       "situacao": "EM EXECUÇÃO",
@@ -286,15 +288,15 @@
       "v_liberado": "",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": "",
-      "suspensiva": "",
-      "suspensiva_fmt": ""
+      "prestacao": ""
     },
     {
       "numero": "907032",
       "objeto": "IMPLANTACAO DE MELHORIAS SANITARIAS DOMICILIARES EM AREAS RURAIS DO MUNICIPIO DE PARNAGUA, ESTADO DO PIAUI.",
       "vigencia": "2026-12-31",
       "vigencia_fmt": "31/12/2026",
+      "vigencia_suspensiva": "",
+      "sei": "",
       "dias": 237,
       "status": "NORMAL",
       "situacao": "EM EXECUÇÃO",
@@ -302,15 +304,15 @@
       "v_liberado": "196.784,75",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": "",
-      "suspensiva": "",
-      "suspensiva_fmt": ""
+      "prestacao": ""
     },
     {
       "numero": "907033",
       "objeto": "IMPLANTACAO DE MELHORIAS SANITARIAS DOMICILIARES EM AREAS RURAIS DO MUNICIPIO DE ILHA GRANDE, ESTADO DO PIAUI.",
       "vigencia": "2026-12-31",
       "vigencia_fmt": "31/12/2026",
+      "vigencia_suspensiva": "",
+      "sei": "",
       "dias": 237,
       "status": "NORMAL",
       "situacao": "EM EXECUÇÃO",
@@ -318,15 +320,15 @@
       "v_liberado": "",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": "",
-      "suspensiva": "",
-      "suspensiva_fmt": ""
+      "prestacao": ""
     },
     {
       "numero": "907035",
       "objeto": "IMPLANTACAO DE MELHORIAS SANITARIAS DOMICILIARES EM AREAS RURAIS DO MUNICIPIO DE SIGEFREDO PACHECO, ESTADO DO PIAUI.",
       "vigencia": "2026-12-31",
       "vigencia_fmt": "31/12/2026",
+      "vigencia_suspensiva": "",
+      "sei": "",
       "dias": 237,
       "status": "NORMAL",
       "situacao": "EM EXECUÇÃO",
@@ -334,15 +336,15 @@
       "v_liberado": "190.761,16",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": "",
-      "suspensiva": "",
-      "suspensiva_fmt": ""
+      "prestacao": ""
     },
     {
       "numero": "907037",
       "objeto": "IMPLANTACAO DE MELHORIAS SANITARIAS DOMICILIARES EM AREAS RURAIS DO MUNICIPIO DE UNIAO, ESTADO DO PIAUI.",
       "vigencia": "2026-12-31",
       "vigencia_fmt": "31/12/2026",
+      "vigencia_suspensiva": "",
+      "sei": "",
       "dias": 237,
       "status": "NORMAL",
       "situacao": "EM EXECUÇÃO",
@@ -350,15 +352,15 @@
       "v_liberado": "198.634,77",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": "",
-      "suspensiva": "",
-      "suspensiva_fmt": ""
+      "prestacao": ""
     },
     {
       "numero": "907038",
       "objeto": "IMPLANTACAO DE MELHORIAS SANITARIAS DOMICILIARES EM AREAS RURAIS DO MUNICIPIO DE RIBEIRO GONCALVES, ESTADO DO PIAUI.",
       "vigencia": "2026-12-31",
       "vigencia_fmt": "31/12/2026",
+      "vigencia_suspensiva": "",
+      "sei": "",
       "dias": 237,
       "status": "NORMAL",
       "situacao": "EM EXECUÇÃO",
@@ -366,15 +368,15 @@
       "v_liberado": "",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": "",
-      "suspensiva": "",
-      "suspensiva_fmt": ""
+      "prestacao": ""
     },
     {
       "numero": "907040",
       "objeto": "IMPLANTACAO DE MELHORIAS SANITARIAS DOMICILIARES EM AREAS RURAIS DO MUNICIPIO DE LUIS CORREIA, ESTADO DO PIAUI.",
       "vigencia": "2026-12-31",
       "vigencia_fmt": "31/12/2026",
+      "vigencia_suspensiva": "",
+      "sei": "",
       "dias": 237,
       "status": "NORMAL",
       "situacao": "EM EXECUÇÃO",
@@ -382,15 +384,15 @@
       "v_liberado": "",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": "",
-      "suspensiva": "",
-      "suspensiva_fmt": ""
+      "prestacao": ""
     },
     {
       "numero": "907045",
       "objeto": "IMPLANTACAO DE MELHORIAS SANITARIAS DOMICILIARES EM AREAS RURAIS DO MUNICIPIO DE SIMPLICIO MENDES, ESTADO DO PIAUI.",
       "vigencia": "2026-12-31",
       "vigencia_fmt": "31/12/2026",
+      "vigencia_suspensiva": "",
+      "sei": "",
       "dias": 237,
       "status": "NORMAL",
       "situacao": "EM EXECUÇÃO",
@@ -398,15 +400,15 @@
       "v_liberado": "196.670,00",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": "",
-      "suspensiva": "",
-      "suspensiva_fmt": ""
+      "prestacao": ""
     },
     {
       "numero": "907050",
       "objeto": "IMPLANTACAO DE MELHORIAS SANITARIAS DOMICILIARES EM AREAS RURAIS DO MUNICIPIO DE SAO PEDRO DO PIAUI, ESTADO DO PIAUI.",
       "vigencia": "2026-12-31",
       "vigencia_fmt": "31/12/2026",
+      "vigencia_suspensiva": "",
+      "sei": "",
       "dias": 237,
       "status": "NORMAL",
       "situacao": "EM EXECUÇÃO",
@@ -414,15 +416,15 @@
       "v_liberado": "196.265,04",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": "",
-      "suspensiva": "",
-      "suspensiva_fmt": ""
+      "prestacao": ""
     },
     {
       "numero": "737058",
       "objeto": "Construcao da Barragem Atalaia, Tipo Terra Zoneada, localizada no municipio de Sebastiao Barros, barrando o rio Paraim,  sangradouro tipo Perfil Creager. 1a ETAPA.",
       "vigencia": "2026-12-31",
       "vigencia_fmt": "31/12/2026",
+      "vigencia_suspensiva": "",
+      "sei": "",
       "dias": 237,
       "status": "NORMAL",
       "situacao": "EM EXECUÇÃO",
@@ -430,15 +432,15 @@
       "v_liberado": "96.864.287,00",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": "",
-      "suspensiva": "",
-      "suspensiva_fmt": ""
+      "prestacao": ""
     },
     {
       "numero": "737058",
       "objeto": "Construcao da Barragem Atalaia, Tipo Terra Zoneada, localizada no municipio de Sebastiao Barros, barrando o rio Paraim,  sangradouro tipo Perfil Creager. 1a ETAPA.",
       "vigencia": "2026-12-31",
       "vigencia_fmt": "31/12/2026",
+      "vigencia_suspensiva": "",
+      "sei": "",
       "dias": 237,
       "status": "NORMAL",
       "situacao": "EM EXECUÇÃO",
@@ -446,15 +448,15 @@
       "v_liberado": "96.864.287,00",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": "",
-      "suspensiva": "",
-      "suspensiva_fmt": ""
+      "prestacao": ""
     },
     {
       "numero": "737058",
       "objeto": "Construcao da Barragem Atalaia, Tipo Terra Zoneada, localizada no municipio de Sebastiao Barros, barrando o rio Paraim,  sangradouro tipo Perfil Creager. 1a ETAPA.",
       "vigencia": "2026-12-31",
       "vigencia_fmt": "31/12/2026",
+      "vigencia_suspensiva": "",
+      "sei": "",
       "dias": 237,
       "status": "NORMAL",
       "situacao": "EM EXECUÇÃO",
@@ -462,15 +464,15 @@
       "v_liberado": "96.864.287,00",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": "",
-      "suspensiva": "",
-      "suspensiva_fmt": ""
+      "prestacao": ""
     },
     {
       "numero": "737058",
       "objeto": "Construcao da Barragem Atalaia, Tipo Terra Zoneada, localizada no municipio de Sebastiao Barros, barrando o rio Paraim,  sangradouro tipo Perfil Creager. 1a ETAPA.",
       "vigencia": "2026-12-31",
       "vigencia_fmt": "31/12/2026",
+      "vigencia_suspensiva": "",
+      "sei": "",
       "dias": 237,
       "status": "NORMAL",
       "situacao": "EM EXECUÇÃO",
@@ -478,15 +480,15 @@
       "v_liberado": "96.864.287,00",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": "",
-      "suspensiva": "",
-      "suspensiva_fmt": ""
+      "prestacao": ""
     },
     {
       "numero": "887234",
       "objeto": "PAVIMENTACAO EM DIVERSAS VIAS PUBLICAS NOS MUNICIPIOS DE CAMPO ALEGRE DO FIDALGO E JOAO COSTA - PI",
       "vigencia": "2026-09-30",
       "vigencia_fmt": "30/09/2026",
+      "vigencia_suspensiva": "",
+      "sei": "",
       "dias": 145,
       "status": "NORMAL",
       "situacao": "EM EXECUÇÃO",
@@ -494,15 +496,15 @@
       "v_liberado": "760.000,00",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": "",
-      "suspensiva": "",
-      "suspensiva_fmt": ""
+      "prestacao": ""
     },
     {
       "numero": "887234",
       "objeto": "PAVIMENTACAO EM DIVERSAS VIAS PUBLICAS NOS MUNICIPIOS DE CAMPO ALEGRE DO FIDALGO E JOAO COSTA - PI",
       "vigencia": "2026-09-30",
       "vigencia_fmt": "30/09/2026",
+      "vigencia_suspensiva": "",
+      "sei": "",
       "dias": 145,
       "status": "NORMAL",
       "situacao": "EM EXECUÇÃO",
@@ -510,15 +512,15 @@
       "v_liberado": "760.000,00",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": "",
-      "suspensiva": "",
-      "suspensiva_fmt": ""
+      "prestacao": ""
     },
     {
       "numero": "902401",
       "objeto": "PAVIMENTACAO DE VIAS PUBLICAS NO MUNICIPIO DE ESPERANTINA-PI",
       "vigencia": "2026-08-17",
       "vigencia_fmt": "17/08/2026",
+      "vigencia_suspensiva": "",
+      "sei": "",
       "dias": 101,
       "status": "NORMAL",
       "situacao": "EM EXECUÇÃO",
@@ -526,15 +528,15 @@
       "v_liberado": "1.127.664,00",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": "",
-      "suspensiva": "",
-      "suspensiva_fmt": ""
+      "prestacao": ""
     },
     {
       "numero": "899533",
       "objeto": "PAVIMENTACAO DE VIAS PUBLICAS NO MUNICIPIO DE UNIAO - PI.",
       "vigencia": "2026-07-07",
       "vigencia_fmt": "07/07/2026",
+      "vigencia_suspensiva": "",
+      "sei": "",
       "dias": 60,
       "status": "ATENÇÃO (<60d)",
       "situacao": "EM EXECUÇÃO",
@@ -542,15 +544,15 @@
       "v_liberado": "",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": "",
-      "suspensiva": "",
-      "suspensiva_fmt": ""
+      "prestacao": ""
     },
     {
       "numero": "900838",
       "objeto": "PAVIMENTACAO  EM VIAS PUBLICAS NO MUNICIPIO DE BOA HORA-PI",
       "vigencia": "2026-07-07",
       "vigencia_fmt": "07/07/2026",
+      "vigencia_suspensiva": "",
+      "sei": "",
       "dias": null,
       "status": "FINALIZADO",
       "situacao": "PRESTAÇÃO DE CONTAS INICIADA POR ANTECIPAÇÃO",
@@ -558,15 +560,15 @@
       "v_liberado": "469.860,00",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": "",
-      "suspensiva": "",
-      "suspensiva_fmt": ""
+      "prestacao": ""
     },
     {
       "numero": "900837",
       "objeto": "PAVIMENTACAO EM VIAS PUBLICAS NO MUNICIPIO DE PARNAIBA-PI",
       "vigencia": "2026-07-07",
       "vigencia_fmt": "07/07/2026",
+      "vigencia_suspensiva": "",
+      "sei": "",
       "dias": 60,
       "status": "ATENÇÃO (<60d)",
       "situacao": "EM EXECUÇÃO",
@@ -574,15 +576,15 @@
       "v_liberado": "469.700,00",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": "",
-      "suspensiva": "",
-      "suspensiva_fmt": ""
+      "prestacao": ""
     },
     {
       "numero": "900840",
       "objeto": "PAVIMENTACAO DE VIAS PUBLICAS NO MUNICIPIO DE LUIS CORREIA-PI.",
       "vigencia": "2026-07-07",
       "vigencia_fmt": "07/07/2026",
+      "vigencia_suspensiva": "",
+      "sei": "",
       "dias": 60,
       "status": "ATENÇÃO (<60d)",
       "situacao": "EM EXECUÇÃO",
@@ -590,15 +592,15 @@
       "v_liberado": "477.499,74",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": "",
-      "suspensiva": "",
-      "suspensiva_fmt": ""
+      "prestacao": ""
     },
     {
       "numero": "899540",
       "objeto": "PAVIMENTACAO DE VIAS PUBLICAS NO MUNICIPIO DE BRASILEIRA - PI.",
       "vigencia": "2025-07-07",
       "vigencia_fmt": "07/07/2025",
+      "vigencia_suspensiva": "",
+      "sei": "",
       "dias": null,
       "status": "FINALIZADO",
       "situacao": "AGUARDANDO PRESTAÇÃO DE CONTAS",
@@ -606,15 +608,15 @@
       "v_liberado": "469.860,00",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": "",
-      "suspensiva": "",
-      "suspensiva_fmt": ""
+      "prestacao": ""
     },
     {
       "numero": "899530",
       "objeto": "PAVIMENTACAO DE VIAS PUBLICAS NO MUNICIPIO DE MORRO DO CHAPEU DO PIAUI - PI",
       "vigencia": "2026-07-07",
       "vigencia_fmt": "07/07/2026",
+      "vigencia_suspensiva": "",
+      "sei": "",
       "dias": 60,
       "status": "ATENÇÃO (<60d)",
       "situacao": "EM EXECUÇÃO",
@@ -622,15 +624,15 @@
       "v_liberado": "469.700,00",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": "",
-      "suspensiva": "",
-      "suspensiva_fmt": ""
+      "prestacao": ""
     },
     {
       "numero": "847194",
       "objeto": "IMPLANTACAO DE SISTEMAS DE ABASTECIMENTO DE AGUA EM DIVERSOS MUNICIPIOS NO ESTADO DO PIAUI",
       "vigencia": "2026-12-31",
       "vigencia_fmt": "31/12/2026",
+      "vigencia_suspensiva": "",
+      "sei": "",
       "dias": 237,
       "status": "NORMAL",
       "situacao": "EM EXECUÇÃO",
@@ -638,15 +640,15 @@
       "v_liberado": "",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": "",
-      "suspensiva": "",
-      "suspensiva_fmt": ""
+      "prestacao": ""
     },
     {
       "numero": "920090",
       "objeto": "Pavimentacao de vias publicas no municipio de Capitao Gervasio Oliveira  PI.",
       "vigencia": "2026-12-28",
       "vigencia_fmt": "28/12/2026",
+      "vigencia_suspensiva": "",
+      "sei": "",
       "dias": 234,
       "status": "NORMAL",
       "situacao": "EM EXECUÇÃO",
@@ -654,15 +656,15 @@
       "v_liberado": "290.032,94",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": "",
-      "suspensiva": "",
-      "suspensiva_fmt": ""
+      "prestacao": ""
     },
     {
       "numero": "946262",
       "objeto": "MANUTENCAO E ADEQUACAO NAS ESTRADAS VICINAIS DO MUNICIPIO DE CRISTALANDIA DO PIAUI-PI.",
       "vigencia": "2026-09-30",
       "vigencia_fmt": "30/09/2026",
+      "vigencia_suspensiva": "",
+      "sei": "",
       "dias": 145,
       "status": "NORMAL",
       "situacao": "NORMAL",
@@ -670,15 +672,15 @@
       "v_liberado": "1.337.000,00",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": "",
-      "suspensiva": "",
-      "suspensiva_fmt": ""
+      "prestacao": ""
     },
     {
       "numero": "947350",
       "objeto": "PAVIMENTACAO EM VIAS PUBLICAS DO MUNICIPIO DE TERESINA-PI",
       "vigencia": "2026-09-30",
       "vigencia_fmt": "30/09/2026",
+      "vigencia_suspensiva": "",
+      "sei": "",
       "dias": 145,
       "status": "NORMAL",
       "situacao": "NORMAL",
@@ -686,15 +688,15 @@
       "v_liberado": "626.453,00",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": "",
-      "suspensiva": "",
-      "suspensiva_fmt": ""
+      "prestacao": ""
     },
     {
       "numero": "946258",
       "objeto": "MANUTENCAO E ADEQUACAO NAS ESTRADAS VICINAIS DO MUNICIPIO DE DEMERVAL LOBAO-PI.",
       "vigencia": "2026-09-30",
       "vigencia_fmt": "30/09/2026",
+      "vigencia_suspensiva": "",
+      "sei": "",
       "dias": 145,
       "status": "NORMAL",
       "situacao": "EM EXECUÇÃO",
@@ -702,15 +704,15 @@
       "v_liberado": "668.500,00",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": "",
-      "suspensiva": "",
-      "suspensiva_fmt": ""
+      "prestacao": ""
     },
     {
       "numero": "946257",
       "objeto": "OBRA DE MANUTENCAO E ADEQUACAO NAS ESTRADAS VICINAIS DO MUNICIPIO DE SAO RAIMUNDO NONATO-PI.",
       "vigencia": "2026-09-30",
       "vigencia_fmt": "30/09/2026",
+      "vigencia_suspensiva": "",
+      "sei": "",
       "dias": 145,
       "status": "NORMAL",
       "situacao": "EM EXECUÇÃO",
@@ -718,15 +720,15 @@
       "v_liberado": "286.500,00",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": "",
-      "suspensiva": "",
-      "suspensiva_fmt": ""
+      "prestacao": ""
     },
     {
       "numero": "946261",
       "objeto": "MANUTENCAO E ADEQUACAO NAS ESTRADAS VICINAIS NO MUNICIPIO DE SAO MIGUEL DO TAPUIO-PI.",
       "vigencia": "2026-09-30",
       "vigencia_fmt": "30/09/2026",
+      "vigencia_suspensiva": "",
+      "sei": "",
       "dias": null,
       "status": "FINALIZADO",
       "situacao": "PRESTAÇÃO DE CONTAS INICIADA POR ANTECIPAÇÃO",
@@ -734,15 +736,15 @@
       "v_liberado": "955.000,00",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": "",
-      "suspensiva": "",
-      "suspensiva_fmt": ""
+      "prestacao": ""
     },
     {
       "numero": "946260",
       "objeto": "MANUTENCAO E ADEQUACAO NAS ESTRADAS VICINAIS NO MUNICIPIO DE LAGOA DE SAO FRANCISCO-PI.",
       "vigencia": "2026-09-30",
       "vigencia_fmt": "30/09/2026",
+      "vigencia_suspensiva": "",
+      "sei": "",
       "dias": 145,
       "status": "NORMAL",
       "situacao": "EM EXECUÇÃO",
@@ -750,15 +752,15 @@
       "v_liberado": "955.000,00",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": "",
-      "suspensiva": "",
-      "suspensiva_fmt": ""
+      "prestacao": ""
     },
     {
       "numero": "946259",
       "objeto": "MANUTENCAO E ADEQUACAO NAS ESTRADAS VICINAIS NO MUNICIPIO DE NOSSA SENHORA DOS REMEDIOS-PI.",
       "vigencia": "2026-09-30",
       "vigencia_fmt": "30/09/2026",
+      "vigencia_suspensiva": "",
+      "sei": "",
       "dias": null,
       "status": "FINALIZADO",
       "situacao": "PRESTAÇÃO DE CONTAS INICIADA POR ANTECIPAÇÃO",
@@ -766,15 +768,15 @@
       "v_liberado": "679.873,10",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": "",
-      "suspensiva": "",
-      "suspensiva_fmt": ""
+      "prestacao": ""
     },
     {
       "numero": "947533",
       "objeto": "MANUTENCAO E ADEQUACAO NAS ESTRADAS VICINAIS DO MUNICIPIO DE NOSSA SENHORA DOS REMEDIOS - PI.",
       "vigencia": "2026-09-30",
       "vigencia_fmt": "30/09/2026",
+      "vigencia_suspensiva": "",
+      "sei": "",
       "dias": 145,
       "status": "NORMAL",
       "situacao": "EM EXECUÇÃO",
@@ -782,15 +784,15 @@
       "v_liberado": "1.421.126,91",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": "",
-      "suspensiva": "",
-      "suspensiva_fmt": ""
+      "prestacao": ""
     },
     {
       "numero": "947106",
       "objeto": "MANUTENCAO NAS ESTRADAS VICINAIS DO MUNICIPIO DE LAGOA DO SITIO - PI.",
       "vigencia": "2026-09-30",
       "vigencia_fmt": "30/09/2026",
+      "vigencia_suspensiva": "",
+      "sei": "",
       "dias": null,
       "status": "FINALIZADO",
       "situacao": "PRESTAÇÃO DE CONTAS INICIADA POR ANTECIPAÇÃO",
@@ -798,15 +800,15 @@
       "v_liberado": "573.000,00",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": "",
-      "suspensiva": "",
-      "suspensiva_fmt": ""
+      "prestacao": ""
     },
     {
       "numero": "947530",
       "objeto": "MANUTENCAO E ADEQUACAO NAS ESTRADAS VICINAIS DO MUNICIPIO DE SAO JULIAO - PI.",
       "vigencia": "2026-09-30",
       "vigencia_fmt": "30/09/2026",
+      "vigencia_suspensiva": "",
+      "sei": "",
       "dias": 145,
       "status": "NORMAL",
       "situacao": "EM EXECUÇÃO",
@@ -814,15 +816,15 @@
       "v_liberado": "578.003,00",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": "",
-      "suspensiva": "",
-      "suspensiva_fmt": ""
+      "prestacao": ""
     },
     {
       "numero": "947531",
       "objeto": "MANUTENCAO E ADEQUACAO NAS ESTRADAS VICINAIS DO MUNICIPIO DE SANTANA DO PIAUI - PI.",
       "vigencia": "2026-09-30",
       "vigencia_fmt": "30/09/2026",
+      "vigencia_suspensiva": "",
+      "sei": "",
       "dias": 145,
       "status": "NORMAL",
       "situacao": "EM EXECUÇÃO",
@@ -830,15 +832,15 @@
       "v_liberado": "578.003,00",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": "",
-      "suspensiva": "",
-      "suspensiva_fmt": ""
+      "prestacao": ""
     },
     {
       "numero": "947532",
       "objeto": "MANUTENCAO E ADEQUACAO NAS ESTRADAS VICINAIS DO MUNICIPIO DE VERA MENDES - PI.",
       "vigencia": "2026-09-30",
       "vigencia_fmt": "30/09/2026",
+      "vigencia_suspensiva": "",
+      "sei": "",
       "dias": null,
       "status": "FINALIZADO",
       "situacao": "PRESTAÇÃO DE CONTAS ENVIADA PARA ANÁLISE",
@@ -846,15 +848,15 @@
       "v_liberado": "955.000,00",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": "",
-      "suspensiva": "",
-      "suspensiva_fmt": ""
+      "prestacao": ""
     },
     {
       "numero": "946801",
       "objeto": "IMPLANTACAO DO SISTEMA ADUTOR NO MUNICIPIO DE CAPITAO GERVASIO OLIVEIRA-PI.",
       "vigencia": "2027-12-26",
       "vigencia_fmt": "26/12/2027",
+      "vigencia_suspensiva": "",
+      "sei": "",
       "dias": 597,
       "status": "NORMAL",
       "situacao": "EM EXECUÇÃO",
@@ -862,15 +864,15 @@
       "v_liberado": "",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": "",
-      "suspensiva": "",
-      "suspensiva_fmt": ""
+      "prestacao": ""
     },
     {
       "numero": "946378",
       "objeto": "IMPLANTACAO DO SISTEMA ADUTOR NO MUNICIPIO DE SAO LOURENCO DO PIAUI-PI.",
       "vigencia": "2027-04-27",
       "vigencia_fmt": "27/04/2027",
+      "vigencia_suspensiva": "",
+      "sei": "",
       "dias": 354,
       "status": "NORMAL",
       "situacao": "EM EXECUÇÃO",
@@ -878,15 +880,15 @@
       "v_liberado": "",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": "",
-      "suspensiva": "",
-      "suspensiva_fmt": ""
+      "prestacao": ""
     },
     {
       "numero": "947580",
       "objeto": "CONSTRUCAO DE UM PARQUE DE EXPOSICOES NO MUNICIPIO DE PIO IX-PI",
       "vigencia": "2026-09-30",
       "vigencia_fmt": "30/09/2026",
+      "vigencia_suspensiva": "",
+      "sei": "",
       "dias": 145,
       "status": "NORMAL",
       "situacao": "EM EXECUÇÃO",
@@ -894,15 +896,15 @@
       "v_liberado": "1.441.714,00",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": "",
-      "suspensiva": "",
-      "suspensiva_fmt": ""
+      "prestacao": ""
     },
     {
       "numero": "953168",
       "objeto": "EXECUCAO DAS OBRAS E SERVICOS DE ENGENHARIA PARA A CONSTRUCAO DA BARRAGEM DE NOVA ALGODOES NO MUNICIPIO DE COCAL - PI",
       "vigencia": "2028-12-19",
       "vigencia_fmt": "19/12/2028",
+      "vigencia_suspensiva": "",
+      "sei": "",
       "dias": 956,
       "status": "NORMAL",
       "situacao": "EM EXECUÇÃO",
@@ -910,15 +912,15 @@
       "v_liberado": "74.650.000,00",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": "",
-      "suspensiva": "",
-      "suspensiva_fmt": ""
+      "prestacao": ""
     },
     {
       "numero": "946039",
       "objeto": "PAVIMENTACAO EM PARALELEPIPEDO EM VIAS PUBLICAS DO MUNICIPIO DE TERESINA - PI.",
       "vigencia": "2026-09-30",
       "vigencia_fmt": "30/09/2026",
+      "vigencia_suspensiva": "",
+      "sei": "",
       "dias": 145,
       "status": "NORMAL",
       "situacao": "EM EXECUÇÃO",
@@ -926,15 +928,15 @@
       "v_liberado": "633.236,00",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": "",
-      "suspensiva": "",
-      "suspensiva_fmt": ""
+      "prestacao": ""
     },
     {
       "numero": "947907",
       "objeto": "PAVIMENTACAO EM PARALELEPIPEDO EM VIAS PUBLICAS DO MUNICIPIO DE PAQUETA - PI.",
       "vigencia": "2026-09-30",
       "vigencia_fmt": "30/09/2026",
+      "vigencia_suspensiva": "",
+      "sei": "",
       "dias": 145,
       "status": "NORMAL",
       "situacao": "EM EXECUÇÃO",
@@ -942,15 +944,15 @@
       "v_liberado": "571.220,00",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": "",
-      "suspensiva": "",
-      "suspensiva_fmt": ""
+      "prestacao": ""
     },
     {
       "numero": "946738",
       "objeto": "PAVIMENTACAO EM PARALELEPIPEDO NA ORLA DA BARRAGEM CENTRAL EM JUREMA DO PIAUI-PI",
       "vigencia": "2026-09-30",
       "vigencia_fmt": "30/09/2026",
+      "vigencia_suspensiva": "",
+      "sei": "",
       "dias": 145,
       "status": "NORMAL",
       "situacao": "EM EXECUÇÃO",
@@ -958,15 +960,15 @@
       "v_liberado": "481.104,00",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": "",
-      "suspensiva": "",
-      "suspensiva_fmt": ""
+      "prestacao": ""
     },
     {
       "numero": "945158",
       "objeto": "PAVIMENTACAO EM PARALELEPIPEDO EM VIAS PUBLICAS DO MUNICIPIO DE INHUMA - PI.",
       "vigencia": "2026-09-30",
       "vigencia_fmt": "30/09/2026",
+      "vigencia_suspensiva": "",
+      "sei": "",
       "dias": 145,
       "status": "NORMAL",
       "situacao": "EM EXECUÇÃO",
@@ -974,15 +976,15 @@
       "v_liberado": "674.903,00",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": "",
-      "suspensiva": "",
-      "suspensiva_fmt": ""
+      "prestacao": ""
     },
     {
       "numero": "947493",
       "objeto": "PAVIMENTACAO EM PARALELEPIPEDO EM VIAS PUBLICAS DO MUNICIPIO DE TERESINA - PI.",
       "vigencia": "2026-09-30",
       "vigencia_fmt": "30/09/2026",
+      "vigencia_suspensiva": "",
+      "sei": "",
       "dias": 145,
       "status": "NORMAL",
       "situacao": "NORMAL",
@@ -990,15 +992,15 @@
       "v_liberado": "238.750,00",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": "",
-      "suspensiva": "",
-      "suspensiva_fmt": ""
+      "prestacao": ""
     },
     {
       "numero": "946367",
       "objeto": "PAVIMENTACAO EM PARALELEPIPEDO EM VIAS PUBLICAS DO MUNICIPIO DE PICOS - PI.",
       "vigencia": "2026-09-30",
       "vigencia_fmt": "30/09/2026",
+      "vigencia_suspensiva": "",
+      "sei": "",
       "dias": 145,
       "status": "NORMAL",
       "situacao": "EM EXECUÇÃO",
@@ -1006,31 +1008,31 @@
       "v_liberado": "477.500,00",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": "",
-      "suspensiva": "",
-      "suspensiva_fmt": ""
+      "prestacao": ""
     },
     {
       "numero": "951016",
       "objeto": "PAVIMENTACAO EM PARALELEPIPEDO EM VIAS PUBLICAS DO MUNICIPIO DE PAQUETA - PI.",
       "vigencia": "2026-09-30",
       "vigencia_fmt": "30/09/2026",
+      "vigencia_suspensiva": "",
+      "sei": "",
       "dias": 145,
       "status": "NORMAL",
       "situacao": "EM EXECUÇÃO",
       "v_total": "",
-      "v_liberado": "50,00",
+      "v_liberado": "500.000,00",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": "",
-      "suspensiva": "",
-      "suspensiva_fmt": ""
+      "prestacao": ""
     },
     {
       "numero": "951018",
       "objeto": "PAVIMENTACAO EM PARALELEPIPEDO EM VIAS PUBLICAS DO MUNICIPIO DE PICOS - PI.",
       "vigencia": "2026-09-30",
       "vigencia_fmt": "30/09/2026",
+      "vigencia_suspensiva": "",
+      "sei": "",
       "dias": 145,
       "status": "NORMAL",
       "situacao": "EM EXECUÇÃO",
@@ -1038,15 +1040,15 @@
       "v_liberado": "286.500,00",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": "",
-      "suspensiva": "",
-      "suspensiva_fmt": ""
+      "prestacao": ""
     },
     {
       "numero": "951943",
       "objeto": "PAVIMENTACAO EM PARALELEPIPEDO EM VIAS PUBLICAS DO MUNICIPIO DE TERESINA - PI.",
       "vigencia": "2026-09-30",
       "vigencia_fmt": "30/09/2026",
+      "vigencia_suspensiva": "",
+      "sei": "",
       "dias": null,
       "status": "FINALIZADO",
       "situacao": "PRESTAÇÃO DE CONTAS EM ANÁLISE",
@@ -1054,15 +1056,15 @@
       "v_liberado": "477.500,00",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": "",
-      "suspensiva": "",
-      "suspensiva_fmt": ""
+      "prestacao": ""
     },
     {
       "numero": "952006",
       "objeto": "PAVIMENTACAO EM PARALELEPIPEDO EM VIAS PUBLICAS DO MUNICIPIO DE CORRENTE - PI.",
       "vigencia": "2026-12-15",
       "vigencia_fmt": "15/12/2026",
+      "vigencia_suspensiva": "",
+      "sei": "",
       "dias": 221,
       "status": "NORMAL",
       "situacao": "EM EXECUÇÃO",
@@ -1070,15 +1072,15 @@
       "v_liberado": "402.993,00",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": "",
-      "suspensiva": "",
-      "suspensiva_fmt": ""
+      "prestacao": ""
     },
     {
       "numero": "967173",
       "objeto": "IMPLANTACAO DE SISTEMAS DE ABASTECIMENTO DE AGUA NA ZONA RURAL DO MUNICIPIO DE ESPERANTINA-PI.",
       "vigencia": "2028-08-22",
       "vigencia_fmt": "22/08/2028",
+      "vigencia_suspensiva": "",
+      "sei": "",
       "dias": 837,
       "status": "NORMAL",
       "situacao": "EM EXECUÇÃO",
@@ -1086,15 +1088,15 @@
       "v_liberado": "",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": "",
-      "suspensiva": "",
-      "suspensiva_fmt": ""
+      "prestacao": ""
     },
     {
       "numero": "967182",
       "objeto": "IMPLANTACAO DE SISTEMAS DE ABASTECIMENTO DE AGUA NA ZONA RURAL DO MUNICIPIO DE LAGOA DO SITIO-PI.",
       "vigencia": "2027-08-22",
       "vigencia_fmt": "22/08/2027",
+      "vigencia_suspensiva": "",
+      "sei": "",
       "dias": 471,
       "status": "NORMAL",
       "situacao": "EM EXECUÇÃO",
@@ -1102,15 +1104,15 @@
       "v_liberado": "587.232,90",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": "",
-      "suspensiva": "",
-      "suspensiva_fmt": ""
+      "prestacao": ""
     },
     {
       "numero": "945303",
       "objeto": "Construcao de um Campo Society no Municipio de Lagoa Alegre-PI.",
       "vigencia": "2026-09-30",
       "vigencia_fmt": "30/09/2026",
+      "vigencia_suspensiva": "",
+      "sei": "",
       "dias": 145,
       "status": "NORMAL",
       "situacao": "EM EXECUÇÃO",
@@ -1118,15 +1120,15 @@
       "v_liberado": "",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": "",
-      "suspensiva": "",
-      "suspensiva_fmt": ""
+      "prestacao": ""
     },
     {
       "numero": "945299",
       "objeto": "Construcao de um Campo Society no Municipio de Pedro II-PI.",
       "vigencia": "2026-09-30",
       "vigencia_fmt": "30/09/2026",
+      "vigencia_suspensiva": "",
+      "sei": "",
       "dias": 145,
       "status": "NORMAL",
       "situacao": "EM EXECUÇÃO",
@@ -1134,15 +1136,15 @@
       "v_liberado": "",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": "",
-      "suspensiva": "",
-      "suspensiva_fmt": ""
+      "prestacao": ""
     },
     {
       "numero": "953190",
       "objeto": "Construcao de Pracas no municipio de Sao Raimundo Nonato/PI.",
       "vigencia": "2027-12-27",
       "vigencia_fmt": "27/12/2027",
+      "vigencia_suspensiva": "",
+      "sei": "",
       "dias": 598,
       "status": "NORMAL",
       "situacao": "EM EXECUÇÃO",
@@ -1150,15 +1152,15 @@
       "v_liberado": "",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": "",
-      "suspensiva": "",
-      "suspensiva_fmt": ""
+      "prestacao": ""
     },
     {
       "numero": "969555",
       "objeto": "Construcao e equipagem da Casa da Mulher Brasileira no Municipio de Parnaiba-PI.",
       "vigencia": "2028-12-06",
       "vigencia_fmt": "06/12/2028",
+      "vigencia_suspensiva": "",
+      "sei": "",
       "dias": 943,
       "status": "NORMAL",
       "situacao": "EM EXECUÇÃO",
@@ -1166,31 +1168,31 @@
       "v_liberado": "475.000,00",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": "",
-      "suspensiva": "",
-      "suspensiva_fmt": ""
+      "prestacao": ""
     },
     {
       "numero": "973618",
       "objeto": "Implantacao da 1a Etapa do Sistema Adutor da regiao da Serra da Capivara.",
       "vigencia": "2028-12-29",
       "vigencia_fmt": "29/12/2028",
-      "dias": 602,
-      "status": "⚠️ SUSP NORMAL",
+      "vigencia_suspensiva": "31/12/2027",
+      "sei": "",
+      "dias": 966,
+      "status": "NORMAL",
       "situacao": "EM EXECUÇÃO",
       "v_total": "",
       "v_liberado": "",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": "",
-      "suspensiva": "2027-12-31",
-      "suspensiva_fmt": "31/12/2027"
+      "prestacao": ""
     },
     {
       "numero": "967987",
       "objeto": "ELABORACAO DE ESTUDOS E PROJETOS PARA CONSTRUCAO DA ADUTORA DE SAO RAIMUNDO NONATO COM CAPTACAO NO RESERVATORIO DA BARRAGEM JENIPAPO NO MUNICIPIO DE SAO JOAO DO PIAUI, INCLUIDO O ABASTECIMENTO DO MUNICIPIO DE CORONEL JOSE DIAS NO CAMINHAMENTO DA ADUTORA.",
       "vigencia": "2029-01-21",
       "vigencia_fmt": "21/01/2029",
+      "vigencia_suspensiva": "",
+      "sei": "",
       "dias": 989,
       "status": "NORMAL",
       "situacao": "EM EXECUÇÃO",
@@ -1198,15 +1200,15 @@
       "v_liberado": "",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": "",
-      "suspensiva": "",
-      "suspensiva_fmt": ""
+      "prestacao": ""
     },
     {
       "numero": "965789",
       "objeto": "ELABORACAO DE ESTUDOS E PROJETOS PARA CONSTRUCAO DA BARRAGEM DE CASTELO NO MUNICIPIO DE JUAZEIRO DO PIAUI- PI",
       "vigencia": "2029-08-21",
       "vigencia_fmt": "21/08/2029",
+      "vigencia_suspensiva": "",
+      "sei": "",
       "dias": 1201,
       "status": "NORMAL",
       "situacao": "EM EXECUÇÃO",
@@ -1214,47 +1216,47 @@
       "v_liberado": "",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": "",
-      "suspensiva": "",
-      "suspensiva_fmt": ""
+      "prestacao": ""
     },
     {
       "numero": "992850",
       "objeto": "IMPLANTACAO DE SISTEMA DE ABASTECIMENTO DE AGUA NA ZONA RURAL DO MUNICIPIO DE BELEM DO PIAUI - PI",
       "vigencia": "2030-04-01",
       "vigencia_fmt": "01/04/2030",
-      "dias": 115,
-      "status": "⚠️ SUSP NORMAL",
+      "vigencia_suspensiva": "31/08/2026",
+      "sei": "",
+      "dias": 1424,
+      "status": "NORMAL",
       "situacao": "EM EXECUÇÃO",
       "v_total": "",
       "v_liberado": "",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": "",
-      "suspensiva": "2026-08-31",
-      "suspensiva_fmt": "31/08/2026"
+      "prestacao": ""
     },
     {
       "numero": "992940",
       "objeto": "IMPLANTACAO DE SISTEMA DE ABASTECIMENTO DE AGUA NA ZONA RURAL DO MUNICIPIO DE CURRAL NOVO DO PIAUI - PI.",
       "vigencia": "2030-04-01",
       "vigencia_fmt": "01/04/2030",
-      "dias": 115,
-      "status": "⚠️ SUSP NORMAL",
+      "vigencia_suspensiva": "31/08/2026",
+      "sei": "",
+      "dias": 1424,
+      "status": "NORMAL",
       "situacao": "EM EXECUÇÃO",
       "v_total": "",
       "v_liberado": "",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": "",
-      "suspensiva": "2026-08-31",
-      "suspensiva_fmt": "31/08/2026"
+      "prestacao": ""
     },
     {
       "numero": "980844",
       "objeto": "PAVIMENTACAO DE VIAS VICINAIS NO MUNICIPIO DE ALTOS-PI.",
       "vigencia": "2028-09-03",
       "vigencia_fmt": "03/09/2028",
+      "vigencia_suspensiva": "",
+      "sei": "",
       "dias": 849,
       "status": "NORMAL",
       "situacao": "EM EXECUÇÃO",
@@ -1262,15 +1264,15 @@
       "v_liberado": "",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": "",
-      "suspensiva": "",
-      "suspensiva_fmt": ""
+      "prestacao": ""
     },
     {
       "numero": "981146",
       "objeto": "PAVIMENTACAO DE VIAS VICINAIS NO MUNICIPIO DE FRANCISCO SANTOS-PI.",
       "vigencia": "2028-12-08",
       "vigencia_fmt": "08/12/2028",
+      "vigencia_suspensiva": "",
+      "sei": "",
       "dias": 945,
       "status": "NORMAL",
       "situacao": "EM EXECUÇÃO",
@@ -1278,31 +1280,31 @@
       "v_liberado": "",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": "",
-      "suspensiva": "",
-      "suspensiva_fmt": ""
+      "prestacao": ""
     },
     {
       "numero": "983950",
       "objeto": "Execucao de obras e servicos de engenharia emestradas vicinais no Municipio de Barras - PI.",
       "vigencia": "2028-08-10",
       "vigencia_fmt": "10/08/2028",
-      "dias": 125,
-      "status": "⚠️ SUSP NORMAL",
+      "vigencia_suspensiva": "10/09/2026",
+      "sei": "",
+      "dias": 825,
+      "status": "NORMAL",
       "situacao": "EM EXECUÇÃO",
       "v_total": "",
       "v_liberado": "",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": "",
-      "suspensiva": "2026-09-10",
-      "suspensiva_fmt": "10/09/2026"
+      "prestacao": ""
     },
     {
       "numero": "986179",
       "objeto": "Execucao de obras e servicos de engenharia em estradas vicinais no Municipio de Sao Jose do Piaui.",
       "vigencia": "2028-08-30",
       "vigencia_fmt": "30/08/2028",
+      "vigencia_suspensiva": "",
+      "sei": "",
       "dias": 845,
       "status": "NORMAL",
       "situacao": "EM EXECUÇÃO",
@@ -1310,31 +1312,31 @@
       "v_liberado": "",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": "",
-      "suspensiva": "",
-      "suspensiva_fmt": ""
+      "prestacao": ""
     },
     {
       "numero": "986155",
       "objeto": "Execucao de obras e servicos de engenharia em estradas vicinais no Municipio de Massape do Piaui.",
       "vigencia": "2028-08-10",
       "vigencia_fmt": "10/08/2028",
-      "dias": 125,
-      "status": "⚠️ SUSP NORMAL",
+      "vigencia_suspensiva": "10/09/2026",
+      "sei": "",
+      "dias": 825,
+      "status": "NORMAL",
       "situacao": "EM EXECUÇÃO",
       "v_total": "",
       "v_liberado": "",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": "",
-      "suspensiva": "2026-09-10",
-      "suspensiva_fmt": "10/09/2026"
+      "prestacao": ""
     },
     {
       "numero": "985797",
       "objeto": "CONSTRUCAO DE PRACAS PUBLICAS NO MUNICIPIO DE SAO RAIMUNDO NONATO/PI.",
       "vigencia": "2028-12-22",
       "vigencia_fmt": "22/12/2028",
+      "vigencia_suspensiva": "",
+      "sei": "",
       "dias": 959,
       "status": "NORMAL",
       "situacao": "EM EXECUÇÃO",
@@ -1342,153 +1344,151 @@
       "v_liberado": "",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": "",
-      "suspensiva": "",
-      "suspensiva_fmt": ""
+      "prestacao": ""
     },
     {
       "numero": "986602",
       "objeto": "Construcao e equipagem do Centro de referencia da Mulher Brasileira no Municipio de Piripiri-PI.",
       "vigencia": "2028-12-31",
       "vigencia_fmt": "31/12/2028",
-      "dias": 139,
-      "status": "⚠️ SUSP NORMAL",
+      "vigencia_suspensiva": "24/09/2026",
+      "sei": "",
+      "dias": 968,
+      "status": "NORMAL",
       "situacao": "EM EXECUÇÃO",
       "v_total": "",
       "v_liberado": "125.000,00",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": "",
-      "suspensiva": "2026-09-24",
-      "suspensiva_fmt": "24/09/2026"
+      "prestacao": ""
     },
     {
       "numero": "988101",
       "objeto": "PAVIMENTACAO DE VIAS VICINAIS NO MUNICIPIO DE SAO JOSE DO PIAUI/PI",
       "vigencia": "2029-04-19",
       "vigencia_fmt": "19/04/2029",
-      "dias": 956,
-      "status": "⚠️ SUSP NORMAL",
+      "vigencia_suspensiva": "19/12/2028",
+      "sei": "",
+      "dias": 1077,
+      "status": "NORMAL",
       "situacao": "EM EXECUÇÃO",
       "v_total": "",
       "v_liberado": "",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": "",
-      "suspensiva": "2028-12-19",
-      "suspensiva_fmt": "19/12/2028"
+      "prestacao": ""
     },
     {
       "numero": "988500",
       "objeto": "PAVIMENTACAO DE VIAS VICINAIS NO MUNICIPIO DE IPIRANGA DO PIAUI/PI",
       "vigencia": "2029-04-19",
       "vigencia_fmt": "19/04/2029",
-      "dias": 956,
-      "status": "⚠️ SUSP NORMAL",
+      "vigencia_suspensiva": "19/12/2028",
+      "sei": "",
+      "dias": 1077,
+      "status": "NORMAL",
       "situacao": "EM EXECUÇÃO",
       "v_total": "",
       "v_liberado": "",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": "",
-      "suspensiva": "2028-12-19",
-      "suspensiva_fmt": "19/12/2028"
+      "prestacao": ""
     },
     {
       "numero": "989250",
       "objeto": "Pavimentacao de estradas vicinais",
       "vigencia": "2029-04-19",
       "vigencia_fmt": "19/04/2029",
-      "dias": 956,
-      "status": "⚠️ SUSP NORMAL",
+      "vigencia_suspensiva": "19/12/2028",
+      "sei": "",
+      "dias": 1077,
+      "status": "NORMAL",
       "situacao": "EM EXECUÇÃO",
       "v_total": "",
       "v_liberado": "",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": "",
-      "suspensiva": "2028-12-19",
-      "suspensiva_fmt": "19/12/2028"
+      "prestacao": ""
     },
     {
       "numero": "988784",
       "objeto": "PAVIMENTACAO DE ESTRADAS VICINAIS",
       "vigencia": "2029-04-19",
       "vigencia_fmt": "19/04/2029",
-      "dias": 956,
-      "status": "⚠️ SUSP NORMAL",
+      "vigencia_suspensiva": "19/12/2028",
+      "sei": "",
+      "dias": 1077,
+      "status": "NORMAL",
       "situacao": "EM EXECUÇÃO",
       "v_total": "",
       "v_liberado": "",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": "",
-      "suspensiva": "2028-12-19",
-      "suspensiva_fmt": "19/12/2028"
+      "prestacao": ""
     },
     {
       "numero": "988634",
       "objeto": "PAVIMENTACAO DE VIAS VICINAIS NO MUNICIPIO DE BARRA DALCANTARA/PI",
       "vigencia": "2028-12-16",
       "vigencia_fmt": "16/12/2028",
+      "vigencia_suspensiva": "16/12/2028",
+      "sei": "",
       "dias": 953,
-      "status": "⚠️ SUSP NORMAL",
+      "status": "NORMAL",
       "situacao": "EM EXECUÇÃO",
       "v_total": "",
       "v_liberado": "",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": "",
-      "suspensiva": "2028-12-16",
-      "suspensiva_fmt": "16/12/2028"
+      "prestacao": ""
     },
     {
       "numero": "988972",
       "objeto": "PAVIMENTACAO DE ESTRADAS VICINAIS",
       "vigencia": "2029-04-19",
       "vigencia_fmt": "19/04/2029",
-      "dias": 956,
-      "status": "⚠️ SUSP NORMAL",
+      "vigencia_suspensiva": "19/12/2028",
+      "sei": "",
+      "dias": 1077,
+      "status": "NORMAL",
       "situacao": "EM EXECUÇÃO",
       "v_total": "",
       "v_liberado": "",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": "",
-      "suspensiva": "2028-12-19",
-      "suspensiva_fmt": "19/12/2028"
+      "prestacao": ""
     },
     {
       "numero": "988779",
       "objeto": "PAVIMENTACAO DE ESTRADAS VICINAIS",
       "vigencia": "2029-04-19",
       "vigencia_fmt": "19/04/2029",
-      "dias": 956,
-      "status": "⚠️ SUSP NORMAL",
+      "vigencia_suspensiva": "19/12/2028",
+      "sei": "",
+      "dias": 1077,
+      "status": "NORMAL",
       "situacao": "EM EXECUÇÃO",
       "v_total": "",
       "v_liberado": "",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": "",
-      "suspensiva": "2028-12-19",
-      "suspensiva_fmt": "19/12/2028"
+      "prestacao": ""
     },
     {
       "numero": "988901",
       "objeto": "PAVIMENTACAO DE ESTRADAS VICINAIS",
       "vigencia": "2029-04-19",
       "vigencia_fmt": "19/04/2029",
-      "dias": 956,
-      "status": "⚠️ SUSP NORMAL",
+      "vigencia_suspensiva": "19/12/2028",
+      "sei": "",
+      "dias": 1077,
+      "status": "NORMAL",
       "situacao": "EM EXECUÇÃO",
       "v_total": "",
       "v_liberado": "",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": "",
-      "suspensiva": "2028-12-19",
-      "suspensiva_fmt": "19/12/2028"
+      "prestacao": ""
     }
   ]
 }

@@ -179,24 +179,6 @@ tr:hover td{background:#f8fbff}
 .days-crit{font-weight:700;color:#c2410c}
 .days-over{font-weight:700;color:#b91c1c}
 .days-done{color:#94a3b8}
-.th-info{
-  display:inline-flex;align-items:center;justify-content:center;
-  width:15px;height:15px;border-radius:50%;
-  background:#3b82f6;color:#fff;font-size:9px;font-weight:700;
-  cursor:help;margin-left:4px;vertical-align:middle;
-  font-style:normal;
-}
-.th-info:hover::after{
-  content:attr(title);
-  position:absolute;z-index:99;
-  background:#1a2640;color:#fff;
-  font-size:11px;font-weight:400;line-height:1.5;
-  padding:8px 12px;border-radius:8px;
-  width:240px;white-space:normal;
-  margin-top:4px;
-  box-shadow:0 4px 16px rgba(0,0,0,.3);
-  text-transform:none;letter-spacing:0;
-}
 .sus-tag{font-size:10px;background:#fdf4ff;color:#7e22ce;border:1px solid #a855f7;border-radius:10px;padding:2px 8px;white-space:nowrap}
 .empty{text-align:center;padding:32px;color:#8a99b0;font-size:13px}
 </style>
@@ -327,7 +309,7 @@ tr:hover td{background:#f8fbff}
               <th>Nº Instrumento</th>
               <th>Objeto</th>
               <th>Vigência</th>
-              <th>Suspensiva <span class="th-info" title="A data da cláusula suspensiva deve ser preenchida manualmente na coluna M da planilha Google Sheets. Após preencher, rode o script Python para atualizar o painel.">ℹ</span></th>
+              <th>Suspensiva</th>
               <th>Dias</th>
               <th>% Exec.</th>
               <th>Status</th>
@@ -343,173 +325,187 @@ tr:hover td{background:#f8fbff}
   </div>
 </div>
 
-<!-- ── PROTEÇÃO POR SENHA ─────────────────────────────── -->
-<div id="lockscreen" style="
-  position:fixed;inset:0;z-index:9999;
-  background:#0a1628;
-  display:flex;align-items:center;justify-content:center;
-">
-  <div style="
-    background:#0f1f3d;border:1px solid rgba(255,255,255,.1);
-    border-radius:16px;padding:40px;width:340px;text-align:center;
-    box-shadow:0 20px 60px rgba(0,0,0,.5);
-  ">
-    <div style="
-      width:52px;height:52px;border-radius:14px;
-      background:linear-gradient(135deg,#1a4a8a,#0d6e4a);
-      display:flex;align-items:center;justify-content:center;
-      font-size:22px;color:#fff;margin:0 auto 16px;
-    "><i class="fa-solid fa-lock"></i></div>
+<script>
+/* ── zero template literals — compatível com todos os navegadores ── */
+var USUARIO = "Ruan-Vitor", REPO = "painel-idepi";
+var dados = [], filtro = "all";
+
+function parseDateBR(s) {
+  if (!s) return null;
+  s = String(s).trim();
+  var m = s.match(/^(\d{2})\/(\d{2})\/(\d{4})$/);
+  if (m) return new Date(m[3] + "-" + m[2] + "-" + m[1]);
+  m = s.match(/^(\d{4})-(\d{2})-(\d{2})/);
+  if (m) return new Date(m[1] + "-" + m[2] + "-" + m[3]);
+  return null;
+}
+
+function normSit(s) {
+  return (s || "").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+}
+
+function calcSt(c) {
+  var sit = normSit(c.situacao || "");
+  if (/prestacao\s*de\s*contas|finaliz|concluido|encerrad|rescindid|inadimplent/.test(sit)) {
+    return { st: "finalizado", dias: null, sus: false };
+  }
+  var hoje = new Date();
+  hoje.setHours(0, 0, 0, 0);
+  var dVig = parseDateBR(c.vigencia_fmt || c.vigencia);
+  var dSus = parseDateBR(c.vigencia_suspensiva);
+  var dataEf = dVig, sus = false;
+  if (dSus && (!dVig || dSus <= dVig)) { dataEf = dSus; sus = true; }
+  if (!dataEf) return { st: "finalizado", dias: null, sus: false };
+  var dias = Math.round((dataEf - hoje) / 86400000);
+  var st = dias < 0 ? "vencido" : dias <= 30 ? "critico" : dias <= 60 ? "atencao" : dias <= 90 ? "alerta" : "normal";
+  return { st: st, dias: dias, sus: sus };
+}
+
+function fmtDias(dias, st) {
+  if (dias === null) return '<span class="days-done">\u2014</span>';
+  if (st === "vencido") return '<span class="days-over">' + Math.abs(dias) + "d atraso</span>";
+  if (st === "critico") return '<span class="days-crit">' + dias + "d</span>";
+  if (st === "atencao") return '<span class="days-warn">' + dias + "d</span>";
+  return '<span class="days-ok">' + dias + "d</span>";
+}
+
+var BG = { normal:"b-n", alerta:"b-a", atencao:"b-at", critico:"b-c", vencido:"b-v", finalizado:"b-f" };
+var LB = { normal:"Normal", alerta:"Alerta", atencao:"Aten\u00e7\u00e3o", critico:"Cr\u00edtico", vencido:"Vencido", finalizado:"Finalizado" };
+
+function render() {
+  var rows = [];
+  for (var i = 0; i < dados.length; i++) {
+    if (filtro === "all" || dados[i]._st === filtro) rows.push(dados[i]);
+  }
+  rows.sort(function(a, b) {
+    var o = { critico:0, vencido:1, atencao:2, alerta:3, normal:4, finalizado:5 };
+    var oa = (o[a._st] !== undefined ? o[a._st] : 9);
+    var ob = (o[b._st] !== undefined ? o[b._st] : 9);
+    if (oa !== ob) return oa - ob;
+    var da = (a._dias !== null && a._dias !== undefined ? a._dias : 9999);
+    var db = (b._dias !== null && b._dias !== undefined ? b._dias : 9999);
+    return da - db;
+  });
+
+  document.getElementById("tw-info").textContent = rows.length + " instrumento(s) exibido(s)";
+
+  if (!rows.length) {
+    document.getElementById("tbody").innerHTML = '<tr><td colspan="7" class="empty">Nenhum resultado.</td></tr>';
+    return;
+  }
+
+  var html = "";
+  for (var j = 0; j < rows.length; j++) {
+    var r = rows[j];
+    var susHtml = r.vigencia_suspensiva
+      ? '<span class="sus-tag"><i class="fa-solid fa-hourglass-half" style="font-size:9px;margin-right:3px"></i>' + r.vigencia_suspensiva + "</span>"
+      : '<span style="color:#c0cbd8;font-size:11px;">\u2014</span>';
+    var numero  = r.numero  || "\u2014";
+    var objeto  = r.objeto  || "\u2014";
+    var vigFmt  = r.vigencia_fmt || r.vigencia || "\u2014";
+    var pct     = r.pct_exec || "\u2014";
+    var bgCl    = BG[r._st] || "b-f";
+    var lbTxt   = (r._sus ? "\u26a0 SUSP \u00b7 " : "") + (LB[r._st] || r._st);
+
+    html += "<tr>";
+    html += "<td><span class=\"num-link\">" + numero + "</span></td>";
+    html += "<td><div class=\"obj-cell\" title=\"" + objeto.replace(/"/g, "'") + "\">" + objeto + "</div></td>";
+    html += "<td style=\"white-space:nowrap;color:#5a6a82;font-size:12px\">" + vigFmt + "</td>";
+    html += "<td>" + susHtml + "</td>";
+    html += "<td>" + fmtDias(r._dias, r._st) + "</td>";
+    html += "<td style=\"color:#5a6a82;font-size:12px\">" + pct + "</td>";
+    html += "<td><span class=\"badge " + bgCl + "\">" + lbTxt + "</span></td>";
+    html += "</tr>";
+  }
+  document.getElementById("tbody").innerHTML = html;
+}
+
+function fil(f) { filtro = f; render(); }
+
+var url = "https://raw.githubusercontent.com/" + USUARIO + "/" + REPO + "/main/dados.json?t=" + Date.now();
+fetch(url)
+  .then(function(r) { if (!r.ok) throw new Error("HTTP " + r.status); return r.json(); })
+  .then(function(j) {
+    var ts = j.gerado_em || "\u2014";
+    document.getElementById("hd-ts").innerHTML = "Atualizado<br>" + ts;
+
+    dados = [];
+    var conv = j.convenios || [];
+    for (var i = 0; i < conv.length; i++) {
+      var res = calcSt(conv[i]);
+      var item = {};
+      for (var k in conv[i]) { if (conv[i].hasOwnProperty(k)) item[k] = conv[i][k]; }
+      item._st  = res.st;
+      item._dias = res.dias;
+      item._sus = res.sus;
+      dados.push(item);
+    }
+
+    var ct = { normal:0, alerta:0, atencao:0, critico:0, vencido:0, finalizado:0 };
+    var lib = 0;
+    for (var i = 0; i < dados.length; i++) {
+      var d = dados[i];
+      if (ct[d._st] !== undefined) ct[d._st]++;
+      var vStr = (d.v_liberado || "").replace(/\./g, "").replace(",", ".");
+      var v = parseFloat(vStr);
+      if (!isNaN(v)) lib += v;
+    }
+
+    var keys = ["n","a","at","c","v","f"];
+    var stKeys = ["normal","alerta","atencao","critico","vencido","finalizado"];
+    for (var i = 0; i < keys.length; i++) {
+      document.getElementById("s" + keys[i]).textContent = ct[stKeys[i]];
+    }
+    document.getElementById("hs-tot").textContent = dados.length;
+    document.getElementById("hs-lib").textContent = lib > 0
+      ? "R$" + (lib / 1e6).toFixed(1).replace(".", ",") + "M"
+      : "\u2014";
+
+    render();
+  })
+  .catch(function() {
+    document.getElementById("tbody").innerHTML = '<tr><td colspan="7" class="empty">Erro ao carregar dados. Verifique se o Python j\u00e1 rodou.</td></tr>';
+    document.getElementById("tw-info").textContent = "Erro ao carregar";
+  });
+</script>
+
+<!-- ── PROTEÇÃO POR SENHA ── -->
+<div id="lockscreen" style="position:fixed;inset:0;z-index:9999;background:#0a1628;display:flex;align-items:center;justify-content:center;">
+  <div style="background:#0f1f3d;border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:40px;width:340px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.5);">
+    <div style="width:52px;height:52px;border-radius:14px;background:linear-gradient(135deg,#1a4a8a,#0d6e4a);display:flex;align-items:center;justify-content:center;font-size:22px;color:#fff;margin:0 auto 16px;">
+      <i class="fa-solid fa-lock"></i>
+    </div>
     <div style="font-family:'Sora',sans-serif;font-size:17px;font-weight:700;color:#fff;margin-bottom:4px;">IDEPI — Convênios Federais</div>
     <div style="font-size:12px;color:rgba(255,255,255,.4);margin-bottom:24px;">Acesso restrito. Digite a senha para continuar.</div>
     <input id="pwd-input" type="password" placeholder="Senha de acesso"
-      style="
-        width:100%;padding:11px 16px;border-radius:8px;
-        border:1.5px solid rgba(255,255,255,.15);
-        background:rgba(255,255,255,.06);color:#fff;
-        font-size:14px;font-family:'DM Sans',sans-serif;
-        outline:none;margin-bottom:10px;
-      "
+      style="width:100%;padding:11px 16px;border-radius:8px;border:1.5px solid rgba(255,255,255,.15);background:rgba(255,255,255,.06);color:#fff;font-size:14px;outline:none;margin-bottom:10px;"
       onkeydown="if(event.key==='Enter')checkPwd()"
     />
     <div id="pwd-err" style="font-size:12px;color:#f87171;min-height:16px;margin-bottom:10px;"></div>
-    <button onclick="checkPwd()" style="
-      width:100%;padding:11px;border-radius:8px;border:none;
-      background:#1a3a6e;color:#fff;font-size:14px;font-weight:600;
-      cursor:pointer;font-family:'DM Sans',sans-serif;
-      transition:background .15s;
-    " onmouseover="this.style.background='#1e4a8a'" onmouseout="this.style.background='#1a3a6e'">
+    <button onclick="checkPwd()" style="width:100%;padding:11px;border-radius:8px;border:none;background:#1a3a6e;color:#fff;font-size:14px;font-weight:600;cursor:pointer;">
       Entrar
     </button>
   </div>
 </div>
 
 <script>
-// ─── SENHA — altere aqui para mudar a senha ───────────────────────
-const SENHA_HASH = "idepi2026";
-// ─────────────────────────────────────────────────────────────────
-// Verifica se já está autenticado nesta sessão
-if (sessionStorage.getItem('idepi_auth') === '1') {
-  document.getElementById('lockscreen').style.display = 'none';
+/* ── SENHA — altere o valor abaixo para mudar a senha ── */
+var SENHA = "idepi2026";
+/* ─────────────────────────────────────────────────────── */
+if (sessionStorage.getItem("idepi_auth") === "1") {
+  document.getElementById("lockscreen").style.display = "none";
 }
 function checkPwd() {
-  const v = document.getElementById('pwd-input').value;
-  if (v === SENHA_HASH) {
-    sessionStorage.setItem('idepi_auth','1');
-    document.getElementById('lockscreen').style.display = 'none';
+  var v = document.getElementById("pwd-input").value;
+  if (v === SENHA) {
+    sessionStorage.setItem("idepi_auth", "1");
+    document.getElementById("lockscreen").style.display = "none";
   } else {
-    document.getElementById('pwd-err').textContent = 'Senha incorreta. Tente novamente.';
-    document.getElementById('pwd-input').value = '';
-    document.getElementById('pwd-input').focus();
+    document.getElementById("pwd-err").textContent = "Senha incorreta. Tente novamente.";
+    document.getElementById("pwd-input").value = "";
+    document.getElementById("pwd-input").focus();
   }
 }
-</script>
-
-let dados = [], filtro = 'all';
-
-function parseDateBR(s) {
-  if (!s) return null;
-  s = String(s).trim();
-  let m = s.match(/^(\d{2})\/(\d{2})\/(\d{4})$/);
-  if (m) return new Date(`${m[3]}-${m[2]}-${m[1]}`);
-  m = s.match(/^(\d{4})-(\d{2})-(\d{2})/);
-  if (m) return new Date(`${m[1]}-${m[2]}-${m[3]}`);
-  return null;
-}
-
-function calcSt(c) {
-  const sit = (c.situacao||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
-  if (/prestacao\s*de\s*contas|finaliz|concluido|encerrad|rescindid|inadimplent/.test(sit))
-    return {st:'finalizado', dias:null, sus:false};
-
-  const hoje = new Date(); hoje.setHours(0,0,0,0);
-  const dVig  = parseDateBR(c.vigencia_fmt || c.vigencia);
-  const dSus  = parseDateBR(c.vigencia_suspensiva);
-
-  let dataEf = dVig, sus = false;
-  if (dSus && (!dVig || dSus <= dVig)) { dataEf = dSus; sus = true; }
-  if (!dataEf) return {st:'finalizado', dias:null, sus:false};
-
-  const dias = Math.round((dataEf - hoje) / 86400000);
-  let st = dias < 0 ? 'vencido' : dias <= 30 ? 'critico' : dias <= 60 ? 'atencao' : dias <= 90 ? 'alerta' : 'normal';
-  return {st, dias, sus};
-}
-
-function fmtDias(dias, st) {
-  if (dias === null) return '<span class="days-done">—</span>';
-  if (st === 'vencido') return `<span class="days-over">${Math.abs(dias)}d atraso</span>`;
-  if (st === 'critico') return `<span class="days-crit">${dias}d</span>`;
-  if (st === 'atencao') return `<span class="days-warn">${dias}d</span>`;
-  return `<span class="days-ok">${dias}d</span>`;
-}
-
-const BG = {normal:'b-n', alerta:'b-a', atencao:'b-at', critico:'b-c', vencido:'b-v', finalizado:'b-f'};
-const LB = {normal:'Normal', alerta:'Alerta', atencao:'Atenção', critico:'Crítico', vencido:'Vencido', finalizado:'Finalizado'};
-
-function render() {
-  let rows = dados;
-  if (filtro !== 'all') rows = rows.filter(r => r._st === filtro);
-  rows.sort((a,b) => {
-    const o = {critico:0,vencido:1,atencao:2,alerta:3,normal:4,finalizado:5};
-    return (o[a._st]||9)-(o[b._st]||9) || ((a._dias??9999)-(b._dias??9999));
-  });
-
-  document.getElementById('tw-info').textContent = `${rows.length} instrumento(s) exibido(s)`;
-
-  if (!rows.length) {
-    document.getElementById('tbody').innerHTML = '<tr><td colspan="7" class="empty">Nenhum resultado.</td></tr>';
-    return;
-  }
-
-  document.getElementById('tbody').innerHTML = rows.map(r => {
-    const susHtml = r.vigencia_suspensiva
-      ? `<span class="sus-tag"><i class="fa-solid fa-hourglass-half" style="font-size:9px;margin-right:3px"></i>${r.vigencia_suspensiva}</span>`
-      : '<span style="color:#c0cbd8;font-size:11px;">—</span>';
-
-    return `<tr>
-      <td><span class="num-link">${r.numero||'—'}</span></td>
-      <td><div class="obj-cell" title="${(r.objeto||'').replace(/"/g,"'")}">${r.objeto||'—'}</div></td>
-      <td style="white-space:nowrap;color:#5a6a82;font-size:12px">${r.vigencia_fmt||r.vigencia||'—'}</td>
-      <td>${susHtml}</td>
-      <td>${fmtDias(r._dias, r._st)}</td>
-      <td style="color:#5a6a82;font-size:12px">${r.pct_exec||'—'}</td>
-      <td><span class="badge ${BG[r._st]||'b-f'}">${r._sus?'⚠ SUSP · ':''} ${LB[r._st]||r._st}</span></td>
-    </tr>`;
-  }).join('');
-}
-
-function fil(f) { filtro = f; render(); }
-
-fetch(`https://raw.githubusercontent.com/${USUARIO}/${REPO}/main/dados.json?t=${Date.now()}`)
-  .then(r => r.ok ? r.json() : Promise.reject())
-  .then(j => {
-    document.getElementById('hd-ts').innerHTML = `Atualizado<br>${j.gerado_em||'—'}`;
-    dados = (j.convenios||[]).map(c => {
-      const r = calcSt(c);
-      return {...c, _st:r.st, _dias:r.dias, _sus:r.sus};
-    });
-
-    const ct = {normal:0,alerta:0,atencao:0,critico:0,vencido:0,finalizado:0};
-    let lib = 0;
-    dados.forEach(d => {
-      ct[d._st] = (ct[d._st]||0) + 1;
-      const v = parseFloat((d.v_liberado||'').replace(/\./g,'').replace(',','.'));
-      if (v) lib += v;
-    });
-
-    ['n','a','at','c','v','f'].forEach((k,i) => {
-      document.getElementById('s'+k).textContent = ct[Object.keys(ct)[i]];
-    });
-    document.getElementById('hs-tot').textContent = dados.length;
-    document.getElementById('hs-lib').textContent = lib > 0
-      ? 'R$' + (lib/1e6).toFixed(1).replace('.',',')+'M' : '—';
-
-    render();
-  })
-  .catch(() => {
-    document.getElementById('tbody').innerHTML = '<tr><td colspan="7" class="empty">Erro ao carregar dados. Verifique se o Python já rodou.</td></tr>';
-    document.getElementById('tw-info').textContent = 'Erro ao carregar';
-  });
 </script>
 </body>
 </html>

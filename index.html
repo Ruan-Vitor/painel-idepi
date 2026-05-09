@@ -299,6 +299,7 @@ tr.drow:hover td{background:var(--surface2);cursor:pointer}
             <th onclick="sortBy('_dias')"            id="th-_dias" style="text-align:center;">Dias</th>
             <th onclick="sortBy('v_total')"          id="th-v_total">Valor Total</th>
             <th onclick="sortBy('pct_exec')"         id="th-pct_exec" style="text-align:center;">% Exec.</th>
+            <th onclick="sortBy('sei')"              id="th-sei">Nº SEI</th>
             <th onclick="sortBy('_st')"              id="th-_st">Status</th>
           </tr></thead>
           <tbody id="tbody"></tbody>
@@ -529,6 +530,7 @@ function getVal(r, col) {
   if (col === 'pct_exec') {
     return parseFloat((r.pct_exec||'').replace('%','')) || 0;
   }
+  if (col === 'sei') return (r.sei || '').toLowerCase();
   return (r[col] || '').toString().toLowerCase();
 }
 
@@ -596,6 +598,10 @@ function render() {
       ? `<span class="susp-tag"><i class="fa-solid fa-hourglass-half"></i>${r.vigencia_suspensiva||'—'}</span>`
       : `<span style="color:#94a3b8;font-size:11px;">—</span>`;
 
+    const seiHtml = r.sei
+      ? `<span class="val" style="font-family:monospace;font-size:11px;color:var(--brand);">${r.sei}</span>`
+      : `<span style="color:#94a3b8;font-size:11px;">—</span>`;
+
     return `<tr class="drow" onclick="exp(${i})">
       <td style="text-align:center;"><i class="fa-solid fa-chevron-right" id="ic${i}" style="font-size:9px;color:#94a3b8;transition:transform .2s;"></i></td>
       <td><span class="num">${r.numero||'—'}</span></td>
@@ -608,9 +614,10 @@ function render() {
       <td style="text-align:center;">${diasHtml}</td>
       <td><span class="val">${r.v_total?'R$ '+r.v_total:'—'}</span></td>
       <td style="text-align:center;"><span class="val">${r.pct_exec||'—'}</span></td>
+      <td>${seiHtml}</td>
       <td><span class="badge ${cl}">${nm}${r._temSusp?'<i class="fa-solid fa-hourglass-half" style="font-size:8px;margin-left:2px;"></i>':''}</span></td>
     </tr>
-    <tr class="erow" id="er${i}"><td colspan="9"><div class="ebody"><div class="egrid">
+    <tr class="erow" id="er${i}"><td colspan="10"><div class="ebody"><div class="egrid">
       <div class="ef"><label>Nº do instrumento</label><span>${r.numero||'—'}</span></div>
       <div class="ef"><label>Situação oficial</label><span>${r.situacao||'—'}</span></div>
       <div class="ef"><label>Prestação de contas</label><span>${r.prestacao||'—'}</span></div>
@@ -619,6 +626,7 @@ function render() {
       <div class="ef"><label>Vigência final</label><span>${r.vigencia_fmt||r.vigencia||'—'}</span></div>
       <div class="ef"><label>Vigência suspensiva</label><span style="color:${r._temSusp?'var(--s-tx)':'inherit'};font-weight:${r._temSusp?700:400}">${r.vigencia_suspensiva||'—'}</span></div>
       <div class="ef"><label>Dias p/ data efetiva</label><span>${dias!==null?(dias<0?Math.abs(dias)+'d vencido':dias+'d restantes'):'—'}</span></div>
+      <div class="ef"><label>Nº Processo SEI</label><span style="font-family:monospace;color:var(--brand);font-weight:600;">${r.sei||'—'}</span></div>
       <div class="ef"><label>Valor total</label><span>${r.v_total?'R$ '+r.v_total:'—'}</span></div>
       <div class="ef"><label>Valor liberado</label><span>${r.v_liberado?'R$ '+r.v_liberado:'—'}</span></div>
       <div class="ef"><label>% Execução</label><span>${r.pct_exec||'—'}</span></div>

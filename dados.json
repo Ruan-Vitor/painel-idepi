@@ -1,5 +1,5 @@
 {
-  "gerado_em": "12/05/2026 19:53",
+  "gerado_em": "12/05/2026 19:58",
   "total": 93,
   "convenios": [
     {
@@ -51,7 +51,7 @@
       "vigencia_fmt": "30/09/2026",
       "vigencia_suspensiva": "",
       "sei": "00119.002039/2024-10",
-      "fiscal": "",
+      "fiscal": "Noe",
       "dias": 141,
       "status": "NORMAL",
       "situacao": "EM EXECUÇÃO",
@@ -1605,7 +1605,7 @@
       "vigencia_fmt": "01/04/2030",
       "vigencia_suspensiva": "31/08/2026",
       "sei": "00119.000357/2026-16",
-      "fiscal": "",
+      "fiscal": "Angela",
       "dias": 1420,
       "status": "NORMAL",
       "situacao": "EM EXECUÇÃO",
@@ -1626,7 +1626,7 @@
       "vigencia_fmt": "01/04/2030",
       "vigencia_suspensiva": "31/08/2026",
       "sei": "00119.000431/2026-96",
-      "fiscal": "",
+      "fiscal": "Angela",
       "dias": 1420,
       "status": "NORMAL",
       "situacao": "EM EXECUÇÃO",

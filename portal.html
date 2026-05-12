@@ -3,189 +3,168 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>IDEPI — Painel de Convênios Federais</title>
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<title>IDEPI — Portal de Convênios Federais</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=IBM+Plex+Mono:wght@400;600&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>
+:root{
+  --bg:#0b1527;
+  --sidebar:#07101f;
+  --surface:#fff;
+  --surface2:#f4f7fd;
+  --border:#e3eaf5;
+  --text:#1a2640;
+  --muted:#7a8ba0;
+  --accent:#1a3a6e;
+  --green:#16a34a;
+  --red:#b91c1c;
+  --amber:#92400e;
+}
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%;overflow:hidden}
-body{
-  font-family:'DM Sans',sans-serif;
-  background:#0f1f3d;
-  display:flex;flex-direction:column;
-  min-height:100vh;
-}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);display:flex;flex-direction:column;min-height:100vh}
 
-/* ── HEADER ─── */
-.hd{
-  background:#0f1f3d;
-  border-bottom:1px solid rgba(255,255,255,.08);
-  padding:0 40px;height:60px;
-  display:flex;align-items:center;justify-content:space-between;
-  flex-shrink:0;
-}
-.hd-left{display:flex;align-items:center;gap:16px}
+/* ── HEADER ── */
+.hd{background:var(--bg);border-bottom:1px solid rgba(255,255,255,.07);padding:0 36px;height:58px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.hd-left{display:flex;align-items:center;gap:14px}
 .hd-logo{display:flex;align-items:center;gap:10px}
-.hd-logo-icon{
-  width:36px;height:36px;border-radius:8px;
-  background:linear-gradient(135deg,#1a4a8a,#0d6e4a);
-  display:flex;align-items:center;justify-content:center;
-  font-size:16px;color:#fff;
-}
-.hd-title{font-family:'Sora',sans-serif;font-size:15px;font-weight:700;color:#fff;line-height:1.1}
-.hd-sub{font-size:11px;color:rgba(255,255,255,.45);font-weight:400}
-.hd-sep{width:1px;height:28px;background:rgba(255,255,255,.12)}
-.hd-scope{
-  display:flex;align-items:center;gap:7px;
-  background:rgba(255,255,255,.07);
-  border:1px solid rgba(255,255,255,.1);
-  border-radius:20px;padding:4px 12px;
-  font-size:11px;color:rgba(255,255,255,.6);
-}
-.hd-scope i{color:#4ade80;font-size:9px}
-.hd-right{display:flex;align-items:center;gap:10px}
+.hd-logo-icon{width:34px;height:34px;border-radius:8px;background:linear-gradient(135deg,#1a4a8a,#0d6e4a);display:flex;align-items:center;justify-content:center;font-size:14px;color:#fff}
+.hd-title{font-family:'Sora',sans-serif;font-size:14px;font-weight:700;color:#fff;line-height:1.1}
+.hd-sub{font-size:10px;color:rgba(255,255,255,.4)}
+.hd-sep{width:1px;height:26px;background:rgba(255,255,255,.1)}
+.hd-pill{display:flex;align-items:center;gap:6px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.09);border-radius:20px;padding:3px 11px;font-size:10px;color:rgba(255,255,255,.55)}
+.hd-pill i{color:#4ade80;font-size:8px}
+.hd-right{display:flex;align-items:center;gap:14px}
 .hd-stat{text-align:right}
-.hd-stat strong{font-family:'Sora',sans-serif;font-size:18px;font-weight:700;color:#fff;display:block;line-height:1}
-.hd-stat span{font-size:10px;color:rgba(255,255,255,.4)}
-.hd-divider{width:1px;height:28px;background:rgba(255,255,255,.12)}
-.hd-ts{font-size:11px;color:rgba(255,255,255,.35);text-align:right}
+.hd-stat strong{font-family:'Sora',sans-serif;font-size:17px;font-weight:800;color:#fff;display:block;line-height:1}
+.hd-stat span{font-size:9.5px;color:rgba(255,255,255,.35)}
+.hd-div{width:1px;height:26px;background:rgba(255,255,255,.1)}
+.hd-ts{font-size:10px;color:rgba(255,255,255,.3);text-align:right;line-height:1.5}
 
-/* ── MAIN AREA ─── */
-.body{
-  flex:1;display:flex;gap:0;overflow:hidden;
-}
+/* ── LAYOUT ── */
+.body{flex:1;display:flex;overflow:hidden}
 
-/* ── SIDEBAR ─── */
-.sidebar{
-  width:220px;flex-shrink:0;
-  background:#0a1628;
-  border-right:1px solid rgba(255,255,255,.07);
-  display:flex;flex-direction:column;
-  padding:20px 12px;gap:4px;
-}
-.sb-section{
-  font-size:10px;font-weight:600;
-  color:rgba(255,255,255,.25);
-  letter-spacing:.8px;text-transform:uppercase;
-  padding:8px 12px 4px;
-  margin-top:8px;
-}
-.sb-section:first-child{margin-top:0}
-.sb-item{
-  display:flex;align-items:center;gap:10px;
-  padding:9px 12px;border-radius:8px;
-  font-size:13px;color:rgba(255,255,255,.55);
-  text-decoration:none;cursor:pointer;
-  transition:all .15s;position:relative;
-}
-.sb-item:hover{background:rgba(255,255,255,.06);color:rgba(255,255,255,.8)}
-.sb-item.active{background:#1a3a6e;color:#fff}
+/* ── SIDEBAR ── */
+.sidebar{width:214px;flex-shrink:0;background:var(--sidebar);border-right:1px solid rgba(255,255,255,.06);display:flex;flex-direction:column;padding:18px 10px;gap:2px}
+.sb-sec{font-size:9px;font-weight:700;color:rgba(255,255,255,.2);letter-spacing:1px;text-transform:uppercase;padding:10px 12px 3px;margin-top:6px}
+.sb-sec:first-child{margin-top:0}
+.sb-item{display:flex;align-items:center;gap:9px;padding:8px 12px;border-radius:7px;font-size:12.5px;color:rgba(255,255,255,.5);text-decoration:none;cursor:pointer;transition:all .14s;position:relative}
+.sb-item:hover{background:rgba(255,255,255,.05);color:rgba(255,255,255,.75)}
+.sb-item.active{background:#182f5a;color:#fff}
 .sb-item.active i{color:#60a5fa}
-.sb-item i{font-size:15px;width:18px;text-align:center;flex-shrink:0}
-.sb-item .soon{
-  margin-left:auto;font-size:9px;font-weight:600;
-  background:rgba(255,255,255,.08);color:rgba(255,255,255,.3);
-  padding:2px 7px;border-radius:10px;
-}
+.sb-item i{font-size:13px;width:16px;text-align:center;flex-shrink:0}
+.soon{margin-left:auto;font-size:9px;font-weight:600;background:rgba(255,255,255,.07);color:rgba(255,255,255,.25);padding:1px 6px;border-radius:8px}
 .sb-item.active .soon{display:none}
-.sb-bottom{margin-top:auto;padding-top:16px;border-top:1px solid rgba(255,255,255,.07)}
-.sb-info{padding:10px 12px;border-radius:8px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06)}
-.sb-info p{font-size:11px;color:rgba(255,255,255,.3);line-height:1.5}
-.sb-info strong{color:rgba(255,255,255,.5);display:block;font-size:11px;margin-bottom:2px}
+.sb-footer{margin-top:auto;padding-top:14px;border-top:1px solid rgba(255,255,255,.06)}
+.sb-card{padding:10px 12px;border-radius:8px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.05)}
+.sb-card strong{color:rgba(255,255,255,.45);display:block;font-size:10px;margin-bottom:2px}
+.sb-card p{font-size:10px;color:rgba(255,255,255,.25);line-height:1.5}
 
-/* ── CONTENT ─── */
-.content{
-  flex:1;display:flex;flex-direction:column;
-  overflow:hidden;background:#f0f4fb;
-}
+/* ── CONTENT ── */
+.content{flex:1;display:flex;flex-direction:column;overflow:hidden;background:var(--surface2)}
 
-/* ── PAGE HEADER ─── */
-.pg-head{
-  background:#fff;border-bottom:1px solid #e0e6f0;
-  padding:20px 32px;display:flex;align-items:center;justify-content:space-between;
-  flex-shrink:0;
-}
-.pg-title{font-family:'Sora',sans-serif;font-size:20px;font-weight:700;color:#1a2640}
-.pg-sub{font-size:12px;color:#8a99b0;margin-top:2px;display:flex;align-items:center;gap:8px}
-.pg-sub i{font-size:11px}
-.pg-btn{
-  display:flex;align-items:center;gap:7px;
-  background:#1a3a6e;color:#fff;border:none;
-  padding:9px 18px;border-radius:8px;font-size:13px;font-weight:600;
-  cursor:pointer;text-decoration:none;font-family:'DM Sans',sans-serif;
-  transition:background .15s;
-}
-.pg-btn:hover{background:#1e4a8a}
-.pg-btn i{font-size:14px}
+/* ── PAGE HEAD ── */
+.pg-head{background:var(--surface);border-bottom:1px solid var(--border);padding:18px 28px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.pg-title{font-family:'Sora',sans-serif;font-size:18px;font-weight:700;color:var(--text)}
+.pg-sub{font-size:11px;color:var(--muted);margin-top:3px}
 
-/* ── STATS ROW ─── */
-.stats{
-  display:grid;grid-template-columns:repeat(6,1fr);gap:12px;
-  padding:20px 32px;flex-shrink:0;
-}
-.stat{
-  background:#fff;border:1px solid #e0e6f0;border-radius:12px;
-  padding:14px 16px;cursor:pointer;transition:all .15s;
-  border-top:3px solid transparent;
-}
-.stat:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(26,58,110,.08)}
-.stat.s-n{border-top-color:#22c55e}
-.stat.s-a{border-top-color:#3b82f6}
-.stat.s-at{border-top-color:#eab308}
-.stat.s-c{border-top-color:#f97316}
-.stat.s-v{border-top-color:#ef4444}
-.stat.s-f{border-top-color:#94a3b8}
-.stat-label{font-size:10px;font-weight:600;color:#8a99b0;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px}
-.stat-num{font-family:'Sora',sans-serif;font-size:26px;font-weight:700;color:#1a2640;line-height:1}
-.stat-desc{font-size:10px;color:#b0bbc8;margin-top:3px}
+/* ── SCROLL ── */
+.scroll{flex:1;overflow-y:auto;padding:22px 28px;display:flex;flex-direction:column;gap:20px}
 
-/* ── TABLE AREA ─── */
-.table-wrap{flex:1;overflow:hidden;padding:0 32px 20px;display:flex;flex-direction:column}
-.tw-head{
-  display:flex;align-items:center;justify-content:space-between;
-  margin-bottom:10px;
-}
-.tw-head span{font-size:13px;color:#5a6a82;font-weight:500}
-.tw-filters{display:flex;gap:6px}
-.chip{
-  font-size:11px;font-weight:600;padding:4px 12px;border-radius:20px;
-  cursor:pointer;border:1.5px solid;transition:all .15s;
-}
-.chip-all{background:#e8f0fe;color:#1a3a6e;border-color:#1a3a6e}
-.chip-n{background:#f0fdf4;color:#166534;border-color:#22c55e}
-.chip-a{background:#eff6ff;color:#1d4ed8;border-color:#3b82f6}
-.chip-at{background:#fefce8;color:#a16207;border-color:#eab308}
-.chip-c{background:#fff7ed;color:#c2410c;border-color:#f97316}
-.chip-v{background:#fef2f2;color:#b91c1c;border-color:#ef4444}
-.chip-f{background:#f8fafc;color:#475569;border-color:#94a3b8}
-.tw-inner{flex:1;background:#fff;border:1px solid #e0e6f0;border-radius:12px;overflow:hidden}
-table{width:100%;border-collapse:collapse;font-size:13px}
-thead tr{background:#f8fafc}
-th{padding:10px 14px;text-align:left;font-size:10px;font-weight:700;color:#8a99b0;text-transform:uppercase;letter-spacing:.5px;border-bottom:1px solid #e0e6f0;white-space:nowrap}
-td{padding:9px 14px;border-bottom:1px solid #f0f4fb;vertical-align:middle}
-tr:last-child td{border-bottom:none}
-tr:hover td{background:#f8fbff}
-.badge{display:inline-flex;align-items:center;padding:2px 9px;border-radius:20px;font-size:11px;font-weight:700}
-.b-n{background:#f0fdf4;color:#166534}
-.b-a{background:#eff6ff;color:#1d4ed8}
-.b-at{background:#fefce8;color:#a16207}
-.b-c{background:#fff7ed;color:#c2410c}
-.b-v{background:#fef2f2;color:#b91c1c}
-.b-f{background:#f8fafc;color:#475569}
-.num-link{color:#1a3a6e;font-weight:700;font-size:12px}
-.obj-cell{max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#3a4a5c}
-.days-ok{font-weight:700;color:#166534}
-.days-warn{font-weight:700;color:#a16207}
-.days-crit{font-weight:700;color:#c2410c}
-.days-over{font-weight:700;color:#b91c1c}
-.days-done{color:#94a3b8}
-.sus-tag{font-size:10px;background:#fdf4ff;color:#7e22ce;border:1px solid #a855f7;border-radius:10px;padding:2px 8px;white-space:nowrap}
-.empty{text-align:center;padding:32px;color:#8a99b0;font-size:13px}
+/* ── HERO STRIP ── */
+.hero{background:linear-gradient(115deg,#0f2550 0%,#0a4a2e 100%);border-radius:14px;padding:24px 28px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-shrink:0;overflow:hidden;position:relative}
+.hero::before{content:'';position:absolute;right:-30px;top:-30px;width:180px;height:180px;border-radius:50%;background:rgba(255,255,255,.04)}
+.hero::after{content:'';position:absolute;right:60px;bottom:-60px;width:120px;height:120px;border-radius:50%;background:rgba(255,255,255,.03)}
+.hero-text{position:relative;z-index:1}
+.hero-text h2{font-family:'Sora',sans-serif;font-size:18px;font-weight:800;color:#fff;margin-bottom:6px}
+.hero-text p{font-size:12px;color:rgba(255,255,255,.65);line-height:1.65;max-width:560px}
+.hero-badges{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+.hero-badge{display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:18px;padding:3px 10px;font-size:10px;font-weight:600;color:#fff}
+.hero-right{position:relative;z-index:1;text-align:right;flex-shrink:0}
+.hero-right .big-num{font-family:'Sora',sans-serif;font-size:52px;font-weight:800;color:#fff;line-height:1}
+.hero-right .big-label{font-size:11px;color:rgba(255,255,255,.5);margin-top:2px}
+
+/* ── STATUS GRID ── */
+.status-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;flex-shrink:0}
+.st-card{background:var(--surface);border:1px solid var(--border);border-radius:11px;padding:14px 16px;border-top:3px solid transparent;cursor:pointer;transition:all .14s;text-decoration:none;display:block}
+.st-card:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(26,58,110,.1)}
+.st-card.s-n{border-top-color:#22c55e}
+.st-card.s-al{border-top-color:#3b82f6}
+.st-card.s-at{border-top-color:#eab308}
+.st-card.s-c{border-top-color:#f97316}
+.st-card.s-v{border-top-color:#ef4444}
+.st-card.s-f{border-top-color:#94a3b8}
+.st-num{font-family:'Sora',sans-serif;font-size:28px;font-weight:800;color:var(--text);line-height:1;margin-bottom:4px}
+.st-lbl{font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:2px}
+.st-desc{font-size:10px;color:#b0bbc8}
+
+/* ── PANELS GRID (quick access) ── */
+.panels-label{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.6px;display:flex;align-items:center;gap:7px}
+.panels-label::after{content:'';flex:1;height:1px;background:var(--border)}
+.panels-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.panel-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px 22px;text-decoration:none;display:flex;flex-direction:column;gap:14px;transition:all .16s;position:relative;overflow:hidden}
+.panel-card:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(26,58,110,.1);border-color:#c5d3e8}
+.panel-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+.panel-card.pc-blue::before{background:linear-gradient(90deg,#1a3a6e,#3b82f6)}
+.panel-card.pc-green::before{background:linear-gradient(90deg,#0d6e4a,#22c55e)}
+.panel-card.pc-amber::before{background:linear-gradient(90deg,#92400e,#f59e0b)}
+.panel-card.pc-slate::before{background:linear-gradient(90deg,#475569,#94a3b8)}
+.pc-icon-wrap{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px}
+.pc-blue .pc-icon-wrap{background:#eff6ff;color:#1a3a6e}
+.pc-green .pc-icon-wrap{background:#f0fdf4;color:#0d6e4a}
+.pc-amber .pc-icon-wrap{background:#fffbeb;color:#92400e}
+.pc-slate .pc-icon-wrap{background:#f8fafc;color:#475569}
+.pc-title{font-family:'Sora',sans-serif;font-size:14px;font-weight:700;color:var(--text);margin-bottom:4px}
+.pc-desc{font-size:11.5px;color:var(--muted);line-height:1.5}
+.pc-footer{display:flex;align-items:center;justify-content:space-between;margin-top:auto;padding-top:12px;border-top:1px solid var(--border)}
+.pc-kpi{text-align:center}
+.pc-kpi strong{font-family:'Sora',sans-serif;font-size:20px;font-weight:800;color:var(--text);display:block;line-height:1}
+.pc-kpi span{font-size:10px;color:var(--muted)}
+.pc-cta{display:flex;align-items:center;gap:5px;font-size:11px;font-weight:700;color:var(--accent);text-decoration:none}
+.pc-green .pc-cta{color:var(--green)}
+.pc-cta i{font-size:10px}
+.pc-soon-overlay{position:absolute;inset:0;background:rgba(255,255,255,.6);display:flex;align-items:center;justify-content:center;backdrop-filter:blur(2px);border-radius:12px}
+.pc-soon-badge{background:#f8fafc;border:1.5px solid var(--border);border-radius:20px;padding:6px 16px;font-size:12px;font-weight:700;color:var(--muted);display:flex;align-items:center;gap:6px}
+
+/* ── FISCALGOV PREVIEW CARD ── */
+.fg-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden;flex-shrink:0}
+.fg-card-head{padding:14px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.fg-card-title{font-size:13px;font-weight:700;color:var(--text);display:flex;align-items:center;gap:8px}
+.fg-card-title i{color:var(--accent)}
+.fg-link{display:flex;align-items:center;gap:5px;font-size:11px;font-weight:700;color:var(--accent);text-decoration:none}
+.fg-link:hover{text-decoration:underline}
+.fg-metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
+.fg-metric{padding:16px 20px;border-right:1px solid var(--border);text-align:center}
+.fg-metric:last-child{border-right:none}
+.fg-val{font-family:'Sora',sans-serif;font-size:26px;font-weight:800;color:var(--text);line-height:1;margin-bottom:3px}
+.fg-metric.fg-ok  .fg-val{color:var(--green)}
+.fg-metric.fg-nok .fg-val{color:var(--red)}
+.fg-metric.fg-pct .fg-val{color:var(--amber)}
+.fg-lbl{font-size:9.5px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
+.fg-prog-wrap{padding:12px 20px 14px;border-top:1px solid var(--border);background:#fafbfd}
+.fg-prog-lbl{font-size:11px;color:var(--muted);margin-bottom:6px;display:flex;justify-content:space-between}
+.fg-prog-lbl span{font-weight:700;color:var(--accent)}
+.fg-track{background:#e8f0fe;border-radius:99px;height:8px;overflow:hidden}
+.fg-fill{height:100%;border-radius:99px;background:linear-gradient(90deg,#1a3a6e,#16a34a);transition:width 1s cubic-bezier(.22,1,.36,1)}
+
+/* ── MISC ── */
+.overlay{position:fixed;inset:0;background:rgba(7,16,31,.85);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:998;gap:12px}
+.overlay.hide{display:none}
+.spin{width:36px;height:36px;border:3px solid rgba(255,255,255,.15);border-top-color:#60a5fa;border-radius:50%;animation:spin .75s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.overlay p{color:#fff;font-size:13px}
+#lockscreen{position:fixed;inset:0;z-index:9999;background:#07101f;display:flex;align-items:center;justify-content:center}
 </style>
 </head>
 <body>
 
-<!-- Header -->
+<!-- OVERLAY -->
+<div class="overlay" id="overlay">
+  <div class="spin"></div>
+  <p>Carregando dados...</p>
+</div>
+
+<!-- HEADER -->
 <div class="hd">
   <div class="hd-left">
     <div class="hd-logo">
@@ -196,321 +175,340 @@ tr:hover td{background:#f8fbff}
       </div>
     </div>
     <div class="hd-sep"></div>
-    <div class="hd-scope"><i class="fa-solid fa-circle"></i> Dados ao vivo — Portal da Transparência · CGU</div>
+    <div class="hd-pill"><i class="fa-solid fa-circle"></i> Dados ao vivo — Portal da Transparência · CGU</div>
   </div>
   <div class="hd-right">
     <div class="hd-stat"><strong id="hs-lib">—</strong><span>Total liberado</span></div>
-    <div class="hd-divider"></div>
+    <div class="hd-div"></div>
     <div class="hd-stat"><strong id="hs-tot">—</strong><span>Instrumentos</span></div>
-    <div class="hd-divider"></div>
+    <div class="hd-div"></div>
     <div class="hd-ts" id="hd-ts">—</div>
   </div>
 </div>
 
-<!-- Body -->
+<!-- BODY -->
 <div class="body">
 
-  <!-- Sidebar -->
+  <!-- SIDEBAR -->
   <nav class="sidebar">
-    <div class="sb-section">Convênios Federais</div>
+    <div class="sb-sec">Convênios Federais</div>
+    <a class="sb-item active" href="portal.html"><i class="fa-solid fa-gauge-high"></i> Painel Geral</a>
+    <a class="sb-item" href="index.html"><i class="fa-solid fa-table-list"></i> Painel Completo</a>
+    <div class="sb-item"><i class="fa-solid fa-chart-line"></i> Execução Financeira<span class="soon">em breve</span></div>
+    <div class="sb-item"><i class="fa-solid fa-file-invoice"></i> Prestação de Contas<span class="soon">em breve</span></div>
+    <div class="sb-item"><i class="fa-solid fa-landmark-dome"></i> Emendas Parlamentares<span class="soon">em breve</span></div>
+    <div class="sb-item"><i class="fa-solid fa-map-location-dot"></i> Mapa de Obras<span class="soon">em breve</span></div>
 
-    <a class="sb-item active" href="index.html">
-      <i class="fa-solid fa-clock-rotate-left"></i> Vigências
-    </a>
-    <div class="sb-item">
-      <i class="fa-solid fa-chart-line"></i> Execução Financeira
-      <span class="soon">em breve</span>
-    </div>
-    <div class="sb-item">
-      <i class="fa-solid fa-file-invoice"></i> Prestação de Contas
-      <span class="soon">em breve</span>
-    </div>
-    <div class="sb-item">
-      <i class="fa-solid fa-landmark-dome"></i> Emendas Parlamentares
-      <span class="soon">em breve</span>
-    </div>
-    <div class="sb-item">
-      <i class="fa-solid fa-map-location-dot"></i> Mapa de Obras
-      <span class="soon">em breve</span>
-    </div>
+    <div class="sb-sec">Desempenho IDTRU-DL</div>
+    <a class="sb-item" href="fiscalgov.html"><i class="fa-solid fa-camera"></i> FiscalGov · EX-01</a>
+    <div class="sb-item"><i class="fa-solid fa-star"></i> Índice Geral<span class="soon">em breve</span></div>
 
-    <div class="sb-bottom">
-      <div class="sb-info">
+    <div class="sb-footer">
+      <div class="sb-card">
         <strong>Instituto de Desenvolvimento do Piauí</strong>
         <p>R. Altos, 277 — Primavera<br>Teresina-PI · idepi@idepi.pi.gov.br</p>
       </div>
     </div>
   </nav>
 
-  <!-- Content -->
+  <!-- CONTENT -->
   <div class="content">
-
-    <!-- Page header -->
     <div class="pg-head">
       <div>
-        <div class="pg-title">Monitoramento de Vigências</div>
-        <div class="pg-sub"><i class="fa-solid fa-rotate"></i> Atualizado automaticamente pelo script Python diariamente</div>
-      </div>
-      <a class="pg-btn" href="index.html"><i class="fa-solid fa-table-list"></i> Abrir painel completo</a>
-    </div>
-
-    <!-- Stats -->
-    <div class="stats">
-      <div class="stat s-n" onclick="fil('normal')">
-        <div class="stat-label">Normal</div>
-        <div class="stat-num" id="sn">—</div>
-        <div class="stat-desc">&gt; 90 dias</div>
-      </div>
-      <div class="stat s-a" onclick="fil('alerta')">
-        <div class="stat-label">Alerta</div>
-        <div class="stat-num" id="sa">—</div>
-        <div class="stat-desc">60–90 dias</div>
-      </div>
-      <div class="stat s-at" onclick="fil('atencao')">
-        <div class="stat-label">Atenção</div>
-        <div class="stat-num" id="sat">—</div>
-        <div class="stat-desc">30–60 dias</div>
-      </div>
-      <div class="stat s-c" onclick="fil('critico')">
-        <div class="stat-label">Crítico</div>
-        <div class="stat-num" id="sc">—</div>
-        <div class="stat-desc">&lt; 30 dias</div>
-      </div>
-      <div class="stat s-v" onclick="fil('vencido')">
-        <div class="stat-label">Vencido</div>
-        <div class="stat-num" id="sv">—</div>
-        <div class="stat-desc">Expirado</div>
-      </div>
-      <div class="stat s-f" onclick="fil('finalizado')">
-        <div class="stat-label">Finalizado</div>
-        <div class="stat-num" id="sf">—</div>
-        <div class="stat-desc">Concluído</div>
+        <div class="pg-title">Painel Geral de Convênios</div>
+        <div class="pg-sub">Visão consolidada · Selecione um painel abaixo para detalhes</div>
       </div>
     </div>
 
-    <!-- Table -->
-    <div class="table-wrap">
-      <div class="tw-head">
-        <span id="tw-info">Carregando...</span>
-        <div class="tw-filters">
-          <span class="chip chip-all" onclick="fil('all')">Todos</span>
-          <span class="chip chip-n"  onclick="fil('normal')">Normal</span>
-          <span class="chip chip-a"  onclick="fil('alerta')">Alerta</span>
-          <span class="chip chip-at" onclick="fil('atencao')">Atenção</span>
-          <span class="chip chip-c"  onclick="fil('critico')">Crítico</span>
-          <span class="chip chip-v"  onclick="fil('vencido')">Vencido</span>
-          <span class="chip chip-f"  onclick="fil('finalizado')">Finalizado</span>
+    <div class="scroll">
+
+      <!-- HERO -->
+      <div class="hero">
+        <div class="hero-text">
+          <h2>Instituto de Desenvolvimento do Piauí — IDEPI</h2>
+          <p>Monitoramento centralizado de todos os instrumentos de transferência federal. Vigências, situação oficial, valores liberados e desempenho nos indicadores IDTRU-DL — tudo em tempo real, atualizado automaticamente via API do Portal da Transparência.</p>
+          <div class="hero-badges">
+            <div class="hero-badge"><i class="fa-solid fa-rotate"></i> Atualização automática diária</div>
+            <div class="hero-badge"><i class="fa-solid fa-shield-halved"></i> Dados oficiais CGU</div>
+            <div class="hero-badge"><i class="fa-solid fa-gauge-high"></i> IDTRU-DL Recebedores</div>
+          </div>
+        </div>
+        <div class="hero-right">
+          <div class="big-num" id="hero-tot">—</div>
+          <div class="big-label">instrumentos monitorados</div>
         </div>
       </div>
-      <div class="tw-inner" style="overflow-y:auto">
-        <table>
-          <thead>
-            <tr>
-              <th>Nº Instrumento</th>
-              <th>Objeto</th>
-              <th>Vigência</th>
-              <th>Suspensiva</th>
-              <th>Nº SEI</th>
-              <th>Dias</th>
-              <th>% Exec.</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody id="tbody">
-            <tr><td colspan="8" class="empty"><i class="fa-solid fa-rotate fa-spin" style="margin-right:8px;color:#94a3b8"></i>Buscando dados...</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
 
-  </div>
-</div>
+      <!-- STATUS GRID (clicável → abre painel completo filtrado) -->
+      <div class="status-grid">
+        <a class="st-card s-n" href="index.html">
+          <div class="st-lbl">Normal</div>
+          <div class="st-num" id="sn">—</div>
+          <div class="st-desc">&gt; 90 dias</div>
+        </a>
+        <a class="st-card s-al" href="index.html">
+          <div class="st-lbl">Alerta</div>
+          <div class="st-num" id="sa">—</div>
+          <div class="st-desc">60 – 90 dias</div>
+        </a>
+        <a class="st-card s-at" href="index.html">
+          <div class="st-lbl">Atenção</div>
+          <div class="st-num" id="sat">—</div>
+          <div class="st-desc">30 – 60 dias</div>
+        </a>
+        <a class="st-card s-c" href="index.html">
+          <div class="st-lbl">Crítico</div>
+          <div class="st-num" id="sc">—</div>
+          <div class="st-desc">&lt; 30 dias</div>
+        </a>
+        <a class="st-card s-v" href="index.html">
+          <div class="st-lbl">Vencido</div>
+          <div class="st-num" id="sv">—</div>
+          <div class="st-desc">Expirado</div>
+        </a>
+        <a class="st-card s-f" href="index.html">
+          <div class="st-lbl">Finalizado</div>
+          <div class="st-num" id="sf">—</div>
+          <div class="st-desc">Encerrado</div>
+        </a>
+      </div>
+
+      <!-- FISCALGOV PREVIEW -->
+      <div class="fg-card">
+        <div class="fg-card-head">
+          <div class="fg-card-title"><i class="fa-solid fa-camera"></i> FiscalGov · EX-01 — Instrumentos Aptos com Foto no APP</div>
+          <a class="fg-link" href="fiscalgov.html"><i class="fa-solid fa-arrow-up-right-from-square"></i> Ver painel completo</a>
+        </div>
+        <div class="fg-metrics">
+          <div class="fg-metric">
+            <div class="fg-val" id="fg-total">—</div>
+            <div class="fg-lbl">Vigentes</div>
+          </div>
+          <div class="fg-metric">
+            <div class="fg-val" id="fg-proj">—</div>
+            <div class="fg-lbl">Em projeto</div>
+          </div>
+          <div class="fg-metric fg-ok">
+            <div class="fg-val" id="fg-ok">—</div>
+            <div class="fg-lbl">Aptos c/ foto ✅</div>
+          </div>
+          <div class="fg-metric fg-nok">
+            <div class="fg-val" id="fg-nok">—</div>
+            <div class="fg-lbl">Aptos sem foto ❌</div>
+          </div>
+        </div>
+        <div class="fg-prog-wrap">
+          <div class="fg-prog-lbl">Progresso EX-01 (aptos com foto ÷ total aptos) <span id="fg-pct">—</span></div>
+          <div class="fg-track">
+            <div class="fg-fill" id="fg-bar" style="width:0%"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- QUICK ACCESS PANELS -->
+      <div class="panels-label"><i class="fa-solid fa-grip"></i> Acesso rápido aos painéis</div>
+      <div class="panels-grid">
+
+        <!-- Painel Completo -->
+        <a class="panel-card pc-blue" href="index.html">
+          <div style="display:flex;align-items:center;gap:12px">
+            <div class="pc-icon-wrap"><i class="fa-solid fa-table-list"></i></div>
+            <div>
+              <div class="pc-title">Painel Completo</div>
+              <div class="pc-desc">Tabela detalhada com todos os instrumentos, filtros por status, vigências, valores e SEI.</div>
+            </div>
+          </div>
+          <div class="pc-footer">
+            <div class="pc-kpi">
+              <strong id="pc-tot">—</strong>
+              <span>instrumentos</span>
+            </div>
+            <div class="pc-kpi">
+              <strong id="pc-lib" style="font-size:16px">—</strong>
+              <span>total liberado</span>
+            </div>
+            <div class="pc-cta">Abrir <i class="fa-solid fa-arrow-right"></i></div>
+          </div>
+        </a>
+
+        <!-- FiscalGov -->
+        <a class="panel-card pc-green" href="fiscalgov.html">
+          <div style="display:flex;align-items:center;gap:12px">
+            <div class="pc-icon-wrap"><i class="fa-solid fa-camera"></i></div>
+            <div>
+              <div class="pc-title">FiscalGov · EX-01</div>
+              <div class="pc-desc">Quais instrumentos aptos (com obra iniciada) já enviaram foto georreferenciada pelo APP.</div>
+            </div>
+          </div>
+          <div class="pc-footer">
+            <div class="pc-kpi">
+              <strong id="pc-fg-pct" style="color:var(--green)">—</strong>
+              <span>% com foto</span>
+            </div>
+            <div class="pc-kpi">
+              <strong id="pc-fg-nok" style="color:var(--red)">—</strong>
+              <span>pendentes</span>
+            </div>
+            <div class="pc-cta" style="color:var(--green)">Abrir <i class="fa-solid fa-arrow-right"></i></div>
+          </div>
+        </a>
+
+        <!-- Vigências (portal) -->
+        <a class="panel-card pc-amber" href="index.html">
+          <div style="display:flex;align-items:center;gap:12px">
+            <div class="pc-icon-wrap"><i class="fa-solid fa-clock-rotate-left"></i></div>
+            <div>
+              <div class="pc-title">Monitoramento de Vigências</div>
+              <div class="pc-desc">Painel focado em prazos: críticos, atenção, alertas e suspensivas.</div>
+            </div>
+          </div>
+          <div class="pc-footer">
+            <div class="pc-kpi">
+              <strong id="pc-crit" style="color:#c2410c">—</strong>
+              <span>críticos</span>
+            </div>
+            <div class="pc-kpi">
+              <strong id="pc-venc" style="color:var(--red)">—</strong>
+              <span>vencidos</span>
+            </div>
+            <div class="pc-cta" style="color:var(--amber)">Abrir <i class="fa-solid fa-arrow-right"></i></div>
+          </div>
+        </a>
+
+      </div><!-- /panels-grid -->
+
+    </div><!-- /scroll -->
+  </div><!-- /content -->
+</div><!-- /body -->
 
 <script>
-/* ── zero template literals — compatível com todos os navegadores ── */
 var USUARIO = "Ruan-Vitor", REPO = "painel-idepi";
-var dados = [], filtro = "all";
 
 function parseDateBR(s) {
   if (!s) return null;
   s = String(s).trim();
   var m = s.match(/^(\d{2})\/(\d{2})\/(\d{4})$/);
-  if (m) return new Date(m[3] + "-" + m[2] + "-" + m[1]);
+  if (m) return new Date(m[3]+"-"+m[2]+"-"+m[1]);
   m = s.match(/^(\d{4})-(\d{2})-(\d{2})/);
-  if (m) return new Date(m[1] + "-" + m[2] + "-" + m[3]);
+  if (m) return new Date(m[1]+"-"+m[2]+"-"+m[3]);
   return null;
 }
 
-function normSit(s) {
-  return (s || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
-}
+function normSit(s){ return (s||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase(); }
 
 function calcSt(c) {
-  var sit = normSit(c.situacao || "");
-  if (/prestacao\s*de\s*contas|finaliz|concluido|encerrad|rescindid|inadimplent/.test(sit)) {
-    return { st: "finalizado", dias: null, sus: false };
-  }
-  var hoje = new Date();
-  hoje.setHours(0, 0, 0, 0);
+  var sit = normSit(c.situacao||"");
+  if (/prestacao\s*de\s*contas|finaliz|concluido|encerrad|rescindid|inadimplent/.test(sit))
+    return { st:"finalizado", dias:null };
+  var hoje = new Date(); hoje.setHours(0,0,0,0);
   var dVig = parseDateBR(c.vigencia_fmt || c.vigencia);
   var dSus = parseDateBR(c.vigencia_suspensiva);
-  var dataEf = dVig, sus = false;
-  if (dSus && (!dVig || dSus <= dVig)) { dataEf = dSus; sus = true; }
-  if (!dataEf) return { st: "finalizado", dias: null, sus: false };
-  var dias = Math.round((dataEf - hoje) / 86400000);
+  var dataEf = dVig;
+  if (dSus && (!dVig || dSus <= dVig)) dataEf = dSus;
+  if (!dataEf) return { st:"finalizado", dias:null };
+  var dias = Math.round((dataEf - hoje)/86400000);
   var st = dias < 0 ? "vencido" : dias <= 30 ? "critico" : dias <= 60 ? "atencao" : dias <= 90 ? "alerta" : "normal";
-  return { st: st, dias: dias, sus: sus };
+  return { st:st, dias:dias };
 }
 
-function fmtDias(dias, st) {
-  if (dias === null) return '<span class="days-done">\u2014</span>';
-  if (st === "vencido") return '<span class="days-over">' + Math.abs(dias) + "d atraso</span>";
-  if (st === "critico") return '<span class="days-crit">' + dias + "d</span>";
-  if (st === "atencao") return '<span class="days-warn">' + dias + "d</span>";
-  return '<span class="days-ok">' + dias + "d</span>";
+function isFinalizado(c) {
+  var sit = normSit(c.situacao||"");
+  return /prestacao\s*de\s*contas|finaliz|concluido|encerrad|rescindid|inadimplent/.test(sit);
+}
+function temMedicao(c) { return String(c.medicao||c.col_p||"").trim().toUpperCase().startsWith("SIM"); }
+function temPagamento(c){ return String(c.pagamento||c.col_q||"").trim().toUpperCase().startsWith("SIM"); }
+function isApto(c){ return !isFinalizado(c) && (temMedicao(c)||temPagamento(c)); }
+function isProjeto(c){ return !isFinalizado(c) && !temMedicao(c) && !temPagamento(c); }
+function temFoto(c){
+  var v = String(c.foto_app||c.rel_fotografico||c.col_o||"").trim().toUpperCase();
+  if(!v||v.startsWith("NÃO")||v.startsWith("NAO")||v==="ERRO"||v==="NÃO ENCONTRADO"||v==="NAO_ENCONTRADO") return false;
+  return v.startsWith("SIM");
 }
 
-var BG = { normal:"b-n", alerta:"b-a", atencao:"b-at", critico:"b-c", vencido:"b-v", finalizado:"b-f" };
-var LB = { normal:"Normal", alerta:"Alerta", atencao:"Aten\u00e7\u00e3o", critico:"Cr\u00edtico", vencido:"Vencido", finalizado:"Finalizado" };
-
-function render() {
-  var rows = [];
-  for (var i = 0; i < dados.length; i++) {
-    if (filtro === "all" || dados[i]._st === filtro) rows.push(dados[i]);
-  }
-  rows.sort(function(a, b) {
-    var o = { critico:0, vencido:1, atencao:2, alerta:3, normal:4, finalizado:5 };
-    var oa = (o[a._st] !== undefined ? o[a._st] : 9);
-    var ob = (o[b._st] !== undefined ? o[b._st] : 9);
-    if (oa !== ob) return oa - ob;
-    var da = (a._dias !== null && a._dias !== undefined ? a._dias : 9999);
-    var db = (b._dias !== null && b._dias !== undefined ? b._dias : 9999);
-    return da - db;
-  });
-
-  document.getElementById("tw-info").textContent = rows.length + " instrumento(s) exibido(s)";
-
-  if (!rows.length) {
-    document.getElementById("tbody").innerHTML = '<tr><td colspan="8" class="empty">Nenhum resultado.</td></tr>';
-    return;
-  }
-
-  var html = "";
-  for (var j = 0; j < rows.length; j++) {
-    var r = rows[j];
-    var susHtml = r.vigencia_suspensiva
-      ? '<span class="sus-tag"><i class="fa-solid fa-hourglass-half" style="font-size:9px;margin-right:3px"></i>' + r.vigencia_suspensiva + "</span>"
-      : '<span style="color:#c0cbd8;font-size:11px;">\u2014</span>';
-    var numero  = r.numero  || "\u2014";
-    var objeto  = r.objeto  || "\u2014";
-    var vigFmt  = r.vigencia_fmt || r.vigencia || "\u2014";
-    var pct     = r.pct_exec || "\u2014";
-    var bgCl    = BG[r._st] || "b-f";
-    var lbTxt   = (r._sus ? "\u26a0 SUSP \u00b7 " : "") + (LB[r._st] || r._st);
-
-    var seiHtml = r.sei
-      ? '<span style="font-family:monospace;font-size:11px;color:#1a4a8a;font-weight:600">' + r.sei + '</span>'
-      : '<span style="color:#c0cbd8;font-size:11px;">\u2014</span>';
-
-    html += "<tr>";
-    html += "<td><span class=\"num-link\">" + numero + "</span></td>";
-    html += "<td><div class=\"obj-cell\" title=\"" + objeto.replace(/"/g, "'") + "\">" + objeto + "</div></td>";
-    html += "<td style=\"white-space:nowrap;color:#5a6a82;font-size:12px\">" + vigFmt + "</td>";
-    html += "<td>" + susHtml + "</td>";
-    html += "<td>" + seiHtml + "</td>";
-    html += "<td>" + fmtDias(r._dias, r._st) + "</td>";
-    html += "<td style=\"color:#5a6a82;font-size:12px\">" + pct + "</td>";
-    html += "<td><span class=\"badge " + bgCl + "\">" + lbTxt + "</span></td>";
-    html += "</tr>";
-  }
-  document.getElementById("tbody").innerHTML = html;
-}
-
-function fil(f) { filtro = f; render(); }
-
-var url = "https://raw.githubusercontent.com/" + USUARIO + "/" + REPO + "/main/dados.json?t=" + Date.now();
+var url = "https://raw.githubusercontent.com/"+USUARIO+"/"+REPO+"/main/dados.json?t="+Date.now();
 fetch(url)
-  .then(function(r) { if (!r.ok) throw new Error("HTTP " + r.status); return r.json(); })
-  .then(function(j) {
-    var ts = j.gerado_em || "\u2014";
-    document.getElementById("hd-ts").innerHTML = "Atualizado<br>" + ts;
+  .then(function(r){ if(!r.ok) throw new Error("HTTP "+r.status); return r.json(); })
+  .then(function(j){
+    document.getElementById("hd-ts").innerHTML = "Atualizado<br>"+(j.gerado_em||"—");
 
-    dados = [];
     var conv = j.convenios || [];
-    for (var i = 0; i < conv.length; i++) {
-      var res = calcSt(conv[i]);
-      var item = {};
-      for (var k in conv[i]) { if (conv[i].hasOwnProperty(k)) item[k] = conv[i][k]; }
-      item._st  = res.st;
-      item._dias = res.dias;
-      item._sus = res.sus;
-      dados.push(item);
-    }
-
     var ct = { normal:0, alerta:0, atencao:0, critico:0, vencido:0, finalizado:0 };
     var lib = 0;
-    for (var i = 0; i < dados.length; i++) {
-      var d = dados[i];
-      if (ct[d._st] !== undefined) ct[d._st]++;
-      var vStr = (d.v_liberado || "").replace(/\./g, "").replace(",", ".");
+    var vigentes = [], finalizados = 0;
+
+    for (var i=0; i<conv.length; i++) {
+      var c = conv[i];
+      var res = calcSt(c);
+      if (ct[res.st] !== undefined) ct[res.st]++;
+      var vStr = (c.v_liberado||"").replace(/\./g,"").replace(",",".");
       var v = parseFloat(vStr);
       if (!isNaN(v)) lib += v;
+      if (!isFinalizado(c)) vigentes.push(c);
     }
 
-    var keys = ["n","a","at","c","v","f"];
-    var stKeys = ["normal","alerta","atencao","critico","vencido","finalizado"];
-    for (var i = 0; i < keys.length; i++) {
-      document.getElementById("s" + keys[i]).textContent = ct[stKeys[i]];
-    }
-    document.getElementById("hs-tot").textContent = dados.length;
-    document.getElementById("hs-lib").textContent = lib > 0
-      ? "R$" + (lib / 1e6).toFixed(1).replace(".", ",") + "M"
-      : "\u2014";
+    var totalInst = conv.length;
+    document.getElementById("hs-tot").textContent   = totalInst;
+    document.getElementById("hero-tot").textContent = totalInst;
+    document.getElementById("pc-tot").textContent   = totalInst;
+    document.getElementById("hs-lib").textContent   = lib > 0
+      ? "R$"+(lib/1e6).toFixed(1).replace(".",",")+  "M" : "—";
+    document.getElementById("pc-lib").textContent   = lib > 0
+      ? "R$"+(lib/1e6).toFixed(1).replace(".",",")+"M" : "—";
 
-    render();
+    document.getElementById("sn").textContent  = ct.normal;
+    document.getElementById("sa").textContent  = ct.alerta;
+    document.getElementById("sat").textContent = ct.atencao;
+    document.getElementById("sc").textContent  = ct.critico;
+    document.getElementById("sv").textContent  = ct.vencido;
+    document.getElementById("sf").textContent  = ct.finalizado;
+    document.getElementById("pc-crit").textContent = ct.critico;
+    document.getElementById("pc-venc").textContent = ct.vencido;
+
+    // FiscalGov metrics
+    var totalVig = vigentes.length;
+    var emProj   = vigentes.filter(function(c){ return isProjeto(c); }).length;
+    var aptos    = vigentes.filter(function(c){ return isApto(c); }).length;
+    var comFoto  = vigentes.filter(function(c){ return isApto(c) && temFoto(c); }).length;
+    var semFoto  = aptos - comFoto;
+    var pct      = aptos > 0 ? Math.round(comFoto/aptos*100) : 0;
+
+    document.getElementById("fg-total").textContent = totalVig;
+    document.getElementById("fg-proj").textContent  = emProj;
+    document.getElementById("fg-ok").textContent    = comFoto;
+    document.getElementById("fg-nok").textContent   = semFoto;
+    document.getElementById("fg-pct").textContent   = pct+"%";
+    document.getElementById("fg-bar").style.width   = pct+"%";
+
+    document.getElementById("pc-fg-pct").textContent = pct+"%";
+    document.getElementById("pc-fg-nok").textContent = semFoto;
+
+    document.getElementById("overlay").classList.add("hide");
   })
-  .catch(function() {
-    document.getElementById("tbody").innerHTML = '<tr><td colspan="8" class="empty">Erro ao carregar dados. Verifique se o Python j\u00e1 rodou.</td></tr>';
-    document.getElementById("tw-info").textContent = "Erro ao carregar";
+  .catch(function(){
+    document.getElementById("overlay").classList.add("hide");
   });
 </script>
 
-<!-- ── PROTEÇÃO POR SENHA ── -->
-<div id="lockscreen" style="position:fixed;inset:0;z-index:9999;background:#0a1628;display:flex;align-items:center;justify-content:center;">
+<!-- LOCKSCREEN -->
+<div id="lockscreen">
   <div style="background:#0f1f3d;border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:40px;width:340px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.5);">
-    <div style="width:52px;height:52px;border-radius:14px;background:linear-gradient(135deg,#1a4a8a,#0d6e4a);display:flex;align-items:center;justify-content:center;font-size:22px;color:#fff;margin:0 auto 16px;">
-      <i class="fa-solid fa-lock"></i>
-    </div>
+    <div style="width:52px;height:52px;border-radius:14px;background:linear-gradient(135deg,#1a4a8a,#0d6e4a);display:flex;align-items:center;justify-content:justify-content;justify-content:center;font-size:22px;color:#fff;margin:0 auto 16px;"><i class="fa-solid fa-lock"></i></div>
     <div style="font-family:'Sora',sans-serif;font-size:17px;font-weight:700;color:#fff;margin-bottom:4px;">IDEPI — Convênios Federais</div>
     <div style="font-size:12px;color:rgba(255,255,255,.4);margin-bottom:24px;">Acesso restrito. Digite a senha para continuar.</div>
     <input id="pwd-input" type="password" placeholder="Senha de acesso"
       style="width:100%;padding:11px 16px;border-radius:8px;border:1.5px solid rgba(255,255,255,.15);background:rgba(255,255,255,.06);color:#fff;font-size:14px;outline:none;margin-bottom:10px;"
-      onkeydown="if(event.key==='Enter')checkPwd()"
-    />
+      onkeydown="if(event.key==='Enter')checkPwd()"/>
     <div id="pwd-err" style="font-size:12px;color:#f87171;min-height:16px;margin-bottom:10px;"></div>
-    <button onclick="checkPwd()" style="width:100%;padding:11px;border-radius:8px;border:none;background:#1a3a6e;color:#fff;font-size:14px;font-weight:600;cursor:pointer;">
-      Entrar
-    </button>
+    <button onclick="checkPwd()" style="width:100%;padding:11px;border-radius:8px;border:none;background:#1a3a6e;color:#fff;font-size:14px;font-weight:600;cursor:pointer;">Entrar</button>
   </div>
 </div>
-
 <script>
-/* ── SENHA — altere o valor abaixo para mudar a senha ── */
 var SENHA = "idepi2026";
-/* ─────────────────────────────────────────────────────── */
-if (sessionStorage.getItem("idepi_auth") === "1") {
-  document.getElementById("lockscreen").style.display = "none";
-}
-function checkPwd() {
-  var v = document.getElementById("pwd-input").value;
-  if (v === SENHA) {
-    sessionStorage.setItem("idepi_auth", "1");
-    document.getElementById("lockscreen").style.display = "none";
-  } else {
-    document.getElementById("pwd-err").textContent = "Senha incorreta. Tente novamente.";
-    document.getElementById("pwd-input").value = "";
-    document.getElementById("pwd-input").focus();
-  }
+if (sessionStorage.getItem("idepi_auth")==="1") document.getElementById("lockscreen").style.display="none";
+function checkPwd(){
+  var v=document.getElementById("pwd-input").value;
+  if(v===SENHA){sessionStorage.setItem("idepi_auth","1");document.getElementById("lockscreen").style.display="none";}
+  else{document.getElementById("pwd-err").textContent="Senha incorreta.";document.getElementById("pwd-input").value="";document.getElementById("pwd-input").focus();}
 }
 </script>
 </body>

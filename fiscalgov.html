@@ -307,6 +307,9 @@ tbody tr:hover td{background:#f5f9ff}
         <div class="srch">
           <i class="fa-solid fa-magnifying-glass"></i>
           <input type="text" id="busca" placeholder="Buscar por número ou objeto..." oninput="renderizar()">
+          <select id="fFiscal" onchange="renderizar()" style="border:none;outline:none;font-size:11.5px;color:var(--text);background:transparent;font-family:'DM Sans',sans-serif;cursor:pointer;max-width:160px">
+            <option value="">Todos os fiscais</option>
+          </select>
         </div>
         <div class="tbl-scroll">
           <table>
@@ -314,6 +317,7 @@ tbody tr:hover td{background:#f5f9ff}
               <tr>
                 <th>Nº Instrumento</th>
                 <th>Objeto</th>
+                <th>Fiscal</th>
                 <th>Vigência</th>
                 <th>Status Vigência</th>
                 <th>Medição</th>
@@ -407,16 +411,18 @@ function vigBadge(st, dias) {
 
 function renderizar() {
   var busca = (document.getElementById("busca").value||"").toLowerCase();
+  var fFisc = (document.getElementById("fFiscal").value||"").trim();
   var rows = todos.filter(function(c) {
     if (filtroAtual === "ok"   && !(c._apto && c._foto))    return false;
     if (filtroAtual === "nok"  && !(c._apto && !c._foto))   return false;
     if (filtroAtual === "proj" && !c._proj)                  return false;
     if (busca && !((c.numero||"").toLowerCase().includes(busca) || (c.objeto||"").toLowerCase().includes(busca))) return false;
+    if (fFisc && (c.fiscal||"").trim() !== fFisc)            return false;
     return true;
   });
 
   if (!rows.length) {
-    document.getElementById("tbody").innerHTML = '<tr><td colspan="9" class="empty-row">Nenhum instrumento encontrado.</td></tr>';
+    document.getElementById("tbody").innerHTML = '<tr><td colspan="10" class="empty-row">Nenhum instrumento encontrado.</td></tr>';
     return;
   }
 
@@ -473,6 +479,7 @@ function renderizar() {
     html += "<tr>";
     html += "<td><span class='num-cell'>"+num+"</span></td>";
     html += "<td><div class='obj-cell' title='"+obj.replace(/'/g,"&#39;")+"'>"+obj+"</div></td>";
+    html += "<td style='white-space:nowrap;font-size:11.5px;color:#3a4a5c'>"+(r.fiscal||'<span style="color:#b0bbc8">—</span>')+"</td>";
     html += "<td style='white-space:nowrap;color:#5a6a82;font-size:11.5px'>"+vigFmt+"</td>";
     html += "<td>"+vigBadge(r._st, r._dias)+"</td>";
     html += "<td>"+medBadge+"</td>";
@@ -539,12 +546,22 @@ fetch(url)
     document.getElementById("prog-bar").style.width  = pct+"%";
 
     document.getElementById("overlay").classList.add("hide");
+
+    // Popular select de Fiscal Responsável
+    var fiscais = {};
+    todos.forEach(function(c){ var f=(c.fiscal||"").trim(); if(f) fiscais[f]=1; });
+    var selFisc = document.getElementById("fFiscal");
+    selFisc.innerHTML = '<option value="">Todos os fiscais</option>';
+    Object.keys(fiscais).sort().forEach(function(f){
+      var opt = document.createElement("option"); opt.value=f; opt.textContent=f; selFisc.appendChild(opt);
+    });
+
     renderizar();
   })
   .catch(function(e){
     document.getElementById("overlay").classList.add("hide");
     document.getElementById("tbody").innerHTML =
-      '<tr><td colspan="9" class="empty-row"><i class="fa-solid fa-triangle-exclamation" style="color:#ef4444;margin-right:6px"></i>Erro ao carregar dados. Verifique se o Python já rodou e o arquivo dados.json está no GitHub.</td></tr>';
+      '<tr><td colspan="10" class="empty-row"><i class="fa-solid fa-triangle-exclamation" style="color:#ef4444;margin-right:6px"></i>Erro ao carregar dados. Verifique se o Python já rodou e o arquivo dados.json está no GitHub.</td></tr>';
   });
 </script>
 

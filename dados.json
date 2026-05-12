@@ -1,5 +1,5 @@
 {
-  "gerado_em": "12/05/2026 18:17",
+  "gerado_em": "12/05/2026 19:15",
   "total": 93,
   "convenios": [
     {
@@ -16,7 +16,11 @@
       "v_liberado": "390.000,00",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": ""
+      "prestacao": "",
+      "foto_app": "NÃO ❌",
+      "medicao": "NÃO",
+      "pagamento": "NÃO",
+      "apto_fiscalgov": "NÃO ⬜"
     },
     {
       "numero": "889040",
@@ -32,7 +36,11 @@
       "v_liberado": "5.730.000,00",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": ""
+      "prestacao": "",
+      "foto_app": "NÃO ❌",
+      "medicao": "SIM",
+      "pagamento": "SIM",
+      "apto_fiscalgov": "SIM ✅"
     },
     {
       "numero": "894024",
@@ -48,7 +56,11 @@
       "v_liberado": "8.297.684,62",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": ""
+      "prestacao": "",
+      "foto_app": "SIM (211 fotos)",
+      "medicao": "NÃO",
+      "pagamento": "SIM",
+      "apto_fiscalgov": "SIM ✅"
     },
     {
       "numero": "897425",
@@ -64,7 +76,11 @@
       "v_liberado": "2.387.500,00",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": ""
+      "prestacao": "",
+      "foto_app": "SIM (7 fotos)",
+      "medicao": "NÃO",
+      "pagamento": "SIM",
+      "apto_fiscalgov": "SIM ✅"
     },
     {
       "numero": "897099",
@@ -80,7 +96,11 @@
       "v_liberado": "2.387.500,00",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": ""
+      "prestacao": "",
+      "foto_app": "NÃO ❌",
+      "medicao": "NÃO",
+      "pagamento": "SIM",
+      "apto_fiscalgov": "SIM ✅"
     },
     {
       "numero": "900822",
@@ -96,7 +116,11 @@
       "v_liberado": "10.610.025,00",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": ""
+      "prestacao": "",
+      "foto_app": "NÃO ❌",
+      "medicao": "SIM",
+      "pagamento": "SIM",
+      "apto_fiscalgov": "SIM ✅"
     },
     {
       "numero": "902680",
@@ -112,7 +136,11 @@
       "v_liberado": "4.591.845,00",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": ""
+      "prestacao": "",
+      "foto_app": "NÃO ❌",
+      "medicao": "SIM",
+      "pagamento": "SIM",
+      "apto_fiscalgov": "SIM ✅"
     },
     {
       "numero": "906442",
@@ -128,7 +156,11 @@
       "v_liberado": "384.205,00",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": ""
+      "prestacao": "",
+      "foto_app": "NÃO ❌",
+      "medicao": "SIM",
+      "pagamento": "SIM",
+      "apto_fiscalgov": "SIM ✅"
     },
     {
       "numero": "916598",
@@ -144,7 +176,11 @@
       "v_liberado": "345.377,48",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": ""
+      "prestacao": "",
+      "foto_app": "SIM (29 fotos)",
+      "medicao": "SIM",
+      "pagamento": "SIM",
+      "apto_fiscalgov": "SIM ✅"
     },
     {
       "numero": "917537",
@@ -160,7 +196,11 @@
       "v_liberado": "16.088.906,00",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": ""
+      "prestacao": "",
+      "foto_app": "SIM (9 fotos)",
+      "medicao": "SIM",
+      "pagamento": "SIM",
+      "apto_fiscalgov": "SIM ✅"
     },
     {
       "numero": "902704",
@@ -176,7 +216,11 @@
       "v_liberado": "477.500,00",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": ""
+      "prestacao": "",
+      "foto_app": "",
+      "medicao": "",
+      "pagamento": "",
+      "apto_fiscalgov": ""
     },
     {
       "numero": "902705",
@@ -192,7 +236,11 @@
       "v_liberado": "477.500,00",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": ""
+      "prestacao": "",
+      "foto_app": "",
+      "medicao": "",
+      "pagamento": "",
+      "apto_fiscalgov": ""
     },
     {
       "numero": "838065",
@@ -208,7 +256,11 @@
       "v_liberado": "2.283.948,69",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": ""
+      "prestacao": "",
+      "foto_app": "SIM (56 fotos)",
+      "medicao": "NÃO",
+      "pagamento": "SIM",
+      "apto_fiscalgov": "SIM ✅"
     },
     {
       "numero": "907472",
@@ -224,7 +276,11 @@
       "v_liberado": "",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": ""
+      "prestacao": "",
+      "foto_app": "NÃO ❌",
+      "medicao": "NÃO",
+      "pagamento": "NÃO",
+      "apto_fiscalgov": "NÃO ⬜"
     },
     {
       "numero": "907471",
@@ -240,7 +296,11 @@
       "v_liberado": "",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": ""
+      "prestacao": "",
+      "foto_app": "NÃO ❌",
+      "medicao": "NÃO",
+      "pagamento": "NÃO",
+      "apto_fiscalgov": "NÃO ⬜"
     },
     {
       "numero": "907470",
@@ -256,7 +316,11 @@
       "v_liberado": "",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": ""
+      "prestacao": "",
+      "foto_app": "NÃO ❌",
+      "medicao": "NÃO",
+      "pagamento": "NÃO",
+      "apto_fiscalgov": "NÃO ⬜"
     },
     {
       "numero": "907469",
@@ -272,7 +336,11 @@
       "v_liberado": "",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": ""
+      "prestacao": "",
+      "foto_app": "NÃO ❌",
+      "medicao": "NÃO",
+      "pagamento": "NÃO",
+      "apto_fiscalgov": "NÃO ⬜"
     },
     {
       "numero": "907008",
@@ -288,7 +356,11 @@
       "v_liberado": "196.670,00",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": ""
+      "prestacao": "",
+      "foto_app": "NÃO ❌",
+      "medicao": "NÃO",
+      "pagamento": "NÃO",
+      "apto_fiscalgov": "NÃO ⬜"
     },
     {
       "numero": "907015",
@@ -304,7 +376,11 @@
       "v_liberado": "",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": ""
+      "prestacao": "",
+      "foto_app": "NÃO ❌",
+      "medicao": "NÃO",
+      "pagamento": "NÃO",
+      "apto_fiscalgov": "NÃO ⬜"
     },
     {
       "numero": "907031",
@@ -320,7 +396,11 @@
       "v_liberado": "",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": ""
+      "prestacao": "",
+      "foto_app": "NÃO ❌",
+      "medicao": "NÃO",
+      "pagamento": "NÃO",
+      "apto_fiscalgov": "NÃO ⬜"
     },
     {
       "numero": "907032",
@@ -336,7 +416,11 @@
       "v_liberado": "196.784,75",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": ""
+      "prestacao": "",
+      "foto_app": "NÃO ❌",
+      "medicao": "NÃO",
+      "pagamento": "NÃO",
+      "apto_fiscalgov": "NÃO ⬜"
     },
     {
       "numero": "907033",
@@ -352,7 +436,11 @@
       "v_liberado": "",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": ""
+      "prestacao": "",
+      "foto_app": "NÃO ❌",
+      "medicao": "NÃO",
+      "pagamento": "NÃO",
+      "apto_fiscalgov": "NÃO ⬜"
     },
     {
       "numero": "907035",
@@ -368,7 +456,11 @@
       "v_liberado": "190.761,16",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": ""
+      "prestacao": "",
+      "foto_app": "NÃO ❌",
+      "medicao": "NÃO",
+      "pagamento": "NÃO",
+      "apto_fiscalgov": "NÃO ⬜"
     },
     {
       "numero": "907037",
@@ -384,7 +476,11 @@
       "v_liberado": "198.634,77",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": ""
+      "prestacao": "",
+      "foto_app": "NÃO ❌",
+      "medicao": "NÃO",
+      "pagamento": "SIM",
+      "apto_fiscalgov": "SIM ✅"
     },
     {
       "numero": "907038",
@@ -400,7 +496,11 @@
       "v_liberado": "",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": ""
+      "prestacao": "",
+      "foto_app": "NÃO ❌",
+      "medicao": "NÃO",
+      "pagamento": "NÃO",
+      "apto_fiscalgov": "NÃO ⬜"
     },
     {
       "numero": "907040",
@@ -416,7 +516,11 @@
       "v_liberado": "",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": ""
+      "prestacao": "",
+      "foto_app": "NÃO ❌",
+      "medicao": "NÃO",
+      "pagamento": "NÃO",
+      "apto_fiscalgov": "NÃO ⬜"
     },
     {
       "numero": "907045",
@@ -432,7 +536,11 @@
       "v_liberado": "196.670,00",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": ""
+      "prestacao": "",
+      "foto_app": "NÃO ❌",
+      "medicao": "NÃO",
+      "pagamento": "NÃO",
+      "apto_fiscalgov": "NÃO ⬜"
     },
     {
       "numero": "907050",
@@ -448,7 +556,11 @@
       "v_liberado": "196.265,04",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": ""
+      "prestacao": "",
+      "foto_app": "SIM (6 fotos)",
+      "medicao": "NÃO",
+      "pagamento": "NÃO",
+      "apto_fiscalgov": "NÃO ⬜"
     },
     {
       "numero": "737058",
@@ -464,7 +576,11 @@
       "v_liberado": "96.864.287,00",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": ""
+      "prestacao": "",
+      "foto_app": "NÃO ❌",
+      "medicao": "NÃO",
+      "pagamento": "NÃO",
+      "apto_fiscalgov": "NÃO ⬜"
     },
     {
       "numero": "887234",
@@ -480,7 +596,11 @@
       "v_liberado": "760.000,00",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": ""
+      "prestacao": "",
+      "foto_app": "NÃO ❌",
+      "medicao": "NÃO",
+      "pagamento": "SIM",
+      "apto_fiscalgov": "SIM ✅"
     },
     {
       "numero": "902401",
@@ -496,7 +616,11 @@
       "v_liberado": "1.127.664,00",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": ""
+      "prestacao": "",
+      "foto_app": "NÃO ❌",
+      "medicao": "NÃO",
+      "pagamento": "SIM",
+      "apto_fiscalgov": "SIM ✅"
     },
     {
       "numero": "899533",
@@ -512,7 +636,11 @@
       "v_liberado": "",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": ""
+      "prestacao": "",
+      "foto_app": "NÃO ❌",
+      "medicao": "NÃO",
+      "pagamento": "NÃO",
+      "apto_fiscalgov": "NÃO ⬜"
     },
     {
       "numero": "900838",
@@ -528,7 +656,11 @@
       "v_liberado": "469.860,00",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": ""
+      "prestacao": "",
+      "foto_app": "",
+      "medicao": "",
+      "pagamento": "",
+      "apto_fiscalgov": ""
     },
     {
       "numero": "900837",
@@ -544,7 +676,11 @@
       "v_liberado": "469.700,00",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": ""
+      "prestacao": "",
+      "foto_app": "NÃO ❌",
+      "medicao": "SIM",
+      "pagamento": "SIM",
+      "apto_fiscalgov": "SIM ✅"
     },
     {
       "numero": "900840",
@@ -560,7 +696,11 @@
       "v_liberado": "477.499,74",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": ""
+      "prestacao": "",
+      "foto_app": "NÃO ❌",
+      "medicao": "SIM",
+      "pagamento": "SIM",
+      "apto_fiscalgov": "SIM ✅"
     },
     {
       "numero": "899540",
@@ -576,7 +716,11 @@
       "v_liberado": "469.860,00",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": ""
+      "prestacao": "",
+      "foto_app": "",
+      "medicao": "",
+      "pagamento": "",
+      "apto_fiscalgov": ""
     },
     {
       "numero": "899530",
@@ -592,7 +736,11 @@
       "v_liberado": "469.700,00",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": ""
+      "prestacao": "",
+      "foto_app": "NÃO ❌",
+      "medicao": "NÃO",
+      "pagamento": "NÃO",
+      "apto_fiscalgov": "NÃO ⬜"
     },
     {
       "numero": "847194",
@@ -608,7 +756,11 @@
       "v_liberado": "",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": ""
+      "prestacao": "",
+      "foto_app": "NÃO ❌",
+      "medicao": "NÃO",
+      "pagamento": "NÃO",
+      "apto_fiscalgov": "NÃO ⬜"
     },
     {
       "numero": "920090",
@@ -624,7 +776,11 @@
       "v_liberado": "290.032,94",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": ""
+      "prestacao": "",
+      "foto_app": "NÃO ❌",
+      "medicao": "SIM",
+      "pagamento": "SIM",
+      "apto_fiscalgov": "SIM ✅"
     },
     {
       "numero": "915500",
@@ -640,7 +796,11 @@
       "v_liberado": "10.985.611,98",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": ""
+      "prestacao": "",
+      "foto_app": "SIM (42 fotos)",
+      "medicao": "SIM",
+      "pagamento": "SIM",
+      "apto_fiscalgov": "SIM ✅"
     },
     {
       "numero": "946262",
@@ -656,7 +816,11 @@
       "v_liberado": "1.337.000,00",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": ""
+      "prestacao": "",
+      "foto_app": "NÃO ❌",
+      "medicao": "SIM",
+      "pagamento": "SIM",
+      "apto_fiscalgov": "SIM ✅"
     },
     {
       "numero": "947350",
@@ -672,7 +836,11 @@
       "v_liberado": "626.453,00",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": ""
+      "prestacao": "",
+      "foto_app": "SIM (16 fotos)",
+      "medicao": "SIM",
+      "pagamento": "SIM",
+      "apto_fiscalgov": "SIM ✅"
     },
     {
       "numero": "946258",
@@ -688,7 +856,11 @@
       "v_liberado": "668.500,00",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": ""
+      "prestacao": "",
+      "foto_app": "SIM (40 fotos)",
+      "medicao": "NÃO",
+      "pagamento": "NÃO",
+      "apto_fiscalgov": "NÃO ⬜"
     },
     {
       "numero": "946257",
@@ -704,7 +876,11 @@
       "v_liberado": "286.500,00",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": ""
+      "prestacao": "",
+      "foto_app": "NÃO ❌",
+      "medicao": "SIM",
+      "pagamento": "SIM",
+      "apto_fiscalgov": "SIM ✅"
     },
     {
       "numero": "946261",
@@ -720,7 +896,11 @@
       "v_liberado": "955.000,00",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": ""
+      "prestacao": "",
+      "foto_app": "",
+      "medicao": "",
+      "pagamento": "",
+      "apto_fiscalgov": ""
     },
     {
       "numero": "946260",
@@ -736,7 +916,11 @@
       "v_liberado": "955.000,00",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": ""
+      "prestacao": "",
+      "foto_app": "SIM (19 fotos)",
+      "medicao": "SIM",
+      "pagamento": "SIM",
+      "apto_fiscalgov": "SIM ✅"
     },
     {
       "numero": "946259",
@@ -752,7 +936,11 @@
       "v_liberado": "679.873,10",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": ""
+      "prestacao": "",
+      "foto_app": "",
+      "medicao": "",
+      "pagamento": "",
+      "apto_fiscalgov": ""
     },
     {
       "numero": "947533",
@@ -768,7 +956,11 @@
       "v_liberado": "1.421.126,91",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": ""
+      "prestacao": "",
+      "foto_app": "SIM (6 fotos)",
+      "medicao": "NÃO",
+      "pagamento": "NÃO",
+      "apto_fiscalgov": "NÃO ⬜"
     },
     {
       "numero": "947106",
@@ -784,7 +976,11 @@
       "v_liberado": "573.000,00",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": ""
+      "prestacao": "",
+      "foto_app": "",
+      "medicao": "",
+      "pagamento": "",
+      "apto_fiscalgov": ""
     },
     {
       "numero": "947530",
@@ -800,7 +996,11 @@
       "v_liberado": "578.003,00",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": ""
+      "prestacao": "",
+      "foto_app": "SIM (26 fotos)",
+      "medicao": "SIM",
+      "pagamento": "SIM",
+      "apto_fiscalgov": "SIM ✅"
     },
     {
       "numero": "947531",
@@ -816,7 +1016,11 @@
       "v_liberado": "578.003,00",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": ""
+      "prestacao": "",
+      "foto_app": "SIM (39 fotos)",
+      "medicao": "SIM",
+      "pagamento": "SIM",
+      "apto_fiscalgov": "SIM ✅"
     },
     {
       "numero": "947532",
@@ -832,7 +1036,11 @@
       "v_liberado": "955.000,00",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": ""
+      "prestacao": "",
+      "foto_app": "",
+      "medicao": "",
+      "pagamento": "",
+      "apto_fiscalgov": ""
     },
     {
       "numero": "946801",
@@ -848,7 +1056,11 @@
       "v_liberado": "",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": ""
+      "prestacao": "",
+      "foto_app": "NÃO ❌",
+      "medicao": "NÃO",
+      "pagamento": "NÃO",
+      "apto_fiscalgov": "NÃO ⬜"
     },
     {
       "numero": "946378",
@@ -864,7 +1076,11 @@
       "v_liberado": "",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": ""
+      "prestacao": "",
+      "foto_app": "NÃO ❌",
+      "medicao": "NÃO",
+      "pagamento": "NÃO",
+      "apto_fiscalgov": "NÃO ⬜"
     },
     {
       "numero": "947580",
@@ -880,7 +1096,11 @@
       "v_liberado": "1.441.714,00",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": ""
+      "prestacao": "",
+      "foto_app": "NÃO ❌",
+      "medicao": "NÃO",
+      "pagamento": "NÃO",
+      "apto_fiscalgov": "NÃO ⬜"
     },
     {
       "numero": "953168",
@@ -896,7 +1116,11 @@
       "v_liberado": "74.650.000,00",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": ""
+      "prestacao": "",
+      "foto_app": "SIM (85 fotos)",
+      "medicao": "SIM",
+      "pagamento": "SIM",
+      "apto_fiscalgov": "SIM ✅"
     },
     {
       "numero": "947927",
@@ -912,7 +1136,11 @@
       "v_liberado": "626.453,00",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": ""
+      "prestacao": "",
+      "foto_app": "",
+      "medicao": "",
+      "pagamento": "",
+      "apto_fiscalgov": ""
     },
     {
       "numero": "946039",
@@ -928,7 +1156,11 @@
       "v_liberado": "633.236,00",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": ""
+      "prestacao": "",
+      "foto_app": "SIM (17 fotos)",
+      "medicao": "SIM",
+      "pagamento": "SIM",
+      "apto_fiscalgov": "SIM ✅"
     },
     {
       "numero": "945650",
@@ -944,7 +1176,11 @@
       "v_liberado": "481.104,00",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": ""
+      "prestacao": "",
+      "foto_app": "NÃO ❌",
+      "medicao": "NÃO",
+      "pagamento": "NÃO",
+      "apto_fiscalgov": "NÃO ⬜"
     },
     {
       "numero": "947907",
@@ -960,7 +1196,11 @@
       "v_liberado": "571.220,00",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": ""
+      "prestacao": "",
+      "foto_app": "NÃO ❌",
+      "medicao": "NÃO",
+      "pagamento": "NÃO",
+      "apto_fiscalgov": "NÃO ⬜"
     },
     {
       "numero": "946738",
@@ -976,7 +1216,11 @@
       "v_liberado": "481.104,00",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": ""
+      "prestacao": "",
+      "foto_app": "NÃO ❌",
+      "medicao": "NÃO",
+      "pagamento": "NÃO",
+      "apto_fiscalgov": "NÃO ⬜"
     },
     {
       "numero": "945158",
@@ -992,7 +1236,11 @@
       "v_liberado": "674.903,00",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": ""
+      "prestacao": "",
+      "foto_app": "SIM (3 fotos)",
+      "medicao": "SIM",
+      "pagamento": "NÃO",
+      "apto_fiscalgov": "SIM ✅"
     },
     {
       "numero": "947493",
@@ -1008,7 +1256,11 @@
       "v_liberado": "238.750,00",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": ""
+      "prestacao": "",
+      "foto_app": "SIM (9 fotos)",
+      "medicao": "SIM",
+      "pagamento": "SIM",
+      "apto_fiscalgov": "SIM ✅"
     },
     {
       "numero": "946367",
@@ -1024,7 +1276,11 @@
       "v_liberado": "477.500,00",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": ""
+      "prestacao": "",
+      "foto_app": "SIM (8 fotos)",
+      "medicao": "SIM",
+      "pagamento": "SIM",
+      "apto_fiscalgov": "SIM ✅"
     },
     {
       "numero": "951016",
@@ -1040,7 +1296,11 @@
       "v_liberado": "500.000,00",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": ""
+      "prestacao": "",
+      "foto_app": "SIM (18 fotos)",
+      "medicao": "SIM",
+      "pagamento": "SIM",
+      "apto_fiscalgov": "SIM ✅"
     },
     {
       "numero": "951018",
@@ -1056,7 +1316,11 @@
       "v_liberado": "286.500,00",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": ""
+      "prestacao": "",
+      "foto_app": "SIM (7 fotos)",
+      "medicao": "NÃO",
+      "pagamento": "NÃO",
+      "apto_fiscalgov": "NÃO ⬜"
     },
     {
       "numero": "951943",
@@ -1072,7 +1336,11 @@
       "v_liberado": "477.500,00",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": ""
+      "prestacao": "",
+      "foto_app": "",
+      "medicao": "",
+      "pagamento": "",
+      "apto_fiscalgov": ""
     },
     {
       "numero": "952006",
@@ -1088,7 +1356,11 @@
       "v_liberado": "402.993,00",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": ""
+      "prestacao": "",
+      "foto_app": "NÃO ❌",
+      "medicao": "SIM",
+      "pagamento": "SIM",
+      "apto_fiscalgov": "SIM ✅"
     },
     {
       "numero": "967173",
@@ -1104,7 +1376,11 @@
       "v_liberado": "",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": ""
+      "prestacao": "",
+      "foto_app": "NÃO ❌",
+      "medicao": "NÃO",
+      "pagamento": "NÃO",
+      "apto_fiscalgov": "NÃO ⬜"
     },
     {
       "numero": "967182",
@@ -1120,7 +1396,11 @@
       "v_liberado": "587.232,90",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": ""
+      "prestacao": "",
+      "foto_app": "NÃO ❌",
+      "medicao": "SIM",
+      "pagamento": "SIM",
+      "apto_fiscalgov": "SIM ✅"
     },
     {
       "numero": "945303",
@@ -1136,7 +1416,11 @@
       "v_liberado": "",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": ""
+      "prestacao": "",
+      "foto_app": "NÃO ❌",
+      "medicao": "NÃO",
+      "pagamento": "NÃO",
+      "apto_fiscalgov": "NÃO ⬜"
     },
     {
       "numero": "945299",
@@ -1152,7 +1436,11 @@
       "v_liberado": "",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": ""
+      "prestacao": "",
+      "foto_app": "NÃO ❌",
+      "medicao": "NÃO",
+      "pagamento": "NÃO",
+      "apto_fiscalgov": "NÃO ⬜"
     },
     {
       "numero": "953190",
@@ -1168,7 +1456,11 @@
       "v_liberado": "",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": ""
+      "prestacao": "",
+      "foto_app": "NÃO ❌",
+      "medicao": "NÃO",
+      "pagamento": "NÃO",
+      "apto_fiscalgov": "NÃO ⬜"
     },
     {
       "numero": "969555",
@@ -1184,7 +1476,11 @@
       "v_liberado": "475.000,00",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": ""
+      "prestacao": "",
+      "foto_app": "SIM (49 fotos)",
+      "medicao": "SIM",
+      "pagamento": "SIM",
+      "apto_fiscalgov": "SIM ✅"
     },
     {
       "numero": "973618",
@@ -1200,7 +1496,11 @@
       "v_liberado": "",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": ""
+      "prestacao": "",
+      "foto_app": "NÃO ❌",
+      "medicao": "NÃO",
+      "pagamento": "NÃO",
+      "apto_fiscalgov": "NÃO ⬜"
     },
     {
       "numero": "965789",
@@ -1216,7 +1516,11 @@
       "v_liberado": "",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": ""
+      "prestacao": "",
+      "foto_app": "NÃO ❌",
+      "medicao": "NÃO",
+      "pagamento": "NÃO",
+      "apto_fiscalgov": "NÃO ⬜"
     },
     {
       "numero": "992850",
@@ -1232,7 +1536,11 @@
       "v_liberado": "",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": ""
+      "prestacao": "",
+      "foto_app": "NÃO ❌",
+      "medicao": "NÃO",
+      "pagamento": "NÃO",
+      "apto_fiscalgov": "NÃO ⬜"
     },
     {
       "numero": "992940",
@@ -1248,7 +1556,11 @@
       "v_liberado": "",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": ""
+      "prestacao": "",
+      "foto_app": "NÃO ❌",
+      "medicao": "NÃO",
+      "pagamento": "NÃO",
+      "apto_fiscalgov": "NÃO ⬜"
     },
     {
       "numero": "980844",
@@ -1264,7 +1576,11 @@
       "v_liberado": "",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": ""
+      "prestacao": "",
+      "foto_app": "NÃO ❌",
+      "medicao": "NÃO",
+      "pagamento": "NÃO",
+      "apto_fiscalgov": "NÃO ⬜"
     },
     {
       "numero": "981146",
@@ -1280,7 +1596,11 @@
       "v_liberado": "",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": ""
+      "prestacao": "",
+      "foto_app": "NÃO ❌",
+      "medicao": "NÃO",
+      "pagamento": "NÃO",
+      "apto_fiscalgov": "NÃO ⬜"
     },
     {
       "numero": "983950",
@@ -1296,7 +1616,11 @@
       "v_liberado": "",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": ""
+      "prestacao": "",
+      "foto_app": "NÃO ❌",
+      "medicao": "NÃO",
+      "pagamento": "NÃO",
+      "apto_fiscalgov": "NÃO ⬜"
     },
     {
       "numero": "986179",
@@ -1312,7 +1636,11 @@
       "v_liberado": "",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": ""
+      "prestacao": "",
+      "foto_app": "NÃO ❌",
+      "medicao": "NÃO",
+      "pagamento": "NÃO",
+      "apto_fiscalgov": "NÃO ⬜"
     },
     {
       "numero": "986155",
@@ -1328,7 +1656,11 @@
       "v_liberado": "",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": ""
+      "prestacao": "",
+      "foto_app": "NÃO ❌",
+      "medicao": "NÃO",
+      "pagamento": "NÃO",
+      "apto_fiscalgov": "NÃO ⬜"
     },
     {
       "numero": "985797",
@@ -1344,7 +1676,11 @@
       "v_liberado": "",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": ""
+      "prestacao": "",
+      "foto_app": "NÃO ❌",
+      "medicao": "NÃO",
+      "pagamento": "NÃO",
+      "apto_fiscalgov": "NÃO ⬜"
     },
     {
       "numero": "986602",
@@ -1360,7 +1696,11 @@
       "v_liberado": "125.000,00",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": ""
+      "prestacao": "",
+      "foto_app": "NÃO ❌",
+      "medicao": "NÃO",
+      "pagamento": "NÃO",
+      "apto_fiscalgov": "NÃO ⬜"
     },
     {
       "numero": "988101",
@@ -1376,7 +1716,11 @@
       "v_liberado": "",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": ""
+      "prestacao": "",
+      "foto_app": "NÃO ❌",
+      "medicao": "NÃO",
+      "pagamento": "NÃO",
+      "apto_fiscalgov": "NÃO ⬜"
     },
     {
       "numero": "988500",
@@ -1392,7 +1736,11 @@
       "v_liberado": "",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": ""
+      "prestacao": "",
+      "foto_app": "NÃO ❌",
+      "medicao": "NÃO",
+      "pagamento": "NÃO",
+      "apto_fiscalgov": "NÃO ⬜"
     },
     {
       "numero": "989250",
@@ -1408,7 +1756,11 @@
       "v_liberado": "",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": ""
+      "prestacao": "",
+      "foto_app": "NÃO ❌",
+      "medicao": "NÃO",
+      "pagamento": "NÃO",
+      "apto_fiscalgov": "NÃO ⬜"
     },
     {
       "numero": "988784",
@@ -1424,7 +1776,11 @@
       "v_liberado": "",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": ""
+      "prestacao": "",
+      "foto_app": "NÃO ❌",
+      "medicao": "NÃO",
+      "pagamento": "NÃO",
+      "apto_fiscalgov": "NÃO ⬜"
     },
     {
       "numero": "988634",
@@ -1440,7 +1796,11 @@
       "v_liberado": "",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": ""
+      "prestacao": "",
+      "foto_app": "NÃO ❌",
+      "medicao": "NÃO",
+      "pagamento": "NÃO",
+      "apto_fiscalgov": "NÃO ⬜"
     },
     {
       "numero": "988972",
@@ -1456,7 +1816,11 @@
       "v_liberado": "",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": ""
+      "prestacao": "",
+      "foto_app": "NÃO ❌",
+      "medicao": "NÃO",
+      "pagamento": "NÃO",
+      "apto_fiscalgov": "NÃO ⬜"
     },
     {
       "numero": "988779",
@@ -1472,7 +1836,11 @@
       "v_liberado": "",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": ""
+      "prestacao": "",
+      "foto_app": "NÃO ❌",
+      "medicao": "NÃO",
+      "pagamento": "NÃO",
+      "apto_fiscalgov": "NÃO ⬜"
     },
     {
       "numero": "988901",
@@ -1488,7 +1856,11 @@
       "v_liberado": "",
       "pct_exec": "",
       "autor_emenda": "",
-      "prestacao": ""
+      "prestacao": "",
+      "foto_app": "NÃO ❌",
+      "medicao": "NÃO",
+      "pagamento": "NÃO",
+      "apto_fiscalgov": "NÃO ⬜"
     }
   ]
 }

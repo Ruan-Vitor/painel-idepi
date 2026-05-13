@@ -34,11 +34,11 @@
   --blue-bdr:#93c5fd;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html,body{height:100%;overflow:hidden}
+html,body{height:100%}
 body{font-family:'DM Sans',sans-serif;background:var(--bg);display:flex;flex-direction:column;min-height:100vh}
 
 /* ── HEADER ── */
-.hd{background:var(--bg);border-bottom:1px solid rgba(255,255,255,.07);padding:0 36px;height:58px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.hd{background:var(--bg);border-bottom:1px solid rgba(255,255,255,.07);padding:0 36px;height:58px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;position:sticky;top:0;z-index:50}
 .hd-left{display:flex;align-items:center;gap:14px}
 .hd-logo{display:flex;align-items:center;gap:10px}
 .hd-logo-icon{width:34px;height:34px;border-radius:8px;background:linear-gradient(135deg,#1a4a8a,#0d6e4a);display:flex;align-items:center;justify-content:center;font-size:14px;color:#fff}
@@ -51,6 +51,8 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);display:flex;flex-dir
 .hd-ts{font-size:10px;color:rgba(255,255,255,.3);text-align:right;line-height:1.5}
 
 /* ── LAYOUT ── */
+/* Em telas grandes: sidebar fixa + conteúdo ao lado (altura da viewport)
+   Em telas pequenas: tudo em coluna, scroll natural da página inteira       */
 .body{flex:1;display:flex;overflow:hidden}
 
 /* ── SIDEBAR ── */
@@ -80,7 +82,28 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);display:flex;flex-dir
 .pg-back:hover{background:#1e4a8a}
 
 /* ── SCROLL ── */
+/* Em telas grandes: só a área de conteúdo rola (sidebar fica fixada)
+   Em telas pequenas (<900px): a página inteira vira scrollável, a tabela
+   não tem mais altura máxima limitada, e a sidebar vira um strip horizontal */
 .scroll{flex:1;overflow-y:auto;padding:22px 28px;display:flex;flex-direction:column;gap:18px}
+
+/* ── RESPONSIVO — telas pequenas ── */
+@media (max-height: 700px), (max-width: 900px) {
+  html, body { height:auto; overflow:auto; }
+  .body { overflow:visible; flex-wrap:wrap; }
+  .sidebar {
+    width:100%; flex-direction:row; flex-wrap:wrap;
+    padding:8px 10px; gap:4px;
+    border-right:none; border-bottom:1px solid rgba(255,255,255,.1);
+    position:static;
+  }
+  .sb-sec { display:none; }
+  .sb-footer { display:none; }
+  .content { overflow:visible; }
+  .scroll { overflow:visible; flex:none; }
+  .tbl-card { flex:none; min-height:0; }
+  .tbl-scroll { overflow-x:auto; max-height:none; overflow-y:visible; }
+}
 
 /* ── BANNER ── */
 .banner{background:linear-gradient(120deg,#0f2550 0%,#0a4a2e 100%);border-radius:12px;padding:18px 22px;display:flex;align-items:flex-start;gap:16px;color:#fff;flex-shrink:0;position:relative;overflow:hidden}

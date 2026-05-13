@@ -185,6 +185,24 @@ tr.drow:hover td{background:var(--surface2);cursor:pointer}
 .srow{display:flex;gap:6px;align-items:center;font-size:11px;color:var(--muted);padding:7px 14px;border-top:1px solid var(--border);flex-wrap:wrap}
 .srow strong{color:var(--text)}
 
+/* ── BOTÃO TELA CHEIA ── */
+.btn-fullscreen{
+  display:inline-flex;align-items:center;gap:5px;
+  background:var(--brand-light);color:var(--brand);
+  border:1.5px solid var(--brand);border-radius:7px;
+  padding:5px 11px;font-size:11px;font-weight:600;
+  cursor:pointer;font-family:'Inter',sans-serif;
+  transition:all .15s;white-space:nowrap;
+}
+.btn-fullscreen:hover{background:var(--brand);color:#fff}
+.btn-fullscreen i{font-size:11px}
+.panel:fullscreen,.panel:-webkit-full-screen,.panel:-moz-full-screen{
+  display:flex;flex-direction:column;background:var(--surface);overflow:hidden;border-radius:0;
+}
+.panel:fullscreen .twrap,.panel:-webkit-full-screen .twrap,.panel:-moz-full-screen .twrap{
+  max-height:none;flex:1;overflow:auto;
+}
+
 /* ── BOTÃO EXPORTAR EXCEL ── */
 .btn-excel{
   display:inline-flex;align-items:center;gap:6px;
@@ -321,12 +339,15 @@ tr.drow:hover td{background:var(--surface2);cursor:pointer}
     </div>
 
     <!-- TABELA -->
-    <div class="panel">
+    <div class="panel" id="tblPanelVig">
       <div class="phead">
         <div class="phtitle"><i class="fa-solid fa-list"></i>Instrumentos <span id="tcnt" style="font-weight:400;color:#94a3b8;font-size:11px;margin-left:4px;"></span></div>
         <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
           <button class="btn-excel" id="btnExcelVig" onclick="exportarExcelVigencias()" title="Exportar dados visíveis para Excel">
             <i class="fa-solid fa-file-excel"></i> Exportar Excel
+          </button>
+          <button class="btn-fullscreen" id="btnFSVig" onclick="toggleFullscreenVig()" title="Tela cheia">
+            <i class="fa-solid fa-expand"></i> Tela cheia
           </button>
           <button onclick="rst()" style="font-size:11px;color:#94a3b8;background:none;border:none;cursor:pointer;display:flex;align-items:center;gap:4px;font-family:'Inter',sans-serif;">
             <i class="fa-solid fa-xmark"></i> Limpar filtros
@@ -835,6 +856,30 @@ function exportarExcelVigencias() {
 }
 
 carregar();
+
+/* ── TELA CHEIA ── */
+function toggleFullscreenVig() {
+  var el = document.getElementById('tblPanelVig');
+  var isFs = document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement;
+  if (!isFs) {
+    var req = el.requestFullscreen || el.webkitRequestFullscreen || el.mozRequestFullScreen;
+    if (req) req.call(el);
+  } else {
+    var ex = document.exitFullscreen || document.webkitExitFullscreen || document.mozCancelFullScreen;
+    if (ex) ex.call(document);
+  }
+}
+document.addEventListener('fullscreenchange', _syncFsBtnVig);
+document.addEventListener('webkitfullscreenchange', _syncFsBtnVig);
+document.addEventListener('mozfullscreenchange', _syncFsBtnVig);
+function _syncFsBtnVig() {
+  var btn = document.getElementById('btnFSVig');
+  if (!btn) return;
+  var isFs = document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement;
+  btn.innerHTML = isFs
+    ? '<i class="fa-solid fa-compress"></i> Sair'
+    : '<i class="fa-solid fa-expand"></i> Tela cheia';
+}
 </script>
 
 <!-- ── PROTEÇÃO POR SENHA ─────────────────────────────── -->

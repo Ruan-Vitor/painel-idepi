@@ -7,6 +7,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -184,6 +185,21 @@ tr.drow:hover td{background:var(--surface2);cursor:pointer}
 .srow{display:flex;gap:6px;align-items:center;font-size:11px;color:var(--muted);padding:7px 14px;border-top:1px solid var(--border);flex-wrap:wrap}
 .srow strong{color:var(--text)}
 
+/* ── BOTÃO EXPORTAR EXCEL ── */
+.btn-excel{
+  display:inline-flex;align-items:center;gap:6px;
+  background:#16a34a;color:#fff;
+  border:none;border-radius:7px;
+  padding:6px 13px;font-size:11.5px;font-weight:600;
+  cursor:pointer;font-family:'Inter',sans-serif;
+  transition:background .15s,transform .1s;
+  white-space:nowrap;
+}
+.btn-excel:hover{background:#15803d;transform:translateY(-1px)}
+.btn-excel:active{transform:translateY(0)}
+.btn-excel i{font-size:12px}
+.btn-excel.loading{background:#94a3b8;cursor:not-allowed;transform:none}
+
 @media(max-width:1000px){.kgrid{grid-template-columns:repeat(3,1fr)}.prow{grid-template-columns:1fr}.totals{grid-template-columns:1fr 1fr}}
 </style>
 </head>
@@ -254,9 +270,14 @@ tr.drow:hover td{background:var(--surface2);cursor:pointer}
     <div class="panel">
       <div class="phead">
         <div class="phtitle"><i class="fa-solid fa-list"></i>Instrumentos <span id="tcnt" style="font-weight:400;color:#94a3b8;font-size:11px;margin-left:4px;"></span></div>
-        <button onclick="rst()" style="font-size:11px;color:#94a3b8;background:none;border:none;cursor:pointer;display:flex;align-items:center;gap:4px;font-family:'Inter',sans-serif;">
-          <i class="fa-solid fa-xmark"></i> Limpar filtros
-        </button>
+        <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+          <button class="btn-excel" id="btnExcelVig" onclick="exportarExcelVigencias()" title="Exportar dados visíveis para Excel">
+            <i class="fa-solid fa-file-excel"></i> Exportar Excel
+          </button>
+          <button onclick="rst()" style="font-size:11px;color:#94a3b8;background:none;border:none;cursor:pointer;display:flex;align-items:center;gap:4px;font-family:'Inter',sans-serif;">
+            <i class="fa-solid fa-xmark"></i> Limpar filtros
+          </button>
+        </div>
       </div>
 
       <!-- Busca -->
@@ -318,7 +339,8 @@ const REPO    = "painel-idepi";
 // ═══════════════════════════════════════
 
 let dados = [], filtroStatus = 'all', chart = null;
-let sortCol = null, sortDir = 1; // 1 = asc, -1 = desc
+let sortCol = null, sortDir = 1;
+let _rowsVisiveis = []; // guarda as linhas visíveis para export
 
 const CLS  = {normal:'n',alerta:'a',atencao:'at',critico:'c',vencido:'v',finalizado:'f',suspensiva:'s'};
 const LBL  = {normal:'Normal (>90d)',alerta:'Alerta (60–90d)',atencao:'Atenção (30–60d)',critico:'Crítico (<30d)',vencido:'Vencido',finalizado:'Finalizado'};
@@ -340,12 +362,7 @@ function parseDate(s) {
 
 const hoje = (() => { const d = new Date(); d.setHours(0,0,0,0); return d; })();
 
-// ── CALCULA STATUS — TRANSFEREGOV É A FONTE PRIMÁRIA ─────────────────────────
-// Ordem de prioridade para detectar encerramento:
-//   1. situacao_tgov (col T) — lida diretamente do Transferegov → mais confiável
-//   2. sit_contrat_tgov (col U) — situação de contratação do Transferegov
-//   3. situacao da API CGU — fallback quando T/U ainda não foram preenchidos
-// Se qualquer uma indicar encerramento → status = 'finalizado'.
+// ── CALCULA STATUS ─────────────────────────────────────────────────────────
 function calcStatus(c) {
   const REGEX_FIN = /prestacao\s*de\s*contas|finaliz|concluido|encerrad|rescindid|inadimplent|tomada\s*de\s*contas/;
   const norm = s => (s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
@@ -354,14 +371,11 @@ function calcStatus(c) {
   if (REGEX_FIN.test(norm(c.sit_contrat_tgov)))  return { st:'finalizado', dias:null, temSusp:false };
   if (REGEX_FIN.test(norm(c.situacao)))           return { st:'finalizado', dias:null, temSusp:false };
 
-
   const dVig  = parseDate(c.vigencia_fmt || c.vigencia);
-  // ✅ CORREÇÃO: o JSON publica como "vigencia_suspensiva" (nome definido no main.py)
   const dSusp = parseDate(c.vigencia_suspensiva);
 
   if (!dVig && !dSusp) return { st:'finalizado', dias:null, temSusp:false };
 
-  // Suspensiva só tem prioridade se for ANTERIOR à vigência final
   let temSusp = false;
   let dataEf  = dVig;
   if (dSusp) {
@@ -502,17 +516,13 @@ function rst() {
 
 // ── ORDENAÇÃO POR COLUNA ─────────────────────────────────────────────────────
 function sortBy(col) {
-  // Alterna direção se clicar na mesma coluna
   if (sortCol === col) sortDir *= -1;
   else { sortCol = col; sortDir = 1; }
-
-  // Atualiza visual dos cabeçalhos
   document.querySelectorAll('th[id^="th-"]').forEach(th => {
     th.classList.remove('sorted-asc','sorted-desc');
   });
   const thEl = document.getElementById('th-'+col);
   if (thEl) thEl.classList.add(sortDir===1 ? 'sorted-asc' : 'sorted-desc');
-
   render();
 }
 
@@ -568,7 +578,6 @@ function render() {
   if (fSit)  rows = rows.filter(r => (r.situacao||'').trim() === fSit);
   if (fFisc) rows = rows.filter(r => (r.fiscal||'').trim() === fFisc);
 
-  // Ordenação
   if (sortCol) {
     rows = [...rows].sort((a,b) => {
       const va = getVal(a, sortCol), vb = getVal(b, sortCol);
@@ -577,12 +586,14 @@ function render() {
       return 0;
     });
   } else {
-    // Padrão: urgência primeiro
     rows = [...rows].sort((a,b) => {
       const o={critico:0,vencido:1,atencao:2,alerta:3,normal:4,finalizado:5};
       return ((o[a._st]||9)-(o[b._st]||9)) || ((a._dias??9999)-(b._dias??9999));
     });
   }
+
+  // Guarda referência para exportação
+  _rowsVisiveis = rows;
 
   const tb=document.getElementById('tbody'), em=document.getElementById('empty');
   document.getElementById('tcnt').textContent = rows.length>0?`(${rows.length})`:'';
@@ -662,6 +673,113 @@ function exp(i) {
   if(!op){er.classList.add('open');ic.style.transform='rotate(90deg)';}
 }
 
+// ══════════════════════════════════════════════════════════════════
+//  EXPORTAR EXCEL — VIGÊNCIAS
+// ══════════════════════════════════════════════════════════════════
+function exportarExcelVigencias() {
+  const btn = document.getElementById('btnExcelVig');
+  if (!_rowsVisiveis.length) { alert('Nenhum dado para exportar.'); return; }
+
+  btn.classList.add('loading');
+  btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Gerando...';
+
+  setTimeout(() => {
+    try {
+      // ── Aba 1: Dados dos instrumentos ──
+      const cabecalho = [
+        'Nº Instrumento','Objeto','Autor da Emenda','Fiscal Responsável',
+        'Situação (Transferegov)','Situação (API CGU)',
+        'Vigência Final','Vigência Suspensiva','Dias Restantes','Status Vigência',
+        'Valor Total (R$)','Valor Liberado (R$)','% Execução',
+        'Nº SEI','Mandatária','Emenda'
+      ];
+
+      const NOME_ST = {normal:'Normal',alerta:'Alerta',atencao:'Atenção',critico:'Crítico',vencido:'Vencido',finalizado:'Finalizado'};
+
+      const linhas = _rowsVisiveis.map(r => [
+        r.numero || '',
+        r.objeto || '',
+        r.autor_emenda || '',
+        r.fiscal || '',
+        r.situacao_tgov || '',
+        r.situacao || '',
+        r.vigencia_fmt || r.vigencia || '',
+        r.vigencia_suspensiva || '',
+        r._dias !== null && r._dias !== undefined ? r._dias : '',
+        NOME_ST[r._st] || r._st || '',
+        r.v_total ? r.v_total.replace(/\./g,'').replace(',','.') : '',
+        r.v_liberado ? r.v_liberado.replace(/\./g,'').replace(',','.') : '',
+        r.pct_exec || '',
+        r.sei || '',
+        r.mandataria || r.mandatária || '',
+        r.emenda || ''
+      ]);
+
+      const wsData = [cabecalho, ...linhas];
+      const ws = XLSX.utils.aoa_to_sheet(wsData);
+
+      // Larguras das colunas
+      ws['!cols'] = [
+        {wch:22},{wch:50},{wch:28},{wch:18},{wch:32},{wch:32},
+        {wch:14},{wch:14},{wch:12},{wch:12},
+        {wch:18},{wch:18},{wch:10},
+        {wch:22},{wch:22},{wch:10}
+      ];
+
+      // Estilo do cabeçalho (negrito via SheetJS Community — limitado, mas funciona)
+      const range = XLSX.utils.decode_range(ws['!ref']);
+      for (let C = range.s.c; C <= range.e.c; C++) {
+        const addr = XLSX.utils.encode_cell({r:0, c:C});
+        if (!ws[addr]) continue;
+        ws[addr].s = {
+          font: {bold:true, color:{rgb:'FFFFFF'}},
+          fill: {fgColor:{rgb:'1E40AF'}},
+          alignment: {horizontal:'center', wrapText:true}
+        };
+      }
+
+      // ── Aba 2: Resumo por Status ──
+      const ct = {Normal:0,Alerta:0,'Atenção':0,'Crítico':0,Vencido:0,Finalizado:0};
+      _rowsVisiveis.forEach(r => {
+        const nm = NOME_ST[r._st];
+        if (nm && ct[nm] !== undefined) ct[nm]++;
+      });
+
+      const wsRes = XLSX.utils.aoa_to_sheet([
+        ['Status','Quantidade','Observação'],
+        ['Normal',   ct['Normal'],    '> 90 dias para vencer'],
+        ['Alerta',   ct['Alerta'],    '60 a 90 dias'],
+        ['Atenção',  ct['Atenção'],   '30 a 60 dias'],
+        ['Crítico',  ct['Crítico'],   '< 30 dias'],
+        ['Vencido',  ct['Vencido'],   'Prazo expirado'],
+        ['Finalizado',ct['Finalizado'],'Encerrado / concluído'],
+        ['','',''],
+        ['Total exibido', _rowsVisiveis.length, ''],
+      ]);
+      wsRes['!cols'] = [{wch:14},{wch:12},{wch:28}];
+
+      // ── Montar workbook ──
+      const wb = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(wb, ws,    'Instrumentos');
+      XLSX.utils.book_append_sheet(wb, wsRes, 'Resumo por Status');
+
+      // Nome do arquivo com data
+      const hoje = new Date();
+      const dtStr = `${String(hoje.getDate()).padStart(2,'0')}-${String(hoje.getMonth()+1).padStart(2,'0')}-${hoje.getFullYear()}`;
+      const filtroLabel = filtroStatus !== 'all' ? `_${filtroStatus}` : '';
+      const nomeArq = `IDEPI_Vigencias${filtroLabel}_${dtStr}.xlsx`;
+
+      XLSX.writeFile(wb, nomeArq);
+
+    } catch(e) {
+      alert('Erro ao gerar Excel: ' + e.message);
+    } finally {
+      btn.classList.remove('loading');
+      btn.innerHTML = '<i class="fa-solid fa-file-excel"></i> Exportar Excel';
+    }
+  }, 50);
+}
+
 carregar();
 </script>
 
@@ -706,11 +824,8 @@ carregar();
     </div>
   </div>
 </div>
-
 <script>
-// ─── SENHA — altere aqui para mudar ────────────────────
 const SENHA_HASH = "idepi2026";
-// ───────────────────────────────────────────────────────
 if (sessionStorage.getItem('idepi_auth') === '1') {
   document.getElementById('lockscreen').style.display = 'none';
 }

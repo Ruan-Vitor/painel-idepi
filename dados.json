@@ -1,5 +1,5 @@
 {
-  "gerado_em": "12/05/2026 19:58",
+  "gerado_em": "12/05/2026 21:48",
   "total": 93,
   "convenios": [
     {
@@ -21,7 +21,9 @@
       "foto_app": "NÃO ❌",
       "medicao": "NÃO",
       "pagamento": "NÃO",
-      "apto_fiscalgov": "NÃO ⬜"
+      "apto_fiscalgov": "NÃO ⬜",
+      "situacao_tgov": "",
+      "sit_contrat_tgov": ""
     },
     {
       "numero": "889040",
@@ -42,7 +44,9 @@
       "foto_app": "NÃO ❌",
       "medicao": "SIM",
       "pagamento": "SIM",
-      "apto_fiscalgov": "SIM ✅"
+      "apto_fiscalgov": "SIM ✅",
+      "situacao_tgov": "",
+      "sit_contrat_tgov": ""
     },
     {
       "numero": "894024",
@@ -63,7 +67,9 @@
       "foto_app": "SIM (211 fotos)",
       "medicao": "NÃO",
       "pagamento": "SIM",
-      "apto_fiscalgov": "SIM ✅"
+      "apto_fiscalgov": "SIM ✅",
+      "situacao_tgov": "",
+      "sit_contrat_tgov": ""
     },
     {
       "numero": "897425",
@@ -84,7 +90,9 @@
       "foto_app": "SIM (7 fotos)",
       "medicao": "NÃO",
       "pagamento": "SIM",
-      "apto_fiscalgov": "SIM ✅"
+      "apto_fiscalgov": "SIM ✅",
+      "situacao_tgov": "",
+      "sit_contrat_tgov": ""
     },
     {
       "numero": "897099",
@@ -105,7 +113,9 @@
       "foto_app": "NÃO ❌",
       "medicao": "NÃO",
       "pagamento": "SIM",
-      "apto_fiscalgov": "SIM ✅"
+      "apto_fiscalgov": "SIM ✅",
+      "situacao_tgov": "",
+      "sit_contrat_tgov": ""
     },
     {
       "numero": "900822",
@@ -126,7 +136,9 @@
       "foto_app": "NÃO ❌",
       "medicao": "SIM",
       "pagamento": "SIM",
-      "apto_fiscalgov": "SIM ✅"
+      "apto_fiscalgov": "SIM ✅",
+      "situacao_tgov": "",
+      "sit_contrat_tgov": ""
     },
     {
       "numero": "902680",
@@ -147,7 +159,9 @@
       "foto_app": "NÃO ❌",
       "medicao": "SIM",
       "pagamento": "SIM",
-      "apto_fiscalgov": "SIM ✅"
+      "apto_fiscalgov": "SIM ✅",
+      "situacao_tgov": "",
+      "sit_contrat_tgov": ""
     },
     {
       "numero": "906442",
@@ -168,7 +182,9 @@
       "foto_app": "NÃO ❌",
       "medicao": "SIM",
       "pagamento": "SIM",
-      "apto_fiscalgov": "SIM ✅"
+      "apto_fiscalgov": "SIM ✅",
+      "situacao_tgov": "",
+      "sit_contrat_tgov": ""
     },
     {
       "numero": "916598",
@@ -189,7 +205,9 @@
       "foto_app": "SIM (29 fotos)",
       "medicao": "SIM",
       "pagamento": "SIM",
-      "apto_fiscalgov": "SIM ✅"
+      "apto_fiscalgov": "SIM ✅",
+      "situacao_tgov": "",
+      "sit_contrat_tgov": ""
     },
     {
       "numero": "917537",
@@ -210,7 +228,9 @@
       "foto_app": "SIM (9 fotos)",
       "medicao": "SIM",
       "pagamento": "SIM",
-      "apto_fiscalgov": "SIM ✅"
+      "apto_fiscalgov": "SIM ✅",
+      "situacao_tgov": "",
+      "sit_contrat_tgov": ""
     },
     {
       "numero": "902704",
@@ -231,7 +251,9 @@
       "foto_app": "",
       "medicao": "",
       "pagamento": "",
-      "apto_fiscalgov": ""
+      "apto_fiscalgov": "",
+      "situacao_tgov": "",
+      "sit_contrat_tgov": ""
     },
     {
       "numero": "902705",
@@ -252,7 +274,9 @@
       "foto_app": "",
       "medicao": "",
       "pagamento": "",
-      "apto_fiscalgov": ""
+      "apto_fiscalgov": "",
+      "situacao_tgov": "",
+      "sit_contrat_tgov": ""
     },
     {
       "numero": "838065",
@@ -273,7 +297,9 @@
       "foto_app": "SIM (56 fotos)",
       "medicao": "NÃO",
       "pagamento": "SIM",
-      "apto_fiscalgov": "SIM ✅"
+      "apto_fiscalgov": "SIM ✅",
+      "situacao_tgov": "",
+      "sit_contrat_tgov": ""
     },
     {
       "numero": "907472",
@@ -294,7 +320,9 @@
       "foto_app": "NÃO ❌",
       "medicao": "NÃO",
       "pagamento": "NÃO",
-      "apto_fiscalgov": "NÃO ⬜"
+      "apto_fiscalgov": "NÃO ⬜",
+      "situacao_tgov": "",
+      "sit_contrat_tgov": ""
     },
     {
       "numero": "907471",
@@ -315,7 +343,9 @@
       "foto_app": "NÃO ❌",
       "medicao": "NÃO",
       "pagamento": "NÃO",
-      "apto_fiscalgov": "NÃO ⬜"
+      "apto_fiscalgov": "NÃO ⬜",
+      "situacao_tgov": "",
+      "sit_contrat_tgov": ""
     },
     {
       "numero": "907470",
@@ -336,7 +366,9 @@
       "foto_app": "NÃO ❌",
       "medicao": "NÃO",
       "pagamento": "NÃO",
-      "apto_fiscalgov": "NÃO ⬜"
+      "apto_fiscalgov": "NÃO ⬜",
+      "situacao_tgov": "",
+      "sit_contrat_tgov": ""
     },
     {
       "numero": "907469",
@@ -357,7 +389,9 @@
       "foto_app": "NÃO ❌",
       "medicao": "NÃO",
       "pagamento": "NÃO",
-      "apto_fiscalgov": "NÃO ⬜"
+      "apto_fiscalgov": "NÃO ⬜",
+      "situacao_tgov": "",
+      "sit_contrat_tgov": ""
     },
     {
       "numero": "907008",
@@ -378,7 +412,9 @@
       "foto_app": "NÃO ❌",
       "medicao": "NÃO",
       "pagamento": "NÃO",
-      "apto_fiscalgov": "NÃO ⬜"
+      "apto_fiscalgov": "NÃO ⬜",
+      "situacao_tgov": "",
+      "sit_contrat_tgov": ""
     },
     {
       "numero": "907015",
@@ -399,7 +435,9 @@
       "foto_app": "NÃO ❌",
       "medicao": "NÃO",
       "pagamento": "NÃO",
-      "apto_fiscalgov": "NÃO ⬜"
+      "apto_fiscalgov": "NÃO ⬜",
+      "situacao_tgov": "",
+      "sit_contrat_tgov": ""
     },
     {
       "numero": "907031",
@@ -420,7 +458,9 @@
       "foto_app": "NÃO ❌",
       "medicao": "NÃO",
       "pagamento": "NÃO",
-      "apto_fiscalgov": "NÃO ⬜"
+      "apto_fiscalgov": "NÃO ⬜",
+      "situacao_tgov": "",
+      "sit_contrat_tgov": ""
     },
     {
       "numero": "907032",
@@ -441,7 +481,9 @@
       "foto_app": "NÃO ❌",
       "medicao": "NÃO",
       "pagamento": "NÃO",
-      "apto_fiscalgov": "NÃO ⬜"
+      "apto_fiscalgov": "NÃO ⬜",
+      "situacao_tgov": "",
+      "sit_contrat_tgov": ""
     },
     {
       "numero": "907033",
@@ -462,7 +504,9 @@
       "foto_app": "NÃO ❌",
       "medicao": "NÃO",
       "pagamento": "NÃO",
-      "apto_fiscalgov": "NÃO ⬜"
+      "apto_fiscalgov": "NÃO ⬜",
+      "situacao_tgov": "",
+      "sit_contrat_tgov": ""
     },
     {
       "numero": "907035",
@@ -483,7 +527,9 @@
       "foto_app": "NÃO ❌",
       "medicao": "NÃO",
       "pagamento": "NÃO",
-      "apto_fiscalgov": "NÃO ⬜"
+      "apto_fiscalgov": "NÃO ⬜",
+      "situacao_tgov": "",
+      "sit_contrat_tgov": ""
     },
     {
       "numero": "907037",
@@ -504,7 +550,9 @@
       "foto_app": "NÃO ❌",
       "medicao": "NÃO",
       "pagamento": "SIM",
-      "apto_fiscalgov": "SIM ✅"
+      "apto_fiscalgov": "SIM ✅",
+      "situacao_tgov": "",
+      "sit_contrat_tgov": ""
     },
     {
       "numero": "907038",
@@ -525,7 +573,9 @@
       "foto_app": "NÃO ❌",
       "medicao": "NÃO",
       "pagamento": "NÃO",
-      "apto_fiscalgov": "NÃO ⬜"
+      "apto_fiscalgov": "NÃO ⬜",
+      "situacao_tgov": "",
+      "sit_contrat_tgov": ""
     },
     {
       "numero": "907040",
@@ -546,7 +596,9 @@
       "foto_app": "NÃO ❌",
       "medicao": "NÃO",
       "pagamento": "NÃO",
-      "apto_fiscalgov": "NÃO ⬜"
+      "apto_fiscalgov": "NÃO ⬜",
+      "situacao_tgov": "",
+      "sit_contrat_tgov": ""
     },
     {
       "numero": "907045",
@@ -567,7 +619,9 @@
       "foto_app": "NÃO ❌",
       "medicao": "NÃO",
       "pagamento": "NÃO",
-      "apto_fiscalgov": "NÃO ⬜"
+      "apto_fiscalgov": "NÃO ⬜",
+      "situacao_tgov": "",
+      "sit_contrat_tgov": ""
     },
     {
       "numero": "907050",
@@ -588,7 +642,9 @@
       "foto_app": "SIM (6 fotos)",
       "medicao": "NÃO",
       "pagamento": "NÃO",
-      "apto_fiscalgov": "NÃO ⬜"
+      "apto_fiscalgov": "NÃO ⬜",
+      "situacao_tgov": "",
+      "sit_contrat_tgov": ""
     },
     {
       "numero": "737058",
@@ -609,7 +665,9 @@
       "foto_app": "NÃO ❌",
       "medicao": "NÃO",
       "pagamento": "NÃO",
-      "apto_fiscalgov": "NÃO ⬜"
+      "apto_fiscalgov": "NÃO ⬜",
+      "situacao_tgov": "",
+      "sit_contrat_tgov": ""
     },
     {
       "numero": "887234",
@@ -630,7 +688,9 @@
       "foto_app": "NÃO ❌",
       "medicao": "NÃO",
       "pagamento": "SIM",
-      "apto_fiscalgov": "SIM ✅"
+      "apto_fiscalgov": "SIM ✅",
+      "situacao_tgov": "",
+      "sit_contrat_tgov": ""
     },
     {
       "numero": "902401",
@@ -651,7 +711,9 @@
       "foto_app": "NÃO ❌",
       "medicao": "NÃO",
       "pagamento": "SIM",
-      "apto_fiscalgov": "SIM ✅"
+      "apto_fiscalgov": "SIM ✅",
+      "situacao_tgov": "",
+      "sit_contrat_tgov": ""
     },
     {
       "numero": "899533",
@@ -672,7 +734,9 @@
       "foto_app": "NÃO ❌",
       "medicao": "NÃO",
       "pagamento": "NÃO",
-      "apto_fiscalgov": "NÃO ⬜"
+      "apto_fiscalgov": "NÃO ⬜",
+      "situacao_tgov": "",
+      "sit_contrat_tgov": ""
     },
     {
       "numero": "900838",
@@ -693,7 +757,9 @@
       "foto_app": "",
       "medicao": "",
       "pagamento": "",
-      "apto_fiscalgov": ""
+      "apto_fiscalgov": "",
+      "situacao_tgov": "",
+      "sit_contrat_tgov": ""
     },
     {
       "numero": "900837",
@@ -714,7 +780,9 @@
       "foto_app": "NÃO ❌",
       "medicao": "SIM",
       "pagamento": "SIM",
-      "apto_fiscalgov": "SIM ✅"
+      "apto_fiscalgov": "SIM ✅",
+      "situacao_tgov": "",
+      "sit_contrat_tgov": ""
     },
     {
       "numero": "900840",
@@ -735,7 +803,9 @@
       "foto_app": "NÃO ❌",
       "medicao": "SIM",
       "pagamento": "SIM",
-      "apto_fiscalgov": "SIM ✅"
+      "apto_fiscalgov": "SIM ✅",
+      "situacao_tgov": "",
+      "sit_contrat_tgov": ""
     },
     {
       "numero": "899540",
@@ -756,7 +826,9 @@
       "foto_app": "",
       "medicao": "",
       "pagamento": "",
-      "apto_fiscalgov": ""
+      "apto_fiscalgov": "",
+      "situacao_tgov": "",
+      "sit_contrat_tgov": ""
     },
     {
       "numero": "899530",
@@ -777,7 +849,9 @@
       "foto_app": "NÃO ❌",
       "medicao": "NÃO",
       "pagamento": "NÃO",
-      "apto_fiscalgov": "NÃO ⬜"
+      "apto_fiscalgov": "NÃO ⬜",
+      "situacao_tgov": "",
+      "sit_contrat_tgov": ""
     },
     {
       "numero": "847194",
@@ -798,7 +872,9 @@
       "foto_app": "NÃO ❌",
       "medicao": "NÃO",
       "pagamento": "NÃO",
-      "apto_fiscalgov": "NÃO ⬜"
+      "apto_fiscalgov": "NÃO ⬜",
+      "situacao_tgov": "",
+      "sit_contrat_tgov": ""
     },
     {
       "numero": "920090",
@@ -819,7 +895,9 @@
       "foto_app": "NÃO ❌",
       "medicao": "SIM",
       "pagamento": "SIM",
-      "apto_fiscalgov": "SIM ✅"
+      "apto_fiscalgov": "SIM ✅",
+      "situacao_tgov": "",
+      "sit_contrat_tgov": ""
     },
     {
       "numero": "915500",
@@ -840,7 +918,9 @@
       "foto_app": "SIM (42 fotos)",
       "medicao": "SIM",
       "pagamento": "SIM",
-      "apto_fiscalgov": "SIM ✅"
+      "apto_fiscalgov": "SIM ✅",
+      "situacao_tgov": "",
+      "sit_contrat_tgov": ""
     },
     {
       "numero": "946262",
@@ -861,7 +941,9 @@
       "foto_app": "NÃO ❌",
       "medicao": "SIM",
       "pagamento": "SIM",
-      "apto_fiscalgov": "SIM ✅"
+      "apto_fiscalgov": "SIM ✅",
+      "situacao_tgov": "",
+      "sit_contrat_tgov": ""
     },
     {
       "numero": "947350",
@@ -882,7 +964,9 @@
       "foto_app": "SIM (16 fotos)",
       "medicao": "SIM",
       "pagamento": "SIM",
-      "apto_fiscalgov": "SIM ✅"
+      "apto_fiscalgov": "SIM ✅",
+      "situacao_tgov": "",
+      "sit_contrat_tgov": ""
     },
     {
       "numero": "946258",
@@ -903,7 +987,9 @@
       "foto_app": "SIM (40 fotos)",
       "medicao": "NÃO",
       "pagamento": "NÃO",
-      "apto_fiscalgov": "NÃO ⬜"
+      "apto_fiscalgov": "NÃO ⬜",
+      "situacao_tgov": "",
+      "sit_contrat_tgov": ""
     },
     {
       "numero": "946257",
@@ -924,7 +1010,9 @@
       "foto_app": "NÃO ❌",
       "medicao": "SIM",
       "pagamento": "SIM",
-      "apto_fiscalgov": "SIM ✅"
+      "apto_fiscalgov": "SIM ✅",
+      "situacao_tgov": "",
+      "sit_contrat_tgov": ""
     },
     {
       "numero": "946261",
@@ -945,7 +1033,9 @@
       "foto_app": "",
       "medicao": "",
       "pagamento": "",
-      "apto_fiscalgov": ""
+      "apto_fiscalgov": "",
+      "situacao_tgov": "",
+      "sit_contrat_tgov": ""
     },
     {
       "numero": "946260",
@@ -966,7 +1056,9 @@
       "foto_app": "SIM (19 fotos)",
       "medicao": "SIM",
       "pagamento": "SIM",
-      "apto_fiscalgov": "SIM ✅"
+      "apto_fiscalgov": "SIM ✅",
+      "situacao_tgov": "",
+      "sit_contrat_tgov": ""
     },
     {
       "numero": "946259",
@@ -987,7 +1079,9 @@
       "foto_app": "",
       "medicao": "",
       "pagamento": "",
-      "apto_fiscalgov": ""
+      "apto_fiscalgov": "",
+      "situacao_tgov": "",
+      "sit_contrat_tgov": ""
     },
     {
       "numero": "947533",
@@ -1008,7 +1102,9 @@
       "foto_app": "SIM (6 fotos)",
       "medicao": "NÃO",
       "pagamento": "NÃO",
-      "apto_fiscalgov": "NÃO ⬜"
+      "apto_fiscalgov": "NÃO ⬜",
+      "situacao_tgov": "",
+      "sit_contrat_tgov": ""
     },
     {
       "numero": "947106",
@@ -1029,7 +1125,9 @@
       "foto_app": "",
       "medicao": "",
       "pagamento": "",
-      "apto_fiscalgov": ""
+      "apto_fiscalgov": "",
+      "situacao_tgov": "",
+      "sit_contrat_tgov": ""
     },
     {
       "numero": "947530",
@@ -1050,7 +1148,9 @@
       "foto_app": "SIM (26 fotos)",
       "medicao": "SIM",
       "pagamento": "SIM",
-      "apto_fiscalgov": "SIM ✅"
+      "apto_fiscalgov": "SIM ✅",
+      "situacao_tgov": "",
+      "sit_contrat_tgov": ""
     },
     {
       "numero": "947531",
@@ -1071,7 +1171,9 @@
       "foto_app": "SIM (39 fotos)",
       "medicao": "SIM",
       "pagamento": "SIM",
-      "apto_fiscalgov": "SIM ✅"
+      "apto_fiscalgov": "SIM ✅",
+      "situacao_tgov": "",
+      "sit_contrat_tgov": ""
     },
     {
       "numero": "947532",
@@ -1092,7 +1194,9 @@
       "foto_app": "",
       "medicao": "",
       "pagamento": "",
-      "apto_fiscalgov": ""
+      "apto_fiscalgov": "",
+      "situacao_tgov": "",
+      "sit_contrat_tgov": ""
     },
     {
       "numero": "946801",
@@ -1113,7 +1217,9 @@
       "foto_app": "NÃO ❌",
       "medicao": "NÃO",
       "pagamento": "NÃO",
-      "apto_fiscalgov": "NÃO ⬜"
+      "apto_fiscalgov": "NÃO ⬜",
+      "situacao_tgov": "",
+      "sit_contrat_tgov": ""
     },
     {
       "numero": "946378",
@@ -1134,7 +1240,9 @@
       "foto_app": "NÃO ❌",
       "medicao": "NÃO",
       "pagamento": "NÃO",
-      "apto_fiscalgov": "NÃO ⬜"
+      "apto_fiscalgov": "NÃO ⬜",
+      "situacao_tgov": "",
+      "sit_contrat_tgov": ""
     },
     {
       "numero": "947580",
@@ -1155,7 +1263,9 @@
       "foto_app": "NÃO ❌",
       "medicao": "NÃO",
       "pagamento": "NÃO",
-      "apto_fiscalgov": "NÃO ⬜"
+      "apto_fiscalgov": "NÃO ⬜",
+      "situacao_tgov": "",
+      "sit_contrat_tgov": ""
     },
     {
       "numero": "953168",
@@ -1176,7 +1286,9 @@
       "foto_app": "SIM (85 fotos)",
       "medicao": "SIM",
       "pagamento": "SIM",
-      "apto_fiscalgov": "SIM ✅"
+      "apto_fiscalgov": "SIM ✅",
+      "situacao_tgov": "",
+      "sit_contrat_tgov": ""
     },
     {
       "numero": "947927",
@@ -1197,7 +1309,9 @@
       "foto_app": "",
       "medicao": "",
       "pagamento": "",
-      "apto_fiscalgov": ""
+      "apto_fiscalgov": "",
+      "situacao_tgov": "",
+      "sit_contrat_tgov": ""
     },
     {
       "numero": "946039",
@@ -1218,7 +1332,9 @@
       "foto_app": "SIM (17 fotos)",
       "medicao": "SIM",
       "pagamento": "SIM",
-      "apto_fiscalgov": "SIM ✅"
+      "apto_fiscalgov": "SIM ✅",
+      "situacao_tgov": "",
+      "sit_contrat_tgov": ""
     },
     {
       "numero": "945650",
@@ -1239,7 +1355,9 @@
       "foto_app": "NÃO ❌",
       "medicao": "NÃO",
       "pagamento": "NÃO",
-      "apto_fiscalgov": "NÃO ⬜"
+      "apto_fiscalgov": "NÃO ⬜",
+      "situacao_tgov": "",
+      "sit_contrat_tgov": ""
     },
     {
       "numero": "947907",
@@ -1260,7 +1378,9 @@
       "foto_app": "NÃO ❌",
       "medicao": "NÃO",
       "pagamento": "NÃO",
-      "apto_fiscalgov": "NÃO ⬜"
+      "apto_fiscalgov": "NÃO ⬜",
+      "situacao_tgov": "",
+      "sit_contrat_tgov": ""
     },
     {
       "numero": "946738",
@@ -1281,7 +1401,9 @@
       "foto_app": "NÃO ❌",
       "medicao": "NÃO",
       "pagamento": "NÃO",
-      "apto_fiscalgov": "NÃO ⬜"
+      "apto_fiscalgov": "NÃO ⬜",
+      "situacao_tgov": "",
+      "sit_contrat_tgov": ""
     },
     {
       "numero": "945158",
@@ -1302,7 +1424,9 @@
       "foto_app": "SIM (3 fotos)",
       "medicao": "SIM",
       "pagamento": "NÃO",
-      "apto_fiscalgov": "SIM ✅"
+      "apto_fiscalgov": "SIM ✅",
+      "situacao_tgov": "",
+      "sit_contrat_tgov": ""
     },
     {
       "numero": "947493",
@@ -1323,7 +1447,9 @@
       "foto_app": "SIM (9 fotos)",
       "medicao": "SIM",
       "pagamento": "SIM",
-      "apto_fiscalgov": "SIM ✅"
+      "apto_fiscalgov": "SIM ✅",
+      "situacao_tgov": "",
+      "sit_contrat_tgov": ""
     },
     {
       "numero": "946367",
@@ -1344,7 +1470,9 @@
       "foto_app": "SIM (8 fotos)",
       "medicao": "SIM",
       "pagamento": "SIM",
-      "apto_fiscalgov": "SIM ✅"
+      "apto_fiscalgov": "SIM ✅",
+      "situacao_tgov": "",
+      "sit_contrat_tgov": ""
     },
     {
       "numero": "951016",
@@ -1365,7 +1493,9 @@
       "foto_app": "SIM (18 fotos)",
       "medicao": "SIM",
       "pagamento": "SIM",
-      "apto_fiscalgov": "SIM ✅"
+      "apto_fiscalgov": "SIM ✅",
+      "situacao_tgov": "",
+      "sit_contrat_tgov": ""
     },
     {
       "numero": "951018",
@@ -1386,7 +1516,9 @@
       "foto_app": "SIM (7 fotos)",
       "medicao": "NÃO",
       "pagamento": "NÃO",
-      "apto_fiscalgov": "NÃO ⬜"
+      "apto_fiscalgov": "NÃO ⬜",
+      "situacao_tgov": "",
+      "sit_contrat_tgov": ""
     },
     {
       "numero": "951943",
@@ -1407,7 +1539,9 @@
       "foto_app": "",
       "medicao": "",
       "pagamento": "",
-      "apto_fiscalgov": ""
+      "apto_fiscalgov": "",
+      "situacao_tgov": "",
+      "sit_contrat_tgov": ""
     },
     {
       "numero": "952006",
@@ -1428,7 +1562,9 @@
       "foto_app": "NÃO ❌",
       "medicao": "SIM",
       "pagamento": "SIM",
-      "apto_fiscalgov": "SIM ✅"
+      "apto_fiscalgov": "SIM ✅",
+      "situacao_tgov": "",
+      "sit_contrat_tgov": ""
     },
     {
       "numero": "967173",
@@ -1449,7 +1585,9 @@
       "foto_app": "NÃO ❌",
       "medicao": "NÃO",
       "pagamento": "NÃO",
-      "apto_fiscalgov": "NÃO ⬜"
+      "apto_fiscalgov": "NÃO ⬜",
+      "situacao_tgov": "",
+      "sit_contrat_tgov": ""
     },
     {
       "numero": "967182",
@@ -1470,7 +1608,9 @@
       "foto_app": "NÃO ❌",
       "medicao": "SIM",
       "pagamento": "SIM",
-      "apto_fiscalgov": "SIM ✅"
+      "apto_fiscalgov": "SIM ✅",
+      "situacao_tgov": "",
+      "sit_contrat_tgov": ""
     },
     {
       "numero": "945303",
@@ -1491,7 +1631,9 @@
       "foto_app": "NÃO ❌",
       "medicao": "NÃO",
       "pagamento": "NÃO",
-      "apto_fiscalgov": "NÃO ⬜"
+      "apto_fiscalgov": "NÃO ⬜",
+      "situacao_tgov": "",
+      "sit_contrat_tgov": ""
     },
     {
       "numero": "945299",
@@ -1512,7 +1654,9 @@
       "foto_app": "NÃO ❌",
       "medicao": "NÃO",
       "pagamento": "NÃO",
-      "apto_fiscalgov": "NÃO ⬜"
+      "apto_fiscalgov": "NÃO ⬜",
+      "situacao_tgov": "",
+      "sit_contrat_tgov": ""
     },
     {
       "numero": "953190",
@@ -1533,7 +1677,9 @@
       "foto_app": "NÃO ❌",
       "medicao": "NÃO",
       "pagamento": "NÃO",
-      "apto_fiscalgov": "NÃO ⬜"
+      "apto_fiscalgov": "NÃO ⬜",
+      "situacao_tgov": "",
+      "sit_contrat_tgov": ""
     },
     {
       "numero": "969555",
@@ -1554,7 +1700,9 @@
       "foto_app": "SIM (49 fotos)",
       "medicao": "SIM",
       "pagamento": "SIM",
-      "apto_fiscalgov": "SIM ✅"
+      "apto_fiscalgov": "SIM ✅",
+      "situacao_tgov": "",
+      "sit_contrat_tgov": ""
     },
     {
       "numero": "973618",
@@ -1575,7 +1723,9 @@
       "foto_app": "NÃO ❌",
       "medicao": "NÃO",
       "pagamento": "NÃO",
-      "apto_fiscalgov": "NÃO ⬜"
+      "apto_fiscalgov": "NÃO ⬜",
+      "situacao_tgov": "",
+      "sit_contrat_tgov": ""
     },
     {
       "numero": "965789",
@@ -1596,7 +1746,9 @@
       "foto_app": "NÃO ❌",
       "medicao": "NÃO",
       "pagamento": "NÃO",
-      "apto_fiscalgov": "NÃO ⬜"
+      "apto_fiscalgov": "NÃO ⬜",
+      "situacao_tgov": "",
+      "sit_contrat_tgov": ""
     },
     {
       "numero": "992850",
@@ -1617,7 +1769,9 @@
       "foto_app": "NÃO ❌",
       "medicao": "NÃO",
       "pagamento": "NÃO",
-      "apto_fiscalgov": "NÃO ⬜"
+      "apto_fiscalgov": "NÃO ⬜",
+      "situacao_tgov": "",
+      "sit_contrat_tgov": ""
     },
     {
       "numero": "992940",
@@ -1638,7 +1792,9 @@
       "foto_app": "NÃO ❌",
       "medicao": "NÃO",
       "pagamento": "NÃO",
-      "apto_fiscalgov": "NÃO ⬜"
+      "apto_fiscalgov": "NÃO ⬜",
+      "situacao_tgov": "",
+      "sit_contrat_tgov": ""
     },
     {
       "numero": "980844",
@@ -1659,7 +1815,9 @@
       "foto_app": "NÃO ❌",
       "medicao": "NÃO",
       "pagamento": "NÃO",
-      "apto_fiscalgov": "NÃO ⬜"
+      "apto_fiscalgov": "NÃO ⬜",
+      "situacao_tgov": "",
+      "sit_contrat_tgov": ""
     },
     {
       "numero": "981146",
@@ -1680,7 +1838,9 @@
       "foto_app": "NÃO ❌",
       "medicao": "NÃO",
       "pagamento": "NÃO",
-      "apto_fiscalgov": "NÃO ⬜"
+      "apto_fiscalgov": "NÃO ⬜",
+      "situacao_tgov": "",
+      "sit_contrat_tgov": ""
     },
     {
       "numero": "983950",
@@ -1701,7 +1861,9 @@
       "foto_app": "NÃO ❌",
       "medicao": "NÃO",
       "pagamento": "NÃO",
-      "apto_fiscalgov": "NÃO ⬜"
+      "apto_fiscalgov": "NÃO ⬜",
+      "situacao_tgov": "",
+      "sit_contrat_tgov": ""
     },
     {
       "numero": "986179",
@@ -1722,7 +1884,9 @@
       "foto_app": "NÃO ❌",
       "medicao": "NÃO",
       "pagamento": "NÃO",
-      "apto_fiscalgov": "NÃO ⬜"
+      "apto_fiscalgov": "NÃO ⬜",
+      "situacao_tgov": "",
+      "sit_contrat_tgov": ""
     },
     {
       "numero": "986155",
@@ -1743,7 +1907,9 @@
       "foto_app": "NÃO ❌",
       "medicao": "NÃO",
       "pagamento": "NÃO",
-      "apto_fiscalgov": "NÃO ⬜"
+      "apto_fiscalgov": "NÃO ⬜",
+      "situacao_tgov": "",
+      "sit_contrat_tgov": ""
     },
     {
       "numero": "985797",
@@ -1764,7 +1930,9 @@
       "foto_app": "NÃO ❌",
       "medicao": "NÃO",
       "pagamento": "NÃO",
-      "apto_fiscalgov": "NÃO ⬜"
+      "apto_fiscalgov": "NÃO ⬜",
+      "situacao_tgov": "",
+      "sit_contrat_tgov": ""
     },
     {
       "numero": "986602",
@@ -1785,7 +1953,9 @@
       "foto_app": "NÃO ❌",
       "medicao": "NÃO",
       "pagamento": "NÃO",
-      "apto_fiscalgov": "NÃO ⬜"
+      "apto_fiscalgov": "NÃO ⬜",
+      "situacao_tgov": "",
+      "sit_contrat_tgov": ""
     },
     {
       "numero": "988101",
@@ -1806,7 +1976,9 @@
       "foto_app": "NÃO ❌",
       "medicao": "NÃO",
       "pagamento": "NÃO",
-      "apto_fiscalgov": "NÃO ⬜"
+      "apto_fiscalgov": "NÃO ⬜",
+      "situacao_tgov": "",
+      "sit_contrat_tgov": ""
     },
     {
       "numero": "988500",
@@ -1827,7 +1999,9 @@
       "foto_app": "NÃO ❌",
       "medicao": "NÃO",
       "pagamento": "NÃO",
-      "apto_fiscalgov": "NÃO ⬜"
+      "apto_fiscalgov": "NÃO ⬜",
+      "situacao_tgov": "",
+      "sit_contrat_tgov": ""
     },
     {
       "numero": "989250",
@@ -1848,7 +2022,9 @@
       "foto_app": "NÃO ❌",
       "medicao": "NÃO",
       "pagamento": "NÃO",
-      "apto_fiscalgov": "NÃO ⬜"
+      "apto_fiscalgov": "NÃO ⬜",
+      "situacao_tgov": "",
+      "sit_contrat_tgov": ""
     },
     {
       "numero": "988784",
@@ -1869,7 +2045,9 @@
       "foto_app": "NÃO ❌",
       "medicao": "NÃO",
       "pagamento": "NÃO",
-      "apto_fiscalgov": "NÃO ⬜"
+      "apto_fiscalgov": "NÃO ⬜",
+      "situacao_tgov": "",
+      "sit_contrat_tgov": ""
     },
     {
       "numero": "988634",
@@ -1890,7 +2068,9 @@
       "foto_app": "NÃO ❌",
       "medicao": "NÃO",
       "pagamento": "NÃO",
-      "apto_fiscalgov": "NÃO ⬜"
+      "apto_fiscalgov": "NÃO ⬜",
+      "situacao_tgov": "",
+      "sit_contrat_tgov": ""
     },
     {
       "numero": "988972",
@@ -1911,7 +2091,9 @@
       "foto_app": "NÃO ❌",
       "medicao": "NÃO",
       "pagamento": "NÃO",
-      "apto_fiscalgov": "NÃO ⬜"
+      "apto_fiscalgov": "NÃO ⬜",
+      "situacao_tgov": "",
+      "sit_contrat_tgov": ""
     },
     {
       "numero": "988779",
@@ -1932,7 +2114,9 @@
       "foto_app": "NÃO ❌",
       "medicao": "NÃO",
       "pagamento": "NÃO",
-      "apto_fiscalgov": "NÃO ⬜"
+      "apto_fiscalgov": "NÃO ⬜",
+      "situacao_tgov": "",
+      "sit_contrat_tgov": ""
     },
     {
       "numero": "988901",
@@ -1953,7 +2137,9 @@
       "foto_app": "NÃO ❌",
       "medicao": "NÃO",
       "pagamento": "NÃO",
-      "apto_fiscalgov": "NÃO ⬜"
+      "apto_fiscalgov": "NÃO ⬜",
+      "situacao_tgov": "",
+      "sit_contrat_tgov": ""
     }
   ]
 }

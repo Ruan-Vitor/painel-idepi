@@ -143,6 +143,21 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);display:flex;flex-dir
 .fg-track{background:#e8f0fe;border-radius:99px;height:8px;overflow:hidden}
 .fg-fill{height:100%;border-radius:99px;background:linear-gradient(90deg,#1a3a6e,#16a34a);transition:width 1s cubic-bezier(.22,1,.36,1)}
 
+/* ── BOTÃO TELA CHEIA (index) ── */
+.btn-fullscreen{
+  display:inline-flex;align-items:center;gap:5px;
+  background:#eff6ff;color:#1a3a6e;
+  border:1.5px solid #93c5fd;border-radius:7px;
+  padding:4px 10px;font-size:11px;font-weight:600;
+  cursor:pointer;font-family:'DM Sans',sans-serif;
+  transition:all .15s;white-space:nowrap;
+}
+.btn-fullscreen:hover{background:#1a3a6e;color:#fff;border-color:#1a3a6e}
+.fg-card:fullscreen,.fg-card:-webkit-full-screen,.fg-card:-moz-full-screen{
+  background:var(--surface);display:flex;flex-direction:column;
+  align-items:stretch;border-radius:0;overflow:auto;padding:20px;
+}
+
 /* ── BOTÃO EXPORTAR EXCEL ── */
 .btn-excel{
   display:inline-flex;align-items:center;gap:6px;
@@ -357,10 +372,15 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);display:flex;flex-dir
       </div>
 
       <!-- FISCALGOV PREVIEW -->
-      <div class="fg-card">
+      <div class="fg-card" id="fgCard">
         <div class="fg-card-head">
           <div class="fg-card-title"><i class="fa-solid fa-camera"></i> FiscalGov · EX-01 — Instrumentos Aptos com Foto no APP</div>
-          <a class="fg-link" href="fiscalgov.html"><i class="fa-solid fa-arrow-up-right-from-square"></i> Ver painel completo</a>
+          <div style="display:flex;align-items:center;gap:8px;">
+            <button class="btn-fullscreen" id="btnFSIdx" onclick="toggleFullscreenIdx()" title="Tela cheia">
+              <i class="fa-solid fa-expand"></i> Tela cheia
+            </button>
+            <a class="fg-link" href="fiscalgov.html"><i class="fa-solid fa-arrow-up-right-from-square"></i> Ver painel completo</a>
+          </div>
         </div>
         <div class="fg-metrics">
           <div class="fg-metric">
@@ -691,6 +711,30 @@ function exportarExcelGeral() {
       btn.innerHTML = '<i class="fa-solid fa-file-excel"></i> Exportar Resumo Excel';
     }
   }, 50);
+}
+
+/* ── TELA CHEIA ── */
+function toggleFullscreenIdx() {
+  var el = document.getElementById('fgCard');
+  var isFs = document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement;
+  if (!isFs) {
+    var req = el.requestFullscreen || el.webkitRequestFullscreen || el.mozRequestFullScreen;
+    if (req) req.call(el);
+  } else {
+    var ex = document.exitFullscreen || document.webkitExitFullscreen || document.mozCancelFullScreen;
+    if (ex) ex.call(document);
+  }
+}
+document.addEventListener('fullscreenchange', _syncFsBtnIdx);
+document.addEventListener('webkitfullscreenchange', _syncFsBtnIdx);
+document.addEventListener('mozfullscreenchange', _syncFsBtnIdx);
+function _syncFsBtnIdx() {
+  var btn = document.getElementById('btnFSIdx');
+  if (!btn) return;
+  var isFs = document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement;
+  btn.innerHTML = isFs
+    ? '<i class="fa-solid fa-compress"></i> Sair'
+    : '<i class="fa-solid fa-expand"></i> Tela cheia';
 }
 </script>
 

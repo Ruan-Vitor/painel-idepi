@@ -231,7 +231,6 @@ tr.drow:hover td{background:var(--surface2);cursor:pointer}
     <div class="kcard c"  onclick="setStatus('critico')"    id="kc"><i class="fa-solid fa-fire kicon"></i><div class="klabel">Crítico</div><div class="kcount" id="cc">—</div><div class="kdesc">&lt; 30 dias</div></div>
     <div class="kcard v"  onclick="setStatus('vencido')"    id="kv"><i class="fa-solid fa-skull kicon"></i><div class="klabel">Vencido</div><div class="kcount" id="cv">—</div><div class="kdesc">Prazo expirado</div></div>
     <div class="kcard f"  onclick="setStatus('finalizado')" id="kf"><i class="fa-solid fa-flag-checkered kicon"></i><div class="klabel">Finalizado</div><div class="kcount" id="cf">—</div><div class="kdesc">Concluído</div></div>
-    <div class="kcard" style="color:#b45309;background:#fef3c7;border-color:#d97706;" onclick="setStatus('divergente')" id="kdiv" title="API diz ativo, mas Transferegov indica encerrado"><i class="fa-solid fa-triangle-exclamation kicon"></i><div class="klabel">Divergência</div><div class="kcount" id="cdiv">—</div><div class="kdesc">API ≠ Tgov</div></div>
   </div>
 
   <!-- TOTAIS -->
@@ -325,7 +324,7 @@ const CLS  = {normal:'n',alerta:'a',atencao:'at',critico:'c',vencido:'v',finaliz
 const LBL  = {normal:'Normal (>90d)',alerta:'Alerta (60–90d)',atencao:'Atenção (30–60d)',critico:'Crítico (<30d)',vencido:'Vencido',finalizado:'Finalizado'};
 const COR  = {normal:'#22c55e',alerta:'#3b82f6',atencao:'#eab308',critico:'#f97316',vencido:'#ef4444',finalizado:'#94a3b8'};
 const NOME = {normal:'Normal',alerta:'Alerta',atencao:'Atenção',critico:'Crítico',vencido:'Vencido',finalizado:'Finalizado'};
-const KIDS = {normal:'kn',alerta:'ka',atencao:'kat',critico:'kc',vencido:'kv',finalizado:'kf',divergente:'kdiv'};
+const KIDS = {normal:'kn',alerta:'ka',atencao:'kat',critico:'kc',vencido:'kv',finalizado:'kf'};
 
 // ── PARSE DE DATA ────────────────────────────────────────────────────────────
 function parseDate(s) {
@@ -341,30 +340,20 @@ function parseDate(s) {
 
 const hoje = (() => { const d = new Date(); d.setHours(0,0,0,0); return d; })();
 
-// ── DETECTA DIVERGÊNCIA API vs TRANSFEREGOV ──────────────────────────────────
-// Retorna true se T ou U indicam finalizado mas API (col E) diz outra coisa.
-const TGOV_FINALIZADAS = [
-  'prestação de contas concluída','prestacao de contas concluida',
-  'prestação de contas enviada','prestacao de contas enviada',
-  'encerrado','rescindido','cancelado','finalizado','concluído','concluido',
-  'inadimplente','tomada de contas'
-];
-function isDivergente(r) {
-  const st = r._st;
-  if (st === 'finalizado') return false; // API já diz finalizado, sem divergência
-  const tgov = (r.situacao_tgov || '')
-    .normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
-  return TGOV_FINALIZADAS.some(s => tgov.includes(s));
-}
-
-// ── CALCULA STATUS CONSIDERANDO SUSPENSIVA ───────────────────────────────────
+// ── CALCULA STATUS — TRANSFEREGOV É A FONTE PRIMÁRIA ─────────────────────────
+// Ordem de prioridade para detectar encerramento:
+//   1. situacao_tgov (col T) — lida diretamente do Transferegov → mais confiável
+//   2. sit_contrat_tgov (col U) — situação de contratação do Transferegov
+//   3. situacao da API CGU — fallback quando T/U ainda não foram preenchidos
+// Se qualquer uma indicar encerramento → status = 'finalizado'.
 function calcStatus(c) {
-  // Normaliza situação removendo acentos para comparação robusta
-  const sit = (c.situacao || '')
-    .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
-    .toLowerCase();
-  if (/prestacao\s*de\s*contas|finaliz|concluíd|concluido|encerrad|rescindid|inadimplent|tomada\s*de\s*contas/.test(sit))
-    return { st:'finalizado', dias:null, temSusp:false };
+  const REGEX_FIN = /prestacao\s*de\s*contas|finaliz|concluido|encerrad|rescindid|inadimplent|tomada\s*de\s*contas/;
+  const norm = s => (s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
+
+  if (REGEX_FIN.test(norm(c.situacao_tgov)))     return { st:'finalizado', dias:null, temSusp:false };
+  if (REGEX_FIN.test(norm(c.sit_contrat_tgov)))  return { st:'finalizado', dias:null, temSusp:false };
+  if (REGEX_FIN.test(norm(c.situacao)))           return { st:'finalizado', dias:null, temSusp:false };
+
 
   const dVig  = parseDate(c.vigencia_fmt || c.vigencia);
   // ✅ CORREÇÃO: o JSON publica como "vigencia_suspensiva" (nome definido no main.py)
@@ -404,9 +393,7 @@ async function carregar() {
     document.getElementById('hinfo').textContent = `Atualizado: ${j.gerado_em || '—'}`;
     dados = (j.convenios || []).map(c => {
       const { st, dias, temSusp } = calcStatus(c);
-      const base = { ...c, _st:st, _dias:dias, _temSusp:temSusp };
-      base._divergente = isDivergente(base);
-      return base;
+      return { ...c, _st:st, _dias:dias, _temSusp:temSusp };
     });
     document.getElementById('ov').classList.add('hide');
     popularFiltros();
@@ -438,10 +425,9 @@ function popularFiltros() {
 // ── DASHBOARD ────────────────────────────────────────────────────────────────
 function atualizar() {
   const ct = {normal:0,alerta:0,atencao:0,critico:0,vencido:0,finalizado:0};
-  let sT=0,sL=0,sE=0,nE=0,nDiv=0;
+  let sT=0,sL=0,sE=0,nE=0;
   dados.forEach(d => {
     ct[d._st] = (ct[d._st]||0)+1;
-    if (d._divergente) nDiv++;
     const vt = parseFloat((d.v_total||'').replace(/\./g,'').replace(',','.')) || 0;
     const vl = parseFloat((d.v_liberado||'').replace(/\./g,'').replace(',','.')) || 0;
     const pe = parseFloat((d.pct_exec||'').replace('%','')) || 0;
@@ -451,7 +437,6 @@ function atualizar() {
     const keys=['normal','alerta','atencao','critico','vencido','finalizado'];
     document.getElementById(id).textContent = ct[keys[i]];
   });
-  document.getElementById('cdiv').textContent = nDiv || '0';
   const urg = ct.critico + ct.vencido;
   document.getElementById('urg').classList.toggle('hide', urg===0);
   if(urg>0) document.getElementById('urgTxt').textContent=`${urg} instrumento(s) crítico(s) ou vencido(s)`;
@@ -570,7 +555,6 @@ function render() {
   let rows = dados;
 
   if (filtroStatus === 'suspensiva')  rows = rows.filter(r => r._temSusp);
-  else if (filtroStatus === 'divergente') rows = rows.filter(r => r._divergente);
   else if (filtroStatus !== 'all')    rows = rows.filter(r => r._st === filtroStatus);
 
   if (q) rows = rows.filter(r =>
@@ -611,11 +595,6 @@ function render() {
     const nm  = NOME[r._st]||r._st;
     const dias = r._dias;
 
-    // Badge de divergência: aparece junto ao status quando API ≠ Transferegov
-    const divBadge = r._divergente
-      ? `<span title="API diz ${nm}, mas Transferegov indica: ${r.situacao_tgov||'?'}" style="display:inline-flex;align-items:center;gap:3px;padding:2px 6px;border-radius:20px;font-size:9px;font-weight:700;background:#fef3c7;color:#b45309;border:1px solid #d97706;margin-left:4px;white-space:nowrap;"><i class="fa-solid fa-triangle-exclamation" style="font-size:8px;"></i>API?</span>`
-      : '';
-
     let diasHtml;
     if (dias===null||dias===undefined) diasHtml = `<span class="val">—</span>`;
     else if (dias<0) diasHtml = `<div class="dias-vencido">${Math.abs(dias)}d<small>vencido</small></div>`;
@@ -642,13 +621,13 @@ function render() {
       <td><span class="val">${r.v_total?'R$ '+r.v_total:'—'}</span></td>
       <td style="text-align:center;"><span class="val">${r.pct_exec||'—'}</span></td>
       <td>${seiHtml}</td>
-      <td><span class="badge ${cl}">${nm}${r._temSusp?'<i class="fa-solid fa-hourglass-half" style="font-size:8px;margin-left:2px;"></i>':''}</span>${divBadge}</td>
+      <td><span class="badge ${cl}">${nm}${r._temSusp?'<i class="fa-solid fa-hourglass-half" style="font-size:8px;margin-left:2px;"></i>':''}</span></td>
     </tr>
     <tr class="erow" id="er${i}"><td colspan="10"><div class="ebody"><div class="egrid">
       <div class="ef"><label>Nº do instrumento</label><span>${r.numero||'—'}</span></div>
-      <div class="ef"><label>Situação oficial (API)</label><span>${r.situacao||'—'}</span></div>
-      <div class="ef"><label>Situação (Transferegov)</label><span style="color:${r._divergente?'#b45309':'inherit'};font-weight:${r._divergente?700:400};">${r.situacao_tgov||'—'}${r._divergente?' <span title=\'Divergência detectada\' style=\'font-size:10px;\'>⚠️</span>':''}</span></div>
+      <div class="ef"><label>Situação (Transferegov)</label><span>${r.situacao_tgov||'—'}</span></div>
       <div class="ef"><label>Sit. Contratação (Tgov)</label><span>${r.sit_contrat_tgov||'—'}</span></div>
+      <div class="ef"><label>Situação (API CGU)</label><span style="color:#94a3b8;font-size:11px;">${r.situacao||'—'}</span></div>
       <div class="ef"><label>Prestação de contas</label><span>${r.prestacao||'—'}</span></div>
       <div class="ef"><label>Autor da emenda</label><span>${r.autor_emenda||'—'}</span></div>
       <div class="ef full"><label>Objeto completo</label><span>${r.objeto||'—'}</span></div>
@@ -659,7 +638,7 @@ function render() {
       <div class="ef"><label>Valor total</label><span>${r.v_total?'R$ '+r.v_total:'—'}</span></div>
       <div class="ef"><label>Valor liberado</label><span>${r.v_liberado?'R$ '+r.v_liberado:'—'}</span></div>
       <div class="ef"><label>% Execução</label><span>${r.pct_exec||'—'}</span></div>
-      <div class="ef"><label>Status</label><span><span class="badge ${cl}">${nm}</span>${r._temSusp?'<span style="font-size:10px;color:var(--s-tx);margin-left:4px;">(pela suspensiva)</span>':''}${r._divergente?`<span style="font-size:10px;color:#b45309;margin-left:6px;font-weight:600;">⚠️ API pode estar desatualizada — Tgov: ${r.situacao_tgov||'?'}</span>`:''}</span></div>
+      <div class="ef"><label>Status</label><span><span class="badge ${cl}">${nm}</span>${r._temSusp?'<span style="font-size:10px;color:var(--s-tx);margin-left:4px;">(pela suspensiva)</span>':''}</span></div>
     </div></div></td></tr>`;
   }).join('');
 

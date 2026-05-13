@@ -201,6 +201,60 @@ tr.drow:hover td{background:var(--surface2);cursor:pointer}
 .btn-excel.loading{background:#94a3b8;cursor:not-allowed;transform:none}
 
 @media(max-width:1000px){.kgrid{grid-template-columns:repeat(3,1fr)}.prow{grid-template-columns:1fr}.totals{grid-template-columns:1fr 1fr}}
+
+@media(max-width:700px){
+  /* Header compacto */
+  .header { padding:0 12px; height:auto; min-height:52px; flex-wrap:wrap; gap:6px; padding-top:8px; padding-bottom:8px; }
+  .logo   { font-size:14px; }
+  .logo span { display:none; }
+  .hright { gap:6px; flex-wrap:wrap; }
+  .hbadge { font-size:11px; padding:3px 9px; }
+  .hinfo  { display:none; }
+
+  /* Layout geral */
+  .main { padding:14px 12px; }
+  .ptitle { font-size:16px; }
+  .psub   { font-size:11px; flex-wrap:wrap; }
+
+  /* KPIs: 3 colunas (já era), shrink contagem */
+  .kgrid   { grid-template-columns:repeat(3,1fr); gap:8px; }
+  .kcount  { font-size:24px; }
+  .kcard   { padding:10px 12px; }
+
+  /* Totals: 1 coluna */
+  .totals { grid-template-columns:1fr; gap:8px; padding:10px 14px; }
+
+  /* Painel: coluna única */
+  .prow { grid-template-columns:1fr; gap:12px; }
+
+  /* Gráfico: menor */
+  #cWrap { width:160px; height:160px; }
+
+  /* Tabela: scroll horizontal */
+  .twrap { max-height:none; overflow-x:auto; overflow-y:visible; -webkit-overflow-scrolling:touch; }
+  table  { font-size:11.5px; }
+  td, th { padding:8px 10px; }
+
+  /* Filtros de coluna: scroll horizontal */
+  .col-filters { overflow-x:auto; flex-wrap:nowrap; -webkit-overflow-scrolling:touch; }
+  .col-filters::-webkit-scrollbar { display:none; }
+  .col-filter-select { min-width:90px; font-size:10.5px; }
+
+  /* Chips: scroll lateral */
+  .chips { flex-wrap:nowrap; overflow-x:auto; -webkit-overflow-scrolling:touch; padding-bottom:6px; }
+  .chips::-webkit-scrollbar { display:none; }
+  .chip  { flex-shrink:0; }
+
+  /* Botão excel */
+  .btn-excel { font-size:11px; padding:5px 10px; }
+  .btn-menu  { font-size:11px; padding:5px 10px; }
+}
+
+@media(max-width:430px){
+  .kgrid  { grid-template-columns:repeat(2,1fr); }
+  .kcount { font-size:20px; }
+  .ptitle { font-size:14px; }
+}
 </style>
 </head>
 <body>

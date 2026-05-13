@@ -6,6 +6,7 @@
 <title>FiscalGov · EX-01 — IDEPI</title>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=IBM+Plex+Mono:wght@400;600&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <style>
 :root{
   --bg:#0b1527;
@@ -62,7 +63,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);display:flex;flex-dir
 .sb-item.active i{color:#60a5fa}
 .sb-item i{font-size:13px;width:16px;text-align:center;flex-shrink:0}
 .soon{margin-left:auto;font-size:9px;font-weight:600;background:rgba(255,255,255,.07);color:rgba(255,255,255,.25);padding:1px 6px;border-radius:8px}
-.sb-item.active .soon{display:none}
 .sb-footer{margin-top:auto;padding-top:14px;border-top:1px solid rgba(255,255,255,.06)}
 .sb-card{padding:10px 12px;border-radius:8px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.05)}
 .sb-card strong{color:rgba(255,255,255,.45);display:block;font-size:10px;margin-bottom:2px}
@@ -123,6 +123,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);display:flex;flex-dir
 .tbl-head{padding:13px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;flex-shrink:0}
 .tbl-title{font-size:13px;font-weight:700;color:var(--text);display:flex;align-items:center;gap:7px}
 .tbl-title i{color:var(--accent)}
+.tbl-head-right{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 .filters{display:flex;gap:5px;flex-wrap:wrap}
 .fchip{font-size:10.5px;font-weight:600;padding:3px 11px;border-radius:18px;cursor:pointer;border:1.5px solid;transition:all .13s;user-select:none}
 .fc-all{background:#e8f0fe;color:#1a3a6e;border-color:#1a3a6e}
@@ -157,6 +158,21 @@ tbody tr:hover td{background:#f5f9ff}
 .acao{font-size:11px;font-weight:600;display:flex;align-items:center;gap:4px}
 .acao.ok{color:var(--green)}.acao.pend{color:#c2410c}.acao.neutr{color:var(--muted)}
 .empty-row{text-align:center;padding:28px;color:var(--muted);font-size:12.5px}
+
+/* ── BOTÃO EXPORTAR EXCEL ── */
+.btn-excel{
+  display:inline-flex;align-items:center;gap:6px;
+  background:#16a34a;color:#fff;
+  border:none;border-radius:7px;
+  padding:6px 13px;font-size:11.5px;font-weight:600;
+  cursor:pointer;font-family:'DM Sans',sans-serif;
+  transition:background .15s,transform .1s;
+  white-space:nowrap;
+}
+.btn-excel:hover{background:#15803d;transform:translateY(-1px)}
+.btn-excel:active{transform:translateY(0)}
+.btn-excel i{font-size:12px}
+.btn-excel.loading{background:#94a3b8;cursor:not-allowed;transform:none}
 
 /* ── OVERLAY / LOCK ── */
 .overlay{position:fixed;inset:0;background:rgba(7,16,31,.85);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:998;gap:12px}
@@ -297,11 +313,16 @@ tbody tr:hover td{background:#f5f9ff}
       <div class="tbl-card">
         <div class="tbl-head">
           <div class="tbl-title"><i class="fa-solid fa-list-check"></i> Instrumentos vigentes</div>
-          <div class="filters">
-            <span class="fchip fc-all sel" id="fc-all"  onclick="filtrar('all')">Todos</span>
-            <span class="fchip fc-ok"      id="fc-ok"   onclick="filtrar('ok')">Aptos + foto ✅</span>
-            <span class="fchip fc-nok"     id="fc-nok"  onclick="filtrar('nok')">Aptos sem foto ❌</span>
-            <span class="fchip fc-proj"    id="fc-proj" onclick="filtrar('proj')">Em projeto</span>
+          <div class="tbl-head-right">
+            <div class="filters">
+              <span class="fchip fc-all sel" id="fc-all"  onclick="filtrar('all')">Todos</span>
+              <span class="fchip fc-ok"      id="fc-ok"   onclick="filtrar('ok')">Aptos + foto ✅</span>
+              <span class="fchip fc-nok"     id="fc-nok"  onclick="filtrar('nok')">Aptos sem foto ❌</span>
+              <span class="fchip fc-proj"    id="fc-proj" onclick="filtrar('proj')">Em projeto</span>
+            </div>
+            <button class="btn-excel" id="btnExcelFG" onclick="exportarExcelFiscalGov()" title="Exportar dados visíveis para Excel">
+              <i class="fa-solid fa-file-excel"></i> Exportar Excel
+            </button>
           </div>
         </div>
         <div class="srch">
@@ -339,6 +360,7 @@ tbody tr:hover td{background:#f5f9ff}
 <script>
 var USUARIO = "Ruan-Vitor", REPO = "painel-idepi";
 var todos = [], filtroAtual = "all";
+var _rowsVisiveis = []; // referência para exportação
 
 function parseDateBR(s) {
   if (!s) return null;
@@ -352,57 +374,37 @@ function parseDateBR(s) {
 
 function normSit(s){ return (s||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase(); }
 
-/* Verifica se o instrumento está finalizado/encerrado.
-   Consulta TRÊS fontes em ordem de confiabilidade:
-   1. situacao_tgov   — lido diretamente do Transferegov pelo tgov_monitor.py (col T)
-   2. sit_contrat_tgov — situação de contratação do Transferegov (col U)
-   3. situacao         — API da CGU (pode estar desatualizada)
-   Se QUALQUER das três indicar encerramento, o instrumento é excluído do EX-01.
-   Isso evita que a API desatualizada mantenha um instrumento ativo indevidamente
-   (caso do 906442: API diz vigente, Transferegov diz "Prestação de Contas Concluída"). */
 function isFinalizado(c) {
   var REGEX_FIN = /prestacao\s*de\s*contas|finaliz|concluido|encerrad|rescindid|inadimplent|tomada\s*de\s*contas/;
-
-  // 1. Situação lida do Transferegov (fonte primária — mais confiável)
   var sitTgov = normSit(c.situacao_tgov || "");
   if (sitTgov && sitTgov !== "—" && sitTgov !== "erro" && REGEX_FIN.test(sitTgov)) return true;
-
-  // 2. Situação de contratação do Transferegov
   var sitContrat = normSit(c.sit_contrat_tgov || "");
   if (sitContrat && sitContrat !== "—" && sitContrat !== "erro" && REGEX_FIN.test(sitContrat)) return true;
-
-  // 3. Situação da API CGU (fallback — pode estar desatualizada)
   var sitApi = normSit(c.situacao || "");
   if (REGEX_FIN.test(sitApi)) return true;
-
   return false;
 }
 
-/* Verifica se tem medição registrada (coluna P da planilha → campo medicao) */
 function temMedicao(c) {
   var v = c.medicao || c.col_p || "";
   return String(v).trim().toUpperCase().startsWith("SIM");
 }
 
-/* Verifica se tem pagamento registrado (coluna Q da planilha → campo pagamento) */
 function temPagamento(c) {
   var v = c.pagamento || c.col_q || "";
   return String(v).trim().toUpperCase().startsWith("SIM");
 }
 
-/* Apto ao FiscalGov = vigente E (tem medição OU tem pagamento) */
 function isApto(c) {
   if (isFinalizado(c)) return false;
   return temMedicao(c) || temPagamento(c);
 }
 
-/* Em projeto = vigente mas sem medição e sem pagamento */
 function isProjeto(c) {
   if (isFinalizado(c)) return false;
   return !temMedicao(c) && !temPagamento(c);
 }
 
-/* Foto registrada no APP FiscalGov (coluna O da planilha → campo foto_app / rel_fotografico) */
 function temFoto(c) {
   var v = c.foto_app || c.rel_fotografico || c.col_o || "";
   v = String(v).trim().toUpperCase();
@@ -410,7 +412,6 @@ function temFoto(c) {
   return v.startsWith("SIM");
 }
 
-/* Calcula status da vigência */
 function calcStatus(c) {
   var hoje = new Date(); hoje.setHours(0,0,0,0);
   var dVig = parseDateBR(c.vigencia_fmt || c.vigencia);
@@ -441,21 +442,23 @@ function renderizar() {
     return true;
   });
 
-  if (!rows.length) {
-    document.getElementById("tbody").innerHTML = '<tr><td colspan="10" class="empty-row">Nenhum instrumento encontrado.</td></tr>';
-    return;
-  }
-
-  // Ordenação: aptos sem foto primeiro, depois aptos com foto, depois em projeto
+  // Ordenação
   rows.sort(function(a,b){
     var ra = a._apto && !a._foto ? 0 : (a._apto && a._foto ? 1 : 2);
     var rb = b._apto && !b._foto ? 0 : (b._apto && b._foto ? 1 : 2);
     if (ra !== rb) return ra - rb;
-    // Dentro de cada grupo, mais urgente primeiro (menos dias)
     var da = (a._dias !== null ? a._dias : 9999);
     var db = (b._dias !== null ? b._dias : 9999);
     return da - db;
   });
+
+  // Salva para exportação
+  _rowsVisiveis = rows;
+
+  if (!rows.length) {
+    document.getElementById("tbody").innerHTML = '<tr><td colspan="10" class="empty-row">Nenhum instrumento encontrado.</td></tr>';
+    return;
+  }
 
   var html = "";
   for (var i=0; i<rows.length; i++) {
@@ -464,29 +467,24 @@ function renderizar() {
     var obj = r.objeto || "—";
     var vigFmt = r.vigencia_fmt || r.vigencia || "—";
 
-    // Badge medição
     var medBadge = r._med
       ? '<span class="b b-ok"><i class="fa-solid fa-check"></i> SIM</span>'
       : '<span class="b b-proj"><i class="fa-solid fa-minus"></i> NÃO</span>';
 
-    // Badge pagamento
     var pagBadge = r._pag
       ? '<span class="b b-ok"><i class="fa-solid fa-check"></i> SIM</span>'
       : '<span class="b b-proj"><i class="fa-solid fa-minus"></i> NÃO</span>';
 
-    // Badge aptidão
     var aptoBadge = r._apto
       ? '<span class="b b-ok"><i class="fa-solid fa-circle-check"></i> Apto</span>'
       : '<span class="b b-proj"><i class="fa-solid fa-hourglass-half"></i> Em projeto</span>';
 
-    // Badge foto
     var fotoBadge = r._apto
       ? (r._foto
           ? '<span class="b b-ok"><i class="fa-solid fa-camera"></i> SIM</span>'
           : '<span class="b b-nok"><i class="fa-solid fa-camera-slash"></i> NÃO</span>')
       : '<span class="b b-proj" style="opacity:.55"><i class="fa-solid fa-minus"></i> N/A</span>';
 
-    // Ação recomendada
     var acao = "";
     if (!r._apto) {
       acao = '<span class="acao neutr"><i class="fa-solid fa-hourglass-half"></i> Aguardar início da obra</span>';
@@ -524,6 +522,101 @@ function filtrar(f) {
   renderizar();
 }
 
+// ══════════════════════════════════════════════════════════════════
+//  EXPORTAR EXCEL — FISCALGOV
+// ══════════════════════════════════════════════════════════════════
+function exportarExcelFiscalGov() {
+  var btn = document.getElementById('btnExcelFG');
+  if (!_rowsVisiveis.length) { alert('Nenhum dado para exportar.'); return; }
+
+  btn.classList.add('loading');
+  btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Gerando...';
+
+  setTimeout(function() {
+    try {
+      // ── Aba 1: Instrumentos ──
+      var cabecalho = [
+        'Nº Instrumento','Objeto','Fiscal Responsável',
+        'Vigência Final','Status Vigência','Dias Restantes',
+        'Medição Registrada','Pagamento Registrado',
+        'Aptidão FiscalGov','Foto APP (EX-01)','Ação Recomendada',
+        'Situação Transferegov','Situação API CGU'
+      ];
+
+      var linhas = _rowsVisiveis.map(function(r) {
+        var aptidao = r._apto ? 'Apto' : 'Em projeto';
+        var foto    = !r._apto ? 'N/A' : (r._foto ? 'SIM' : 'NÃO');
+        var acao    = !r._apto ? 'Aguardar início da obra'
+                    : (r._foto ? 'OK — manter envio regular'
+                               : 'Fiscal deve enviar foto pelo APP');
+        var stNome  = {normal:'Normal',alerta:'Alerta',atencao:'Atenção',critico:'Crítico',vencido:'Vencido',sem_data:'Sem data'};
+        return [
+          r.numero || '',
+          r.objeto || '',
+          r.fiscal || '',
+          r.vigencia_fmt || r.vigencia || '',
+          stNome[r._st] || r._st || '',
+          r._dias !== null && r._dias !== undefined ? r._dias : '',
+          r._med  ? 'SIM' : 'NÃO',
+          r._pag  ? 'SIM' : 'NÃO',
+          aptidao,
+          foto,
+          acao,
+          r.situacao_tgov || '',
+          r.situacao || ''
+        ];
+      });
+
+      var wsData = [cabecalho].concat(linhas);
+      var ws = XLSX.utils.aoa_to_sheet(wsData);
+      ws['!cols'] = [
+        {wch:22},{wch:50},{wch:18},{wch:14},{wch:12},{wch:10},
+        {wch:10},{wch:10},{wch:14},{wch:10},{wch:36},
+        {wch:32},{wch:28}
+      ];
+
+      // ── Aba 2: Resumo EX-01 ──
+      var aptos    = _rowsVisiveis.filter(function(r){ return r._apto; }).length;
+      var comFoto  = _rowsVisiveis.filter(function(r){ return r._apto && r._foto; }).length;
+      var semFoto  = aptos - comFoto;
+      var emProj   = _rowsVisiveis.filter(function(r){ return r._proj; }).length;
+      var pct      = aptos > 0 ? Math.round(comFoto/aptos*100) : 0;
+
+      var wsRes = XLSX.utils.aoa_to_sheet([
+        ['Indicador EX-01 — FiscalGov (APP Fiscalização)',''],
+        ['',''],
+        ['Métrica','Valor'],
+        ['Total vigentes (exibidos)',  _rowsVisiveis.length],
+        ['Em projeto (sem medição/pagamento)', emProj],
+        ['Total aptos ao EX-01', aptos],
+        ['Aptos COM foto (✅)', comFoto],
+        ['Aptos SEM foto (❌)', semFoto],
+        ['% EX-01 estimado', pct+'%'],
+        ['',''],
+        ['Fórmula EX-01', 'Aptos com foto ÷ Total aptos'],
+        ['Sentido', 'Maior = Melhor'],
+      ]);
+      wsRes['!cols'] = [{wch:36},{wch:20}];
+
+      // ── Workbook ──
+      var wb = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(wb, ws,    'FiscalGov EX-01');
+      XLSX.utils.book_append_sheet(wb, wsRes, 'Resumo EX-01');
+
+      var hoje = new Date();
+      var dtStr = String(hoje.getDate()).padStart(2,'0')+'-'+String(hoje.getMonth()+1).padStart(2,'0')+'-'+hoje.getFullYear();
+      var filtroLabel = filtroAtual !== 'all' ? '_'+filtroAtual : '';
+      XLSX.writeFile(wb, 'IDEPI_FiscalGov'+filtroLabel+'_'+dtStr+'.xlsx');
+
+    } catch(e) {
+      alert('Erro ao gerar Excel: ' + e.message);
+    } finally {
+      btn.classList.remove('loading');
+      btn.innerHTML = '<i class="fa-solid fa-file-excel"></i> Exportar Excel';
+    }
+  }, 50);
+}
+
 /* ── Carrega dados ── */
 var url = "https://raw.githubusercontent.com/"+USUARIO+"/"+REPO+"/main/dados.json?t="+Date.now();
 fetch(url)
@@ -535,7 +628,6 @@ fetch(url)
     todos = [];
     for (var i=0; i<conv.length; i++) {
       var c = conv[i];
-      // Exclui finalizados e cancelados
       if (isFinalizado(c)) continue;
       var sit = String(c.situacao||"").toUpperCase();
       if (sit.includes("CANCELADO") || sit.includes("ANULADO") || sit.includes("SEM DADOS")) continue;
@@ -567,10 +659,8 @@ fetch(url)
     document.getElementById("kpi-pct").textContent   = pct+"%";
     document.getElementById("prog-pct-label").textContent = pct+"%";
     document.getElementById("prog-bar").style.width  = pct+"%";
-
     document.getElementById("overlay").classList.add("hide");
 
-    // Popular select de Fiscal Responsável
     var fiscais = {};
     todos.forEach(function(c){ var f=(c.fiscal||"").trim(); if(f) fiscais[f]=1; });
     var selFisc = document.getElementById("fFiscal");

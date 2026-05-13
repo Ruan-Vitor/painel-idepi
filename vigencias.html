@@ -273,6 +273,54 @@ tr.drow:hover td{background:var(--surface2);cursor:pointer}
   .kcount { font-size:20px; }
   .ptitle { font-size:14px; }
 }
+
+/* ── SIDEBAR TOGGLE ── */
+.sb-toggle{
+  position:absolute;
+  right:-14px;
+  top:20px;
+  width:28px;
+  height:28px;
+  border-radius:50%;
+  background:var(--sidebar);
+  border:1.5px solid rgba(255,255,255,.12);
+  color:rgba(255,255,255,.55);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  z-index:10;
+  font-size:11px;
+  transition:all .18s;
+  flex-shrink:0;
+}
+.sb-toggle:hover{background:#1a3a6e;color:#fff;border-color:#60a5fa}
+
+/* Sidebar colapsada */
+.sidebar{
+  position:relative;
+  transition:width .22s cubic-bezier(.4,0,.2,1),
+             padding .22s cubic-bezier(.4,0,.2,1);
+  overflow:visible;
+}
+.sidebar.collapsed{
+  width:0!important;
+  padding:0!important;
+  overflow:hidden;
+}
+.sidebar.collapsed .sb-toggle{
+  right:-36px;
+  background:#1a3a6e;
+  border-color:#60a5fa;
+  color:#fff;
+}
+/* Esconde todos os filhos exceto o toggle */
+.sidebar.collapsed > *:not(.sb-toggle){
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .1s;
+}
+
 </style>
 </head>
 <body>
@@ -940,5 +988,38 @@ function checkPwd() {
   }
 }
 </script>
+
+/* ── SIDEBAR TOGGLE JS ── */
+(function(){
+  var sidebar = document.querySelector('.sidebar');
+  if(!sidebar) return;
+
+  // Botão toggle
+  var btn = document.createElement('button');
+  btn.className = 'sb-toggle';
+  btn.title = 'Recolher menu';
+  btn.setAttribute('aria-label','Recolher/expandir menu lateral');
+  btn.innerHTML = '<i class="fa-solid fa-chevron-left"></i>';
+  sidebar.appendChild(btn);
+
+  // Restaura estado salvo
+  var collapsed = sessionStorage.getItem('idepi_sb_collapsed') === '1';
+  if(collapsed){
+    sidebar.classList.add('collapsed');
+    btn.innerHTML = '<i class="fa-solid fa-chevron-right"></i>';
+    btn.title = 'Expandir menu';
+  }
+
+  btn.addEventListener('click', function(){
+    collapsed = !collapsed;
+    sidebar.classList.toggle('collapsed', collapsed);
+    btn.innerHTML = collapsed
+      ? '<i class="fa-solid fa-chevron-right"></i>'
+      : '<i class="fa-solid fa-chevron-left"></i>';
+    btn.title = collapsed ? 'Expandir menu' : 'Recolher menu';
+    sessionStorage.setItem('idepi_sb_collapsed', collapsed ? '1' : '0');
+  });
+})();
+
 </body>
 </html>

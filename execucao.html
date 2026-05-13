@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Execução Financeira — IDEPI</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=IBM+Plex+Mono:wght@400;600&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<style>
+:root{
+  --bg:#0b1527;
+  --sidebar:#07101f;
+  --surface:#fff;
+  --surface2:#f4f7fd;
+  --border:#e3eaf5;
+  --text:#1a2640;
+  --muted:#7a8ba0;
+  --accent:#1a3a6e;
+  --green:#16a34a;
+  --green-bg:#f0fdf4;
+  --green-bdr:#86efac;
+  --red:#b91c1c;
+  --red-bg:#fef2f2;
+  --red-bdr:#fca5a5;
+  --amber:#92400e;
+  --amber-bg:#fffbeb;
+  --amber-bdr:#fcd34d;
+  --slate:#475569;
+  --slate-bg:#f8fafc;
+  --slate-bdr:#cbd5e1;
+  --blue:#1d4ed8;
+  --blue-bg:#eff6ff;
+  --blue-bdr:#93c5fd;
+  --purple:#6d28d9;
+  --purple-bg:#f5f3ff;
+  --purple-bdr:#c4b5fd;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);display:flex;flex-direction:column;min-height:100vh}
+
+/* ── HEADER ── */
+.hd{background:var(--bg);border-bottom:1px solid rgba(255,255,255,.07);padding:0 36px;height:58px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;position:sticky;top:0;z-index:50}
+.hd-left{display:flex;align-items:center;gap:14px}
+.hd-logo{display:flex;align-items:center;gap:10px}
+.hd-logo-icon{width:34px;height:34px;border-radius:8px;background:linear-gradient(135deg,#1a4a8a,#0d6e4a);display:flex;align-items:center;justify-content:center;font-size:14px;color:#fff}
+.hd-title{font-family:'Sora',sans-serif;font-size:14px;font-weight:700;color:#fff;line-height:1.1}
+.hd-sub{font-size:10px;color:rgba(255,255,255,.4)}
+.hd-sep{width:1px;height:26px;background:rgba(255,255,255,.1)}
+.hd-pill{display:flex;align-items:center;gap:6px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.09);border-radius:20px;padding:3px 11px;font-size:10px;color:rgba(255,255,255,.55)}
+.hd-pill i{color:#4ade80;font-size:8px}
+.hd-right{display:flex;align-items:center;gap:8px}
+.hd-ts{font-size:10px;color:rgba(255,255,255,.3);text-align:right;line-height:1.5}
+
+/* ── LAYOUT ── */
+.body{flex:1;display:flex;overflow:hidden}
+
+/* ── SIDEBAR ── */
+.sidebar{width:214px;flex-shrink:0;background:var(--sidebar);border-right:1px solid rgba(255,255,255,.06);display:flex;flex-direction:column;padding:18px 10px;gap:2px}
+.sb-sec{font-size:9px;font-weight:700;color:rgba(255,255,255,.2);letter-spacing:1px;text-transform:uppercase;padding:10px 12px 3px;margin-top:6px}
+.sb-sec:first-child{margin-top:0}
+.sb-item{display:flex;align-items:center;gap:9px;padding:8px 12px;border-radius:7px;font-size:12.5px;color:rgba(255,255,255,.5);text-decoration:none;cursor:pointer;transition:all .14s;position:relative}
+.sb-item:hover{background:rgba(255,255,255,.05);color:rgba(255,255,255,.75)}
+.sb-item.active{background:#182f5a;color:#fff}
+.sb-item.active i{color:#60a5fa}
+.sb-item i{font-size:13px;width:16px;text-align:center;flex-shrink:0}
+.soon{margin-left:auto;font-size:9px;font-weight:600;background:rgba(255,255,255,.07);color:rgba(255,255,255,.25);padding:1px 6px;border-radius:8px}
+.sb-footer{margin-top:auto;padding-top:14px;border-top:1px solid rgba(255,255,255,.06)}
+.sb-card{padding:10px 12px;border-radius:8px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.05)}
+.sb-card strong{color:rgba(255,255,255,.45);display:block;font-size:10px;margin-bottom:2px}
+.sb-card p{font-size:10px;color:rgba(255,255,255,.25);line-height:1.5}
+
+/* ── CONTENT ── */
+.content{flex:1;display:flex;flex-direction:column;overflow:hidden;background:var(--surface2)}
+
+/* ── PAGE HEAD ── */
+.pg-head{background:var(--surface);border-bottom:1px solid var(--border);padding:14px 28px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;flex-wrap:wrap;gap:10px}
+.pg-title{font-family:'Sora',sans-serif;font-size:18px;font-weight:700;color:var(--text);display:flex;align-items:center;gap:10px}
+.pg-title-icon{width:36px;height:36px;border-radius:9px;background:linear-gradient(135deg,#1a3a6e,#0d6e4a);display:flex;align-items:center;justify-content:center;color:#fff;font-size:15px}
+.pg-sub{font-size:11px;color:var(--muted);margin-top:3px}
+.pg-back{display:flex;align-items:center;gap:6px;background:var(--accent);color:#fff;border:none;padding:8px 16px;border-radius:7px;font-size:12px;font-weight:600;cursor:pointer;text-decoration:none;font-family:'DM Sans',sans-serif;transition:background .14s}
+.pg-back:hover{background:#1e4a8a}
+
+/* ── INSTRUMENTO SELECTOR ── */
+.inst-bar{background:var(--surface);border-bottom:1px solid var(--border);padding:10px 28px;display:flex;align-items:center;gap:12px;flex-shrink:0;flex-wrap:wrap}
+.inst-label{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;white-space:nowrap}
+.inst-select{font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:600;color:var(--accent);background:var(--blue-bg);border:1.5px solid var(--blue-bdr);border-radius:7px;padding:6px 12px;cursor:pointer;outline:none;min-width:200px}
+.inst-meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.inst-chip{display:inline-flex;align-items:center;gap:4px;font-size:10.5px;font-weight:600;padding:3px 9px;border-radius:12px;border:1px solid}
+.inst-chip.ic-exec{background:#f0fdf4;color:#166534;border-color:#86efac}
+.inst-chip.ic-simp{background:#f5f3ff;color:#5b21b6;border-color:#c4b5fd}
+.inst-chip.ic-mandataria{background:#eff6ff;color:#1d4ed8;border-color:#93c5fd}
+
+/* ── SCROLL ── */
+.scroll{flex:1;overflow-y:auto;padding:20px 28px;display:flex;flex-direction:column;gap:16px}
+
+/* ── VALOR SUMMARY STRIP ── */
+.val-strip{background:linear-gradient(120deg,#0f2550 0%,#0a3a28 100%);border-radius:12px;padding:18px 22px;display:grid;grid-template-columns:repeat(5,1fr);gap:0;color:#fff;flex-shrink:0;position:relative;overflow:hidden}
+.val-strip::after{content:'';position:absolute;right:-20px;top:-20px;width:160px;height:160px;border-radius:50%;background:rgba(255,255,255,.04)}
+.vs-item{padding:0 18px;border-right:1px solid rgba(255,255,255,.12);position:relative;z-index:1}
+.vs-item:first-child{padding-left:0}
+.vs-item:last-child{border-right:none}
+.vs-label{font-size:9.5px;font-weight:700;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.7px;margin-bottom:5px}
+.vs-val{font-family:'Sora',sans-serif;font-size:17px;font-weight:800;color:#fff;line-height:1;margin-bottom:3px}
+.vs-val.v-green{color:#4ade80}
+.vs-val.v-amber{color:#fbbf24}
+.vs-val.v-red{color:#f87171}
+.vs-sub{font-size:9px;color:rgba(255,255,255,.35);line-height:1.4}
+
+/* ── PROGRESS CARDS ROW ── */
+.prog-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;flex-shrink:0}
+.prog-card{background:var(--surface);border:1px solid var(--border);border-radius:11px;padding:16px 20px}
+.prog-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.prog-lbl{font-size:12px;font-weight:600;color:var(--text);display:flex;align-items:center;gap:7px}
+.prog-lbl i{font-size:11px;color:var(--accent)}
+.prog-pct{font-family:'Sora',sans-serif;font-size:22px;font-weight:800}
+.prog-track{background:#e8f0fe;border-radius:99px;height:10px;overflow:hidden;margin-bottom:8px}
+.prog-fill{height:100%;border-radius:99px;transition:width 1.2s cubic-bezier(.22,1,.36,1)}
+.prog-fill.pf-fin{background:linear-gradient(90deg,#1a3a6e,#16a34a)}
+.prog-fill.pf-fis{background:linear-gradient(90deg,#1a3a6e,#6d28d9)}
+.prog-note{font-size:10px;color:var(--muted);display:flex;align-items:center;gap:5px;flex-wrap:wrap}
+.prog-note strong{color:var(--text)}
+
+/* ── STATUS ATESTE ── */
+.ateste-row{display:flex;gap:10px;flex-wrap:wrap}
+.ateste-card{flex:1;min-width:180px;background:var(--surface);border:1px solid var(--border);border-radius:11px;padding:14px 18px;display:flex;align-items:center;gap:12px}
+.ateste-icon{width:38px;height:38px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0}
+.ateste-icon.ok{background:#f0fdf4;color:#16a34a}
+.ateste-icon.pend{background:#fffbeb;color:#d97706}
+.ateste-icon.na{background:#f8fafc;color:#94a3b8}
+.ateste-body{}
+.ateste-title{font-size:11.5px;font-weight:700;color:var(--text);margin-bottom:2px}
+.ateste-sub{font-size:10px;color:var(--muted);line-height:1.4}
+.ateste-badge{display:inline-flex;align-items:center;gap:4px;font-size:9.5px;font-weight:700;padding:2px 7px;border-radius:10px;border:1px solid;margin-top:4px}
+.ateste-badge.ok{background:#f0fdf4;color:#16a34a;border-color:#86efac}
+.ateste-badge.pend{background:#fffbeb;color:#b45309;border-color:#fcd34d}
+.ateste-badge.na{background:#f8fafc;color:#64748b;border-color:#cbd5e1}
+
+/* ── CONTRATO CARD ── */
+.contrato-card{background:var(--surface);border:1px solid var(--border);border-radius:11px;overflow:hidden;flex-shrink:0}
+.cc-head{padding:12px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.cc-title{font-size:13px;font-weight:700;color:var(--text);display:flex;align-items:center;gap:7px}
+.cc-title i{color:var(--accent)}
+.cc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
+.cc-item{padding:14px 18px;border-right:1px solid var(--border)}
+.cc-item:last-child{border-right:none}
+.cc-lbl{font-size:9.5px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.6px;margin-bottom:4px}
+.cc-val{font-size:13px;font-weight:700;color:var(--text)}
+.cc-val.mono{font-family:'IBM Plex Mono',monospace;color:var(--accent)}
+
+/* ── TABLE CARD (shared) ── */
+.tbl-card{background:var(--surface);border:1px solid var(--border);border-radius:11px;overflow:hidden;display:flex;flex-direction:column;min-height:260px}
+.tbl-card.tbl-main{min-height:340px;flex:1}
+.tbl-head{padding:12px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;flex-shrink:0}
+.tbl-title{font-size:13px;font-weight:700;color:var(--text);display:flex;align-items:center;gap:7px}
+.tbl-title i{color:var(--accent)}
+.tbl-head-right{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.tbl-scroll{overflow:auto;flex:1}
+table{width:100%;border-collapse:collapse;font-size:12.5px}
+thead tr{background:var(--surface2);position:sticky;top:0;z-index:2}
+th{padding:9px 14px;text-align:left;font-size:9.5px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.6px;border-bottom:1px solid var(--border);white-space:nowrap}
+td{padding:9px 14px;border-bottom:1px solid #f3f6fb;vertical-align:middle}
+tr:last-child td{border-bottom:none}
+tbody tr:hover td{background:#f5f9ff}
+.tbl-footer{padding:8px 18px;border-top:1px solid var(--border);background:var(--surface2);font-size:10.5px;color:var(--muted);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:6px;flex-shrink:0}
+
+/* ── BADGES ── */
+.b{display:inline-flex;align-items:center;gap:4px;border-radius:18px;font-size:10.5px;font-weight:700;padding:3px 9px;border:1px solid;white-space:nowrap}
+.b-green{background:var(--green-bg);color:var(--green);border-color:var(--green-bdr)}
+.b-amber{background:var(--amber-bg);color:var(--amber);border-color:var(--amber-bdr)}
+.b-red  {background:var(--red-bg);color:var(--red);border-color:var(--red-bdr)}
+.b-blue {background:var(--blue-bg);color:var(--blue);border-color:var(--blue-bdr)}
+.b-slate{background:var(--slate-bg);color:var(--slate);border-color:var(--slate-bdr)}
+.b-purple{background:var(--purple-bg);color:var(--purple);border-color:var(--purple-bdr)}
+
+/* ── CELLS ── */
+.mono-cell{font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:11.5px;color:var(--accent);white-space:nowrap}
+.val-cell{font-family:'IBM Plex Mono',monospace;font-size:11.5px;font-weight:600;color:var(--text);white-space:nowrap;text-align:right}
+.val-cell.neg{color:var(--red)}
+.val-cell.pos{color:var(--green)}
+.tipo-cell{font-size:11px;color:var(--slate);max-width:200px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.date-cell{font-size:11px;color:var(--muted);white-space:nowrap}
+.text-right{text-align:right}
+
+/* ── RATEIO MINI TABLE ── */
+.rateio-row{display:flex;gap:10px;flex-wrap:wrap}
+.rateio-card{flex:1;min-width:180px;background:var(--surface);border:1px solid var(--border);border-radius:11px;padding:14px 18px}
+.rateio-title{font-size:11.5px;font-weight:700;color:var(--text);margin-bottom:10px;display:flex;align-items:center;gap:6px}
+.rateio-title i{color:var(--accent);font-size:11px}
+.rateio-bar-wrap{background:#e8f0fe;border-radius:99px;height:8px;overflow:hidden;margin-bottom:8px}
+.rateio-bar{height:100%;border-radius:99px}
+.rateio-bar.rb-rep{background:linear-gradient(90deg,#1a3a6e,#3b82f6)}
+.rateio-bar.rb-cp{background:linear-gradient(90deg,#0d6e4a,#16a34a)}
+.rateio-bar.rb-rend{background:linear-gradient(90deg,#6d28d9,#8b5cf6)}
+.rateio-legend{display:flex;flex-direction:column;gap:5px}
+.rleg{display:flex;align-items:center;justify-content:space-between;font-size:10.5px}
+.rleg-dot{width:8px;height:8px;border-radius:2px;flex-shrink:0}
+.rleg-label{color:var(--muted);flex:1;margin-left:6px}
+.rleg-val{font-family:'IBM Plex Mono',monospace;font-weight:700;font-size:10.5px;color:var(--text)}
+
+/* ── BOTÕES ── */
+.btn-excel{display:inline-flex;align-items:center;gap:6px;background:#16a34a;color:#fff;border:none;border-radius:7px;padding:6px 13px;font-size:11.5px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background .15s,transform .1s;white-space:nowrap}
+.btn-excel:hover{background:#15803d;transform:translateY(-1px)}
+.btn-excel i{font-size:12px}
+.btn-excel.loading{background:#94a3b8;cursor:not-allowed;transform:none}
+.btn-fullscreen{display:inline-flex;align-items:center;gap:5px;background:var(--blue-bg);color:var(--accent);border:1.5px solid var(--blue-bdr);border-radius:7px;padding:5px 11px;font-size:11px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .15s;white-space:nowrap}
+.btn-fullscreen:hover{background:var(--accent);color:#fff}
+.btn-fullscreen i{font-size:11px}
+
+/* ── TABS ── */
+.tabs{display:flex;gap:2px;background:var(--surface2);padding:4px;border-radius:9px;flex-shrink:0;border:1px solid var(--border);width:fit-content}
+.tab{font-size:11.5px;font-weight:600;padding:6px 14px;border-radius:6px;cursor:pointer;transition:all .14s;color:var(--muted);border:none;background:transparent;font-family:'DM Sans',sans-serif}
+.tab.active{background:var(--surface);color:var(--text);box-shadow:0 1px 3px rgba(0,0,0,.08)}
+
+/* ── EMPTY ── */
+.empty-row{text-align:center;padding:32px;color:var(--muted);font-size:12.5px}
+
+/* ── OVERLAY / LOCK ── */
+.overlay{position:fixed;inset:0;background:rgba(7,16,31,.85);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:998;gap:12px}
+.overlay.hide{display:none}
+.spin{width:36px;height:36px;border:3px solid rgba(255,255,255,.15);border-top-color:#60a5fa;border-radius:50%;animation:spin .75s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.overlay p{color:#fff;font-size:13px}
+#lockscreen{position:fixed;inset:0;z-index:9999;background:#07101f;display:flex;align-items:center;justify-content:center}
+
+/* tbl-card fullscreen */
+.tbl-card:fullscreen,.tbl-card:-webkit-full-screen,.tbl-card:-moz-full-screen{display:flex;flex-direction:column;background:var(--surface);border-radius:0;overflow:hidden}
+.tbl-card:fullscreen .tbl-scroll,.tbl-card:-webkit-full-screen .tbl-scroll,.tbl-card:-moz-full-screen .tbl-scroll{flex:1;overflow:auto;max-height:none}
+
+/* ── RESPONSIVO ── */
+@media (max-height:700px),(max-width:900px){
+  html,body{height:auto;overflow-x:hidden;overflow-y:auto}
+  .hd{padding:0 14px;height:50px}
+  .hd-pill,.hd-sep{display:none}
+  .body{overflow:visible;flex-direction:column}
+  .sidebar{width:100%;flex-direction:row;flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;padding:6px 10px;gap:4px;border-right:none;border-bottom:1px solid rgba(255,255,255,.12);position:static;flex-shrink:0}
+  .sidebar::-webkit-scrollbar{display:none}
+  .sb-sec,.sb-footer{display:none}
+  .sb-item{flex-shrink:0;white-space:nowrap;padding:6px 12px;font-size:12px}
+  .content{overflow:visible;flex:none;width:100%}
+  .scroll{overflow:visible;flex:none;padding:14px}
+  .inst-bar{padding:10px 14px}
+  .pg-head{padding:12px 14px}
+  .val-strip{grid-template-columns:repeat(3,1fr);gap:10px;padding:14px}
+  .vs-item{padding:0 10px}
+  .prog-row{grid-template-columns:1fr}
+  .cc-grid{grid-template-columns:1fr 1fr}
+  .rateio-row{flex-direction:column}
+  .tbl-card{flex:none;min-height:0}
+  .tbl-card.tbl-main{min-height:0}
+  .tbl-scroll{overflow-x:auto;overflow-y:visible;max-height:none;-webkit-overflow-scrolling:touch}
+}
+@media(max-width:480px){
+  .val-strip{grid-template-columns:repeat(2,1fr)}
+  .cc-grid{grid-template-columns:1fr}
+  .ateste-row{flex-direction:column}
+}
+
+/* ── SIDEBAR TOGGLE ── */
+.sb-toggle{
+  position:absolute;
+  right:-14px;
+  top:20px;
+  width:28px;
+  height:28px;
+  border-radius:50%;
+  background:var(--sidebar);
+  border:1.5px solid rgba(255,255,255,.12);
+  color:rgba(255,255,255,.55);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  z-index:10;
+  font-size:11px;
+  transition:all .18s;
+  flex-shrink:0;
+}
+.sb-toggle:hover{background:#1a3a6e;color:#fff;border-color:#60a5fa}
+
+/* Sidebar colapsada */
+.sidebar{
+  position:relative;
+  transition:width .22s cubic-bezier(.4,0,.2,1),
+             padding .22s cubic-bezier(.4,0,.2,1);
+  overflow:visible;
+}
+.sidebar.collapsed{
+  width:0!important;
+  padding:0!important;
+  overflow:hidden;
+}
+.sidebar.collapsed .sb-toggle{
+  right:-36px;
+  background:#1a3a6e;
+  border-color:#60a5fa;
+  color:#fff;
+}
+/* Esconde todos os filhos exceto o toggle */
+.sidebar.collapsed > *:not(.sb-toggle){
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .1s;
+}
+
+</style>
+</head>
+<body>
+
+<!-- OVERLAY -->
+<div class="overlay" id="overlay">
+  <div class="spin"></div>
+  <p>Carregando dados...</p>
+</div>
+
+<!-- HEADER -->
+<div class="hd">
+  <div class="hd-left">
+    <div class="hd-logo">
+      <div class="hd-logo-icon"><i class="fa-solid fa-handshake"></i></div>
+      <div>
+        <div class="hd-title">IDEPI</div>
+        <div class="hd-sub">Convênios Federais</div>
+      </div>
+    </div>
+    <div class="hd-sep"></div>
+    <div class="hd-pill"><i class="fa-solid fa-circle"></i> Execução Financeira — Transferegov</div>
+  </div>
+  <div class="hd-right">
+    <div class="hd-ts" id="hd-ts">—</div>
+  </div>
+</div>
+
+<!-- BODY -->
+<div class="body">
+
+  <!-- SIDEBAR -->
+  <nav class="sidebar">
+    <div class="sb-sec">Convênios Federais</div>
+    <a class="sb-item" href="index.html"><i class="fa-solid fa-gauge-high"></i> Painel Geral</a>
+    <a class="sb-item" href="vigencias.html"><i class="fa-solid fa-table-list"></i> Vigências</a>
+    <a class="sb-item active" href="execucao.html"><i class="fa-solid fa-chart-line"></i> Execução Financeira</a>
+    <div class="sb-item"><i class="fa-solid fa-file-invoice"></i> Prestação de Contas<span class="soon">em breve</span></div>
+    <div class="sb-item"><i class="fa-solid fa-landmark-dome"></i> Emendas Parlamentares<span class="soon">em breve</span></div>
+    <div class="sb-item"><i class="fa-solid fa-map-location-dot"></i> Mapa de Obras<span class="soon">em breve</span></div>
+
+    <div class="sb-sec">Desempenho IDTRU-DL</div>
+    <a class="sb-item" href="fiscalgov.html"><i class="fa-solid fa-camera"></i> FiscalGov · EX-01</a>
+    <div class="sb-item"><i class="fa-solid fa-star"></i> Índice Geral<span class="soon">em breve</span></div>
+
+    <div class="sb-footer">
+      <div class="sb-card">
+        <strong>Instituto de Desenvolvimento do Piauí</strong>
+        <p>R. Altos, 277 — Primavera<br>Teresina-PI · idepi@idepi.pi.gov.br</p>
+      </div>
+    </div>
+  </nav>
+
+  <!-- CONTENT -->
+  <div class="content">
+
+    <!-- PAGE HEAD -->
+    <div class="pg-head">
+      <div>
+        <div class="pg-title">
+          <div class="pg-title-icon"><i class="fa-solid fa-chart-line"></i></div>
+          Execução Financeira
+        </div>
+        <div class="pg-sub">Movimentações, notas fiscais, contratos e atestes por instrumento</div>
+      </div>
+      <a class="pg-back" href="index.html"><i class="fa-solid fa-arrow-left"></i> Voltar ao portal</a>
+    </div>
+
+    <!-- INSTRUMENT SELECTOR -->
+    <div class="inst-bar">
+      <span class="inst-label"><i class="fa-solid fa-filter" style="font-size:9px;margin-right:3px"></i>Instrumento</span>
+      <select class="inst-select" id="selInst" onchange="carregarInstrumento()">
+        <!-- Populado via JS -->
+      </select>
+      <div class="inst-meta" id="instMeta">
+        <!-- chips dinâmicos -->
+      </div>
+    </div>
+
+    <!-- SCROLL AREA -->
+    <div class="scroll" id="mainScroll">
+
+      <!-- ── VALORES GLOBAIS ── -->
+      <div class="val-strip" id="valStrip">
+        <div class="vs-item">
+          <div class="vs-label">Valor Global</div>
+          <div class="vs-val" id="vs-global">—</div>
+          <div class="vs-sub">Total do instrumento</div>
+        </div>
+        <div class="vs-item">
+          <div class="vs-label">Valor de Repasse</div>
+          <div class="vs-val" id="vs-repasse">—</div>
+          <div class="vs-sub">Recursos federais</div>
+        </div>
+        <div class="vs-item">
+          <div class="vs-label">Contrapartida</div>
+          <div class="vs-val" id="vs-contrapartida">—</div>
+          <div class="vs-sub">Recursos do convenente</div>
+        </div>
+        <div class="vs-item">
+          <div class="vs-label">Total Pago</div>
+          <div class="vs-val v-green" id="vs-pago">—</div>
+          <div class="vs-sub">Pgtos conciliados</div>
+        </div>
+        <div class="vs-item">
+          <div class="vs-label">Saldo a Pagar</div>
+          <div class="vs-val v-amber" id="vs-saldo">—</div>
+          <div class="vs-sub">Repasse − Pago</div>
+        </div>
+      </div>
+
+      <!-- ── PROGRESSO FINANCEIRO E FÍSICO ── -->
+      <div class="prog-row">
+        <div class="prog-card">
+          <div class="prog-head">
+            <div class="prog-lbl"><i class="fa-solid fa-coins"></i>Execução Financeira</div>
+            <div class="prog-pct" id="pct-fin" style="color:var(--accent)">—</div>
+          </div>
+          <div class="prog-track"><div class="prog-fill pf-fin" id="bar-fin" style="width:0%"></div></div>
+          <div class="prog-note" id="note-fin">Carregando…</div>
+        </div>
+        <div class="prog-card">
+          <div class="prog-head">
+            <div class="prog-lbl"><i class="fa-solid fa-ruler-combined"></i>Execução Física (Medições)</div>
+            <div class="prog-pct" id="pct-fis" style="color:var(--purple)">—</div>
+          </div>
+          <div class="prog-track"><div class="prog-fill pf-fis" id="bar-fis" style="width:0%"></div></div>
+          <div class="prog-note" id="note-fis">Carregando…</div>
+        </div>
+      </div>
+
+      <!-- ── STATUS DE ATESTE ── -->
+      <div class="ateste-row" id="atesteRow">
+        <!-- Dinâmico -->
+      </div>
+
+      <!-- ── CONTRATO ── -->
+      <div class="contrato-card" id="contratoCard">
+        <div class="cc-head">
+          <div class="cc-title"><i class="fa-solid fa-file-contract"></i> Instrumento Contratual / CTEF</div>
+          <span id="cc-status-badge"></span>
+        </div>
+        <div class="cc-grid" id="ccGrid">
+          <!-- Dinâmico -->
+        </div>
+      </div>
+
+      <!-- ── TABS MOVIMENTAÇÕES / NFs / RATEIO ── -->
+      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;flex-shrink:0">
+        <div class="tabs">
+          <button class="tab active" id="tab-mov" onclick="showTab('mov')"><i class="fa-solid fa-money-bill-transfer" style="margin-right:5px"></i>Movimentações</button>
+          <button class="tab" id="tab-nf"  onclick="showTab('nf')"><i class="fa-solid fa-file-invoice-dollar" style="margin-right:5px"></i>Notas Fiscais</button>
+          <button class="tab" id="tab-rat" onclick="showTab('rat')"><i class="fa-solid fa-chart-pie" style="margin-right:5px"></i>Rateio de Recursos</button>
+        </div>
+        <div style="display:flex;gap:8px">
+          <button class="btn-fullscreen" id="btnFSExec" onclick="toggleFullscreenExec()"><i class="fa-solid fa-expand"></i> Tela cheia</button>
+          <button class="btn-excel" id="btnExcelExec" onclick="exportarExcel()"><i class="fa-solid fa-file-excel"></i> Exportar Excel</button>
+        </div>
+      </div>
+
+      <!-- ── PAINEL MOVIMENTAÇÕES ── -->
+      <div class="tbl-card tbl-main" id="panelMov" data-panel="mov" style="display:flex">
+        <div class="tbl-head">
+          <div class="tbl-title"><i class="fa-solid fa-money-bill-transfer"></i> Movimentações Financeiras</div>
+          <div style="font-size:10.5px;color:var(--muted)" id="mov-count"></div>
+        </div>
+        <div class="tbl-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Número</th>
+                <th>Data</th>
+                <th>Tipo</th>
+                <th class="text-right">Vlr. Original (R$)</th>
+                <th class="text-right">Vlr. Bruto (R$)</th>
+                <th class="text-right">Vlr. Líquido (R$)</th>
+                <th>Favorecido / CNPJ</th>
+                <th>Tributo</th>
+                <th>Nº DL</th>
+                <th>Tipo DL</th>
+                <th>Situação</th>
+              </tr>
+            </thead>
+            <tbody id="tbody-mov"></tbody>
+          </table>
+        </div>
+        <div class="tbl-footer" id="mov-footer"></div>
+      </div>
+
+      <!-- ── PAINEL NFs ── -->
+      <div class="tbl-card tbl-main" id="panelNF" data-panel="nf" style="display:none">
+        <div class="tbl-head">
+          <div class="tbl-title"><i class="fa-solid fa-file-invoice-dollar"></i> Documentos de Liquidação / Notas Fiscais</div>
+          <div style="font-size:10.5px;color:var(--muted)" id="nf-count"></div>
+        </div>
+        <div class="tbl-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Nº NF / DL</th>
+                <th>Data Emissão</th>
+                <th>Razão Social</th>
+                <th class="text-right">Vlr. Original (R$)</th>
+                <th class="text-right">Vlr. Bruto (R$)</th>
+                <th class="text-right">Tributos (R$)</th>
+                <th class="text-right">Vlr. Líquido (R$)</th>
+                <th>Status</th>
+                <th>Tipo</th>
+              </tr>
+            </thead>
+            <tbody id="tbody-nf"></tbody>
+          </table>
+        </div>
+        <div class="tbl-footer" id="nf-footer"></div>
+      </div>
+
+      <!-- ── PAINEL RATEIO ── -->
+      <div id="panelRat" data-panel="rat" style="display:none">
+        <div class="rateio-row" id="rateioRow">
+          <!-- Dinâmico -->
+        </div>
+      </div>
+
+    </div><!-- /scroll -->
+  </div><!-- /content -->
+</div><!-- /body -->
+
+<script>
+/* ══════════════════════════════════════════════════════
+   IDEPI — Execução Financeira
+   Fonte: dados.json (gerado pelo main.py)
+   Fallback: dados embutidos do instrumento 946260
+   para demonstração enquanto os dados reais não chegam.
+══════════════════════════════════════════════════════ */
+var USUARIO = "Ruan-Vitor", REPO = "painel-idepi";
+
+/* ── BANCO DE DADOS LOCAL (modelo 946260) ─────────── */
+/* Estrutura que o main.py deverá gerar em dados.json  */
+var INSTRUMENTOS_EXEC = [
+  {
+    numero: "946260",
+    objeto: "Recuperação de estradas vicinais — Lagoa de São Francisco/PI",
+    situacao: "Em execução",
+    regime_simplificado: true,
+    mandataria: "CAIXA ECONÔMICA FEDERAL",
+    ministerio: "53000 — MINISTÉRIO DA INTEGRAÇÃO E DO DESENVOLVIMENTO REGIONAL",
+
+    /* Valores */
+    valor_global:       1002000.00,
+    valor_repasse:       955000.00,
+    valor_contrapartida:  47000.00,
+
+    /* Datas */
+    data_assinatura:   "22/11/2023",
+    data_inicio:       "22/11/2023",
+    data_termino:      "30/09/2026",
+    data_limite_pc:    "30/10/2026",
+
+    /* Dados bancários */
+    banco: "CAIXA ECONÔMICA FEDERAL",
+    agencia: "0029-9",
+    conta: "5742157335",
+
+    /* Execução física */
+    exec_fisica_pct: 100,
+    exec_fisica_obs: "Valor realizado: R$ 961.313,35 · Medição 3 · Atestado pelo Convenente",
+    ateste_convenente: true,
+    ateste_concedente: false, /* Regime simplificado — concedente atesta ao final */
+    ateste_obs: "Instrumento em regime simplificado — ateste do Concedente ocorre na prestação de contas final, não a cada medição.",
+
+    /* Contrato com empresa */
+    contrato: {
+      numero: "72/2025",
+      empresa: "CONSTRUTORA RENATA LTDA",
+      cnpj: "02.577.913/0001-09",
+      valor: 961313.35,
+      situacao: "Concluído",
+      data_inicio: "26/12/2025",
+      data_fim: "31/12/2026"
+    },
+
+    /* Movimentações financeiras */
+    movimentacoes: [
+      { num:"10249848", data:"30/03/2026", tipo:"INGRESSO DE CONTRAPARTIDA",       v_orig:39000.00,    v_bruto:39000.00,    v_liq:39000.00,    favorecido:"09.034.960/0001-47", tributo:"",    ndl:"",         tdl:"",           situacao:"Concluída" },
+      { num:"10231942", data:"20/03/2026", tipo:"PAGAMENTO DE TRIBUTOS",            v_orig:4497.27,     v_bruto:4497.27,     v_liq:4497.27,     favorecido:"",                  tributo:"ISS", ndl:"897, 898", tdl:"NOTA FISCAL", situacao:"Concluída" },
+      { num:"10231930", data:"20/03/2026", tipo:"PAGAMENTO DE TRIBUTOS",            v_orig:5996.35,     v_bruto:5996.35,     v_liq:5996.35,     favorecido:"",                  tributo:"IR",  ndl:"897, 898", tdl:"NOTA FISCAL", situacao:"Concluída" },
+      { num:"10231891", data:"20/03/2026", tipo:"PAGAMENTO DE TRIBUTOS",            v_orig:4060.14,     v_bruto:4060.14,     v_liq:4060.14,     favorecido:"",                  tributo:"IR",  ndl:"896",      tdl:"NOTA FISCAL", situacao:"Concluída" },
+      { num:"10231888", data:"20/03/2026", tipo:"PAGAMENTO DE TRIBUTOS",            v_orig:3045.11,     v_bruto:3045.11,     v_liq:3045.11,     favorecido:"",                  tributo:"ISS", ndl:"896",      tdl:"NOTA FISCAL", situacao:"Concluída" },
+      { num:"10227940", data:"18/03/2026", tipo:"PAGAMENTO A FAVORECIDO COM OBTV", v_orig:111654.56,   v_bruto:111654.56,   v_liq:109309.81,   favorecido:"02.577.913/0001-09",tributo:"",    ndl:"898",      tdl:"NOTA FISCAL", situacao:"Conciliada"},
+      { num:"10227938", data:"18/03/2026", tipo:"PAGAMENTO A FAVORECIDO COM OBTV", v_orig:388041.81,   v_bruto:388041.81,   v_liq:379892.94,   favorecido:"02.577.913/0001-09",tributo:"",    ndl:"897",      tdl:"NOTA FISCAL", situacao:"Conciliada"},
+      { num:"10227934", data:"18/03/2026", tipo:"PAGAMENTO A FAVORECIDO COM OBTV", v_orig:338345.44,   v_bruto:338345.44,   v_liq:331240.19,   favorecido:"02.577.913/0001-09",tributo:"",    ndl:"896",      tdl:"NOTA FISCAL", situacao:"Conciliada"},
+      { num:"8590923",  data:"21/02/2024", tipo:"INGRESSO DE CONTRAPARTIDA",        v_orig:8000.00,     v_bruto:8000.00,     v_liq:8000.00,     favorecido:"09.034.960/0001-47", tributo:"",    ndl:"",         tdl:"",           situacao:"Concluída" }
+    ],
+
+    /* Notas Fiscais / Docs de Liquidação */
+    notas_fiscais: [
+      { num:"896", data:"16/03/2026", razao:"CONSTRUTORA RENATA LTDA", v_orig:338345.44, v_bruto:338345.44, tributos:7105.25, v_liq:331240.19, status:"Ativo", tipo:"NOTA FISCAL",
+        itens:[{desc:"Execução serviços manutenção estradas — Lagoa de São Francisco/PI", valor:338345.44, repasse:338345.44, contrapartida:0, rendimento:0}] },
+      { num:"897", data:"16/03/2026", razao:"CONSTRUTORA RENATA LTDA", v_orig:388041.81, v_bruto:388041.81, tributos:8148.87, v_liq:379892.94, status:"Ativo", tipo:"NOTA FISCAL",
+        itens:[{desc:"Execução serviços manutenção estradas — Lagoa de São Francisco/PI", valor:388041.81, repasse:388041.81, contrapartida:0, rendimento:0}] },
+      { num:"898", data:"16/03/2026", razao:"CONSTRUTORA RENATA LTDA", v_orig:111654.56, v_bruto:111654.56, tributos:2344.75, v_liq:109309.81, status:"Ativo", tipo:"NOTA FISCAL",
+        itens:[{desc:"Execução serviços manutenção estradas — Lagoa de São Francisco/PI", valor:111654.56, repasse:111654.56, contrapartida:0, rendimento:0}] }
+    ]
+  }
+];
+
+/* ── STATE ─────────────────────────────────────────── */
+var instAtual = null;
+var tabAtual  = "mov";
+
+/* ── HELPERS ────────────────────────────────────────── */
+function fmt(n){
+  if(n===null||n===undefined||n==="")return "—";
+  return "R$ "+Number(n).toLocaleString("pt-BR",{minimumFractionDigits:2,maximumFractionDigits:2});
+}
+function fmtN(n){
+  if(n===null||n===undefined||n==="")return "—";
+  return Number(n).toLocaleString("pt-BR",{minimumFractionDigits:2,maximumFractionDigits:2});
+}
+function pct(a,b){ return b>0?Math.round(a/b*100):0; }
+function sanitize(s){ return (s||"").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+
+/* ── TIPO BADGE ─────────────────────────────────────── */
+function tipoBadge(tipo){
+  var t = (tipo||"").toUpperCase();
+  if(t.includes("CONTRAPARTIDA"))    return '<span class="b b-blue">Contrapartida</span>';
+  if(t.includes("OBTV"))             return '<span class="b b-green">Pgto OBTV</span>';
+  if(t.includes("TRIBUTO"))          return '<span class="b b-amber">Tributo</span>';
+  if(t.includes("RENDIMENTO"))       return '<span class="b b-purple">Rendimento</span>';
+  return '<span class="b b-slate">'+sanitize(tipo)+'</span>';
+}
+function sitBadge(sit){
+  var s=(sit||"").toLowerCase();
+  if(s.includes("conciliada")) return '<span class="b b-green">Conciliada</span>';
+  if(s.includes("conclu"))     return '<span class="b b-blue">Concluída</span>';
+  if(s.includes("cancelada"))  return '<span class="b b-red">Cancelada</span>';
+  return '<span class="b b-slate">'+sanitize(sit)+'</span>';
+}
+function nfStatusBadge(s){
+  return s==="Ativo"?'<span class="b b-green">Ativo</span>':'<span class="b b-red">'+sanitize(s)+'</span>';
+}
+
+/* ── POPULAR SELECTOR ───────────────────────────────── */
+function popularSelector(convenios){
+  var sel = document.getElementById("selInst");
+  sel.innerHTML = "";
+  var lista = convenios && convenios.length ? convenios : INSTRUMENTOS_EXEC;
+  lista.forEach(function(c){
+    var opt = document.createElement("option");
+    opt.value = c.numero;
+    opt.textContent = c.numero + " — " + (c.objeto||"").substring(0,55)+"…";
+    sel.appendChild(opt);
+  });
+  carregarInstrumento();
+}
+
+/* ── CARREGAR INSTRUMENTO ───────────────────────────── */
+function carregarInstrumento(){
+  var num = document.getElementById("selInst").value;
+  instAtual = INSTRUMENTOS_EXEC.find(function(c){ return c.numero===num; }) || INSTRUMENTOS_EXEC[0];
+  if(!instAtual) return;
+  renderInstrumento();
+}
+
+/* ── RENDER PRINCIPAL ───────────────────────────────── */
+function renderInstrumento(){
+  var c = instAtual;
+
+  /* Chips */
+  var meta = [];
+  if(c.situacao) meta.push('<span class="inst-chip ic-exec"><i class="fa-solid fa-circle-play" style="font-size:8px"></i> '+sanitize(c.situacao)+'</span>');
+  if(c.regime_simplificado) meta.push('<span class="inst-chip ic-simp"><i class="fa-solid fa-bolt" style="font-size:8px"></i> Regime Simplificado</span>');
+  if(c.mandataria) meta.push('<span class="inst-chip ic-mandataria"><i class="fa-solid fa-building-columns" style="font-size:8px"></i> '+sanitize(c.mandataria)+'</span>');
+  document.getElementById("instMeta").innerHTML = meta.join("");
+
+  /* Valores */
+  var totalPago = calcTotalPago(c);
+  var saldo = c.valor_repasse - totalPago;
+  var pctFin = pct(totalPago, c.valor_repasse);
+
+  document.getElementById("vs-global").textContent       = fmt(c.valor_global);
+  document.getElementById("vs-repasse").textContent      = fmt(c.valor_repasse);
+  document.getElementById("vs-contrapartida").textContent= fmt(c.valor_contrapartida);
+  document.getElementById("vs-pago").textContent         = fmt(totalPago);
+  document.getElementById("vs-saldo").textContent        = fmt(saldo > 0 ? saldo : 0);
+
+  /* Progresso financeiro */
+  document.getElementById("pct-fin").textContent  = pctFin+"%";
+  document.getElementById("bar-fin").style.width  = pctFin+"%";
+  document.getElementById("note-fin").innerHTML   =
+    "<strong>"+fmt(totalPago)+"</strong> pagos de <strong>"+fmt(c.valor_repasse)+"</strong> de repasse · Saldo: <strong>"+fmt(saldo>0?saldo:0)+"</strong>";
+
+  /* Progresso físico */
+  var pfis = c.exec_fisica_pct || 0;
+  document.getElementById("pct-fis").textContent  = pfis+"%";
+  document.getElementById("bar-fis").style.width  = pfis+"%";
+  document.getElementById("note-fis").textContent = c.exec_fisica_obs || "";
+
+  /* Ateste */
+  renderAteste(c);
+
+  /* Contrato */
+  renderContrato(c);
+
+  /* Tabelas */
+  renderMov(c);
+  renderNF(c);
+  renderRateio(c);
+}
+
+/* ── CALC TOTAL PAGO ────────────────────────────────── */
+function calcTotalPago(c){
+  var total = 0;
+  (c.movimentacoes||[]).forEach(function(m){
+    var t = (m.tipo||"").toUpperCase();
+    if(t.includes("OBTV")||t.includes("PAGAMENTO A FAVORECIDO")) total += m.v_liq||0;
+  });
+  return total;
+}
+
+/* ── ATESTE ─────────────────────────────────────────── */
+function renderAteste(c){
+  var html = "";
+  /* Convenente */
+  html += '<div class="ateste-card">';
+  html +=   '<div class="ateste-icon '+(c.ateste_convenente?"ok":"pend")+'"><i class="fa-solid '+(c.ateste_convenente?"fa-check":"fa-clock")+'"></i></div>';
+  html +=   '<div class="ateste-body">';
+  html +=     '<div class="ateste-title">Ateste do Convenente (IDEPI)</div>';
+  html +=     '<div class="ateste-sub">Responsável por atestar a execução física das medições</div>';
+  html +=     '<span class="ateste-badge '+(c.ateste_convenente?"ok":"pend")+'">'+(c.ateste_convenente?"<i class='fa-solid fa-check' style='font-size:8px'></i> Atestado":"<i class='fa-solid fa-clock' style='font-size:8px'></i> Pendente")+'</span>';
+  html +=   '</div>';
+  html += '</div>';
+  /* Concedente */
+  html += '<div class="ateste-card">';
+  html +=   '<div class="ateste-icon '+(c.ateste_concedente?"ok":"pend")+'"><i class="fa-solid '+(c.ateste_concedente?"fa-check":"fa-clock")+'"></i></div>';
+  html +=   '<div class="ateste-body">';
+  html +=     '<div class="ateste-title">Ateste do Concedente</div>';
+  html +=     '<div class="ateste-sub">'+(c.regime_simplificado?"Regime Simplificado — ateste ocorre na prestação de contas final, não a cada medição":"Responsável pela validação final das medições")+'</div>';
+  html +=     '<span class="ateste-badge '+(c.ateste_concedente?"ok":(c.regime_simplificado?"na":"pend"))+'">'+(c.ateste_concedente?"<i class='fa-solid fa-check' style='font-size:8px'></i> Atestado":(c.regime_simplificado?"<i class='fa-solid fa-bolt' style='font-size:8px'></i> Aguardando PC Final":"<i class='fa-solid fa-clock' style='font-size:8px'></i> Pendente"))+'</span>';
+  html +=   '</div>';
+  html += '</div>';
+  /* Próxima ação */
+  if(c.ateste_obs){
+    html += '<div class="ateste-card" style="flex:2;background:var(--amber-bg);border-color:var(--amber-bdr)">';
+    html +=   '<div class="ateste-icon" style="background:#fef3c7;color:#b45309"><i class="fa-solid fa-triangle-exclamation"></i></div>';
+    html +=   '<div class="ateste-body">';
+    html +=     '<div class="ateste-title" style="color:var(--amber)">Próximos Passos</div>';
+    html +=     '<div class="ateste-sub" style="color:#92400e">'+sanitize(c.ateste_obs)+'</div>';
+    html +=   '</div>';
+    html += '</div>';
+  }
+  document.getElementById("atesteRow").innerHTML = html;
+}
+
+/* ── CONTRATO ───────────────────────────────────────── */
+function renderContrato(c){
+  var ct = c.contrato;
+  var badge = ct ? (ct.situacao==="Concluído"?'<span class="b b-green">Concluído</span>':'<span class="b b-blue">'+sanitize(ct.situacao)+'</span>') : '<span class="b b-slate">Sem contrato registrado</span>';
+  document.getElementById("cc-status-badge").innerHTML = badge;
+
+  if(!ct){ document.getElementById("ccGrid").innerHTML='<div style="padding:18px;color:var(--muted);font-size:12px;">Nenhum instrumento contratual/CTEF cadastrado para este convênio.</div>'; return; }
+
+  document.getElementById("ccGrid").innerHTML =
+    '<div class="cc-item"><div class="cc-lbl">Nº Contrato / CTEF</div><div class="cc-val mono">'+sanitize(ct.numero)+'</div></div>'+
+    '<div class="cc-item"><div class="cc-lbl">Empresa Contratada</div><div class="cc-val">'+sanitize(ct.empresa)+'</div><div style="font-size:10px;color:var(--muted);margin-top:2px">CNPJ: '+sanitize(ct.cnpj)+'</div></div>'+
+    '<div class="cc-item"><div class="cc-lbl">Valor do Contrato</div><div class="cc-val" style="color:var(--green);font-size:15px">'+fmt(ct.valor)+'</div></div>'+
+    '<div class="cc-item"><div class="cc-lbl">Vigência</div><div class="cc-val">'+sanitize(ct.data_inicio)+' → '+sanitize(ct.data_fim)+'</div></div>';
+}
+
+/* ── MOVIMENTAÇÕES ──────────────────────────────────── */
+function renderMov(c){
+  var rows = c.movimentacoes||[];
+  document.getElementById("mov-count").textContent = rows.length+" movimentação(ões)";
+
+  /* Totais do rodapé */
+  var totOrigem=0,totBruto=0,totLiq=0;
+  rows.forEach(function(m){ totOrigem+=m.v_orig||0; totBruto+=m.v_bruto||0; totLiq+=m.v_liq||0; });
+
+  var html = "";
+  if(!rows.length){ html='<tr><td colspan="11" class="empty-row"><i class="fa-solid fa-inbox" style="margin-right:6px;opacity:.4"></i>Nenhuma movimentação encontrada</td></tr>'; }
+  else {
+    rows.forEach(function(m){
+      html += '<tr>';
+      html += '<td class="mono-cell">'+sanitize(m.num)+'</td>';
+      html += '<td class="date-cell">'+sanitize(m.data)+'</td>';
+      html += '<td>'+tipoBadge(m.tipo)+'</td>';
+      html += '<td class="val-cell text-right">'+fmtN(m.v_orig)+'</td>';
+      html += '<td class="val-cell text-right">'+fmtN(m.v_bruto)+'</td>';
+      html += '<td class="val-cell text-right '+(m.v_liq<m.v_bruto?"neg":"")+'">'+fmtN(m.v_liq)+'</td>';
+      html += '<td class="tipo-cell" style="font-size:10.5px">'+sanitize(m.favorecido)+'</td>';
+      html += '<td>'+(m.tributo?'<span class="b b-amber">'+sanitize(m.tributo)+'</span>':"<span style='color:var(--muted)'>—</span>")+'</td>';
+      html += '<td class="mono-cell" style="font-size:10.5px">'+sanitize(m.ndl||"—")+'</td>';
+      html += '<td style="font-size:10.5px;color:var(--muted)">'+sanitize(m.tdl||"—")+'</td>';
+      html += '<td>'+sitBadge(m.situacao)+'</td>';
+      html += '</tr>';
+    });
+  }
+  document.getElementById("tbody-mov").innerHTML = html;
+  document.getElementById("mov-footer").innerHTML =
+    '<span>Total: <strong>'+rows.length+' movimentações</strong></span>'+
+    '<span style="display:flex;gap:20px">'+
+    '<span>Orig: <strong>'+fmt(totOrigem)+'</strong></span>'+
+    '<span>Bruto: <strong>'+fmt(totBruto)+'</strong></span>'+
+    '<span style="color:var(--green)">Líquido: <strong>'+fmt(totLiq)+'</strong></span>'+
+    '</span>';
+}
+
+/* ── NOTAS FISCAIS ──────────────────────────────────── */
+function renderNF(c){
+  var rows = c.notas_fiscais||[];
+  document.getElementById("nf-count").textContent = rows.length+" nota(s) fiscal(is)";
+
+  var totOrig=0,totTrib=0,totLiq=0;
+  rows.forEach(function(n){ totOrig+=n.v_orig||0; totTrib+=n.tributos||0; totLiq+=n.v_liq||0; });
+
+  var html="";
+  if(!rows.length){ html='<tr><td colspan="9" class="empty-row"><i class="fa-solid fa-inbox" style="margin-right:6px;opacity:.4"></i>Nenhuma NF/DL encontrada</td></tr>'; }
+  else {
+    rows.forEach(function(n){
+      var tribPct = n.v_orig>0 ? Math.round(n.tributos/n.v_orig*100*100)/100 : 0;
+      html += '<tr>';
+      html += '<td class="mono-cell">'+sanitize(n.num)+'</td>';
+      html += '<td class="date-cell">'+sanitize(n.data)+'</td>';
+      html += '<td style="font-size:11.5px;font-weight:600;color:var(--text)">'+sanitize(n.razao)+'</td>';
+      html += '<td class="val-cell text-right">'+fmtN(n.v_orig)+'</td>';
+      html += '<td class="val-cell text-right">'+fmtN(n.v_bruto)+'</td>';
+      html += '<td class="val-cell text-right neg" title="'+tribPct+'% do valor bruto">'+fmtN(n.tributos)+'</td>';
+      html += '<td class="val-cell text-right pos">'+fmtN(n.v_liq)+'</td>';
+      html += '<td>'+nfStatusBadge(n.status)+'</td>';
+      html += '<td class="tipo-cell">'+sanitize(n.tipo)+'</td>';
+      html += '</tr>';
+    });
+  }
+  document.getElementById("tbody-nf").innerHTML = html;
+  document.getElementById("nf-footer").innerHTML =
+    '<span><strong>'+rows.length+'</strong> documento(s) de liquidação</span>'+
+    '<span style="display:flex;gap:20px">'+
+    '<span>Bruto: <strong>'+fmt(totOrig)+'</strong></span>'+
+    '<span class="neg">Tributos: <strong>−'+fmt(totTrib)+'</strong></span>'+
+    '<span style="color:var(--green)">Líquido: <strong>'+fmt(totLiq)+'</strong></span>'+
+    '</span>';
+}
+
+/* ── RATEIO ─────────────────────────────────────────── */
+function renderRateio(c){
+  var nfs = c.notas_fiscais||[];
+  var totalRep=0,totalCP=0,totalRend=0;
+  nfs.forEach(function(n){
+    (n.itens||[]).forEach(function(it){
+      totalRep  += it.repasse       || 0;
+      totalCP   += it.contrapartida || 0;
+      totalRend += it.rendimento    || 0;
+    });
+  });
+  var totalGeral = totalRep+totalCP+totalRend;
+  var pRep  = pct(totalRep, totalGeral);
+  var pCP   = pct(totalCP,  totalGeral);
+  var pRend = pct(totalRend,totalGeral);
+
+  var html = "";
+
+  /* Card global */
+  html += '<div class="rateio-card" style="flex:1.5">';
+  html +=   '<div class="rateio-title"><i class="fa-solid fa-chart-pie"></i>Rateio Global — Origem dos Recursos</div>';
+  html +=   '<div class="rateio-bar-wrap"><div class="rateio-bar rb-rep" style="width:'+pRep+'%"></div></div>';
+  html +=   '<div class="rateio-legend">';
+  html +=     '<div class="rleg"><span class="rleg-dot" style="background:#1a3a6e"></span><span class="rleg-label">Repasse Federal</span><span class="rleg-val">'+fmt(totalRep)+' ('+pRep+'%)</span></div>';
+  html +=     '<div class="rleg"><span class="rleg-dot" style="background:#16a34a"></span><span class="rleg-label">Contrapartida</span><span class="rleg-val">'+fmt(totalCP)+' ('+pCP+'%)</span></div>';
+  html +=     '<div class="rleg"><span class="rleg-dot" style="background:#6d28d9"></span><span class="rleg-label">Rendimento de Aplicação</span><span class="rleg-val">'+fmt(totalRend)+' ('+pRend+'%)</span></div>';
+  html +=   '</div>';
+  html += '</div>';
+
+  /* Um card por NF */
+  nfs.forEach(function(n){
+    var nRep=0,nCP=0,nRend=0;
+    (n.itens||[]).forEach(function(it){ nRep+=it.repasse||0; nCP+=it.contrapartida||0; nRend+=it.rendimento||0; });
+    var nTot = nRep+nCP+nRend;
+    var nPRep=pct(nRep,nTot);
+    html += '<div class="rateio-card">';
+    html +=   '<div class="rateio-title"><i class="fa-solid fa-file-invoice-dollar"></i>NF '+sanitize(n.num)+' — '+sanitize(n.razao)+'</div>';
+    html +=   '<div class="rateio-bar-wrap"><div class="rateio-bar rb-rep" style="width:'+nPRep+'%"></div></div>';
+    html +=   '<div class="rateio-legend">';
+    html +=     '<div class="rleg"><span class="rleg-dot" style="background:#1a3a6e"></span><span class="rleg-label">Repasse</span><span class="rleg-val">'+fmt(nRep)+'</span></div>';
+    html +=     '<div class="rleg"><span class="rleg-dot" style="background:#16a34a"></span><span class="rleg-label">Contrapartida</span><span class="rleg-val">'+fmt(nCP)+'</span></div>';
+    html +=     '<div class="rleg"><span class="rleg-dot" style="background:#6d28d9"></span><span class="rleg-label">Rendimento</span><span class="rleg-val">'+fmt(nRend)+'</span></div>';
+    html +=     '<div class="rleg" style="margin-top:6px;border-top:1px solid var(--border);padding-top:6px"><span class="rleg-dot" style="background:#94a3b8"></span><span class="rleg-label" style="font-weight:700;color:var(--text)">Valor Bruto</span><span class="rleg-val" style="color:var(--text)">'+fmt(n.v_orig)+'</span></div>';
+    html +=     '<div class="rleg"><span class="rleg-dot" style="background:#ef4444"></span><span class="rleg-label" style="color:var(--red)">Tributos</span><span class="rleg-val neg">−'+fmt(n.tributos)+'</span></div>';
+    html +=     '<div class="rleg"><span class="rleg-dot" style="background:#16a34a"></span><span class="rleg-label" style="font-weight:700;color:var(--green)">Valor Líquido</span><span class="rleg-val pos">'+fmt(n.v_liq)+'</span></div>';
+    html +=   '</div>';
+    html += '</div>';
+  });
+
+  document.getElementById("rateioRow").innerHTML = html;
+}
+
+/* ── TABS ───────────────────────────────────────────── */
+function showTab(t){
+  tabAtual = t;
+  ["mov","nf","rat"].forEach(function(id){
+    var panel = document.getElementById("panel"+id.charAt(0).toUpperCase()+id.slice(1));
+    var tab   = document.getElementById("tab-"+id);
+    if(panel) panel.style.display = id===t ? (id==="rat"?"block":"flex") : "none";
+    if(tab)   tab.classList.toggle("active", id===t);
+  });
+}
+
+/* ── EXPORTAR EXCEL ─────────────────────────────────── */
+function exportarExcel(){
+  var btn=document.getElementById("btnExcelExec");
+  btn.classList.add("loading"); btn.innerHTML='<i class="fa-solid fa-spinner fa-spin"></i> Gerando…';
+  setTimeout(function(){
+    try{
+      var c = instAtual; if(!c) return;
+      var wb = XLSX.utils.book_new();
+
+      /* Aba 1: Movimentações */
+      var movRows = [["Número","Data","Tipo","Vlr. Original","Vlr. Bruto","Vlr. Líquido","Favorecido","Tributo","Nº DL","Tipo DL","Situação"]];
+      (c.movimentacoes||[]).forEach(function(m){ movRows.push([m.num,m.data,m.tipo,m.v_orig,m.v_bruto,m.v_liq,m.favorecido,m.tributo,m.ndl,m.tdl,m.situacao]); });
+      var wsMov = XLSX.utils.aoa_to_sheet(movRows);
+      wsMov['!cols']=[{wch:12},{wch:12},{wch:32},{wch:16},{wch:14},{wch:14},{wch:22},{wch:8},{wch:10},{wch:12},{wch:20}];
+      XLSX.utils.book_append_sheet(wb,wsMov,"Movimentações");
+
+      /* Aba 2: NFs */
+      var nfRows=[["Nº NF","Data","Razão Social","Vlr. Original","Vlr. Bruto","Tributos","Vlr. Líquido","Status","Tipo"]];
+      (c.notas_fiscais||[]).forEach(function(n){ nfRows.push([n.num,n.data,n.razao,n.v_orig,n.v_bruto,n.tributos,n.v_liq,n.status,n.tipo]); });
+      var wsNF = XLSX.utils.aoa_to_sheet(nfRows);
+      wsNF['!cols']=[{wch:8},{wch:12},{wch:30},{wch:16},{wch:14},{wch:12},{wch:14},{wch:8},{wch:14}];
+      XLSX.utils.book_append_sheet(wb,wsNF,"Notas Fiscais");
+
+      /* Aba 3: Resumo */
+      var res=[
+        ["Instrumento",c.numero],
+        ["Objeto",c.objeto],
+        ["Situação",c.situacao],
+        ["",""],
+        ["Valor Global",c.valor_global],
+        ["Valor Repasse",c.valor_repasse],
+        ["Contrapartida",c.valor_contrapartida],
+        ["Total Pago",calcTotalPago(c)],
+        ["Exec. Física %",c.exec_fisica_pct+"%"],
+      ];
+      var wsRes=XLSX.utils.aoa_to_sheet(res);
+      wsRes['!cols']=[{wch:22},{wch:28}];
+      XLSX.utils.book_append_sheet(wb,wsRes,"Resumo");
+
+      var d=new Date();
+      var dt=String(d.getDate()).padStart(2,'0')+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+d.getFullYear();
+      XLSX.writeFile(wb,'IDEPI_ExecFinanceira_'+c.numero+'_'+dt+'.xlsx');
+    }catch(e){ alert("Erro ao exportar: "+e.message); }
+    finally{ btn.classList.remove("loading"); btn.innerHTML='<i class="fa-solid fa-file-excel"></i> Exportar Excel'; }
+  },50);
+}
+
+/* ── FULLSCREEN ─────────────────────────────────────── */
+function toggleFullscreenExec(){
+  var paineis = {mov:"panelMov",nf:"panelNF"};
+  var el = document.getElementById(paineis[tabAtual]||"panelMov");
+  if(!el) return;
+  var isFs = document.fullscreenElement||document.webkitFullscreenElement||document.mozFullScreenElement;
+  if(!isFs){ var r=el.requestFullscreen||el.webkitRequestFullscreen||el.mozRequestFullScreen; if(r) r.call(el); }
+  else { var ex=document.exitFullscreen||document.webkitExitFullscreen||document.mozCancelFullScreen; if(ex) ex.call(document); }
+}
+document.addEventListener('fullscreenchange',_syncFsExec);
+document.addEventListener('webkitfullscreenchange',_syncFsExec);
+function _syncFsExec(){
+  var btn=document.getElementById('btnFSExec'); if(!btn) return;
+  var isFs=document.fullscreenElement||document.webkitFullscreenElement||document.mozFullScreenElement;
+  btn.innerHTML=isFs?'<i class="fa-solid fa-compress"></i> Sair':'<i class="fa-solid fa-expand"></i> Tela cheia';
+}
+
+/* ── BOOT ───────────────────────────────────────────── */
+(function(){
+  /* Tenta carregar dados.json do GitHub */
+  var url="https://raw.githubusercontent.com/"+USUARIO+"/"+REPO+"/main/dados.json?t="+Date.now();
+  fetch(url)
+    .then(function(r){ if(!r.ok) throw new Error("HTTP "+r.status); return r.json(); })
+    .then(function(j){
+      document.getElementById("hd-ts").innerHTML="Atualizado<br>"+(j.gerado_em||"—");
+
+      /* Se dados.json tiver seção exec_financeira, usa ela; senão usa fallback local */
+      var execData = j.exec_financeira || null;
+      if(execData && execData.length){
+        INSTRUMENTOS_EXEC = execData;
+      }
+      popularSelector(INSTRUMENTOS_EXEC);
+      document.getElementById("overlay").classList.add("hide");
+    })
+    .catch(function(){
+      /* Fallback: usa dados embutidos */
+      document.getElementById("hd-ts").innerHTML="Dados modelo<br>946260";
+      popularSelector(INSTRUMENTOS_EXEC);
+      document.getElementById("overlay").classList.add("hide");
+    });
+})();
+</script>
+
+<!-- LOCKSCREEN -->
+<div id="lockscreen">
+  <div style="background:#0f1f3d;border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:40px;width:340px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.5);">
+    <div style="width:52px;height:52px;border-radius:14px;background:linear-gradient(135deg,#1a4a8a,#0d6e4a);display:flex;align-items:center;justify-content:center;font-size:22px;color:#fff;margin:0 auto 16px;"><i class="fa-solid fa-lock"></i></div>
+    <div style="font-family:'Sora',sans-serif;font-size:17px;font-weight:700;color:#fff;margin-bottom:4px;">IDEPI — Convênios Federais</div>
+    <div style="font-size:12px;color:rgba(255,255,255,.4);margin-bottom:24px;">Acesso restrito. Digite a senha para continuar.</div>
+    <input id="pwd-input" type="password" placeholder="Senha de acesso"
+      style="width:100%;padding:11px 16px;border-radius:8px;border:1.5px solid rgba(255,255,255,.15);background:rgba(255,255,255,.06);color:#fff;font-size:14px;outline:none;margin-bottom:10px;"
+      onkeydown="if(event.key==='Enter')checkPwd()"/>
+    <div id="pwd-err" style="font-size:12px;color:#f87171;min-height:16px;margin-bottom:10px;"></div>
+    <button onclick="checkPwd()" style="width:100%;padding:11px;border-radius:8px;border:none;background:#1a3a6e;color:#fff;font-size:14px;font-weight:600;cursor:pointer;">Entrar</button>
+  </div>
+</div>
+<script>
+var SENHA="idepi2026";
+if(sessionStorage.getItem("idepi_auth")==="1") document.getElementById("lockscreen").style.display="none";
+function checkPwd(){
+  var v=document.getElementById("pwd-input").value;
+  if(v===SENHA){sessionStorage.setItem("idepi_auth","1");document.getElementById("lockscreen").style.display="none";}
+  else{document.getElementById("pwd-err").textContent="Senha incorreta.";document.getElementById("pwd-input").value="";document.getElementById("pwd-input").focus();}
+}
+</script>
+
+/* ── SIDEBAR TOGGLE JS ── */
+(function(){
+  var sidebar = document.querySelector('.sidebar');
+  if(!sidebar) return;
+
+  // Botão toggle
+  var btn = document.createElement('button');
+  btn.className = 'sb-toggle';
+  btn.title = 'Recolher menu';
+  btn.setAttribute('aria-label','Recolher/expandir menu lateral');
+  btn.innerHTML = '<i class="fa-solid fa-chevron-left"></i>';
+  sidebar.appendChild(btn);
+
+  // Restaura estado salvo
+  var collapsed = sessionStorage.getItem('idepi_sb_collapsed') === '1';
+  if(collapsed){
+    sidebar.classList.add('collapsed');
+    btn.innerHTML = '<i class="fa-solid fa-chevron-right"></i>';
+    btn.title = 'Expandir menu';
+  }
+
+  btn.addEventListener('click', function(){
+    collapsed = !collapsed;
+    sidebar.classList.toggle('collapsed', collapsed);
+    btn.innerHTML = collapsed
+      ? '<i class="fa-solid fa-chevron-right"></i>'
+      : '<i class="fa-solid fa-chevron-left"></i>';
+    btn.title = collapsed ? 'Expandir menu' : 'Recolher menu';
+    sessionStorage.setItem('idepi_sb_collapsed', collapsed ? '1' : '0');
+  });
+})();
+
+</body>
+</html>

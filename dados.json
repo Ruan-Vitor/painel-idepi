@@ -2146,7 +2146,7 @@
     {
       "numero": "946260",
       "objeto": "MANUTENÇÃO E ADEQUAÇÃO NAS ESTRADAS VICINAIS NO MUNICÍPIO DE LAGOA DE SÃO FRANCISCO-PI.",
-      "coletado_em": "13/05/2026 19:24",
+      "coletado_em": "13/05/2026 19:34",
       "valor_global": "R$ 955.000,00",
       "valor_repasse": "R$ 47.000,00",
       "valor_contrapartida": "Baixar Contrapartida",
@@ -2276,27 +2276,56 @@
         {
           "num": "16/03/2026",
           "data": "898",
-          "razao": "NOTA FISCAL",
-          "v_orig": "CONSTRUTORA RENATA LTDA",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA RENATA LTDA",
+          "v_orig": "111.654,56",
           "v_bruto": "111.654,56",
-          "tributos": "111.654,56",
-          "v_liq": "2.344,75",
-          "status": "0,00",
-          "tipo": "0,00",
+          "tributos": "2.344,75",
+          "contribuicoes": "0,00",
+          "outras_retencoes": "0,00",
+          "status": "Ativo",
           "id_nf": "8219554",
+          "origem_recurso": "Repasse / Rendimento"
+        },
+        {
+          "num": "16/03/2026",
+          "data": "897",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA RENATA LTDA",
+          "v_orig": "388.041,81",
+          "v_bruto": "388.041,81",
+          "tributos": "8.148,87",
+          "contribuicoes": "0,00",
+          "outras_retencoes": "0,00",
+          "status": "Ativo",
+          "id_nf": "8219538",
+          "origem_recurso": "Repasse / Rendimento"
+        },
+        {
+          "num": "16/03/2026",
+          "data": "896",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA RENATA LTDA",
+          "v_orig": "338.345,44",
+          "v_bruto": "338.345,44",
+          "tributos": "7.105,25",
+          "contribuicoes": "0,00",
+          "outras_retencoes": "0,00",
+          "status": "Ativo",
+          "id_nf": "8219505",
           "origem_recurso": "Repasse / Rendimento"
         }
       ],
-      "exec_fisica_pct": 0,
-      "exec_fisica_str": "0%",
+      "exec_fisica_pct": 100.0,
+      "exec_fisica_str": "100,00%",
       "ateste_convenente": false,
       "ateste_concedente": false,
       "status_obra": "",
-      "tem_medicao": false,
+      "tem_medicao": true,
       "_id_convenio": "1078799",
       "_id_proposta": "1889727",
       "erro": ""
     }
   ],
-  "exec_atualizado_em": "13/05/2026 19:25"
+  "exec_atualizado_em": "13/05/2026 19:36"
 }

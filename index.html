@@ -22,8 +22,8 @@
   --amber:#92400e;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html,body{height:100%;overflow:hidden}
-body{font-family:'DM Sans',sans-serif;background:var(--bg);display:flex;flex-direction:column;min-height:100vh}
+html,body{height:100%}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);display:flex;flex-direction:column;min-height:100vh;overflow:hidden}
 
 /* ── HEADER ── */
 .hd{background:var(--bg);border-bottom:1px solid rgba(255,255,255,.07);padding:0 36px;height:58px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
@@ -165,6 +165,74 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);display:flex;flex-dir
 @keyframes spin{to{transform:rotate(360deg)}}
 .overlay p{color:#fff;font-size:13px}
 #lockscreen{position:fixed;inset:0;z-index:9999;background:#07101f;display:flex;align-items:center;justify-content:center}
+
+/* ── RESPONSIVO ── */
+@media (max-width: 900px) {
+  /* Página inteira rola */
+  html, body { height:auto !important; overflow-x:hidden; overflow-y:auto; }
+
+  /* Header compacto */
+  .hd { padding:0 14px; height:auto; min-height:50px; flex-wrap:wrap; gap:6px; padding-top:8px; padding-bottom:8px; }
+  .hd-sep  { display:none; }
+  .hd-pill { display:none; }
+  .hd-stat { display:none; }
+  .hd-div  { display:none; }
+
+  /* Layout vira coluna */
+  .body { overflow:visible; flex-direction:column; height:auto; }
+
+  /* Sidebar vira nav horizontal com scroll lateral */
+  .sidebar {
+    width:100%;
+    flex-direction:row;
+    flex-wrap:nowrap;
+    overflow-x:auto;
+    -webkit-overflow-scrolling:touch;
+    padding:6px 10px;
+    gap:4px;
+    border-right:none;
+    border-bottom:1px solid rgba(255,255,255,.12);
+    position:static;
+    flex-shrink:0;
+    height:auto;
+  }
+  .sidebar::-webkit-scrollbar { display:none; }
+  .sb-sec    { display:none; }
+  .sb-footer { display:none; }
+  .sb-item   { flex-shrink:0; white-space:nowrap; padding:6px 12px; font-size:12px; }
+
+  /* Content abre completamente */
+  .content { overflow:visible; flex:none; width:100%; height:auto; }
+  .scroll  { overflow:visible; flex:none; padding:14px 14px; gap:14px; height:auto; }
+
+  /* Page head */
+  .pg-head { padding:12px 14px; flex-wrap:wrap; gap:10px; }
+  .pg-title { font-size:15px; }
+
+  /* Hero */
+  .hero { flex-direction:column; padding:18px 18px; gap:12px; }
+  .hero-right { text-align:left; }
+  .hero-right .big-num { font-size:38px; }
+
+  /* Status grid: 3 colunas */
+  .status-grid { grid-template-columns:repeat(3,1fr); gap:10px; }
+  .st-num { font-size:22px; }
+
+  /* Panels: coluna única */
+  .panels-grid { grid-template-columns:1fr; gap:12px; }
+
+  /* FiscalGov preview: 2 colunas */
+  .fg-metrics { grid-template-columns:repeat(2,1fr); }
+  .fg-metric  { border-right:none; border-bottom:1px solid var(--border); }
+  .fg-metric:nth-child(odd) { border-right:1px solid var(--border); }
+  .fg-metric:last-child { border-bottom:none; }
+}
+
+@media (max-width: 480px) {
+  .status-grid { grid-template-columns:repeat(2,1fr); }
+  .hero-badges { gap:5px; }
+  .hero-text h2 { font-size:15px; }
+}
 </style>
 </head>
 <body>

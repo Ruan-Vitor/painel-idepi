@@ -6,6 +6,7 @@
 <title>IDEPI — Portal de Convênios Federais</title>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=IBM+Plex+Mono:wght@400;600&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <style>
 :root{
   --bg:#0b1527;
@@ -98,7 +99,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);display:flex;flex-dir
 .st-lbl{font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:2px}
 .st-desc{font-size:10px;color:#b0bbc8}
 
-/* ── PANELS GRID (quick access) ── */
+/* ── PANELS GRID ── */
 .panels-label{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.6px;display:flex;align-items:center;gap:7px}
 .panels-label::after{content:'';flex:1;height:1px;background:var(--border)}
 .panels-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
@@ -108,12 +109,10 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);display:flex;flex-dir
 .panel-card.pc-blue::before{background:linear-gradient(90deg,#1a3a6e,#3b82f6)}
 .panel-card.pc-green::before{background:linear-gradient(90deg,#0d6e4a,#22c55e)}
 .panel-card.pc-amber::before{background:linear-gradient(90deg,#92400e,#f59e0b)}
-.panel-card.pc-slate::before{background:linear-gradient(90deg,#475569,#94a3b8)}
 .pc-icon-wrap{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px}
 .pc-blue .pc-icon-wrap{background:#eff6ff;color:#1a3a6e}
 .pc-green .pc-icon-wrap{background:#f0fdf4;color:#0d6e4a}
 .pc-amber .pc-icon-wrap{background:#fffbeb;color:#92400e}
-.pc-slate .pc-icon-wrap{background:#f8fafc;color:#475569}
 .pc-title{font-family:'Sora',sans-serif;font-size:14px;font-weight:700;color:var(--text);margin-bottom:4px}
 .pc-desc{font-size:11.5px;color:var(--muted);line-height:1.5}
 .pc-footer{display:flex;align-items:center;justify-content:space-between;margin-top:auto;padding-top:12px;border-top:1px solid var(--border)}
@@ -123,8 +122,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);display:flex;flex-dir
 .pc-cta{display:flex;align-items:center;gap:5px;font-size:11px;font-weight:700;color:var(--accent);text-decoration:none}
 .pc-green .pc-cta{color:var(--green)}
 .pc-cta i{font-size:10px}
-.pc-soon-overlay{position:absolute;inset:0;background:rgba(255,255,255,.6);display:flex;align-items:center;justify-content:center;backdrop-filter:blur(2px);border-radius:12px}
-.pc-soon-badge{background:#f8fafc;border:1.5px solid var(--border);border-radius:20px;padding:6px 16px;font-size:12px;font-weight:700;color:var(--muted);display:flex;align-items:center;gap:6px}
 
 /* ── FISCALGOV PREVIEW CARD ── */
 .fg-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden;flex-shrink:0}
@@ -139,13 +136,27 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);display:flex;flex-dir
 .fg-val{font-family:'Sora',sans-serif;font-size:26px;font-weight:800;color:var(--text);line-height:1;margin-bottom:3px}
 .fg-metric.fg-ok  .fg-val{color:var(--green)}
 .fg-metric.fg-nok .fg-val{color:var(--red)}
-.fg-metric.fg-pct .fg-val{color:var(--amber)}
 .fg-lbl{font-size:9.5px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
 .fg-prog-wrap{padding:12px 20px 14px;border-top:1px solid var(--border);background:#fafbfd}
 .fg-prog-lbl{font-size:11px;color:var(--muted);margin-bottom:6px;display:flex;justify-content:space-between}
 .fg-prog-lbl span{font-weight:700;color:var(--accent)}
 .fg-track{background:#e8f0fe;border-radius:99px;height:8px;overflow:hidden}
 .fg-fill{height:100%;border-radius:99px;background:linear-gradient(90deg,#1a3a6e,#16a34a);transition:width 1s cubic-bezier(.22,1,.36,1)}
+
+/* ── BOTÃO EXPORTAR EXCEL ── */
+.btn-excel{
+  display:inline-flex;align-items:center;gap:6px;
+  background:#16a34a;color:#fff;
+  border:none;border-radius:7px;
+  padding:7px 14px;font-size:12px;font-weight:600;
+  cursor:pointer;font-family:'DM Sans',sans-serif;
+  transition:background .15s,transform .1s;
+  white-space:nowrap;
+}
+.btn-excel:hover{background:#15803d;transform:translateY(-1px)}
+.btn-excel:active{transform:translateY(0)}
+.btn-excel i{font-size:12px}
+.btn-excel.loading{background:#475569;cursor:not-allowed;transform:none}
 
 /* ── MISC ── */
 .overlay{position:fixed;inset:0;background:rgba(7,16,31,.85);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:998;gap:12px}
@@ -218,6 +229,10 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);display:flex;flex-dir
         <div class="pg-title">Painel Geral de Convênios</div>
         <div class="pg-sub">Visão consolidada · Selecione um painel abaixo para detalhes</div>
       </div>
+      <!-- BOTÃO EXPORTAR EXCEL no cabeçalho do painel geral -->
+      <button class="btn-excel" id="btnExcelIndex" onclick="exportarExcelGeral()" title="Exportar resumo completo dos convênios">
+        <i class="fa-solid fa-file-excel"></i> Exportar Resumo Excel
+      </button>
     </div>
 
     <div class="scroll">
@@ -239,7 +254,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);display:flex;flex-dir
         </div>
       </div>
 
-      <!-- STATUS GRID (clicável → abre painel completo filtrado) -->
+      <!-- STATUS GRID -->
       <div class="status-grid">
         <a class="st-card s-n" href="vigencias.html">
           <div class="st-lbl">Normal</div>
@@ -309,7 +324,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);display:flex;flex-dir
       <div class="panels-label"><i class="fa-solid fa-grip"></i> Acesso rápido aos painéis</div>
       <div class="panels-grid">
 
-        <!-- Painel Completo -->
         <a class="panel-card pc-blue" href="vigencias.html">
           <div style="display:flex;align-items:center;gap:12px">
             <div class="pc-icon-wrap"><i class="fa-solid fa-table-list"></i></div>
@@ -331,7 +345,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);display:flex;flex-dir
           </div>
         </a>
 
-        <!-- FiscalGov -->
         <a class="panel-card pc-green" href="fiscalgov.html">
           <div style="display:flex;align-items:center;gap:12px">
             <div class="pc-icon-wrap"><i class="fa-solid fa-camera"></i></div>
@@ -353,7 +366,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);display:flex;flex-dir
           </div>
         </a>
 
-        <!-- Vigências (portal) -->
         <a class="panel-card pc-amber" href="vigencias.html">
           <div style="display:flex;align-items:center;gap:12px">
             <div class="pc-icon-wrap"><i class="fa-solid fa-clock-rotate-left"></i></div>
@@ -375,14 +387,15 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);display:flex;flex-dir
           </div>
         </a>
 
-      </div><!-- /panels-grid -->
+      </div>
 
-    </div><!-- /scroll -->
-  </div><!-- /content -->
-</div><!-- /body -->
+    </div>
+  </div>
+</div>
 
 <script>
 var USUARIO = "Ruan-Vitor", REPO = "painel-idepi";
+var _dadosGerais = []; // guarda todos os convênios para exportação
 
 function parseDateBR(s) {
   if (!s) return null;
@@ -432,9 +445,10 @@ fetch(url)
     document.getElementById("hd-ts").innerHTML = "Atualizado<br>"+(j.gerado_em||"—");
 
     var conv = j.convenios || [];
+    _dadosGerais = conv; // salva para exportação
     var ct = { normal:0, alerta:0, atencao:0, critico:0, vencido:0, finalizado:0 };
     var lib = 0;
-    var vigentes = [], finalizados = 0;
+    var vigentes = [];
 
     for (var i=0; i<conv.length; i++) {
       var c = conv[i];
@@ -451,7 +465,7 @@ fetch(url)
     document.getElementById("hero-tot").textContent = totalInst;
     document.getElementById("pc-tot").textContent   = totalInst;
     document.getElementById("hs-lib").textContent   = lib > 0
-      ? "R$"+(lib/1e6).toFixed(1).replace(".",",")+  "M" : "—";
+      ? "R$"+(lib/1e6).toFixed(1).replace(".",",")+"M" : "—";
     document.getElementById("pc-lib").textContent   = lib > 0
       ? "R$"+(lib/1e6).toFixed(1).replace(".",",")+"M" : "—";
 
@@ -464,7 +478,6 @@ fetch(url)
     document.getElementById("pc-crit").textContent = ct.critico;
     document.getElementById("pc-venc").textContent = ct.vencido;
 
-    // FiscalGov metrics
     var totalVig = vigentes.length;
     var emProj   = vigentes.filter(function(c){ return isProjeto(c); }).length;
     var aptos    = vigentes.filter(function(c){ return isApto(c); }).length;
@@ -487,12 +500,136 @@ fetch(url)
   .catch(function(){
     document.getElementById("overlay").classList.add("hide");
   });
+
+// ══════════════════════════════════════════════════════════════════
+//  EXPORTAR EXCEL — PAINEL GERAL
+// ══════════════════════════════════════════════════════════════════
+function exportarExcelGeral() {
+  var btn = document.getElementById('btnExcelIndex');
+  if (!_dadosGerais.length) { alert('Dados ainda não carregados. Aguarde.'); return; }
+
+  btn.classList.add('loading');
+  btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Gerando...';
+
+  setTimeout(function() {
+    try {
+      var NOME_ST = {normal:'Normal',alerta:'Alerta',atencao:'Atenção',critico:'Crítico',vencido:'Vencido',finalizado:'Finalizado'};
+
+      // ── Aba 1: Todos os convênios ──
+      var cabecalho = [
+        'Nº Instrumento','Objeto','Fiscal Responsável','Situação (CGU)',
+        'Situação (Transferegov)','Vigência Final','Vigência Suspensiva',
+        'Status Vigência','Dias Restantes',
+        'Valor Total (R$)','Valor Liberado (R$)','% Execução',
+        'Medição','Pagamento','Foto APP','Aptidão FiscalGov',
+        'Nº SEI','Mandatária','Emenda','Autor Emenda'
+      ];
+
+      var ct = {normal:0,alerta:0,atencao:0,critico:0,vencido:0,finalizado:0};
+      var libTotal = 0;
+
+      var linhas = _dadosGerais.map(function(c) {
+        var res = calcSt(c);
+        ct[res.st] = (ct[res.st]||0)+1;
+        var vl = parseFloat((c.v_liberado||'').replace(/\./g,'').replace(',','.')) || 0;
+        libTotal += vl;
+        var aptidao = isFinalizado(c) ? 'Finalizado' : (isApto(c) ? 'Apto' : 'Em projeto');
+        var foto    = isApto(c) ? (temFoto(c) ? 'SIM' : 'NÃO') : 'N/A';
+        return [
+          c.numero || '',
+          c.objeto || '',
+          c.fiscal || '',
+          c.situacao || '',
+          c.situacao_tgov || '',
+          c.vigencia_fmt || c.vigencia || '',
+          c.vigencia_suspensiva || '',
+          NOME_ST[res.st] || res.st || '',
+          res.dias !== null && res.dias !== undefined ? res.dias : '',
+          c.v_total ? c.v_total.replace(/\./g,'').replace(',','.') : '',
+          c.v_liberado ? c.v_liberado.replace(/\./g,'').replace(',','.') : '',
+          c.pct_exec || '',
+          temMedicao(c) ? 'SIM' : 'NÃO',
+          temPagamento(c) ? 'SIM' : 'NÃO',
+          foto,
+          aptidao,
+          c.sei || '',
+          c.mandataria || c.mandatária || '',
+          c.emenda || '',
+          c.autor_emenda || ''
+        ];
+      });
+
+      var ws = XLSX.utils.aoa_to_sheet([cabecalho].concat(linhas));
+      ws['!cols'] = [
+        {wch:22},{wch:50},{wch:18},{wch:30},{wch:32},
+        {wch:14},{wch:14},{wch:12},{wch:10},
+        {wch:18},{wch:18},{wch:10},
+        {wch:8},{wch:8},{wch:8},{wch:14},
+        {wch:22},{wch:22},{wch:10},{wch:28}
+      ];
+
+      // ── Aba 2: Resumo por Status ──
+      var wsRes = XLSX.utils.aoa_to_sheet([
+        ['Dashboard — Painel Geral IDEPI',''],
+        ['',''],
+        ['Status Vigência','Quantidade'],
+        ['Normal (> 90 dias)',   ct.normal   || 0],
+        ['Alerta (60–90 dias)',  ct.alerta   || 0],
+        ['Atenção (30–60 dias)', ct.atencao  || 0],
+        ['Crítico (< 30 dias)',  ct.critico  || 0],
+        ['Vencido',              ct.vencido  || 0],
+        ['Finalizado',           ct.finalizado || 0],
+        ['TOTAL',                _dadosGerais.length],
+        ['',''],
+        ['Total liberado (R$)', libTotal.toFixed(2).replace('.',',')],
+      ]);
+      wsRes['!cols'] = [{wch:24},{wch:16}];
+
+      // ── Aba 3: FiscalGov EX-01 ──
+      var vigentes = _dadosGerais.filter(function(c){ return !isFinalizado(c); });
+      var aptos    = vigentes.filter(function(c){ return isApto(c); }).length;
+      var comFoto  = vigentes.filter(function(c){ return isApto(c) && temFoto(c); }).length;
+      var semFoto  = aptos - comFoto;
+      var emProj   = vigentes.filter(function(c){ return isProjeto(c); }).length;
+      var pct      = aptos > 0 ? Math.round(comFoto/aptos*100) : 0;
+
+      var wsFG = XLSX.utils.aoa_to_sheet([
+        ['Indicador EX-01 — FiscalGov (resumo)',''],
+        ['',''],
+        ['Métrica','Valor'],
+        ['Total vigentes', vigentes.length],
+        ['Em projeto',     emProj],
+        ['Total aptos',    aptos],
+        ['Aptos com foto', comFoto],
+        ['Aptos sem foto', semFoto],
+        ['% EX-01 estimado', pct+'%'],
+      ]);
+      wsFG['!cols'] = [{wch:24},{wch:16}];
+
+      // ── Workbook ──
+      var wb = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(wb, ws,    'Todos os Convênios');
+      XLSX.utils.book_append_sheet(wb, wsRes, 'Resumo por Status');
+      XLSX.utils.book_append_sheet(wb, wsFG,  'FiscalGov EX-01');
+
+      var hoje = new Date();
+      var dtStr = String(hoje.getDate()).padStart(2,'0')+'-'+String(hoje.getMonth()+1).padStart(2,'0')+'-'+hoje.getFullYear();
+      XLSX.writeFile(wb, 'IDEPI_Resumo_Geral_'+dtStr+'.xlsx');
+
+    } catch(e) {
+      alert('Erro ao gerar Excel: ' + e.message);
+    } finally {
+      btn.classList.remove('loading');
+      btn.innerHTML = '<i class="fa-solid fa-file-excel"></i> Exportar Resumo Excel';
+    }
+  }, 50);
+}
 </script>
 
 <!-- LOCKSCREEN -->
 <div id="lockscreen">
   <div style="background:#0f1f3d;border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:40px;width:340px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.5);">
-    <div style="width:52px;height:52px;border-radius:14px;background:linear-gradient(135deg,#1a4a8a,#0d6e4a);display:flex;align-items:center;justify-content:justify-content;justify-content:center;font-size:22px;color:#fff;margin:0 auto 16px;"><i class="fa-solid fa-lock"></i></div>
+    <div style="width:52px;height:52px;border-radius:14px;background:linear-gradient(135deg,#1a4a8a,#0d6e4a);display:flex;align-items:center;justify-content:center;font-size:22px;color:#fff;margin:0 auto 16px;"><i class="fa-solid fa-lock"></i></div>
     <div style="font-family:'Sora',sans-serif;font-size:17px;font-weight:700;color:#fff;margin-bottom:4px;">IDEPI — Convênios Federais</div>
     <div style="font-size:12px;color:rgba(255,255,255,.4);margin-bottom:24px;">Acesso restrito. Digite a senha para continuar.</div>
     <input id="pwd-input" type="password" placeholder="Senha de acesso"

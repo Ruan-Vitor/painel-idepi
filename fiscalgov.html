@@ -352,10 +352,30 @@ function parseDateBR(s) {
 
 function normSit(s){ return (s||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase(); }
 
-/* Verifica se o instrumento está finalizado/encerrado */
+/* Verifica se o instrumento está finalizado/encerrado.
+   Consulta TRÊS fontes em ordem de confiabilidade:
+   1. situacao_tgov   — lido diretamente do Transferegov pelo tgov_monitor.py (col T)
+   2. sit_contrat_tgov — situação de contratação do Transferegov (col U)
+   3. situacao         — API da CGU (pode estar desatualizada)
+   Se QUALQUER das três indicar encerramento, o instrumento é excluído do EX-01.
+   Isso evita que a API desatualizada mantenha um instrumento ativo indevidamente
+   (caso do 906442: API diz vigente, Transferegov diz "Prestação de Contas Concluída"). */
 function isFinalizado(c) {
-  var sit = normSit(c.situacao||"");
-  return /prestacao\s*de\s*contas|finaliz|concluido|encerrad|rescindid|inadimplent/.test(sit);
+  var REGEX_FIN = /prestacao\s*de\s*contas|finaliz|concluido|encerrad|rescindid|inadimplent|tomada\s*de\s*contas/;
+
+  // 1. Situação lida do Transferegov (fonte primária — mais confiável)
+  var sitTgov = normSit(c.situacao_tgov || "");
+  if (sitTgov && sitTgov !== "—" && sitTgov !== "erro" && REGEX_FIN.test(sitTgov)) return true;
+
+  // 2. Situação de contratação do Transferegov
+  var sitContrat = normSit(c.sit_contrat_tgov || "");
+  if (sitContrat && sitContrat !== "—" && sitContrat !== "erro" && REGEX_FIN.test(sitContrat)) return true;
+
+  // 3. Situação da API CGU (fallback — pode estar desatualizada)
+  var sitApi = normSit(c.situacao || "");
+  if (REGEX_FIN.test(sitApi)) return true;
+
+  return false;
 }
 
 /* Verifica se tem medição registrada (coluna P da planilha → campo medicao) */
@@ -478,7 +498,10 @@ function renderizar() {
 
     html += "<tr>";
     html += "<td><span class='num-cell'>"+num+"</span></td>";
-    html += "<td><div class='obj-cell' title='"+obj.replace(/'/g,"&#39;")+"'>"+obj+"</div></td>";
+    html += "<td><div class='obj-cell' title='"+obj.replace(/'/g,"&#39;")+"'>"+obj+
+            (r.situacao_tgov && r.situacao_tgov !== "—" && r.situacao_tgov !== "" ?
+              "<div style='font-size:9px;color:#64748b;margin-top:2px;'><i class='fa-solid fa-arrow-right-to-bracket' style='font-size:8px;'></i> Tgov: "+r.situacao_tgov+"</div>" : "") +
+            "</div></td>";
     html += "<td style='white-space:nowrap;font-size:11.5px;color:#3a4a5c'>"+(r.fiscal||'<span style="color:#b0bbc8">—</span>')+"</td>";
     html += "<td style='white-space:nowrap;color:#5a6a82;font-size:11.5px'>"+vigFmt+"</td>";
     html += "<td>"+vigBadge(r._st, r._dias)+"</td>";

@@ -1,5 +1,5 @@
 {
-  "gerado_em": "12/05/2026 21:48",
+  "gerado_em": "12/05/2026 22:31",
   "total": 93,
   "convenios": [
     {
@@ -22,8 +22,8 @@
       "medicao": "NÃO",
       "pagamento": "NÃO",
       "apto_fiscalgov": "NÃO ⬜",
-      "situacao_tgov": "",
-      "sit_contrat_tgov": ""
+      "situacao_tgov": "Em execução",
+      "sit_contrat_tgov": "Normal"
     },
     {
       "numero": "889040",
@@ -41,12 +41,12 @@
       "pct_exec": "",
       "autor_emenda": "",
       "prestacao": "",
-      "foto_app": "NÃO ❌",
-      "medicao": "SIM",
-      "pagamento": "SIM",
-      "apto_fiscalgov": "SIM ✅",
-      "situacao_tgov": "",
-      "sit_contrat_tgov": ""
+      "foto_app": "Não encontrado",
+      "medicao": "Não encontrado",
+      "pagamento": "Não encontrado",
+      "apto_fiscalgov": "NÃO ⬜",
+      "situacao_tgov": "Prestação de Contas Concluída",
+      "sit_contrat_tgov": "Normal"
     },
     {
       "numero": "894024",
@@ -64,12 +64,12 @@
       "pct_exec": "",
       "autor_emenda": "",
       "prestacao": "",
-      "foto_app": "SIM (211 fotos)",
-      "medicao": "NÃO",
-      "pagamento": "SIM",
-      "apto_fiscalgov": "SIM ✅",
-      "situacao_tgov": "",
-      "sit_contrat_tgov": ""
+      "foto_app": "Não encontrado",
+      "medicao": "Não encontrado",
+      "pagamento": "Não encontrado",
+      "apto_fiscalgov": "NÃO ⬜",
+      "situacao_tgov": "Em execução",
+      "sit_contrat_tgov": "Normal"
     },
     {
       "numero": "897425",
@@ -87,12 +87,12 @@
       "pct_exec": "",
       "autor_emenda": "",
       "prestacao": "",
-      "foto_app": "SIM (7 fotos)",
-      "medicao": "NÃO",
-      "pagamento": "SIM",
-      "apto_fiscalgov": "SIM ✅",
-      "situacao_tgov": "",
-      "sit_contrat_tgov": ""
+      "foto_app": "Não encontrado",
+      "medicao": "Não encontrado",
+      "pagamento": "Não encontrado",
+      "apto_fiscalgov": "NÃO ⬜",
+      "situacao_tgov": "Em execução",
+      "sit_contrat_tgov": "Normal"
     },
     {
       "numero": "897099",
@@ -114,8 +114,8 @@
       "medicao": "NÃO",
       "pagamento": "SIM",
       "apto_fiscalgov": "SIM ✅",
-      "situacao_tgov": "",
-      "sit_contrat_tgov": ""
+      "situacao_tgov": "Em execução",
+      "sit_contrat_tgov": "Normal"
     },
     {
       "numero": "900822",
@@ -137,8 +137,8 @@
       "medicao": "SIM",
       "pagamento": "SIM",
       "apto_fiscalgov": "SIM ✅",
-      "situacao_tgov": "",
-      "sit_contrat_tgov": ""
+      "situacao_tgov": "Em execução",
+      "sit_contrat_tgov": "Normal"
     },
     {
       "numero": "902680",
@@ -160,8 +160,8 @@
       "medicao": "SIM",
       "pagamento": "SIM",
       "apto_fiscalgov": "SIM ✅",
-      "situacao_tgov": "",
-      "sit_contrat_tgov": ""
+      "situacao_tgov": "Em execução",
+      "sit_contrat_tgov": "Normal"
     },
     {
       "numero": "906442",
@@ -183,8 +183,8 @@
       "medicao": "SIM",
       "pagamento": "SIM",
       "apto_fiscalgov": "SIM ✅",
-      "situacao_tgov": "",
-      "sit_contrat_tgov": ""
+      "situacao_tgov": "Prestação de Contas Concluída",
+      "sit_contrat_tgov": "Normal"
     },
     {
       "numero": "916598",
@@ -206,8 +206,8 @@
       "medicao": "SIM",
       "pagamento": "SIM",
       "apto_fiscalgov": "SIM ✅",
-      "situacao_tgov": "",
-      "sit_contrat_tgov": ""
+      "situacao_tgov": "Em execução",
+      "sit_contrat_tgov": "Normal"
     },
     {
       "numero": "917537",
@@ -229,8 +229,8 @@
       "medicao": "SIM",
       "pagamento": "SIM",
       "apto_fiscalgov": "SIM ✅",
-      "situacao_tgov": "",
-      "sit_contrat_tgov": ""
+      "situacao_tgov": "Em execução",
+      "sit_contrat_tgov": "Normal"
     },
     {
       "numero": "902704",
@@ -298,8 +298,8 @@
       "medicao": "NÃO",
       "pagamento": "SIM",
       "apto_fiscalgov": "SIM ✅",
-      "situacao_tgov": "",
-      "sit_contrat_tgov": ""
+      "situacao_tgov": "Em execução",
+      "sit_contrat_tgov": "—"
     },
     {
       "numero": "907472",
@@ -321,8 +321,8 @@
       "medicao": "NÃO",
       "pagamento": "NÃO",
       "apto_fiscalgov": "NÃO ⬜",
-      "situacao_tgov": "",
-      "sit_contrat_tgov": ""
+      "situacao_tgov": "Em execução",
+      "sit_contrat_tgov": "Normal"
     },
     {
       "numero": "907471",
@@ -344,8 +344,8 @@
       "medicao": "NÃO",
       "pagamento": "NÃO",
       "apto_fiscalgov": "NÃO ⬜",
-      "situacao_tgov": "",
-      "sit_contrat_tgov": ""
+      "situacao_tgov": "Em execução",
+      "sit_contrat_tgov": "Normal"
     },
     {
       "numero": "907470",
@@ -367,8 +367,8 @@
       "medicao": "NÃO",
       "pagamento": "NÃO",
       "apto_fiscalgov": "NÃO ⬜",
-      "situacao_tgov": "",
-      "sit_contrat_tgov": ""
+      "situacao_tgov": "Em execução",
+      "sit_contrat_tgov": "Normal"
     },
     {
       "numero": "907469",
@@ -390,8 +390,8 @@
       "medicao": "NÃO",
       "pagamento": "NÃO",
       "apto_fiscalgov": "NÃO ⬜",
-      "situacao_tgov": "",
-      "sit_contrat_tgov": ""
+      "situacao_tgov": "Em execução",
+      "sit_contrat_tgov": "Normal"
     },
     {
       "numero": "907008",
@@ -413,8 +413,8 @@
       "medicao": "NÃO",
       "pagamento": "NÃO",
       "apto_fiscalgov": "NÃO ⬜",
-      "situacao_tgov": "",
-      "sit_contrat_tgov": ""
+      "situacao_tgov": "Em execução",
+      "sit_contrat_tgov": "Normal"
     },
     {
       "numero": "907015",
@@ -436,8 +436,8 @@
       "medicao": "NÃO",
       "pagamento": "NÃO",
       "apto_fiscalgov": "NÃO ⬜",
-      "situacao_tgov": "",
-      "sit_contrat_tgov": ""
+      "situacao_tgov": "Em execução",
+      "sit_contrat_tgov": "Normal"
     },
     {
       "numero": "907031",
@@ -459,8 +459,8 @@
       "medicao": "NÃO",
       "pagamento": "NÃO",
       "apto_fiscalgov": "NÃO ⬜",
-      "situacao_tgov": "",
-      "sit_contrat_tgov": ""
+      "situacao_tgov": "Em execução",
+      "sit_contrat_tgov": "Normal"
     },
     {
       "numero": "907032",
@@ -482,8 +482,8 @@
       "medicao": "NÃO",
       "pagamento": "NÃO",
       "apto_fiscalgov": "NÃO ⬜",
-      "situacao_tgov": "",
-      "sit_contrat_tgov": ""
+      "situacao_tgov": "Em execução",
+      "sit_contrat_tgov": "Normal"
     },
     {
       "numero": "907033",
@@ -505,8 +505,8 @@
       "medicao": "NÃO",
       "pagamento": "NÃO",
       "apto_fiscalgov": "NÃO ⬜",
-      "situacao_tgov": "",
-      "sit_contrat_tgov": ""
+      "situacao_tgov": "Em execução",
+      "sit_contrat_tgov": "Normal"
     },
     {
       "numero": "907035",
@@ -528,8 +528,8 @@
       "medicao": "NÃO",
       "pagamento": "NÃO",
       "apto_fiscalgov": "NÃO ⬜",
-      "situacao_tgov": "",
-      "sit_contrat_tgov": ""
+      "situacao_tgov": "Em execução",
+      "sit_contrat_tgov": "Normal"
     },
     {
       "numero": "907037",
@@ -551,8 +551,8 @@
       "medicao": "NÃO",
       "pagamento": "SIM",
       "apto_fiscalgov": "SIM ✅",
-      "situacao_tgov": "",
-      "sit_contrat_tgov": ""
+      "situacao_tgov": "Em execução",
+      "sit_contrat_tgov": "Normal"
     },
     {
       "numero": "907038",
@@ -574,8 +574,8 @@
       "medicao": "NÃO",
       "pagamento": "NÃO",
       "apto_fiscalgov": "NÃO ⬜",
-      "situacao_tgov": "",
-      "sit_contrat_tgov": ""
+      "situacao_tgov": "Em execução",
+      "sit_contrat_tgov": "Normal"
     },
     {
       "numero": "907040",
@@ -597,8 +597,8 @@
       "medicao": "NÃO",
       "pagamento": "NÃO",
       "apto_fiscalgov": "NÃO ⬜",
-      "situacao_tgov": "",
-      "sit_contrat_tgov": ""
+      "situacao_tgov": "Em execução",
+      "sit_contrat_tgov": "Normal"
     },
     {
       "numero": "907045",
@@ -620,8 +620,8 @@
       "medicao": "NÃO",
       "pagamento": "NÃO",
       "apto_fiscalgov": "NÃO ⬜",
-      "situacao_tgov": "",
-      "sit_contrat_tgov": ""
+      "situacao_tgov": "Em execução",
+      "sit_contrat_tgov": "Normal"
     },
     {
       "numero": "907050",
@@ -643,8 +643,8 @@
       "medicao": "NÃO",
       "pagamento": "NÃO",
       "apto_fiscalgov": "NÃO ⬜",
-      "situacao_tgov": "",
-      "sit_contrat_tgov": ""
+      "situacao_tgov": "Em execução",
+      "sit_contrat_tgov": "Normal"
     },
     {
       "numero": "737058",
@@ -666,8 +666,8 @@
       "medicao": "NÃO",
       "pagamento": "NÃO",
       "apto_fiscalgov": "NÃO ⬜",
-      "situacao_tgov": "",
-      "sit_contrat_tgov": ""
+      "situacao_tgov": "Em execução",
+      "sit_contrat_tgov": "—"
     },
     {
       "numero": "887234",
@@ -689,8 +689,8 @@
       "medicao": "NÃO",
       "pagamento": "SIM",
       "apto_fiscalgov": "SIM ✅",
-      "situacao_tgov": "",
-      "sit_contrat_tgov": ""
+      "situacao_tgov": "Em execução",
+      "sit_contrat_tgov": "Normal"
     },
     {
       "numero": "902401",
@@ -712,8 +712,8 @@
       "medicao": "NÃO",
       "pagamento": "SIM",
       "apto_fiscalgov": "SIM ✅",
-      "situacao_tgov": "",
-      "sit_contrat_tgov": ""
+      "situacao_tgov": "Em execução",
+      "sit_contrat_tgov": "Normal"
     },
     {
       "numero": "899533",
@@ -735,8 +735,8 @@
       "medicao": "NÃO",
       "pagamento": "NÃO",
       "apto_fiscalgov": "NÃO ⬜",
-      "situacao_tgov": "",
-      "sit_contrat_tgov": ""
+      "situacao_tgov": "Em execução",
+      "sit_contrat_tgov": "Normal"
     },
     {
       "numero": "900838",
@@ -781,8 +781,8 @@
       "medicao": "SIM",
       "pagamento": "SIM",
       "apto_fiscalgov": "SIM ✅",
-      "situacao_tgov": "",
-      "sit_contrat_tgov": ""
+      "situacao_tgov": "Em execução",
+      "sit_contrat_tgov": "Normal"
     },
     {
       "numero": "900840",
@@ -804,8 +804,8 @@
       "medicao": "SIM",
       "pagamento": "SIM",
       "apto_fiscalgov": "SIM ✅",
-      "situacao_tgov": "",
-      "sit_contrat_tgov": ""
+      "situacao_tgov": "Em execução",
+      "sit_contrat_tgov": "Normal"
     },
     {
       "numero": "899540",
@@ -850,8 +850,8 @@
       "medicao": "NÃO",
       "pagamento": "NÃO",
       "apto_fiscalgov": "NÃO ⬜",
-      "situacao_tgov": "",
-      "sit_contrat_tgov": ""
+      "situacao_tgov": "Em execução",
+      "sit_contrat_tgov": "Normal"
     },
     {
       "numero": "847194",
@@ -873,8 +873,8 @@
       "medicao": "NÃO",
       "pagamento": "NÃO",
       "apto_fiscalgov": "NÃO ⬜",
-      "situacao_tgov": "",
-      "sit_contrat_tgov": ""
+      "situacao_tgov": "Em execução",
+      "sit_contrat_tgov": "Normal"
     },
     {
       "numero": "920090",
@@ -896,8 +896,8 @@
       "medicao": "SIM",
       "pagamento": "SIM",
       "apto_fiscalgov": "SIM ✅",
-      "situacao_tgov": "",
-      "sit_contrat_tgov": ""
+      "situacao_tgov": "Em execução",
+      "sit_contrat_tgov": "Normal"
     },
     {
       "numero": "915500",
@@ -919,8 +919,8 @@
       "medicao": "SIM",
       "pagamento": "SIM",
       "apto_fiscalgov": "SIM ✅",
-      "situacao_tgov": "",
-      "sit_contrat_tgov": ""
+      "situacao_tgov": "Em execução",
+      "sit_contrat_tgov": "Normal"
     },
     {
       "numero": "946262",
@@ -942,8 +942,8 @@
       "medicao": "SIM",
       "pagamento": "SIM",
       "apto_fiscalgov": "SIM ✅",
-      "situacao_tgov": "",
-      "sit_contrat_tgov": ""
+      "situacao_tgov": "Prestação de Contas Concluída",
+      "sit_contrat_tgov": "Normal"
     },
     {
       "numero": "947350",
@@ -965,8 +965,8 @@
       "medicao": "SIM",
       "pagamento": "SIM",
       "apto_fiscalgov": "SIM ✅",
-      "situacao_tgov": "",
-      "sit_contrat_tgov": ""
+      "situacao_tgov": "Prestação de Contas Aprovada",
+      "sit_contrat_tgov": "Normal"
     },
     {
       "numero": "946258",
@@ -988,8 +988,8 @@
       "medicao": "NÃO",
       "pagamento": "NÃO",
       "apto_fiscalgov": "NÃO ⬜",
-      "situacao_tgov": "",
-      "sit_contrat_tgov": ""
+      "situacao_tgov": "Em execução",
+      "sit_contrat_tgov": "Normal"
     },
     {
       "numero": "946257",
@@ -1011,8 +1011,8 @@
       "medicao": "SIM",
       "pagamento": "SIM",
       "apto_fiscalgov": "SIM ✅",
-      "situacao_tgov": "",
-      "sit_contrat_tgov": ""
+      "situacao_tgov": "Prestação de Contas Iniciada por Antecipação",
+      "sit_contrat_tgov": "Normal"
     },
     {
       "numero": "946261",
@@ -1057,8 +1057,8 @@
       "medicao": "SIM",
       "pagamento": "SIM",
       "apto_fiscalgov": "SIM ✅",
-      "situacao_tgov": "",
-      "sit_contrat_tgov": ""
+      "situacao_tgov": "Em execução",
+      "sit_contrat_tgov": "Normal"
     },
     {
       "numero": "946259",
@@ -1103,8 +1103,8 @@
       "medicao": "NÃO",
       "pagamento": "NÃO",
       "apto_fiscalgov": "NÃO ⬜",
-      "situacao_tgov": "",
-      "sit_contrat_tgov": ""
+      "situacao_tgov": "Em execução",
+      "sit_contrat_tgov": "Normal"
     },
     {
       "numero": "947106",
@@ -1149,8 +1149,8 @@
       "medicao": "SIM",
       "pagamento": "SIM",
       "apto_fiscalgov": "SIM ✅",
-      "situacao_tgov": "",
-      "sit_contrat_tgov": ""
+      "situacao_tgov": "Prestação de Contas Iniciada por Antecipação",
+      "sit_contrat_tgov": "Normal"
     },
     {
       "numero": "947531",
@@ -1172,8 +1172,8 @@
       "medicao": "SIM",
       "pagamento": "SIM",
       "apto_fiscalgov": "SIM ✅",
-      "situacao_tgov": "",
-      "sit_contrat_tgov": ""
+      "situacao_tgov": "Prestação de Contas Iniciada por Antecipação",
+      "sit_contrat_tgov": "Normal"
     },
     {
       "numero": "947532",
@@ -1218,8 +1218,8 @@
       "medicao": "NÃO",
       "pagamento": "NÃO",
       "apto_fiscalgov": "NÃO ⬜",
-      "situacao_tgov": "",
-      "sit_contrat_tgov": ""
+      "situacao_tgov": "Em execução",
+      "sit_contrat_tgov": "Normal"
     },
     {
       "numero": "946378",
@@ -1241,8 +1241,8 @@
       "medicao": "NÃO",
       "pagamento": "NÃO",
       "apto_fiscalgov": "NÃO ⬜",
-      "situacao_tgov": "",
-      "sit_contrat_tgov": ""
+      "situacao_tgov": "Em execução",
+      "sit_contrat_tgov": "Normal"
     },
     {
       "numero": "947580",
@@ -1264,8 +1264,8 @@
       "medicao": "NÃO",
       "pagamento": "NÃO",
       "apto_fiscalgov": "NÃO ⬜",
-      "situacao_tgov": "",
-      "sit_contrat_tgov": ""
+      "situacao_tgov": "Em execução",
+      "sit_contrat_tgov": "Normal"
     },
     {
       "numero": "953168",
@@ -1287,8 +1287,8 @@
       "medicao": "SIM",
       "pagamento": "SIM",
       "apto_fiscalgov": "SIM ✅",
-      "situacao_tgov": "",
-      "sit_contrat_tgov": ""
+      "situacao_tgov": "Em execução",
+      "sit_contrat_tgov": "Normal"
     },
     {
       "numero": "947927",
@@ -1333,8 +1333,8 @@
       "medicao": "SIM",
       "pagamento": "SIM",
       "apto_fiscalgov": "SIM ✅",
-      "situacao_tgov": "",
-      "sit_contrat_tgov": ""
+      "situacao_tgov": "Em execução",
+      "sit_contrat_tgov": "Normal"
     },
     {
       "numero": "945650",
@@ -1356,8 +1356,8 @@
       "medicao": "NÃO",
       "pagamento": "NÃO",
       "apto_fiscalgov": "NÃO ⬜",
-      "situacao_tgov": "",
-      "sit_contrat_tgov": ""
+      "situacao_tgov": "Em execução",
+      "sit_contrat_tgov": "Normal"
     },
     {
       "numero": "947907",
@@ -1379,8 +1379,8 @@
       "medicao": "NÃO",
       "pagamento": "NÃO",
       "apto_fiscalgov": "NÃO ⬜",
-      "situacao_tgov": "",
-      "sit_contrat_tgov": ""
+      "situacao_tgov": "Em execução",
+      "sit_contrat_tgov": "Normal"
     },
     {
       "numero": "946738",
@@ -1402,8 +1402,8 @@
       "medicao": "NÃO",
       "pagamento": "NÃO",
       "apto_fiscalgov": "NÃO ⬜",
-      "situacao_tgov": "",
-      "sit_contrat_tgov": ""
+      "situacao_tgov": "Em execução",
+      "sit_contrat_tgov": "Normal"
     },
     {
       "numero": "945158",
@@ -1425,8 +1425,8 @@
       "medicao": "SIM",
       "pagamento": "NÃO",
       "apto_fiscalgov": "SIM ✅",
-      "situacao_tgov": "",
-      "sit_contrat_tgov": ""
+      "situacao_tgov": "Em execução",
+      "sit_contrat_tgov": "Normal"
     },
     {
       "numero": "947493",
@@ -1448,8 +1448,8 @@
       "medicao": "SIM",
       "pagamento": "SIM",
       "apto_fiscalgov": "SIM ✅",
-      "situacao_tgov": "",
-      "sit_contrat_tgov": ""
+      "situacao_tgov": "Prestação de Contas Concluída",
+      "sit_contrat_tgov": "Normal"
     },
     {
       "numero": "946367",
@@ -1471,8 +1471,8 @@
       "medicao": "SIM",
       "pagamento": "SIM",
       "apto_fiscalgov": "SIM ✅",
-      "situacao_tgov": "",
-      "sit_contrat_tgov": ""
+      "situacao_tgov": "Em execução",
+      "sit_contrat_tgov": "Normal"
     },
     {
       "numero": "951016",
@@ -1494,8 +1494,8 @@
       "medicao": "SIM",
       "pagamento": "SIM",
       "apto_fiscalgov": "SIM ✅",
-      "situacao_tgov": "",
-      "sit_contrat_tgov": ""
+      "situacao_tgov": "Em execução",
+      "sit_contrat_tgov": "Normal"
     },
     {
       "numero": "951018",
@@ -1517,8 +1517,8 @@
       "medicao": "NÃO",
       "pagamento": "NÃO",
       "apto_fiscalgov": "NÃO ⬜",
-      "situacao_tgov": "",
-      "sit_contrat_tgov": ""
+      "situacao_tgov": "Em execução",
+      "sit_contrat_tgov": "Normal"
     },
     {
       "numero": "951943",
@@ -1563,8 +1563,8 @@
       "medicao": "SIM",
       "pagamento": "SIM",
       "apto_fiscalgov": "SIM ✅",
-      "situacao_tgov": "",
-      "sit_contrat_tgov": ""
+      "situacao_tgov": "Em execução",
+      "sit_contrat_tgov": "Normal"
     },
     {
       "numero": "967173",
@@ -1586,8 +1586,8 @@
       "medicao": "NÃO",
       "pagamento": "NÃO",
       "apto_fiscalgov": "NÃO ⬜",
-      "situacao_tgov": "",
-      "sit_contrat_tgov": ""
+      "situacao_tgov": "Em execução",
+      "sit_contrat_tgov": "Normal"
     },
     {
       "numero": "967182",
@@ -1609,8 +1609,8 @@
       "medicao": "SIM",
       "pagamento": "SIM",
       "apto_fiscalgov": "SIM ✅",
-      "situacao_tgov": "",
-      "sit_contrat_tgov": ""
+      "situacao_tgov": "Em execução",
+      "sit_contrat_tgov": "Normal"
     },
     {
       "numero": "945303",
@@ -1632,8 +1632,8 @@
       "medicao": "NÃO",
       "pagamento": "NÃO",
       "apto_fiscalgov": "NÃO ⬜",
-      "situacao_tgov": "",
-      "sit_contrat_tgov": ""
+      "situacao_tgov": "Em execução",
+      "sit_contrat_tgov": "Normal"
     },
     {
       "numero": "945299",
@@ -1655,8 +1655,8 @@
       "medicao": "NÃO",
       "pagamento": "NÃO",
       "apto_fiscalgov": "NÃO ⬜",
-      "situacao_tgov": "",
-      "sit_contrat_tgov": ""
+      "situacao_tgov": "Em execução",
+      "sit_contrat_tgov": "Normal"
     },
     {
       "numero": "953190",
@@ -1678,8 +1678,8 @@
       "medicao": "NÃO",
       "pagamento": "NÃO",
       "apto_fiscalgov": "NÃO ⬜",
-      "situacao_tgov": "",
-      "sit_contrat_tgov": ""
+      "situacao_tgov": "Em execução",
+      "sit_contrat_tgov": "Normal"
     },
     {
       "numero": "969555",
@@ -1701,8 +1701,8 @@
       "medicao": "SIM",
       "pagamento": "SIM",
       "apto_fiscalgov": "SIM ✅",
-      "situacao_tgov": "",
-      "sit_contrat_tgov": ""
+      "situacao_tgov": "Em execução",
+      "sit_contrat_tgov": "Normal"
     },
     {
       "numero": "973618",
@@ -1724,8 +1724,8 @@
       "medicao": "NÃO",
       "pagamento": "NÃO",
       "apto_fiscalgov": "NÃO ⬜",
-      "situacao_tgov": "",
-      "sit_contrat_tgov": ""
+      "situacao_tgov": "Em execução",
+      "sit_contrat_tgov": "Cláusula Suspensiva"
     },
     {
       "numero": "965789",
@@ -1747,8 +1747,8 @@
       "medicao": "NÃO",
       "pagamento": "NÃO",
       "apto_fiscalgov": "NÃO ⬜",
-      "situacao_tgov": "",
-      "sit_contrat_tgov": ""
+      "situacao_tgov": "Em execução",
+      "sit_contrat_tgov": "Normal"
     },
     {
       "numero": "992850",
@@ -1770,8 +1770,8 @@
       "medicao": "NÃO",
       "pagamento": "NÃO",
       "apto_fiscalgov": "NÃO ⬜",
-      "situacao_tgov": "",
-      "sit_contrat_tgov": ""
+      "situacao_tgov": "Em execução",
+      "sit_contrat_tgov": "Cláusula Suspensiva"
     },
     {
       "numero": "992940",
@@ -1793,8 +1793,8 @@
       "medicao": "NÃO",
       "pagamento": "NÃO",
       "apto_fiscalgov": "NÃO ⬜",
-      "situacao_tgov": "",
-      "sit_contrat_tgov": ""
+      "situacao_tgov": "Em execução",
+      "sit_contrat_tgov": "Cláusula Suspensiva"
     },
     {
       "numero": "980844",
@@ -1816,8 +1816,8 @@
       "medicao": "NÃO",
       "pagamento": "NÃO",
       "apto_fiscalgov": "NÃO ⬜",
-      "situacao_tgov": "",
-      "sit_contrat_tgov": ""
+      "situacao_tgov": "Em execução",
+      "sit_contrat_tgov": "Normal"
     },
     {
       "numero": "981146",
@@ -1839,8 +1839,8 @@
       "medicao": "NÃO",
       "pagamento": "NÃO",
       "apto_fiscalgov": "NÃO ⬜",
-      "situacao_tgov": "",
-      "sit_contrat_tgov": ""
+      "situacao_tgov": "Em execução",
+      "sit_contrat_tgov": "Normal"
     },
     {
       "numero": "983950",
@@ -1862,8 +1862,8 @@
       "medicao": "NÃO",
       "pagamento": "NÃO",
       "apto_fiscalgov": "NÃO ⬜",
-      "situacao_tgov": "",
-      "sit_contrat_tgov": ""
+      "situacao_tgov": "Em execução",
+      "sit_contrat_tgov": "Cláusula Suspensiva"
     },
     {
       "numero": "986179",
@@ -1885,8 +1885,8 @@
       "medicao": "NÃO",
       "pagamento": "NÃO",
       "apto_fiscalgov": "NÃO ⬜",
-      "situacao_tgov": "",
-      "sit_contrat_tgov": ""
+      "situacao_tgov": "Em execução",
+      "sit_contrat_tgov": "Normal"
     },
     {
       "numero": "986155",
@@ -1908,8 +1908,8 @@
       "medicao": "NÃO",
       "pagamento": "NÃO",
       "apto_fiscalgov": "NÃO ⬜",
-      "situacao_tgov": "",
-      "sit_contrat_tgov": ""
+      "situacao_tgov": "Em execução",
+      "sit_contrat_tgov": "Cláusula Suspensiva"
     },
     {
       "numero": "985797",
@@ -1931,8 +1931,8 @@
       "medicao": "NÃO",
       "pagamento": "NÃO",
       "apto_fiscalgov": "NÃO ⬜",
-      "situacao_tgov": "",
-      "sit_contrat_tgov": ""
+      "situacao_tgov": "Em execução",
+      "sit_contrat_tgov": "Normal"
     },
     {
       "numero": "986602",
@@ -1954,8 +1954,8 @@
       "medicao": "NÃO",
       "pagamento": "NÃO",
       "apto_fiscalgov": "NÃO ⬜",
-      "situacao_tgov": "",
-      "sit_contrat_tgov": ""
+      "situacao_tgov": "Em execução",
+      "sit_contrat_tgov": "Cláusula Suspensiva"
     },
     {
       "numero": "988101",
@@ -1977,8 +1977,8 @@
       "medicao": "NÃO",
       "pagamento": "NÃO",
       "apto_fiscalgov": "NÃO ⬜",
-      "situacao_tgov": "",
-      "sit_contrat_tgov": ""
+      "situacao_tgov": "Em execução",
+      "sit_contrat_tgov": "Cláusula Suspensiva"
     },
     {
       "numero": "988500",
@@ -2000,8 +2000,8 @@
       "medicao": "NÃO",
       "pagamento": "NÃO",
       "apto_fiscalgov": "NÃO ⬜",
-      "situacao_tgov": "",
-      "sit_contrat_tgov": ""
+      "situacao_tgov": "Em execução",
+      "sit_contrat_tgov": "Cláusula Suspensiva"
     },
     {
       "numero": "989250",
@@ -2023,8 +2023,8 @@
       "medicao": "NÃO",
       "pagamento": "NÃO",
       "apto_fiscalgov": "NÃO ⬜",
-      "situacao_tgov": "",
-      "sit_contrat_tgov": ""
+      "situacao_tgov": "Em execução",
+      "sit_contrat_tgov": "Cláusula Suspensiva"
     },
     {
       "numero": "988784",
@@ -2046,8 +2046,8 @@
       "medicao": "NÃO",
       "pagamento": "NÃO",
       "apto_fiscalgov": "NÃO ⬜",
-      "situacao_tgov": "",
-      "sit_contrat_tgov": ""
+      "situacao_tgov": "Em execução",
+      "sit_contrat_tgov": "Cláusula Suspensiva"
     },
     {
       "numero": "988634",
@@ -2069,8 +2069,8 @@
       "medicao": "NÃO",
       "pagamento": "NÃO",
       "apto_fiscalgov": "NÃO ⬜",
-      "situacao_tgov": "",
-      "sit_contrat_tgov": ""
+      "situacao_tgov": "Em execução",
+      "sit_contrat_tgov": "Cláusula Suspensiva"
     },
     {
       "numero": "988972",
@@ -2092,8 +2092,8 @@
       "medicao": "NÃO",
       "pagamento": "NÃO",
       "apto_fiscalgov": "NÃO ⬜",
-      "situacao_tgov": "",
-      "sit_contrat_tgov": ""
+      "situacao_tgov": "Em execução",
+      "sit_contrat_tgov": "Cláusula Suspensiva"
     },
     {
       "numero": "988779",
@@ -2115,8 +2115,8 @@
       "medicao": "NÃO",
       "pagamento": "NÃO",
       "apto_fiscalgov": "NÃO ⬜",
-      "situacao_tgov": "",
-      "sit_contrat_tgov": ""
+      "situacao_tgov": "Em execução",
+      "sit_contrat_tgov": "Cláusula Suspensiva"
     },
     {
       "numero": "988901",
@@ -2138,8 +2138,8 @@
       "medicao": "NÃO",
       "pagamento": "NÃO",
       "apto_fiscalgov": "NÃO ⬜",
-      "situacao_tgov": "",
-      "sit_contrat_tgov": ""
+      "situacao_tgov": "Em execução",
+      "sit_contrat_tgov": "Cláusula Suspensiva"
     }
   ]
 }

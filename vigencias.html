@@ -630,6 +630,7 @@ function render() {
       <div class="ef"><label>Situação (API CGU)</label><span style="color:#94a3b8;font-size:11px;">${r.situacao||'—'}</span></div>
       <div class="ef"><label>Prestação de contas</label><span>${r.prestacao||'—'}</span></div>
       <div class="ef"><label>Autor da emenda</label><span>${r.autor_emenda||'—'}</span></div>
+      <div class="ef"><label>Fiscal responsável</label><span style="font-weight:600;color:var(--brand);">${r.fiscal||'—'}</span></div>
       <div class="ef full"><label>Objeto completo</label><span>${r.objeto||'—'}</span></div>
       <div class="ef"><label>Vigência final</label><span>${r.vigencia_fmt||r.vigencia||'—'}</span></div>
       <div class="ef"><label>Vigência suspensiva</label><span style="color:${r._temSusp?'var(--s-tx)':'inherit'};font-weight:${r._temSusp?700:400}">${r.vigencia_suspensiva||'—'}</span></div>

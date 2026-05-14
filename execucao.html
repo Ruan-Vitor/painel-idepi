@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- v20260514_v7 -->
+<!-- v20260514_v8 -->
 <html lang="pt-br">
 <head>
 <meta charset="UTF-8">
@@ -587,25 +587,25 @@ var INSTRUMENTOS_EXEC = [
 
     /* Movimentações financeiras */
     movimentacoes: [
-      { num:"10249848", data:"30/03/2026", tipo:"INGRESSO DE CONTRAPARTIDA",       v_orig:39000.00,    v_bruto:39000.00,    v_liq:39000.00,    favorecido:"09.034.960/0001-47", tributo:"",    ndl:"",         tdl:"",           situacao:"Concluída" },
-      { num:"10231942", data:"20/03/2026", tipo:"PAGAMENTO DE TRIBUTOS",            v_orig:4497.27,     v_bruto:4497.27,     v_liq:4497.27,     favorecido:"",                  tributo:"ISS", ndl:"897, 898", tdl:"NOTA FISCAL", situacao:"Concluída" },
-      { num:"10231930", data:"20/03/2026", tipo:"PAGAMENTO DE TRIBUTOS",            v_orig:5996.35,     v_bruto:5996.35,     v_liq:5996.35,     favorecido:"",                  tributo:"IR",  ndl:"897, 898", tdl:"NOTA FISCAL", situacao:"Concluída" },
-      { num:"10231891", data:"20/03/2026", tipo:"PAGAMENTO DE TRIBUTOS",            v_orig:4060.14,     v_bruto:4060.14,     v_liq:4060.14,     favorecido:"",                  tributo:"IR",  ndl:"896",      tdl:"NOTA FISCAL", situacao:"Concluída" },
-      { num:"10231888", data:"20/03/2026", tipo:"PAGAMENTO DE TRIBUTOS",            v_orig:3045.11,     v_bruto:3045.11,     v_liq:3045.11,     favorecido:"",                  tributo:"ISS", ndl:"896",      tdl:"NOTA FISCAL", situacao:"Concluída" },
-      { num:"10227940", data:"18/03/2026", tipo:"PAGAMENTO A FAVORECIDO COM OBTV", v_orig:111654.56,   v_bruto:111654.56,   v_liq:109309.81,   favorecido:"02.577.913/0001-09",tributo:"",    ndl:"898",      tdl:"NOTA FISCAL", situacao:"Conciliada"},
-      { num:"10227938", data:"18/03/2026", tipo:"PAGAMENTO A FAVORECIDO COM OBTV", v_orig:388041.81,   v_bruto:388041.81,   v_liq:379892.94,   favorecido:"02.577.913/0001-09",tributo:"",    ndl:"897",      tdl:"NOTA FISCAL", situacao:"Conciliada"},
-      { num:"10227934", data:"18/03/2026", tipo:"PAGAMENTO A FAVORECIDO COM OBTV", v_orig:338345.44,   v_bruto:338345.44,   v_liq:331240.19,   favorecido:"02.577.913/0001-09",tributo:"",    ndl:"896",      tdl:"NOTA FISCAL", situacao:"Conciliada"},
-      { num:"8590923",  data:"21/02/2024", tipo:"INGRESSO DE CONTRAPARTIDA",        v_orig:8000.00,     v_bruto:8000.00,     v_liq:8000.00,     favorecido:"09.034.960/0001-47", tributo:"",    ndl:"",         tdl:"",           situacao:"Concluída" }
+      { num:"10249848", data:"30/03/2026", tipo:"INGRESSO DE CONTRAPARTIDA",       v_orig:39000.00,  v_bruto:39000.00,  v_liq:null, favorecido:"09.034.960/0001-47",tributo:"",    ndl:"",         tdl:"",           situacao:"Concluída" },
+      { num:"10231942", data:"20/03/2026", tipo:"PAGAMENTO DE TRIBUTOS",            v_orig:4497.27,   v_bruto:4497.27,   v_liq:null, favorecido:"",                 tributo:"ISS", ndl:"897, 898", tdl:"NOTA FISCAL", situacao:"Concluída" },
+      { num:"10231930", data:"20/03/2026", tipo:"PAGAMENTO DE TRIBUTOS",            v_orig:5996.35,   v_bruto:5996.35,   v_liq:null, favorecido:"",                 tributo:"IR",  ndl:"897, 898", tdl:"NOTA FISCAL", situacao:"Concluída" },
+      { num:"10231891", data:"20/03/2026", tipo:"PAGAMENTO DE TRIBUTOS",            v_orig:4060.14,   v_bruto:4060.14,   v_liq:null, favorecido:"",                 tributo:"IR",  ndl:"896",      tdl:"NOTA FISCAL", situacao:"Concluída" },
+      { num:"10231888", data:"20/03/2026", tipo:"PAGAMENTO DE TRIBUTOS",            v_orig:3045.11,   v_bruto:3045.11,   v_liq:null, favorecido:"",                 tributo:"ISS", ndl:"896",      tdl:"NOTA FISCAL", situacao:"Concluída" },
+      { num:"10227940", data:"18/03/2026", tipo:"PAGAMENTO A FAVORECIDO COM OBTV", v_orig:111654.56, v_bruto:109309.81, v_liq:null, favorecido:"02.577.913/0001-09",tributo:"",ndl:"898",tdl:"NOTA FISCAL",situacao:"Conciliada"},
+      { num:"10227938", data:"18/03/2026", tipo:"PAGAMENTO A FAVORECIDO COM OBTV", v_orig:388041.81, v_bruto:379892.94, v_liq:null, favorecido:"02.577.913/0001-09",tributo:"",ndl:"897",tdl:"NOTA FISCAL",situacao:"Conciliada"},
+      { num:"10227934", data:"18/03/2026", tipo:"PAGAMENTO A FAVORECIDO COM OBTV", v_orig:338345.44, v_bruto:331240.19, v_liq:null, favorecido:"02.577.913/0001-09",tributo:"",ndl:"896",tdl:"NOTA FISCAL",situacao:"Conciliada"},
+      { num:"8590923",  data:"21/02/2024", tipo:"INGRESSO DE CONTRAPARTIDA",        v_orig:8000.00,   v_bruto:8000.00,   v_liq:null, favorecido:"09.034.960/0001-47", tributo:"",    ndl:"",         tdl:"",           situacao:"Concluída" }
     ],
 
     /* Notas Fiscais / Docs de Liquidação */
     notas_fiscais: [
-      { num:"896", data:"16/03/2026", razao:"CONSTRUTORA RENATA LTDA", v_orig:338345.44, v_bruto:338345.44, tributos:7105.25, v_liq:331240.19, status:"Ativo", tipo:"NOTA FISCAL",
-        itens:[{desc:"Execução serviços manutenção estradas — Lagoa de São Francisco/PI", valor:338345.44, repasse:338345.44, contrapartida:0, rendimento:0}] },
-      { num:"897", data:"16/03/2026", razao:"CONSTRUTORA RENATA LTDA", v_orig:388041.81, v_bruto:388041.81, tributos:8148.87, v_liq:379892.94, status:"Ativo", tipo:"NOTA FISCAL",
-        itens:[{desc:"Execução serviços manutenção estradas — Lagoa de São Francisco/PI", valor:388041.81, repasse:388041.81, contrapartida:0, rendimento:0}] },
-      { num:"898", data:"16/03/2026", razao:"CONSTRUTORA RENATA LTDA", v_orig:111654.56, v_bruto:111654.56, tributos:2344.75, v_liq:109309.81, status:"Ativo", tipo:"NOTA FISCAL",
-        itens:[{desc:"Execução serviços manutenção estradas — Lagoa de São Francisco/PI", valor:111654.56, repasse:111654.56, contrapartida:0, rendimento:0}] }
+      { num:"896", data:"16/03/2026", razao:"CONSTRUTORA RENATA LTDA", cnpj:"02.577.913/0001-09", v_orig:338345.44, v_bruto:338345.44, tributos:7105.25, v_liq:331240.19, status:"Ativo", tipo:"NOTA FISCAL",
+        itens:[{desc:"Execução — Lagoa de São Francisco/PI", valor:338345.44, id_item:"13928974", repasse:338345.44, contrapartida:0, rendimento:0}] },
+      { num:"897", data:"16/03/2026", razao:"CONSTRUTORA RENATA LTDA", cnpj:"02.577.913/0001-09", v_orig:388041.81, v_bruto:388041.81, tributos:8148.87, v_liq:379892.94, status:"Ativo", tipo:"NOTA FISCAL",
+        itens:[{desc:"Execução — Lagoa de São Francisco/PI", valor:388041.81, id_item:"13929148", repasse:388041.81, contrapartida:0, rendimento:0}] },
+      { num:"898", data:"16/03/2026", razao:"CONSTRUTORA RENATA LTDA", cnpj:"02.577.913/0001-09", v_orig:111654.56, v_bruto:111654.56, tributos:2344.75, v_liq:109309.81, status:"Ativo", tipo:"NOTA FISCAL",
+        itens:[{desc:"Execução — Lagoa de São Francisco/PI", valor:111654.56, id_item:"13929179", repasse:111654.56, contrapartida:0, rendimento:0}] }
     ]
   }
 ];
@@ -670,20 +670,47 @@ function normalizarInstrumento(c){
   (c.movimentacoes||[]).forEach(function(m){
     m.v_orig  = parseReais(m.v_orig);
     m.v_bruto = parseReais(m.v_bruto);
+    /* v_liq vem null do coletor (campo não disponível no Transferegov); guarda flag */
+    m._vliq_null = (m.v_liq === null || m.v_liq === undefined || m.v_liq === "");
     m.v_liq   = parseReais(m.v_liq);
   });
 
-  /* notas_fiscais: idem */
+  /* notas_fiscais: normaliza dados vindos do coletor exec_financeiro.py
+     O coletor grava: tipo=razao_social, razao=valor_str, v_bruto=retenções, tributos=0
+     Os itens com id_item preenchido contêm os valores reais de rateio */
   (c.notas_fiscais||[]).forEach(function(n){
-    n.v_orig   = parseReais(n.v_orig);
-    n.v_bruto  = parseReais(n.v_bruto);
-    n.tributos = parseReais(n.tributos);
-    n.v_liq    = parseReais(n.v_liq);
-    if(!n.v_liq && n.v_bruto) n.v_liq = n.v_bruto - n.tributos;
-    /* razao: pode vir como "razao" ou "razao_social" do coletor */
-    if(!n.razao && n.razao_social) n.razao = n.razao_social;
-    /* itens */
-    (n.itens||[]).forEach(function(it){
+    /* Empresa: coletor grava em "tipo"; "razao" pode ser valor string ou nome */
+    var razaoRaw = parseReais(n.razao);  /* tenta converter razao para número */
+    if(razaoRaw > 0 && n.tipo && !/nota fiscal/i.test(n.tipo)){
+      /* "razao" é na verdade o valor em string, "tipo" é a empresa */
+      n._empresa = n.tipo;  /* salva empresa */
+      n.razao    = n.tipo;  /* usa tipo como razao */
+    } else if(!n.razao && n.razao_social) {
+      n.razao = n.razao_social;
+    }
+
+    var vOrig = parseReais(n.v_orig);
+
+    /* tributos: soma itens FEDERAL+MUNICIPAL quando tributos=0 mas v_bruto>0 */
+    var tribRaw = parseReais(n.tributos);
+    var vBrut   = parseReais(n.v_bruto);
+    if(tribRaw === 0 && vBrut > 0 && vBrut < vOrig * 0.1){
+      /* v_bruto do coletor = valor das retenções (ISS+IR) */
+      tribRaw = vBrut;
+    }
+
+    n.v_orig   = vOrig;
+    n.v_bruto  = vOrig;  /* para exibição: bruto = valor cheio da NF */
+    n.tributos = tribRaw;
+    n.v_liq    = vOrig - tribRaw;
+
+    /* itens: filtra só os com id_item preenchido (são os itens reais de rateio) */
+    var itensValidos = (n.itens||[]).filter(function(it){ return !!it.id_item; });
+    if(itensValidos.length > 0){
+      n.itens = itensValidos;
+    }
+    n.itens = n.itens || [];
+    n.itens.forEach(function(it){
       it.valor         = parseReais(it.valor);
       it.repasse       = parseReais(it.repasse);
       it.contrapartida = parseReais(it.contrapartida);
@@ -822,10 +849,11 @@ function calcTotalPago(c){
     var isObtv = t.includes("OBTV") || t.includes("PAGAMENTO A FAVORECIDO")
               || t.includes("PGTO OBTV") || t.includes("PAGAMENTO FAVORECIDO");
     if(isObtv){
-      /* Usa v_bruto (valor original enviado à empresa antes de ISS/IR separados) */
-      var vbrut = parseReais(m.v_bruto);
+      /* v_orig = valor cheio creditado à empresa (antes de qualquer retenção)
+         O Transferegov grava v_bruto já com tributos descontados nas linhas OBTV */
       var vorig = parseReais(m.v_orig);
-      total += vbrut > 0 ? vbrut : vorig;
+      var vbrut = parseReais(m.v_bruto);
+      total += vorig > 0 ? vorig : vbrut;
     }
   });
   return total;
@@ -911,7 +939,8 @@ function renderMov(c){
       html += '<td>'+tipoBadge(m.tipo)+'</td>';
       html += '<td class="val-cell text-right">'+fmtN(m.v_orig)+'</td>';
       html += '<td class="val-cell text-right">'+fmtN(m.v_bruto)+'</td>';
-      html += '<td class="val-cell text-right '+(m.v_liq<m.v_bruto?"neg":"")+'">'+fmtN(m.v_liq)+'</td>';
+      var vliqTxt = m._vliq_null ? '<span style="color:var(--muted)">—</span>' : fmtN(m.v_liq);
+      html += '<td class="val-cell text-right '+((!m._vliq_null && m.v_liq<m.v_bruto)?"neg":"")+'">'+vliqTxt+'</td>';
       html += '<td class="tipo-cell" style="font-size:10.5px">'+sanitize(m.favorecido)+'</td>';
       html += '<td>'+(m.tributo?'<span class="b b-amber">'+sanitize(m.tributo)+'</span>':"<span style='color:var(--muted)'>—</span>")+'</td>';
       html += '<td class="mono-cell" style="font-size:10.5px">'+sanitize(m.ndl||"—")+'</td>';

@@ -2146,7 +2146,7 @@
     {
       "numero": "946260",
       "objeto": "MANUTENCAO E ADEQUACAO NAS ESTRADAS VICINAIS NO MUNICIPIO DE LAGOA DE SAO FRANCISCO-PI.",
-      "coletado_em": "14/05/2026 16:31",
+      "coletado_em": "14/05/2026 17:05",
       "valor_global": "R$ 1.002.000,00",
       "valor_repasse": "R$ 955.000,00",
       "valor_contrapartida": "R$ 47.000,00",
@@ -2285,13 +2285,14 @@
       ],
       "notas_fiscais": [
         {
-          "num": "16/03/2026",
-          "data": "898",
-          "tipo": "NOTA FISCAL",
-          "razao": "CONSTRUTORA RENATA LTDA",
+          "num": "898",
+          "data": "NOTA FISCAL",
+          "tipo": "CONSTRUTORA RENATA LTDA",
+          "razao": "111.654,56",
           "v_orig": 111654.56,
-          "v_bruto": 111654.56,
-          "tributos": 2344.75,
+          "v_bruto": 2344.75,
+          "tributos": 0.0,
+          "v_liq": 2344.75,
           "status": "Ativo",
           "id_nf": "8219554",
           "id_item": "",
@@ -2385,17 +2386,17 @@
               "contrapartida": 0.0,
               "rendimento": 0.0
             }
-          ],
-          "v_liq": 109309.81
+          ]
         },
         {
-          "num": "16/03/2026",
-          "data": "897",
-          "tipo": "NOTA FISCAL",
-          "razao": "CONSTRUTORA RENATA LTDA",
+          "num": "897",
+          "data": "NOTA FISCAL",
+          "tipo": "CONSTRUTORA RENATA LTDA",
+          "razao": "388.041,81",
           "v_orig": 388041.81,
-          "v_bruto": 388041.81,
-          "tributos": 8148.87,
+          "v_bruto": 8148.87,
+          "tributos": 0.0,
+          "v_liq": 8148.87,
           "status": "Ativo",
           "id_nf": "8219538",
           "id_item": "",
@@ -2489,17 +2490,17 @@
               "contrapartida": 0.0,
               "rendimento": 0.0
             }
-          ],
-          "v_liq": 379892.94
+          ]
         },
         {
-          "num": "16/03/2026",
-          "data": "896",
-          "tipo": "NOTA FISCAL",
-          "razao": "CONSTRUTORA RENATA LTDA",
+          "num": "896",
+          "data": "NOTA FISCAL",
+          "tipo": "CONSTRUTORA RENATA LTDA",
+          "razao": "338.345,44",
           "v_orig": 338345.44,
-          "v_bruto": 338345.44,
-          "tributos": 7105.25,
+          "v_bruto": 7105.25,
+          "tributos": 0.0,
+          "v_liq": 7105.25,
           "status": "Ativo",
           "id_nf": "8219505",
           "id_item": "",
@@ -2593,8 +2594,7 @@
               "contrapartida": 0.0,
               "rendimento": 0.0
             }
-          ],
-          "v_liq": 331240.19
+          ]
         }
       ],
       "exec_fisica_pct": 100.0,
@@ -2887,5 +2887,5 @@
       "erro": ""
     }
   ],
-  "exec_atualizado_em": "14/05/2026 16:33"
+  "exec_atualizado_em": "14/05/2026 17:07"
 }

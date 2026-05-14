@@ -2146,13 +2146,24 @@
     {
       "numero": "946260",
       "objeto": "MANUTENÇÃO E ADEQUAÇÃO NAS ESTRADAS VICINAIS NO MUNICÍPIO DE LAGOA DE SÃO FRANCISCO-PI.",
-      "coletado_em": "13/05/2026 19:34",
+      "coletado_em": "14/05/2026 07:36",
       "valor_global": "R$ 955.000,00",
       "valor_repasse": "R$ 47.000,00",
       "valor_contrapartida": "Baixar Contrapartida",
       "situacao_tgov": "Em execução",
       "regime_simplificado": true,
-      "contratos": [],
+      "contratos": [
+        {
+          "numero_contrato": "72/2025",
+          "situacao": "Concluído",
+          "valor": "R$ 961.313,35",
+          "valor_repasse": "R$ 961.313,35",
+          "dt_inicio": "26/12/2025",
+          "dt_fim": "31/12/2026",
+          "cnpj": "",
+          "razao_social": ""
+        }
+      ],
       "movimentacoes": [
         {
           "num": "10249848",
@@ -2285,7 +2296,7 @@
           "outras_retencoes": "0,00",
           "status": "Ativo",
           "id_nf": "8219554",
-          "origem_recurso": "Repasse / Rendimento"
+          "origem_recurso": "Repasse"
         },
         {
           "num": "16/03/2026",
@@ -2299,7 +2310,7 @@
           "outras_retencoes": "0,00",
           "status": "Ativo",
           "id_nf": "8219538",
-          "origem_recurso": "Repasse / Rendimento"
+          "origem_recurso": "Repasse"
         },
         {
           "num": "16/03/2026",
@@ -2313,11 +2324,13 @@
           "outras_retencoes": "0,00",
           "status": "Ativo",
           "id_nf": "8219505",
-          "origem_recurso": "Repasse / Rendimento"
+          "origem_recurso": "Repasse"
         }
       ],
       "exec_fisica_pct": 100.0,
       "exec_fisica_str": "100,00%",
+      "exec_fisica_valor_realizado": "R$ 961.313,35",
+      "exec_fisica_valor_total": "R$ 961.313,35",
       "ateste_convenente": false,
       "ateste_concedente": false,
       "status_obra": "",
@@ -2604,5 +2617,5 @@
       "erro": ""
     }
   ],
-  "exec_atualizado_em": "13/05/2026 19:41"
+  "exec_atualizado_em": "14/05/2026 07:37"
 }

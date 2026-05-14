@@ -662,6 +662,8 @@ function normalizarInstrumento(c){
       data_inicio:ct.dt_inicio       || ct.data_inicio || "",
       data_fim:   ct.dt_fim          || ct.data_fim    || "",
     };
+    /* Se valor zerado, tenta campo valor_repasse do contrato */
+    if(!c.contrato.valor) c.contrato.valor = parseReais(ct.valor_repasse);
   }
 
   /* movimentacoes: garante que v_orig/v_bruto/v_liq sejam números */
@@ -862,16 +864,28 @@ function renderAteste(c){
 /* ── CONTRATO ───────────────────────────────────────── */
 function renderContrato(c){
   var ct = c.contrato;
-  var badge = ct ? (ct.situacao==="Concluído"?'<span class="b b-green">Concluído</span>':'<span class="b b-blue">'+sanitize(ct.situacao)+'</span>') : '<span class="b b-slate">Sem contrato registrado</span>';
+  var sitLabel = ct ? (ct.situacao||"") : "";
+  var badge = ct
+    ? (sitLabel==="Concluído"||sitLabel===""
+        ? '<span class="b b-green">Concluído</span>'
+        : '<span class="b b-blue">'+sanitize(sitLabel)+'</span>')
+    : '<span class="b b-slate">Sem contrato registrado</span>';
   document.getElementById("cc-status-badge").innerHTML = badge;
 
   if(!ct){ document.getElementById("ccGrid").innerHTML='<div style="padding:18px;color:var(--muted);font-size:12px;">Nenhum instrumento contratual/CTEF cadastrado para este convênio.</div>'; return; }
 
+  var empresaHtml = (ct.empresa||"")
+    ? sanitize(ct.empresa)
+    : '<span style="color:var(--muted);font-style:italic">Não disponível</span>';
+  var cnpjHtml = (ct.cnpj||"")
+    ? 'CNPJ: '+sanitize(ct.cnpj)
+    : '<span style="color:var(--muted);font-style:italic;font-size:9px">CNPJ não capturado</span>';
+
   document.getElementById("ccGrid").innerHTML =
     '<div class="cc-item"><div class="cc-lbl">Nº Contrato / CTEF</div><div class="cc-val mono">'+sanitize(ct.numero)+'</div></div>'+
-    '<div class="cc-item"><div class="cc-lbl">Empresa Contratada</div><div class="cc-val">'+sanitize(ct.empresa)+'</div><div style="font-size:10px;color:var(--muted);margin-top:2px">CNPJ: '+sanitize(ct.cnpj)+'</div></div>'+
+    '<div class="cc-item"><div class="cc-lbl">Empresa Contratada</div><div class="cc-val">'+empresaHtml+'</div><div style="font-size:10px;color:var(--muted);margin-top:2px">'+cnpjHtml+'</div></div>'+
     '<div class="cc-item"><div class="cc-lbl">Valor do Contrato</div><div class="cc-val" style="color:var(--green);font-size:15px">'+fmt(ct.valor)+'</div></div>'+
-    '<div class="cc-item"><div class="cc-lbl">Vigência</div><div class="cc-val">'+sanitize(ct.data_inicio)+' → '+sanitize(ct.data_fim)+'</div></div>';
+    '<div class="cc-item"><div class="cc-lbl">Vigência</div><div class="cc-val">'+sanitize(ct.data_inicio||"—")+' → '+sanitize(ct.data_fim||"—")+'</div></div>';
 }
 
 /* ── MOVIMENTAÇÕES ──────────────────────────────────── */

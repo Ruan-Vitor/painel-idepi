@@ -2146,7 +2146,7 @@
     {
       "numero": "946260",
       "objeto": "MANUTENCAO E ADEQUACAO NAS ESTRADAS VICINAIS NO MUNICIPIO DE LAGOA DE SAO FRANCISCO-PI.",
-      "coletado_em": "14/05/2026 17:05",
+      "coletado_em": "14/05/2026 17:23",
       "valor_global": "R$ 1.002.000,00",
       "valor_repasse": "R$ 955.000,00",
       "valor_contrapartida": "R$ 47.000,00",
@@ -2160,19 +2160,19 @@
           "valor_repasse": "R$ 961.313,35",
           "dt_inicio": "26/12/2025",
           "dt_fim": "31/12/2026",
-          "cnpj": "",
-          "razao_social": ""
+          "cnpj": "09.034.960/0001-47",
+          "razao_social": "Documentos Orçamentários"
         }
       ],
       "movimentacoes": [
         {
           "num": "10249848",
           "data": "30/03/2026",
-          "tipo": "",
+          "tipo": "INGRESSO DE CONTRAPARTIDA",
           "v_orig": 39000.0,
           "v_bruto": 39000.0,
           "v_liq": null,
-          "favorecido": "INGRESSO DE CONTRAPARTIDA",
+          "favorecido": "",
           "tributo": "",
           "ndl": "",
           "tdl": "",
@@ -2181,11 +2181,11 @@
         {
           "num": "10231942",
           "data": "20/03/2026",
-          "tipo": "",
+          "tipo": "PAGAMENTO DE TRIBUTOS",
           "v_orig": 4497.27,
           "v_bruto": 4497.27,
           "v_liq": null,
-          "favorecido": "PAGAMENTO DE TRIBUTOS",
+          "favorecido": "ISS",
           "tributo": "ISS",
           "ndl": "897, 898",
           "tdl": "NOTA FISCAL",
@@ -2194,11 +2194,11 @@
         {
           "num": "10231930",
           "data": "20/03/2026",
-          "tipo": "",
+          "tipo": "PAGAMENTO DE TRIBUTOS",
           "v_orig": 5996.35,
           "v_bruto": 5996.35,
           "v_liq": null,
-          "favorecido": "PAGAMENTO DE TRIBUTOS",
+          "favorecido": "IR",
           "tributo": "IR",
           "ndl": "897, 898",
           "tdl": "NOTA FISCAL",
@@ -2207,11 +2207,11 @@
         {
           "num": "10231891",
           "data": "20/03/2026",
-          "tipo": "",
+          "tipo": "PAGAMENTO DE TRIBUTOS",
           "v_orig": 4060.14,
           "v_bruto": 4060.14,
           "v_liq": null,
-          "favorecido": "PAGAMENTO DE TRIBUTOS",
+          "favorecido": "IR",
           "tributo": "IR",
           "ndl": "896",
           "tdl": "NOTA FISCAL",
@@ -2220,11 +2220,11 @@
         {
           "num": "10231888",
           "data": "20/03/2026",
-          "tipo": "",
+          "tipo": "PAGAMENTO DE TRIBUTOS",
           "v_orig": 3045.11,
           "v_bruto": 3045.11,
           "v_liq": null,
-          "favorecido": "PAGAMENTO DE TRIBUTOS",
+          "favorecido": "ISS",
           "tributo": "ISS",
           "ndl": "896",
           "tdl": "NOTA FISCAL",
@@ -2233,11 +2233,11 @@
         {
           "num": "10227940",
           "data": "18/03/2026",
-          "tipo": "111.654,56",
+          "tipo": "PAGAMENTO A FAVORECIDO COM OBTV",
           "v_orig": 111654.56,
           "v_bruto": 109309.81,
           "v_liq": null,
-          "favorecido": "PAGAMENTO A FAVORECIDO COM OBTV",
+          "favorecido": "",
           "tributo": "",
           "ndl": "898",
           "tdl": "NOTA FISCAL",
@@ -2246,11 +2246,11 @@
         {
           "num": "10227938",
           "data": "18/03/2026",
-          "tipo": "388.041,81",
+          "tipo": "PAGAMENTO A FAVORECIDO COM OBTV",
           "v_orig": 388041.81,
           "v_bruto": 379892.94,
           "v_liq": null,
-          "favorecido": "PAGAMENTO A FAVORECIDO COM OBTV",
+          "favorecido": "",
           "tributo": "",
           "ndl": "897",
           "tdl": "NOTA FISCAL",
@@ -2259,11 +2259,11 @@
         {
           "num": "10227934",
           "data": "18/03/2026",
-          "tipo": "338.345,44",
+          "tipo": "PAGAMENTO A FAVORECIDO COM OBTV",
           "v_orig": 338345.44,
           "v_bruto": 331240.19,
           "v_liq": null,
-          "favorecido": "PAGAMENTO A FAVORECIDO COM OBTV",
+          "favorecido": "",
           "tributo": "",
           "ndl": "896",
           "tdl": "NOTA FISCAL",
@@ -2272,11 +2272,11 @@
         {
           "num": "8590923",
           "data": "21/02/2024",
-          "tipo": "",
+          "tipo": "INGRESSO DE CONTRAPARTIDA",
           "v_orig": 8000.0,
           "v_bruto": 8000.0,
           "v_liq": null,
-          "favorecido": "INGRESSO DE CONTRAPARTIDA",
+          "favorecido": "",
           "tributo": "",
           "ndl": "",
           "tdl": "",
@@ -2887,5 +2887,5 @@
       "erro": ""
     }
   ],
-  "exec_atualizado_em": "14/05/2026 17:07"
+  "exec_atualizado_em": "14/05/2026 17:25"
 }

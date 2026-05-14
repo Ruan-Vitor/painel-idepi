@@ -692,8 +692,15 @@ function normalizarInstrumento(c){
     var partes = [];
     if(c.exec_fisica_valor_realizado) partes.push("Valor realizado: "+c.exec_fisica_valor_realizado);
     if(c.exec_fisica_valor_total)     partes.push("Total: "+c.exec_fisica_valor_total);
-    if(c.ateste_convenente)           partes.push("Atestado pelo Convenente");
+    if(c.ateste_convenente)           partes.push("✓ Atestado pelo Convenente");
+    if(c.regime_simplificado && !c.ateste_concedente)
+                                      partes.push("Concedente: atesta na PC Final (Regime Simplificado)");
     c.exec_fisica_obs = partes.join(" · ");
+  }
+
+  /* exec_fisica_pct: garante número */
+  if(typeof c.exec_fisica_pct === "string"){
+    c.exec_fisica_pct = parseFloat(String(c.exec_fisica_pct).replace(",",".")) || 0;
   }
 
   return c;
@@ -770,10 +777,22 @@ function renderInstrumento(){
     "<strong>"+fmt(totalPago)+"</strong> pagos de <strong>"+fmt(c.valor_repasse)+"</strong> de repasse · Saldo: <strong>"+fmt(saldo>0?saldo:0)+"</strong>";
 
   /* Progresso físico */
-  var pfis = c.exec_fisica_pct || 0;
-  document.getElementById("pct-fis").textContent  = pfis+"%";
-  document.getElementById("bar-fis").style.width  = pfis+"%";
-  document.getElementById("note-fis").textContent = c.exec_fisica_obs || "";
+  var pfis = typeof c.exec_fisica_pct === "number" ? c.exec_fisica_pct : 0;
+  var pfisStr = pfis % 1 === 0 ? pfis+"%" : pfis.toFixed(2).replace(".",",")+"%";
+  document.getElementById("pct-fis").textContent  = pfisStr;
+  document.getElementById("bar-fis").style.width  = Math.min(pfis,100)+"%";
+  /* Monta nota de exec física com valor realizado se disponível */
+  var noteFis = c.exec_fisica_obs || "";
+  if(!noteFis){
+    var pf = [];
+    if(c.exec_fisica_valor_realizado) pf.push("Realizado: "+c.exec_fisica_valor_realizado);
+    if(c.exec_fisica_valor_total)     pf.push("Total: "+c.exec_fisica_valor_total);
+    if(c.ateste_convenente)           pf.push("✓ Atestado pelo Convenente");
+    if(c.regime_simplificado && !c.ateste_concedente)
+      pf.push("Concedente atesta na PC Final");
+    noteFis = pf.join(" · ");
+  }
+  document.getElementById("note-fis").textContent = noteFis;
 
   /* Ateste */
   renderAteste(c);
@@ -790,13 +809,18 @@ function renderInstrumento(){
 /* ── CALC TOTAL PAGO ────────────────────────────────── */
 function calcTotalPago(c){
   /* Soma apenas pagamentos OBTV (transferência à empresa executora).
-     O coletor pode gravar o tipo como texto completo ou badge abreviado. */
+     O coletor grava o tipo como texto completo ("PAGAMENTO A FAVORECIDO COM OBTV")
+     ou badge abreviado. Usa v_liq quando > 0, senão v_bruto (tributos separados). */
   var total = 0;
   (c.movimentacoes||[]).forEach(function(m){
     var t = (m.tipo||"").toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"");
     var isObtv = t.includes("OBTV") || t.includes("PAGAMENTO A FAVORECIDO")
               || t.includes("PGTO OBTV") || t.includes("PAGAMENTO FAVORECIDO");
-    if(isObtv) total += parseReais(m.v_liq);
+    if(isObtv){
+      var vliq = parseReais(m.v_liq);
+      var vbrut = parseReais(m.v_bruto);
+      total += (vliq > 0) ? vliq : vbrut;
+    }
   });
   return total;
 }

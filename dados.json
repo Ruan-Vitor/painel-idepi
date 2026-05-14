@@ -2145,34 +2145,23 @@
   "exec_financeira": [
     {
       "numero": "946260",
-      "objeto": "MANUTENÇÃO E ADEQUAÇÃO NAS ESTRADAS VICINAIS NO MUNICÍPIO DE LAGOA DE SÃO FRANCISCO-PI.",
-      "coletado_em": "14/05/2026 07:36",
-      "valor_global": "R$ 955.000,00",
-      "valor_repasse": "R$ 47.000,00",
-      "valor_contrapartida": "Baixar Contrapartida",
+      "objeto": "MANUTENCAO E ADEQUACAO NAS ESTRADAS VICINAIS NO MUNICIPIO DE LAGOA DE SAO FRANCISCO-PI.",
+      "coletado_em": "14/05/2026 16:19",
+      "valor_global": "R$ 1.002.000,00",
+      "valor_repasse": "R$ 955.000,00",
+      "valor_contrapartida": "R$ 47.000,00",
       "situacao_tgov": "Em execução",
       "regime_simplificado": true,
-      "contratos": [
-        {
-          "numero_contrato": "72/2025",
-          "situacao": "Concluído",
-          "valor": "R$ 961.313,35",
-          "valor_repasse": "R$ 961.313,35",
-          "dt_inicio": "26/12/2025",
-          "dt_fim": "31/12/2026",
-          "cnpj": "",
-          "razao_social": ""
-        }
-      ],
+      "contratos": [],
       "movimentacoes": [
         {
           "num": "10249848",
           "data": "30/03/2026",
-          "v_orig": "",
-          "v_bruto": "39.000,00",
-          "v_liq": "39.000,00",
-          "favorecido": "09.034.960/0001-47",
-          "tipo": "INGRESSO DE CONTRAPARTIDA",
+          "tipo": "",
+          "v_orig": 39000.0,
+          "v_bruto": 39000.0,
+          "v_liq": null,
+          "favorecido": "INGRESSO DE CONTRAPARTIDA",
           "tributo": "",
           "ndl": "",
           "tdl": "",
@@ -2181,11 +2170,11 @@
         {
           "num": "10231942",
           "data": "20/03/2026",
-          "v_orig": "",
-          "v_bruto": "4.497,27",
-          "v_liq": "4.497,27",
-          "favorecido": "",
-          "tipo": "PAGAMENTO DE TRIBUTOS",
+          "tipo": "",
+          "v_orig": 4497.27,
+          "v_bruto": 4497.27,
+          "v_liq": null,
+          "favorecido": "PAGAMENTO DE TRIBUTOS",
           "tributo": "ISS",
           "ndl": "897, 898",
           "tdl": "NOTA FISCAL",
@@ -2194,11 +2183,11 @@
         {
           "num": "10231930",
           "data": "20/03/2026",
-          "v_orig": "",
-          "v_bruto": "5.996,35",
-          "v_liq": "5.996,35",
-          "favorecido": "",
-          "tipo": "PAGAMENTO DE TRIBUTOS",
+          "tipo": "",
+          "v_orig": 5996.35,
+          "v_bruto": 5996.35,
+          "v_liq": null,
+          "favorecido": "PAGAMENTO DE TRIBUTOS",
           "tributo": "IR",
           "ndl": "897, 898",
           "tdl": "NOTA FISCAL",
@@ -2207,11 +2196,11 @@
         {
           "num": "10231891",
           "data": "20/03/2026",
-          "v_orig": "",
-          "v_bruto": "4.060,14",
-          "v_liq": "4.060,14",
-          "favorecido": "",
-          "tipo": "PAGAMENTO DE TRIBUTOS",
+          "tipo": "",
+          "v_orig": 4060.14,
+          "v_bruto": 4060.14,
+          "v_liq": null,
+          "favorecido": "PAGAMENTO DE TRIBUTOS",
           "tributo": "IR",
           "ndl": "896",
           "tdl": "NOTA FISCAL",
@@ -2220,11 +2209,11 @@
         {
           "num": "10231888",
           "data": "20/03/2026",
-          "v_orig": "",
-          "v_bruto": "3.045,11",
-          "v_liq": "3.045,11",
-          "favorecido": "",
-          "tipo": "PAGAMENTO DE TRIBUTOS",
+          "tipo": "",
+          "v_orig": 3045.11,
+          "v_bruto": 3045.11,
+          "v_liq": null,
+          "favorecido": "PAGAMENTO DE TRIBUTOS",
           "tributo": "ISS",
           "ndl": "896",
           "tdl": "NOTA FISCAL",
@@ -2233,11 +2222,11 @@
         {
           "num": "10227940",
           "data": "18/03/2026",
-          "v_orig": "111.654,56",
-          "v_bruto": "111.654,56",
-          "v_liq": "109.309,81",
-          "favorecido": "02.577.913/0001-09",
-          "tipo": "PAGAMENTO A FAVORECIDO COM OBTV",
+          "tipo": "111.654,56",
+          "v_orig": 111654.56,
+          "v_bruto": 109309.81,
+          "v_liq": null,
+          "favorecido": "PAGAMENTO A FAVORECIDO COM OBTV",
           "tributo": "",
           "ndl": "898",
           "tdl": "NOTA FISCAL",
@@ -2246,11 +2235,11 @@
         {
           "num": "10227938",
           "data": "18/03/2026",
-          "v_orig": "388.041,81",
-          "v_bruto": "388.041,81",
-          "v_liq": "379.892,94",
-          "favorecido": "02.577.913/0001-09",
-          "tipo": "PAGAMENTO A FAVORECIDO COM OBTV",
+          "tipo": "388.041,81",
+          "v_orig": 388041.81,
+          "v_bruto": 379892.94,
+          "v_liq": null,
+          "favorecido": "PAGAMENTO A FAVORECIDO COM OBTV",
           "tributo": "",
           "ndl": "897",
           "tdl": "NOTA FISCAL",
@@ -2259,11 +2248,11 @@
         {
           "num": "10227934",
           "data": "18/03/2026",
-          "v_orig": "338.345,44",
-          "v_bruto": "338.345,44",
-          "v_liq": "331.240,19",
-          "favorecido": "02.577.913/0001-09",
-          "tipo": "PAGAMENTO A FAVORECIDO COM OBTV",
+          "tipo": "338.345,44",
+          "v_orig": 338345.44,
+          "v_bruto": 331240.19,
+          "v_liq": null,
+          "favorecido": "PAGAMENTO A FAVORECIDO COM OBTV",
           "tributo": "",
           "ndl": "896",
           "tdl": "NOTA FISCAL",
@@ -2272,11 +2261,11 @@
         {
           "num": "8590923",
           "data": "21/02/2024",
-          "v_orig": "",
-          "v_bruto": "8.000,00",
-          "v_liq": "8.000,00",
-          "favorecido": "09.034.960/0001-47",
-          "tipo": "INGRESSO DE CONTRAPARTIDA",
+          "tipo": "",
+          "v_orig": 8000.0,
+          "v_bruto": 8000.0,
+          "v_liq": null,
+          "favorecido": "INGRESSO DE CONTRAPARTIDA",
           "tributo": "",
           "ndl": "",
           "tdl": "",
@@ -2289,48 +2278,316 @@
           "data": "898",
           "tipo": "NOTA FISCAL",
           "razao": "CONSTRUTORA RENATA LTDA",
-          "v_orig": "111.654,56",
-          "v_bruto": "111.654,56",
-          "tributos": "2.344,75",
-          "contribuicoes": "0,00",
-          "outras_retencoes": "0,00",
+          "v_orig": 111654.56,
+          "v_bruto": 111654.56,
+          "tributos": 2344.75,
           "status": "Ativo",
           "id_nf": "8219554",
-          "origem_recurso": "Repasse"
+          "id_item": "",
+          "origem_recurso": "Repasse / Rendimento",
+          "itens": [
+            {
+              "desc": "Comprovante Pagamento de Retenção - IRRF- NF Nº 898.pdf",
+              "valor": 0.0,
+              "id_item": "",
+              "repasse": 0.0,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            },
+            {
+              "desc": "Comprovante Pagamento de Retenção - ISS - NF Nº 898.pdf",
+              "valor": 0.0,
+              "id_item": "",
+              "repasse": 0.0,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            },
+            {
+              "desc": "Ordem Bancária de Retenção - IRRF - NF Nº 898.pdf",
+              "valor": 0.0,
+              "id_item": "",
+              "repasse": 0.0,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            },
+            {
+              "desc": "Ordem Bancária de Retenção - ISS - NF Nº 898.pdf",
+              "valor": 0.0,
+              "id_item": "",
+              "repasse": 0.0,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            },
+            {
+              "desc": "Ordem Bancária Orçamentária - EMPRESA - SALDO 2ª BM , NF Nº 898.pdf",
+              "valor": 0.0,
+              "id_item": "",
+              "repasse": 0.0,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            },
+            {
+              "desc": "NF 898 Recibo_17-03-2026_17h34m20s.pdf",
+              "valor": 0.0,
+              "id_item": "",
+              "repasse": 0.0,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            },
+            {
+              "desc": "NF 898 OGU Saldo_17-03-2026_17h34m13s.pdf",
+              "valor": 0.0,
+              "id_item": "",
+              "repasse": 0.0,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            },
+            {
+              "desc": "EXECUÇÃO DOS SERVIÇOS DE MANUTENÇÃO E ADEQUAÇÃO NAS ESTRADAS VICINAIS NO MUNICÍPIO LAGOA DE SÃO FRANCISCO - PI, CONTRATO DE REPASSE CIDADES 946260",
+              "valor": 111654.56,
+              "id_item": "13929179",
+              "repasse": 0.0,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            },
+            {
+              "desc": "MUNICIPAL",
+              "valor": 1004.9,
+              "id_item": "",
+              "repasse": 1004.9,
+              "contrapartida": 9.0,
+              "rendimento": 898.0
+            },
+            {
+              "desc": "FEDERAL",
+              "valor": 1339.85,
+              "id_item": "",
+              "repasse": 1339.85,
+              "contrapartida": 12.0,
+              "rendimento": 898.0
+            },
+            {
+              "desc": "NF 898 OGU Saldo_17-03-2026_17h34m01s.pdf",
+              "valor": 0.0,
+              "id_item": "",
+              "repasse": 0.0,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ],
+          "v_liq": 109309.81
         },
         {
           "num": "16/03/2026",
           "data": "897",
           "tipo": "NOTA FISCAL",
           "razao": "CONSTRUTORA RENATA LTDA",
-          "v_orig": "388.041,81",
-          "v_bruto": "388.041,81",
-          "tributos": "8.148,87",
-          "contribuicoes": "0,00",
-          "outras_retencoes": "0,00",
+          "v_orig": 388041.81,
+          "v_bruto": 388041.81,
+          "tributos": 8148.87,
           "status": "Ativo",
           "id_nf": "8219538",
-          "origem_recurso": "Repasse"
+          "id_item": "",
+          "origem_recurso": "Repasse / Rendimento",
+          "itens": [
+            {
+              "desc": "Comprovante  Pagamento de Retenção - IRRF - NF Nº 897.pdf",
+              "valor": 0.0,
+              "id_item": "",
+              "repasse": 0.0,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            },
+            {
+              "desc": "Comprovante Pagamento de Retenção - ISS - NF Nº 897.pdf",
+              "valor": 0.0,
+              "id_item": "",
+              "repasse": 0.0,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            },
+            {
+              "desc": "Ordem Bancária de Retenção - IRRF - NF Nº 897.pdf",
+              "valor": 0.0,
+              "id_item": "",
+              "repasse": 0.0,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            },
+            {
+              "desc": "Ordem Bancária de Retenção - ISS - NF Nº 897.pdf",
+              "valor": 0.0,
+              "id_item": "",
+              "repasse": 0.0,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            },
+            {
+              "desc": "Ordem Bancária Orçamentária - EMPRESA - PARTE 2ª BM , NF Nº 897.pdf",
+              "valor": 0.0,
+              "id_item": "",
+              "repasse": 0.0,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            },
+            {
+              "desc": "NF 897 Recibo_17-03-2026_17h29m27s.pdf",
+              "valor": 0.0,
+              "id_item": "",
+              "repasse": 0.0,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            },
+            {
+              "desc": "NF 897 OGU Parte_17-03-2026_17h29m19s.pdf",
+              "valor": 0.0,
+              "id_item": "",
+              "repasse": 0.0,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            },
+            {
+              "desc": "EXECUÇÃO DOS SERVIÇOS DE MANUTENÇÃO E ADEQUAÇÃO NAS ESTRADAS VICINAIS NO MUNICÍPIO LAGOA DE SÃO FRANCISCO - PI, CONTRATO DE REPASSE CIDADES 946260",
+              "valor": 388041.81,
+              "id_item": "13929148",
+              "repasse": 0.0,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            },
+            {
+              "desc": "MUNICIPAL",
+              "valor": 3492.37,
+              "id_item": "",
+              "repasse": 3492.37,
+              "contrapartida": 9.0,
+              "rendimento": 897.0
+            },
+            {
+              "desc": "FEDERAL",
+              "valor": 4656.5,
+              "id_item": "",
+              "repasse": 4656.5,
+              "contrapartida": 12.0,
+              "rendimento": 897.0
+            },
+            {
+              "desc": "NF 897 OGU Parte_17-03-2026_17h28m39s.pdf",
+              "valor": 0.0,
+              "id_item": "",
+              "repasse": 0.0,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ],
+          "v_liq": 379892.94
         },
         {
           "num": "16/03/2026",
           "data": "896",
           "tipo": "NOTA FISCAL",
           "razao": "CONSTRUTORA RENATA LTDA",
-          "v_orig": "338.345,44",
-          "v_bruto": "338.345,44",
-          "tributos": "7.105,25",
-          "contribuicoes": "0,00",
-          "outras_retencoes": "0,00",
+          "v_orig": 338345.44,
+          "v_bruto": 338345.44,
+          "tributos": 7105.25,
           "status": "Ativo",
           "id_nf": "8219505",
-          "origem_recurso": "Repasse"
+          "id_item": "",
+          "origem_recurso": "Repasse / Rendimento",
+          "itens": [
+            {
+              "desc": "Comprovante  Pagamento de Retenção - IRRF.pdf",
+              "valor": 0.0,
+              "id_item": "",
+              "repasse": 0.0,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            },
+            {
+              "desc": "Comprovante  Pagamento de Retenção - ISS.pdf",
+              "valor": 0.0,
+              "id_item": "",
+              "repasse": 0.0,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            },
+            {
+              "desc": "Ordem Bancária de Retenção - IRRF.pdf",
+              "valor": 0.0,
+              "id_item": "",
+              "repasse": 0.0,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            },
+            {
+              "desc": "Ordem Bancária de Retenção - ISS.pdf",
+              "valor": 0.0,
+              "id_item": "",
+              "repasse": 0.0,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            },
+            {
+              "desc": "Ordem Bancária Orçamentária - EMPRESA.pdf",
+              "valor": 0.0,
+              "id_item": "",
+              "repasse": 0.0,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            },
+            {
+              "desc": "NF 896 Recibo_17-03-2026_17h17m26s.pdf",
+              "valor": 0.0,
+              "id_item": "",
+              "repasse": 0.0,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            },
+            {
+              "desc": "NF 896 OGU_17-03-2026_17h17m17s.pdf",
+              "valor": 0.0,
+              "id_item": "",
+              "repasse": 0.0,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            },
+            {
+              "desc": "EXECUÇÃO DOS SERVIÇOS DE MANUTENÇÃO E ADEQUAÇÃO NAS ESTRADAS VICINAIS NO MUNICÍPIO LAGOA DE SÃO FRANCISCO - PI, CONTRATO DE REPASSE CIDADES 946260",
+              "valor": 338345.44,
+              "id_item": "13928974",
+              "repasse": 0.0,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            },
+            {
+              "desc": "FEDERAL",
+              "valor": 4060.14,
+              "id_item": "",
+              "repasse": 4060.14,
+              "contrapartida": 12.0,
+              "rendimento": 896.0
+            },
+            {
+              "desc": "MUNICIPAL",
+              "valor": 3045.11,
+              "id_item": "",
+              "repasse": 3045.11,
+              "contrapartida": 9.0,
+              "rendimento": 896.0
+            },
+            {
+              "desc": "NF 896 OGU_17-03-2026_17h17m08s.pdf",
+              "valor": 0.0,
+              "id_item": "",
+              "repasse": 0.0,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ],
+          "v_liq": 331240.19
         }
       ],
       "exec_fisica_pct": 100.0,
       "exec_fisica_str": "100,00%",
-      "exec_fisica_valor_realizado": "R$ 961.313,35",
-      "exec_fisica_valor_total": "R$ 961.313,35",
       "ateste_convenente": false,
       "ateste_concedente": false,
       "status_obra": "",
@@ -2617,5 +2874,5 @@
       "erro": ""
     }
   ],
-  "exec_atualizado_em": "14/05/2026 07:37"
+  "exec_atualizado_em": "14/05/2026 16:21"
 }

@@ -2146,13 +2146,24 @@
     {
       "numero": "946260",
       "objeto": "MANUTENCAO E ADEQUACAO NAS ESTRADAS VICINAIS NO MUNICIPIO DE LAGOA DE SAO FRANCISCO-PI.",
-      "coletado_em": "14/05/2026 16:19",
+      "coletado_em": "14/05/2026 16:31",
       "valor_global": "R$ 1.002.000,00",
       "valor_repasse": "R$ 955.000,00",
       "valor_contrapartida": "R$ 47.000,00",
       "situacao_tgov": "Em execução",
       "regime_simplificado": true,
-      "contratos": [],
+      "contratos": [
+        {
+          "numero_contrato": "72/2025",
+          "situacao": "Concluído",
+          "valor": "R$ 961.313,35",
+          "valor_repasse": "R$ 961.313,35",
+          "dt_inicio": "26/12/2025",
+          "dt_fim": "31/12/2026",
+          "cnpj": "",
+          "razao_social": ""
+        }
+      ],
       "movimentacoes": [
         {
           "num": "10249848",
@@ -2346,7 +2357,7 @@
               "desc": "EXECUÇÃO DOS SERVIÇOS DE MANUTENÇÃO E ADEQUAÇÃO NAS ESTRADAS VICINAIS NO MUNICÍPIO LAGOA DE SÃO FRANCISCO - PI, CONTRATO DE REPASSE CIDADES 946260",
               "valor": 111654.56,
               "id_item": "13929179",
-              "repasse": 0.0,
+              "repasse": 111654.56,
               "contrapartida": 0.0,
               "rendimento": 0.0
             },
@@ -2450,7 +2461,7 @@
               "desc": "EXECUÇÃO DOS SERVIÇOS DE MANUTENÇÃO E ADEQUAÇÃO NAS ESTRADAS VICINAIS NO MUNICÍPIO LAGOA DE SÃO FRANCISCO - PI, CONTRATO DE REPASSE CIDADES 946260",
               "valor": 388041.81,
               "id_item": "13929148",
-              "repasse": 0.0,
+              "repasse": 388041.81,
               "contrapartida": 0.0,
               "rendimento": 0.0
             },
@@ -2554,7 +2565,7 @@
               "desc": "EXECUÇÃO DOS SERVIÇOS DE MANUTENÇÃO E ADEQUAÇÃO NAS ESTRADAS VICINAIS NO MUNICÍPIO LAGOA DE SÃO FRANCISCO - PI, CONTRATO DE REPASSE CIDADES 946260",
               "valor": 338345.44,
               "id_item": "13928974",
-              "repasse": 0.0,
+              "repasse": 338345.44,
               "contrapartida": 0.0,
               "rendimento": 0.0
             },
@@ -2588,6 +2599,8 @@
       ],
       "exec_fisica_pct": 100.0,
       "exec_fisica_str": "100,00%",
+      "exec_fisica_valor_realizado": "",
+      "exec_fisica_valor_total": "",
       "ateste_convenente": false,
       "ateste_concedente": false,
       "status_obra": "",
@@ -2874,5 +2887,5 @@
       "erro": ""
     }
   ],
-  "exec_atualizado_em": "14/05/2026 16:21"
+  "exec_atualizado_em": "14/05/2026 16:33"
 }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- v20260513_212500 -->
+<!-- v20260514_v7 -->
 <html lang="pt-br">
 <head>
 <meta charset="UTF-8">
@@ -680,6 +680,8 @@ function normalizarInstrumento(c){
     n.tributos = parseReais(n.tributos);
     n.v_liq    = parseReais(n.v_liq);
     if(!n.v_liq && n.v_bruto) n.v_liq = n.v_bruto - n.tributos;
+    /* razao: pode vir como "razao" ou "razao_social" do coletor */
+    if(!n.razao && n.razao_social) n.razao = n.razao_social;
     /* itens */
     (n.itens||[]).forEach(function(it){
       it.valor         = parseReais(it.valor);
@@ -811,17 +813,19 @@ function renderInstrumento(){
 /* ── CALC TOTAL PAGO ────────────────────────────────── */
 function calcTotalPago(c){
   /* Soma apenas pagamentos OBTV (transferência à empresa executora).
-     O coletor grava o tipo como texto completo ("PAGAMENTO A FAVORECIDO COM OBTV")
-     ou badge abreviado. Usa v_liq quando > 0, senão v_bruto (tributos separados). */
+     IMPORTANTE: O Transferegov grava v_liq = 0,00 para OBTV porque os tributos
+     são descontados em linhas separadas (PAGAMENTO DE TRIBUTOS). Por isso usamos
+     v_bruto como valor pago à empresa, que é o valor correto do crédito realizado. */
   var total = 0;
   (c.movimentacoes||[]).forEach(function(m){
     var t = (m.tipo||"").toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"");
     var isObtv = t.includes("OBTV") || t.includes("PAGAMENTO A FAVORECIDO")
               || t.includes("PGTO OBTV") || t.includes("PAGAMENTO FAVORECIDO");
     if(isObtv){
-      var vliq = parseReais(m.v_liq);
+      /* Usa v_bruto (valor original enviado à empresa antes de ISS/IR separados) */
       var vbrut = parseReais(m.v_bruto);
-      total += (vliq > 0) ? vliq : vbrut;
+      var vorig = parseReais(m.v_orig);
+      total += vbrut > 0 ? vbrut : vorig;
     }
   });
   return total;
@@ -942,7 +946,8 @@ function renderNF(c){
       html += '<tr>';
       html += '<td class="mono-cell">'+sanitize(n.num)+'</td>';
       html += '<td class="date-cell">'+sanitize(n.data)+'</td>';
-      html += '<td style="font-size:11.5px;font-weight:600;color:var(--text)">'+sanitize(n.razao)+'</td>';
+      var razaoHtml = n.razao ? sanitize(n.razao) : (n.cnpj ? '<span style="color:var(--muted);font-style:italic">'+sanitize(n.cnpj)+'</span>' : '<span style="color:var(--muted);font-style:italic">—</span>');
+      html += '<td style="font-size:11.5px;font-weight:600;color:var(--text)">'+razaoHtml+'</td>';
       html += '<td class="val-cell text-right">'+fmtN(n.v_orig)+'</td>';
       html += '<td class="val-cell text-right">'+fmtN(n.v_bruto)+'</td>';
       html += '<td class="val-cell text-right neg" title="'+tribPct+'% do valor bruto">'+fmtN(n.tributos)+'</td>';
@@ -967,11 +972,19 @@ function renderRateio(c){
   var nfs = c.notas_fiscais||[];
   var totalRep=0,totalCP=0,totalRend=0;
   nfs.forEach(function(n){
-    (n.itens||[]).forEach(function(it){
-      totalRep  += it.repasse       || 0;
-      totalCP   += it.contrapartida || 0;
-      totalRend += it.rendimento    || 0;
-    });
+    if(n.itens && n.itens.length){
+      n.itens.forEach(function(it){
+        totalRep  += it.repasse       || 0;
+        totalCP   += it.contrapartida || 0;
+        totalRend += it.rendimento    || 0;
+      });
+    } else {
+      /* Sem itens coletados: usa origem_recurso ou assume tudo repasse */
+      var or = (n.origem_recurso || "Repasse").toLowerCase();
+      if(or.includes("contrapartida")) totalCP   += n.v_bruto || n.v_orig || 0;
+      else if(or.includes("rendimento")) totalRend += n.v_bruto || n.v_orig || 0;
+      else totalRep += n.v_bruto || n.v_orig || 0;
+    }
   });
   var totalGeral = totalRep+totalCP+totalRend;
   var pRep  = pct(totalRep, totalGeral);
@@ -994,7 +1007,14 @@ function renderRateio(c){
   /* Um card por NF */
   nfs.forEach(function(n){
     var nRep=0,nCP=0,nRend=0;
-    (n.itens||[]).forEach(function(it){ nRep+=it.repasse||0; nCP+=it.contrapartida||0; nRend+=it.rendimento||0; });
+    if(n.itens && n.itens.length){
+      n.itens.forEach(function(it){ nRep+=it.repasse||0; nCP+=it.contrapartida||0; nRend+=it.rendimento||0; });
+    } else {
+      var or = (n.origem_recurso || "Repasse").toLowerCase();
+      if(or.includes("contrapartida")) nCP   = n.v_bruto || n.v_orig || 0;
+      else if(or.includes("rendimento")) nRend = n.v_bruto || n.v_orig || 0;
+      else nRep = n.v_bruto || n.v_orig || 0;
+    }
     var nTot = nRep+nCP+nRend;
     var nPRep=pct(nRep,nTot);
     html += '<div class="rateio-card">';

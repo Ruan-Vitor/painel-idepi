@@ -101,29 +101,41 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);display:flex;flex-dir
   /* Layout vira coluna */
   .body { overflow:visible; flex-direction:column; }
 
-  /* Sidebar vira nav horizontal com scroll lateral */
+  /* ── Sidebar mobile: drawer colapsável ── */
+  /* Por padrão (fechado): altura 0, itens escondidos */
   .sidebar {
     width:100%;
-    flex-direction:row;
+    flex-direction:column;
     flex-wrap:nowrap;
-    overflow-x:auto;
-    -webkit-overflow-scrolling:touch;
-    padding:6px 10px;
-    gap:4px;
+    overflow:hidden;
+    max-height:0;
+    padding:0 10px;
+    gap:2px;
     border-right:none;
-    border-bottom:1px solid rgba(255,255,255,.12);
+    border-bottom:none;
     position:static;
     flex-shrink:0;
+    transition:max-height .28s ease, padding .28s ease, border .28s ease;
+  }
+  /* Aberto: expande para mostrar os itens */
+  .sidebar.sb-open {
+    max-height:500px;
+    padding:8px 10px;
+    border-bottom:1px solid rgba(255,255,255,.12);
   }
   .sidebar::-webkit-scrollbar { display:none; }
-  .sb-sec    { display:none; }
+  .sb-sec    { display:block; font-size:9px; padding:6px 10px 2px; }
   .sb-footer { display:none; }
-  /* Itens da sidebar ficam compactos e não encolhem */
   .sb-item {
     flex-shrink:0;
     white-space:nowrap;
-    padding:6px 12px;
-    font-size:12px;
+    padding:8px 12px;
+    font-size:13px;
+  }
+
+  /* Botão de toggle do menu (aparece só no mobile) */
+  .sb-toggle {
+    display:flex !important;
   }
 
   /* Content e scroll abrem completamente */
@@ -164,6 +176,25 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);display:flex;flex-dir
   .banner-formula { font-size:9px; }
   .hd-title { font-size:13px; }
 }
+
+/* Botão toggle: oculto em desktop, visível no mobile via @media acima */
+.sb-toggle {
+  display:none;
+  align-items:center;
+  gap:7px;
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.13);
+  border-radius:7px;
+  color:rgba(255,255,255,.8);
+  font-size:12px;
+  font-weight:600;
+  font-family:'DM Sans',sans-serif;
+  padding:5px 13px;
+  cursor:pointer;
+  transition:background .14s;
+  flex-shrink:0;
+}
+.sb-toggle:hover { background:rgba(255,255,255,.13); }
 
 /* ── BANNER ── */
 .banner{background:linear-gradient(120deg,#0f2550 0%,#0a4a2e 100%);border-radius:12px;padding:18px 22px;display:flex;align-items:flex-start;gap:16px;color:#fff;flex-shrink:0;position:relative;overflow:hidden}
@@ -365,6 +396,9 @@ tbody tr:hover td{background:#f5f9ff}
     <div class="hd-pill"><i class="fa-solid fa-circle"></i> Indicador EX-01 · IDTRU-DL Recebedores</div>
   </div>
   <div class="hd-right">
+    <button class="sb-toggle" id="sbToggleBtn" onclick="toggleSidebar()" aria-label="Menu de navegação">
+      <i class="fa-solid fa-bars" id="sbToggleIcon"></i> Menu
+    </button>
     <div class="hd-ts" id="hd-ts">—</div>
   </div>
 </div>
@@ -524,6 +558,35 @@ tbody tr:hover td{background:#f5f9ff}
 var USUARIO = "Ruan-Vitor", REPO = "painel-idepi";
 var todos = [], filtroAtual = "all";
 var _rowsVisiveis = []; // referência para exportação
+
+/* ── Sidebar mobile toggle ── */
+function toggleSidebar() {
+  var sb  = document.querySelector('.sidebar');
+  var ico = document.getElementById('sbToggleIcon');
+  var btn = document.getElementById('sbToggleBtn');
+  if (!sb) return;
+  var aberto = sb.classList.toggle('sb-open');
+  if (ico) {
+    ico.className = aberto ? 'fa-solid fa-xmark' : 'fa-solid fa-bars';
+  }
+  if (btn) {
+    btn.querySelector('span') && (btn.querySelector('span').textContent = aberto ? 'Fechar' : 'Menu');
+  }
+}
+/* Fecha menu ao clicar em item de navegação (no mobile) */
+document.addEventListener('DOMContentLoaded', function() {
+  var itens = document.querySelectorAll('.sidebar .sb-item');
+  itens.forEach(function(el) {
+    el.addEventListener('click', function() {
+      var sb = document.querySelector('.sidebar');
+      if (sb && sb.classList.contains('sb-open')) {
+        sb.classList.remove('sb-open');
+        var ico = document.getElementById('sbToggleIcon');
+        if (ico) ico.className = 'fa-solid fa-bars';
+      }
+    });
+  });
+});
 
 function parseDateBR(s) {
   if (!s) return null;

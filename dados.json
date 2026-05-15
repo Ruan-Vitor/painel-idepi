@@ -2146,24 +2146,13 @@
     {
       "numero": "946260",
       "objeto": "MANUTENCAO E ADEQUACAO NAS ESTRADAS VICINAIS NO MUNICIPIO DE LAGOA DE SAO FRANCISCO-PI.",
-      "coletado_em": "15/05/2026 08:04",
+      "coletado_em": "15/05/2026 08:21",
       "valor_global": "R$ 1.002.000,00",
       "valor_repasse": "R$ 955.000,00",
       "valor_contrapartida": "R$ 47.000,00",
       "situacao_tgov": "Em execução",
       "regime_simplificado": true,
-      "contratos": [
-        {
-          "numero_contrato": "72/2025",
-          "situacao": "Concluído",
-          "valor": "R$ 961.313,35",
-          "valor_repasse": "R$ 961.313,35",
-          "dt_inicio": "26/12/2025",
-          "dt_fim": "31/12/2026",
-          "cnpj": "",
-          "razao_social": ""
-        }
-      ],
+      "contratos": [],
       "movimentacoes": [
         {
           "num": "10249848",
@@ -2887,5 +2876,5 @@
       "erro": ""
     }
   ],
-  "exec_atualizado_em": "15/05/2026 08:06"
+  "exec_atualizado_em": "15/05/2026 08:23"
 }

@@ -303,6 +303,10 @@ tbody tr:hover td{background:#f5f9ff}
 .sidebar.collapsed .sb-toggle{
   left:0;
 }
+/* No mobile a sidebar vira barra horizontal — o botão de toggle não tem função */
+@media (max-width:900px){
+  .sb-toggle{ display:none !important; }
+}
 
 </style>
 </head>
@@ -651,20 +655,30 @@ function normalizarInstrumento(c){
   if(Array.isArray(c.contratos) && c.contratos.length > 0 && !c.contrato){
     var ct = c.contratos[0];
     var empresa = ct.razao_social || ct.empresa || "";
-    /* Se empresa é nome da seção da SPA ou do próprio IDEPI, pega da primeira NF */
+    /* Rejeita strings que não são razão social válida */
     var invalida = !empresa
       || /documentos.or[çc]ament/i.test(empresa)
       || /idepi|instituto de desenvolvimento/i.test(empresa)
-      || empresa.includes("09.034.960");
+      || empresa.includes("09.034.960")
+      || /^[\d.,R$\s/\-()\%]+$/.test(empresa)   /* só números/símbolos monetários */
+      || empresa.length < 4;
     if(invalida){
       var nfs = c.notas_fiscais || [];
       for(var _ni=0; _ni < nfs.length; _ni++){
         var _r = (nfs[_ni].razao||"").trim();
-        if(_r && _r.length > 3){ empresa = _r; break; }
+        if(_r && _r.length > 3 && /[A-Za-zÀ-ú]/.test(_r)){ empresa = _r; break; }
       }
     }
     var cnpj = ct.cnpj || "";
     if(cnpj === "09.034.960/0001-47" || cnpj === "09034960000147") cnpj = "";
+    /* Se CNPJ ausente mas NFs têm CNPJ, usa o da primeira NF */
+    if(!cnpj){
+      var nfs2 = c.notas_fiscais || [];
+      for(var _ni2=0; _ni2 < nfs2.length; _ni2++){
+        var _nc = (nfs2[_ni2].cnpj||"").trim();
+        if(_nc && _nc !== "09.034.960/0001-47"){ cnpj = _nc; break; }
+      }
+    }
     c.contrato = {
       numero:      ct.numero_contrato || ct.numero || "",
       empresa:     empresa,
@@ -943,13 +957,24 @@ function renderMov(c){
       var vo = parseReais(m.v_orig);
       var vb = parseReais(m.v_bruto);
       var vl = parseReais(m.v_liq);
-      /* Se Vlr. Líquido = 0 mas Vlr. Bruto > 0, exibe Vlr. Bruto como líquido efetivo
-         e adiciona nota "(igual bruto)" em cinza */
+      /* v_liq_presente: true se o coletor gravou um valor real (não null/undefined) */
+      var vlPresente = m.v_liq !== null && m.v_liq !== undefined && m.v_liq !== "";
+      /* Exibição do Vlr. Líquido:
+         - null/ausente  → exibe Vlr. Bruto sem nota (coletor não capturou; bruto é o real)
+         - 0 explícito   → exibe Vlr. Bruto com "(= bruto)" se bruto > 0
+         - > 0 e < bruto → exibe o líquido em verde (desconto de tributos aplicado)
+         - igual ao bruto → exibe normalmente sem nota */
       var vliqExib, vliqCls;
-      if(vl === 0 && vb > 0){
+      if(!vlPresente){
+        /* v_liq ausente: mostra v_bruto como referência, sem anotação */
+        vliqExib = vb > 0 ? fmtN(vb) : '<span style="color:var(--muted)">—</span>';
+        vliqCls  = "";
+      } else if(vl === 0 && vb > 0){
+        /* v_liq explicitamente zero — Transferegov registrou 0 (tributos em linha separada) */
         vliqExib = fmtN(vb)+'<span style="color:var(--muted);font-size:9px;margin-left:3px">(= bruto)</span>';
         vliqCls  = "";
-      } else if(vl > 0 && vl < vb){
+      } else if(vl > 0 && vl < vb * 0.999){
+        /* v_liq menor que bruto (desconto real) */
         vliqExib = fmtN(vl);
         vliqCls  = "neg";
       } else {

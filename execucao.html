@@ -494,7 +494,7 @@ tbody tr:hover td{background:#f5f9ff}
       </div>
 
       <!-- ── PAINEL NFs ── -->
-      <div class="tbl-card tbl-main" id="panelNF" data-panel="nf" style="display:none">
+      <div class="tbl-card tbl-main" id="panelNf" data-panel="nf" style="display:none">
         <div class="tbl-head">
           <div class="tbl-title"><i class="fa-solid fa-file-invoice-dollar"></i> Documentos de Liquidação / Notas Fiscais</div>
           <div style="font-size:10.5px;color:var(--muted)" id="nf-count"></div>
@@ -637,111 +637,107 @@ function pct(a,b){ return b>0?Math.round(parseReais(a)/parseReais(b)*100):0; }
 function sanitize(s){ return (s||"").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
 
 /* ── NORMALIZA INSTRUMENTO ──────────────────────────── */
-/* Converte dados vindos do exec_financeiro.py (strings "R$ X,XX", arrays, etc.)
-   para o formato que o frontend espera (números, objeto contrato, etc.) */
 function normalizarInstrumento(c){
-  /* Valores monetários: string → number */
+  /* 1. Valores monetários globais: string BR → number */
   ["valor_global","valor_repasse","valor_contrapartida"].forEach(function(k){
     c[k] = parseReais(c[k]);
   });
 
-  /* exec_fisica_pct: pode vir como string "100,00" ou number */
-  if(typeof c.exec_fisica_pct === "string"){
-    c.exec_fisica_pct = parseFloat(c.exec_fisica_pct.replace(",",".")) || 0;
-  }
+  /* 2. exec_fisica_pct: pode vir como string "100,00" ou number */
+  if(typeof c.exec_fisica_pct === "string")
+    c.exec_fisica_pct = parseFloat(String(c.exec_fisica_pct).replace(",",".")) || 0;
 
-  /* contratos: o coletor grava como array — o frontend espera .contrato (objeto único) */
+  /* 3. contratos[] → contrato{}: coletor grava array, frontend usa objeto */
   if(Array.isArray(c.contratos) && c.contratos.length > 0 && !c.contrato){
     var ct = c.contratos[0];
+    var empresa = ct.razao_social || ct.empresa || "";
+    /* Se empresa é nome da seção da SPA ou do próprio IDEPI, pega da primeira NF */
+    var invalida = !empresa
+      || /documentos.or[çc]ament/i.test(empresa)
+      || /idepi|instituto de desenvolvimento/i.test(empresa)
+      || empresa.includes("09.034.960");
+    if(invalida){
+      var nfs = c.notas_fiscais || [];
+      for(var _ni=0; _ni < nfs.length; _ni++){
+        var _r = (nfs[_ni].razao||"").trim();
+        if(_r && _r.length > 3){ empresa = _r; break; }
+      }
+    }
+    var cnpj = ct.cnpj || "";
+    if(cnpj === "09.034.960/0001-47" || cnpj === "09034960000147") cnpj = "";
     c.contrato = {
-      numero:     ct.numero_contrato || ct.numero || "",
-      empresa:    ct.razao_social    || ct.empresa || "",
-      cnpj:       ct.cnpj            || "",
-      valor:      parseReais(ct.valor),
-      situacao:   ct.situacao        || "",
-      data_inicio:ct.dt_inicio       || ct.data_inicio || "",
-      data_fim:   ct.dt_fim          || ct.data_fim    || "",
+      numero:      ct.numero_contrato || ct.numero || "",
+      empresa:     empresa,
+      cnpj:        cnpj,
+      valor:       parseReais(ct.valor || ct.valor_repasse || 0),
+      situacao:    ct.situacao || "",
+      data_inicio: ct.dt_inicio || ct.data_inicio || "",
+      data_fim:    ct.dt_fim   || ct.data_fim    || "",
     };
-    /* Se valor zerado, tenta campo valor_repasse do contrato */
-    if(!c.contrato.valor) c.contrato.valor = parseReais(ct.valor_repasse);
   }
 
-  /* movimentacoes: garante que v_orig/v_bruto/v_liq sejam números */
+  /* 4. movimentacoes: normaliza valores para number */
   (c.movimentacoes||[]).forEach(function(m){
     m.v_orig  = parseReais(m.v_orig);
     m.v_bruto = parseReais(m.v_bruto);
-    /* v_liq vem null do coletor (campo não disponível no Transferegov); guarda flag */
-    m._vliq_null = (m.v_liq === null || m.v_liq === undefined || m.v_liq === "");
     m.v_liq   = parseReais(m.v_liq);
   });
 
-  /* notas_fiscais: normaliza dados vindos do coletor exec_financeiro.py
-     O coletor grava: tipo=razao_social, razao=valor_str, v_bruto=retenções, tributos=0
-     Os itens com id_item preenchido contêm os valores reais de rateio */
+  /* 5. notas_fiscais: normaliza colunas do coletor v8
+     Coletor grava: num, data, razao, tipo, v_orig, v_bruto, tributos, v_liq, status
+     Todos os valores já vêm como float desde a v8. */
   (c.notas_fiscais||[]).forEach(function(n){
-    /* Empresa: coletor grava em "tipo"; "razao" pode ser valor string ou nome */
-    var razaoRaw = parseReais(n.razao);  /* tenta converter razao para número */
-    if(razaoRaw > 0 && n.tipo && !/nota fiscal/i.test(n.tipo)){
-      /* "razao" é na verdade o valor em string, "tipo" é a empresa */
-      n._empresa = n.tipo;  /* salva empresa */
-      n.razao    = n.tipo;  /* usa tipo como razao */
-    } else if(!n.razao && n.razao_social) {
-      n.razao = n.razao_social;
-    }
+    n.v_orig   = parseReais(n.v_orig);
+    n.v_bruto  = parseReais(n.v_bruto);
+    n.tributos = parseReais(n.tributos);
+    n.v_liq    = parseReais(n.v_liq);
+    /* Recalcula v_liq se zerado */
+    if(!n.v_liq && n.v_bruto) n.v_liq = n.v_bruto - n.tributos;
+    /* razao: garante que é string (não número) */
+    if(typeof n.razao === "number") n.razao = "";
 
-    var vOrig = parseReais(n.v_orig);
-
-    /* tributos: soma itens FEDERAL+MUNICIPAL quando tributos=0 mas v_bruto>0 */
-    var tribRaw = parseReais(n.tributos);
-    var vBrut   = parseReais(n.v_bruto);
-    if(tribRaw === 0 && vBrut > 0 && vBrut < vOrig * 0.1){
-      /* v_bruto do coletor = valor das retenções (ISS+IR) */
-      tribRaw = vBrut;
-    }
-
-    n.v_orig   = vOrig;
-    n.v_bruto  = vOrig;  /* para exibição: bruto = valor cheio da NF */
-    n.tributos = tribRaw;
-    n.v_liq    = vOrig - tribRaw;
-
-    /* itens: filtra só os com id_item preenchido (são os itens reais de rateio) */
-    var itensValidos = (n.itens||[]).filter(function(it){ return !!it.id_item; });
-    if(itensValidos.length > 0){
-      n.itens = itensValidos;
-    }
-    n.itens = n.itens || [];
-    n.itens.forEach(function(it){
+    /* itens: normaliza rateio */
+    (n.itens||[]).forEach(function(it){
       it.valor         = parseReais(it.valor);
       it.repasse       = parseReais(it.repasse);
       it.contrapartida = parseReais(it.contrapartida);
       it.rendimento    = parseReais(it.rendimento);
+      /* Se repasse=0 e valor>0, assume tudo repasse (padrão mais comum) */
+      if(!it.repasse && !it.contrapartida && it.valor > 0)
+        it.repasse = it.valor;
     });
+
+    /* Se NF sem itens mas com v_bruto, cria item sintético */
+    if((!n.itens || !n.itens.length) && n.v_bruto > 0){
+      n.itens = [{
+        desc:"Serviços executados", valor:n.v_bruto,
+        repasse:n.v_bruto, contrapartida:0, rendimento:0
+      }];
+    }
   });
 
-  /* exec_fisica_obs: monta a partir dos dados do coletor se ausente */
+  /* 6. exec_fisica_obs: monta a partir dos campos extras do coletor */
   if(!c.exec_fisica_obs){
-    var partes = [];
-    if(c.exec_fisica_valor_realizado) partes.push("Valor realizado: "+c.exec_fisica_valor_realizado);
-    if(c.exec_fisica_valor_total)     partes.push("Total: "+c.exec_fisica_valor_total);
-    if(c.ateste_convenente)           partes.push("✓ Atestado pelo Convenente");
+    var pf = [];
+    if(c.exec_fisica_valor_realizado) pf.push("Realizado: "+c.exec_fisica_valor_realizado);
+    if(c.exec_fisica_valor_total)     pf.push("Total: "+c.exec_fisica_valor_total);
+    if(c.ateste_convenente)           pf.push("✓ Atestado pelo Convenente");
     if(c.regime_simplificado && !c.ateste_concedente)
-                                      partes.push("Concedente: atesta na PC Final (Regime Simplificado)");
-    c.exec_fisica_obs = partes.join(" · ");
-  }
-
-  /* exec_fisica_pct: garante número */
-  if(typeof c.exec_fisica_pct === "string"){
-    c.exec_fisica_pct = parseFloat(String(c.exec_fisica_pct).replace(",",".")) || 0;
+      pf.push("Concedente atesta na PC Final");
+    c.exec_fisica_obs = pf.join(" · ");
   }
 
   return c;
 }
+
 function tipoBadge(tipo){
-  var t = (tipo||"").toUpperCase();
-  if(t.includes("CONTRAPARTIDA"))    return '<span class="b b-blue">Contrapartida</span>';
-  if(t.includes("OBTV"))             return '<span class="b b-green">Pgto OBTV</span>';
-  if(t.includes("TRIBUTO"))          return '<span class="b b-amber">Tributo</span>';
-  if(t.includes("RENDIMENTO"))       return '<span class="b b-purple">Rendimento</span>';
+  var t=(tipo||"").toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"");
+  if(t.includes("CONTRAPARTIDA")||t.includes("INGRESSO")) return '<span class="b b-blue">Contrapartida</span>';
+  if(t.includes("OBTV")||t.includes("PAGAMENTO A FAVORECIDO")||t.includes("PGTO OBTV"))
+    return '<span class="b b-green">Pgto OBTV</span>';
+  if(t.includes("TRIBUTO")||t.includes("PAGAMENTO DE TRIBUTO"))
+    return '<span class="b b-amber">Tributo</span>';
+  if(t.includes("RENDIMENTO")) return '<span class="b b-purple">Rendimento</span>';
   return '<span class="b b-slate">'+sanitize(tipo)+'</span>';
 }
 function sitBadge(sit){
@@ -752,7 +748,10 @@ function sitBadge(sit){
   return '<span class="b b-slate">'+sanitize(sit)+'</span>';
 }
 function nfStatusBadge(s){
-  return s==="Ativo"?'<span class="b b-green">Ativo</span>':'<span class="b b-red">'+sanitize(s)+'</span>';
+  var sl=(s||"").toLowerCase();
+  if(sl.includes("ativo")||sl.includes("ativa")) return '<span class="b b-green">Ativo</span>';
+  if(sl.includes("conclu")) return '<span class="b b-blue">Concluída</span>';
+  return '<span class="b b-slate">'+sanitize(s)+'</span>';
 }
 
 /* ── POPULAR SELECTOR ───────────────────────────────── */
@@ -925,23 +924,46 @@ function renderMov(c){
   var rows = c.movimentacoes||[];
   document.getElementById("mov-count").textContent = rows.length+" movimentação(ões)";
 
-  /* Totais do rodapé */
-  var totOrigem=0,totBruto=0,totLiq=0;
-  rows.forEach(function(m){ totOrigem+=m.v_orig||0; totBruto+=m.v_bruto||0; totLiq+=m.v_liq||0; });
+  /* Totais do rodapé — usa v_orig como base */
+  var totOrig=0, totBruto=0, totLiqEfetivo=0;
+  rows.forEach(function(m){
+    var vo=parseReais(m.v_orig), vb=parseReais(m.v_bruto), vl=parseReais(m.v_liq);
+    totOrig  += vo;
+    totBruto += vb;
+    /* Vlq efetivo: se v_liq zerado mas v_bruto existe, usa v_bruto
+       (Transferegov registra tributos em linhas separadas, não desconta do OBTV) */
+    totLiqEfetivo += vl > 0 ? vl : vb;
+  });
 
   var html = "";
-  if(!rows.length){ html='<tr><td colspan="11" class="empty-row"><i class="fa-solid fa-inbox" style="margin-right:6px;opacity:.4"></i>Nenhuma movimentação encontrada</td></tr>'; }
-  else {
+  if(!rows.length){
+    html='<tr><td colspan="11" class="empty-row"><i class="fa-solid fa-inbox" style="margin-right:6px;opacity:.4"></i>Nenhuma movimentação encontrada</td></tr>';
+  } else {
     rows.forEach(function(m){
+      var vo = parseReais(m.v_orig);
+      var vb = parseReais(m.v_bruto);
+      var vl = parseReais(m.v_liq);
+      /* Se Vlr. Líquido = 0 mas Vlr. Bruto > 0, exibe Vlr. Bruto como líquido efetivo
+         e adiciona nota "(igual bruto)" em cinza */
+      var vliqExib, vliqCls;
+      if(vl === 0 && vb > 0){
+        vliqExib = fmtN(vb)+'<span style="color:var(--muted);font-size:9px;margin-left:3px">(= bruto)</span>';
+        vliqCls  = "";
+      } else if(vl > 0 && vl < vb){
+        vliqExib = fmtN(vl);
+        vliqCls  = "neg";
+      } else {
+        vliqExib = vl > 0 ? fmtN(vl) : '<span style="color:var(--muted)">—</span>';
+        vliqCls  = "";
+      }
       html += '<tr>';
       html += '<td class="mono-cell">'+sanitize(m.num)+'</td>';
       html += '<td class="date-cell">'+sanitize(m.data)+'</td>';
       html += '<td>'+tipoBadge(m.tipo)+'</td>';
-      html += '<td class="val-cell text-right">'+fmtN(m.v_orig)+'</td>';
-      html += '<td class="val-cell text-right">'+fmtN(m.v_bruto)+'</td>';
-      var vliqTxt = m._vliq_null ? '<span style="color:var(--muted)">—</span>' : fmtN(m.v_liq);
-      html += '<td class="val-cell text-right '+((!m._vliq_null && m.v_liq<m.v_bruto)?"neg":"")+'">'+vliqTxt+'</td>';
-      html += '<td class="tipo-cell" style="font-size:10.5px">'+sanitize(m.favorecido)+'</td>';
+      html += '<td class="val-cell text-right">'+fmtN(vo)+'</td>';
+      html += '<td class="val-cell text-right">'+fmtN(vb)+'</td>';
+      html += '<td class="val-cell text-right '+vliqCls+'">'+vliqExib+'</td>';
+      html += '<td class="tipo-cell" style="font-size:10.5px">'+sanitize(m.favorecido||"")+'</td>';
       html += '<td>'+(m.tributo?'<span class="b b-amber">'+sanitize(m.tributo)+'</span>':"<span style='color:var(--muted)'>—</span>")+'</td>';
       html += '<td class="mono-cell" style="font-size:10.5px">'+sanitize(m.ndl||"—")+'</td>';
       html += '<td style="font-size:10.5px;color:var(--muted)">'+sanitize(m.tdl||"—")+'</td>';
@@ -953,9 +975,9 @@ function renderMov(c){
   document.getElementById("mov-footer").innerHTML =
     '<span>Total: <strong>'+rows.length+' movimentações</strong></span>'+
     '<span style="display:flex;gap:20px">'+
-    '<span>Orig: <strong>'+fmt(totOrigem)+'</strong></span>'+
+    '<span>Orig: <strong>'+fmt(totOrig)+'</strong></span>'+
     '<span>Bruto: <strong>'+fmt(totBruto)+'</strong></span>'+
-    '<span style="color:var(--green)">Líquido: <strong>'+fmt(totLiq)+'</strong></span>'+
+    '<span style="color:var(--green)">Líquido: <strong>'+fmt(totLiqEfetivo)+'</strong></span>'+
     '</span>';
 }
 
@@ -1064,10 +1086,13 @@ function renderRateio(c){
 }
 
 /* ── TABS ───────────────────────────────────────────── */
+var tabAtual = "mov";
 function showTab(t){
   tabAtual = t;
+  // Mapa explícito de tab → panelId para evitar bugs de capitalização
+  var panelMap = { "mov": "panelMov", "nf": "panelNf", "rat": "panelRat" };
   ["mov","nf","rat"].forEach(function(id){
-    var panel = document.getElementById("panel"+id.charAt(0).toUpperCase()+id.slice(1));
+    var panel = document.getElementById(panelMap[id]);
     var tab   = document.getElementById("tab-"+id);
     if(panel) panel.style.display = id===t ? (id==="rat"?"block":"flex") : "none";
     if(tab)   tab.classList.toggle("active", id===t);

@@ -815,22 +815,46 @@ function renderInstrumento(){
 
 /* ── CALC TOTAL PAGO ────────────────────────────────── */
 function calcTotalPago(c){
-  /* Soma pagamentos OBTV de REPASSE FEDERAL (transferência à empresa executora).
-     Exclui OBTV de contrapartida — identificados pelo favorecido ser o CNPJ
-     do próprio convenente (IDEPI = 09.034.960/0001-47) ou o v_orig == contrapartida.
-     Usa v_orig porque o Transferegov desconta tributos no v_bruto. */
-  var cnpjConvenente = (c.cnpj_convenente || "09.034.960/0001-47").replace(/[^\d]/g,"");
+  /* Soma pagamentos OBTV de REPASSE FEDERAL.
+     Critérios para EXCLUIR uma movimentação OBTV (= é contrapartida, não repasse):
+     1. favorecido é o CNPJ do convenente (IDEPI = 09.034.960/0001-47)
+     2. favorecido está vazio E v_orig bate com a valor_contrapartida do convênio
+     3. A NF referenciada (ndl) tem rateio com cp > 0 e rep = 0
+     Usa v_orig porque Transferegov desconta tributos no v_bruto. */
+  var cpTotal = parseReais(c.valor_contrapartida);  // ex: 47.000,00
+  var cnpjConv = "09034960000147";                  // CNPJ do IDEPI sem formatação
   var total = 0;
+  /* Monta mapa de rateio por ndl para identificar NFs de contrapartida */
+  var cpNdls = {};
+  (c.notas_fiscais||[]).forEach(function(n){
+    var temRep = false, temCp = false;
+    (n.itens||[]).forEach(function(it){
+      if((it.repasse||0) > 0) temRep = true;
+      if((it.contrapartida||0) > 0) temCp = true;
+    });
+    if(temCp && !temRep) cpNdls[String(n.num)] = true;
+  });
+
   (c.movimentacoes||[]).forEach(function(m){
     var t = (m.tipo||"").toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"");
     var isObtv = t.includes("OBTV") || t.includes("PAGAMENTO A FAVORECIDO")
               || t.includes("PGTO OBTV") || t.includes("PAGAMENTO FAVORECIDO");
     if(!isObtv) return;
-    /* Exclui se favorecido é o CNPJ do próprio IDEPI/convenente (= contrapartida) */
-    var fav = (m.favorecido || "").replace(/[^\d]/g,"");
-    if(fav && fav === cnpjConvenente) return;
+
     var vorig = parseReais(m.v_orig);
     var vbrut = parseReais(m.v_bruto);
+    var fav   = (m.favorecido||"").replace(/[^\d]/g,"");
+    var ndl   = String(m.ndl||"").trim();
+
+    /* Critério 1: favorecido é o CNPJ do convenente */
+    if(fav && fav === cnpjConv) return;
+
+    /* Critério 2: favorecido vazio e valor bate com contrapartida total */
+    if(!fav && cpTotal > 0 && Math.abs(vorig - cpTotal) < 1) return;
+
+    /* Critério 3: NF referenciada é de contrapartida (rateio cp>0 e rep=0) */
+    if(ndl && cpNdls[ndl]) return;
+
     total += vorig > 0 ? vorig : vbrut;
   });
   return total;

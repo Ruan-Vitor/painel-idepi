@@ -2146,14 +2146,51 @@
     {
       "numero": "946260",
       "objeto": "MANUTENCAO E ADEQUACAO NAS ESTRADAS VICINAIS NO MUNICIPIO DE LAGOA DE SAO FRANCISCO-PI.",
-      "coletado_em": "15/05/2026 08:21",
+      "coletado_em": "15/05/2026 23:41",
       "valor_global": "R$ 1.002.000,00",
       "valor_repasse": "R$ 955.000,00",
       "valor_contrapartida": "R$ 47.000,00",
       "situacao_tgov": "Em execução",
       "regime_simplificado": true,
-      "contratos": [],
+      "contratos": [
+        {
+          "numero_contrato": "72/2025",
+          "situacao": "Concluído",
+          "valor": "R$ 961.313,35",
+          "valor_repasse": "R$ 961.313,35",
+          "dt_inicio": "26/12/2025",
+          "dt_fim": "31/12/2026",
+          "cnpj": "",
+          "razao_social": "CONSTRUTORA RENATA LTDA"
+        }
+      ],
       "movimentacoes": [
+        {
+          "num": "10357642",
+          "data": "15/05/2026",
+          "tipo": "PAGAMENTO A FAVORECIDO COM OBTV",
+          "v_orig": 47000.0,
+          "v_bruto": 46013.0,
+          "v_liq": null,
+          "favorecido": "",
+          "tributo": "",
+          "ndl": "905",
+          "tdl": "NOTA FISCAL",
+          "situacao": "Movimentação Financeira Concluída"
+        },
+        {
+          "num": "10357641",
+          "data": "15/05/2026",
+          "tipo": "PAGAMENTO A FAVORECIDO COM OBTV",
+          "v_orig": 76271.54,
+          "v_bruto": 74669.85,
+          "v_liq": null,
+          "favorecido": "",
+          "tributo": "",
+          "ndl": "904",
+          "tdl": "NOTA FISCAL",
+          "situacao": "Movimentação Financeira Concluída"
+        },
         {
           "num": "10249848",
           "data": "30/03/2026",
@@ -2273,6 +2310,134 @@
         }
       ],
       "notas_fiscais": [
+        {
+          "num": "905",
+          "data": "NOTA FISCAL",
+          "tipo": "CONSTRUTORA RENATA LTDA",
+          "razao": "47.000,00",
+          "v_orig": 47000.0,
+          "v_bruto": 987.0,
+          "tributos": 0.0,
+          "v_liq": 987.0,
+          "status": "Ativo",
+          "id_nf": "8324815",
+          "id_item": "",
+          "origem_recurso": "Repasse / Contrapartida / Rendimento",
+          "itens": [
+            {
+              "desc": "RECIBO NF Nº 905_15-05-2026_12h48m48s.pdf",
+              "valor": 0.0,
+              "id_item": "",
+              "repasse": 0.0,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            },
+            {
+              "desc": "NOTA FISCAL Nº 905_15-05-2026_12h48m35s.pdf",
+              "valor": 0.0,
+              "id_item": "",
+              "repasse": 0.0,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            },
+            {
+              "desc": "EXECUÇÃO DOS SERVIÇOS DE MANUTENÇÃO E ADEQUAÇÃO NAS ESTRADAS VICINAIS NO MUNICÍPIO LAGOA DE SÃO FRANCISCO - PI, CONTRATO DE REPASSE CIDADES 946260",
+              "valor": 47000.0,
+              "id_item": "14127706",
+              "repasse": 0.0,
+              "contrapartida": 47000.0,
+              "rendimento": 0.0
+            },
+            {
+              "desc": "FEDERAL",
+              "valor": 564.0,
+              "id_item": "",
+              "repasse": 564.0,
+              "contrapartida": 12.0,
+              "rendimento": 905.0
+            },
+            {
+              "desc": "MUNICIPAL",
+              "valor": 423.0,
+              "id_item": "",
+              "repasse": 423.0,
+              "contrapartida": 9.0,
+              "rendimento": 905.0
+            },
+            {
+              "desc": "NOTA FISCAL Nº 905_15-05-2026_12h54m23s.pdf",
+              "valor": 0.0,
+              "id_item": "",
+              "repasse": 0.0,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "904",
+          "data": "NOTA FISCAL",
+          "tipo": "CONSTRUTORA RENATA LTDA",
+          "razao": "76.271,54",
+          "v_orig": 76271.54,
+          "v_bruto": 1601.69,
+          "tributos": 0.0,
+          "v_liq": 1601.69,
+          "status": "Ativo",
+          "id_nf": "8324763",
+          "id_item": "",
+          "origem_recurso": "Repasse / Rendimento",
+          "itens": [
+            {
+              "desc": "RECIBO NF Nº 904_15-05-2026_12h26m07s.pdf",
+              "valor": 0.0,
+              "id_item": "",
+              "repasse": 0.0,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            },
+            {
+              "desc": "NOTA FISCAL Nº 904_15-05-2026_12h24m47s.pdf",
+              "valor": 0.0,
+              "id_item": "",
+              "repasse": 0.0,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            },
+            {
+              "desc": "EXECUÇÃO DOS SERVIÇOS DE MANUTENÇÃO E ADEQUAÇÃO NAS ESTRADAS VICINAIS NO MUNICÍPIO LAGOA DE SÃO FRANCISCO - PI, CONTRATO DE REPASSE CIDADES 946260",
+              "valor": 76271.54,
+              "id_item": "14127688",
+              "repasse": 76271.54,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            },
+            {
+              "desc": "MUNICIPAL",
+              "valor": 686.44,
+              "id_item": "",
+              "repasse": 686.44,
+              "contrapartida": 9.0,
+              "rendimento": 904.0
+            },
+            {
+              "desc": "FEDERAL",
+              "valor": 915.25,
+              "id_item": "",
+              "repasse": 915.25,
+              "contrapartida": 12.0,
+              "rendimento": 904.0
+            },
+            {
+              "desc": "NOTA FISCAL Nº 904_15-05-2026_12h35m22s.pdf",
+              "valor": 0.0,
+              "id_item": "",
+              "repasse": 0.0,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
         {
           "num": "898",
           "data": "NOTA FISCAL",
@@ -2876,5 +3041,5 @@
       "erro": ""
     }
   ],
-  "exec_atualizado_em": "15/05/2026 08:23"
+  "exec_atualizado_em": "15/05/2026 23:44"
 }

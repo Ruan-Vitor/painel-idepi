@@ -303,10 +303,6 @@ tbody tr:hover td{background:#f5f9ff}
 .sidebar.collapsed .sb-toggle{
   left:0;
 }
-/* No mobile a sidebar vira barra horizontal — o botão de toggle não tem função */
-@media (max-width:900px){
-  .sb-toggle{ display:none !important; }
-}
 
 </style>
 </head>
@@ -498,7 +494,7 @@ tbody tr:hover td{background:#f5f9ff}
       </div>
 
       <!-- ── PAINEL NFs ── -->
-      <div class="tbl-card tbl-main" id="panelNf" data-panel="nf" style="display:none">
+      <div class="tbl-card tbl-main" id="panelNF" data-panel="nf" style="display:none">
         <div class="tbl-head">
           <div class="tbl-title"><i class="fa-solid fa-file-invoice-dollar"></i> Documentos de Liquidação / Notas Fiscais</div>
           <div style="font-size:10.5px;color:var(--muted)" id="nf-count"></div>
@@ -591,25 +587,25 @@ var INSTRUMENTOS_EXEC = [
 
     /* Movimentações financeiras */
     movimentacoes: [
-      { num:"10249848", data:"30/03/2026", tipo:"INGRESSO DE CONTRAPARTIDA",       v_orig:39000.00,  v_bruto:39000.00,  v_liq:null, favorecido:"09.034.960/0001-47",tributo:"",    ndl:"",         tdl:"",           situacao:"Concluída" },
-      { num:"10231942", data:"20/03/2026", tipo:"PAGAMENTO DE TRIBUTOS",            v_orig:4497.27,   v_bruto:4497.27,   v_liq:null, favorecido:"",                 tributo:"ISS", ndl:"897, 898", tdl:"NOTA FISCAL", situacao:"Concluída" },
-      { num:"10231930", data:"20/03/2026", tipo:"PAGAMENTO DE TRIBUTOS",            v_orig:5996.35,   v_bruto:5996.35,   v_liq:null, favorecido:"",                 tributo:"IR",  ndl:"897, 898", tdl:"NOTA FISCAL", situacao:"Concluída" },
-      { num:"10231891", data:"20/03/2026", tipo:"PAGAMENTO DE TRIBUTOS",            v_orig:4060.14,   v_bruto:4060.14,   v_liq:null, favorecido:"",                 tributo:"IR",  ndl:"896",      tdl:"NOTA FISCAL", situacao:"Concluída" },
-      { num:"10231888", data:"20/03/2026", tipo:"PAGAMENTO DE TRIBUTOS",            v_orig:3045.11,   v_bruto:3045.11,   v_liq:null, favorecido:"",                 tributo:"ISS", ndl:"896",      tdl:"NOTA FISCAL", situacao:"Concluída" },
-      { num:"10227940", data:"18/03/2026", tipo:"PAGAMENTO A FAVORECIDO COM OBTV", v_orig:111654.56, v_bruto:109309.81, v_liq:null, favorecido:"02.577.913/0001-09",tributo:"",ndl:"898",tdl:"NOTA FISCAL",situacao:"Conciliada"},
-      { num:"10227938", data:"18/03/2026", tipo:"PAGAMENTO A FAVORECIDO COM OBTV", v_orig:388041.81, v_bruto:379892.94, v_liq:null, favorecido:"02.577.913/0001-09",tributo:"",ndl:"897",tdl:"NOTA FISCAL",situacao:"Conciliada"},
-      { num:"10227934", data:"18/03/2026", tipo:"PAGAMENTO A FAVORECIDO COM OBTV", v_orig:338345.44, v_bruto:331240.19, v_liq:null, favorecido:"02.577.913/0001-09",tributo:"",ndl:"896",tdl:"NOTA FISCAL",situacao:"Conciliada"},
-      { num:"8590923",  data:"21/02/2024", tipo:"INGRESSO DE CONTRAPARTIDA",        v_orig:8000.00,   v_bruto:8000.00,   v_liq:null, favorecido:"09.034.960/0001-47", tributo:"",    ndl:"",         tdl:"",           situacao:"Concluída" }
+      { num:"10249848", data:"30/03/2026", tipo:"INGRESSO DE CONTRAPARTIDA",       v_orig:39000.00,    v_bruto:39000.00,    v_liq:39000.00,    favorecido:"09.034.960/0001-47", tributo:"",    ndl:"",         tdl:"",           situacao:"Concluída" },
+      { num:"10231942", data:"20/03/2026", tipo:"PAGAMENTO DE TRIBUTOS",            v_orig:4497.27,     v_bruto:4497.27,     v_liq:4497.27,     favorecido:"",                  tributo:"ISS", ndl:"897, 898", tdl:"NOTA FISCAL", situacao:"Concluída" },
+      { num:"10231930", data:"20/03/2026", tipo:"PAGAMENTO DE TRIBUTOS",            v_orig:5996.35,     v_bruto:5996.35,     v_liq:5996.35,     favorecido:"",                  tributo:"IR",  ndl:"897, 898", tdl:"NOTA FISCAL", situacao:"Concluída" },
+      { num:"10231891", data:"20/03/2026", tipo:"PAGAMENTO DE TRIBUTOS",            v_orig:4060.14,     v_bruto:4060.14,     v_liq:4060.14,     favorecido:"",                  tributo:"IR",  ndl:"896",      tdl:"NOTA FISCAL", situacao:"Concluída" },
+      { num:"10231888", data:"20/03/2026", tipo:"PAGAMENTO DE TRIBUTOS",            v_orig:3045.11,     v_bruto:3045.11,     v_liq:3045.11,     favorecido:"",                  tributo:"ISS", ndl:"896",      tdl:"NOTA FISCAL", situacao:"Concluída" },
+      { num:"10227940", data:"18/03/2026", tipo:"PAGAMENTO A FAVORECIDO COM OBTV", v_orig:111654.56, v_bruto:109309.81, v_liq:0, favorecido:"02.577.913/0001-09",tributo:"",ndl:"898",tdl:"NOTA FISCAL",situacao:"Conciliada"},
+      { num:"10227938", data:"18/03/2026", tipo:"PAGAMENTO A FAVORECIDO COM OBTV", v_orig:388041.81, v_bruto:379892.94, v_liq:0, favorecido:"02.577.913/0001-09",tributo:"",ndl:"897",tdl:"NOTA FISCAL",situacao:"Conciliada"},
+      { num:"10227934", data:"18/03/2026", tipo:"PAGAMENTO A FAVORECIDO COM OBTV", v_orig:338345.44, v_bruto:331240.19, v_liq:0, favorecido:"02.577.913/0001-09",tributo:"",ndl:"896",tdl:"NOTA FISCAL",situacao:"Conciliada"},
+      { num:"8590923",  data:"21/02/2024", tipo:"INGRESSO DE CONTRAPARTIDA",        v_orig:8000.00,     v_bruto:8000.00,     v_liq:8000.00,     favorecido:"09.034.960/0001-47", tributo:"",    ndl:"",         tdl:"",           situacao:"Concluída" }
     ],
 
     /* Notas Fiscais / Docs de Liquidação */
     notas_fiscais: [
-      { num:"896", data:"16/03/2026", razao:"CONSTRUTORA RENATA LTDA", cnpj:"02.577.913/0001-09", v_orig:338345.44, v_bruto:338345.44, tributos:7105.25, v_liq:331240.19, status:"Ativo", tipo:"NOTA FISCAL",
-        itens:[{desc:"Execução — Lagoa de São Francisco/PI", valor:338345.44, id_item:"13928974", repasse:338345.44, contrapartida:0, rendimento:0}] },
-      { num:"897", data:"16/03/2026", razao:"CONSTRUTORA RENATA LTDA", cnpj:"02.577.913/0001-09", v_orig:388041.81, v_bruto:388041.81, tributos:8148.87, v_liq:379892.94, status:"Ativo", tipo:"NOTA FISCAL",
-        itens:[{desc:"Execução — Lagoa de São Francisco/PI", valor:388041.81, id_item:"13929148", repasse:388041.81, contrapartida:0, rendimento:0}] },
-      { num:"898", data:"16/03/2026", razao:"CONSTRUTORA RENATA LTDA", cnpj:"02.577.913/0001-09", v_orig:111654.56, v_bruto:111654.56, tributos:2344.75, v_liq:109309.81, status:"Ativo", tipo:"NOTA FISCAL",
-        itens:[{desc:"Execução — Lagoa de São Francisco/PI", valor:111654.56, id_item:"13929179", repasse:111654.56, contrapartida:0, rendimento:0}] }
+      { num:"896", data:"16/03/2026", razao:"CONSTRUTORA RENATA LTDA", cnpj:"02.577.913/0001-09", v_orig:338345.44, v_bruto:331240.19, tributos:7105.25, v_liq:331240.19, status:"Ativo", tipo:"NOTA FISCAL",
+        itens:[{desc:"Execução serviços manutenção estradas — Lagoa de São Francisco/PI", valor:338345.44, repasse:338345.44, contrapartida:0, rendimento:0}] },
+      { num:"897", data:"16/03/2026", razao:"CONSTRUTORA RENATA LTDA", cnpj:"02.577.913/0001-09", v_orig:388041.81, v_bruto:379892.94, tributos:8148.87, v_liq:379892.94, status:"Ativo", tipo:"NOTA FISCAL",
+        itens:[{desc:"Execução serviços manutenção estradas — Lagoa de São Francisco/PI", valor:388041.81, repasse:388041.81, contrapartida:0, rendimento:0}] },
+      { num:"898", data:"16/03/2026", razao:"CONSTRUTORA RENATA LTDA", cnpj:"02.577.913/0001-09", v_orig:111654.56, v_bruto:109309.81, tributos:2344.75, v_liq:109309.81, status:"Ativo", tipo:"NOTA FISCAL",
+        itens:[{desc:"Execução serviços manutenção estradas — Lagoa de São Francisco/PI", valor:111654.56, repasse:111654.56, contrapartida:0, rendimento:0}] }
     ]
   }
 ];
@@ -641,117 +637,87 @@ function pct(a,b){ return b>0?Math.round(parseReais(a)/parseReais(b)*100):0; }
 function sanitize(s){ return (s||"").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
 
 /* ── NORMALIZA INSTRUMENTO ──────────────────────────── */
+/* Converte dados vindos do exec_financeiro.py (strings "R$ X,XX", arrays, etc.)
+   para o formato que o frontend espera (números, objeto contrato, etc.) */
 function normalizarInstrumento(c){
-  /* 1. Valores monetários globais: string BR → number */
+  /* Valores monetários: string → number */
   ["valor_global","valor_repasse","valor_contrapartida"].forEach(function(k){
     c[k] = parseReais(c[k]);
   });
 
-  /* 2. exec_fisica_pct: pode vir como string "100,00" ou number */
-  if(typeof c.exec_fisica_pct === "string")
-    c.exec_fisica_pct = parseFloat(String(c.exec_fisica_pct).replace(",",".")) || 0;
-
-  /* 3. contratos[] → contrato{}: coletor grava array, frontend usa objeto */
-  if(Array.isArray(c.contratos) && c.contratos.length > 0 && !c.contrato){
-    var ct = c.contratos[0];
-    var empresa = ct.razao_social || ct.empresa || "";
-    /* Rejeita strings que não são razão social válida */
-    var invalida = !empresa
-      || /documentos.or[çc]ament/i.test(empresa)
-      || /idepi|instituto de desenvolvimento/i.test(empresa)
-      || empresa.includes("09.034.960")
-      || /^[\d.,R$\s/\-()\%]+$/.test(empresa)   /* só números/símbolos monetários */
-      || empresa.length < 4;
-    if(invalida){
-      var nfs = c.notas_fiscais || [];
-      for(var _ni=0; _ni < nfs.length; _ni++){
-        var _r = (nfs[_ni].razao||"").trim();
-        if(_r && _r.length > 3 && /[A-Za-zÀ-ú]/.test(_r)){ empresa = _r; break; }
-      }
-    }
-    var cnpj = ct.cnpj || "";
-    if(cnpj === "09.034.960/0001-47" || cnpj === "09034960000147") cnpj = "";
-    /* Se CNPJ ausente mas NFs têm CNPJ, usa o da primeira NF */
-    if(!cnpj){
-      var nfs2 = c.notas_fiscais || [];
-      for(var _ni2=0; _ni2 < nfs2.length; _ni2++){
-        var _nc = (nfs2[_ni2].cnpj||"").trim();
-        if(_nc && _nc !== "09.034.960/0001-47"){ cnpj = _nc; break; }
-      }
-    }
-    c.contrato = {
-      numero:      ct.numero_contrato || ct.numero || "",
-      empresa:     empresa,
-      cnpj:        cnpj,
-      valor:       parseReais(ct.valor || ct.valor_repasse || 0),
-      situacao:    ct.situacao || "",
-      data_inicio: ct.dt_inicio || ct.data_inicio || "",
-      data_fim:    ct.dt_fim   || ct.data_fim    || "",
-    };
+  /* exec_fisica_pct: pode vir como string "100,00" ou number */
+  if(typeof c.exec_fisica_pct === "string"){
+    c.exec_fisica_pct = parseFloat(c.exec_fisica_pct.replace(",",".")) || 0;
   }
 
-  /* 4. movimentacoes: normaliza valores para number */
+  /* contratos: o coletor grava como array — o frontend espera .contrato (objeto único) */
+  if(Array.isArray(c.contratos) && c.contratos.length > 0 && !c.contrato){
+    var ct = c.contratos[0];
+    c.contrato = {
+      numero:     ct.numero_contrato || ct.numero || "",
+      empresa:    ct.razao_social    || ct.empresa || "",
+      cnpj:       ct.cnpj            || "",
+      valor:      parseReais(ct.valor),
+      situacao:   ct.situacao        || "",
+      data_inicio:ct.dt_inicio       || ct.data_inicio || "",
+      data_fim:   ct.dt_fim          || ct.data_fim    || "",
+    };
+    /* Se valor zerado, tenta campo valor_repasse do contrato */
+    if(!c.contrato.valor) c.contrato.valor = parseReais(ct.valor_repasse);
+  }
+
+  /* movimentacoes: garante que v_orig/v_bruto/v_liq sejam números */
   (c.movimentacoes||[]).forEach(function(m){
     m.v_orig  = parseReais(m.v_orig);
     m.v_bruto = parseReais(m.v_bruto);
     m.v_liq   = parseReais(m.v_liq);
   });
 
-  /* 5. notas_fiscais: normaliza colunas do coletor v8
-     Coletor grava: num, data, razao, tipo, v_orig, v_bruto, tributos, v_liq, status
-     Todos os valores já vêm como float desde a v8. */
+  /* notas_fiscais: idem */
   (c.notas_fiscais||[]).forEach(function(n){
     n.v_orig   = parseReais(n.v_orig);
     n.v_bruto  = parseReais(n.v_bruto);
     n.tributos = parseReais(n.tributos);
     n.v_liq    = parseReais(n.v_liq);
-    /* Recalcula v_liq se zerado */
     if(!n.v_liq && n.v_bruto) n.v_liq = n.v_bruto - n.tributos;
-    /* razao: garante que é string (não número) */
-    if(typeof n.razao === "number") n.razao = "";
-
-    /* itens: normaliza rateio */
+    /* razao: pode vir como "razao" ou "razao_social" do coletor */
+    if(!n.razao && n.razao_social) n.razao = n.razao_social;
+    /* status: pode vir como "status" (modelo) ou "situacao" (coletor) */
+    if(!n.status && n.situacao) n.status = n.situacao;
+    if(!n.tipo && n.tdl) n.tipo = n.tdl;
+    /* itens */
     (n.itens||[]).forEach(function(it){
       it.valor         = parseReais(it.valor);
       it.repasse       = parseReais(it.repasse);
       it.contrapartida = parseReais(it.contrapartida);
       it.rendimento    = parseReais(it.rendimento);
-      /* Se repasse=0 e valor>0, assume tudo repasse (padrão mais comum) */
-      if(!it.repasse && !it.contrapartida && it.valor > 0)
-        it.repasse = it.valor;
     });
-
-    /* Se NF sem itens mas com v_bruto, cria item sintético */
-    if((!n.itens || !n.itens.length) && n.v_bruto > 0){
-      n.itens = [{
-        desc:"Serviços executados", valor:n.v_bruto,
-        repasse:n.v_bruto, contrapartida:0, rendimento:0
-      }];
-    }
   });
 
-  /* 6. exec_fisica_obs: monta a partir dos campos extras do coletor */
+  /* exec_fisica_obs: monta a partir dos dados do coletor se ausente */
   if(!c.exec_fisica_obs){
-    var pf = [];
-    if(c.exec_fisica_valor_realizado) pf.push("Realizado: "+c.exec_fisica_valor_realizado);
-    if(c.exec_fisica_valor_total)     pf.push("Total: "+c.exec_fisica_valor_total);
-    if(c.ateste_convenente)           pf.push("✓ Atestado pelo Convenente");
+    var partes = [];
+    if(c.exec_fisica_valor_realizado) partes.push("Valor realizado: "+c.exec_fisica_valor_realizado);
+    if(c.exec_fisica_valor_total)     partes.push("Total: "+c.exec_fisica_valor_total);
+    if(c.ateste_convenente)           partes.push("✓ Atestado pelo Convenente");
     if(c.regime_simplificado && !c.ateste_concedente)
-      pf.push("Concedente atesta na PC Final");
-    c.exec_fisica_obs = pf.join(" · ");
+                                      partes.push("Concedente: atesta na PC Final (Regime Simplificado)");
+    c.exec_fisica_obs = partes.join(" · ");
+  }
+
+  /* exec_fisica_pct: garante número */
+  if(typeof c.exec_fisica_pct === "string"){
+    c.exec_fisica_pct = parseFloat(String(c.exec_fisica_pct).replace(",",".")) || 0;
   }
 
   return c;
 }
-
 function tipoBadge(tipo){
-  var t=(tipo||"").toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"");
-  if(t.includes("CONTRAPARTIDA")||t.includes("INGRESSO")) return '<span class="b b-blue">Contrapartida</span>';
-  if(t.includes("OBTV")||t.includes("PAGAMENTO A FAVORECIDO")||t.includes("PGTO OBTV"))
-    return '<span class="b b-green">Pgto OBTV</span>';
-  if(t.includes("TRIBUTO")||t.includes("PAGAMENTO DE TRIBUTO"))
-    return '<span class="b b-amber">Tributo</span>';
-  if(t.includes("RENDIMENTO")) return '<span class="b b-purple">Rendimento</span>';
+  var t = (tipo||"").toUpperCase();
+  if(t.includes("CONTRAPARTIDA"))    return '<span class="b b-blue">Contrapartida</span>';
+  if(t.includes("OBTV"))             return '<span class="b b-green">Pgto OBTV</span>';
+  if(t.includes("TRIBUTO"))          return '<span class="b b-amber">Tributo</span>';
+  if(t.includes("RENDIMENTO"))       return '<span class="b b-purple">Rendimento</span>';
   return '<span class="b b-slate">'+sanitize(tipo)+'</span>';
 }
 function sitBadge(sit){
@@ -762,10 +728,7 @@ function sitBadge(sit){
   return '<span class="b b-slate">'+sanitize(sit)+'</span>';
 }
 function nfStatusBadge(s){
-  var sl=(s||"").toLowerCase();
-  if(sl.includes("ativo")||sl.includes("ativa")) return '<span class="b b-green">Ativo</span>';
-  if(sl.includes("conclu")) return '<span class="b b-blue">Concluída</span>';
-  return '<span class="b b-slate">'+sanitize(s)+'</span>';
+  return s==="Ativo"?'<span class="b b-green">Ativo</span>':'<span class="b b-red">'+sanitize(s)+'</span>';
 }
 
 /* ── POPULAR SELECTOR ───────────────────────────────── */
@@ -852,22 +815,23 @@ function renderInstrumento(){
 
 /* ── CALC TOTAL PAGO ────────────────────────────────── */
 function calcTotalPago(c){
-  /* Soma apenas pagamentos OBTV (transferência à empresa executora).
-     IMPORTANTE: O Transferegov grava v_liq = 0,00 para OBTV porque os tributos
-     são descontados em linhas separadas (PAGAMENTO DE TRIBUTOS). Por isso usamos
-     v_bruto como valor pago à empresa, que é o valor correto do crédito realizado. */
+  /* Soma pagamentos OBTV de REPASSE FEDERAL (transferência à empresa executora).
+     Exclui OBTV de contrapartida — identificados pelo favorecido ser o CNPJ
+     do próprio convenente (IDEPI = 09.034.960/0001-47) ou o v_orig == contrapartida.
+     Usa v_orig porque o Transferegov desconta tributos no v_bruto. */
+  var cnpjConvenente = (c.cnpj_convenente || "09.034.960/0001-47").replace(/[^\d]/g,"");
   var total = 0;
   (c.movimentacoes||[]).forEach(function(m){
     var t = (m.tipo||"").toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"");
     var isObtv = t.includes("OBTV") || t.includes("PAGAMENTO A FAVORECIDO")
               || t.includes("PGTO OBTV") || t.includes("PAGAMENTO FAVORECIDO");
-    if(isObtv){
-      /* v_orig = valor cheio creditado à empresa (antes de qualquer retenção)
-         O Transferegov grava v_bruto já com tributos descontados nas linhas OBTV */
-      var vorig = parseReais(m.v_orig);
-      var vbrut = parseReais(m.v_bruto);
-      total += vorig > 0 ? vorig : vbrut;
-    }
+    if(!isObtv) return;
+    /* Exclui se favorecido é o CNPJ do próprio IDEPI/convenente (= contrapartida) */
+    var fav = (m.favorecido || "").replace(/[^\d]/g,"");
+    if(fav && fav === cnpjConvenente) return;
+    var vorig = parseReais(m.v_orig);
+    var vbrut = parseReais(m.v_bruto);
+    total += vorig > 0 ? vorig : vbrut;
   });
   return total;
 }
@@ -938,57 +902,22 @@ function renderMov(c){
   var rows = c.movimentacoes||[];
   document.getElementById("mov-count").textContent = rows.length+" movimentação(ões)";
 
-  /* Totais do rodapé — usa v_orig como base */
-  var totOrig=0, totBruto=0, totLiqEfetivo=0;
-  rows.forEach(function(m){
-    var vo=parseReais(m.v_orig), vb=parseReais(m.v_bruto), vl=parseReais(m.v_liq);
-    totOrig  += vo;
-    totBruto += vb;
-    /* Vlq efetivo: se v_liq zerado mas v_bruto existe, usa v_bruto
-       (Transferegov registra tributos em linhas separadas, não desconta do OBTV) */
-    totLiqEfetivo += vl > 0 ? vl : vb;
-  });
+  /* Totais do rodapé */
+  var totOrigem=0,totBruto=0,totLiq=0;
+  rows.forEach(function(m){ totOrigem+=m.v_orig||0; totBruto+=m.v_bruto||0; totLiq+=m.v_liq||0; });
 
   var html = "";
-  if(!rows.length){
-    html='<tr><td colspan="11" class="empty-row"><i class="fa-solid fa-inbox" style="margin-right:6px;opacity:.4"></i>Nenhuma movimentação encontrada</td></tr>';
-  } else {
+  if(!rows.length){ html='<tr><td colspan="11" class="empty-row"><i class="fa-solid fa-inbox" style="margin-right:6px;opacity:.4"></i>Nenhuma movimentação encontrada</td></tr>'; }
+  else {
     rows.forEach(function(m){
-      var vo = parseReais(m.v_orig);
-      var vb = parseReais(m.v_bruto);
-      var vl = parseReais(m.v_liq);
-      /* v_liq_presente: true se o coletor gravou um valor real (não null/undefined) */
-      var vlPresente = m.v_liq !== null && m.v_liq !== undefined && m.v_liq !== "";
-      /* Exibição do Vlr. Líquido:
-         - null/ausente  → exibe Vlr. Bruto sem nota (coletor não capturou; bruto é o real)
-         - 0 explícito   → exibe Vlr. Bruto com "(= bruto)" se bruto > 0
-         - > 0 e < bruto → exibe o líquido em verde (desconto de tributos aplicado)
-         - igual ao bruto → exibe normalmente sem nota */
-      var vliqExib, vliqCls;
-      if(!vlPresente){
-        /* v_liq ausente: mostra v_bruto como referência, sem anotação */
-        vliqExib = vb > 0 ? fmtN(vb) : '<span style="color:var(--muted)">—</span>';
-        vliqCls  = "";
-      } else if(vl === 0 && vb > 0){
-        /* v_liq explicitamente zero — Transferegov registrou 0 (tributos em linha separada) */
-        vliqExib = fmtN(vb)+'<span style="color:var(--muted);font-size:9px;margin-left:3px">(= bruto)</span>';
-        vliqCls  = "";
-      } else if(vl > 0 && vl < vb * 0.999){
-        /* v_liq menor que bruto (desconto real) */
-        vliqExib = fmtN(vl);
-        vliqCls  = "neg";
-      } else {
-        vliqExib = vl > 0 ? fmtN(vl) : '<span style="color:var(--muted)">—</span>';
-        vliqCls  = "";
-      }
       html += '<tr>';
       html += '<td class="mono-cell">'+sanitize(m.num)+'</td>';
       html += '<td class="date-cell">'+sanitize(m.data)+'</td>';
       html += '<td>'+tipoBadge(m.tipo)+'</td>';
-      html += '<td class="val-cell text-right">'+fmtN(vo)+'</td>';
-      html += '<td class="val-cell text-right">'+fmtN(vb)+'</td>';
-      html += '<td class="val-cell text-right '+vliqCls+'">'+vliqExib+'</td>';
-      html += '<td class="tipo-cell" style="font-size:10.5px">'+sanitize(m.favorecido||"")+'</td>';
+      html += '<td class="val-cell text-right">'+fmtN(m.v_orig)+'</td>';
+      html += '<td class="val-cell text-right">'+fmtN(m.v_bruto)+'</td>';
+      html += '<td class="val-cell text-right '+(m.v_liq<m.v_bruto?"neg":"")+'">'+fmtN(m.v_liq)+'</td>';
+      html += '<td class="tipo-cell" style="font-size:10.5px">'+sanitize(m.favorecido)+'</td>';
       html += '<td>'+(m.tributo?'<span class="b b-amber">'+sanitize(m.tributo)+'</span>':"<span style='color:var(--muted)'>—</span>")+'</td>';
       html += '<td class="mono-cell" style="font-size:10.5px">'+sanitize(m.ndl||"—")+'</td>';
       html += '<td style="font-size:10.5px;color:var(--muted)">'+sanitize(m.tdl||"—")+'</td>';
@@ -1000,9 +929,9 @@ function renderMov(c){
   document.getElementById("mov-footer").innerHTML =
     '<span>Total: <strong>'+rows.length+' movimentações</strong></span>'+
     '<span style="display:flex;gap:20px">'+
-    '<span>Orig: <strong>'+fmt(totOrig)+'</strong></span>'+
+    '<span>Orig: <strong>'+fmt(totOrigem)+'</strong></span>'+
     '<span>Bruto: <strong>'+fmt(totBruto)+'</strong></span>'+
-    '<span style="color:var(--green)">Líquido: <strong>'+fmt(totLiqEfetivo)+'</strong></span>'+
+    '<span style="color:var(--green)">Líquido: <strong>'+fmt(totLiq)+'</strong></span>'+
     '</span>';
 }
 
@@ -1015,6 +944,22 @@ function renderNF(c){
   rows.forEach(function(n){ totOrig+=n.v_orig||0; totTrib+=n.tributos||0; totLiq+=n.v_liq||0; });
 
   var html="";
+  /* Se NFs vazias mas movimentações têm OBTV com ndl, reconstrói NFs das movimentações */
+  if(!rows.length && c.movimentacoes && c.movimentacoes.length){
+    var nfMap = {};
+    c.movimentacoes.forEach(function(m){
+      var t = (m.tipo||"").toUpperCase();
+      if((t.includes("OBTV")||t.includes("PAGAMENTO A FAVORECIDO")) && m.ndl){
+        var ndls = String(m.ndl).split(/[,;\s]+/).map(function(x){return x.trim();}).filter(Boolean);
+        ndls.forEach(function(n){
+          if(!nfMap[n]) nfMap[n]={num:n,data:m.data,razao:m.favorecido||"",v_orig:0,v_bruto:0,tributos:0,v_liq:0,status:"Conciliada",tipo:"NOTA FISCAL"};
+          nfMap[n].v_orig += parseReais(m.v_orig);
+          nfMap[n].v_bruto += parseReais(m.v_bruto);
+        });
+      }
+    });
+    rows = Object.values(nfMap);
+  }
   if(!rows.length){ html='<tr><td colspan="9" class="empty-row"><i class="fa-solid fa-inbox" style="margin-right:6px;opacity:.4"></i>Nenhuma NF/DL encontrada</td></tr>'; }
   else {
     rows.forEach(function(n){
@@ -1059,7 +1004,7 @@ function renderRateio(c){
       var or = (n.origem_recurso || "Repasse").toLowerCase();
       if(or.includes("contrapartida")) totalCP   += n.v_bruto || n.v_orig || 0;
       else if(or.includes("rendimento")) totalRend += n.v_bruto || n.v_orig || 0;
-      else totalRep += n.v_bruto || n.v_orig || 0;
+      else totalRep += n.v_orig || n.v_bruto || 0;
     }
   });
   var totalGeral = totalRep+totalCP+totalRend;
@@ -1087,9 +1032,9 @@ function renderRateio(c){
       n.itens.forEach(function(it){ nRep+=it.repasse||0; nCP+=it.contrapartida||0; nRend+=it.rendimento||0; });
     } else {
       var or = (n.origem_recurso || "Repasse").toLowerCase();
-      if(or.includes("contrapartida")) nCP   = n.v_bruto || n.v_orig || 0;
-      else if(or.includes("rendimento")) nRend = n.v_bruto || n.v_orig || 0;
-      else nRep = n.v_bruto || n.v_orig || 0;
+      if(or.includes("contrapartida")) nCP   = n.v_orig || n.v_bruto || 0;
+      else if(or.includes("rendimento")) nRend = n.v_orig || n.v_bruto || 0;
+      else nRep = n.v_orig || n.v_bruto || 0;
     }
     var nTot = nRep+nCP+nRend;
     var nPRep=pct(nRep,nTot);
@@ -1111,13 +1056,10 @@ function renderRateio(c){
 }
 
 /* ── TABS ───────────────────────────────────────────── */
-var tabAtual = "mov";
 function showTab(t){
   tabAtual = t;
-  // Mapa explícito de tab → panelId para evitar bugs de capitalização
-  var panelMap = { "mov": "panelMov", "nf": "panelNf", "rat": "panelRat" };
   ["mov","nf","rat"].forEach(function(id){
-    var panel = document.getElementById(panelMap[id]);
+    var panel = document.getElementById("panel"+id.charAt(0).toUpperCase()+id.slice(1));
     var tab   = document.getElementById("tab-"+id);
     if(panel) panel.style.display = id===t ? (id==="rat"?"block":"flex") : "none";
     if(tab)   tab.classList.toggle("active", id===t);

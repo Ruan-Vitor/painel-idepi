@@ -654,25 +654,31 @@ var INSTRUMENTOS_EXEC = [
 
     /* Movimentações financeiras */
     movimentacoes: [
-      { num:"10249848", data:"30/03/2026", tipo:"INGRESSO DE CONTRAPARTIDA",       v_orig:39000.00,    v_bruto:39000.00,    v_liq:39000.00,    favorecido:"09.034.960/0001-47", tributo:"",    ndl:"",         tdl:"",           situacao:"Concluída" },
-      { num:"10231942", data:"20/03/2026", tipo:"PAGAMENTO DE TRIBUTOS",            v_orig:4497.27,     v_bruto:4497.27,     v_liq:4497.27,     favorecido:"",                  tributo:"ISS", ndl:"897, 898", tdl:"NOTA FISCAL", situacao:"Concluída" },
-      { num:"10231930", data:"20/03/2026", tipo:"PAGAMENTO DE TRIBUTOS",            v_orig:5996.35,     v_bruto:5996.35,     v_liq:5996.35,     favorecido:"",                  tributo:"IR",  ndl:"897, 898", tdl:"NOTA FISCAL", situacao:"Concluída" },
-      { num:"10231891", data:"20/03/2026", tipo:"PAGAMENTO DE TRIBUTOS",            v_orig:4060.14,     v_bruto:4060.14,     v_liq:4060.14,     favorecido:"",                  tributo:"IR",  ndl:"896",      tdl:"NOTA FISCAL", situacao:"Concluída" },
-      { num:"10231888", data:"20/03/2026", tipo:"PAGAMENTO DE TRIBUTOS",            v_orig:3045.11,     v_bruto:3045.11,     v_liq:3045.11,     favorecido:"",                  tributo:"ISS", ndl:"896",      tdl:"NOTA FISCAL", situacao:"Concluída" },
-      { num:"10227940", data:"18/03/2026", tipo:"PAGAMENTO A FAVORECIDO COM OBTV", v_orig:111654.56, v_bruto:109309.81, v_liq:0, favorecido:"02.577.913/0001-09",tributo:"",ndl:"898",tdl:"NOTA FISCAL",situacao:"Conciliada"},
-      { num:"10227938", data:"18/03/2026", tipo:"PAGAMENTO A FAVORECIDO COM OBTV", v_orig:388041.81, v_bruto:379892.94, v_liq:0, favorecido:"02.577.913/0001-09",tributo:"",ndl:"897",tdl:"NOTA FISCAL",situacao:"Conciliada"},
-      { num:"10227934", data:"18/03/2026", tipo:"PAGAMENTO A FAVORECIDO COM OBTV", v_orig:338345.44, v_bruto:331240.19, v_liq:0, favorecido:"02.577.913/0001-09",tributo:"",ndl:"896",tdl:"NOTA FISCAL",situacao:"Conciliada"},
-      { num:"8590923",  data:"21/02/2024", tipo:"INGRESSO DE CONTRAPARTIDA",        v_orig:8000.00,     v_bruto:8000.00,     v_liq:8000.00,     favorecido:"09.034.960/0001-47", tributo:"",    ndl:"",         tdl:"",           situacao:"Concluída" }
+      { num:"10357642", data:"15/05/2026", tipo:"PAGAMENTO A FAVORECIDO COM OBTV", v_orig:47000.00,    v_bruto:46013.00,   v_liq:46013.00,    v_retencao:987.00,   favorecido:"CONSTRUTORA RENATA LTDA (02.577.913/0001-09)", tributo:"", ndl:"905",      tdl:"NOTA FISCAL", situacao:"Concluída" },
+      { num:"10357641", data:"15/05/2026", tipo:"PAGAMENTO A FAVORECIDO COM OBTV", v_orig:76271.54,    v_bruto:74669.85,   v_liq:74669.85,    v_retencao:1601.69,  favorecido:"CONSTRUTORA RENATA LTDA (02.577.913/0001-09)", tributo:"", ndl:"904",      tdl:"NOTA FISCAL", situacao:"Concluída" },
+      { num:"10249848", data:"30/03/2026", tipo:"INGRESSO DE CONTRAPARTIDA",       v_orig:39000.00,    v_bruto:39000.00,   v_liq:39000.00,    v_retencao:0,        favorecido:"09.034.960/0001-47", tributo:"",    ndl:"",         tdl:"",           situacao:"Concluída" },
+      { num:"10231942", data:"20/03/2026", tipo:"PAGAMENTO DE TRIBUTOS",            v_orig:4497.27,     v_bruto:4497.27,    v_liq:4497.27,     v_retencao:0,        favorecido:"",                  tributo:"ISS", ndl:"897, 898", tdl:"NOTA FISCAL", situacao:"Concluída" },
+      { num:"10231930", data:"20/03/2026", tipo:"PAGAMENTO DE TRIBUTOS",            v_orig:5996.35,     v_bruto:5996.35,    v_liq:5996.35,     v_retencao:0,        favorecido:"",                  tributo:"IR",  ndl:"897, 898", tdl:"NOTA FISCAL", situacao:"Concluída" },
+      { num:"10231891", data:"20/03/2026", tipo:"PAGAMENTO DE TRIBUTOS",            v_orig:4060.14,     v_bruto:4060.14,    v_liq:4060.14,     v_retencao:0,        favorecido:"",                  tributo:"IR",  ndl:"896",      tdl:"NOTA FISCAL", situacao:"Concluída" },
+      { num:"10231888", data:"20/03/2026", tipo:"PAGAMENTO DE TRIBUTOS",            v_orig:3045.11,     v_bruto:3045.11,    v_liq:3045.11,     v_retencao:0,        favorecido:"",                  tributo:"ISS", ndl:"896",      tdl:"NOTA FISCAL", situacao:"Concluída" },
+      { num:"10227940", data:"18/03/2026", tipo:"PAGAMENTO A FAVORECIDO COM OBTV",  v_orig:111654.56,   v_bruto:109309.81,  v_liq:109309.81,   v_retencao:2344.75,  favorecido:"CONSTRUTORA RENATA LTDA (02.577.913/0001-09)", tributo:"", ndl:"898", tdl:"NOTA FISCAL", situacao:"Conciliada" },
+      { num:"10227938", data:"18/03/2026", tipo:"PAGAMENTO A FAVORECIDO COM OBTV",  v_orig:388041.81,   v_bruto:379892.94,  v_liq:379892.94,   v_retencao:8148.87,  favorecido:"CONSTRUTORA RENATA LTDA (02.577.913/0001-09)", tributo:"", ndl:"897", tdl:"NOTA FISCAL", situacao:"Conciliada" },
+      { num:"10227934", data:"18/03/2026", tipo:"PAGAMENTO A FAVORECIDO COM OBTV",  v_orig:338345.44,   v_bruto:331240.19,  v_liq:331240.19,   v_retencao:7105.25,  favorecido:"CONSTRUTORA RENATA LTDA (02.577.913/0001-09)", tributo:"", ndl:"896", tdl:"NOTA FISCAL", situacao:"Conciliada" },
+      { num:"8590923",  data:"21/02/2024", tipo:"INGRESSO DE CONTRAPARTIDA",        v_orig:8000.00,     v_bruto:8000.00,    v_liq:8000.00,     v_retencao:0,        favorecido:"09.034.960/0001-47", tributo:"",    ndl:"",         tdl:"",           situacao:"Concluída" }
     ],
 
     /* Notas Fiscais / Docs de Liquidação */
     notas_fiscais: [
-      { num:"896", data:"16/03/2026", razao:"CONSTRUTORA RENATA LTDA", cnpj:"02.577.913/0001-09", v_orig:338345.44, v_bruto:331240.19, tributos:7105.25, v_liq:331240.19, status:"Ativo", tipo:"NOTA FISCAL",
-        itens:[{desc:"Execução serviços manutenção estradas — Lagoa de São Francisco/PI", valor:338345.44, repasse:338345.44, contrapartida:0, rendimento:0}] },
-      { num:"897", data:"16/03/2026", razao:"CONSTRUTORA RENATA LTDA", cnpj:"02.577.913/0001-09", v_orig:388041.81, v_bruto:379892.94, tributos:8148.87, v_liq:379892.94, status:"Ativo", tipo:"NOTA FISCAL",
+      { num:"905", data:"22/04/2026", razao:"CONSTRUTORA RENATA LTDA", cnpj:"02.577.913/0001-09", v_orig:47000.00,    v_bruto:47000.00,    tributos:987.00,   v_liq:46013.00,    status:"Ativo", tipo:"NOTA FISCAL",
+        itens:[{desc:"Execução serviços manutenção estradas — Lagoa de São Francisco/PI", valor:47000.00, repasse:0, contrapartida:47000.00, rendimento:0}] },
+      { num:"904", data:"22/04/2026", razao:"CONSTRUTORA RENATA LTDA", cnpj:"02.577.913/0001-09", v_orig:76271.54,    v_bruto:76271.54,    tributos:1601.69,  v_liq:74669.85,    status:"Ativo", tipo:"NOTA FISCAL",
+        itens:[{desc:"Execução serviços manutenção estradas — Lagoa de São Francisco/PI", valor:76271.54, repasse:76271.54, contrapartida:0, rendimento:0}] },
+      { num:"898", data:"16/03/2026", razao:"CONSTRUTORA RENATA LTDA", cnpj:"02.577.913/0001-09", v_orig:111654.56,   v_bruto:111654.56,   tributos:2344.75,  v_liq:109309.81,   status:"Ativo", tipo:"NOTA FISCAL",
+        itens:[{desc:"Execução serviços manutenção estradas — Lagoa de São Francisco/PI", valor:111654.56, repasse:111654.56, contrapartida:0, rendimento:0}] },
+      { num:"897", data:"16/03/2026", razao:"CONSTRUTORA RENATA LTDA", cnpj:"02.577.913/0001-09", v_orig:388041.81,   v_bruto:388041.81,   tributos:8148.87,  v_liq:379892.94,   status:"Ativo", tipo:"NOTA FISCAL",
         itens:[{desc:"Execução serviços manutenção estradas — Lagoa de São Francisco/PI", valor:388041.81, repasse:388041.81, contrapartida:0, rendimento:0}] },
-      { num:"898", data:"16/03/2026", razao:"CONSTRUTORA RENATA LTDA", cnpj:"02.577.913/0001-09", v_orig:111654.56, v_bruto:109309.81, tributos:2344.75, v_liq:109309.81, status:"Ativo", tipo:"NOTA FISCAL",
-        itens:[{desc:"Execução serviços manutenção estradas — Lagoa de São Francisco/PI", valor:111654.56, repasse:111654.56, contrapartida:0, rendimento:0}] }
+      { num:"896", data:"16/03/2026", razao:"CONSTRUTORA RENATA LTDA", cnpj:"02.577.913/0001-09", v_orig:338345.44,   v_bruto:338345.44,   tributos:7105.25,  v_liq:331240.19,   status:"Ativo", tipo:"NOTA FISCAL",
+        itens:[{desc:"Execução serviços manutenção estradas — Lagoa de São Francisco/PI", valor:338345.44, repasse:338345.44, contrapartida:0, rendimento:0}] }
     ]
   }
 ];
@@ -738,6 +744,15 @@ function normalizarInstrumento(c){
     m.v_orig  = parseReais(m.v_orig);
     m.v_bruto = parseReais(m.v_bruto);
     m.v_liq   = parseReais(m.v_liq);
+    m.v_retencao = parseReais(m.v_retencao);
+    /* OBTVs: Transferegov grava v_liq=0 pois tributos são linhas separadas.
+       v_liq efetivo = v_bruto (valor creditado à empresa). */
+    var _t = (m.tipo||"").toUpperCase();
+    if((_t.includes("OBTV")||_t.includes("PAGAMENTO A FAVORECIDO")) && !m.v_liq){
+      m.v_liq = m.v_bruto;
+    }
+    /* Demais tipos sem v_liq: usa v_bruto como fallback */
+    if(!m.v_liq && m.v_bruto) m.v_liq = m.v_bruto;
   });
 
   /* notas_fiscais: idem */
@@ -1136,18 +1151,39 @@ function renderNF(c){
   /* Se NFs vazias mas movimentações têm OBTV com ndl, reconstrói NFs das movimentações */
   if(!rows.length && c.movimentacoes && c.movimentacoes.length){
     var nfMap = {};
+
+    /* Passo 1: cria entrada por NF a partir dos OBTVs */
     c.movimentacoes.forEach(function(m){
       var t = (m.tipo||"").toUpperCase();
       if((t.includes("OBTV")||t.includes("PAGAMENTO A FAVORECIDO")) && m.ndl){
         var ndls = String(m.ndl).split(/[,;\s]+/).map(function(x){return x.trim();}).filter(Boolean);
-        ndls.forEach(function(n){
-          if(!nfMap[n]) nfMap[n]={num:n,data:m.data,razao:m.favorecido||"",v_orig:0,v_bruto:0,tributos:0,v_liq:0,status:"Conciliada",tipo:"NOTA FISCAL"};
-          nfMap[n].v_orig += parseReais(m.v_orig);
-          nfMap[n].v_bruto += parseReais(m.v_bruto);
+        ndls.forEach(function(nk){
+          if(!nfMap[nk]) nfMap[nk]={num:nk,data:m.data,razao:m.favorecido||"",v_orig:0,v_bruto:0,tributos:0,v_liq:0,status:"Conciliada",tipo:"NOTA FISCAL"};
+          nfMap[nk].v_orig  += parseReais(m.v_orig);
+          nfMap[nk].v_bruto += parseReais(m.v_bruto);
         });
       }
     });
-    rows = Object.values(nfMap);
+
+    /* Passo 2: acumula tributos nas NFs pelo campo ndl das linhas de tributo */
+    c.movimentacoes.forEach(function(m){
+      var t = (m.tipo||"").toUpperCase();
+      if(t.includes("TRIBUTO") && m.ndl){
+        var ndls = String(m.ndl).split(/[,;\s]+/).map(function(x){return x.trim();}).filter(Boolean);
+        ndls.forEach(function(nk){
+          if(nfMap[nk]) nfMap[nk].tributos += parseReais(m.v_orig);
+        });
+      }
+    });
+
+    /* Passo 3: v_liq = bruto (já é o valor líquido pago; tributos são retenções separadas) */
+    Object.values(nfMap).forEach(function(n){
+      n.v_liq = n.v_bruto;
+    });
+
+    rows = Object.values(nfMap).sort(function(a,b){
+      return (parseInt(b.num)||0) - (parseInt(a.num)||0);
+    });
   }
   if(!rows.length){ html='<tr><td colspan="9" class="empty-row"><i class="fa-solid fa-inbox" style="margin-right:6px;opacity:.4"></i>Nenhuma NF/DL encontrada</td></tr>'; }
   else {

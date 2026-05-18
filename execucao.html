@@ -98,6 +98,16 @@ button:has(svg):not([class]):not([id]) { display:none !important; }
 .inst-chip.ic-exec{background:#f0fdf4;color:#166534;border-color:#86efac}
 .inst-chip.ic-simp{background:#f5f3ff;color:#5b21b6;border-color:#c4b5fd}
 .inst-chip.ic-mandataria{background:#eff6ff;color:#1d4ed8;border-color:#93c5fd}
+.inst-chip.ic-tipo{background:#fff7ed;color:#92400e;border-color:#fcd34d}
+.inst-chip.ic-ano{background:#f0fdf4;color:#065f46;border-color:#6ee7b7}
+
+/* ── FILTROS DE INSTRUMENTO ── */
+.filt-sep{width:1px;height:22px;background:var(--border);flex-shrink:0}
+.filt-group{display:flex;align-items:center;gap:6px}
+.filt-label{font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.4px;white-space:nowrap}
+.filt-sel{font-size:11px;color:var(--text);background:var(--surface2);border:1.5px solid var(--border);border-radius:6px;padding:4px 8px;cursor:pointer;outline:none;max-width:160px}
+.filt-sel:focus{border-color:var(--blue-bdr)}
+.filt-count{font-size:10px;font-weight:700;color:var(--muted);white-space:nowrap;padding:3px 7px;background:var(--surface2);border:1px solid var(--border);border-radius:10px}
 
 /* ── SCROLL ── */
 .scroll{flex:1;padding:20px 28px;display:flex;flex-direction:column;gap:16px}
@@ -279,7 +289,9 @@ tbody tr:hover td{background:#f5f9ff}
   .sb-item{flex-shrink:0;white-space:nowrap;padding:6px 12px;font-size:12px}
   .content{flex:none;width:100%}
   .scroll{flex:none;padding:14px}
-  .inst-bar{padding:10px 14px}
+  .inst-bar{padding:10px 14px;gap:8px}
+  .filt-sep{display:none}
+  .filt-sel{max-width:120px;font-size:10px}
   .pg-head{padding:12px 14px}
   .val-strip{grid-template-columns:1fr;gap:10px}
   .vs-exec-grid{grid-template-columns:1fr}
@@ -420,6 +432,37 @@ tbody tr:hover td{background:#f5f9ff}
       <select class="inst-select" id="selInst" onchange="carregarInstrumento()">
         <!-- Populado via JS -->
       </select>
+
+      <div class="filt-sep"></div>
+
+      <div class="filt-group">
+        <span class="filt-label">Tipo</span>
+        <select class="filt-sel" id="filtTipo" onchange="aplicarFiltros()">
+          <option value="">Todos</option>
+          <option value="Contrato de Repasse">Contrato de Repasse</option>
+          <option value="Convênio">Convênio</option>
+          <option value="Termo de Compromisso">Termo de Compromisso</option>
+        </select>
+      </div>
+
+      <div class="filt-group">
+        <span class="filt-label">Ano</span>
+        <select class="filt-sel" id="filtAno" onchange="aplicarFiltros()">
+          <option value="">Todos</option>
+          <!-- Populado via JS com os anos encontrados -->
+        </select>
+      </div>
+
+      <div class="filt-group">
+        <span class="filt-label">Situação</span>
+        <select class="filt-sel" id="filtSit" onchange="aplicarFiltros()">
+          <option value="">Todas</option>
+          <!-- Populado via JS com as situações encontradas -->
+        </select>
+      </div>
+
+      <span class="filt-count" id="filtCount"></span>
+
       <div class="inst-meta" id="instMeta">
         <!-- chips dinâmicos -->
       </div>
@@ -720,6 +763,10 @@ function normalizarInstrumento(c){
     c.exec_fisica_pct = parseFloat(c.exec_fisica_pct.replace(",",".")) || 0;
   }
 
+  /* tipo_instrumento e ano: garante string */
+  c.tipo_instrumento = c.tipo_instrumento || "";
+  c.ano = c.ano || "";
+
   /* contratos: o coletor grava como array — o frontend espera .contrato (objeto único) */
   if(Array.isArray(c.contratos) && c.contratos.length > 0 && !c.contrato){
     var ct = c.contratos[0];
@@ -812,15 +859,82 @@ function nfStatusBadge(s){
 
 /* ── POPULAR SELECTOR ───────────────────────────────── */
 function popularSelector(convenios){
-  var sel = document.getElementById("selInst");
-  sel.innerHTML = "";
   var lista = convenios && convenios.length ? convenios : INSTRUMENTOS_EXEC;
+  INSTRUMENTOS_EXEC = lista; // garante referência global atualizada
+
+  // ── Popula filtros dinâmicos (Ano e Situação) ──────────────────────────
+  var anos = [], sits = [];
   lista.forEach(function(c){
+    var a = c.ano || "";
+    var s = c.situacao_tgov || c.situacao || "";
+    if(a && !anos.includes(a)) anos.push(a);
+    if(s && !sits.includes(s)) sits.push(s);
+  });
+  anos.sort().reverse();
+  sits.sort();
+
+  var filtAno = document.getElementById("filtAno");
+  filtAno.innerHTML = '<option value="">Todos</option>';
+  anos.forEach(function(a){
+    var o = document.createElement("option");
+    o.value = a; o.textContent = a;
+    filtAno.appendChild(o);
+  });
+
+  var filtSit = document.getElementById("filtSit");
+  filtSit.innerHTML = '<option value="">Todas</option>';
+  sits.forEach(function(s){
+    var o = document.createElement("option");
+    o.value = s; o.textContent = s;
+    filtSit.appendChild(o);
+  });
+
+  aplicarFiltros();
+}
+
+/* ── FILTROS ──────────────────────────────────────────── */
+function aplicarFiltros(){
+  var tipo = document.getElementById("filtTipo").value;
+  var ano  = document.getElementById("filtAno").value;
+  var sit  = document.getElementById("filtSit").value;
+
+  var filtrados = INSTRUMENTOS_EXEC.filter(function(c){
+    if(tipo && (c.tipo_instrumento || "") !== tipo) return false;
+    if(ano  && (c.ano || "") !== ano)               return false;
+    if(sit){
+      var s = c.situacao_tgov || c.situacao || "";
+      if(s !== sit) return false;
+    }
+    return true;
+  });
+
+  var sel = document.getElementById("selInst");
+  var valorAnterior = sel.value;
+  sel.innerHTML = "";
+
+  if(!filtrados.length){
+    var opt = document.createElement("option");
+    opt.value = ""; opt.textContent = "— Nenhum instrumento —";
+    sel.appendChild(opt);
+    document.getElementById("filtCount").textContent = "0 instrumentos";
+    return;
+  }
+
+  filtrados.forEach(function(c){
     var opt = document.createElement("option");
     opt.value = c.numero;
-    opt.textContent = c.numero + " — " + (c.objeto||"").substring(0,55)+"…";
+    opt.textContent = c.numero + " — " + (c.objeto||"").substring(0,50)+"…";
     sel.appendChild(opt);
   });
+
+  // Mantém seleção anterior se ainda está na lista filtrada
+  if(filtrados.find(function(c){ return c.numero === valorAnterior; })){
+    sel.value = valorAnterior;
+  }
+
+  document.getElementById("filtCount").textContent =
+    filtrados.length + (filtrados.length === 1 ? " instrumento" : " instrumentos");
+
   carregarInstrumento();
 }
 
@@ -839,7 +953,9 @@ function renderInstrumento(){
 
   /* Chips */
   var meta = [];
-  if(c.situacao) meta.push('<span class="inst-chip ic-exec"><i class="fa-solid fa-circle-play" style="font-size:8px"></i> '+sanitize(c.situacao)+'</span>');
+  if(c.situacao || c.situacao_tgov) meta.push('<span class="inst-chip ic-exec"><i class="fa-solid fa-circle-play" style="font-size:8px"></i> '+sanitize(c.situacao||c.situacao_tgov)+'</span>');
+  if(c.tipo_instrumento) meta.push('<span class="inst-chip ic-tipo"><i class="fa-solid fa-file-contract" style="font-size:8px"></i> '+sanitize(c.tipo_instrumento)+'</span>');
+  if(c.ano) meta.push('<span class="inst-chip ic-ano"><i class="fa-solid fa-calendar" style="font-size:8px"></i> '+sanitize(c.ano)+'</span>');
   if(c.regime_simplificado) meta.push('<span class="inst-chip ic-simp"><i class="fa-solid fa-bolt" style="font-size:8px"></i> Regime Simplificado</span>');
   if(c.mandataria) meta.push('<span class="inst-chip ic-mandataria"><i class="fa-solid fa-building-columns" style="font-size:8px"></i> '+sanitize(c.mandataria)+'</span>');
   document.getElementById("instMeta").innerHTML = meta.join("");

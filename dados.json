@@ -2146,7 +2146,7 @@
     {
       "numero": "946260",
       "objeto": "MANUTENCAO E ADEQUACAO NAS ESTRADAS VICINAIS NO MUNICIPIO DE LAGOA DE SAO FRANCISCO-PI.",
-      "coletado_em": "18/05/2026 16:51",
+      "coletado_em": "18/05/2026 16:56",
       "valor_global": "R$ 1.002.000,00",
       "valor_repasse": "R$ 955.000,00",
       "valor_contrapartida": "R$ 47.000,00",
@@ -2348,7 +2348,128 @@
           "situacao": "Movimentação Financeira Concluída"
         }
       ],
-      "notas_fiscais": [],
+      "notas_fiscais": [
+        {
+          "num": "905",
+          "data": "22/04/2026",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA RENATA LTDA",
+          "v_orig": 47000.0,
+          "v_bruto": 47000.0,
+          "tributos": 987.0,
+          "v_liq": 46013.0,
+          "status": "Ativo",
+          "id_nf": "8324815",
+          "id_item": "",
+          "origem_recurso": "Repasse / Contrapartida / Rendimento",
+          "itens": [
+            {
+              "desc": "EXECUÇÃO DOS SERVIÇOS DE MANUTENÇÃO E ADEQUAÇÃO NAS ESTRADAS VICINAIS NO MUNICÍPIO LAGOA DE SÃO FRANCISCO - PI, CONTRATO DE REPASSE CIDADES 946260",
+              "valor": 47000.0,
+              "id_item": "14127706",
+              "repasse": 0.0,
+              "contrapartida": 47000.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "904",
+          "data": "22/04/2026",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA RENATA LTDA",
+          "v_orig": 76271.54,
+          "v_bruto": 76271.54,
+          "tributos": 1601.69,
+          "v_liq": 74669.85,
+          "status": "Ativo",
+          "id_nf": "8324763",
+          "id_item": "",
+          "origem_recurso": "Repasse / Rendimento",
+          "itens": [
+            {
+              "desc": "EXECUÇÃO DOS SERVIÇOS DE MANUTENÇÃO E ADEQUAÇÃO NAS ESTRADAS VICINAIS NO MUNICÍPIO LAGOA DE SÃO FRANCISCO - PI, CONTRATO DE REPASSE CIDADES 946260",
+              "valor": 76271.54,
+              "id_item": "14127688",
+              "repasse": 76271.54,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "898",
+          "data": "16/03/2026",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA RENATA LTDA",
+          "v_orig": 111654.56,
+          "v_bruto": 111654.56,
+          "tributos": 2344.75,
+          "v_liq": 109309.81,
+          "status": "Ativo",
+          "id_nf": "8219554",
+          "id_item": "",
+          "origem_recurso": "Repasse / Rendimento",
+          "itens": [
+            {
+              "desc": "EXECUÇÃO DOS SERVIÇOS DE MANUTENÇÃO E ADEQUAÇÃO NAS ESTRADAS VICINAIS NO MUNICÍPIO LAGOA DE SÃO FRANCISCO - PI, CONTRATO DE REPASSE CIDADES 946260",
+              "valor": 111654.56,
+              "id_item": "13929179",
+              "repasse": 111654.56,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "897",
+          "data": "16/03/2026",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA RENATA LTDA",
+          "v_orig": 388041.81,
+          "v_bruto": 388041.81,
+          "tributos": 8148.87,
+          "v_liq": 379892.94,
+          "status": "Ativo",
+          "id_nf": "8219538",
+          "id_item": "",
+          "origem_recurso": "Repasse / Rendimento",
+          "itens": [
+            {
+              "desc": "EXECUÇÃO DOS SERVIÇOS DE MANUTENÇÃO E ADEQUAÇÃO NAS ESTRADAS VICINAIS NO MUNICÍPIO LAGOA DE SÃO FRANCISCO - PI, CONTRATO DE REPASSE CIDADES 946260",
+              "valor": 388041.81,
+              "id_item": "13929148",
+              "repasse": 388041.81,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "896",
+          "data": "16/03/2026",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA RENATA LTDA",
+          "v_orig": 338345.44,
+          "v_bruto": 338345.44,
+          "tributos": 7105.25,
+          "v_liq": 331240.19,
+          "status": "Ativo",
+          "id_nf": "8219505",
+          "id_item": "",
+          "origem_recurso": "Repasse / Rendimento",
+          "itens": [
+            {
+              "desc": "EXECUÇÃO DOS SERVIÇOS DE MANUTENÇÃO E ADEQUAÇÃO NAS ESTRADAS VICINAIS NO MUNICÍPIO LAGOA DE SÃO FRANCISCO - PI, CONTRATO DE REPASSE CIDADES 946260",
+              "valor": 338345.44,
+              "id_item": "13928974",
+              "repasse": 338345.44,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        }
+      ],
       "exec_fisica_pct": 100.0,
       "exec_fisica_str": "100,00%",
       "exec_fisica_valor_realizado": "R$ 961.313,35",
@@ -3738,5 +3859,5 @@
       "erro": "Nao encontrado no Transferegov"
     }
   ],
-  "exec_atualizado_em": "18/05/2026 16:53"
+  "exec_atualizado_em": "18/05/2026 16:59"
 }

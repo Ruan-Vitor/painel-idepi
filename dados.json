@@ -2513,15 +2513,234 @@
     {
       "numero": "781089",
       "objeto": "IMPLANTACAO DE INFRAESTRUTURA ESPORTIVA no Municipio de Monsenhor Hipolito  PI",
-      "coletado_em": "18/05/2026 16:46",
+      "coletado_em": "18/05/2026 19:21",
       "valor_global": "R$ 567.939,88",
       "valor_repasse": "R$ 487.500,00",
       "valor_contrapartida": "R$ 80.439,88",
       "situacao_tgov": "Em execução",
       "regime_simplificado": false,
+      "tipo_instrumento": "Contrato de Repasse",
+      "ano": "2012",
       "contratos": [],
       "movimentacoes": [],
-      "notas_fiscais": [],
+      "notas_fiscais": [
+        {
+          "num": "222",
+          "data": "20/07/2022",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA P2 LTDA",
+          "v_orig": 9390.94,
+          "v_bruto": 9390.94,
+          "tributos": 154.01,
+          "v_liq": 9236.93,
+          "status": "Ativo",
+          "id_nf": "5947882",
+          "id_item": "",
+          "origem_recurso": "Contrapartida / Rendimento",
+          "itens": [
+            {
+              "desc": "CONSTRUÇÃO DE UM ESTADIO DE FUTEBOL NO MUNICIPIO DE MONSENHOR HIPOLITO-PIAUI",
+              "valor": 9390.94,
+              "id_item": "10179775",
+              "repasse": 0.0,
+              "contrapartida": 9390.94,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "221",
+          "data": "20/07/2022",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA P2 LTDA",
+          "v_orig": 47522.18,
+          "v_bruto": 47522.18,
+          "tributos": 779.36,
+          "v_liq": 46742.82,
+          "status": "Ativo",
+          "id_nf": "5947830",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "CONSTRUÇÃO DE UM ESTADIO DE FUTEBOL NO MUNICIPIO DE MONSENHOR HIPOLITO-PIAUI",
+              "valor": 47522.18,
+              "id_item": "10179642",
+              "repasse": 47522.18,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "193",
+          "data": "20/04/2021",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA P2 LTDA",
+          "v_orig": 112832.68,
+          "v_bruto": 112832.68,
+          "tributos": 2820.81,
+          "v_liq": 110011.87,
+          "status": "Ativo",
+          "id_nf": "5216896",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "CONSTRUÇÃO DE UM ESTADIO DE FUTEBOL NO MUNICIPIO DE MONSENHOR HIPOLITO-PIAUI",
+              "valor": 112832.68,
+              "id_item": "8901073",
+              "repasse": 112832.68,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "185",
+          "data": "05/10/2020",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA P2 LTDA",
+          "v_orig": 84760.95,
+          "v_bruto": 84760.95,
+          "tributos": 2119.02,
+          "v_liq": 82641.93,
+          "status": "Ativo",
+          "id_nf": "5089568",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "CONSTRUÇÃO DE UM ESTADIO DE FUTEBOL NO MUNICIPIO DE MONSENHOR HIPOLITO-PIAUI",
+              "valor": 84760.95,
+              "id_item": "8709188",
+              "repasse": 84760.95,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "184",
+          "data": "05/10/2020",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA P2 LTDA",
+          "v_orig": 16749.76,
+          "v_bruto": 16749.76,
+          "tributos": 418.74,
+          "v_liq": 16331.02,
+          "status": "Ativo",
+          "id_nf": "5105957",
+          "id_item": "",
+          "origem_recurso": "Contrapartida / Rendimento",
+          "itens": [
+            {
+              "desc": "CONSTRUÇÃO DE UM ESTADIO DE FUTEBOL NO MUNICIPIO DE MONSENHOR HIPOLITO-PIAUI",
+              "valor": 16749.76,
+              "id_item": "8730408",
+              "repasse": 0.0,
+              "contrapartida": 16749.76,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "00161",
+          "data": "19/09/2019",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA P2 LTDA",
+          "v_orig": 7729.93,
+          "v_bruto": 7729.93,
+          "tributos": 100.48,
+          "v_liq": 7629.45,
+          "status": "Ativo",
+          "id_nf": "4404172",
+          "id_item": "",
+          "origem_recurso": "Contrapartida / Rendimento",
+          "itens": [
+            {
+              "desc": "CONSTRUÇÃO DE UM ESTADIO DE FUTEBOL NO MUNICIPIO DE MONSENHOR HIPOLITO-PIAUI",
+              "valor": 7729.93,
+              "id_item": "7587657",
+              "repasse": 0.0,
+              "contrapartida": 7729.93,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "00160",
+          "data": "19/09/2019",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA P2 LTDA",
+          "v_orig": 39116.75,
+          "v_bruto": 39116.75,
+          "tributos": 508.51,
+          "v_liq": 38608.24,
+          "status": "Ativo",
+          "id_nf": "4404103",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "CONSTRUÇÃO DE UM ESTADIO DE FUTEBOL NO MUNICIPIO DE MONSENHOR HIPOLITO-PIAUI",
+              "valor": 39116.75,
+              "id_item": "7587555",
+              "repasse": 39116.75,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "155",
+          "data": "24/04/2019",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA P2 LTDA",
+          "v_orig": 76.53,
+          "v_bruto": 76.53,
+          "tributos": 1.02,
+          "v_liq": 75.51,
+          "status": "Ativo",
+          "id_nf": "4330587",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "CONSTRUÇÃO DE UM ESTADIO DE FUTEBOL NO MUNICIPIO DE MONSENHOR HIPOLITO-PIAUI",
+              "valor": 76.53,
+              "id_item": "7462675",
+              "repasse": 76.53,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "154",
+          "data": "22/04/2019",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA P2 LTDA",
+          "v_orig": 52833.09,
+          "v_bruto": 52833.09,
+          "tributos": 1320.82,
+          "v_liq": 51512.27,
+          "status": "Ativo",
+          "id_nf": "4330563",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "CONSTRUÇÃO DE UM ESTADIO DE FUTEBOL NO MUNICIPIO DE MONSENHOR HIPOLITO-PIAUI",
+              "valor": 52833.09,
+              "id_item": "7462623",
+              "repasse": 52833.09,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        }
+      ],
       "exec_fisica_pct": 0,
       "exec_fisica_str": "0%",
       "exec_fisica_valor_realizado": "",
@@ -2530,7 +2749,7 @@
       "ateste_concedente": false,
       "status_obra": "",
       "tem_medicao": false,
-      "saldo_rendimentos": 0.0,
+      "saldo_rendimentos": 290.34,
       "_id_convenio": "318664",
       "_id_proposta": "",
       "erro": ""
@@ -3861,5 +4080,5 @@
       "erro": "Nao encontrado no Transferegov"
     }
   ],
-  "exec_atualizado_em": "18/05/2026 19:19"
+  "exec_atualizado_em": "18/05/2026 19:26"
 }

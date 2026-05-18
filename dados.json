@@ -2146,7 +2146,7 @@
     {
       "numero": "946260",
       "objeto": "MANUTENCAO E ADEQUACAO NAS ESTRADAS VICINAIS NO MUNICIPIO DE LAGOA DE SAO FRANCISCO-PI.",
-      "coletado_em": "18/05/2026 17:23",
+      "coletado_em": "18/05/2026 17:41",
       "valor_global": "R$ 1.002.000,00",
       "valor_repasse": "R$ 955.000,00",
       "valor_contrapartida": "R$ 47.000,00",
@@ -2174,10 +2174,10 @@
           "v_liq": 1109.44,
           "v_retencao": 0.0,
           "favorecido": "",
-          "tributo": "PAGAMENTO DE TRIBUTOS",
-          "ndl": "ISS",
-          "tdl": "904, 905",
-          "situacao": "NOTA FISCAL"
+          "tributo": "ISS",
+          "ndl": "904, 905",
+          "tdl": "NOTA FISCAL",
+          "situacao": ""
         },
         {
           "num": "10360255",
@@ -2188,10 +2188,10 @@
           "v_liq": 1479.25,
           "v_retencao": 0.0,
           "favorecido": "",
-          "tributo": "PAGAMENTO DE TRIBUTOS",
-          "ndl": "IR",
-          "tdl": "904, 905",
-          "situacao": "NOTA FISCAL"
+          "tributo": "IR",
+          "ndl": "904, 905",
+          "tdl": "NOTA FISCAL",
+          "situacao": ""
         },
         {
           "num": "10357642",
@@ -2244,10 +2244,10 @@
           "v_liq": 4497.27,
           "v_retencao": 0.0,
           "favorecido": "",
-          "tributo": "PAGAMENTO DE TRIBUTOS",
-          "ndl": "ISS",
-          "tdl": "897, 898",
-          "situacao": "NOTA FISCAL"
+          "tributo": "ISS",
+          "ndl": "897, 898",
+          "tdl": "NOTA FISCAL",
+          "situacao": ""
         },
         {
           "num": "10231930",
@@ -2258,10 +2258,10 @@
           "v_liq": 5996.35,
           "v_retencao": 0.0,
           "favorecido": "",
-          "tributo": "PAGAMENTO DE TRIBUTOS",
-          "ndl": "IR",
-          "tdl": "897, 898",
-          "situacao": "NOTA FISCAL"
+          "tributo": "IR",
+          "ndl": "897, 898",
+          "tdl": "NOTA FISCAL",
+          "situacao": ""
         },
         {
           "num": "10231891",
@@ -2272,10 +2272,10 @@
           "v_liq": 4060.14,
           "v_retencao": 0.0,
           "favorecido": "",
-          "tributo": "PAGAMENTO DE TRIBUTOS",
-          "ndl": "IR",
-          "tdl": "896",
-          "situacao": "NOTA FISCAL"
+          "tributo": "IR",
+          "ndl": "896",
+          "tdl": "NOTA FISCAL",
+          "situacao": ""
         },
         {
           "num": "10231888",
@@ -2286,10 +2286,10 @@
           "v_liq": 3045.11,
           "v_retencao": 0.0,
           "favorecido": "",
-          "tributo": "PAGAMENTO DE TRIBUTOS",
-          "ndl": "ISS",
-          "tdl": "896",
-          "situacao": "NOTA FISCAL"
+          "tributo": "ISS",
+          "ndl": "896",
+          "tdl": "NOTA FISCAL",
+          "situacao": ""
         },
         {
           "num": "10227940",
@@ -3859,5 +3859,5 @@
       "erro": "Nao encontrado no Transferegov"
     }
   ],
-  "exec_atualizado_em": "18/05/2026 17:25"
+  "exec_atualizado_em": "18/05/2026 17:44"
 }

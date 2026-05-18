@@ -38,7 +38,7 @@
   --purple-bdr:#c4b5fd;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html,body{height:100%}
+html,body{height:100%;overflow-y:auto}
 body{font-family:'DM Sans',sans-serif;background:var(--bg);display:flex;flex-direction:column;min-height:100vh}
 
 /* ── HEADER ── */
@@ -54,14 +54,20 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);display:flex;flex-dir
 .hd-right{display:flex;align-items:center;gap:8px}
 .hd-ts{font-size:10px;color:rgba(255,255,255,.3);text-align:right;line-height:1.5}
 
-/* ── LAYOUT ── */
-.body{flex:1;display:flex;overflow:hidden}
+/* ── OCULTAR BOTÃO INJETADO PELO PREVIEW ── */
+body > button, .vs-exec-grid > button, .vs-teto > button,
+.vs-ecol > button, .val-strip > button, .scroll > button,
+div > button:not([class]):not([id]) { display:none !important; }
+button:has(svg):not([class]):not([id]) { display:none !important; }
+
+
+.body{flex:1;display:flex}
 
 /* ── SIDEBAR ── */
 .sidebar{width:214px;flex-shrink:0;background:var(--sidebar);border-right:1px solid rgba(255,255,255,.06);display:flex;flex-direction:column;padding:18px 10px;gap:2px}
 .sb-sec{font-size:9px;font-weight:700;color:rgba(255,255,255,.2);letter-spacing:1px;text-transform:uppercase;padding:10px 12px 3px;margin-top:6px}
 .sb-sec:first-child{margin-top:0}
-.sb-item{display:flex;align-items:center;gap:9px;padding:8px 12px;border-radius:7px;font-size:12.5px;color:rgba(255,255,255,.5);text-decoration:none;cursor:pointer;transition:all .14s;position:relative}
+.sb-item{display:flex;align-items:center;gap:9px;padding:8px 12px;border-radius:7px;font-size:12.5px;color:rgba(255,255,255,.5);text-decoration:none;cursor:pointer;transition:all .14s}
 .sb-item:hover{background:rgba(255,255,255,.05);color:rgba(255,255,255,.75)}
 .sb-item.active{background:#182f5a;color:#fff}
 .sb-item.active i{color:#60a5fa}
@@ -73,7 +79,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);display:flex;flex-dir
 .sb-card p{font-size:10px;color:rgba(255,255,255,.25);line-height:1.5}
 
 /* ── CONTENT ── */
-.content{flex:1;display:flex;flex-direction:column;overflow:hidden;background:var(--surface2)}
+.content{flex:1;display:flex;flex-direction:column;background:var(--surface2)}
 
 /* ── PAGE HEAD ── */
 .pg-head{background:var(--surface);border-bottom:1px solid var(--border);padding:14px 28px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;flex-wrap:wrap;gap:10px}
@@ -94,14 +100,46 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);display:flex;flex-dir
 .inst-chip.ic-mandataria{background:#eff6ff;color:#1d4ed8;border-color:#93c5fd}
 
 /* ── SCROLL ── */
-.scroll{flex:1;overflow-y:auto;padding:20px 28px;display:flex;flex-direction:column;gap:16px}
+.scroll{flex:1;padding:20px 28px;display:flex;flex-direction:column;gap:16px}
 
 /* ── VALOR SUMMARY STRIP ── */
-.val-strip{background:linear-gradient(120deg,#0f2550 0%,#0a3a28 100%);border-radius:12px;padding:18px 22px;display:grid;grid-template-columns:repeat(5,1fr);gap:0;color:#fff;flex-shrink:0;position:relative;overflow:hidden}
-.val-strip::after{content:'';position:absolute;right:-20px;top:-20px;width:160px;height:160px;border-radius:50%;background:rgba(255,255,255,.04)}
-.vs-item{padding:0 18px;border-right:1px solid rgba(255,255,255,.12);position:relative;z-index:1}
+.val-strip{display:grid;grid-template-columns:auto 1fr;gap:12px;flex-shrink:0}
+/* Bloco esquerdo: teto do contrato */
+.vs-teto{background:linear-gradient(135deg,#0f2550 0%,#102a50 100%);border:1.5px solid rgba(255,255,255,.1);border-radius:12px;padding:18px 26px;color:#fff;display:flex;flex-direction:column;justify-content:center;min-width:220px}
+.vs-teto::before{content:'';position:absolute;right:-16px;bottom:-16px;width:80px;height:80px;border-radius:50%;background:rgba(255,255,255,.05)}
+.vs-teto-label{font-size:9px;font-weight:700;color:rgba(255,255,255,.45);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px}
+.vs-teto-val{font-family:'Sora',sans-serif;font-size:22px;font-weight:800;color:#fff;line-height:1;margin-bottom:4px}
+.vs-teto-sub{font-size:9.5px;color:rgba(255,255,255,.35);line-height:1.5}
+.vs-teto-empresa{font-size:10px;color:rgba(255,255,255,.55);margin-top:6px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:200px}
+/* Bloco direito: 3 colunas de execução */
+.vs-exec-grid{background:linear-gradient(120deg,#0a3a28 0%,#0a2a1a 50%,#0f2550 100%);border:1.5px solid rgba(255,255,255,.08);border-radius:12px;display:grid;grid-template-columns:repeat(3,1fr);color:#fff}
+.vs-exec-grid::after{content:'';position:absolute;right:-20px;top:-20px;width:120px;height:120px;border-radius:50%;background:rgba(255,255,255,.03);pointer-events:none}
+/* Cada coluna de execução */
+.vs-ecol{padding:14px 18px;border-right:1px solid rgba(255,255,255,.1);display:flex;flex-direction:column;gap:0}
+.vs-ecol:last-child{border-right:none}
+.vs-ecol-header{font-size:9px;font-weight:700;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:.8px;margin-bottom:2px;display:flex;align-items:center;gap:5px}
+.vs-ecol-header i{font-size:8px;opacity:.6}
+.vs-ecol-pago{font-family:'Sora',sans-serif;font-size:15px;font-weight:800;color:#4ade80;line-height:1.1;margin-bottom:2px}
+.vs-ecol-pago.v-blue{color:#93c5fd}
+.vs-ecol-pago.v-purple{color:#c4b5fd}
+.vs-ecol-divider{width:100%;height:1px;background:rgba(255,255,255,.07);margin:6px 0}
+.vs-ecol-saldo-lbl{font-size:8.5px;color:rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:.6px;margin-bottom:2px}
+.vs-ecol-saldo{font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:600;color:rgba(255,255,255,.65);line-height:1}
+.vs-ecol-saldo.v-amber{color:#fbbf24}
+.vs-ecol-bar{height:3px;border-radius:99px;background:rgba(255,255,255,.1);margin-top:8px;clip-path:inset(0 0 0 0 round 99px)}
+.vs-ecol-bar-fill{height:100%;border-radius:99px;transition:width 1.2s cubic-bezier(.22,1,.36,1)}
+.vs-ecol-bar-fill.bf-rep{background:linear-gradient(90deg,#4ade80,#16a34a)}
+.vs-ecol-bar-fill.bf-cp{background:linear-gradient(90deg,#93c5fd,#3b82f6)}
+.vs-ecol-bar-fill.bf-rend{background:linear-gradient(90deg,#c4b5fd,#8b5cf6)}
+.vs-item{padding:0 18px;border-right:1px solid rgba(255,255,255,.12)}
 .vs-item:first-child{padding-left:0}
 .vs-item:last-child{border-right:none}
+.vs-label{font-size:9.5px;font-weight:700;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.7px;margin-bottom:5px}
+.vs-val{font-family:'Sora',sans-serif;font-size:17px;font-weight:800;color:#fff;line-height:1;margin-bottom:3px}
+.vs-val.v-green{color:#4ade80}
+.vs-val.v-amber{color:#fbbf24}
+.vs-val.v-red{color:#f87171}
+.vs-sub{font-size:9px;color:rgba(255,255,255,.35);line-height:1.4}
 .vs-label{font-size:9.5px;font-weight:700;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.7px;margin-bottom:5px}
 .vs-val{font-family:'Sora',sans-serif;font-size:17px;font-weight:800;color:#fff;line-height:1;margin-bottom:3px}
 .vs-val.v-green{color:#4ade80}
@@ -116,7 +154,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);display:flex;flex-dir
 .prog-lbl{font-size:12px;font-weight:600;color:var(--text);display:flex;align-items:center;gap:7px}
 .prog-lbl i{font-size:11px;color:var(--accent)}
 .prog-pct{font-family:'Sora',sans-serif;font-size:22px;font-weight:800}
-.prog-track{background:#e8f0fe;border-radius:99px;height:10px;overflow:hidden;margin-bottom:8px}
+.prog-track{background:#e8f0fe;border-radius:99px;height:10px;clip-path:inset(0 0 0 0 round 99px);margin-bottom:8px}
 .prog-fill{height:100%;border-radius:99px;transition:width 1.2s cubic-bezier(.22,1,.36,1)}
 .prog-fill.pf-fin{background:linear-gradient(90deg,#1a3a6e,#16a34a)}
 .prog-fill.pf-fis{background:linear-gradient(90deg,#1a3a6e,#6d28d9)}
@@ -139,7 +177,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);display:flex;flex-dir
 .ateste-badge.na{background:#f8fafc;color:#64748b;border-color:#cbd5e1}
 
 /* ── CONTRATO CARD ── */
-.contrato-card{background:var(--surface);border:1px solid var(--border);border-radius:11px;overflow:hidden;flex-shrink:0}
+.contrato-card{background:var(--surface);border:1px solid var(--border);border-radius:11px;flex-shrink:0}
 .cc-head{padding:12px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}
 .cc-title{font-size:13px;font-weight:700;color:var(--text);display:flex;align-items:center;gap:7px}
 .cc-title i{color:var(--accent)}
@@ -151,13 +189,13 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);display:flex;flex-dir
 .cc-val.mono{font-family:'IBM Plex Mono',monospace;color:var(--accent)}
 
 /* ── TABLE CARD (shared) ── */
-.tbl-card{background:var(--surface);border:1px solid var(--border);border-radius:11px;overflow:hidden;display:flex;flex-direction:column;min-height:260px}
+.tbl-card{background:var(--surface);border:1px solid var(--border);border-radius:11px;display:flex;flex-direction:column;min-height:260px}
 .tbl-card.tbl-main{min-height:340px;flex:1}
 .tbl-head{padding:12px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;flex-shrink:0}
 .tbl-title{font-size:13px;font-weight:700;color:var(--text);display:flex;align-items:center;gap:7px}
 .tbl-title i{color:var(--accent)}
 .tbl-head-right{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
-.tbl-scroll{overflow:auto;flex:1}
+.tbl-scroll{overflow-x:auto;overflow-y:auto;flex:1;border-radius:0 0 11px 11px}
 table{width:100%;border-collapse:collapse;font-size:12.5px}
 thead tr{background:var(--surface2);position:sticky;top:0;z-index:2}
 th{padding:9px 14px;text-align:left;font-size:9.5px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.6px;border-bottom:1px solid var(--border);white-space:nowrap}
@@ -189,7 +227,7 @@ tbody tr:hover td{background:#f5f9ff}
 .rateio-card{flex:1;min-width:180px;background:var(--surface);border:1px solid var(--border);border-radius:11px;padding:14px 18px}
 .rateio-title{font-size:11.5px;font-weight:700;color:var(--text);margin-bottom:10px;display:flex;align-items:center;gap:6px}
 .rateio-title i{color:var(--accent);font-size:11px}
-.rateio-bar-wrap{background:#e8f0fe;border-radius:99px;height:8px;overflow:hidden;margin-bottom:8px}
+.rateio-bar-wrap{background:#e8f0fe;border-radius:99px;height:8px;clip-path:inset(0 0 0 0 round 99px);margin-bottom:8px}
 .rateio-bar{height:100%;border-radius:99px}
 .rateio-bar.rb-rep{background:linear-gradient(90deg,#1a3a6e,#3b82f6)}
 .rateio-bar.rb-cp{background:linear-gradient(90deg,#0d6e4a,#16a34a)}
@@ -234,16 +272,19 @@ tbody tr:hover td{background:#f5f9ff}
   html,body{height:auto;overflow-x:hidden;overflow-y:auto}
   .hd{padding:0 14px;height:50px}
   .hd-pill,.hd-sep{display:none}
-  .body{overflow:visible;flex-direction:column}
+  .body{flex-direction:column}
   .sidebar{width:100%;flex-direction:row;flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;padding:6px 10px;gap:4px;border-right:none;border-bottom:1px solid rgba(255,255,255,.12);position:static;flex-shrink:0}
   .sidebar::-webkit-scrollbar{display:none}
   .sb-sec,.sb-footer{display:none}
   .sb-item{flex-shrink:0;white-space:nowrap;padding:6px 12px;font-size:12px}
-  .content{overflow:visible;flex:none;width:100%}
-  .scroll{overflow:visible;flex:none;padding:14px}
+  .content{flex:none;width:100%}
+  .scroll{flex:none;padding:14px}
   .inst-bar{padding:10px 14px}
   .pg-head{padding:12px 14px}
-  .val-strip{grid-template-columns:repeat(3,1fr);gap:10px;padding:14px}
+  .val-strip{grid-template-columns:1fr;gap:10px}
+  .vs-exec-grid{grid-template-columns:1fr}
+  .vs-ecol{border-right:none;border-bottom:1px solid rgba(255,255,255,.1)}
+  .vs-ecol:last-child{border-bottom:none}
   .vs-item{padding:0 10px}
   .prog-row{grid-template-columns:1fr}
   .cc-grid{grid-template-columns:1fr 1fr}
@@ -253,7 +294,8 @@ tbody tr:hover td{background:#f5f9ff}
   .tbl-scroll{overflow-x:auto;overflow-y:visible;max-height:none;-webkit-overflow-scrolling:touch}
 }
 @media(max-width:480px){
-  .val-strip{grid-template-columns:repeat(2,1fr)}
+  .val-strip{grid-template-columns:1fr}
+  .vs-exec-grid{grid-template-columns:1fr}
   .cc-grid{grid-template-columns:1fr}
   .ateste-row{flex-direction:column}
 }
@@ -388,31 +430,55 @@ tbody tr:hover td{background:#f5f9ff}
 
       <!-- ── VALORES GLOBAIS ── -->
       <div class="val-strip" id="valStrip">
-        <div class="vs-item">
-          <div class="vs-label">Valor Global</div>
-          <div class="vs-val" id="vs-global">—</div>
-          <div class="vs-sub">Total do instrumento</div>
+
+        <!-- BLOCO ESQUERDO: Teto do Contrato -->
+        <div class="vs-teto" id="vs-teto-bloco">
+          <div class="vs-teto-label"><i class="fa-solid fa-file-contract" style="font-size:8px;margin-right:4px"></i>Valor do Contrato</div>
+          <div class="vs-teto-val" id="vs-contrato-valor">—</div>
+          <div class="vs-teto-sub">Teto máximo de pagamento aprovado</div>
+          <div class="vs-teto-empresa" id="vs-teto-empresa"></div>
         </div>
-        <div class="vs-item">
-          <div class="vs-label">Valor de Repasse</div>
-          <div class="vs-val" id="vs-repasse">—</div>
-          <div class="vs-sub">Recursos federais</div>
-        </div>
-        <div class="vs-item">
-          <div class="vs-label">Contrapartida</div>
-          <div class="vs-val" id="vs-contrapartida">—</div>
-          <div class="vs-sub">Recursos do convenente</div>
-        </div>
-        <div class="vs-item">
-          <div class="vs-label">Total Pago</div>
-          <div class="vs-val v-green" id="vs-pago">—</div>
-          <div class="vs-sub">Pgtos conciliados</div>
-        </div>
-        <div class="vs-item">
-          <div class="vs-label">Saldo a Pagar</div>
-          <div class="vs-val v-amber" id="vs-saldo">—</div>
-          <div class="vs-sub">Repasse − Pago</div>
-        </div>
+
+        <!-- BLOCO DIREITO: Execução por fonte de recurso -->
+        <div class="vs-exec-grid">
+
+          <!-- Coluna 1: Repasse Federal -->
+          <div class="vs-ecol">
+            <div class="vs-ecol-header"><i class="fa-solid fa-landmark"></i>Repasse Federal</div>
+            <div style="font-size:8.5px;color:rgba(255,255,255,.3);margin-bottom:6px" id="vs-rep-total-sub"></div>
+            <div class="vs-ecol-pago" id="vs-rep-pago">—</div>
+            <div style="font-size:9px;color:rgba(255,255,255,.3);margin-bottom:4px">pago de <span id="vs-rep-total" style="color:rgba(255,255,255,.55)">—</span></div>
+            <div class="vs-ecol-divider"></div>
+            <div class="vs-ecol-saldo-lbl">Saldo disponível</div>
+            <div class="vs-ecol-saldo v-amber" id="vs-rep-saldo">—</div>
+            <div class="vs-ecol-bar"><div class="vs-ecol-bar-fill bf-rep" id="vs-rep-bar" style="width:0%"></div></div>
+          </div>
+
+          <!-- Coluna 2: Contrapartida -->
+          <div class="vs-ecol">
+            <div class="vs-ecol-header"><i class="fa-solid fa-building-columns"></i>Contrapartida</div>
+            <div style="font-size:8.5px;color:rgba(255,255,255,.3);margin-bottom:6px">Recursos do convenente</div>
+            <div class="vs-ecol-pago v-blue" id="vs-cp-pago">—</div>
+            <div style="font-size:9px;color:rgba(255,255,255,.3);margin-bottom:4px">pago de <span id="vs-cp-total" style="color:rgba(255,255,255,.55)">—</span></div>
+            <div class="vs-ecol-divider"></div>
+            <div class="vs-ecol-saldo-lbl">Saldo disponível</div>
+            <div class="vs-ecol-saldo v-amber" id="vs-cp-saldo">—</div>
+            <div class="vs-ecol-bar"><div class="vs-ecol-bar-fill bf-cp" id="vs-cp-bar" style="width:0%"></div></div>
+          </div>
+
+          <!-- Coluna 3: Rendimentos -->
+          <div class="vs-ecol">
+            <div class="vs-ecol-header"><i class="fa-solid fa-chart-line"></i>Rendimentos</div>
+            <div style="font-size:8.5px;color:rgba(255,255,255,.3);margin-bottom:6px">Rendimento de aplicação</div>
+            <div class="vs-ecol-pago v-purple" id="vs-rend-saldo">—</div>
+            <div style="font-size:9px;color:rgba(255,255,255,.3);margin-bottom:4px">disponível (previsto)</div>
+            <div class="vs-ecol-divider"></div>
+            <div class="vs-ecol-saldo-lbl">Última mov.</div>
+            <div class="vs-ecol-saldo" id="vs-rend-ultima">—</div>
+            <div class="vs-ecol-bar"><div class="vs-ecol-bar-fill bf-rend" id="vs-rend-bar" style="width:100%"></div></div>
+          </div>
+
+        </div><!-- /vs-exec-grid -->
       </div>
 
       <!-- ── PROGRESSO FINANCEIRO E FÍSICO ── -->
@@ -555,6 +621,7 @@ var INSTRUMENTOS_EXEC = [
     valor_global:       1002000.00,
     valor_repasse:       955000.00,
     valor_contrapartida:  47000.00,
+    saldo_rendimentos:   150937.98,  /* Valor da aba Rendimento de Aplicação no Transferegov */
 
     /* Datas */
     data_assinatura:   "22/11/2023",
@@ -641,7 +708,7 @@ function sanitize(s){ return (s||"").replace(/</g,"&lt;").replace(/>/g,"&gt;"); 
    para o formato que o frontend espera (números, objeto contrato, etc.) */
 function normalizarInstrumento(c){
   /* Valores monetários: string → number */
-  ["valor_global","valor_repasse","valor_contrapartida"].forEach(function(k){
+  ["valor_global","valor_repasse","valor_contrapartida","saldo_rendimentos"].forEach(function(k){
     c[k] = parseReais(c[k]);
   });
 
@@ -766,22 +833,57 @@ function renderInstrumento(){
   document.getElementById("instMeta").innerHTML = meta.join("");
 
   /* Valores */
-  var totalPago = calcTotalPago(c);
-  var saldo = parseReais(c.valor_repasse) - totalPago;
-  var pctFin = parseReais(c.valor_repasse) > 0
-    ? Math.round(totalPago / parseReais(c.valor_repasse) * 100) : 0;
+  var pagoRepasse = calcPagoRepasse(c);
+  var pagoCP      = calcPagoContrapartida(c);
+  var totalPago   = pagoRepasse + pagoCP;
+  var saldoRep    = Math.max(0, parseReais(c.valor_repasse) - pagoRepasse);
+  var saldoCP     = Math.max(0, parseReais(c.valor_contrapartida) - pagoCP);
+  var saldoRend   = parseReais(c.saldo_rendimentos) || 0;
+  var valorContrato = c.contrato ? parseReais(c.contrato.valor) : parseReais(c.valor_global);
+  var pctFin      = valorContrato > 0
+    ? Math.min(100, Math.round(totalPago / valorContrato * 100)) : 0;
+  var pctCP       = parseReais(c.valor_contrapartida) > 0
+    ? Math.min(100, Math.round(pagoCP / parseReais(c.valor_contrapartida) * 100)) : 0;
 
-  document.getElementById("vs-global").textContent       = fmt(c.valor_global);
-  document.getElementById("vs-repasse").textContent      = fmt(c.valor_repasse);
-  document.getElementById("vs-contrapartida").textContent= fmt(c.valor_contrapartida);
-  document.getElementById("vs-pago").textContent         = fmt(totalPago);
-  document.getElementById("vs-saldo").textContent        = fmt(saldo > 0 ? saldo : 0);
+  /* Teto do contrato */
+  document.getElementById("vs-contrato-valor").textContent = fmt(valorContrato || c.valor_global);
+  var empEl = document.getElementById("vs-teto-empresa");
+  if(c.contrato && c.contrato.empresa){
+    empEl.textContent = c.contrato.numero + " — " + c.contrato.empresa;
+    empEl.style.display = "";
+  } else {
+    empEl.style.display = "none";
+  }
 
-  /* Progresso financeiro */
+  /* Repasse */
+  document.getElementById("vs-rep-pago").textContent  = fmt(pagoRepasse);
+  document.getElementById("vs-rep-total").textContent = fmt(c.valor_repasse);
+  document.getElementById("vs-rep-saldo").textContent = fmt(saldoRep);
+  var pctRep = parseReais(c.valor_repasse) > 0
+    ? Math.min(100, Math.round(pagoRepasse / parseReais(c.valor_repasse) * 100)) : 0;
+  document.getElementById("vs-rep-bar").style.width   = pctRep + "%";
+
+  /* Contrapartida */
+  document.getElementById("vs-cp-pago").textContent  = fmt(pagoCP);
+  document.getElementById("vs-cp-total").textContent = fmt(c.valor_contrapartida);
+  document.getElementById("vs-cp-saldo").textContent = fmt(saldoCP);
+  document.getElementById("vs-cp-bar").style.width   = pctCP + "%";
+
+  /* Rendimentos */
+  document.getElementById("vs-rend-saldo").textContent = saldoRend > 0 ? fmt(saldoRend) : "—";
+  var ultimaMov = "";
+  (c.movimentacoes||[]).forEach(function(m){
+    var t=(m.tipo||"").toUpperCase();
+    if(t.includes("RENDIMENTO") && m.data) ultimaMov = m.data;
+  });
+  document.getElementById("vs-rend-ultima").textContent = ultimaMov || "—";
+
+  /* Progresso financeiro (base = valor do contrato) */
   document.getElementById("pct-fin").textContent  = pctFin+"%";
   document.getElementById("bar-fin").style.width  = pctFin+"%";
   document.getElementById("note-fin").innerHTML   =
-    "<strong>"+fmt(totalPago)+"</strong> pagos de <strong>"+fmt(c.valor_repasse)+"</strong> de repasse · Saldo: <strong>"+fmt(saldo>0?saldo:0)+"</strong>";
+    "<strong>"+fmt(totalPago)+"</strong> pagos de <strong>"+fmt(valorContrato)+"</strong> do contrato · Saldo: <strong>"+fmt(Math.max(0, valorContrato - totalPago))+"</strong>";
+
 
   /* Progresso físico */
   var pfis = typeof c.exec_fisica_pct === "number" ? c.exec_fisica_pct : 0;
@@ -860,7 +962,70 @@ function calcTotalPago(c){
   return total;
 }
 
-/* ── ATESTE ─────────────────────────────────────────── */
+/* ── CALC PAGO REPASSE ──────────────────────────────── */
+/* Soma apenas OBTVs de repasse federal (exclui contrapartida e tributos). */
+function calcPagoRepasse(c){
+  var cpTotal = parseReais(c.valor_contrapartida);
+  var cnpjConv = "09034960000147";
+  var total = 0;
+  var cpNdls = {};
+  (c.notas_fiscais||[]).forEach(function(n){
+    var temRep = false, temCp = false;
+    (n.itens||[]).forEach(function(it){
+      if((it.repasse||0) > 0) temRep = true;
+      if((it.contrapartida||0) > 0) temCp = true;
+    });
+    if(temCp && !temRep) cpNdls[String(n.num)] = true;
+  });
+  (c.movimentacoes||[]).forEach(function(m){
+    var t = (m.tipo||"").toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"");
+    var isObtv = t.includes("OBTV")||t.includes("PAGAMENTO A FAVORECIDO")||t.includes("PGTO OBTV");
+    if(!isObtv) return;
+    var vorig = parseReais(m.v_orig);
+    var vbrut = parseReais(m.v_bruto);
+    var fav   = (m.favorecido||"").replace(/[^\d]/g,"");
+    var ndl   = String(m.ndl||"").trim();
+    if(fav && fav===cnpjConv) return;
+    if(!fav && cpTotal>0 && Math.abs(vorig-cpTotal)<1) return;
+    if(ndl && cpNdls[ndl]) return;
+    total += vorig>0 ? vorig : vbrut;
+  });
+  return total;
+}
+
+/* ── CALC PAGO CONTRAPARTIDA ────────────────────────── */
+/* Soma OBTVs identificados como contrapartida + ingressos de contrapartida. */
+function calcPagoContrapartida(c){
+  var cpTotal = parseReais(c.valor_contrapartida);
+  var cnpjConv = "09034960000147";
+  var total = 0;
+  var cpNdls = {};
+  (c.notas_fiscais||[]).forEach(function(n){
+    var temRep = false, temCp = false;
+    (n.itens||[]).forEach(function(it){
+      if((it.repasse||0)>0) temRep = true;
+      if((it.contrapartida||0)>0) temCp = true;
+    });
+    if(temCp && !temRep) cpNdls[String(n.num)] = true;
+  });
+  (c.movimentacoes||[]).forEach(function(m){
+    var t = (m.tipo||"").toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"");
+    var isObtv = t.includes("OBTV")||t.includes("PAGAMENTO A FAVORECIDO")||t.includes("PGTO OBTV");
+    if(!isObtv) return;
+    var vorig = parseReais(m.v_orig);
+    var vbrut = parseReais(m.v_bruto);
+    var fav   = (m.favorecido||"").replace(/[^\d]/g,"");
+    var ndl   = String(m.ndl||"").trim();
+    var isCP = (fav && fav===cnpjConv)
+            || (!fav && cpTotal>0 && Math.abs(vorig-cpTotal)<1)
+            || (ndl && cpNdls[ndl]);
+    if(!isCP) return;
+    total += vorig>0 ? vorig : vbrut;
+  });
+  return total;
+}
+
+
 function renderAteste(c){
   var html = "";
   /* Convenente */
@@ -1120,9 +1285,14 @@ function exportarExcel(){
         ["Situação",c.situacao],
         ["",""],
         ["Valor Global",c.valor_global],
+        ["Valor do Contrato", c.contrato ? c.contrato.valor : ""],
         ["Valor Repasse",c.valor_repasse],
+        ["Pago (Repasse)",calcPagoRepasse(c)],
+        ["Saldo Repasse", Math.max(0, parseReais(c.valor_repasse) - calcPagoRepasse(c))],
         ["Contrapartida",c.valor_contrapartida],
-        ["Total Pago",calcTotalPago(c)],
+        ["Pago (Contrapartida)", calcPagoContrapartida(c)],
+        ["Saldo Contrapartida", Math.max(0, parseReais(c.valor_contrapartida) - calcPagoContrapartida(c))],
+        ["Rendimentos Disponíveis", parseReais(c.saldo_rendimentos)],
         ["Exec. Física %",c.exec_fisica_pct+"%"],
       ];
       var wsRes=XLSX.utils.aoa_to_sheet(res);

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- v20260514_v8 -->
+<!-- v20260518 -->
 <html lang="pt-br">
 <head>
 <meta charset="UTF-8">
@@ -1103,9 +1103,16 @@ function renderMov(c){
   var rows = c.movimentacoes||[];
   document.getElementById("mov-count").textContent = rows.length+" movimentação(ões)";
 
-  /* Totais do rodapé */
+  /* Totais do rodapé — usa só OBTVs para Orig (v_orig=null nos tributos/CP) */
   var totOrigem=0,totBruto=0,totLiq=0;
-  rows.forEach(function(m){ totOrigem+=m.v_orig||0; totBruto+=m.v_bruto||0; totLiq+=m.v_liq||0; });
+  rows.forEach(function(m){
+    var vo = parseReais(m.v_orig), vb = parseReais(m.v_bruto), vl = parseReais(m.v_liq);
+    var t = (m.tipo||"").toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"");
+    var isObtv = t.includes("OBTV")||t.includes("PAGAMENTO A FAVORECIDO");
+    if(isObtv) totOrigem += vo > 0 ? vo : vb;
+    totBruto += vb;
+    totLiq   += vl;
+  });
 
   var html = "";
   if(!rows.length){ html='<tr><td colspan="11" class="empty-row"><i class="fa-solid fa-inbox" style="margin-right:6px;opacity:.4"></i>Nenhuma movimentação encontrada</td></tr>'; }
@@ -1119,9 +1126,16 @@ function renderMov(c){
       html += '<td class="val-cell text-right">'+fmtN(m.v_bruto)+'</td>';
       html += '<td class="val-cell text-right '+(m.v_liq<m.v_bruto?"neg":"")+'">'+fmtN(m.v_liq)+'</td>';
       html += '<td class="tipo-cell" style="font-size:10.5px">'+sanitize(m.favorecido)+'</td>';
-      html += '<td>'+(m.tributo?'<span class="b b-amber">'+sanitize(m.tributo)+'</span>':"<span style='color:var(--muted)'>—</span>")+'</td>';
-      html += '<td class="mono-cell" style="font-size:10.5px">'+sanitize(m.ndl||"—")+'</td>';
-      html += '<td style="font-size:10.5px;color:var(--muted)">'+sanitize(m.tdl||"—")+'</td>';
+      /* Detecta layout novo do coletor: tributo=tipo longo, ndl=sigla tributo, tdl=nº NF
+         vs layout antigo: tributo=sigla, ndl=nº NF, tdl=tipo NF
+         Critério: se ndl é sigla de tributo (ISS/IR/CSLL) → layout novo → troca */
+      var _isLayoutNovo = /^(ISS|IR|CSLL|PIS|COFINS|INSS)$/i.test((m.ndl||"").trim());
+      var _dispTributo = _isLayoutNovo ? m.ndl  : m.tributo;
+      var _dispNdl     = _isLayoutNovo ? m.tdl  : m.ndl;
+      var _dispTdl     = _isLayoutNovo ? m.situacao : m.tdl;
+      html += '<td>'+(_dispTributo?'<span class="b b-amber">'+sanitize(_dispTributo)+'</span>':"<span style='color:var(--muted)'>—</span>")+'</td>';
+      html += '<td class="mono-cell" style="font-size:10.5px">'+sanitize(_dispNdl||"—")+'</td>';
+      html += '<td style="font-size:10.5px;color:var(--muted)">'+sanitize(_dispTdl||"—")+'</td>';
       html += '<td>'+sitBadge(m.situacao)+'</td>';
       html += '</tr>';
     });
@@ -1141,10 +1155,9 @@ function renderNF(c){
   var rows = c.notas_fiscais||[];
   document.getElementById("nf-count").textContent = rows.length+" nota(s) fiscal(is)";
 
-  var totOrig=0,totTrib=0,totLiq=0;
-  rows.forEach(function(n){ totOrig+=n.v_orig||0; totTrib+=n.tributos||0; totLiq+=n.v_liq||0; });
-
   var html="";
+  var totOrig=0,totTrib=0,totLiq=0; // será recalculado após fallback
+
   /* Se NFs vazias mas movimentações têm OBTV com ndl, reconstrói NFs das movimentações */
   if(!rows.length && c.movimentacoes && c.movimentacoes.length){
     var nfMap = {};
@@ -1182,6 +1195,13 @@ function renderNF(c){
       return (parseInt(b.num)||0) - (parseInt(a.num)||0);
     });
   }
+  /* Recalcula totais sobre as rows finais (incluindo fallback) */
+  rows.forEach(function(n){
+    totOrig += parseReais(n.v_orig);
+    totTrib += parseReais(n.tributos);
+    totLiq  += parseReais(n.v_liq);
+  });
+
   if(!rows.length){ html='<tr><td colspan="9" class="empty-row"><i class="fa-solid fa-inbox" style="margin-right:6px;opacity:.4"></i>Nenhuma NF/DL encontrada</td></tr>'; }
   else {
     rows.forEach(function(n){
@@ -1204,7 +1224,7 @@ function renderNF(c){
   document.getElementById("nf-footer").innerHTML =
     '<span><strong>'+rows.length+'</strong> documento(s) de liquidação</span>'+
     '<span style="display:flex;gap:20px">'+
-    '<span>Bruto: <strong>'+fmt(totOrig)+'</strong></span>'+
+    '<span>Original: <strong>'+fmt(totOrig)+'</strong></span>'+
     '<span class="neg">Tributos: <strong>−'+fmt(totTrib)+'</strong></span>'+
     '<span style="color:var(--green)">Líquido: <strong>'+fmt(totLiq)+'</strong></span>'+
     '</span>';

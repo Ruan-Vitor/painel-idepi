@@ -478,7 +478,13 @@ tbody tr:hover td{background:#f5f9ff}
         <div class="vs-teto" id="vs-teto-bloco">
           <div class="vs-teto-label"><i class="fa-solid fa-file-contract" style="font-size:8px;margin-right:4px"></i>Valor do Contrato</div>
           <div class="vs-teto-val" id="vs-contrato-valor">—</div>
-          <div class="vs-teto-sub">Teto máximo de pagamento aprovado</div>
+          <div id="vs-contrato-pago-linha" style="font-size:9px;color:rgba(255,255,255,.45);margin-top:3px">
+            pago: <span id="vs-contrato-pago" style="color:rgba(255,255,255,.75)">—</span>
+          </div>
+          <div id="vs-contrato-saldo-linha" style="font-size:9px;color:rgba(255,255,255,.35);margin-top:1px">
+            saldo: <span id="vs-contrato-saldo" style="color:var(--amber)">—</span>
+          </div>
+          <div class="vs-teto-sub" style="margin-top:4px">Teto máximo de pagamento aprovado</div>
           <div class="vs-teto-empresa" id="vs-teto-empresa"></div>
         </div>
 
@@ -975,6 +981,10 @@ function renderInstrumento(){
 
   /* Teto do contrato */
   document.getElementById("vs-contrato-valor").textContent = fmt(valorContrato || c.valor_global);
+  /* Pago e saldo no card de Valor do Contrato */
+  var saldoContrato = Math.max(0, (valorContrato || 0) - totalPago);
+  document.getElementById("vs-contrato-pago").textContent  = fmt(totalPago);
+  document.getElementById("vs-contrato-saldo").textContent = fmt(saldoContrato);
   var empEl = document.getElementById("vs-teto-empresa");
   if(c.contrato && c.contrato.empresa){
     empEl.textContent = c.contrato.numero + " — " + c.contrato.empresa;
@@ -1351,13 +1361,19 @@ function renderMov(c){
     });
   }
   document.getElementById("tbody-mov").innerHTML = html;
+  /* Para pre-OBTV os 3 valores sao identicos -- exibe so "Total pago" */
+  var footerValores;
+  if(preObtvMovs){
+    footerValores = '<span style="color:var(--green)">Total pago: <strong>'+fmt(totLiq)+'</strong></span>';
+  } else {
+    footerValores =
+      '<span>Orig: <strong>'+fmt(totOrigem)+'</strong></span>'+
+      '<span>Bruto: <strong>'+fmt(totBruto)+'</strong></span>'+
+      '<span style="color:var(--green)">Líquido: <strong>'+fmt(totLiq)+'</strong></span>';
+  }
   document.getElementById("mov-footer").innerHTML =
     '<span>Total: <strong>'+rows.length+' movimentações</strong></span>'+
-    '<span style="display:flex;gap:20px">'+
-    '<span>Orig: <strong>'+fmt(totOrigem)+'</strong></span>'+
-    '<span>Bruto: <strong>'+fmt(totBruto)+'</strong></span>'+
-    '<span style="color:var(--green)">Líquido: <strong>'+fmt(totLiq)+'</strong></span>'+
-    '</span>';
+    '<span style="display:flex;gap:20px">'+footerValores+'</span>';
 }
 
 /* ── NOTAS FISCAIS ──────────────────────────────────── */

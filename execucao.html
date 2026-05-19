@@ -1014,20 +1014,34 @@ function renderInstrumento(){
 
 
   /* Progresso físico */
+  var preObtv2012 = _isPreOBTV(c) && (c.ano && parseInt(c.ano) <= 2015);
+  var semMedicao2 = !c.tem_medicao && !c.exec_fisica_pct && !c.ateste_convenente;
   var pfis = typeof c.exec_fisica_pct === "number" ? c.exec_fisica_pct : 0;
-  var pfisStr = pfis % 1 === 0 ? pfis+"%" : pfis.toFixed(2).replace(".",",")+"%";
+  var pfisStr;
+  if(preObtv2012 || semMedicao2){
+    pfisStr = "N/A";
+    document.getElementById("pct-fis").style.color = "var(--muted)";
+  } else {
+    pfisStr = pfis % 1 === 0 ? pfis+"%" : pfis.toFixed(2).replace(".",",")+"%";
+    document.getElementById("pct-fis").style.color = "";
+  }
   document.getElementById("pct-fis").textContent  = pfisStr;
   document.getElementById("bar-fis").style.width  = Math.min(pfis,100)+"%";
   /* Monta nota de exec física com valor realizado se disponível */
-  var noteFis = c.exec_fisica_obs || "";
-  if(!noteFis){
-    var pf = [];
-    if(c.exec_fisica_valor_realizado) pf.push("Realizado: "+c.exec_fisica_valor_realizado);
-    if(c.exec_fisica_valor_total)     pf.push("Total: "+c.exec_fisica_valor_total);
-    if(c.ateste_convenente)           pf.push("✓ Atestado pelo Convenente");
-    if(c.regime_simplificado && !c.ateste_concedente)
-      pf.push("Concedente atesta na PC Final");
-    noteFis = pf.join(" · ");
+  var noteFis = "";
+  if(preObtv2012 || semMedicao2){
+    noteFis = "Aba de acompanhamento de obras não disponível — instrumento anterior ao sistema de medições do Transferegov.";
+  } else {
+    noteFis = c.exec_fisica_obs || "";
+    if(!noteFis){
+      var pf = [];
+      if(c.exec_fisica_valor_realizado) pf.push("Realizado: "+c.exec_fisica_valor_realizado);
+      if(c.exec_fisica_valor_total)     pf.push("Total: "+c.exec_fisica_valor_total);
+      if(c.ateste_convenente)           pf.push("✓ Atestado pelo Convenente");
+      if(c.regime_simplificado && !c.ateste_concedente)
+        pf.push("Concedente atesta na PC Final");
+      noteFis = pf.join(" · ");
+    }
   }
   document.getElementById("note-fis").textContent = noteFis;
 
@@ -1045,6 +1059,10 @@ function renderInstrumento(){
 
 /* ── CALC TOTAL PAGO ────────────────────────────────── */
 function calcTotalPago(c){
+  if(_isPreOBTV(c)){
+    var nf = _calcPorNFs(c);
+    return nf.rep + nf.cp;
+  }
   /* Soma pagamentos OBTV de REPASSE FEDERAL.
      Critérios para EXCLUIR uma movimentação OBTV (= é contrapartida, não repasse):
      1. favorecido é o CNPJ do convenente (IDEPI = 09.034.960/0001-47)
@@ -1090,9 +1108,50 @@ function calcTotalPago(c){
   return total;
 }
 
+/* ── HELPERS INTERNOS ───────────────────────────────── */
+/* Detecta se o instrumento é pré-OBTV (sem movimentações OBTV reais).
+   Nesse caso os saldos são calculados a partir das NFs (que têm rateio). */
+function _isPreOBTV(c){
+  var movs = c.movimentacoes || [];
+  if(!movs.length) return true;
+  /* Se só tem movimentações do tipo "PAGAMENTO" (pré-OBTV coletado da aba Pagamento),
+     também usa as NFs como fonte primária de rateio */
+  var temObtv = movs.some(function(m){
+    var t = (m.tipo||"").toUpperCase();
+    return t.includes("OBTV") || t.includes("PAGAMENTO A FAVORECIDO") || t.includes("PGTO OBTV")
+        || t.includes("INGRESSO DE CONTRAPARTIDA");
+  });
+  return !temObtv;
+}
+
+/* Soma repasse e contrapartida direto das NFs (instrumentos pré-OBTV).
+   Cada NF tem itens com campos repasse/contrapartida/rendimento já calculados. */
+function _calcPorNFs(c){
+  var rep = 0, cp = 0;
+  (c.notas_fiscais||[]).forEach(function(n){
+    (n.itens||[]).forEach(function(it){
+      rep += parseReais(it.repasse)       || 0;
+      cp  += parseReais(it.contrapartida) || 0;
+    });
+  });
+  /* Se nenhum item tem rateio, usa v_liq das NFs com origem_recurso */
+  if(rep === 0 && cp === 0){
+    (c.notas_fiscais||[]).forEach(function(n){
+      var src = (n.origem_recurso||"").toLowerCase();
+      var vliq = parseReais(n.v_liq) || parseReais(n.v_bruto) || 0;
+      if(src.includes("contrapartida") && !src.includes("repasse")) cp += vliq;
+      else if(src.includes("repasse") || src.includes("rendimento")) rep += vliq;
+    });
+  }
+  return {rep: rep, cp: cp};
+}
+
 /* ── CALC PAGO REPASSE ──────────────────────────────── */
-/* Soma apenas OBTVs de repasse federal (exclui contrapartida e tributos). */
+/* Soma apenas OBTVs de repasse federal (exclui contrapartida e tributos).
+   Fallback: usa rateio das NFs para instrumentos pré-OBTV. */
 function calcPagoRepasse(c){
+  if(_isPreOBTV(c)) return _calcPorNFs(c).rep;
+
   var cpTotal = parseReais(c.valor_contrapartida);
   var cnpjConv = "09034960000147";
   var total = 0;
@@ -1122,8 +1181,11 @@ function calcPagoRepasse(c){
 }
 
 /* ── CALC PAGO CONTRAPARTIDA ────────────────────────── */
-/* Soma OBTVs identificados como contrapartida + ingressos de contrapartida. */
+/* Soma OBTVs identificados como contrapartida + ingressos.
+   Fallback: usa rateio das NFs para instrumentos pré-OBTV. */
 function calcPagoContrapartida(c){
+  if(_isPreOBTV(c)) return _calcPorNFs(c).cp;
+
   var cpTotal = parseReais(c.valor_contrapartida);
   var cnpjConv = "09034960000147";
   var total = 0;
@@ -1156,31 +1218,53 @@ function calcPagoContrapartida(c){
 
 function renderAteste(c){
   var html = "";
+  var semMedicao = !c.tem_medicao && !c.exec_fisica_pct && !c.ateste_convenente && !c.ateste_concedente;
+  var preObtv    = _isPreOBTV(c) && (c.ano && parseInt(c.ano) <= 2015);
+
   /* Convenente */
   html += '<div class="ateste-card">';
-  html +=   '<div class="ateste-icon '+(c.ateste_convenente?"ok":"pend")+'"><i class="fa-solid '+(c.ateste_convenente?"fa-check":"fa-clock")+'"></i></div>';
-  html +=   '<div class="ateste-body">';
-  html +=     '<div class="ateste-title">Ateste do Convenente (IDEPI)</div>';
-  html +=     '<div class="ateste-sub">Responsável por atestar a execução física das medições</div>';
-  html +=     '<span class="ateste-badge '+(c.ateste_convenente?"ok":"pend")+'">'+(c.ateste_convenente?"<i class='fa-solid fa-check' style='font-size:8px'></i> Atestado":"<i class='fa-solid fa-clock' style='font-size:8px'></i> Pendente")+'</span>';
+  if(semMedicao || preObtv){
+    html +=   '<div class="ateste-icon na"><i class="fa-solid fa-ban"></i></div>';
+    html +=   '<div class="ateste-body">';
+    html +=     '<div class="ateste-title">Ateste do Convenente (IDEPI)</div>';
+    html +=     '<div class="ateste-sub">Instrumento antigo — aba de medições não disponível no Transferegov</div>';
+    html +=     '<span class="ateste-badge na"><i class="fa-solid fa-ban" style="font-size:8px"></i> Não aplicável</span>';
+  } else {
+    html +=   '<div class="ateste-icon '+(c.ateste_convenente?"ok":"pend")+'"><i class="fa-solid '+(c.ateste_convenente?"fa-check":"fa-clock")+'"></i></div>';
+    html +=   '<div class="ateste-body">';
+    html +=     '<div class="ateste-title">Ateste do Convenente (IDEPI)</div>';
+    html +=     '<div class="ateste-sub">Responsável por atestar a execução física das medições</div>';
+    html +=     '<span class="ateste-badge '+(c.ateste_convenente?"ok":"pend")+'">'+(c.ateste_convenente?"<i class='fa-solid fa-check' style='font-size:8px'></i> Atestado":"<i class='fa-solid fa-clock' style='font-size:8px'></i> Pendente")+'</span>';
+  }
   html +=   '</div>';
   html += '</div>';
+
   /* Concedente */
   html += '<div class="ateste-card">';
-  html +=   '<div class="ateste-icon '+(c.ateste_concedente?"ok":"pend")+'"><i class="fa-solid '+(c.ateste_concedente?"fa-check":"fa-clock")+'"></i></div>';
-  html +=   '<div class="ateste-body">';
-  html +=     '<div class="ateste-title">Ateste do Concedente</div>';
-  html +=     '<div class="ateste-sub">'+(c.regime_simplificado?"Regime Simplificado — ateste ocorre na prestação de contas final, não a cada medição":"Responsável pela validação final das medições")+'</div>';
-  html +=     '<span class="ateste-badge '+(c.ateste_concedente?"ok":(c.regime_simplificado?"na":"pend"))+'">'+(c.ateste_concedente?"<i class='fa-solid fa-check' style='font-size:8px'></i> Atestado":(c.regime_simplificado?"<i class='fa-solid fa-bolt' style='font-size:8px'></i> Aguardando PC Final":"<i class='fa-solid fa-clock' style='font-size:8px'></i> Pendente"))+'</span>';
+  if(semMedicao || preObtv){
+    html +=   '<div class="ateste-icon na"><i class="fa-solid fa-ban"></i></div>';
+    html +=   '<div class="ateste-body">';
+    html +=     '<div class="ateste-title">Ateste do Concedente</div>';
+    html +=     '<div class="ateste-sub">Instrumento antigo — aba de medições não disponível no Transferegov</div>';
+    html +=     '<span class="ateste-badge na"><i class="fa-solid fa-ban" style="font-size:8px"></i> Não aplicável</span>';
+  } else {
+    html +=   '<div class="ateste-icon '+(c.ateste_concedente?"ok":"pend")+'"><i class="fa-solid '+(c.ateste_concedente?"fa-check":"fa-clock")+'"></i></div>';
+    html +=   '<div class="ateste-body">';
+    html +=     '<div class="ateste-title">Ateste do Concedente</div>';
+    html +=     '<div class="ateste-sub">'+(c.regime_simplificado?"Regime Simplificado — ateste ocorre na prestação de contas final, não a cada medição":"Responsável pela validação final das medições")+'</div>';
+    html +=     '<span class="ateste-badge '+(c.ateste_concedente?"ok":(c.regime_simplificado?"na":"pend"))+'">'+(c.ateste_concedente?"<i class='fa-solid fa-check' style='font-size:8px'></i> Atestado":(c.regime_simplificado?"<i class='fa-solid fa-bolt' style='font-size:8px'></i> Aguardando PC Final":"<i class='fa-solid fa-clock' style='font-size:8px'></i> Pendente"))+'</span>';
+  }
   html +=   '</div>';
   html += '</div>';
-  /* Próxima ação */
-  if(c.ateste_obs){
+
+  /* Próxima ação / obs */
+  var obsTexto = c.ateste_obs || c.obs_manual || "";
+  if(obsTexto){
     html += '<div class="ateste-card" style="flex:2;background:var(--amber-bg);border-color:var(--amber-bdr)">';
     html +=   '<div class="ateste-icon" style="background:#fef3c7;color:#b45309"><i class="fa-solid fa-triangle-exclamation"></i></div>';
     html +=   '<div class="ateste-body">';
-    html +=     '<div class="ateste-title" style="color:var(--amber)">Próximos Passos</div>';
-    html +=     '<div class="ateste-sub" style="color:#92400e">'+sanitize(c.ateste_obs)+'</div>';
+    html +=     '<div class="ateste-title" style="color:var(--amber)">Observação</div>';
+    html +=     '<div class="ateste-sub" style="color:#92400e">'+sanitize(obsTexto)+'</div>';
     html +=   '</div>';
     html += '</div>';
   }
@@ -1223,10 +1307,14 @@ function renderMov(c){
      Orig = soma dos v_orig dos OBTVs (valor enviado ao favorecido antes de retenções)
      Bruto = mesmo que orig para OBTVs (sem duplicar tributos que são linhas separadas)
      Líq = soma dos v_liq dos OBTVs (após retenções) */
+  var preObtvMovs = _isPreOBTV(c) && rows.length > 0;
+
+  /* Totais do rodapé */
   var totOrigem=0,totBruto=0,totLiq=0;
   rows.forEach(function(m){
     var t = (m.tipo||"").toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"");
-    if(t.includes("OBTV") || t.includes("PAGAMENTO A FAVORECIDO")){
+    /* Para pré-OBTV soma tudo; para OBTV normal soma apenas OBTVs */
+    if(preObtvMovs || t.includes("OBTV") || t.includes("PAGAMENTO A FAVORECIDO")){
       totOrigem += m.v_orig || m.v_bruto || 0;
       totBruto  += m.v_bruto || 0;
       totLiq    += m.v_liq   || 0;
@@ -1237,17 +1325,27 @@ function renderMov(c){
   if(!rows.length){ html='<tr><td colspan="11" class="empty-row"><i class="fa-solid fa-inbox" style="margin-right:6px;opacity:.4"></i>Nenhuma movimentação encontrada</td></tr>'; }
   else {
     rows.forEach(function(m){
+      /* Para pré-OBTV: exibe ndoc_pag (OB/PD) em vez de ndl que é o mesmo número */
+      var ndlDisplay = preObtvMovs
+        ? (m.ndoc_pag || m.ndl || "—")
+        : (m.ndl || "—");
+      var tdlDisplay = preObtvMovs
+        ? (m.ndoc_pag ? "OB/PD Pagamento" : "—")
+        : (m.tdl || "—");
+
       html += '<tr>';
       html += '<td class="mono-cell">'+sanitize(m.num)+'</td>';
       html += '<td class="date-cell">'+sanitize(m.data)+'</td>';
-      html += '<td>'+tipoBadge(m.tipo)+'</td>';
+      html += '<td>'+(preObtvMovs
+        ? '<span class="b b-green">Pagamento</span>'
+        : tipoBadge(m.tipo))+'</td>';
       html += '<td class="val-cell text-right">'+fmtN(m.v_orig)+'</td>';
       html += '<td class="val-cell text-right">'+fmtN(m.v_bruto)+'</td>';
       html += '<td class="val-cell text-right '+(m.v_liq<m.v_bruto?"neg":"")+'">'+fmtN(m.v_liq)+'</td>';
-      html += '<td class="tipo-cell" style="font-size:10.5px">'+sanitize(m.favorecido)+'</td>';
+      html += '<td class="tipo-cell" style="font-size:10.5px">'+sanitize(m.favorecido||m.cnpj||"—")+'</td>';
       html += '<td>'+(m.tributo?'<span class="b b-amber">'+sanitize(m.tributo)+'</span>':"<span style='color:var(--muted)'>—</span>")+'</td>';
-      html += '<td class="mono-cell" style="font-size:10.5px">'+sanitize(m.ndl||"—")+'</td>';
-      html += '<td style="font-size:10.5px;color:var(--muted)">'+sanitize(m.tdl||"—")+'</td>';
+      html += '<td class="mono-cell" style="font-size:10.5px">'+sanitize(ndlDisplay)+'</td>';
+      html += '<td style="font-size:10.5px;color:var(--muted)">'+sanitize(tdlDisplay)+'</td>';
       html += '<td>'+sitBadge(m.situacao)+'</td>';
       html += '</tr>';
     });

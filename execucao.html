@@ -1184,7 +1184,8 @@ function calcPagoRepasse(c){
     var vorig = parseReais(m.v_orig);
     var vbrut = parseReais(m.v_bruto);
     var fav   = (m.favorecido||"").replace(/[^\d]/g,"");
-    var ndl   = String(m.ndl||"").trim();
+    /* ndl: coletor às vezes grava número da NF em tdl quando ndl fica vazio */
+    var ndl   = String(m.ndl||m.tdl||"").trim();
     if(fav && fav===cnpjConv) return;
     if(!fav && cpTotal>0 && Math.abs(vorig-cpTotal)<1) return;
     if(ndl && cpNdls[ndl]) return;
@@ -1218,7 +1219,8 @@ function calcPagoContrapartida(c){
     var vorig = parseReais(m.v_orig);
     var vbrut = parseReais(m.v_bruto);
     var fav   = (m.favorecido||"").replace(/[^\d]/g,"");
-    var ndl   = String(m.ndl||"").trim();
+    /* ndl: coletor às vezes grava número da NF em tdl quando ndl fica vazio */
+    var ndl   = String(m.ndl||m.tdl||"").trim();
     var isCP = (fav && fav===cnpjConv)
             || (!fav && cpTotal>0 && Math.abs(vorig-cpTotal)<1)
             || (ndl && cpNdls[ndl]);
@@ -1393,8 +1395,9 @@ function renderNF(c){
     /* Passo 1: cria entrada por NF a partir dos OBTVs */
     c.movimentacoes.forEach(function(m){
       var t = (m.tipo||"").toUpperCase();
-      if((t.includes("OBTV")||t.includes("PAGAMENTO A FAVORECIDO")) && m.ndl){
-        var ndls = String(m.ndl).split(/[,;\s]+/).map(function(x){return x.trim();}).filter(Boolean);
+      var _ndlVal = m.ndl || m.tdl || "";
+      if((t.includes("OBTV")||t.includes("PAGAMENTO A FAVORECIDO")) && _ndlVal){
+        var ndls = String(_ndlVal).split(/[,;\s]+/).map(function(x){return x.trim();}).filter(Boolean);
         ndls.forEach(function(nk){
           if(!nfMap[nk]) nfMap[nk]={num:nk,data:m.data,razao:m.favorecido||"",v_orig:0,v_bruto:0,tributos:0,v_liq:0,status:"Conciliada",tipo:"NOTA FISCAL"};
           nfMap[nk].v_orig  += parseReais(m.v_orig);
@@ -1406,8 +1409,8 @@ function renderNF(c){
     /* Passo 2: acumula tributos nas NFs pelo campo ndl das linhas de tributo */
     c.movimentacoes.forEach(function(m){
       var t = (m.tipo||"").toUpperCase();
-      if(t.includes("TRIBUTO") && m.ndl){
-        var ndls = String(m.ndl).split(/[,;\s]+/).map(function(x){return x.trim();}).filter(Boolean);
+      if(t.includes("TRIBUTO") && _ndlVal){
+        var ndls = String(_ndlVal).split(/[,;\s]+/).map(function(x){return x.trim();}).filter(Boolean);
         ndls.forEach(function(nk){
           if(nfMap[nk]) nfMap[nk].tributos += parseReais(m.v_orig);
         });

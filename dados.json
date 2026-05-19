@@ -2513,7 +2513,7 @@
     {
       "numero": "781089",
       "objeto": "IMPLANTACAO DE INFRAESTRUTURA ESPORTIVA no Municipio de Monsenhor Hipolito  PI",
-      "coletado_em": "18/05/2026 22:32",
+      "coletado_em": "19/05/2026 17:40",
       "valor_global": "R$ 567.939,88",
       "valor_repasse": "R$ 487.500,00",
       "valor_contrapartida": "R$ 80.439,88",
@@ -2529,11 +2529,156 @@
           "valor_repasse": "",
           "dt_inicio": "",
           "dt_fim": "",
-          "cnpj": "",
+          "cnpj": "04.052.287/0001-54",
           "razao_social": "CONSTRUTORA P2 LTDA"
         }
       ],
-      "movimentacoes": [],
+      "movimentacoes": [
+        {
+          "num": "222",
+          "data": "22/07/2022",
+          "tipo": "PAGAMENTO",
+          "v_orig": 9236.93,
+          "v_bruto": 9236.93,
+          "v_liq": 9236.93,
+          "v_retencao": 0.0,
+          "favorecido": "CONSTRUTORA P2 LTDA",
+          "cnpj": "04.052.287/0001-54",
+          "tributo": "",
+          "ndl": "222",
+          "tdl": "",
+          "ndoc_pag": "2022OB02439",
+          "situacao": "Pago"
+        },
+        {
+          "num": "221",
+          "data": "22/07/2022",
+          "tipo": "PAGAMENTO",
+          "v_orig": 46742.82,
+          "v_bruto": 46742.82,
+          "v_liq": 46742.82,
+          "v_retencao": 0.0,
+          "favorecido": "CONSTRUTORA P2 LTDA",
+          "cnpj": "04.052.287/0001-54",
+          "tributo": "",
+          "ndl": "221",
+          "tdl": "",
+          "ndoc_pag": "2022OB02438",
+          "situacao": "Pago"
+        },
+        {
+          "num": "193",
+          "data": "20/04/2021",
+          "tipo": "PAGAMENTO",
+          "v_orig": 110011.87,
+          "v_bruto": 110011.87,
+          "v_liq": 110011.87,
+          "v_retencao": 0.0,
+          "favorecido": "CONSTRUTORA P2 LTDA",
+          "cnpj": "04.052.287/0001-54",
+          "tributo": "",
+          "ndl": "193",
+          "tdl": "",
+          "ndoc_pag": "2021OB00544",
+          "situacao": "Pago"
+        },
+        {
+          "num": "184",
+          "data": "20/10/2020",
+          "tipo": "PAGAMENTO",
+          "v_orig": 16331.02,
+          "v_bruto": 16331.02,
+          "v_liq": 16331.02,
+          "v_retencao": 0.0,
+          "favorecido": "CONSTRUTORA P2 LTDA",
+          "cnpj": "04.052.287/0001-54",
+          "tributo": "",
+          "ndl": "184",
+          "tdl": "",
+          "ndoc_pag": "2020OB01021",
+          "situacao": "Pago"
+        },
+        {
+          "num": "185",
+          "data": "08/10/2020",
+          "tipo": "PAGAMENTO",
+          "v_orig": 82641.93,
+          "v_bruto": 82641.93,
+          "v_liq": 82641.93,
+          "v_retencao": 0.0,
+          "favorecido": "CONSTRUTORA P2 LTDA",
+          "cnpj": "04.052.287/0001-54",
+          "tributo": "",
+          "ndl": "185",
+          "tdl": "",
+          "ndoc_pag": "2020OB01020",
+          "situacao": "Pago"
+        },
+        {
+          "num": "00161",
+          "data": "19/09/2019",
+          "tipo": "PAGAMENTO",
+          "v_orig": 7629.45,
+          "v_bruto": 7629.45,
+          "v_liq": 7629.45,
+          "v_retencao": 0.0,
+          "favorecido": "CONSTRUTORA P2 LTDA",
+          "cnpj": "04.052.287/0001-54",
+          "tributo": "",
+          "ndl": "00161",
+          "tdl": "",
+          "ndoc_pag": "2019PD00916",
+          "situacao": "Pago"
+        },
+        {
+          "num": "00160",
+          "data": "19/09/2019",
+          "tipo": "PAGAMENTO",
+          "v_orig": 38608.24,
+          "v_bruto": 38608.24,
+          "v_liq": 38608.24,
+          "v_retencao": 0.0,
+          "favorecido": "CONSTRUTORA P2 LTDA",
+          "cnpj": "04.052.287/0001-54",
+          "tributo": "",
+          "ndl": "00160",
+          "tdl": "",
+          "ndoc_pag": "2019PD00914",
+          "situacao": "Pago"
+        },
+        {
+          "num": "155",
+          "data": "24/04/2019",
+          "tipo": "PAGAMENTO",
+          "v_orig": 75.51,
+          "v_bruto": 75.51,
+          "v_liq": 75.51,
+          "v_retencao": 0.0,
+          "favorecido": "CONSTRUTORA P2 LTDA",
+          "cnpj": "04.052.287/0001-54",
+          "tributo": "",
+          "ndl": "155",
+          "tdl": "",
+          "ndoc_pag": "2019OB00179",
+          "situacao": "Pago"
+        },
+        {
+          "num": "154",
+          "data": "22/04/2019",
+          "tipo": "PAGAMENTO",
+          "v_orig": 51512.27,
+          "v_bruto": 51512.27,
+          "v_liq": 51512.27,
+          "v_retencao": 0.0,
+          "favorecido": "CONSTRUTORA P2 LTDA",
+          "cnpj": "04.052.287/0001-54",
+          "tributo": "",
+          "ndl": "154",
+          "tdl": "",
+          "ndoc_pag": "2019OB00170",
+          "situacao": "Pago"
+        }
+      ],
       "notas_fiscais": [
         {
           "num": "222",
@@ -2760,11 +2905,11 @@
       "ateste_concedente": false,
       "status_obra": "",
       "tem_medicao": false,
-      "saldo_rendimentos": 290.34,
+      "saldo_rendimentos": 0.0,
       "_id_convenio": "318664",
       "_id_proposta": "",
       "erro": "",
-      "obs_manual": "Instrumento antigo (pré-OBTV). Pagamentos inseridos diretamente na plataforma — movimentações não disponíveis na API OBTV. Empresa executora (CONSTRUTORA P2 LTDA) rescindida; novo projeto apresentado e aguardando análise da CAIXA para licitação do remanescente."
+      "obs_manual": "Instrumento antigo (pré-OBTV). Pagamentos coletados da aba Pagamento do Transferegov — movimentações OBTV não disponíveis. Empresa executora rescindida; novo projeto aguardando análise da CAIXA para licitação do remanescente."
     },
     {
       "numero": "889040",
@@ -4092,5 +4237,5 @@
       "erro": "Nao encontrado no Transferegov"
     }
   ],
-  "exec_atualizado_em": "18/05/2026 22:37"
+  "exec_atualizado_em": "19/05/2026 17:45"
 }

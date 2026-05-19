@@ -2146,7 +2146,7 @@
     {
       "numero": "946260",
       "objeto": "MANUTENCAO E ADEQUACAO NAS ESTRADAS VICINAIS NO MUNICIPIO DE LAGOA DE SAO FRANCISCO-PI.",
-      "coletado_em": "19/05/2026 20:01",
+      "coletado_em": "19/05/2026 20:18",
       "valor_global": "R$ 1.002.000,00",
       "valor_repasse": "R$ 955.000,00",
       "valor_contrapartida": "R$ 47.000,00",
@@ -2205,8 +2205,8 @@
           "v_retencao": 0.0,
           "favorecido": "02.577.913/0001-09",
           "tributo": "PAGAMENTO A FAVORECIDO COM OBTV",
-          "ndl": "",
-          "tdl": "905",
+          "ndl": "905",
+          "tdl": "NOTA FISCAL",
           "situacao": "NOTA FISCAL"
         },
         {
@@ -2219,8 +2219,8 @@
           "v_retencao": 0.0,
           "favorecido": "02.577.913/0001-09",
           "tributo": "PAGAMENTO A FAVORECIDO COM OBTV",
-          "ndl": "",
-          "tdl": "904",
+          "ndl": "904",
+          "tdl": "NOTA FISCAL",
           "situacao": "NOTA FISCAL"
         },
         {
@@ -2303,8 +2303,8 @@
           "v_retencao": 0.0,
           "favorecido": "02.577.913/0001-09",
           "tributo": "PAGAMENTO A FAVORECIDO COM OBTV",
-          "ndl": "",
-          "tdl": "898",
+          "ndl": "898",
+          "tdl": "NOTA FISCAL",
           "situacao": "NOTA FISCAL"
         },
         {
@@ -2317,8 +2317,8 @@
           "v_retencao": 0.0,
           "favorecido": "02.577.913/0001-09",
           "tributo": "PAGAMENTO A FAVORECIDO COM OBTV",
-          "ndl": "",
-          "tdl": "897",
+          "ndl": "897",
+          "tdl": "NOTA FISCAL",
           "situacao": "NOTA FISCAL"
         },
         {
@@ -2331,8 +2331,8 @@
           "v_retencao": 0.0,
           "favorecido": "02.577.913/0001-09",
           "tributo": "PAGAMENTO A FAVORECIDO COM OBTV",
-          "ndl": "",
-          "tdl": "896",
+          "ndl": "896",
+          "tdl": "NOTA FISCAL",
           "situacao": "NOTA FISCAL"
         },
         {
@@ -4238,5 +4238,5 @@
       "erro": "Nao encontrado no Transferegov"
     }
   ],
-  "exec_atualizado_em": "19/05/2026 20:04"
+  "exec_atualizado_em": "19/05/2026 20:21"
 }

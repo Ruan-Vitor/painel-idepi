@@ -973,7 +973,10 @@ function renderInstrumento(){
   var saldoRep    = Math.max(0, parseReais(c.valor_repasse) - pagoRepasse);
   var saldoCP     = Math.max(0, parseReais(c.valor_contrapartida) - pagoCP);
   var saldoRend   = parseReais(c.saldo_rendimentos) || 0;
-  var valorContrato = c.contrato ? parseReais(c.contrato.valor) : parseReais(c.valor_global);
+  /* valorContrato: usa contrato.valor se preenchido, senão cai para valor_global.
+     Para instrumentos pré-OBTV o contrato existe mas .valor pode estar vazio. */
+  var _vcContrato = c.contrato ? parseReais(c.contrato.valor) : 0;
+  var valorContrato = _vcContrato > 0 ? _vcContrato : parseReais(c.valor_global);
   var pctFin      = valorContrato > 0
     ? Math.min(100, Math.round(totalPago / valorContrato * 100)) : 0;
   var pctCP       = parseReais(c.valor_contrapartida) > 0

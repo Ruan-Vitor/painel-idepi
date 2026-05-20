@@ -559,11 +559,19 @@ tbody tr:hover td{background:#f5f9ff}
           <!-- Coluna 1: Repasse Federal -->
           <div class="vs-ecol">
             <div class="vs-ecol-header"><i class="fa-solid fa-landmark"></i>Repasse Federal</div>
-            <div style="font-size:8.5px;color:rgba(255,255,255,.3);margin-bottom:6px" id="vs-rep-total-sub"></div>
+            <div style="font-size:8.5px;color:rgba(255,255,255,.3);margin-bottom:6px" id="vs-rep-total-sub">Recursos do concedente</div>
             <div class="vs-ecol-pago" id="vs-rep-pago">—</div>
-            <div style="font-size:9px;color:rgba(255,255,255,.3);margin-bottom:4px">pago de <span id="vs-rep-total" style="color:rgba(255,255,255,.55)">—</span></div>
+            <div style="font-size:9px;color:rgba(255,255,255,.3);margin-bottom:2px">pago de <span id="vs-rep-total" style="color:rgba(255,255,255,.55)">—</span></div>
+            <!-- linha de recebido real (OBs GERCOMP) -->
+            <div id="vs-rep-recebido-row" style="display:none;font-size:8.5px;margin-bottom:4px">
+              <span style="color:rgba(255,255,255,.3)">recebido </span>
+              <span id="vs-rep-recebido" style="color:#4ade80;font-weight:600">—</span>
+              <span style="color:rgba(255,255,255,.25)"> de </span>
+              <span id="vs-rep-previsto" style="color:rgba(255,255,255,.4)">—</span>
+              <span id="vs-rep-parcial-badge" style="display:none;margin-left:4px;background:#92400e;color:#fcd34d;font-size:7.5px;font-weight:700;padding:1px 5px;border-radius:6px;vertical-align:middle">PARCIAL</span>
+            </div>
             <div class="vs-ecol-divider"></div>
-            <div class="vs-ecol-saldo-lbl">Saldo disponível</div>
+            <div class="vs-ecol-saldo-lbl" id="vs-rep-saldo-lbl">Saldo disponível</div>
             <div class="vs-ecol-saldo v-amber" id="vs-rep-saldo">—</div>
             <div class="vs-ecol-bar"><div class="vs-ecol-bar-fill bf-rep" id="vs-rep-bar" style="width:0%"></div></div>
           </div>
@@ -736,6 +744,8 @@ var INSTRUMENTOS_EXEC = [
     valor_repasse:       955000.00,
     valor_contrapartida:  47000.00,
     saldo_rendimentos:   150937.98,  /* Valor da aba Rendimento de Aplicação no Transferegov */
+    /* Repasse real desembolsado pelo concedente (OBs GERCOMP — Execução Concedente) */
+    repasse_desembolsado: { previsto: 955000.00, desembolsado: 955000.00, a_desembolsar: 0.00 },
 
     /* Datas */
     data_assinatura:   "22/11/2023",
@@ -1170,7 +1180,14 @@ function renderInstrumento(){
   var pagoRepasse = calcPagoRepasse(c);
   var pagoCP      = calcPagoContrapartida(c);
   var totalPago   = pagoRepasse + pagoCP;
-  var saldoRep    = Math.max(0, parseReais(c.valor_repasse) - pagoRepasse);
+
+  /* ── Repasse: usa valor real desembolsado (OBs GERCOMP) quando disponível ── */
+  var rd = c.repasse_desembolsado; // {previsto, desembolsado, a_desembolsar} ou null
+  var repasseRecebido  = (rd && rd.desembolsado > 0) ? rd.desembolsado : null;
+  var repassePrevisto  = parseReais(c.valor_repasse);
+  /* Base do saldo: desembolsado real se tiver, senão previsto (fallback) */
+  var repasseBase = repasseRecebido !== null ? repasseRecebido : repassePrevisto;
+  var saldoRep    = Math.max(0, repasseBase - pagoRepasse);
   var saldoCP     = Math.max(0, parseReais(c.valor_contrapartida) - pagoCP);
   var saldoRend   = parseReais(c.saldo_rendimentos) || 0;
   /* valorContrato: soma todos os contratos (múltiplos) ou usa valor único */
@@ -1205,8 +1222,30 @@ function renderInstrumento(){
   document.getElementById("vs-rep-pago").textContent  = fmt(pagoRepasse);
   document.getElementById("vs-rep-total").textContent = fmt(c.valor_repasse);
   document.getElementById("vs-rep-saldo").textContent = fmt(saldoRep);
-  var pctRep = parseReais(c.valor_repasse) > 0
-    ? Math.min(100, Math.round(pagoRepasse / parseReais(c.valor_repasse) * 100)) : 0;
+  /* Linha "recebido X de Y previsto" — só mostra quando temos dado real de OBs */
+  var repRecRow = document.getElementById("vs-rep-recebido-row");
+  if(repasseRecebido !== null){
+    document.getElementById("vs-rep-recebido").textContent = fmt(repasseRecebido);
+    document.getElementById("vs-rep-previsto").textContent = fmt(repassePrevisto);
+    repRecRow.style.display = "";
+    /* Badge PARCIAL: quando ainda há valor a desembolsar */
+    var aDesemb = (rd && rd.a_desembolsar > 0) ? rd.a_desembolsar : 0;
+    var badgeEl = document.getElementById("vs-rep-parcial-badge");
+    if(aDesemb > 0.01){
+      badgeEl.style.display = "inline";
+      badgeEl.title = "Faltam " + fmt(aDesemb) + " a desembolsar pelo concedente";
+    } else {
+      badgeEl.style.display = "none";
+    }
+    /* Legenda do saldo muda para "Saldo real (recebido − pago)" */
+    document.getElementById("vs-rep-saldo-lbl").textContent =
+      aDesemb > 0.01 ? "Saldo real (parcial)" : "Saldo real (recebido − pago)";
+  } else {
+    repRecRow.style.display = "none";
+    document.getElementById("vs-rep-saldo-lbl").textContent = "Saldo disponível (previsto)";
+  }
+  var pctRep = repasseBase > 0
+    ? Math.min(100, Math.round(pagoRepasse / repasseBase * 100)) : 0;
   document.getElementById("vs-rep-bar").style.width   = pctRep + "%";
 
   /* Contrapartida */
@@ -1851,10 +1890,12 @@ function exportarExcel(){
         ["",""],
         ["Valor Global",c.valor_global],
         ["Valor do Contrato", c.contrato ? c.contrato.valor : ""],
-        ["Valor Repasse",c.valor_repasse],
+        ["Valor Repasse (previsto)",c.valor_repasse],
+        ["Repasse Recebido (OBs)", (c.repasse_desembolsado && c.repasse_desembolsado.desembolsado > 0) ? c.repasse_desembolsado.desembolsado : "—"],
+        ["Repasse a Desembolsar", (c.repasse_desembolsado && c.repasse_desembolsado.a_desembolsar > 0) ? c.repasse_desembolsado.a_desembolsar : 0],
         ["Pago (Repasse)",calcPagoRepasse(c)],
-        ["Saldo Repasse", Math.max(0, parseReais(c.valor_repasse) - calcPagoRepasse(c))],
-        ["Contrapartida",c.valor_contrapartida],
+        ["Saldo Repasse Real", Math.max(0, ((c.repasse_desembolsado && c.repasse_desembolsado.desembolsado > 0) ? c.repasse_desembolsado.desembolsado : parseReais(c.valor_repasse)) - calcPagoRepasse(c))],
+        ["Contrapartida (previsto)",c.valor_contrapartida],
         ["Pago (Contrapartida)", calcPagoContrapartida(c)],
         ["Saldo Contrapartida", Math.max(0, parseReais(c.valor_contrapartida) - calcPagoContrapartida(c))],
         ["Rendimentos Disponíveis", parseReais(c.saldo_rendimentos)],

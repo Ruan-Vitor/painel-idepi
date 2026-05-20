@@ -626,7 +626,7 @@ tbody tr:hover td{background:#f5f9ff}
           <div class="cc-title"><i class="fa-solid fa-file-contract"></i> Instrumento Contratual / CTEF</div>
           <span id="cc-status-badge"></span>
         </div>
-        <div id="ccGrid" style="padding:2px 0">
+        <div class="cc-grid" id="ccGrid">
           <!-- Dinâmico -->
         </div>
       </div>
@@ -838,31 +838,20 @@ function normalizarInstrumento(c){
   c.tipo_instrumento = c.tipo_instrumento || "";
   c.ano = c.ano || "";
 
-  /* contratos: o coletor grava como array — o frontend preserva o array
-     e também mapeia .contrato = contrato ativo (em vigência ou o de maior valor) */
-  if(Array.isArray(c.contratos) && c.contratos.length > 0){
-    /* Normaliza cada item do array */
-    c.contratos = c.contratos.map(function(ct){
-      return {
-        numero:     ct.numero_contrato || ct.numero || "—",
-        empresa:    ct.razao_social    || ct.empresa || "",
-        cnpj:       ct.cnpj            || "",
-        valor:      parseReais(ct.valor) || parseReais(ct.valor_repasse) || 0,
-        situacao:   ct.situacao        || "",
-        data_inicio:ct.dt_inicio       || ct.data_inicio || "",
-        data_fim:   ct.dt_fim          || ct.data_fim    || "",
-      };
-    });
-    /* Seleciona contrato principal: prioritário = ativo/em vigência, senão maior valor */
-    var _ativo = c.contratos.find(function(ct){
-      var s = (ct.situacao||"").toLowerCase();
-      return s.includes("ativo") || s.includes("vigente") || s.includes("em vigência")
-          || s.includes("andamento") || s === "";
-    });
-    if(!_ativo) _ativo = c.contratos.slice().sort(function(a,b){ return b.valor-a.valor; })[0];
-    c.contrato = _ativo;
-  } else if(!Array.isArray(c.contratos)){
-    c.contratos = c.contrato ? [c.contrato] : [];
+  /* contratos: o coletor grava como array — o frontend espera .contrato (objeto único) */
+  if(Array.isArray(c.contratos) && c.contratos.length > 0 && !c.contrato){
+    var ct = c.contratos[0];
+    c.contrato = {
+      numero:     ct.numero_contrato || ct.numero || "",
+      empresa:    ct.razao_social    || ct.empresa || "",
+      cnpj:       ct.cnpj            || "",
+      valor:      parseReais(ct.valor),
+      situacao:   ct.situacao        || "",
+      data_inicio:ct.dt_inicio       || ct.data_inicio || "",
+      data_fim:   ct.dt_fim          || ct.data_fim    || "",
+    };
+    /* Se valor zerado, tenta campo valor_repasse do contrato */
+    if(!c.contrato.valor) c.contrato.valor = parseReais(ct.valor_repasse);
   }
 
   /* movimentacoes: garante que v_orig/v_bruto/v_liq sejam números */
@@ -1177,9 +1166,15 @@ function renderInstrumento(){
   var saldoRep    = Math.max(0, parseReais(c.valor_repasse) - pagoRepasse);
   var saldoCP     = Math.max(0, parseReais(c.valor_contrapartida) - pagoCP);
   var saldoRend   = parseReais(c.saldo_rendimentos) || 0;
-  /* valorContrato: usa contrato.valor se preenchido, senão cai para valor_global.
-     Para instrumentos pré-OBTV o contrato existe mas .valor pode estar vazio. */
-  var _vcContrato = c.contrato ? parseReais(c.contrato.valor) : 0;
+  /* valorContrato: para múltiplos contratos soma todos os valores (teto total do convênio).
+     Para contrato único usa o valor do contrato ou cai para valor_global. */
+  var _vcContrato = 0;
+  var _todosContratos = c.contratos && c.contratos.length ? c.contratos : (c.contrato ? [c.contrato] : []);
+  if(_todosContratos.length > 1){
+    _todosContratos.forEach(function(ct){ _vcContrato += parseReais(ct.valor) || 0; });
+  } else if(c.contrato){
+    _vcContrato = parseReais(c.contrato.valor) || 0;
+  }
   var valorContrato = _vcContrato > 0 ? _vcContrato : parseReais(c.valor_global);
   var pctFin      = valorContrato > 0
     ? Math.min(100, Math.round(totalPago / valorContrato * 100)) : 0;
@@ -1193,7 +1188,11 @@ function renderInstrumento(){
   document.getElementById("vs-contrato-pago").textContent  = fmt(totalPago);
   document.getElementById("vs-contrato-saldo").textContent = fmt(saldoContrato);
   var empEl = document.getElementById("vs-teto-empresa");
-  if(c.contrato && c.contrato.empresa){
+  if(_todosContratos.length > 1){
+    empEl.textContent = _todosContratos.length + " contratos — soma R$ " +
+      (_vcContrato).toLocaleString("pt-BR",{minimumFractionDigits:2,maximumFractionDigits:2});
+    empEl.style.display = "";
+  } else if(c.contrato && c.contrato.empresa){
     empEl.textContent = c.contrato.numero + " — " + c.contrato.empresa;
     empEl.style.display = "";
   } else {
@@ -1231,7 +1230,7 @@ function renderInstrumento(){
 
 
   /* Progresso físico */
-  var preObtv2012 = _isPreOBTV(c) && (c.ano && parseInt(c.ano) <= 2015);
+  var preObtv2012 = _isPreOBTV(c) && (c.ano && parseInt(c.ano) <= 2015) && !c.tem_medicao;
   var semMedicao2 = !c.tem_medicao && !c.exec_fisica_pct && !c.ateste_convenente;
   var pfis = typeof c.exec_fisica_pct === "number" ? c.exec_fisica_pct : 0;
   var pfisStr;
@@ -1398,7 +1397,7 @@ function calcPagoRepasse(c){
 }
 
 /* ── CALC PAGO CONTRAPARTIDA ────────────────────────── */
-/* Soma OBTVs identificados como contrapartida + ingressos.
+/* Soma OBTVs identificados como contrapartida + ingressos de contrapartida.
    Fallback: usa rateio das NFs para instrumentos pré-OBTV. */
 function calcPagoContrapartida(c){
   if(_isPreOBTV(c)) return _calcPorNFs(c).cp;
@@ -1415,8 +1414,14 @@ function calcPagoContrapartida(c){
     });
     if(temCp && !temRep) cpNdls[String(n.num)] = true;
   });
+
+  /* Ingresso de Contrapartida: lançamento direto do convenente */
   (c.movimentacoes||[]).forEach(function(m){
     var t = (m.tipo||"").toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"");
+    if(t.includes("INGRESSO") && t.includes("CONTRAPARTIDA")){
+      total += parseReais(m.v_orig) || parseReais(m.v_bruto) || 0;
+      return;
+    }
     var isObtv = t.includes("OBTV")||t.includes("PAGAMENTO A FAVORECIDO")||t.includes("PGTO OBTV");
     if(!isObtv) return;
     var vorig = parseReais(m.v_orig);
@@ -1436,7 +1441,8 @@ function calcPagoContrapartida(c){
 function renderAteste(c){
   var html = "";
   var semMedicao = !c.tem_medicao && !c.exec_fisica_pct && !c.ateste_convenente && !c.ateste_concedente;
-  var preObtv    = _isPreOBTV(c) && (c.ano && parseInt(c.ano) <= 2015);
+  /* preObtv: apenas instrumentos realmente sem sistema de medições (2015 ou anterior E sem movimentações OBTV) */
+  var preObtv = _isPreOBTV(c) && (c.ano && parseInt(c.ano) <= 2015) && !c.tem_medicao;
 
   /* Convenente */
   html += '<div class="ateste-card">';
@@ -1490,72 +1496,29 @@ function renderAteste(c){
 
 /* ── CONTRATO ───────────────────────────────────────── */
 function renderContrato(c){
-  var lista = c.contratos || (c.contrato ? [c.contrato] : []);
-
-  if(!lista.length){
-    document.getElementById("cc-status-badge").innerHTML = '<span class="b b-slate">Sem contrato registrado</span>';
-    document.getElementById("ccGrid").innerHTML = '<div style="padding:18px;color:var(--muted);font-size:12px;">Nenhum instrumento contratual/CTEF cadastrado para este convênio.</div>';
-    return;
-  }
-
-  /* Badge: situação do contrato principal */
-  var ct0 = c.contrato || lista[0];
-  var sitLabel = ct0.situacao || "";
-  var _sitLow = sitLabel.toLowerCase();
-  var badge = _sitLow.includes("conclu")   ? '<span class="b b-green">Concluído</span>'
-            : _sitLow.includes("rescind")  ? '<span class="b b-red">Rescindido (inferido)</span>'
-            : _sitLow.includes("ativo") || _sitLow.includes("vigente") || sitLabel===""
-                                            ? '<span class="b b-blue">Ativo</span>'
-            : '<span class="b b-slate">'+sanitize(sitLabel)+'</span>';
-  if(lista.length > 1) badge += ' <span class="b b-slate">'+lista.length+' contratos</span>';
+  var ct = c.contrato;
+  var sitLabel = ct ? (ct.situacao||"") : "";
+  var badge = ct
+    ? (sitLabel==="Concluído"||sitLabel===""
+        ? '<span class="b b-green">Concluído</span>'
+        : '<span class="b b-blue">'+sanitize(sitLabel)+'</span>')
+    : '<span class="b b-slate">Sem contrato registrado</span>';
   document.getElementById("cc-status-badge").innerHTML = badge;
 
-  /* Renderiza cada contrato */
-  var html = "";
-  lista.forEach(function(ct, idx){
-    var _s = (ct.situacao||"").toLowerCase();
-    var _badgeSit = _s.includes("conclu")  ? '<span class="b b-green" style="font-size:9px">Concluído</span>'
-                  : _s.includes("rescind") ? '<span class="b b-red" style="font-size:9px">Rescindido</span>'
-                  : _s.includes("ativo") || _s.includes("vigente") || ct.situacao===""
-                                           ? '<span class="b b-blue" style="font-size:9px">Ativo</span>'
-                  : ct.situacao            ? '<span class="b b-slate" style="font-size:9px">'+sanitize(ct.situacao)+'</span>'
-                  : "";
+  if(!ct){ document.getElementById("ccGrid").innerHTML='<div style="padding:18px;color:var(--muted);font-size:12px;">Nenhum instrumento contratual/CTEF cadastrado para este convênio.</div>'; return; }
 
-    var _empresaHtml = ct.empresa
-      ? sanitize(ct.empresa)
-      : '<span style="color:var(--muted);font-style:italic">Não disponível</span>';
-    var _cnpjHtml = ct.cnpj
-      ? 'CNPJ: '+sanitize(ct.cnpj)
-      : '<span style="color:var(--muted);font-style:italic;font-size:9px">CNPJ não capturado</span>';
+  var empresaHtml = (ct.empresa||"")
+    ? sanitize(ct.empresa)
+    : '<span style="color:var(--muted);font-style:italic">Não disponível</span>';
+  var cnpjHtml = (ct.cnpj||"")
+    ? 'CNPJ: '+sanitize(ct.cnpj)
+    : '<span style="color:var(--muted);font-style:italic;font-size:9px">CNPJ não capturado</span>';
 
-    if(lista.length === 1){
-      /* Contrato único: layout plano */
-      html += '<div class="cc-grid" id="ccGrid-inner">';
-      html += '<div class="cc-item"><div class="cc-lbl">Nº Contrato / CTEF</div><div class="cc-val mono">'+sanitize(ct.numero)+'</div></div>';
-      html += '<div class="cc-item"><div class="cc-lbl">Empresa Contratada</div><div class="cc-val">'+_empresaHtml+'</div><div style="font-size:10px;color:var(--muted);margin-top:2px">'+_cnpjHtml+'</div></div>';
-      html += '<div class="cc-item"><div class="cc-lbl">Valor do Contrato</div><div class="cc-val" style="color:var(--green);font-size:15px">'+fmt(ct.valor)+'</div></div>';
-      html += '<div class="cc-item"><div class="cc-lbl">Vigência</div><div class="cc-val">'+sanitize(ct.data_inicio||"—")+' → '+sanitize(ct.data_fim||"—")+'</div></div>';
-      html += '</div>';
-    } else {
-      /* Múltiplos contratos: accordion */
-      var _isFirst = idx === 0;
-      html += '<details style="border:1px solid var(--border);border-radius:8px;margin-bottom:6px;overflow:hidden;"'+(_isFirst?' open':'')+' >';
-      html += '<summary style="padding:10px 14px;cursor:pointer;display:flex;align-items:center;gap:8px;background:var(--surface2);font-size:12px;font-weight:600;list-style:none;">';
-      html += '<span class="mono" style="color:var(--accent)">'+sanitize(ct.numero)+'</span>';
-      html += '<span style="flex:1;color:var(--text)">'+_empresaHtml+'</span>';
-      html += '<span style="font-size:11px;color:var(--muted);margin-right:8px">'+fmt(ct.valor)+'</span>';
-      html += _badgeSit;
-      html += '</summary>';
-      html += '<div style="padding:10px 14px;display:grid;grid-template-columns:1fr 1fr;gap:8px;">';
-      html += '<div><div class="cc-lbl">Empresa</div><div class="cc-val">'+_empresaHtml+'</div><div style="font-size:10px;color:var(--muted)">'+_cnpjHtml+'</div></div>';
-      html += '<div><div class="cc-lbl">Valor</div><div class="cc-val" style="color:var(--green)">'+fmt(ct.valor)+'</div></div>';
-      html += '<div><div class="cc-lbl">Vigência</div><div class="cc-val">'+sanitize(ct.data_inicio||"—")+' → '+sanitize(ct.data_fim||"—")+'</div></div>';
-      html += '<div><div class="cc-lbl">Situação</div>'+_badgeSit+'</div>';
-      html += '</div>';
-      html += '</details>';
-    }
-  });
-  document.getElementById("ccGrid").innerHTML = html;
+  document.getElementById("ccGrid").innerHTML =
+    '<div class="cc-item"><div class="cc-lbl">Nº Contrato / CTEF</div><div class="cc-val mono">'+sanitize(ct.numero)+'</div></div>'+
+    '<div class="cc-item"><div class="cc-lbl">Empresa Contratada</div><div class="cc-val">'+empresaHtml+'</div><div style="font-size:10px;color:var(--muted);margin-top:2px">'+cnpjHtml+'</div></div>'+
+    '<div class="cc-item"><div class="cc-lbl">Valor do Contrato</div><div class="cc-val" style="color:var(--green);font-size:15px">'+fmt(ct.valor)+'</div></div>'+
+    '<div class="cc-item"><div class="cc-lbl">Vigência</div><div class="cc-val">'+sanitize(ct.data_inicio||"—")+' → '+sanitize(ct.data_fim||"—")+'</div></div>';
 }
 
 /* ── MOVIMENTAÇÕES ──────────────────────────────────── */
@@ -1902,12 +1865,6 @@ function _syncFsExec(){
         INSTRUMENTOS_EXEC = execData.map(normalizarInstrumento);
       } else {
         INSTRUMENTOS_EXEC = INSTRUMENTOS_EXEC.map(normalizarInstrumento);
-      }
-      /* Restaura último instrumento visto antes de popular o seletor */
-      var _ultimo = localStorage.getItem("idepi_exec_ultimo");
-      if(_ultimo && INSTRUMENTOS_EXEC.find(function(c){ return c.numero===_ultimo; })){
-        _numVisualizando = _ultimo;
-        instAtual = normalizarInstrumento(INSTRUMENTOS_EXEC.find(function(c){ return c.numero===_ultimo; }));
       }
       popularSelector(INSTRUMENTOS_EXEC);
       document.getElementById("overlay").classList.add("hide");

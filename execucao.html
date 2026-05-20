@@ -997,6 +997,7 @@ function toggleMarcado(num, cb, e){
 function visualizarDd(num, e){
   e && e.stopPropagation();
   _numVisualizando = num;
+  localStorage.setItem("idepi_exec_ultimo", num);
   instAtual = INSTRUMENTOS_EXEC.find(function(c){ return c.numero===num; });
   if(instAtual){
     instAtual = normalizarInstrumento(instAtual);
@@ -1107,16 +1108,28 @@ function aplicarFiltros(){
   document.getElementById("filtCount").textContent =
     filtrados.length + (filtrados.length === 1 ? " instrumento" : " instrumentos");
 
-  // Se instrumento atual não está na lista filtrada, muda para o primeiro
-  if(!instAtual || !filtrados.find(function(c){ return c.numero===_numVisualizando; })){
-    if(filtrados.length){
-      _numVisualizando = filtrados[0].numero;
-      instAtual = normalizarInstrumento(filtrados[0]);
-      document.getElementById("inst-nome-num").textContent = instAtual.numero || "—";
-      document.getElementById("inst-nome-obj").textContent = instAtual.objeto || "—";
-      document.getElementById("inst-nome-data").textContent = instAtual.coletado_em ? "Coletado em " + instAtual.coletado_em : "—";
-      renderInstrumento();
-    }
+  // Restaura último instrumento visto; se não estiver na lista filtrada, usa o primeiro
+  var ultimo = localStorage.getItem("idepi_exec_ultimo");
+  var preferido = (ultimo && filtrados.find(function(c){ return c.numero===ultimo; }))
+    ? ultimo
+    : (_numVisualizando && filtrados.find(function(c){ return c.numero===_numVisualizando; }) ? _numVisualizando : null);
+
+  if(!preferido && filtrados.length) preferido = filtrados[0].numero;
+
+  if(preferido && preferido !== _numVisualizando){
+    _numVisualizando = preferido;
+    instAtual = normalizarInstrumento(filtrados.find(function(c){ return c.numero===preferido; }));
+    document.getElementById("inst-nome-num").textContent = instAtual.numero || "—";
+    document.getElementById("inst-nome-obj").textContent = instAtual.objeto || "—";
+    document.getElementById("inst-nome-data").textContent = instAtual.coletado_em ? "Coletado em " + instAtual.coletado_em : "—";
+    renderInstrumento();
+  } else if(!instAtual && filtrados.length){
+    _numVisualizando = filtrados[0].numero;
+    instAtual = normalizarInstrumento(filtrados[0]);
+    document.getElementById("inst-nome-num").textContent = instAtual.numero || "—";
+    document.getElementById("inst-nome-obj").textContent = instAtual.objeto || "—";
+    document.getElementById("inst-nome-data").textContent = instAtual.coletado_em ? "Coletado em " + instAtual.coletado_em : "—";
+    renderInstrumento();
   }
   atualizarTriggerLabel();
   if(_ddAberto) renderDdLista(filtrados);

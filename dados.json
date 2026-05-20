@@ -3995,7 +3995,7 @@
     {
       "numero": "894024",
       "objeto": "1. PAVIMENTACAO EM PARALELEPIPEDO EM DIVERSAS RUAS DOS MUNICIPIOS DE AGRICOLANDIA,ALVORADA DO GURGUEIA, AVELINO LOPES, BETANIA DO PIAUI, BOCAINA, CABECEIRAS DO PIAUI, COLONIA DO PIAUI, ELESBAO VELOSO, FRANCINOPOLIS, IPIRANGA DO PIAUI, JOAO COSTA, MASSAPE DO PIAUI, MIGUEL LEAO, PASSAGEM FRANCA DO PIAUI, PAU D'ARCO DO PIAUI, PEDRO LAURENTINO, PORTO, QUEIMADA NOVA, SANTA FILOMENA, SANTANA DO PIAUI, SAO, FELIX DO PIAUI,",
-      "coletado_em": "20/05/2026 18:31",
+      "coletado_em": "20/05/2026 18:47",
       "valor_global": "R$ 8.607.200,00",
       "valor_repasse": "R$ 8.297.684,62",
       "valor_contrapartida": "R$ 309.515,38",
@@ -4101,6 +4101,206 @@
           "valor_repasse": "R$ 411.599,10",
           "dt_inicio": "22/06/2022",
           "dt_fim": "31/12/2022",
+          "cnpj": "",
+          "razao_social": ""
+        },
+        {
+          "numero_contrato": "208/2022",
+          "situacao": "Contrato Concluído e Aditivação Concluída",
+          "valor": "R$ 899.166,32",
+          "valor_repasse": "R$ 899.166,32",
+          "dt_inicio": "30/06/2022",
+          "dt_fim": "31/12/2023",
+          "cnpj": "",
+          "razao_social": ""
+        },
+        {
+          "numero_contrato": "21/2023",
+          "situacao": "Concluído",
+          "valor": "R$ 360.776,14",
+          "valor_repasse": "R$ 360.776,14",
+          "dt_inicio": "04/04/2023",
+          "dt_fim": "31/12/2023",
+          "cnpj": "",
+          "razao_social": ""
+        },
+        {
+          "numero_contrato": "213/2022",
+          "situacao": "Contrato Concluído e Aditivação Concluída",
+          "valor": "R$ 278.323,40",
+          "valor_repasse": "R$ 278.323,40",
+          "dt_inicio": "04/07/2022",
+          "dt_fim": "31/12/2023",
+          "cnpj": "",
+          "razao_social": ""
+        },
+        {
+          "numero_contrato": "214/2022",
+          "situacao": "Concluído",
+          "valor": "R$ 234.435,92",
+          "valor_repasse": "R$ 234.435,92",
+          "dt_inicio": "04/07/2022",
+          "dt_fim": "31/12/2022",
+          "cnpj": "",
+          "razao_social": ""
+        },
+        {
+          "numero_contrato": "215/2022",
+          "situacao": "Concluído",
+          "valor": "R$ 239.908,55",
+          "valor_repasse": "R$ 239.908,55",
+          "dt_inicio": "04/07/2022",
+          "dt_fim": "31/12/2022",
+          "cnpj": "",
+          "razao_social": ""
+        },
+        {
+          "numero_contrato": "216/2022",
+          "situacao": "Contrato Concluído e Aditivação Concluída",
+          "valor": "R$ 302.637,15",
+          "valor_repasse": "R$ 302.637,15",
+          "dt_inicio": "04/07/2022",
+          "dt_fim": "31/12/2023",
+          "cnpj": "",
+          "razao_social": ""
+        },
+        {
+          "numero_contrato": "217/2022",
+          "situacao": "Contrato Concluído e Aditivação Concluída",
+          "valor": "R$ 143.965,43",
+          "valor_repasse": "R$ 143.965,43",
+          "dt_inicio": "04/07/2022",
+          "dt_fim": "31/12/2023",
+          "cnpj": "",
+          "razao_social": ""
+        },
+        {
+          "numero_contrato": "218/2022",
+          "situacao": "Contrato Concluído e Aditivação Concluída",
+          "valor": "R$ 325.428,92",
+          "valor_repasse": "R$ 325.428,92",
+          "dt_inicio": "04/07/2022",
+          "dt_fim": "31/12/2023",
+          "cnpj": "",
+          "razao_social": ""
+        },
+        {
+          "numero_contrato": "219/2022",
+          "situacao": "Contrato Concluído e Aditivação Concluída",
+          "valor": "R$ 167.827,46",
+          "valor_repasse": "R$ 167.827,46",
+          "dt_inicio": "04/07/2022",
+          "dt_fim": "31/12/2023",
+          "cnpj": "",
+          "razao_social": ""
+        },
+        {
+          "numero_contrato": "220/2022",
+          "situacao": "Concluído",
+          "valor": "R$ 182.391,30",
+          "valor_repasse": "R$ 182.391,30",
+          "dt_inicio": "04/07/2022",
+          "dt_fim": "31/12/2022",
+          "cnpj": "",
+          "razao_social": ""
+        },
+        {
+          "numero_contrato": "227/2022",
+          "situacao": "Concluído",
+          "valor": "R$ 253.155,01",
+          "valor_repasse": "R$ 253.155,01",
+          "dt_inicio": "11/07/2022",
+          "dt_fim": "31/12/2022",
+          "cnpj": "",
+          "razao_social": ""
+        },
+        {
+          "numero_contrato": "228/2022",
+          "situacao": "Concluído",
+          "valor": "R$ 346.978,78",
+          "valor_repasse": "R$ 346.978,78",
+          "dt_inicio": "11/07/2022",
+          "dt_fim": "31/12/2022",
+          "cnpj": "",
+          "razao_social": ""
+        },
+        {
+          "numero_contrato": "240/2022",
+          "situacao": "Concluído",
+          "valor": "R$ 72.515,70",
+          "valor_repasse": "R$ 72.515,70",
+          "dt_inicio": "13/07/2022",
+          "dt_fim": "31/12/2022",
+          "cnpj": "",
+          "razao_social": ""
+        },
+        {
+          "numero_contrato": "245/2022",
+          "situacao": "Concluído",
+          "valor": "R$ 258.302,76",
+          "valor_repasse": "R$ 258.302,76",
+          "dt_inicio": "15/07/2022",
+          "dt_fim": "31/12/2022",
+          "cnpj": "",
+          "razao_social": ""
+        },
+        {
+          "numero_contrato": "246/2022",
+          "situacao": "Concluído",
+          "valor": "R$ 108.069,93",
+          "valor_repasse": "R$ 108.069,93",
+          "dt_inicio": "15/07/2022",
+          "dt_fim": "31/12/2022",
+          "cnpj": "",
+          "razao_social": ""
+        },
+        {
+          "numero_contrato": "26/2023",
+          "situacao": "Concluído",
+          "valor": "R$ 103.609,78",
+          "valor_repasse": "R$ 103.609,78",
+          "dt_inicio": "05/05/2023",
+          "dt_fim": "31/12/2024",
+          "cnpj": "",
+          "razao_social": ""
+        },
+        {
+          "numero_contrato": "27/2023",
+          "situacao": "Concluído",
+          "valor": "R$ 238.727,36",
+          "valor_repasse": "R$ 238.727,36",
+          "dt_inicio": "05/05/2023",
+          "dt_fim": "31/12/2024",
+          "cnpj": "",
+          "razao_social": ""
+        },
+        {
+          "numero_contrato": "28/2023",
+          "situacao": "Concluído",
+          "valor": "R$ 295.893,92",
+          "valor_repasse": "R$ 295.893,92",
+          "dt_inicio": "05/05/2023",
+          "dt_fim": "31/12/2023",
+          "cnpj": "",
+          "razao_social": ""
+        },
+        {
+          "numero_contrato": "30/2023",
+          "situacao": "Concluído",
+          "valor": "R$ 89.545,00",
+          "valor_repasse": "R$ 89.545,00",
+          "dt_inicio": "17/05/2023",
+          "dt_fim": "31/12/2023",
+          "cnpj": "",
+          "razao_social": ""
+        },
+        {
+          "numero_contrato": "38/2023",
+          "situacao": "Concluído",
+          "valor": "R$ 161.071,70",
+          "valor_repasse": "R$ 161.071,70",
+          "dt_inicio": "07/06/2023",
+          "dt_fim": "31/12/2023",
           "cnpj": "",
           "razao_social": ""
         }
@@ -4889,5 +5089,5 @@
       "obs_manual": ""
     }
   ],
-  "exec_atualizado_em": "20/05/2026 18:39"
+  "exec_atualizado_em": "20/05/2026 18:56"
 }

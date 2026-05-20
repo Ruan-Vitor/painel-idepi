@@ -259,7 +259,7 @@ tbody tr:hover td{background:#f5f9ff}
 
 /* ── INST LIST (seleção múltipla) ── */
 .inst-list-wrap{position:relative;flex:1;min-width:220px}
-.inst-list-trigger{display:flex;align-items:center;gap:8px;font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:600;color:var(--accent);background:var(--blue-bg);border:1.5px solid var(--blue-bdr);border-radius:7px;padding:6px 12px;cursor:pointer;user-select:none;white-space:nowrap;min-width:200px}
+.inst-list-trigger{display:flex;align-items:center;gap:8px;font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:600;color:var(--accent);background:var(--blue-bg);border:1.5px solid var(--blue-bdr);border-radius:7px;padding:6px 12px;cursor:pointer;user-select:none;min-width:200px;max-width:480px;overflow:hidden}
 .inst-list-trigger i.chevron{margin-left:auto;font-size:10px;transition:transform .15s}
 .inst-list-trigger.open i.chevron{transform:rotate(180deg)}
 .inst-dropdown{display:none;position:absolute;top:calc(100% + 4px);left:0;min-width:420px;max-width:620px;background:var(--surface);border:1.5px solid var(--blue-bdr);border-radius:9px;box-shadow:0 8px 32px rgba(0,0,0,.13);z-index:200;overflow:hidden}
@@ -463,7 +463,7 @@ tbody tr:hover td{background:#f5f9ff}
       <div class="inst-list-wrap" id="instListWrap">
         <div class="inst-list-trigger" id="instTrigger" onclick="toggleInstDropdown()">
           <i class="fa-solid fa-file-contract" style="font-size:10px;flex-shrink:0"></i>
-          <span id="instTriggerLabel">Carregando…</span>
+          <span id="instTriggerLabel" style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1;min-width:0">Carregando…</span>
           <i class="fa-solid fa-chevron-down chevron"></i>
         </div>
         <div class="inst-dropdown" id="instDropdown">

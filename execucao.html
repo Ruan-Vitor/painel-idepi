@@ -271,15 +271,17 @@ tbody tr:hover td{background:#f5f9ff}
 .inst-dd-act-btn{font-size:10.5px;font-weight:600;color:var(--accent);background:none;border:none;cursor:pointer;padding:2px 4px;font-family:'DM Sans',sans-serif}
 .inst-dd-act-btn:hover{text-decoration:underline}
 .inst-dd-list{max-height:260px;overflow-y:auto}
-.inst-dd-item{display:flex;align-items:center;gap:10px;padding:7px 12px;cursor:pointer;border-bottom:1px solid #f3f6fb;transition:background .1s}
+.inst-dd-item{display:flex;align-items:center;gap:0;border-bottom:1px solid #f3f6fb;transition:background .1s;cursor:pointer}
 .inst-dd-item:last-child{border-bottom:none}
-.inst-dd-item:hover{background:var(--surface2)}
+.inst-dd-item:hover{background:#f0f6ff}
 .inst-dd-item.selected-view{background:#eff6ff}
-.inst-dd-item input[type=checkbox]{accent-color:var(--accent);width:14px;height:14px;flex-shrink:0;cursor:pointer}
-.inst-dd-num{font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:700;color:var(--accent);white-space:nowrap;flex-shrink:0}
+.inst-dd-item.selected-view .inst-dd-num{color:#1d4ed8}
+.inst-dd-item-main{display:flex;align-items:center;gap:9px;flex:1;padding:8px 12px;min-width:0}
+.inst-dd-num{font-family:'IBM Plex Mono',monospace;font-size:11.5px;font-weight:700;color:var(--accent);white-space:nowrap;flex-shrink:0}
 .inst-dd-obj{font-size:11px;color:var(--text);flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.inst-dd-eye{font-size:11px;color:var(--muted);flex-shrink:0;padding:2px 4px;border-radius:4px;border:none;background:none;cursor:pointer}
-.inst-dd-eye:hover{color:var(--accent);background:var(--blue-bg)}
+.inst-dd-check-wrap{padding:8px 12px 8px 4px;display:flex;align-items:center;flex-shrink:0;border-left:1px solid #edf2fb}
+.inst-dd-check-wrap input[type=checkbox]{accent-color:#b91c1c;width:15px;height:15px;cursor:pointer}
+.inst-dd-check-wrap:hover{background:rgba(185,28,28,.05)}
 .inst-dd-footer{padding:7px 12px;border-top:1px solid var(--border);background:var(--surface2);display:flex;align-items:center;justify-content:space-between;gap:8px}
 .inst-dd-sel-count{font-size:10.5px;color:var(--muted)}
 .btn-remover-sel{display:inline-flex;align-items:center;gap:5px;background:rgba(185,28,28,.1);color:#b91c1c;border:1px solid rgba(185,28,28,.3);border-radius:6px;padding:4px 11px;font-size:11px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .15s}
@@ -505,6 +507,15 @@ tbody tr:hover td{background:#f5f9ff}
         <select class="filt-sel" id="filtSit" onchange="aplicarFiltros()">
           <option value="">Todas</option>
           <!-- Populado via JS com as situações encontradas -->
+        </select>
+      </div>
+
+      <div class="filt-group">
+        <span class="filt-label">Regime</span>
+        <select class="filt-sel" id="filtRegime" onchange="aplicarFiltros()">
+          <option value="">Todos</option>
+          <option value="simplificado">Simplificado</option>
+          <option value="normal">Normal</option>
         </select>
       </div>
 
@@ -950,18 +961,25 @@ function fecharDd(){
 }
 
 function renderDdLista(lista){
+  // Ordena por número do convênio
+  lista = lista.slice().sort(function(a,b){ return String(a.numero).localeCompare(String(b.numero), undefined, {numeric:true}); });
   _filtradosDd = lista;
   var html = "";
   lista.forEach(function(c){
     var num = c.numero;
-    var obj = (c.objeto||"").substring(0,55);
+    var obj = (c.objeto||"").substring(0,60);
     var checked = _marcadosParaRemover[num] ? " checked" : "";
     var isVis   = num === _numVisualizando;
-    html += '<div class="inst-dd-item'+(isVis?" selected-view":"")+'" data-num="'+num+'">';
-    html += '<input type="checkbox" '+checked+' onclick="toggleMarcado(\''+num+'\',this,event)">';
-    html += '<span class="inst-dd-num">'+num+'</span>';
-    html += '<span class="inst-dd-obj" title="'+sanitize(c.objeto||"")+'">'+sanitize(obj)+(c.objeto&&c.objeto.length>55?"…":"")+'</span>';
-    html += '<button class="inst-dd-eye" title="Visualizar" onclick="visualizarDd(\''+num+'\',event)"><i class="fa-solid fa-eye"></i></button>';
+    // Coletar campos extras para busca enriquecida (já estão no title)
+    var titleFull = sanitize(c.objeto||"");
+    html += '<div class="inst-dd-item'+(isVis?" selected-view":"")+'" data-num="'+num+'" onclick="visualizarDd(\''+num+'\',event)">';
+    html +=   '<div class="inst-dd-item-main" title="'+titleFull+'">';
+    html +=     '<span class="inst-dd-num">'+num+'</span>';
+    html +=     '<span class="inst-dd-obj">'+sanitize(obj)+(c.objeto&&c.objeto.length>60?"…":"")+'</span>';
+    html +=   '</div>';
+    html +=   '<div class="inst-dd-check-wrap" title="Marcar para remoção" onclick="event.stopPropagation()">';
+    html +=     '<input type="checkbox"'+checked+' onchange="toggleMarcado(\''+num+'\',this,event)">';
+    html +=   '</div>';
     html += '</div>';
   });
   if(!html) html = '<div style="padding:16px;text-align:center;font-size:12px;color:var(--muted)">Nenhum instrumento encontrado</div>';
@@ -1015,9 +1033,20 @@ function atualizarTriggerLabel(){
 
 function filtrarDdLista(){
   var q = document.getElementById("instDdSearch").value.toLowerCase().trim();
-  var lista = q
-    ? INSTRUMENTOS_EXEC.filter(function(c){ return c.numero.includes(q) || (c.objeto||"").toLowerCase().includes(q); })
-    : INSTRUMENTOS_EXEC;
+  var lista = INSTRUMENTOS_EXEC;
+  if(q){
+    lista = lista.filter(function(c){
+      // Busca em: número, objeto, razão social do contrato, CNPJ, município
+      if(c.numero.toLowerCase().includes(q)) return true;
+      if((c.objeto||"").toLowerCase().includes(q)) return true;
+      // Contratos: razão social e CNPJ
+      var contratos = c.contratos || (c.contrato ? [c.contrato] : []);
+      if(contratos.some(function(ct){
+        return (ct.razao_social||"").toLowerCase().includes(q) || (ct.cnpj||"").includes(q);
+      })) return true;
+      return false;
+    });
+  }
   renderDdLista(lista);
 }
 
@@ -1061,14 +1090,17 @@ function popularSelector(convenios){
 
 /* ── FILTROS ──────────────────────────────────────────── */
 function aplicarFiltros(){
-  var tipo = document.getElementById("filtTipo").value;
-  var ano  = document.getElementById("filtAno").value;
-  var sit  = document.getElementById("filtSit").value;
+  var tipo   = document.getElementById("filtTipo").value;
+  var ano    = document.getElementById("filtAno").value;
+  var sit    = document.getElementById("filtSit").value;
+  var regime = document.getElementById("filtRegime").value;
 
   var filtrados = INSTRUMENTOS_EXEC.filter(function(c){
     if(tipo && (c.tipo_instrumento || "") !== tipo) return false;
     if(ano  && (c.ano || "") !== ano)               return false;
     if(sit){ var s = c.situacao_tgov || c.situacao || ""; if(s !== sit) return false; }
+    if(regime === "simplificado" && !c.regime_simplificado) return false;
+    if(regime === "normal" && c.regime_simplificado) return false;
     return true;
   });
 

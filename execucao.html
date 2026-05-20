@@ -571,9 +571,14 @@ tbody tr:hover td{background:#f5f9ff}
               <span id="vs-rep-parcial-badge" style="display:none;margin-left:4px;background:#92400e;color:#fcd34d;font-size:7.5px;font-weight:700;padding:1px 5px;border-radius:6px;vertical-align:middle">PARCIAL</span>
             </div>
             <div class="vs-ecol-divider"></div>
-            <div class="vs-ecol-saldo-lbl" id="vs-rep-saldo-lbl">Saldo disponível</div>
+            <div class="vs-ecol-saldo-lbl" id="vs-rep-saldo-lbl">Saldo real (recebido − pago)</div>
             <div class="vs-ecol-saldo v-amber" id="vs-rep-saldo">—</div>
-            <div class="vs-ecol-bar"><div class="vs-ecol-bar-fill bf-rep" id="vs-rep-bar" style="width:0%"></div></div>
+            <!-- saldo previsto separado — só aparece quando repasse_desembolsado disponível -->
+            <div id="vs-rep-saldo-prev-row" style="display:none;margin-top:4px">
+              <div style="font-size:8px;color:rgba(255,255,255,.3);margin-bottom:1px">Saldo previsto (previsto − pago)</div>
+              <div style="font-size:11px;font-weight:600;color:rgba(255,255,255,.45);font-family:'IBM Plex Mono',monospace" id="vs-rep-saldo-prev">—</div>
+            </div>
+            <div class="vs-ecol-bar" style="margin-top:6px"><div class="vs-ecol-bar-fill bf-rep" id="vs-rep-bar" style="width:0%"></div></div>
           </div>
 
           <!-- Coluna 2: Contrapartida -->
@@ -1240,9 +1245,14 @@ function renderInstrumento(){
     /* Legenda do saldo muda para "Saldo real (recebido − pago)" */
     document.getElementById("vs-rep-saldo-lbl").textContent =
       aDesemb > 0.01 ? "Saldo real (parcial)" : "Saldo real (recebido − pago)";
+    /* Saldo previsto separado (previsto − pago) */
+    var saldoPrev = Math.max(0, repassePrevisto - pagoRepasse);
+    document.getElementById("vs-rep-saldo-prev-row").style.display = "";
+    document.getElementById("vs-rep-saldo-prev").textContent = fmt(saldoPrev);
   } else {
     repRecRow.style.display = "none";
     document.getElementById("vs-rep-saldo-lbl").textContent = "Saldo disponível (previsto)";
+    document.getElementById("vs-rep-saldo-prev-row").style.display = "none";
   }
   var pctRep = repasseBase > 0
     ? Math.min(100, Math.round(pagoRepasse / repasseBase * 100)) : 0;

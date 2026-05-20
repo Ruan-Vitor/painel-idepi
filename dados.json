@@ -3991,7 +3991,903 @@
       "_id_proposta": "1470213",
       "erro": "",
       "obs_manual": ""
+    },
+    {
+      "numero": "894024",
+      "objeto": "1. PAVIMENTACAO EM PARALELEPIPEDO EM DIVERSAS RUAS DOS MUNICIPIOS DE AGRICOLANDIA,ALVORADA DO GURGUEIA, AVELINO LOPES, BETANIA DO PIAUI, BOCAINA, CABECEIRAS DO PIAUI, COLONIA DO PIAUI, ELESBAO VELOSO, FRANCINOPOLIS, IPIRANGA DO PIAUI, JOAO COSTA, MASSAPE DO PIAUI, MIGUEL LEAO, PASSAGEM FRANCA DO PIAUI, PAU D'ARCO DO PIAUI, PEDRO LAURENTINO, PORTO, QUEIMADA NOVA, SANTA FILOMENA, SANTANA DO PIAUI, SAO, FELIX DO PIAUI,",
+      "coletado_em": "20/05/2026 18:31",
+      "valor_global": "R$ 8.607.200,00",
+      "valor_repasse": "R$ 8.297.684,62",
+      "valor_contrapartida": "R$ 309.515,38",
+      "situacao_tgov": "Em execução",
+      "regime_simplificado": false,
+      "tipo_instrumento": "Contrato de Repasse",
+      "ano": "2019",
+      "contratos": [
+        {
+          "numero_contrato": "003/2021",
+          "situacao": "Contrato Concluído e Aditivação Concluída",
+          "valor": "R$ 254.101,35",
+          "valor_repasse": "R$ 254.101,35",
+          "dt_inicio": "12/01/2021",
+          "dt_fim": "31/12/2023",
+          "cnpj": "",
+          "razao_social": ""
+        },
+        {
+          "numero_contrato": "04/2023",
+          "situacao": "Concluído",
+          "valor": "R$ 232.050,13",
+          "valor_repasse": "R$ 232.050,13",
+          "dt_inicio": "09/03/2023",
+          "dt_fim": "31/12/2023",
+          "cnpj": "",
+          "razao_social": ""
+        },
+        {
+          "numero_contrato": "05/2023",
+          "situacao": "Concluído",
+          "valor": "R$ 300.636,71",
+          "valor_repasse": "R$ 300.636,71",
+          "dt_inicio": "28/02/2023",
+          "dt_fim": "31/12/2023",
+          "cnpj": "",
+          "razao_social": ""
+        },
+        {
+          "numero_contrato": "06/2023",
+          "situacao": "Concluído",
+          "valor": "R$ 88.201,10",
+          "valor_repasse": "R$ 88.201,10",
+          "dt_inicio": "09/03/2023",
+          "dt_fim": "31/12/2023",
+          "cnpj": "",
+          "razao_social": ""
+        },
+        {
+          "numero_contrato": "07/2023",
+          "situacao": "Concluído",
+          "valor": "R$ 225.432,72",
+          "valor_repasse": "R$ 225.432,72",
+          "dt_inicio": "09/03/2023",
+          "dt_fim": "31/12/2023",
+          "cnpj": "",
+          "razao_social": ""
+        },
+        {
+          "numero_contrato": "11/2023",
+          "situacao": "Concluído",
+          "valor": "R$ 583.777,91",
+          "valor_repasse": "R$ 583.777,91",
+          "dt_inicio": "04/03/2023",
+          "dt_fim": "31/12/2023",
+          "cnpj": "",
+          "razao_social": ""
+        },
+        {
+          "numero_contrato": "13/2023",
+          "situacao": "Concluído",
+          "valor": "R$ 164.924,74",
+          "valor_repasse": "R$ 164.924,74",
+          "dt_inicio": "11/03/2023",
+          "dt_fim": "31/12/2023",
+          "cnpj": "",
+          "razao_social": ""
+        },
+        {
+          "numero_contrato": "16/2023",
+          "situacao": "Concluído",
+          "valor": "R$ 225.411,55",
+          "valor_repasse": "R$ 225.411,55",
+          "dt_inicio": "18/03/2023",
+          "dt_fim": "31/12/2023",
+          "cnpj": "",
+          "razao_social": ""
+        },
+        {
+          "numero_contrato": "18/2023",
+          "situacao": "Concluído",
+          "valor": "R$ 303.226,34",
+          "valor_repasse": "R$ 303.226,34",
+          "dt_inicio": "18/03/2023",
+          "dt_fim": "31/12/2023",
+          "cnpj": "",
+          "razao_social": ""
+        },
+        {
+          "numero_contrato": "198/2022",
+          "situacao": "Concluído",
+          "valor": "R$ 411.599,10",
+          "valor_repasse": "R$ 411.599,10",
+          "dt_inicio": "22/06/2022",
+          "dt_fim": "31/12/2022",
+          "cnpj": "",
+          "razao_social": ""
+        }
+      ],
+      "movimentacoes": [
+        {
+          "num": "9803853",
+          "data": "25/08/2025",
+          "tipo": "PAGAMENTO DE TRIBUTOS",
+          "v_orig": null,
+          "v_bruto": 1076.65,
+          "v_liq": 1076.65,
+          "v_retencao": 0.0,
+          "favorecido": "",
+          "tributo": "ISS",
+          "ndl": "893",
+          "tdl": "NOTA FISCAL",
+          "situacao": ""
+        },
+        {
+          "num": "9803852",
+          "data": "25/08/2025",
+          "tipo": "PAGAMENTO DE TRIBUTOS",
+          "v_orig": null,
+          "v_bruto": 430.66,
+          "v_liq": 430.66,
+          "v_retencao": 0.0,
+          "favorecido": "",
+          "tributo": "IR",
+          "ndl": "893",
+          "tdl": "NOTA FISCAL",
+          "situacao": ""
+        },
+        {
+          "num": "9797447",
+          "data": "19/08/2025",
+          "tipo": "PAGAMENTO A FAVORECIDO COM OBTV",
+          "v_orig": 35888.57,
+          "v_bruto": 35888.57,
+          "v_liq": 34381.26,
+          "v_retencao": 0.0,
+          "favorecido": "24.400.713/0001-00",
+          "tributo": "PAGAMENTO A FAVORECIDO COM OBTV",
+          "ndl": "893",
+          "tdl": "NOTA FISCAL",
+          "situacao": "NOTA FISCAL"
+        },
+        {
+          "num": "9615912",
+          "data": "29/05/2025",
+          "tipo": "INGRESSO DE CONTRAPARTIDA",
+          "v_orig": null,
+          "v_bruto": 476.48,
+          "v_liq": 476.48,
+          "v_retencao": 0.0,
+          "favorecido": "09.034.960/0001-47",
+          "tributo": "INGRESSO DE CONTRAPARTIDA",
+          "ndl": "",
+          "tdl": "",
+          "situacao": ""
+        },
+        {
+          "num": "9615908",
+          "data": "29/05/2025",
+          "tipo": "INGRESSO DE CONTRAPARTIDA",
+          "v_orig": null,
+          "v_bruto": 1074.54,
+          "v_liq": 1074.54,
+          "v_retencao": 0.0,
+          "favorecido": "09.034.960/0001-47",
+          "tributo": "INGRESSO DE CONTRAPARTIDA",
+          "ndl": "",
+          "tdl": "",
+          "situacao": ""
+        },
+        {
+          "num": "9615906",
+          "data": "29/05/2025",
+          "tipo": "INGRESSO DE CONTRAPARTIDA",
+          "v_orig": null,
+          "v_bruto": 1058.41,
+          "v_liq": 1058.41,
+          "v_retencao": 0.0,
+          "favorecido": "09.034.960/0001-47",
+          "tributo": "INGRESSO DE CONTRAPARTIDA",
+          "ndl": "",
+          "tdl": "",
+          "situacao": ""
+        },
+        {
+          "num": "9612267",
+          "data": "29/05/2025",
+          "tipo": "PAGAMENTO DE TRIBUTOS",
+          "v_orig": null,
+          "v_bruto": 267.49,
+          "v_liq": 267.49,
+          "v_retencao": 0.0,
+          "favorecido": "",
+          "tributo": "ISS",
+          "ndl": "841",
+          "tdl": "NOTA FISCAL",
+          "situacao": ""
+        },
+        {
+          "num": "9612260",
+          "data": "29/05/2025",
+          "tipo": "PAGAMENTO DE TRIBUTOS",
+          "v_orig": null,
+          "v_bruto": 107.0,
+          "v_liq": 107.0,
+          "v_retencao": 0.0,
+          "favorecido": "",
+          "tributo": "IR",
+          "ndl": "841",
+          "tdl": "NOTA FISCAL",
+          "situacao": ""
+        },
+        {
+          "num": "9603438",
+          "data": "22/05/2025",
+          "tipo": "PAGAMENTO A FAVORECIDO COM OBTV",
+          "v_orig": 8916.61,
+          "v_bruto": 8916.61,
+          "v_liq": 8542.12,
+          "v_retencao": 0.0,
+          "favorecido": "24.400.713/0001-00",
+          "tributo": "PAGAMENTO A FAVORECIDO COM OBTV",
+          "ndl": "841",
+          "tdl": "NOTA FISCAL",
+          "situacao": "NOTA FISCAL"
+        },
+        {
+          "num": "9528220",
+          "data": "10/04/2025",
+          "tipo": "PAGAMENTO DE TRIBUTOS",
+          "v_orig": null,
+          "v_bruto": 2839.2,
+          "v_liq": 2839.2,
+          "v_retencao": 0.0,
+          "favorecido": "",
+          "tributo": "ISS",
+          "ndl": "819",
+          "tdl": "NOTA FISCAL",
+          "situacao": ""
+        },
+        {
+          "num": "9528219",
+          "data": "10/04/2025",
+          "tipo": "PAGAMENTO DE TRIBUTOS",
+          "v_orig": null,
+          "v_bruto": 1135.68,
+          "v_liq": 1135.68,
+          "v_retencao": 0.0,
+          "favorecido": "",
+          "tributo": "IR",
+          "ndl": "819",
+          "tdl": "NOTA FISCAL",
+          "situacao": ""
+        },
+        {
+          "num": "9486813",
+          "data": "02/04/2025",
+          "tipo": "PAGAMENTO A FAVORECIDO COM OBTV",
+          "v_orig": 94640.18,
+          "v_bruto": 94640.18,
+          "v_liq": 90665.3,
+          "v_retencao": 0.0,
+          "favorecido": "24.400.713/0001-00",
+          "tributo": "PAGAMENTO A FAVORECIDO COM OBTV",
+          "ndl": "819",
+          "tdl": "NOTA FISCAL",
+          "situacao": "NOTA FISCAL"
+        },
+        {
+          "num": "9347643",
+          "data": "06/01/2025",
+          "tipo": "PAGAMENTO DE TRIBUTOS",
+          "v_orig": null,
+          "v_bruto": 1058.41,
+          "v_liq": 1058.41,
+          "v_retencao": 0.0,
+          "favorecido": "",
+          "tributo": "IR",
+          "ndl": "789",
+          "tdl": "NOTA FISCAL",
+          "situacao": ""
+        },
+        {
+          "num": "9347536",
+          "data": "06/01/2025",
+          "tipo": "PAGAMENTO DE TRIBUTOS",
+          "v_orig": null,
+          "v_bruto": 4767.98,
+          "v_liq": 4767.98,
+          "v_retencao": 0.0,
+          "favorecido": "",
+          "tributo": "ISS",
+          "ndl": "790",
+          "tdl": "NOTA FISCAL",
+          "situacao": ""
+        },
+        {
+          "num": "9347530",
+          "data": "06/01/2025",
+          "tipo": "PAGAMENTO DE TRIBUTOS",
+          "v_orig": null,
+          "v_bruto": 1907.19,
+          "v_liq": 1907.19,
+          "v_retencao": 0.0,
+          "favorecido": "",
+          "tributo": "IR",
+          "ndl": "790",
+          "tdl": "NOTA FISCAL",
+          "situacao": ""
+        },
+        {
+          "num": "9328339",
+          "data": "02/01/2025",
+          "tipo": "PAGAMENTO A FAVORECIDO COM OBTV",
+          "v_orig": 158932.87,
+          "v_bruto": 158932.87,
+          "v_liq": 152257.7,
+          "v_retencao": 0.0,
+          "favorecido": "24.400.713/0001-00",
+          "tributo": "PAGAMENTO A FAVORECIDO COM OBTV",
+          "ndl": "790",
+          "tdl": "NOTA FISCAL",
+          "situacao": "NOTA FISCAL"
+        },
+        {
+          "num": "9249304",
+          "data": "03/12/2024",
+          "tipo": "PAGAMENTO DE TRIBUTOS",
+          "v_orig": null,
+          "v_bruto": 2064.55,
+          "v_liq": 2064.55,
+          "v_retencao": 0.0,
+          "favorecido": "",
+          "tributo": "ISS",
+          "ndl": "767",
+          "tdl": "NOTA FISCAL",
+          "situacao": ""
+        },
+        {
+          "num": "9249293",
+          "data": "03/12/2024",
+          "tipo": "PAGAMENTO DE TRIBUTOS",
+          "v_orig": null,
+          "v_bruto": 1058.41,
+          "v_liq": 1058.41,
+          "v_retencao": 0.0,
+          "favorecido": "",
+          "tributo": "ISS",
+          "ndl": "789",
+          "tdl": "NOTA FISCAL",
+          "situacao": ""
+        },
+        {
+          "num": "9249285",
+          "data": "03/12/2024",
+          "tipo": "PAGAMENTO DE TRIBUTOS",
+          "v_orig": null,
+          "v_bruto": 825.82,
+          "v_liq": 825.82,
+          "v_retencao": 0.0,
+          "favorecido": "",
+          "tributo": "IR",
+          "ndl": "767",
+          "tdl": "NOTA FISCAL",
+          "situacao": ""
+        },
+        {
+          "num": "9249263",
+          "data": "05/12/2024",
+          "tipo": "PAGAMENTO DE TRIBUTOS",
+          "v_orig": null,
+          "v_bruto": 1058.41,
+          "v_liq": 1058.41,
+          "v_retencao": 0.0,
+          "favorecido": "",
+          "tributo": "IR",
+          "ndl": "789",
+          "tdl": "NOTA FISCAL",
+          "situacao": ""
+        }
+      ],
+      "notas_fiscais": [
+        {
+          "num": "893",
+          "data": "12/08/2025",
+          "tipo": "NOTA FISCAL",
+          "razao": "JDN EMPREENDIMENTOS URBANOS LTDA",
+          "v_orig": 35888.57,
+          "v_bruto": 35888.57,
+          "tributos": 1507.31,
+          "v_liq": 34381.26,
+          "status": "Ativo",
+          "id_nf": "7872647",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "EXECUÇÃO DOS SERVIÇOS DE CONSTRUÇÃO DA PONTE EM CONCRETO ARMADO, NA LOCALIDADE LAGOA DE MEL, COM EXTENSÃO DE 50 METROS, NO MUNICÍPIO DE JULIO BORGES/PI,",
+              "valor": 35888.57,
+              "id_item": "13322011",
+              "repasse": 35888.57,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "841",
+          "data": "12/05/2025",
+          "tipo": "NOTA FISCAL",
+          "razao": "JDN EMPREENDIMENTOS URBANOS LTDA",
+          "v_orig": 8916.61,
+          "v_bruto": 8916.61,
+          "tributos": 374.49,
+          "v_liq": 8542.12,
+          "status": "Ativo",
+          "id_nf": "7703218",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "EXECUÇÃO DOS SERVIÇOS DE CONSTRUÇÃO DA PONTE EM CONCRETO ARMADO, NA LOCALIDADE LAGOA DE MEL, COM EXTENSÃO DE 50 METROS, NO MUNICÍPIO DE JULIO BORGES/PI,",
+              "valor": 8916.61,
+              "id_item": "13047480",
+              "repasse": 8916.61,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "819",
+          "data": "17/03/2025",
+          "tipo": "NOTA FISCAL",
+          "razao": "JDN EMPREENDIMENTOS URBANOS LTDA",
+          "v_orig": 94640.18,
+          "v_bruto": 94640.18,
+          "tributos": 3974.88,
+          "v_liq": 90665.3,
+          "status": "Ativo",
+          "id_nf": "7617522",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "EXECUÇÃO DOS SERVIÇOS DE CONSTRUÇÃO DA PONTE EM CONCRETO ARMADO, NA LOCALIDADE LAGOA DE MEL, COM EXTENSÃO DE 50 METROS, NO MUNICÍPIO DE JULIO BORGES/PI,",
+              "valor": 94640.18,
+              "id_item": "12897458",
+              "repasse": 94640.18,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "790",
+          "data": "26/12/2024",
+          "tipo": "NOTA FISCAL",
+          "razao": "JDN EMPREENDIMENTOS URBANOS LTDA",
+          "v_orig": 158932.87,
+          "v_bruto": 158932.87,
+          "tributos": 6675.17,
+          "v_liq": 152257.7,
+          "status": "Ativo",
+          "id_nf": "7487814",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "EXECUÇÃO DOS SERVIÇOS DE CONSTRUÇÃO DA PONTE EM CONCRETO ARMADO, NA LOCALIDADE LAGOA DE MEL, COM EXTENSÃO DE 50 METROS, NO MUNICÍPIO DE JULIO BORGES/PI,",
+              "valor": 158932.87,
+              "id_item": "12688565",
+              "repasse": 158932.87,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "789",
+          "data": "26/11/2024",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA RENATA LTDA",
+          "v_orig": 88201.1,
+          "v_bruto": 88201.1,
+          "tributos": 2116.82,
+          "v_liq": 86084.28,
+          "status": "Ativo",
+          "id_nf": "7401054",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "PAVIMENTAÇÃO EM PARALELEPÍPEDO NO MUNICÍPIO DE ALVORADA DO GURGUEIA - ÁREA 702,70 M²",
+              "valor": 88201.1,
+              "id_item": "12565693",
+              "repasse": 88201.1,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "767",
+          "data": "26/11/2024",
+          "tipo": "NOTA FISCAL",
+          "razao": "JDN EMPREENDIMENTOS URBANOS LTDA",
+          "v_orig": 68818.61,
+          "v_bruto": 68818.61,
+          "tributos": 2890.37,
+          "v_liq": 65928.24,
+          "status": "Ativo",
+          "id_nf": "7400798",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "EXECUÇÃO DOS SERVIÇOS DE CONSTRUÇÃO DA PONTE EM CONCRETO ARMADO, NA LOCALIDADE LAGOA DE MEL, COM EXTENSÃO DE 50 METROS, NO MUNICÍPIO DE JULIO BORGES/PI,",
+              "valor": 68818.61,
+              "id_item": "12559712",
+              "repasse": 68818.61,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "691",
+          "data": "04/09/2024",
+          "tipo": "NOTA FISCAL",
+          "razao": "JDN EMPREENDIMENTOS URBANOS LTDA",
+          "v_orig": 15653.8,
+          "v_bruto": 15653.8,
+          "tributos": 657.46,
+          "v_liq": 14996.34,
+          "status": "Ativo",
+          "id_nf": "7238704",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "EXECUÇÃO DOS SERVIÇOS DE CONSTRUÇÃO DA PONTE EM CONCRETO ARMADO, NA LOCALIDADE LAGOA DE MEL, COM EXTENSÃO DE 50 METROS, NO MUNICÍPIO DE JULIO BORGES/PI,",
+              "valor": 15653.8,
+              "id_item": "12312355",
+              "repasse": 15653.8,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "765",
+          "data": "02/09/2024",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA RENATA LTDA",
+          "v_orig": 4124.79,
+          "v_bruto": 4124.79,
+          "tributos": 131.99,
+          "v_liq": 3992.8,
+          "status": "Ativo",
+          "id_nf": "7227748",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "PAVIMENTAÇÃO EM PARALELEPÍPEDO NO MUNICÍPIO DE QUEIMADA NOVA - ÁREA 1.653,90 M²",
+              "valor": 4124.79,
+              "id_item": "12290220",
+              "repasse": 4124.79,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "762",
+          "data": "14/08/2024",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA RENATA LTDA",
+          "v_orig": 234602.57,
+          "v_bruto": 234602.57,
+          "tributos": 7507.28,
+          "v_liq": 227095.29,
+          "status": "Ativo",
+          "id_nf": "7185521",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "PAVIMENTAÇÃO EM PARALELEPÍPEDO NO MUNICÍPIO DE QUEIMADA NOVA - ÁREA 1.653,90 M²",
+              "valor": 234602.57,
+              "id_item": "12226373",
+              "repasse": 234602.57,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "760",
+          "data": "13/08/2024",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA RENATA LTDA",
+          "v_orig": 1977.32,
+          "v_bruto": 1977.32,
+          "tributos": 63.27,
+          "v_liq": 1914.05,
+          "status": "Ativo",
+          "id_nf": "7184021",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "PAVIMENTAÇÃO EM PARALELEPÍPEDO NO MUNICÍPIO DE BETÂNIA - ÁREA 1.695,60 M²",
+              "valor": 1977.32,
+              "id_item": "12225942",
+              "repasse": 0.0,
+              "contrapartida": 1977.32,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "759",
+          "data": "13/08/2024",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA RENATA LTDA",
+          "v_orig": 221211.35,
+          "v_bruto": 221211.35,
+          "tributos": 7078.76,
+          "v_liq": 214132.59,
+          "status": "Ativo",
+          "id_nf": "7184019",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "PAVIMENTAÇÃO EM PARALELEPÍPEDO NO MUNICÍPIO DE BETÂNIA - ÁREA 1.695,60 M²",
+              "valor": 221211.35,
+              "id_item": "12225293",
+              "repasse": 221211.35,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "754",
+          "data": "16/07/2024",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA RENATA LTDA",
+          "v_orig": 161071.0,
+          "v_bruto": 161071.0,
+          "tributos": 5154.27,
+          "v_liq": 155916.73,
+          "status": "Ativo",
+          "id_nf": "7126573",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "PAVIMENTAÇÃO EM PARALELEPÍPEDO NO MUNICIPIO DE COLONIA DO PIAUI LOTE III - ÁREA 1.090,00 M2",
+              "valor": 161071.0,
+              "id_item": "12125578",
+              "repasse": 161071.0,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "753",
+          "data": "16/07/2024",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA RENATA LTDA",
+          "v_orig": 89545.0,
+          "v_bruto": 89545.0,
+          "tributos": 2149.08,
+          "v_liq": 87395.92,
+          "status": "Ativo",
+          "id_nf": "7127951",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "PAVIMENTAÇÃO EM PARALELEPÍPEDO NO MUNICÍPIO DE SÃO MIGUEL DO FIDALGO/PI — ÁREA 570,00 M2 - LOTE VIII",
+              "valor": 89545.0,
+              "id_item": "12128749",
+              "repasse": 89545.0,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "632",
+          "data": "13/06/2024",
+          "tipo": "NOTA FISCAL",
+          "razao": "JDN EMPREENDIMENTOS URBANOS LTDA",
+          "v_orig": 28748.45,
+          "v_bruto": 28748.45,
+          "tributos": 919.94,
+          "v_liq": 27828.51,
+          "status": "Ativo",
+          "id_nf": "7068551",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "EXECUÇÃO DOS SERVIÇOS DE CONSTRUÇÃO DA PONTE EM CONCRETO ARMADO, NA LOCALIDADE LAGOA DE MEL, COM EXTENSÃO DE 50 METROS, NO MUNICÍPIO DE JULIO BORGES/PI,",
+              "valor": 28748.45,
+              "id_item": "12028197",
+              "repasse": 28748.45,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "700",
+          "data": "07/06/2024",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA RENATA LTDA",
+          "v_orig": 81105.43,
+          "v_bruto": 81105.43,
+          "tributos": 2270.95,
+          "v_liq": 78834.48,
+          "status": "Ativo",
+          "id_nf": "7060978",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "PAVIMENTAÇÃO EM PARALELEPÍPEDO EM VIAS PUBLICAS NO MUNICÍPIO DE SÃO FELIX-PI, AREA 7.105,65 M² - LOTE IX.",
+              "valor": 81105.43,
+              "id_item": "12007779",
+              "repasse": 81105.43,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "679",
+          "data": "19/04/2024",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA RENATA LTDA",
+          "v_orig": 225432.72,
+          "v_bruto": 225432.72,
+          "tributos": 7213.84,
+          "v_liq": 218218.88,
+          "status": "Ativo",
+          "id_nf": "6963893",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "PAVIMENTAÇÃO EM PARALELEPÍPEDO NO MUNICÍPIO DE MASSAPÊ DO PIAUÍ/PI – ÁREA 1.680,00 M²",
+              "valor": 225432.72,
+              "id_item": "11846153",
+              "repasse": 225432.72,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "651",
+          "data": "26/02/2024",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA RENATA LTDA",
+          "v_orig": 12477.38,
+          "v_bruto": 12477.38,
+          "tributos": 399.27,
+          "v_liq": 12078.11,
+          "status": "Ativo",
+          "id_nf": "6876119",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "PAVIMENTAÇÃO EM PARALELEPÍPEDO EM VIAS PUBLICAS NO MUNICÍPIO DE SIGEFREDO PACHECO-PI. ÁREA 2.460,10 M² - LOTE XII",
+              "valor": 12477.38,
+              "id_item": "11692388",
+              "repasse": 0.0,
+              "contrapartida": 12477.38,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "650",
+          "data": "26/02/2024",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA RENATA LTDA",
+          "v_orig": 334501.4,
+          "v_bruto": 334501.4,
+          "tributos": 10704.04,
+          "v_liq": 323797.36,
+          "status": "Ativo",
+          "id_nf": "6876036",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "PAVIMENTAÇÃO EM PARALELEPÍPEDO EM VIAS PUBLICAS NO MUNICÍPIO DE SIGEFREDO PACHECO-PI. ÁREA 2.460,10 M² - LOTE XII",
+              "valor": 334501.4,
+              "id_item": "11692304",
+              "repasse": 334501.4,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "649",
+          "data": "26/02/2024",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA RENATA LTDA",
+          "v_orig": 3886.19,
+          "v_bruto": 3886.19,
+          "tributos": 104.92,
+          "v_liq": 3781.27,
+          "status": "Ativo",
+          "id_nf": "6876246",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "PAVIMENTAÇÃO EM PARALELEPÍPEDO EM VIAS PUBLICAS NO MUNICÍPIO DE PASSAGEM FRANCA-PI. ÁREA 840,00 M² - LOTE VI",
+              "valor": 3886.19,
+              "id_item": "11692581",
+              "repasse": 0.0,
+              "contrapartida": 3886.19,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "648",
+          "data": "26/02/2024",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA RENATA LTDA",
+          "v_orig": 104183.42,
+          "v_bruto": 104183.42,
+          "tributos": 2812.95,
+          "v_liq": 101370.47,
+          "status": "Ativo",
+          "id_nf": "6876180",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "PAVIMENTAÇÃO EM PARALELEPÍPEDO EM VIAS PUBLICAS NO MUNICÍPIO DE PASSAGEM FRANCA-PI. ÁREA 840,00 M² - LOTE VI",
+              "valor": 104183.42,
+              "id_item": "11692511",
+              "repasse": 104183.42,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        }
+      ],
+      "exec_fisica_pct": 0,
+      "exec_fisica_str": "0%",
+      "exec_fisica_valor_realizado": "",
+      "exec_fisica_valor_total": "",
+      "ateste_convenente": false,
+      "ateste_concedente": false,
+      "status_obra": "",
+      "tem_medicao": false,
+      "saldo_rendimentos": 901901.55,
+      "repasse_desembolsado": {
+        "previsto": 8297684.62,
+        "desembolsado": 8297684.62,
+        "a_desembolsar": 0.0
+      },
+      "_id_convenio": "806988",
+      "_id_proposta": "1474330",
+      "erro": "",
+      "obs_manual": ""
     }
   ],
-  "exec_atualizado_em": "20/05/2026 18:25"
+  "exec_atualizado_em": "20/05/2026 18:39"
 }

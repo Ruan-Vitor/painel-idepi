@@ -468,6 +468,13 @@ tbody tr:hover td{background:#f5f9ff}
       </div>
     </div>
 
+    <!-- Nome completo do instrumento + data de coleta -->
+    <div id="inst-nome-bar" style="background:rgba(255,255,255,.04);border-bottom:1px solid rgba(255,255,255,.07);padding:7px 20px;display:flex;align-items:baseline;gap:12px;min-height:32px">
+      <span id="inst-nome-num" style="font-size:11px;font-weight:700;color:rgba(255,255,255,.55);white-space:nowrap">—</span>
+      <span id="inst-nome-obj" style="font-size:11.5px;color:rgba(255,255,255,.85);flex:1;line-height:1.4">—</span>
+      <span id="inst-nome-data" style="font-size:10px;color:rgba(255,255,255,.35);white-space:nowrap">—</span>
+    </div>
+
     <!-- SCROLL AREA -->
     <div class="scroll" id="mainScroll">
 
@@ -576,6 +583,7 @@ tbody tr:hover td{background:#f5f9ff}
         <div style="display:flex;gap:8px">
           <button class="btn-fullscreen" id="btnFSExec" onclick="toggleFullscreenExec()"><i class="fa-solid fa-expand"></i> Tela cheia</button>
           <button class="btn-excel" id="btnExcelExec" onclick="exportarExcel()"><i class="fa-solid fa-file-excel"></i> Exportar Excel</button>
+          <button id="btnRemoverInst" style="background:rgba(220,50,50,.15);border:1px solid rgba(220,50,50,.4);color:#f87171;padding:6px 14px;border-radius:6px;font-size:12px;font-family:'DM Sans',sans-serif;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:6px" onclick="removerInstrumentoAtual()"><i class="fa-solid fa-trash"></i> Remover</button>
         </div>
       </div>
 
@@ -950,6 +958,10 @@ function carregarInstrumento(){
   instAtual = INSTRUMENTOS_EXEC.find(function(c){ return c.numero===num; }) || INSTRUMENTOS_EXEC[0];
   if(!instAtual) return;
   instAtual = normalizarInstrumento(instAtual);
+  /* Atualiza barra de nome/data */
+  document.getElementById("inst-nome-num").textContent = instAtual.numero || "—";
+  document.getElementById("inst-nome-obj").textContent = instAtual.objeto || "—";
+  document.getElementById("inst-nome-data").textContent = instAtual.coletado_em ? "Coletado em " + instAtual.coletado_em : "—";
   renderInstrumento();
 }
 
@@ -1184,8 +1196,7 @@ function calcPagoRepasse(c){
     var vorig = parseReais(m.v_orig);
     var vbrut = parseReais(m.v_bruto);
     var fav   = (m.favorecido||"").replace(/[^\d]/g,"");
-    /* ndl: coletor às vezes grava número da NF em tdl quando ndl fica vazio */
-    var ndl   = String(m.ndl||m.tdl||"").trim();
+    var ndl   = String(m.ndl||"").trim();
     if(fav && fav===cnpjConv) return;
     if(!fav && cpTotal>0 && Math.abs(vorig-cpTotal)<1) return;
     if(ndl && cpNdls[ndl]) return;
@@ -1219,8 +1230,7 @@ function calcPagoContrapartida(c){
     var vorig = parseReais(m.v_orig);
     var vbrut = parseReais(m.v_bruto);
     var fav   = (m.favorecido||"").replace(/[^\d]/g,"");
-    /* ndl: coletor às vezes grava número da NF em tdl quando ndl fica vazio */
-    var ndl   = String(m.ndl||m.tdl||"").trim();
+    var ndl   = String(m.ndl||"").trim();
     var isCP = (fav && fav===cnpjConv)
             || (!fav && cpTotal>0 && Math.abs(vorig-cpTotal)<1)
             || (ndl && cpNdls[ndl]);
@@ -1395,9 +1405,8 @@ function renderNF(c){
     /* Passo 1: cria entrada por NF a partir dos OBTVs */
     c.movimentacoes.forEach(function(m){
       var t = (m.tipo||"").toUpperCase();
-      var _ndlVal = m.ndl || m.tdl || "";
-      if((t.includes("OBTV")||t.includes("PAGAMENTO A FAVORECIDO")) && _ndlVal){
-        var ndls = String(_ndlVal).split(/[,;\s]+/).map(function(x){return x.trim();}).filter(Boolean);
+      if((t.includes("OBTV")||t.includes("PAGAMENTO A FAVORECIDO")) && m.ndl){
+        var ndls = String(m.ndl).split(/[,;\s]+/).map(function(x){return x.trim();}).filter(Boolean);
         ndls.forEach(function(nk){
           if(!nfMap[nk]) nfMap[nk]={num:nk,data:m.data,razao:m.favorecido||"",v_orig:0,v_bruto:0,tributos:0,v_liq:0,status:"Conciliada",tipo:"NOTA FISCAL"};
           nfMap[nk].v_orig  += parseReais(m.v_orig);
@@ -1409,8 +1418,8 @@ function renderNF(c){
     /* Passo 2: acumula tributos nas NFs pelo campo ndl das linhas de tributo */
     c.movimentacoes.forEach(function(m){
       var t = (m.tipo||"").toUpperCase();
-      if(t.includes("TRIBUTO") && _ndlVal){
-        var ndls = String(_ndlVal).split(/[,;\s]+/).map(function(x){return x.trim();}).filter(Boolean);
+      if(t.includes("TRIBUTO") && m.ndl){
+        var ndls = String(m.ndl).split(/[,;\s]+/).map(function(x){return x.trim();}).filter(Boolean);
         ndls.forEach(function(nk){
           if(nfMap[nk]) nfMap[nk].tributos += parseReais(m.v_orig);
         });
@@ -1536,6 +1545,29 @@ function showTab(t){
 }
 
 /* ── EXPORTAR EXCEL ─────────────────────────────────── */
+function removerInstrumentoAtual(){
+  if(!instAtual){ alert("Nenhum instrumento selecionado."); return; }
+  var num = instAtual.numero;
+  var obj = (instAtual.objeto||"").substring(0,60);
+  /* Pede confirmação primeiro */
+  if(!confirm("Remover o instrumento " + num + "?\n\n" + obj + "…\n\nEsta ação gera um novo dados.json sem ele.")) return;
+  /* Pede senha (mesma do lockscreen) */
+  var s = prompt("Digite a senha para confirmar a remoção:");
+  if(s === null) return; /* cancelou */
+  if(s !== SENHA){ alert("Senha incorreta. Operação cancelada."); return; }
+
+  INSTRUMENTOS_EXEC = INSTRUMENTOS_EXEC.filter(function(c){ return c.numero !== num; });
+
+  /* Gera e faz download do JSON atualizado */
+  var payload = { exec_financeira: INSTRUMENTOS_EXEC, gerado_em: new Date().toLocaleString("pt-BR") };
+  var blob = new Blob([JSON.stringify(payload, null, 2)], {type:"application/json"});
+  var a = document.createElement("a"); a.href = URL.createObjectURL(blob);
+  a.download = "dados.json"; a.click();
+
+  popularSelector(INSTRUMENTOS_EXEC);
+  alert("Instrumento " + num + " removido.\nSalve o dados.json baixado na pasta do projeto substituindo o atual.");
+}
+
 function exportarExcel(){
   var btn=document.getElementById("btnExcelExec");
   btn.classList.add("loading"); btn.innerHTML='<i class="fa-solid fa-spinner fa-spin"></i> Gerando…';

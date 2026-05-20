@@ -763,7 +763,725 @@
         "data_fim": ""
       },
       "exec_fisica_obs": ""
+    },
+    {
+      "numero": "889040",
+      "objeto": "PAVIMENTACAO EM PARALELEPIPEDO EM VIAS PUBLICAS NOS MUNICIPIOS DE ESPERANTINA - PI, UNIAO - PI, BARRAS -PI, CABECEIRAS - PI, MIGUEL ALVES - PI E SAO JOAO DO ARRAIAL - PI.",
+      "coletado_em": "19/05/2026 22:04",
+      "valor_global": "R$ 5.850.000,00",
+      "valor_repasse": "R$ 5.730.000,00",
+      "valor_contrapartida": "R$ 120.000,00",
+      "situacao_tgov": "Prestação de Contas Concluída",
+      "regime_simplificado": false,
+      "tipo_instrumento": "Contrato de Repasse",
+      "ano": "2019",
+      "contratos": [
+        {
+          "numero_contrato": "028/2020",
+          "situacao": "Concluído",
+          "valor": "R$ 85.981,57",
+          "valor_repasse": "R$ 85.981,57",
+          "dt_inicio": "23/04/2020",
+          "dt_fim": "31/12/2022",
+          "cnpj": "05.564.129/0001-46",
+          "razao_social": "COMPACTA ENGENHARIA E SERVICOS LTDA"
+        },
+        {
+          "numero_contrato": "082/2022",
+          "situacao": "Concluído",
+          "valor": "R$ 409.418,37",
+          "valor_repasse": "R$ 409.418,37",
+          "dt_inicio": "10/03/2022",
+          "dt_fim": "31/12/2022",
+          "cnpj": "",
+          "razao_social": ""
+        },
+        {
+          "numero_contrato": "094/2022",
+          "situacao": "Concluído",
+          "valor": "R$ 2.019.005,86",
+          "valor_repasse": "R$ 2.019.005,86",
+          "dt_inicio": "23/03/2022",
+          "dt_fim": "31/12/2022",
+          "cnpj": "",
+          "razao_social": ""
+        },
+        {
+          "numero_contrato": "104/2022",
+          "situacao": "Concluído",
+          "valor": "R$ 388.998,31",
+          "valor_repasse": "R$ 388.998,31",
+          "dt_inicio": "28/03/2022",
+          "dt_fim": "31/12/2022",
+          "cnpj": "",
+          "razao_social": ""
+        },
+        {
+          "numero_contrato": "106/2022",
+          "situacao": "Concluído",
+          "valor": "R$ 377.421,89",
+          "valor_repasse": "R$ 377.421,89",
+          "dt_inicio": "28/03/2022",
+          "dt_fim": "31/12/2022",
+          "cnpj": "",
+          "razao_social": ""
+        },
+        {
+          "numero_contrato": "107/2022",
+          "situacao": "Concluído",
+          "valor": "R$ 560.417,55",
+          "valor_repasse": "R$ 560.417,55",
+          "dt_inicio": "28/03/2022",
+          "dt_fim": "31/12/2022",
+          "cnpj": "",
+          "razao_social": ""
+        },
+        {
+          "numero_contrato": "364/2022",
+          "situacao": "Concluído",
+          "valor": "R$ 278.941,07",
+          "valor_repasse": "R$ 278.941,07",
+          "dt_inicio": "27/12/2022",
+          "dt_fim": "31/12/2023",
+          "cnpj": "",
+          "razao_social": ""
+        }
+      ],
+      "movimentacoes": [
+        {
+          "num": "10209952",
+          "data": "09/03/2026",
+          "tipo": "",
+          "v_orig": null,
+          "v_bruto": 5662977.3,
+          "v_liq": 5662977.3,
+          "v_retencao": 0.0,
+          "favorecido": "",
+          "tributo": "DEVOLUÇÃO DE SALDO REMANESCENTE",
+          "ndl": "",
+          "tdl": "",
+          "situacao": ""
+        },
+        {
+          "num": "10209934",
+          "data": "09/03/2026",
+          "tipo": "",
+          "v_orig": null,
+          "v_bruto": 1217.75,
+          "v_liq": 1217.75,
+          "v_retencao": 0.0,
+          "favorecido": "09.034.960/0001-47",
+          "tributo": "DEVOLUÇÃO DE PAGAMENTO",
+          "ndl": "",
+          "tdl": "",
+          "situacao": ""
+        },
+        {
+          "num": "9827361",
+          "data": "04/09/2025",
+          "tipo": "PAGAMENTO DE TRIBUTOS",
+          "v_orig": null,
+          "v_bruto": 3077.64,
+          "v_liq": 3077.64,
+          "v_retencao": 0.0,
+          "favorecido": "",
+          "tributo": "ISS",
+          "ndl": "766",
+          "tdl": "NOTA FISCAL",
+          "situacao": ""
+        },
+        {
+          "num": "9827335",
+          "data": "04/09/2025",
+          "tipo": "PAGAMENTO DE TRIBUTOS",
+          "v_orig": null,
+          "v_bruto": 2308.23,
+          "v_liq": 2308.23,
+          "v_retencao": 0.0,
+          "favorecido": "",
+          "tributo": "IR",
+          "ndl": "766",
+          "tdl": "NOTA FISCAL",
+          "situacao": ""
+        },
+        {
+          "num": "9814339",
+          "data": "28/08/2025",
+          "tipo": "PAGAMENTO A FAVORECIDO COM OBTV",
+          "v_orig": 192352.53,
+          "v_bruto": 192352.53,
+          "v_liq": 186966.66,
+          "v_retencao": 0.0,
+          "favorecido": "29.020.209/0001-07",
+          "tributo": "PAGAMENTO A FAVORECIDO COM OBTV",
+          "ndl": "766",
+          "tdl": "NOTA FISCAL",
+          "situacao": "NOTA FISCAL"
+        },
+        {
+          "num": "9574918",
+          "data": "06/05/2025",
+          "tipo": "PAGAMENTO DE TRIBUTOS",
+          "v_orig": null,
+          "v_bruto": 2604.47,
+          "v_liq": 2604.47,
+          "v_retencao": 0.0,
+          "favorecido": "",
+          "tributo": "ISS",
+          "ndl": "738",
+          "tdl": "NOTA FISCAL",
+          "situacao": ""
+        },
+        {
+          "num": "9574916",
+          "data": "06/05/2025",
+          "tipo": "PAGAMENTO DE TRIBUTOS",
+          "v_orig": null,
+          "v_bruto": 1953.35,
+          "v_liq": 1953.35,
+          "v_retencao": 0.0,
+          "favorecido": "",
+          "tributo": "IR",
+          "ndl": "738",
+          "tdl": "NOTA FISCAL",
+          "situacao": ""
+        },
+        {
+          "num": "9536735",
+          "data": "16/04/2025",
+          "tipo": "PAGAMENTO A FAVORECIDO COM OBTV",
+          "v_orig": 162779.42,
+          "v_bruto": 162779.42,
+          "v_liq": 158221.6,
+          "v_retencao": 0.0,
+          "favorecido": "29.020.209/0001-07",
+          "tributo": "PAGAMENTO A FAVORECIDO COM OBTV",
+          "ndl": "738",
+          "tdl": "NOTA FISCAL",
+          "situacao": "NOTA FISCAL"
+        },
+        {
+          "num": "9418624",
+          "data": "14/02/2025",
+          "tipo": "PAGAMENTO DE TRIBUTOS",
+          "v_orig": null,
+          "v_bruto": 3225.83,
+          "v_liq": 3225.83,
+          "v_retencao": 0.0,
+          "favorecido": "",
+          "tributo": "ISS",
+          "ndl": "724",
+          "tdl": "NOTA FISCAL",
+          "situacao": ""
+        },
+        {
+          "num": "9418620",
+          "data": "14/02/2025",
+          "tipo": "PAGAMENTO DE TRIBUTOS",
+          "v_orig": null,
+          "v_bruto": 2419.37,
+          "v_liq": 2419.37,
+          "v_retencao": 0.0,
+          "favorecido": "",
+          "tributo": "IR",
+          "ndl": "724",
+          "tdl": "NOTA FISCAL",
+          "situacao": ""
+        },
+        {
+          "num": "9414591",
+          "data": "12/02/2025",
+          "tipo": "PAGAMENTO A FAVORECIDO COM OBTV",
+          "v_orig": 201614.15,
+          "v_bruto": 201614.15,
+          "v_liq": 195968.95,
+          "v_retencao": 0.0,
+          "favorecido": "29.020.209/0001-07",
+          "tributo": "PAGAMENTO A FAVORECIDO COM OBTV",
+          "ndl": "724",
+          "tdl": "NOTA FISCAL",
+          "situacao": "NOTA FISCAL"
+        },
+        {
+          "num": "9347025",
+          "data": "06/01/2025",
+          "tipo": "PAGAMENTO DE TRIBUTOS",
+          "v_orig": null,
+          "v_bruto": 3246.32,
+          "v_liq": 3246.32,
+          "v_retencao": 0.0,
+          "favorecido": "",
+          "tributo": "ISS",
+          "ndl": "705",
+          "tdl": "NOTA FISCAL",
+          "situacao": ""
+        },
+        {
+          "num": "9347023",
+          "data": "06/01/2025",
+          "tipo": "PAGAMENTO DE TRIBUTOS",
+          "v_orig": null,
+          "v_bruto": 2434.74,
+          "v_liq": 2434.74,
+          "v_retencao": 0.0,
+          "favorecido": "",
+          "tributo": "IR",
+          "ndl": "705",
+          "tdl": "NOTA FISCAL",
+          "situacao": ""
+        },
+        {
+          "num": "9328372",
+          "data": "27/12/2024",
+          "tipo": "PAGAMENTO A FAVORECIDO COM OBTV",
+          "v_orig": 202895.06,
+          "v_bruto": 202895.06,
+          "v_liq": 197214.0,
+          "v_retencao": 0.0,
+          "favorecido": "29.020.209/0001-07",
+          "tributo": "PAGAMENTO A FAVORECIDO COM OBTV",
+          "ndl": "705",
+          "tdl": "NOTA FISCAL",
+          "situacao": "NOTA FISCAL"
+        },
+        {
+          "num": "9179938",
+          "data": "11/11/2024",
+          "tipo": "PAGAMENTO DE TRIBUTOS",
+          "v_orig": null,
+          "v_bruto": 3645.96,
+          "v_liq": 3645.96,
+          "v_retencao": 0.0,
+          "favorecido": "",
+          "tributo": "ISS",
+          "ndl": "673",
+          "tdl": "NOTA FISCAL",
+          "situacao": ""
+        },
+        {
+          "num": "9179934",
+          "data": "11/11/2024",
+          "tipo": "PAGAMENTO DE TRIBUTOS",
+          "v_orig": null,
+          "v_bruto": 2734.47,
+          "v_liq": 2734.47,
+          "v_retencao": 0.0,
+          "favorecido": "",
+          "tributo": "IR",
+          "ndl": "673",
+          "tdl": "NOTA FISCAL",
+          "situacao": ""
+        },
+        {
+          "num": "9174030",
+          "data": "07/11/2024",
+          "tipo": "PAGAMENTO A FAVORECIDO COM OBTV",
+          "v_orig": 227872.53,
+          "v_bruto": 227872.53,
+          "v_liq": 221492.1,
+          "v_retencao": 0.0,
+          "favorecido": "29.020.209/0001-07",
+          "tributo": "PAGAMENTO A FAVORECIDO COM OBTV",
+          "ndl": "673",
+          "tdl": "NOTA FISCAL",
+          "situacao": "NOTA FISCAL"
+        },
+        {
+          "num": "8765882",
+          "data": "20/05/2024",
+          "tipo": "PAGAMENTO DE TRIBUTOS",
+          "v_orig": null,
+          "v_bruto": 1033.78,
+          "v_liq": 1033.78,
+          "v_retencao": 0.0,
+          "favorecido": "",
+          "tributo": "ISS",
+          "ndl": "607",
+          "tdl": "NOTA FISCAL",
+          "situacao": ""
+        },
+        {
+          "num": "8765881",
+          "data": "20/05/2024",
+          "tipo": "PAGAMENTO DE TRIBUTOS",
+          "v_orig": null,
+          "v_bruto": 775.33,
+          "v_liq": 775.33,
+          "v_retencao": 0.0,
+          "favorecido": "",
+          "tributo": "IR",
+          "ndl": "607",
+          "tdl": "NOTA FISCAL",
+          "situacao": ""
+        },
+        {
+          "num": "8760013",
+          "data": "15/05/2024",
+          "tipo": "PAGAMENTO A FAVORECIDO COM OBTV",
+          "v_orig": 64611.15,
+          "v_bruto": 64611.15,
+          "v_liq": 62802.04,
+          "v_retencao": 0.0,
+          "favorecido": "29.020.209/0001-07",
+          "tributo": "PAGAMENTO A FAVORECIDO COM OBTV",
+          "ndl": "607",
+          "tdl": "NOTA FISCAL",
+          "situacao": "NOTA FISCAL"
+        }
+      ],
+      "notas_fiscais": [
+        {
+          "num": "766",
+          "data": "05/08/2025",
+          "tipo": "NOTA FISCAL",
+          "razao": "G. B. PEREIRA ENGENHARIA",
+          "v_orig": 192352.53,
+          "v_bruto": 192352.53,
+          "tributos": 5385.87,
+          "v_liq": 186966.66,
+          "status": "Ativo",
+          "id_nf": "7883551",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "CONTRATAÇÃO DE EMPRESA DE ENGENHARIA PARA PAVIMENTAÇÃO EM PARALELEPÍPEDO NO MUNICÍPIO DE ESPERANTINA-PI, AREA 11.207,60 M²",
+              "valor": 192352.53,
+              "id_item": "13342262",
+              "repasse": 192352.53,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "738",
+          "data": "10/04/2025",
+          "tipo": "NOTA FISCAL",
+          "razao": "G. B. PEREIRA ENGENHARIA",
+          "v_orig": 162779.42,
+          "v_bruto": 162779.42,
+          "tributos": 4557.82,
+          "v_liq": 158221.6,
+          "status": "Ativo",
+          "id_nf": "7657317",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "CONTRATAÇÃO DE EMPRESA DE ENGENHARIA PARA PAVIMENTAÇÃO EM PARALELEPÍPEDO NO MUNICÍPIO DE ESPERANTINA-PI, AREA 11.207,60 M²",
+              "valor": 162779.42,
+              "id_item": "12959760",
+              "repasse": 162779.42,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "724",
+          "data": "07/02/2025",
+          "tipo": "NOTA FISCAL",
+          "razao": "G. B. PEREIRA ENGENHARIA",
+          "v_orig": 201614.15,
+          "v_bruto": 201614.15,
+          "tributos": 5645.2,
+          "v_liq": 195968.95,
+          "status": "Ativo",
+          "id_nf": "7558563",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "CONTRATAÇÃO DE EMPRESA DE ENGENHARIA PARA PAVIMENTAÇÃO EM PARALELEPÍPEDO NO MUNICÍPIO DE ESPERANTINA-PI, AREA 11.207,60 M²",
+              "valor": 201614.15,
+              "id_item": "12797889",
+              "repasse": 201614.15,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "705",
+          "data": "26/12/2024",
+          "tipo": "NOTA FISCAL",
+          "razao": "G. B. PEREIRA ENGENHARIA",
+          "v_orig": 202895.06,
+          "v_bruto": 202895.06,
+          "tributos": 5681.06,
+          "v_liq": 197214.0,
+          "status": "Ativo",
+          "id_nf": "7487910",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "CONTRATAÇÃO DE EMPRESA DE ENGENHARIA PARA PAVIMENTAÇÃO EM PARALELEPÍPEDO NO MUNICÍPIO DE ESPERANTINA-PI, AREA 11.207,60 M²",
+              "valor": 202895.06,
+              "id_item": "12688497",
+              "repasse": 202895.06,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "673",
+          "data": "04/11/2024",
+          "tipo": "NOTA FISCAL",
+          "razao": "G. B. PEREIRA ENGENHARIA",
+          "v_orig": 227872.53,
+          "v_bruto": 227872.53,
+          "tributos": 6380.43,
+          "v_liq": 221492.1,
+          "status": "Ativo",
+          "id_nf": "7347761",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "CONTRATAÇÃO DE EMPRESA DE ENGENHARIA PARA PAVIMENTAÇÃO EM PARALELEPÍPEDO NO MUNICÍPIO DE ESPERANTINA-PI, AREA 11.207,60 M²",
+              "valor": 227872.53,
+              "id_item": "12490891",
+              "repasse": 227872.53,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "607",
+          "data": "08/05/2024",
+          "tipo": "NOTA FISCAL",
+          "razao": "G. B. PEREIRA ENGENHARIA",
+          "v_orig": 64611.15,
+          "v_bruto": 64611.15,
+          "tributos": 1809.11,
+          "v_liq": 62802.04,
+          "status": "Ativo",
+          "id_nf": "7004284",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "CONTRATAÇÃO DE EMPRESA DE ENGENHARIA PARA PAVIMENTAÇÃO EM PARALELEPÍPEDO NO MUNICÍPIO DE ESPERANTINA-PI, AREA 11.207,60 M²",
+              "valor": 64611.15,
+              "id_item": "11908601",
+              "repasse": 64611.15,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "591",
+          "data": "19/03/2024",
+          "tipo": "NOTA FISCAL",
+          "razao": "G. B. PEREIRA ENGENHARIA",
+          "v_orig": 4448.16,
+          "v_bruto": 4448.16,
+          "tributos": 92.52,
+          "v_liq": 4355.64,
+          "status": "Ativo",
+          "id_nf": "6924997",
+          "id_item": "",
+          "origem_recurso": "Contrapartida / Rendimento",
+          "itens": [
+            {
+              "desc": "CONTRATAÇÃO DE EMPRESA DE ENGENHARIA PARA PAVIMENTAÇÃO EM PARALELEPÍPEDO NO MUNICÍPIO DE ESPERANTINA-PI, AREA 11.207,60 M²",
+              "valor": 4448.16,
+              "id_item": "11792753",
+              "repasse": 4448.16,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "590",
+          "data": "19/03/2024",
+          "tipo": "NOTA FISCAL",
+          "razao": "G. B. PEREIRA ENGENHARIA",
+          "v_orig": 1768.43,
+          "v_bruto": 1768.43,
+          "tributos": 37.4,
+          "v_liq": 1731.03,
+          "status": "Ativo",
+          "id_nf": "6924994",
+          "id_item": "",
+          "origem_recurso": "Contrapartida / Rendimento",
+          "itens": [
+            {
+              "desc": "CONTRATAÇÃO DE EMPRESA DE ENGENHARIA PARA PAVIMENTAÇÃO EM PARALELEPÍPEDO NO MUNICÍPIO DE ESPERANTINA-PI, AREA 11.207,60 M²",
+              "valor": 1768.43,
+              "id_item": "11792738",
+              "repasse": 0.0,
+              "contrapartida": 1768.43,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "341",
+          "data": "16/06/2023",
+          "tipo": "NOTA FISCAL",
+          "razao": "MATRINXA SERVICOS DE CONSTRUCOES LTDA",
+          "v_orig": 136621.23,
+          "v_bruto": 136621.23,
+          "tributos": 2869.04,
+          "v_liq": 133752.19,
+          "status": "Ativo",
+          "id_nf": "6449473",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "PAVIMENTAÇÃO EM PARALELEPÍPEDO EM VIAS PUBLICAS NO MUNICÍPIO DE SÃO JOÃO DO ARRAIAL-PI",
+              "valor": 136621.23,
+              "id_item": "10999095",
+              "repasse": 136621.23,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "337",
+          "data": "16/06/2023",
+          "tipo": "NOTA FISCAL",
+          "razao": "MATRINXA SERVICOS DE CONSTRUCOES LTDA",
+          "v_orig": 12764.75,
+          "v_bruto": 12764.75,
+          "tributos": 268.05,
+          "v_liq": 12496.7,
+          "status": "Ativo",
+          "id_nf": "6449427",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "PAVIMENTAÇÃO EM PARALELEPÍPEDO EM VIAS PUBLICAS NO MUNICÍPIO DE SÃO JOÃO DO ARRAIAL-PI",
+              "valor": 12764.75,
+              "id_item": "10998996",
+              "repasse": 0.0,
+              "contrapartida": 12764.75,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "325",
+          "data": "02/03/2023",
+          "tipo": "NOTA FISCAL",
+          "razao": "MATRINXA SERVICOS DE CONSTRUCOES LTDA",
+          "v_orig": 19485.25,
+          "v_bruto": 19485.25,
+          "tributos": 1061.94,
+          "v_liq": 18423.31,
+          "status": "Ativo",
+          "id_nf": "6301030",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "PAVIMENTAÇÃO EM PARALELEPÍPEDO EM VIAS PUBLICAS NO MUNICÍPIO DE SÃO JOÃO DO ARRAIAL-PI",
+              "valor": 19485.25,
+              "id_item": "10772979",
+              "repasse": 0.0,
+              "contrapartida": 19485.25,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "308",
+          "data": "19/12/2022",
+          "tipo": "NOTA FISCAL",
+          "razao": "MATRINXA SERVICOS DE CONSTRUCOES LTDA",
+          "v_orig": 208550.66,
+          "v_bruto": 208550.66,
+          "tributos": 4066.73,
+          "v_liq": 204483.93,
+          "status": "Ativo",
+          "id_nf": "6160384",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "PAVIMENTAÇÃO EM PARALELEPÍPEDO EM VIAS PUBLICAS NO MUNICÍPIO DE SÃO JOÃO DO ARRAIAL-PI",
+              "valor": 208550.66,
+              "id_item": "10525715",
+              "repasse": 208550.66,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "185",
+          "data": "17/05/2022",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA CAXE LTDA",
+          "v_orig": 64611.15,
+          "v_bruto": 63393.4,
+          "tributos": 3521.31,
+          "v_liq": 59872.09,
+          "status": "Ativo",
+          "id_nf": "5776813",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "PAVIMENTAÇÃO EM PARALELEPÍPEDO EM VIAS PUBLICAS NO MUNICÍPIO DE UNIÃO-PI",
+              "valor": 63393.4,
+              "id_item": "9874375",
+              "repasse": 63393.4,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "356",
+          "data": "17/11/2021",
+          "tipo": "NOTA FISCAL",
+          "razao": "COMPACTA ENGENHARIA E SERVICOS LTDA",
+          "v_orig": 85981.57,
+          "v_bruto": 85981.57,
+          "tributos": 3869.16,
+          "v_liq": 82112.41,
+          "status": "Ativo",
+          "id_nf": "6049372",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "ELABORAÇÃO DE PROJETO DE ENGENHARIA PARA PAVIMENTAÇÃO EM PARALELEPÍPEDO NOS MUNICÍPIOS DE ESPERANTINA, UNIÃO, BARRAS, CABECEIRAS, MIGUEL ALVES E SÃO JOÃO DO ARRAIAL",
+              "valor": 85981.57,
+              "id_item": "10385516",
+              "repasse": 0.0,
+              "contrapartida": 85981.57,
+              "rendimento": 0.0
+            }
+          ]
+        }
+      ],
+      "exec_fisica_pct": 0,
+      "exec_fisica_str": "0%",
+      "exec_fisica_valor_realizado": "",
+      "exec_fisica_valor_total": "",
+      "ateste_convenente": false,
+      "ateste_concedente": false,
+      "status_obra": "",
+      "tem_medicao": false,
+      "saldo_rendimentos": 0.0,
+      "_id_convenio": "797071",
+      "_id_proposta": "1470213",
+      "erro": "",
+      "obs_manual": ""
     }
   ],
-  "gerado_em": "19/05/2026, 21:47:30"
+  "gerado_em": "19/05/2026, 21:47:30",
+  "exec_atualizado_em": "19/05/2026 22:10"
 }

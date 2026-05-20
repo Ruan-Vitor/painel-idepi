@@ -1544,28 +1544,27 @@ function showTab(t){
   });
 }
 
-/* ── EXPORTAR EXCEL ─────────────────────────────────── */
+/* ── REMOVER INSTRUMENTO ────────────────────────────── */
 function removerInstrumentoAtual(){
   if(!instAtual){ alert("Nenhum instrumento selecionado."); return; }
   var num = instAtual.numero;
   var obj = (instAtual.objeto||"").substring(0,60);
-  /* Pede confirmação primeiro */
+
   if(!confirm("Remover o instrumento " + num + "?\n\n" + obj + "…\n\nEsta ação gera um novo dados.json sem ele.")) return;
-  /* Pede senha (mesma do lockscreen) */
+
   var s = prompt("Digite a senha para confirmar a remoção:");
-  if(s === null) return; /* cancelou */
+  if(s === null) return;
   if(s !== SENHA){ alert("Senha incorreta. Operação cancelada."); return; }
 
   INSTRUMENTOS_EXEC = INSTRUMENTOS_EXEC.filter(function(c){ return c.numero !== num; });
 
-  /* Gera e faz download do JSON atualizado */
   var payload = { exec_financeira: INSTRUMENTOS_EXEC, gerado_em: new Date().toLocaleString("pt-BR") };
   var blob = new Blob([JSON.stringify(payload, null, 2)], {type:"application/json"});
   var a = document.createElement("a"); a.href = URL.createObjectURL(blob);
   a.download = "dados.json"; a.click();
 
   popularSelector(INSTRUMENTOS_EXEC);
-  alert("Instrumento " + num + " removido.\nSalve o dados.json baixado na pasta do projeto substituindo o atual.");
+  alert("Instrumento " + num + " removido.\nSubstitua o dados.json baixado no repositório do GitHub.");
 }
 
 function exportarExcel(){

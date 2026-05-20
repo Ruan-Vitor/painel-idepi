@@ -257,6 +257,35 @@ tbody tr:hover td{background:#f5f9ff}
 .btn-fullscreen:hover{background:var(--accent);color:#fff}
 .btn-fullscreen i{font-size:11px}
 
+/* ── INST LIST (seleção múltipla) ── */
+.inst-list-wrap{position:relative;flex:1;min-width:220px}
+.inst-list-trigger{display:flex;align-items:center;gap:8px;font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:600;color:var(--accent);background:var(--blue-bg);border:1.5px solid var(--blue-bdr);border-radius:7px;padding:6px 12px;cursor:pointer;user-select:none;white-space:nowrap;min-width:200px}
+.inst-list-trigger i.chevron{margin-left:auto;font-size:10px;transition:transform .15s}
+.inst-list-trigger.open i.chevron{transform:rotate(180deg)}
+.inst-dropdown{display:none;position:absolute;top:calc(100% + 4px);left:0;min-width:420px;max-width:620px;background:var(--surface);border:1.5px solid var(--blue-bdr);border-radius:9px;box-shadow:0 8px 32px rgba(0,0,0,.13);z-index:200;overflow:hidden}
+.inst-dropdown.open{display:block}
+.inst-dd-search{padding:8px 10px;border-bottom:1px solid var(--border)}
+.inst-dd-search input{width:100%;padding:5px 10px;border:1.5px solid var(--border);border-radius:6px;font-size:12px;color:var(--text);outline:none;font-family:'DM Sans',sans-serif}
+.inst-dd-search input:focus{border-color:var(--blue-bdr)}
+.inst-dd-actions{padding:5px 10px;border-bottom:1px solid var(--border);display:flex;gap:8px;align-items:center}
+.inst-dd-act-btn{font-size:10.5px;font-weight:600;color:var(--accent);background:none;border:none;cursor:pointer;padding:2px 4px;font-family:'DM Sans',sans-serif}
+.inst-dd-act-btn:hover{text-decoration:underline}
+.inst-dd-list{max-height:260px;overflow-y:auto}
+.inst-dd-item{display:flex;align-items:center;gap:10px;padding:7px 12px;cursor:pointer;border-bottom:1px solid #f3f6fb;transition:background .1s}
+.inst-dd-item:last-child{border-bottom:none}
+.inst-dd-item:hover{background:var(--surface2)}
+.inst-dd-item.selected-view{background:#eff6ff}
+.inst-dd-item input[type=checkbox]{accent-color:var(--accent);width:14px;height:14px;flex-shrink:0;cursor:pointer}
+.inst-dd-num{font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:700;color:var(--accent);white-space:nowrap;flex-shrink:0}
+.inst-dd-obj{font-size:11px;color:var(--text);flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.inst-dd-eye{font-size:11px;color:var(--muted);flex-shrink:0;padding:2px 4px;border-radius:4px;border:none;background:none;cursor:pointer}
+.inst-dd-eye:hover{color:var(--accent);background:var(--blue-bg)}
+.inst-dd-footer{padding:7px 12px;border-top:1px solid var(--border);background:var(--surface2);display:flex;align-items:center;justify-content:space-between;gap:8px}
+.inst-dd-sel-count{font-size:10.5px;color:var(--muted)}
+.btn-remover-sel{display:inline-flex;align-items:center;gap:5px;background:rgba(185,28,28,.1);color:#b91c1c;border:1px solid rgba(185,28,28,.3);border-radius:6px;padding:4px 11px;font-size:11px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .15s}
+.btn-remover-sel:hover:not(:disabled){background:rgba(185,28,28,.18);border-color:rgba(185,28,28,.5)}
+.btn-remover-sel:disabled{opacity:.4;cursor:not-allowed}
+
 /* ── TABS ── */
 .tabs{display:flex;gap:2px;background:var(--surface2);padding:4px;border-radius:9px;flex-shrink:0;border:1px solid var(--border);width:fit-content}
 .tab{font-size:11.5px;font-weight:600;padding:6px 14px;border-radius:6px;cursor:pointer;transition:all .14s;color:var(--muted);border:none;background:transparent;font-family:'DM Sans',sans-serif}
@@ -429,9 +458,27 @@ tbody tr:hover td{background:#f5f9ff}
     <!-- INSTRUMENT SELECTOR -->
     <div class="inst-bar">
       <span class="inst-label"><i class="fa-solid fa-filter" style="font-size:9px;margin-right:3px"></i>Instrumento</span>
-      <select class="inst-select" id="selInst" onchange="carregarInstrumento()">
-        <!-- Populado via JS -->
-      </select>
+      <div class="inst-list-wrap" id="instListWrap">
+        <div class="inst-list-trigger" id="instTrigger" onclick="toggleInstDropdown()">
+          <i class="fa-solid fa-file-contract" style="font-size:10px;flex-shrink:0"></i>
+          <span id="instTriggerLabel">Carregando…</span>
+          <i class="fa-solid fa-chevron-down chevron"></i>
+        </div>
+        <div class="inst-dropdown" id="instDropdown">
+          <div class="inst-dd-search"><input type="text" id="instDdSearch" placeholder="Buscar instrumento…" oninput="filtrarDdLista()" onclick="event.stopPropagation()"></div>
+          <div class="inst-dd-actions">
+            <button class="inst-dd-act-btn" onclick="selecionarTodosDd(true)">Marcar todos</button>
+            <button class="inst-dd-act-btn" onclick="selecionarTodosDd(false)">Desmarcar todos</button>
+          </div>
+          <div class="inst-dd-list" id="instDdList"><!-- populado via JS --></div>
+          <div class="inst-dd-footer">
+            <span class="inst-dd-sel-count" id="instDdSelCount">Nenhum marcado para remoção</span>
+            <button class="btn-remover-sel" id="btnRemoverSel" disabled onclick="removerSelecionados()">
+              <i class="fa-solid fa-trash"></i> Remover marcados
+            </button>
+          </div>
+        </div>
+      </div>
 
       <div class="filt-sep"></div>
 
@@ -583,7 +630,6 @@ tbody tr:hover td{background:#f5f9ff}
         <div style="display:flex;gap:8px">
           <button class="btn-fullscreen" id="btnFSExec" onclick="toggleFullscreenExec()"><i class="fa-solid fa-expand"></i> Tela cheia</button>
           <button class="btn-excel" id="btnExcelExec" onclick="exportarExcel()"><i class="fa-solid fa-file-excel"></i> Exportar Excel</button>
-          <button id="btnRemoverInst" style="background:rgba(220,50,50,.15);border:1px solid rgba(220,50,50,.4);color:#f87171;padding:6px 14px;border-radius:6px;font-size:12px;font-family:'DM Sans',sans-serif;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:6px" onclick="removerInstrumentoAtual()"><i class="fa-solid fa-trash"></i> Remover</button>
         </div>
       </div>
 
@@ -871,12 +917,128 @@ function nfStatusBadge(s){
   return s==="Ativo"?'<span class="b b-green">Ativo</span>':'<span class="b b-red">'+sanitize(s)+'</span>';
 }
 
+/* ── DROPDOWN DE INSTRUMENTOS ───────────────────────── */
+var _ddAberto = false;
+var _numVisualizando = null; // número do instrumento sendo visualizado
+var _marcadosParaRemover = {}; // {numero: true}
+var _filtradosDd = []; // lista visível no dropdown
+
+function toggleInstDropdown(){
+  var dd = document.getElementById("instDropdown");
+  var trig = document.getElementById("instTrigger");
+  _ddAberto = !_ddAberto;
+  dd.classList.toggle("open", _ddAberto);
+  trig.classList.toggle("open", _ddAberto);
+  if(_ddAberto){
+    document.getElementById("instDdSearch").value = "";
+    renderDdLista(INSTRUMENTOS_EXEC);
+    setTimeout(function(){ document.getElementById("instDdSearch").focus(); }, 80);
+  }
+}
+
+// Fecha ao clicar fora
+document.addEventListener("click", function(e){
+  if(!_ddAberto) return;
+  var wrap = document.getElementById("instListWrap");
+  if(wrap && !wrap.contains(e.target)){ fecharDd(); }
+});
+
+function fecharDd(){
+  _ddAberto = false;
+  document.getElementById("instDropdown").classList.remove("open");
+  document.getElementById("instTrigger").classList.remove("open");
+}
+
+function renderDdLista(lista){
+  _filtradosDd = lista;
+  var html = "";
+  lista.forEach(function(c){
+    var num = c.numero;
+    var obj = (c.objeto||"").substring(0,55);
+    var checked = _marcadosParaRemover[num] ? " checked" : "";
+    var isVis   = num === _numVisualizando;
+    html += '<div class="inst-dd-item'+(isVis?" selected-view":"")+'" data-num="'+num+'">';
+    html += '<input type="checkbox" '+checked+' onclick="toggleMarcado(\''+num+'\',this,event)">';
+    html += '<span class="inst-dd-num">'+num+'</span>';
+    html += '<span class="inst-dd-obj" title="'+sanitize(c.objeto||"")+'">'+sanitize(obj)+(c.objeto&&c.objeto.length>55?"…":"")+'</span>';
+    html += '<button class="inst-dd-eye" title="Visualizar" onclick="visualizarDd(\''+num+'\',event)"><i class="fa-solid fa-eye"></i></button>';
+    html += '</div>';
+  });
+  if(!html) html = '<div style="padding:16px;text-align:center;font-size:12px;color:var(--muted)">Nenhum instrumento encontrado</div>';
+  document.getElementById("instDdList").innerHTML = html;
+  atualizarDdFooter();
+}
+
+function toggleMarcado(num, cb, e){
+  e && e.stopPropagation();
+  if(cb.checked) _marcadosParaRemover[num] = true;
+  else delete _marcadosParaRemover[num];
+  atualizarDdFooter();
+}
+
+function visualizarDd(num, e){
+  e && e.stopPropagation();
+  _numVisualizando = num;
+  instAtual = INSTRUMENTOS_EXEC.find(function(c){ return c.numero===num; });
+  if(instAtual){
+    instAtual = normalizarInstrumento(instAtual);
+    document.getElementById("inst-nome-num").textContent = instAtual.numero || "—";
+    document.getElementById("inst-nome-obj").textContent = instAtual.objeto || "—";
+    document.getElementById("inst-nome-data").textContent = instAtual.coletado_em ? "Coletado em " + instAtual.coletado_em : "—";
+    renderInstrumento();
+    atualizarTriggerLabel();
+  }
+  // Atualiza highlight no dropdown sem fechá-lo
+  document.querySelectorAll(".inst-dd-item").forEach(function(el){
+    el.classList.toggle("selected-view", el.dataset.num === num);
+  });
+}
+
+function atualizarDdFooter(){
+  var qtd = Object.keys(_marcadosParaRemover).length;
+  var btn = document.getElementById("btnRemoverSel");
+  var cnt = document.getElementById("instDdSelCount");
+  if(qtd === 0){
+    cnt.textContent = "Nenhum marcado para remoção";
+    btn.disabled = true;
+  } else {
+    cnt.textContent = qtd + (qtd===1?" instrumento marcado":" instrumentos marcados");
+    btn.disabled = false;
+  }
+}
+
+function atualizarTriggerLabel(){
+  var lbl = document.getElementById("instTriggerLabel");
+  if(instAtual) lbl.textContent = instAtual.numero + " — " + (instAtual.objeto||"").substring(0,40)+"…";
+  else lbl.textContent = "Selecione um instrumento";
+}
+
+function filtrarDdLista(){
+  var q = document.getElementById("instDdSearch").value.toLowerCase().trim();
+  var lista = q
+    ? INSTRUMENTOS_EXEC.filter(function(c){ return c.numero.includes(q) || (c.objeto||"").toLowerCase().includes(q); })
+    : INSTRUMENTOS_EXEC;
+  renderDdLista(lista);
+}
+
+function selecionarTodosDd(marcar){
+  _filtradosDd.forEach(function(c){
+    if(marcar) _marcadosParaRemover[c.numero] = true;
+    else delete _marcadosParaRemover[c.numero];
+  });
+  // Atualiza checkboxes visíveis
+  document.querySelectorAll(".inst-dd-item input[type=checkbox]").forEach(function(cb){
+    cb.checked = !!marcar;
+  });
+  atualizarDdFooter();
+}
+
 /* ── POPULAR SELECTOR ───────────────────────────────── */
 function popularSelector(convenios){
   var lista = convenios && convenios.length ? convenios : INSTRUMENTOS_EXEC;
-  INSTRUMENTOS_EXEC = lista; // garante referência global atualizada
+  INSTRUMENTOS_EXEC = lista;
 
-  // ── Popula filtros dinâmicos (Ano e Situação) ──────────────────────────
+  // Filtros dinâmicos (Ano e Situação)
   var anos = [], sits = [];
   lista.forEach(function(c){
     var a = c.ano || "";
@@ -884,24 +1046,15 @@ function popularSelector(convenios){
     if(a && !anos.includes(a)) anos.push(a);
     if(s && !sits.includes(s)) sits.push(s);
   });
-  anos.sort().reverse();
-  sits.sort();
+  anos.sort().reverse(); sits.sort();
 
   var filtAno = document.getElementById("filtAno");
   filtAno.innerHTML = '<option value="">Todos</option>';
-  anos.forEach(function(a){
-    var o = document.createElement("option");
-    o.value = a; o.textContent = a;
-    filtAno.appendChild(o);
-  });
+  anos.forEach(function(a){ var o=document.createElement("option"); o.value=a; o.textContent=a; filtAno.appendChild(o); });
 
   var filtSit = document.getElementById("filtSit");
   filtSit.innerHTML = '<option value="">Todas</option>';
-  sits.forEach(function(s){
-    var o = document.createElement("option");
-    o.value = s; o.textContent = s;
-    filtSit.appendChild(o);
-  });
+  sits.forEach(function(s){ var o=document.createElement("option"); o.value=s; o.textContent=s; filtSit.appendChild(o); });
 
   aplicarFiltros();
 }
@@ -915,54 +1068,37 @@ function aplicarFiltros(){
   var filtrados = INSTRUMENTOS_EXEC.filter(function(c){
     if(tipo && (c.tipo_instrumento || "") !== tipo) return false;
     if(ano  && (c.ano || "") !== ano)               return false;
-    if(sit){
-      var s = c.situacao_tgov || c.situacao || "";
-      if(s !== sit) return false;
-    }
+    if(sit){ var s = c.situacao_tgov || c.situacao || ""; if(s !== sit) return false; }
     return true;
   });
-
-  var sel = document.getElementById("selInst");
-  var valorAnterior = sel.value;
-  sel.innerHTML = "";
-
-  if(!filtrados.length){
-    var opt = document.createElement("option");
-    opt.value = ""; opt.textContent = "— Nenhum instrumento —";
-    sel.appendChild(opt);
-    document.getElementById("filtCount").textContent = "0 instrumentos";
-    return;
-  }
-
-  filtrados.forEach(function(c){
-    var opt = document.createElement("option");
-    opt.value = c.numero;
-    opt.textContent = c.numero + " — " + (c.objeto||"").substring(0,50)+"…";
-    sel.appendChild(opt);
-  });
-
-  // Mantém seleção anterior se ainda está na lista filtrada
-  if(filtrados.find(function(c){ return c.numero === valorAnterior; })){
-    sel.value = valorAnterior;
-  }
 
   document.getElementById("filtCount").textContent =
     filtrados.length + (filtrados.length === 1 ? " instrumento" : " instrumentos");
 
-  carregarInstrumento();
+  // Se instrumento atual não está na lista filtrada, muda para o primeiro
+  if(!instAtual || !filtrados.find(function(c){ return c.numero===_numVisualizando; })){
+    if(filtrados.length){
+      _numVisualizando = filtrados[0].numero;
+      instAtual = normalizarInstrumento(filtrados[0]);
+      document.getElementById("inst-nome-num").textContent = instAtual.numero || "—";
+      document.getElementById("inst-nome-obj").textContent = instAtual.objeto || "—";
+      document.getElementById("inst-nome-data").textContent = instAtual.coletado_em ? "Coletado em " + instAtual.coletado_em : "—";
+      renderInstrumento();
+    }
+  }
+  atualizarTriggerLabel();
+  if(_ddAberto) renderDdLista(filtrados);
 }
 
-/* ── CARREGAR INSTRUMENTO ───────────────────────────── */
+/* ── CARREGAR INSTRUMENTO (compat.) ─────────────────── */
 function carregarInstrumento(){
-  var num = document.getElementById("selInst").value;
-  instAtual = INSTRUMENTOS_EXEC.find(function(c){ return c.numero===num; }) || INSTRUMENTOS_EXEC[0];
-  if(!instAtual) return;
-  instAtual = normalizarInstrumento(instAtual);
-  /* Atualiza barra de nome/data */
-  document.getElementById("inst-nome-num").textContent = instAtual.numero || "—";
-  document.getElementById("inst-nome-obj").textContent = instAtual.objeto || "—";
-  document.getElementById("inst-nome-data").textContent = instAtual.coletado_em ? "Coletado em " + instAtual.coletado_em : "—";
-  renderInstrumento();
+  // mantida para não quebrar chamadas antigas
+  if(!instAtual && INSTRUMENTOS_EXEC.length){
+    instAtual = normalizarInstrumento(INSTRUMENTOS_EXEC[0]);
+    _numVisualizando = instAtual.numero;
+    atualizarTriggerLabel();
+    renderInstrumento();
+  }
 }
 
 /* ── RENDER PRINCIPAL ───────────────────────────────── */
@@ -1544,28 +1680,45 @@ function showTab(t){
   });
 }
 
-/* ── REMOVER INSTRUMENTO ────────────────────────────── */
-function removerInstrumentoAtual(){
-  if(!instAtual){ alert("Nenhum instrumento selecionado."); return; }
-  var num = instAtual.numero;
-  var obj = (instAtual.objeto||"").substring(0,60);
+/* ── REMOVER INSTRUMENTOS SELECIONADOS ──────────────── */
+function removerSelecionados(){
+  var nums = Object.keys(_marcadosParaRemover);
+  if(!nums.length){ alert("Nenhum instrumento marcado."); return; }
 
-  if(!confirm("Remover o instrumento " + num + "?\n\n" + obj + "…\n\nEsta ação gera um novo dados.json sem ele.")) return;
+  var lista = nums.map(function(n){
+    var c = INSTRUMENTOS_EXEC.find(function(x){ return x.numero===n; });
+    return n + (c ? " — " + (c.objeto||"").substring(0,50) : "");
+  }).join("\n");
 
-  var s = prompt("Digite a senha para confirmar a remoção:");
+  if(!confirm("Remover " + nums.length + " instrumento(s)?\n\n" + lista + "\n\nUm único dados.json será gerado sem eles.")) return;
+
+  var s = prompt("Digite a senha para confirmar:");
   if(s === null) return;
   if(s !== SENHA){ alert("Senha incorreta. Operação cancelada."); return; }
 
-  INSTRUMENTOS_EXEC = INSTRUMENTOS_EXEC.filter(function(c){ return c.numero !== num; });
+  INSTRUMENTOS_EXEC = INSTRUMENTOS_EXEC.filter(function(c){ return !_marcadosParaRemover[c.numero]; });
+  _marcadosParaRemover = {};
 
   var payload = { exec_financeira: INSTRUMENTOS_EXEC, gerado_em: new Date().toLocaleString("pt-BR") };
   var blob = new Blob([JSON.stringify(payload, null, 2)], {type:"application/json"});
   var a = document.createElement("a"); a.href = URL.createObjectURL(blob);
   a.download = "dados.json"; a.click();
 
+  // Reseta visualização
+  if(INSTRUMENTOS_EXEC.length){
+    _numVisualizando = INSTRUMENTOS_EXEC[0].numero;
+    instAtual = normalizarInstrumento(INSTRUMENTOS_EXEC[0]);
+    document.getElementById("inst-nome-num").textContent = instAtual.numero || "—";
+    document.getElementById("inst-nome-obj").textContent = instAtual.objeto || "—";
+    document.getElementById("inst-nome-data").textContent = instAtual.coletado_em ? "Coletado em " + instAtual.coletado_em : "—";
+    renderInstrumento();
+  }
   popularSelector(INSTRUMENTOS_EXEC);
-  alert("Instrumento " + num + " removido.\nSubstitua o dados.json baixado no repositório do GitHub.");
+  fecharDd();
+  alert(nums.length + " instrumento(s) removido(s).\nSubstitua o dados.json baixado no repositório do GitHub.");
 }
+
+function removerInstrumentoAtual(){ removerSelecionados(); } // compat.
 
 function exportarExcel(){
   var btn=document.getElementById("btnExcelExec");

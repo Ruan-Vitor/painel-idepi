@@ -3995,7 +3995,7 @@
     {
       "numero": "894024",
       "objeto": "1. PAVIMENTACAO EM PARALELEPIPEDO EM DIVERSAS RUAS DOS MUNICIPIOS DE AGRICOLANDIA,ALVORADA DO GURGUEIA, AVELINO LOPES, BETANIA DO PIAUI, BOCAINA, CABECEIRAS DO PIAUI, COLONIA DO PIAUI, ELESBAO VELOSO, FRANCINOPOLIS, IPIRANGA DO PIAUI, JOAO COSTA, MASSAPE DO PIAUI, MIGUEL LEAO, PASSAGEM FRANCA DO PIAUI, PAU D'ARCO DO PIAUI, PEDRO LAURENTINO, PORTO, QUEIMADA NOVA, SANTA FILOMENA, SANTANA DO PIAUI, SAO, FELIX DO PIAUI,",
-      "coletado_em": "20/05/2026 18:47",
+      "coletado_em": "20/05/2026 19:37",
       "valor_global": "R$ 8.607.200,00",
       "valor_repasse": "R$ 8.297.684,62",
       "valor_contrapartida": "R$ 309.515,38",
@@ -5067,6 +5067,630 @@
               "rendimento": 0.0
             }
           ]
+        },
+        {
+          "num": "647",
+          "data": "26/02/2024",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA RENATA LTDA",
+          "v_orig": 11704.41,
+          "v_bruto": 11704.41,
+          "tributos": 374.53,
+          "v_liq": 11329.88,
+          "status": "Ativo",
+          "id_nf": "6876379",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "PAVIMENTAÇÃO EM PARALELEPÍPEDO EM VIAS PUBLICAS NO MUNICÍPIO DE ELESBÃO VELOSO-PI. ÁREA 2.701,50 M² - LOTE XIV",
+              "valor": 11704.41,
+              "id_item": "11692750",
+              "repasse": 0.0,
+              "contrapartida": 11704.41,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "646",
+          "data": "26/02/2024",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA RENATA LTDA",
+          "v_orig": 313723.59,
+          "v_bruto": 313723.59,
+          "tributos": 10039.15,
+          "v_liq": 303684.44,
+          "status": "Ativo",
+          "id_nf": "6876309",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "PAVIMENTAÇÃO EM PARALELEPÍPEDO EM VIAS PUBLICAS NO MUNICÍPIO DE ELESBÃO VELOSO-PI. ÁREA 2.701,50 M² - LOTE XIV",
+              "valor": 313723.59,
+              "id_item": "11692671",
+              "repasse": 313723.59,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "640",
+          "data": "21/02/2024",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA RENATA LTDA",
+          "v_orig": 8627.12,
+          "v_bruto": 8627.12,
+          "tributos": 276.07,
+          "v_liq": 8351.05,
+          "status": "Ativo",
+          "id_nf": "6865237",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "PAVIMENTAÇÃO EM PARALELEPÍPEDO EM VIAS PUBLICAS NO MUNICÍPIO DE PORTO-PI. ÁREA 1.625,00 M² - LOTE VIII",
+              "valor": 8627.12,
+              "id_item": "11676258",
+              "repasse": 0.0,
+              "contrapartida": 8627.12,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "639",
+          "data": "21/02/2024",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA RENATA LTDA",
+          "v_orig": 231281.43,
+          "v_bruto": 231281.43,
+          "tributos": 7401.0,
+          "v_liq": 223880.43,
+          "status": "Ativo",
+          "id_nf": "6865218",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "PAVIMENTAÇÃO EM PARALELEPÍPEDO EM VIAS PUBLICAS NO MUNICÍPIO DE PORTO-PI. ÁREA 1.625,00 M² - LOTE VIII",
+              "valor": 231281.43,
+              "id_item": "11676233",
+              "repasse": 231281.43,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "638",
+          "data": "21/02/2024",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA RENATA LTDA",
+          "v_orig": 540672.29,
+          "v_bruto": 540672.29,
+          "tributos": 14598.15,
+          "v_liq": 526074.14,
+          "status": "Ativo",
+          "id_nf": "6863169",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "PAVIMENTAÇÃO EM PARALELEPÍPEDO NO MUNICÍPIO DE JOÃO COSTA/PI — ÁREA 4.178,40 M2 - LOTE VI",
+              "valor": 540672.29,
+              "id_item": "11672909",
+              "repasse": 540672.29,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "630",
+          "data": "16/02/2024",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA RENATA LTDA",
+          "v_orig": 5930.7,
+          "v_bruto": 5930.7,
+          "tributos": 160.13,
+          "v_liq": 5770.57,
+          "status": "Ativo",
+          "id_nf": "6861367",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "PAVIMENTAÇÃO EM PARALELEPIPEDO NO MUNICIPIO DE BOCAINA/PI — ÁREA 1.434,00 M2 - LOTE 1",
+              "valor": 5930.7,
+              "id_item": "11669174",
+              "repasse": 0.0,
+              "contrapartida": 5930.7,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "629",
+          "data": "16/02/2024",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA RENATA LTDA",
+          "v_orig": 158994.04,
+          "v_bruto": 158994.04,
+          "tributos": 4292.84,
+          "v_liq": 154701.2,
+          "status": "Ativo",
+          "id_nf": "6861324",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "PAVIMENTAÇÃO EM PARALELEPIPEDO NO MUNICIPIO DE BOCAINA/PI — ÁREA 1.434,00 M2 - LOTE 1",
+              "valor": 158994.04,
+              "id_item": "11669139",
+              "repasse": 158994.04,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "622",
+          "data": "08/02/2024",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA RENATA LTDA",
+          "v_orig": 360776.14,
+          "v_bruto": 360776.14,
+          "tributos": 4329.31,
+          "v_liq": 356446.83,
+          "status": "Ativo",
+          "id_nf": "6855177",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "PAVIMENTAÇÃO EM PARALELEPÍPEDO NO MUNICÍPIO DE SÃO FRANCISCO DO PIAUÍ/PI — ÁREA 2.973,00 M2 - LOTE V",
+              "valor": 360776.14,
+              "id_item": "11658081",
+              "repasse": 360776.14,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "615",
+          "data": "26/12/2023",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA RENATA LTDA",
+          "v_orig": 10810.91,
+          "v_bruto": 10810.91,
+          "tributos": 291.89,
+          "v_liq": 10519.02,
+          "status": "Ativo",
+          "id_nf": "6791092",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "PAVIMENTAÇÃO EM PARALELEPIPEDO NO MUNICIPIO DE SANTANA DO PIAUI/PI — ÁREA 2.056,65 M2 - LOTE II",
+              "valor": 10810.91,
+              "id_item": "11551844",
+              "repasse": 0.0,
+              "contrapartida": 10810.91,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "614",
+          "data": "26/12/2023",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA RENATA LTDA",
+          "v_orig": 289825.8,
+          "v_bruto": 289825.8,
+          "tributos": 7825.29,
+          "v_liq": 282000.51,
+          "status": "Ativo",
+          "id_nf": "6791069",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "PAVIMENTAÇÃO EM PARALELEPIPEDO NO MUNICIPIO DE SANTANA DO PIAUI/PI — ÁREA 2.056,65 M2 - LOTE II",
+              "valor": 289825.8,
+              "id_item": "11551775",
+              "repasse": 289825.8,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "611",
+          "data": "22/12/2023",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA RENATA LTDA",
+          "v_orig": 303226.34,
+          "v_bruto": 303226.34,
+          "tributos": 8187.11,
+          "v_liq": 295039.23,
+          "status": "Ativo",
+          "id_nf": "6789333",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "PAVIMENTAÇÃO EM PARALELEPÍPEDO NO MUNICÍPIO DE SÃO FRANCISCO DE ASSIS/PI — ÁREA 2.015,00 M2 - LOTE IV",
+              "valor": 303226.34,
+              "id_item": "11549301",
+              "repasse": 303226.34,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "604",
+          "data": "14/12/2023",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA RENATA LTDA",
+          "v_orig": 225411.45,
+          "v_bruto": 225411.45,
+          "tributos": 6086.11,
+          "v_liq": 219325.34,
+          "status": "Ativo",
+          "id_nf": "6785035",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "PAVIMENTAÇÃO EM PARALELEPÍPEDO NO MUNICÍPIO DE PEDRO LAURENTINO/PI — ÁREA 1.883,00 M2 - LOTE VII",
+              "valor": 225411.45,
+              "id_item": "11547552",
+              "repasse": 225411.45,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "547",
+          "data": "02/08/2023",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA RENATA LTDA",
+          "v_orig": 52637.15,
+          "v_bruto": 52637.15,
+          "tributos": 0.0,
+          "v_liq": 52637.15,
+          "status": "Ativo",
+          "id_nf": "6527014",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "PAVIMENTAÇÃO EM PARALELEPÍPEDO EM VIAS PUBLICAS NO MUNICÍPIO DE SÃO GONÇALO-PI. ÁREA 2.290,00 M² - LOTE X",
+              "valor": 52637.15,
+              "id_item": "11123673",
+              "repasse": 52637.15,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "546",
+          "data": "28/07/2023",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA RENATA LTDA",
+          "v_orig": 90406.74,
+          "v_bruto": 90406.74,
+          "tributos": 0.0,
+          "v_liq": 90406.74,
+          "status": "Ativo",
+          "id_nf": "6518539",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "PAVIMENTAÇÃO EM PARALELEPÍPEDO EM VIAS PUBLICAS NO MUNICÍPIO DE SÃO FELIX-PI, AREA 7.105,65 M² - LOTE IX.",
+              "valor": 90406.74,
+              "id_item": "11105711",
+              "repasse": 90406.74,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "544",
+          "data": "26/07/2023",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA RENATA LTDA",
+          "v_orig": 72515.7,
+          "v_bruto": 72515.7,
+          "tributos": 0.0,
+          "v_liq": 72515.7,
+          "status": "Ativo",
+          "id_nf": "6518708",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "PAVIMENTAÇÃO EM PARALELEPÍPEDO EM VIAS PUBLICAS NO MUNICÍPIO DE IPIRANGA-PI. ÁREA 601,06 M² - LOTE IV",
+              "valor": 72515.7,
+              "id_item": "11105981",
+              "repasse": 72515.7,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "543",
+          "data": "26/07/2023",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA RENATA LTDA",
+          "v_orig": 143965.43,
+          "v_bruto": 143965.43,
+          "tributos": 0.0,
+          "v_liq": 143965.43,
+          "status": "Ativo",
+          "id_nf": "6510872",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "PAVIMENTAÇÃO EM PARALELEPÍPEDO EM VIAS PUBLICAS NO MUNICÍPIO DE VARZEA GRANDE-PI. ÁREA 1.149,00 M² - LOTE XIII",
+              "valor": 143965.43,
+              "id_item": "11097888",
+              "repasse": 143965.43,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "542",
+          "data": "26/07/2023",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA RENATA LTDA",
+          "v_orig": 234435.92,
+          "v_bruto": 234435.92,
+          "tributos": 0.0,
+          "v_liq": 234435.92,
+          "status": "Ativo",
+          "id_nf": "6513081",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "PAVIMENTAÇÃO EM PARALELEPÍPEDO EM VIAS PUBLICAS NO MUNICÍPIO DE PAU D'ARCO-PI. ÁREA 1.715,00 M² - LOTE VII",
+              "valor": 234435.92,
+              "id_item": "11098633",
+              "repasse": 234435.92,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "540",
+          "data": "25/07/2023",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA RENATA LTDA",
+          "v_orig": 253155.01,
+          "v_bruto": 253155.01,
+          "tributos": 0.0,
+          "v_liq": 253155.01,
+          "status": "Ativo",
+          "id_nf": "6512307",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "PAVIMENTAÇÃO EM PARALELEPÍPEDO EM VIAS PUBLICAS NO MUNICÍPIO DE MIGUEL LEÃO-PI. ÁREA 2.701,50 M² - LOTE V",
+              "valor": 253155.01,
+              "id_item": "11097889",
+              "repasse": 253155.01,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "539",
+          "data": "24/07/2023",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA RENATA LTDA",
+          "v_orig": 28313.78,
+          "v_bruto": 28313.78,
+          "tributos": 0.0,
+          "v_liq": 28313.78,
+          "status": "Ativo",
+          "id_nf": "6509406",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "PAVIMENTAÇÃO EM PARALELEPÍPEDO EM VIAS PUBLICAS NO MUNICÍPIO DE SÃO PEDRO-PI. ÁREA 2.218,20 M² - LOTE XI",
+              "valor": 28313.78,
+              "id_item": "11097890",
+              "repasse": 28313.78,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "13151",
+          "data": "21/07/2023",
+          "tipo": "NOTA FISCAL",
+          "razao": "PLANACON PLANEJAMENTO ASSESSORIA DE PROJETOS TECNICOS LTDA",
+          "v_orig": 254101.35,
+          "v_bruto": 254101.35,
+          "tributos": 0.0,
+          "v_liq": 254101.35,
+          "status": "Ativo",
+          "id_nf": "6535770",
+          "id_item": "",
+          "origem_recurso": "Repasse / Rendimento",
+          "itens": [
+            {
+              "desc": "ELABORAÇÃO DO PROJETO",
+              "valor": 254101.35,
+              "id_item": "11135159",
+              "repasse": 0.0,
+              "contrapartida": 254101.35,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "513",
+          "data": "25/04/2023",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA RENATA LTDA",
+          "v_orig": 687077.53,
+          "v_bruto": 687077.53,
+          "tributos": 0.0,
+          "v_liq": 687077.53,
+          "status": "Ativo",
+          "id_nf": "6360851",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "PAVIMENTAÇÃO EM PARALELEPÍPEDO EM VIAS PUBLICAS NO MUNICÍPIO DE SÃO FELIX-PI, AREA 7.105,65 M² - LOTE IX.",
+              "valor": 687077.53,
+              "id_item": "10855952",
+              "repasse": 687077.53,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "512",
+          "data": "19/04/2023",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA RENATA LTDA",
+          "v_orig": 250000.0,
+          "v_bruto": 250000.0,
+          "tributos": 0.0,
+          "v_liq": 250000.0,
+          "status": "Ativo",
+          "id_nf": "6356008",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "PAVIMENTAÇÃO EM PARALELEPÍPEDO EM VIAS PUBLICAS NO MUNICÍPIO DE SÃO GONÇALO-PI. ÁREA 2.290,00 M² - LOTE X",
+              "valor": 250000.0,
+              "id_item": "10851484",
+              "repasse": 250000.0,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "511",
+          "data": "19/04/2023",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA RENATA LTDA",
+          "v_orig": 182391.2,
+          "v_bruto": 182391.2,
+          "tributos": 0.0,
+          "v_liq": 182391.2,
+          "status": "Ativo",
+          "id_nf": "6357695",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "PAVIMENTAÇÃO EM PARALELEPÍPEDO EM VIAS PUBLICAS NO MUNICÍPIO DE AGRICOLANDIA-PI, AREA 1.236,06 M². - LOTE I",
+              "valor": 182391.2,
+              "id_item": "10851922",
+              "repasse": 182391.2,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "509",
+          "data": "18/04/2023",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA RENATA LTDA",
+          "v_orig": 258302.76,
+          "v_bruto": 258302.76,
+          "tributos": 0.0,
+          "v_liq": 258302.76,
+          "status": "Ativo",
+          "id_nf": "6356589",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "PAVIMENTAÇÃO EM PARALELEPÍPEDO EM VIAS PUBLICAS NO MUNICÍPIO DE FRANCINOPOLIS-PI. ÁREA 2.526,00 M² - LOTE III",
+              "valor": 258302.76,
+              "id_item": "10851409",
+              "repasse": 258302.76,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "508",
+          "data": "05/04/2023",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA RENATA LTDA",
+          "v_orig": 250000.0,
+          "v_bruto": 250000.0,
+          "tributos": 0.0,
+          "v_liq": 250000.0,
+          "status": "Ativo",
+          "id_nf": "6339398",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "PAVIMENTAÇÃO EM PARALELEPÍPEDO EM VIAS PUBLICAS NO MUNICÍPIO DE SÃO PEDRO-PI. ÁREA 2.218,20 M² - LOTE XI",
+              "valor": 250000.0,
+              "id_item": "10828806",
+              "repasse": 250000.0,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "489",
+          "data": "11/11/2022",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA RENATA LTDA",
+          "v_orig": 31765.42,
+          "v_bruto": 31765.42,
+          "tributos": 952.96,
+          "v_liq": 30812.46,
+          "status": "Ativo",
+          "id_nf": "6168564",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "PAVIMENTAÇÃO EM PARALELEPÍPEDO EM VIAS PUBLICAS NO MUNICÍPIO DE SÃO FELIX-PI, AREA 7.105,65 M² - LOTE IX.",
+              "valor": 31765.42,
+              "id_item": "10538611",
+              "repasse": 31765.42,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
         }
       ],
       "exec_fisica_pct": 0,
@@ -5089,5 +5713,5 @@
       "obs_manual": ""
     }
   ],
-  "exec_atualizado_em": "20/05/2026 18:56"
+  "exec_atualizado_em": "20/05/2026 19:54"
 }

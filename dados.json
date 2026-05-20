@@ -2494,7 +2494,7 @@
     {
       "numero": "781089",
       "objeto": "IMPLANTACAO DE INFRAESTRUTURA ESPORTIVA no Municipio de Monsenhor Hipolito  PI",
-      "coletado_em": "20/05/2026 17:30",
+      "coletado_em": "20/05/2026 18:12",
       "valor_global": "R$ 567.939,88",
       "valor_repasse": "R$ 487.500,00",
       "valor_contrapartida": "R$ 80.439,88",
@@ -2887,9 +2887,13 @@
       "status_obra": "",
       "tem_medicao": false,
       "saldo_rendimentos": 0.0,
-      "repasse_desembolsado": null,
+      "repasse_desembolsado": {
+        "previsto": 487500.0,
+        "desembolsado": 390000.0,
+        "a_desembolsar": 97500.0
+      },
       "_id_convenio": "318664",
-      "_id_proposta": "",
+      "_id_proposta": "652545",
       "erro": "",
       "obs_manual": "Instrumento antigo (pré-OBTV). Pagamentos coletados da aba Pagamento do Transferegov — movimentações OBTV não disponíveis. Empresa executora rescindida; novo projeto aguardando análise da CAIXA para licitação do remanescente."
     },
@@ -3989,5 +3993,5 @@
       "obs_manual": ""
     }
   ],
-  "exec_atualizado_em": "20/05/2026 17:34"
+  "exec_atualizado_em": "20/05/2026 18:17"
 }

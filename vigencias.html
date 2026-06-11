@@ -1,18 +1,19 @@
 <!DOCTYPE html>
-<!-- v20260513_212500 -->
+<!-- v20260608_000000 -->
 <html lang="pt-br">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Painel de Vigências — IDEPI</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#f0f4f8;--surface:#fff;--surface2:#f8fafc;--border:#e2e8f0;
+  --bg:#0b1527;--sidebar:#07101f;
+  --surface:#fff;--surface2:#f0f4f8;--border:#e2e8f0;
   --text:#1e293b;--muted:#64748b;--light:#94a3b8;
   --brand:#1e40af;--brand-light:#dbeafe;
   --n-bg:#f0fdf4;--n-bd:#22c55e;--n-tx:#15803d;
@@ -33,7 +34,7 @@
 }
 .th-info:hover::after{
   content:attr(title);
-  position:absolute;top:18px;left:0;z-index:99;
+  position:absolute;top:20px;left:50%;transform:translateX(-50%);z-index:99;
   background:#1e293b;color:#fff;
   font-size:11px;font-weight:400;line-height:1.5;
   padding:8px 12px;border-radius:8px;
@@ -43,18 +44,41 @@
 }
 body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
 
-/* HEADER */
-.header{background:var(--brand);padding:0 24px;height:60px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 2px 8px rgba(30,64,175,.3);gap:12px}
-.logo{display:flex;align-items:center;gap:12px;color:#fff;font-weight:700;font-size:17px;white-space:nowrap}
-.logo span{font-weight:400;opacity:.7;font-size:13px}
-.hright{display:flex;align-items:center;gap:10px;flex-shrink:0}
-.hbadge{background:rgba(255,255,255,.15);color:#fff;font-size:12px;padding:4px 12px;border-radius:20px;border:1px solid rgba(255,255,255,.2);white-space:nowrap}
-.hinfo{color:rgba(255,255,255,.7);font-size:11px;white-space:nowrap}
+/* ── HEADER UNIFICADO (padrão único de todos os painéis) ──────── */
+.hd{background:var(--bg);border-bottom:1px solid rgba(255,255,255,.07);padding:0 36px;height:58px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.hd-left{display:flex;align-items:center;gap:14px}
+.hd-logo{display:flex;align-items:center;gap:10px}
+.hd-logo-icon{width:34px;height:34px;border-radius:8px;background:linear-gradient(135deg,#1a4a8a,#0d6e4a);display:flex;align-items:center;justify-content:center;font-size:14px;color:#fff}
+.hd-title{font-family:'Sora',sans-serif;font-size:14px;font-weight:700;color:#fff;line-height:1.1}
+.hd-sub{font-size:10px;color:rgba(255,255,255,.4)}
+.hd-sep{width:1px;height:26px;background:rgba(255,255,255,.1)}
+.hd-pill{display:flex;align-items:center;gap:6px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.09);border-radius:20px;padding:3px 11px;font-size:10px;color:rgba(255,255,255,.55)}
+.hd-pill i{color:#4ade80;font-size:8px}
+.hd-right{display:flex;align-items:center;gap:14px}
+.hd-stat{text-align:right}
+.hd-stat strong{font-family:'Sora',sans-serif;font-size:17px;font-weight:800;color:#fff;display:block;line-height:1}
+.hd-stat span{font-size:9.5px;color:rgba(255,255,255,.35)}
+.hd-div{width:1px;height:26px;background:rgba(255,255,255,.1)}
+.hd-ts{font-size:10px;color:rgba(255,255,255,.3);text-align:right;line-height:1.5}
 
-/* BOTÃO MENU */
-.btn-menu{display:flex;align-items:center;gap:7px;background:rgba(255,255,255,.18);color:#fff;border:1px solid rgba(255,255,255,.35);border-radius:8px;padding:7px 14px;font-size:12px;font-weight:600;cursor:pointer;transition:all .2s;white-space:nowrap;font-family:'Inter',sans-serif;text-decoration:none}
-.btn-menu:hover{background:rgba(255,255,255,.30);border-color:rgba(255,255,255,.6)}
-.btn-menu i{font-size:14px}
+/* ── LAYOUT ── */
+.body{flex:1;display:flex;overflow:hidden}
+.content{flex:1;display:flex;flex-direction:column;background:var(--surface2);overflow-y:auto}
+
+/* ── SIDEBAR ITENS ── */
+.sb-sec{font-size:9px;font-weight:700;color:rgba(255,255,255,.2);letter-spacing:1px;text-transform:uppercase;padding:10px 12px 3px;margin-top:6px}
+.sb-sec:first-child{margin-top:0}
+.sb-item{display:flex;align-items:center;gap:9px;padding:8px 12px;border-radius:7px;font-size:12.5px;color:rgba(255,255,255,.5);text-decoration:none;cursor:pointer;transition:all .14s}
+.sb-item:hover{background:rgba(255,255,255,.05);color:rgba(255,255,255,.75)}
+.sb-item.active{background:#182f5a;color:#fff}
+.sb-item.active i{color:#60a5fa}
+.sb-item i{font-size:13px;width:16px;text-align:center;flex-shrink:0}
+.soon{margin-left:auto;font-size:9px;font-weight:600;background:rgba(255,255,255,.07);color:rgba(255,255,255,.25);padding:1px 6px;border-radius:8px}
+.sb-item.active .soon{display:none}
+.sb-footer{margin-top:auto;padding-top:14px;border-top:1px solid rgba(255,255,255,.06)}
+.sb-card{padding:10px 12px;border-radius:8px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.05)}
+.sb-card strong{color:rgba(255,255,255,.45);display:block;font-size:10px;margin-bottom:2px}
+.sb-card p{font-size:10px;color:rgba(255,255,255,.25);line-height:1.5}
 
 /* LOADING */
 .overlay{position:fixed;inset:0;background:rgba(15,23,42,.75);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:9999;gap:14px}
@@ -127,6 +151,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-h
 .chip.cv{background:var(--v-bg);color:var(--v-tx);border-color:var(--v-bd)}
 .chip.cs{background:var(--s-bg);color:var(--s-tx);border-color:var(--s-bd)}
 .chip.cf{background:var(--f-bg);color:var(--f-tx);border-color:var(--f-bd)}
+.chip.active{box-shadow:0 0 0 2.5px currentColor;font-weight:700;}
 
 /* COLUMN FILTERS */
 .col-filters{display:flex;gap:6px;flex-wrap:wrap;padding:7px 14px;border-bottom:1px solid var(--border);background:var(--surface2);align-items:center}
@@ -219,6 +244,17 @@ tr.drow:hover td{background:var(--surface2);cursor:pointer}
 .btn-excel i{font-size:12px}
 .btn-excel.loading{background:#94a3b8;cursor:not-allowed;transform:none}
 
+@media(max-width:900px){
+  .hd{padding:0 14px;height:auto;min-height:50px;flex-wrap:wrap;gap:6px;padding-top:8px;padding-bottom:8px}
+  .hd-sep,.hd-pill,.hd-stat,.hd-div{display:none}
+  .body{overflow:visible;flex-direction:column;height:auto}
+  .content{overflow:visible;flex:none;width:100%}
+  .sidebar{width:100%;flex-direction:row;flex-wrap:nowrap;overflow-x:auto;padding:8px 10px;height:auto;border-right:none;border-bottom:1px solid rgba(255,255,255,.06)}
+  .sidebar::-webkit-scrollbar{display:none}
+  .sb-sec,.sb-footer{display:none}
+  .sb-item{flex-shrink:0;white-space:nowrap;padding:6px 12px;font-size:12px}
+  .sb-toggle{display:none}
+}
 @media(max-width:1000px){.kgrid{grid-template-columns:repeat(3,1fr)}.prow{grid-template-columns:1fr}.totals{grid-template-columns:1fr 1fr}}
 
 @media(max-width:700px){
@@ -276,8 +312,11 @@ tr.drow:hover td{background:var(--surface2);cursor:pointer}
 }
 
 /* ── SIDEBAR TOGGLE ── */
-/* ── SIDEBAR TOGGLE ── */
+/* ── SIDEBAR BASE + TOGGLE ── */
 .sidebar{
+  width:214px;flex-shrink:0;background:var(--sidebar);
+  border-right:1px solid rgba(255,255,255,.06);
+  display:flex;flex-direction:column;padding:18px 10px;gap:2px;
   position:relative;
   transition:width .22s cubic-bezier(.4,0,.2,1),
              padding .22s cubic-bezier(.4,0,.2,1);
@@ -331,19 +370,52 @@ tr.drow:hover td{background:var(--surface2);cursor:pointer}
   <small>Buscando convênios atualizados</small>
 </div>
 
-<div class="header">
-  <div class="logo">
-    <i class="fa-solid fa-handshake" style="font-size:19px;"></i>
-    IDEPI <span>| Instituto de Desenvolvimento do Piauí</span>
+<div class="hd">
+  <div class="hd-left">
+    <div class="hd-logo">
+      <div class="hd-logo-icon"><i class="fa-solid fa-handshake"></i></div>
+      <div>
+        <div class="hd-title">IDEPI</div>
+        <div class="hd-sub">Convênios Federais</div>
+      </div>
+    </div>
+    <div class="hd-sep"></div>
+    <div class="hd-pill"><i class="fa-solid fa-circle"></i> Dados ao vivo — Portal da Transparência · CGU</div>
   </div>
-  <div class="hright">
-    <a href="index.html" class="btn-menu" title="Ir para o Menu Principal">
-      <i class="fa-solid fa-grid-2"></i> Menu Principal
-    </a>
-    <span class="hinfo" id="hinfo"></span>
-    <span class="hbadge"><i class="fa-regular fa-clock" style="margin-right:5px;"></i>Vigências</span>
+  <div class="hd-right">
+    <div class="hd-stat"><strong id="hs-lib">—</strong><span>Total liberado</span></div>
+    <div class="hd-div"></div>
+    <div class="hd-stat"><strong id="hs-tot">—</strong><span>Instrumentos</span></div>
+    <div class="hd-div"></div>
+    <div class="hd-ts" id="hd-ts">—</div>
   </div>
 </div>
+
+<!-- BODY = SIDEBAR + CONTENT -->
+<div class="body">
+
+  <nav class="sidebar">
+    <div class="sb-sec">Convênios Federais</div>
+    <a class="sb-item" href="index.html"><i class="fa-solid fa-gauge-high"></i> Painel Geral</a>
+    <a class="sb-item active" href="vigencias.html"><i class="fa-solid fa-table-list"></i> Vigências</a>
+    <a class="sb-item" href="execucao.html"><i class="fa-solid fa-chart-line"></i> Execução Financeira</a>
+    <div class="sb-item"><i class="fa-solid fa-file-invoice"></i> Prestação de Contas<span class="soon">em breve</span></div>
+    <div class="sb-item"><i class="fa-solid fa-landmark-dome"></i> Emendas Parlamentares<span class="soon">em breve</span></div>
+    <div class="sb-item"><i class="fa-solid fa-map-location-dot"></i> Mapa de Obras<span class="soon">em breve</span></div>
+
+    <div class="sb-sec">Desempenho IDTRU-DL</div>
+    <a class="sb-item" href="fiscalgov.html"><i class="fa-solid fa-camera"></i> FiscalGov · EX-01</a>
+    <div class="sb-item"><i class="fa-solid fa-star"></i> Índice Geral<span class="soon">em breve</span></div>
+
+    <div class="sb-footer">
+      <div class="sb-card">
+        <strong>Instituto de Desenvolvimento do Piauí</strong>
+        <p>R. Altos, 277 — Primavera<br>Teresina-PI · idepi@idepi.pi.gov.br</p>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
 
 <div class="main">
   <div class="ptitle"><i class="fa-solid fa-chart-bar"></i> Monitoramento de Vigência — Convênios Federais</div>
@@ -411,14 +483,14 @@ tr.drow:hover td{background:var(--surface2);cursor:pointer}
 
       <!-- Chips de status -->
       <div class="chips">
-        <span class="chip all" onclick="setStatus('all')">Todos</span>
-        <span class="chip cn"  onclick="setStatus('normal')">Normal</span>
-        <span class="chip ca"  onclick="setStatus('alerta')">Alerta</span>
-        <span class="chip cat" onclick="setStatus('atencao')">Atenção</span>
-        <span class="chip cc"  onclick="setStatus('critico')">Crítico</span>
-        <span class="chip cv"  onclick="setStatus('vencido')">Vencido</span>
-        <span class="chip cs"  onclick="setStatus('suspensiva')">Com Suspensiva</span>
-        <span class="chip cf"  onclick="setStatus('finalizado')">Finalizado</span>
+        <span class="chip all" data-status="all"        onclick="setStatus('all')">Todos</span>
+        <span class="chip cn"  data-status="normal"     onclick="setStatus('normal')">Normal</span>
+        <span class="chip ca"  data-status="alerta"     onclick="setStatus('alerta')">Alerta</span>
+        <span class="chip cat" data-status="atencao"    onclick="setStatus('atencao')">Atenção</span>
+        <span class="chip cc"  data-status="critico"    onclick="setStatus('critico')">Crítico</span>
+        <span class="chip cv"  data-status="vencido"    onclick="setStatus('vencido')">Vencido</span>
+        <span class="chip cs"  data-status="suspensiva" onclick="setStatus('suspensiva')">Com Suspensiva</span>
+        <span class="chip cf"  data-status="finalizado" onclick="setStatus('finalizado')">Finalizado</span>
       </div>
 
       <!-- Filtros por coluna -->
@@ -462,6 +534,7 @@ const REPO    = "painel-idepi";
 // ═══════════════════════════════════════
 
 let dados = [], filtroStatus = 'all', chart = null;
+let _gerado_em = '—';
 let sortCol = null, sortDir = 1;
 let _rowsVisiveis = []; // guarda as linhas visíveis para export
 
@@ -484,6 +557,20 @@ function parseDate(s) {
 }
 
 const hoje = (() => { const d = new Date(); d.setHours(0,0,0,0); return d; })();
+
+// ── ESCAPE HTML (previne XSS) ────────────────────────────────────────────────
+function esc(s) {
+  return (s||'').toString()
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+// ── SINCRONIZA CHIP ATIVO ────────────────────────────────────────────────────
+function _syncChips(s) {
+  document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+  const el = document.querySelector(`.chip[data-status="${s}"]`);
+  if (el) el.classList.add('active');
+}
 
 // ── CALCULA STATUS ─────────────────────────────────────────────────────────
 function calcStatus(c) {
@@ -527,7 +614,7 @@ async function carregar() {
     const r = await fetch(url);
     if (!r.ok) throw new Error(`HTTP ${r.status}`);
     const j = await r.json();
-    document.getElementById('hinfo').textContent = `Atualizado: ${j.gerado_em || '—'}`;
+    _gerado_em = j.gerado_em || '—';
     dados = (j.convenios || []).map(c => {
       const { st, dias, temSusp } = calcStatus(c);
       return { ...c, _st:st, _dias:dias, _temSusp:temSusp };
@@ -535,6 +622,10 @@ async function carregar() {
     document.getElementById('ov').classList.add('hide');
     popularFiltros();
     atualizar();
+    // Deep link: vigencias.html?status=critico aplica filtro automaticamente
+    const param = new URLSearchParams(window.location.search).get('status');
+    if (param && ['all','normal','alerta','atencao','critico','vencido','finalizado','suspensiva'].includes(param))
+      setStatus(param);
   } catch(e) {
     document.getElementById('ov').innerHTML = `
       <div style="color:#fca5a5;font-size:44px;margin-bottom:8px;"><i class="fa-solid fa-triangle-exclamation"></i></div>
@@ -580,7 +671,11 @@ function atualizar() {
   document.getElementById('tt').textContent = sT>0?`R$ ${fN(sT)}`:'—';
   document.getElementById('tl').textContent = sL>0?`R$ ${fN(sL)}`:'—';
   document.getElementById('te').textContent = nE>0?`${(sE/nE).toFixed(1)}%`:'—';
-  graf(ct); render();
+  // Header stats (padrão unificado com index.html)
+  document.getElementById('hs-tot').textContent = dados.length;
+  document.getElementById('hs-lib').textContent = sL>0 ? 'R$ '+fN(sL) : '—';
+  document.getElementById('hd-ts').textContent  = 'Atualizado: '+_gerado_em;
+  graf(ct); _syncChips(filtroStatus); render();
 }
 
 function fN(n){return n.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2})}
@@ -620,6 +715,7 @@ function setStatus(s) {
   document.getElementById('busca').value='';
   Object.values(KIDS).forEach(id=>document.getElementById(id).classList.remove('active'));
   if(KIDS[s]) document.getElementById(KIDS[s]).classList.add('active');
+  _syncChips(s);
   render();
 }
 
@@ -735,19 +831,19 @@ function render() {
     else diasHtml = `<span class="cd ${cl}">${dias}d</span>`;
 
     const suspHtml = r._temSusp
-      ? `<span class="susp-tag"><i class="fa-solid fa-hourglass-half"></i>${r.vigencia_suspensiva||'—'}</span>`
+      ? `<span class="susp-tag"><i class="fa-solid fa-hourglass-half"></i>${esc(r.vigencia_suspensiva)||'—'}</span>`
       : `<span style="color:#94a3b8;font-size:11px;">—</span>`;
 
     const seiHtml = r.sei
-      ? `<span class="val" style="font-family:monospace;font-size:11px;color:var(--brand);">${r.sei}</span>`
+      ? `<span class="val" style="font-family:monospace;font-size:11px;color:var(--brand);">${esc(r.sei)}</span>`
       : `<span style="color:#94a3b8;font-size:11px;">—</span>`;
 
     return `<tr class="drow" onclick="exp(${i})">
       <td style="text-align:center;"><i class="fa-solid fa-chevron-right" id="ic${i}" style="font-size:9px;color:#94a3b8;transition:transform .2s;"></i></td>
-      <td><span class="num">${r.numero||'—'}</span></td>
+      <td><span class="num">${esc(r.numero)||'—'}</span></td>
       <td>
-        <div class="obj" title="${(r.objeto||'').replace(/"/g,"'")}">${r.objeto||'—'}</div>
-        ${r.autor_emenda?`<div style="font-size:10px;color:#94a3b8;margin-top:2px;"><i class="fa-solid fa-user" style="font-size:9px;"></i> ${r.autor_emenda}</div>`:''}
+        <div class="obj" title="${esc(r.objeto)}">${esc(r.objeto)||'—'}</div>
+        ${r.autor_emenda?`<div style="font-size:10px;color:#94a3b8;margin-top:2px;"><i class="fa-solid fa-user" style="font-size:9px;"></i> ${esc(r.autor_emenda)}</div>`:''}
       </td>
       <td style="white-space:nowrap;font-size:11px;">${r.vigencia_fmt||r.vigencia||'—'}</td>
       <td>${suspHtml}</td>
@@ -758,21 +854,21 @@ function render() {
       <td><span class="badge ${cl}">${nm}${r._temSusp?'<i class="fa-solid fa-hourglass-half" style="font-size:8px;margin-left:2px;"></i>':''}</span></td>
     </tr>
     <tr class="erow" id="er${i}"><td colspan="10"><div class="ebody"><div class="egrid">
-      <div class="ef"><label>Nº do instrumento</label><span>${r.numero||'—'}</span></div>
-      <div class="ef"><label>Situação (Transferegov)</label><span>${r.situacao_tgov||'—'}</span></div>
-      <div class="ef"><label>Sit. Contratação (Tgov)</label><span>${r.sit_contrat_tgov||'—'}</span></div>
-      <div class="ef"><label>Situação (API CGU)</label><span style="color:#94a3b8;font-size:11px;">${r.situacao||'—'}</span></div>
-      <div class="ef"><label>Prestação de contas</label><span>${r.prestacao||'—'}</span></div>
-      <div class="ef"><label>Autor da emenda</label><span>${r.autor_emenda||'—'}</span></div>
-      <div class="ef"><label>Fiscal responsável</label><span style="font-weight:600;color:var(--brand);">${r.fiscal||'—'}</span></div>
-      <div class="ef full"><label>Objeto completo</label><span>${r.objeto||'—'}</span></div>
-      <div class="ef"><label>Vigência final</label><span>${r.vigencia_fmt||r.vigencia||'—'}</span></div>
-      <div class="ef"><label>Vigência suspensiva</label><span style="color:${r._temSusp?'var(--s-tx)':'inherit'};font-weight:${r._temSusp?700:400}">${r.vigencia_suspensiva||'—'}</span></div>
+      <div class="ef"><label>Nº do instrumento</label><span>${esc(r.numero)||'—'}</span></div>
+      <div class="ef"><label>Situação (Transferegov)</label><span>${esc(r.situacao_tgov)||'—'}</span></div>
+      <div class="ef"><label>Sit. Contratação (Tgov)</label><span>${esc(r.sit_contrat_tgov)||'—'}</span></div>
+      <div class="ef"><label>Situação (API CGU)</label><span style="color:#94a3b8;font-size:11px;">${esc(r.situacao)||'—'}</span></div>
+      <div class="ef"><label>Prestação de contas</label><span>${esc(r.prestacao)||'—'}</span></div>
+      <div class="ef"><label>Autor da emenda</label><span>${esc(r.autor_emenda)||'—'}</span></div>
+      <div class="ef"><label>Fiscal responsável</label><span style="font-weight:600;color:var(--brand);">${esc(r.fiscal)||'—'}</span></div>
+      <div class="ef full"><label>Objeto completo</label><span>${esc(r.objeto)||'—'}</span></div>
+      <div class="ef"><label>Vigência final</label><span>${esc(r.vigencia_fmt||r.vigencia)||'—'}</span></div>
+      <div class="ef"><label>Vigência suspensiva</label><span style="color:${r._temSusp?'var(--s-tx)':'inherit'};font-weight:${r._temSusp?700:400}">${esc(r.vigencia_suspensiva)||'—'}</span></div>
       <div class="ef"><label>Dias p/ data efetiva</label><span>${dias!==null?(dias<0?Math.abs(dias)+'d vencido':dias+'d restantes'):'—'}</span></div>
-      <div class="ef"><label>Nº Processo SEI</label><span style="font-family:monospace;color:var(--brand);font-weight:600;">${r.sei||'—'}</span></div>
-      <div class="ef"><label>Valor total</label><span>${r.v_total?'R$ '+r.v_total:'—'}</span></div>
-      <div class="ef"><label>Valor liberado</label><span>${r.v_liberado?'R$ '+r.v_liberado:'—'}</span></div>
-      <div class="ef"><label>% Execução</label><span>${r.pct_exec||'—'}</span></div>
+      <div class="ef"><label>Nº Processo SEI</label><span style="font-family:monospace;color:var(--brand);font-weight:600;">${esc(r.sei)||'—'}</span></div>
+      <div class="ef"><label>Valor total</label><span>${r.v_total?'R$ '+esc(r.v_total):'—'}</span></div>
+      <div class="ef"><label>Valor liberado</label><span>${r.v_liberado?'R$ '+esc(r.v_liberado):'—'}</span></div>
+      <div class="ef"><label>% Execução</label><span>${esc(r.pct_exec)||'—'}</span></div>
       <div class="ef"><label>Status</label><span><span class="badge ${cl}">${nm}</span>${r._temSusp?'<span style="font-size:10px;color:var(--s-tx);margin-left:4px;">(pela suspensiva)</span>':''}</span></div>
     </div></div></td></tr>`;
   }).join('');
@@ -849,18 +945,6 @@ function exportarExcelVigencias() {
         {wch:22},{wch:22},{wch:10}
       ];
 
-      // Estilo do cabeçalho (negrito via SheetJS Community — limitado, mas funciona)
-      const range = XLSX.utils.decode_range(ws['!ref']);
-      for (let C = range.s.c; C <= range.e.c; C++) {
-        const addr = XLSX.utils.encode_cell({r:0, c:C});
-        if (!ws[addr]) continue;
-        ws[addr].s = {
-          font: {bold:true, color:{rgb:'FFFFFF'}},
-          fill: {fgColor:{rgb:'1E40AF'}},
-          alignment: {horizontal:'center', wrapText:true}
-        };
-      }
-
       // ── Aba 2: Resumo por Status ──
       const ct = {Normal:0,Alerta:0,'Atenção':0,'Crítico':0,Vencido:0,Finalizado:0};
       _rowsVisiveis.forEach(r => {
@@ -930,6 +1014,9 @@ function _syncFsBtnVig() {
 }
 </script>
 
+  </div><!-- /content -->
+</div><!-- /body -->
+
 <!-- ── PROTEÇÃO POR SENHA ─────────────────────────────── -->
 <div id="lockscreen" style="
   position:fixed;inset:0;z-index:9999;
@@ -972,13 +1059,13 @@ function _syncFsBtnVig() {
   </div>
 </div>
 <script>
-const SENHA_HASH = "idepi2026";
+const SENHA = "idepi2026";
 if (sessionStorage.getItem('idepi_auth') === '1') {
   document.getElementById('lockscreen').style.display = 'none';
 }
 function checkPwd() {
   const v = document.getElementById('pwd-input').value;
-  if (v === SENHA_HASH) {
+  if (v === SENHA) {
     sessionStorage.setItem('idepi_auth','1');
     document.getElementById('lockscreen').style.display = 'none';
   } else {

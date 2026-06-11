@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<!-- v20260513_212500 -->
+<!-- v20260610_000000 -->
 <html lang="pt-br">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>IDEPI — Portal de Convênios Federais</title>
+<title>Portal de Convênios Federais — IDEPI</title>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=IBM+Plex+Mono:wght@400;600&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
@@ -376,7 +376,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);display:flex;flex-dir
           <h2>Instituto de Desenvolvimento do Piauí — IDEPI</h2>
           <p>Monitoramento centralizado de todos os instrumentos de transferência federal. Vigências, situação oficial, valores liberados e desempenho nos indicadores IDTRU-DL — tudo em tempo real, atualizado automaticamente via API do Portal da Transparência.</p>
           <div class="hero-badges">
-            <div class="hero-badge"><i class="fa-solid fa-rotate"></i> Atualização automática diária</div>
+            <div class="hero-badge"><i class="fa-solid fa-rotate"></i> Atualização automática via script</div>
             <div class="hero-badge"><i class="fa-solid fa-shield-halved"></i> Dados oficiais CGU</div>
             <div class="hero-badge"><i class="fa-solid fa-gauge-high"></i> IDTRU-DL Recebedores</div>
           </div>
@@ -389,32 +389,32 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);display:flex;flex-dir
 
       <!-- STATUS GRID -->
       <div class="status-grid">
-        <a class="st-card s-n" href="vigencias.html">
+        <a class="st-card s-n" href="vigencias.html?status=normal">
           <div class="st-lbl">Normal</div>
           <div class="st-num" id="sn">—</div>
           <div class="st-desc">&gt; 90 dias</div>
         </a>
-        <a class="st-card s-al" href="vigencias.html">
+        <a class="st-card s-al" href="vigencias.html?status=alerta">
           <div class="st-lbl">Alerta</div>
           <div class="st-num" id="sa">—</div>
           <div class="st-desc">60 – 90 dias</div>
         </a>
-        <a class="st-card s-at" href="vigencias.html">
+        <a class="st-card s-at" href="vigencias.html?status=atencao">
           <div class="st-lbl">Atenção</div>
           <div class="st-num" id="sat">—</div>
           <div class="st-desc">30 – 60 dias</div>
         </a>
-        <a class="st-card s-c" href="vigencias.html">
+        <a class="st-card s-c" href="vigencias.html?status=critico">
           <div class="st-lbl">Crítico</div>
           <div class="st-num" id="sc">—</div>
           <div class="st-desc">&lt; 30 dias</div>
         </a>
-        <a class="st-card s-v" href="vigencias.html">
+        <a class="st-card s-v" href="vigencias.html?status=vencido">
           <div class="st-lbl">Vencido</div>
           <div class="st-num" id="sv">—</div>
           <div class="st-desc">Expirado</div>
         </a>
-        <a class="st-card s-f" href="vigencias.html">
+        <a class="st-card s-f" href="vigencias.html?status=finalizado">
           <div class="st-lbl">Finalizado</div>
           <div class="st-num" id="sf">—</div>
           <div class="st-desc">Encerrado</div>
@@ -547,10 +547,21 @@ function parseDateBR(s) {
 
 function normSit(s){ return (s||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase(); }
 
+// Regex única para situações de encerramento — usada em isFinalizado() e calcSt()
+var REGEX_FIN = /prestacao[\s]*de[\s]*contas|tomada[\s]*de[\s]*contas|finaliz|concluido|encerrad|rescindid|inadimplent/;
+
+// Verifica os 3 campos: T e U (Transferegov, mais confiável) têm prioridade
+// sobre situacao (API CGU — tem bug conhecido: retorna "NORMAL" para alguns
+// instrumentos já encerrados — ticket #48358198).
+function isFinalizado(c) {
+  var n = normSit;
+  return REGEX_FIN.test(n(c.situacao_tgov))
+      || REGEX_FIN.test(n(c.sit_contrat_tgov))
+      || REGEX_FIN.test(n(c.situacao));
+}
+
 function calcSt(c) {
-  var sit = normSit(c.situacao||"");
-  if (/prestacao\s*de\s*contas|finaliz|concluido|encerrad|rescindid|inadimplent/.test(sit))
-    return { st:"finalizado", dias:null };
+  if (isFinalizado(c)) return { st:"finalizado", dias:null };
   var hoje = new Date(); hoje.setHours(0,0,0,0);
   var dVig = parseDateBR(c.vigencia_fmt || c.vigencia);
   var dSus = parseDateBR(c.vigencia_suspensiva);
@@ -560,11 +571,6 @@ function calcSt(c) {
   var dias = Math.round((dataEf - hoje)/86400000);
   var st = dias < 0 ? "vencido" : dias <= 30 ? "critico" : dias <= 60 ? "atencao" : dias <= 90 ? "alerta" : "normal";
   return { st:st, dias:dias };
-}
-
-function isFinalizado(c) {
-  var sit = normSit(c.situacao||"");
-  return /prestacao\s*de\s*contas|finaliz|concluido|encerrad|rescindid|inadimplent/.test(sit);
 }
 function temMedicao(c) { return String(c.medicao||c.col_p||"").trim().toUpperCase().startsWith("SIM"); }
 function temPagamento(c){ return String(c.pagamento||c.col_q||"").trim().toUpperCase().startsWith("SIM"); }
@@ -692,7 +698,7 @@ function exportarExcelGeral() {
           aptidao,
           c.sei || '',
           c.mandataria || c.mandatária || '',
-          c.emenda || '',
+          c.autor_emenda ? 'Sim' : '',
           c.autor_emenda || ''
         ];
       });

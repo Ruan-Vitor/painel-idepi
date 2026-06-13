@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<!-- v20260612_000000 -->
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ingressos de Recurso — IDEPI</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=IBM+Plex+Mono:wght@400;600&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<style>
+:root{
+  --bg:#0b1527;--sidebar:#07101f;--surface:#fff;--surface2:#f4f7fd;
+  --border:#e3eaf5;--text:#1a2640;--muted:#7a8ba0;--accent:#1a3a6e;
+  --green:#16a34a;--green-bg:#f0fdf4;--green-bdr:#86efac;
+  --teal:#0d766e;--teal-bg:#f0fdfa;--teal-bdr:#5eead4;
+  --blue:#1d4ed8;--blue-bg:#eff6ff;--blue-bdr:#93c5fd;
+  --amber:#92400e;--amber-bg:#fffbeb;--amber-bdr:#fcd34d;
+  --slate:#475569;--slate-bg:#f8fafc;--slate-bdr:#cbd5e1;
+  --money:#0f7561;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);display:flex;flex-direction:column;min-height:100vh}
+
+/* ── HEADER ── */
+.hd{background:var(--bg);border-bottom:1px solid rgba(255,255,255,.07);padding:0 36px;height:58px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;position:sticky;top:0;z-index:50}
+.hd-left{display:flex;align-items:center;gap:14px}
+.hd-logo{display:flex;align-items:center;gap:10px}
+.hd-logo-icon{width:34px;height:34px;border-radius:8px;background:linear-gradient(135deg,#1a4a8a,#0d6e4a);display:flex;align-items:center;justify-content:center;font-size:14px;color:#fff}
+.hd-title{font-family:'Sora',sans-serif;font-size:14px;font-weight:700;color:#fff;line-height:1.1}
+.hd-sub{font-size:10px;color:rgba(255,255,255,.4)}
+.hd-sep{width:1px;height:26px;background:rgba(255,255,255,.1)}
+.hd-pill{display:flex;align-items:center;gap:6px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.09);border-radius:20px;padding:3px 11px;font-size:10px;color:rgba(255,255,255,.55)}
+.hd-pill i{color:#4ade80;font-size:8px}
+.hd-right{display:flex;align-items:center;gap:8px}
+.hd-ts{font-size:10px;color:rgba(255,255,255,.3);text-align:right;line-height:1.5}
+
+/* botão "Últimos ingressos" no header */
+.btn-ult-ing{display:flex;align-items:center;gap:6px;background:rgba(13,118,110,.25);border:1px solid rgba(94,234,212,.3);border-radius:20px;padding:4px 13px;font-size:11px;font-weight:600;color:#5eead4;cursor:pointer;transition:all .15s;white-space:nowrap}
+.btn-ult-ing:hover{background:rgba(13,118,110,.45);border-color:rgba(94,234,212,.6)}
+.btn-ult-ing i{font-size:10px}
+
+/* ── LAYOUT ── */
+.body{flex:1;display:flex;overflow:hidden}
+
+/* ── SIDEBAR ── */
+.sidebar{width:214px;flex-shrink:0;background:var(--sidebar);border-right:1px solid rgba(255,255,255,.06);display:flex;flex-direction:column;padding:18px 10px;gap:2px;transition:width .2s}
+.sidebar.collapsed{width:0;padding:0;overflow:hidden}
+.sb-sec{font-size:9px;font-weight:700;color:rgba(255,255,255,.2);letter-spacing:1px;text-transform:uppercase;padding:10px 12px 3px;margin-top:6px}
+.sb-sec:first-child{margin-top:0}
+.sb-item{display:flex;align-items:center;gap:9px;padding:8px 12px;border-radius:7px;font-size:12.5px;color:rgba(255,255,255,.5);text-decoration:none;cursor:pointer;transition:all .14s;position:relative}
+.sb-item:hover{background:rgba(255,255,255,.05);color:rgba(255,255,255,.75)}
+.sb-item.active{background:#0d3a32;color:#fff}
+.sb-item.active i{color:#5eead4}
+.sb-item i{font-size:13px;width:16px;text-align:center;flex-shrink:0}
+.soon{margin-left:auto;font-size:9px;font-weight:600;background:rgba(255,255,255,.07);color:rgba(255,255,255,.25);padding:1px 6px;border-radius:8px}
+.sb-footer{margin-top:auto;padding-top:14px;border-top:1px solid rgba(255,255,255,.06)}
+.sb-card{padding:10px 12px;border-radius:8px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.05)}
+.sb-card strong{color:rgba(255,255,255,.45);display:block;font-size:10px;margin-bottom:2px}
+.sb-card p{font-size:10px;color:rgba(255,255,255,.25);line-height:1.5}
+.sb-toggle{position:fixed;left:214px;top:50%;transform:translateY(-50%);z-index:60;width:18px;height:36px;background:var(--sidebar);border:1px solid rgba(255,255,255,.08);border-left:none;border-radius:0 6px 6px 0;color:rgba(255,255,255,.35);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:9px;transition:left .2s}
+
+/* ── CONTENT ── */
+.content{flex:1;display:flex;flex-direction:column;overflow:hidden;background:var(--surface2)}
+.pg-head{background:var(--surface);border-bottom:1px solid var(--border);padding:18px 28px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.pg-title{font-family:'Sora',sans-serif;font-size:18px;font-weight:700;color:var(--text);display:flex;align-items:center;gap:10px}
+.pg-title-icon{width:36px;height:36px;border-radius:9px;background:linear-gradient(135deg,#0d766e,#1a3a6e);display:flex;align-items:center;justify-content:center;color:#fff;font-size:15px}
+.pg-sub{font-size:11px;color:var(--muted);margin-top:3px}
+.pg-back{display:flex;align-items:center;gap:6px;background:var(--accent);color:#fff;border:none;padding:8px 16px;border-radius:7px;font-size:12px;font-weight:600;cursor:pointer;text-decoration:none;font-family:'DM Sans',sans-serif;transition:background .14s}
+.pg-back:hover{background:#1e4a8a}
+.scroll{flex:1;overflow-y:auto;padding:22px 28px;display:flex;flex-direction:column;gap:18px}
+
+/* ── KPIs ── */
+.kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.kpi{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:18px 20px}
+.kpi-label{font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.4px;margin-bottom:6px}
+.kpi-val{font-family:'Sora',sans-serif;font-size:26px;font-weight:800;color:var(--text);line-height:1}
+.kpi-val.money{font-size:20px;color:var(--money)}
+.kpi-desc{font-size:10px;color:var(--muted);margin-top:5px;line-height:1.4}
+.k-total{border-top:3px solid #1a3a6e}
+.k-ano{border-top:3px solid #0d766e}
+.k-ult{border-top:3px solid #16a34a}
+.k-inst{border-top:3px solid #1d4ed8}
+
+/* ── RECENT LIST ── */
+.section-title{font-family:'Sora',sans-serif;font-size:13px;font-weight:700;color:var(--text);display:flex;align-items:center;gap:8px;margin-bottom:12px}
+.section-title i{color:var(--money)}
+
+.recent-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden}
+.recent-list{display:flex;flex-direction:column}
+.recent-item{display:flex;align-items:center;gap:14px;padding:13px 18px;border-bottom:1px solid var(--border);transition:background .12s;cursor:default}
+.recent-item:last-child{border-bottom:none}
+.recent-item:hover{background:#fafcff}
+.recent-item.novo{background:#f0fdfa;border-left:3px solid #0d766e}
+.recent-date{min-width:90px;text-align:center}
+.date-badge{background:var(--teal-bg);border:1px solid var(--teal-bdr);border-radius:8px;padding:4px 10px;font-size:11px;font-weight:700;color:var(--teal);font-family:'IBM Plex Mono',monospace;white-space:nowrap}
+.date-badge.hoje{background:#fef9c3;border-color:#fde047;color:#854d0e}
+.recent-body{flex:1;min-width:0}
+.recent-num{font-size:11px;font-weight:700;color:var(--accent);font-family:'IBM Plex Mono',monospace}
+.recent-obj{font-size:12px;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:1px}
+.recent-banco{font-size:10px;color:var(--muted);margin-top:2px}
+.recent-val{font-family:'Sora',sans-serif;font-size:16px;font-weight:800;color:var(--money);white-space:nowrap;text-align:right;min-width:140px}
+.recent-dias{font-size:9px;color:var(--muted);text-align:right;margin-top:2px}
+.recent-empty{padding:28px;text-align:center;color:var(--muted);font-size:13px}
+
+/* ── TABLE CARD ── */
+.tbl-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden}
+.tbl-head{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;border-bottom:1px solid var(--border);gap:10px;flex-wrap:wrap}
+.tbl-title{font-size:13px;font-weight:700;color:var(--text);display:flex;align-items:center;gap:7px}
+.tbl-title i{color:var(--money)}
+.tbl-head-right{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.srch{display:flex;align-items:center;gap:8px;background:var(--surface2);border:1px solid var(--border);border-radius:7px;padding:6px 12px;font-size:12px;color:var(--muted)}
+.srch input{border:none;outline:none;background:transparent;font-size:12px;color:var(--text);font-family:'DM Sans',sans-serif;width:200px}
+.tbl-scroll{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:12.5px}
+th{background:var(--surface2);border-bottom:1.5px solid var(--border);padding:9px 12px;text-align:left;font-size:10.5px;font-weight:700;color:var(--muted);white-space:nowrap;text-transform:uppercase;letter-spacing:.3px}
+td{padding:9px 12px;border-bottom:1px solid var(--border);vertical-align:middle}
+tr:last-child td{border-bottom:none}
+tr.data-row:hover td{background:#fafcff;cursor:pointer}
+tr.data-row.expanded td{background:#f0fdfa}
+
+/* expand row */
+tr.expand-row td{padding:0;background:#f8fffd;border-bottom:1px solid var(--teal-bdr)}
+.expand-inner{padding:12px 18px 16px}
+.expand-title{font-size:10px;font-weight:700;color:var(--teal);text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px}
+.hist-list{display:flex;flex-wrap:wrap;gap:8px}
+.hist-item{display:flex;align-items:center;gap:8px;background:var(--surface);border:1px solid var(--teal-bdr);border-radius:8px;padding:7px 12px}
+.hist-n{font-size:9px;font-weight:700;color:var(--teal);min-width:22px}
+.hist-date{font-size:11px;font-weight:600;color:var(--text);font-family:'IBM Plex Mono',monospace}
+.hist-val{font-size:12px;font-weight:800;color:var(--money)}
+.tipo-fed{font-size:9px;font-weight:700;background:#dbeafe;color:#1d4ed8;border:1px solid #93c5fd;border-radius:5px;padding:1px 5px;margin-left:2px}
+.tipo-plan{font-size:9px;font-weight:700;background:#f3f4f6;color:#6b7280;border:1px solid #d1d5db;border-radius:5px;padding:1px 5px;margin-left:2px}
+
+/* badges */
+.num-cell{font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:600;color:var(--accent)}
+.obj-cell{max-width:260px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.banco-cell{font-size:11px;color:var(--muted)}
+.conta-cell{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--slate)}
+.val-cell{font-family:'Sora',sans-serif;font-size:13px;font-weight:800;color:var(--money)}
+.qtd-cell{font-size:11px;font-weight:700;color:var(--teal);background:var(--teal-bg);border:1px solid var(--teal-bdr);border-radius:12px;padding:2px 8px;display:inline-block}
+.ult-data{font-size:11px;color:var(--text);white-space:nowrap}
+.expand-icon{color:var(--teal);font-size:10px;transition:transform .2s}
+tr.data-row.expanded .expand-icon{transform:rotate(180deg)}
+
+/* btns */
+.btn-excel{display:flex;align-items:center;gap:6px;background:#16a34a;color:#fff;border:none;padding:7px 14px;border-radius:7px;font-size:12px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background .14s}
+.btn-excel:hover{background:#15803d}
+.btn-excel.loading{opacity:.7;pointer-events:none}
+
+/* ── ÚLTIMOS INGRESSOS — PAINEL DESLIZANTE ── */
+.ing-overlay{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:100;opacity:0;pointer-events:none;transition:opacity .25s}
+.ing-overlay.open{opacity:1;pointer-events:all}
+.ing-panel{position:fixed;top:0;right:-440px;width:420px;max-width:95vw;height:100vh;background:var(--surface);box-shadow:-4px 0 32px rgba(0,0,0,.18);z-index:101;display:flex;flex-direction:column;transition:right .28s cubic-bezier(.4,0,.2,1)}
+.ing-panel.open{right:0}
+.ing-panel-hd{display:flex;align-items:center;justify-content:space-between;padding:18px 20px;border-bottom:1px solid var(--border);background:linear-gradient(135deg,#0d766e,#1a3a6e)}
+.ing-panel-title{font-family:'Sora',sans-serif;font-size:15px;font-weight:700;color:#fff;display:flex;align-items:center;gap:8px}
+.ing-panel-close{background:none;border:none;color:rgba(255,255,255,.7);cursor:pointer;font-size:18px;padding:4px;line-height:1}
+.ing-panel-close:hover{color:#fff}
+.ing-panel-body{flex:1;overflow-y:auto;padding:16px}
+.ing-panel-item{display:flex;align-items:flex-start;gap:12px;padding:12px 14px;border:1px solid var(--border);border-radius:10px;margin-bottom:10px;transition:background .12s}
+.ing-panel-item:hover{background:var(--teal-bg);border-color:var(--teal-bdr)}
+.ing-panel-item.novo-30{border-left:3px solid #0d766e;background:var(--teal-bg)}
+.ing-panel-date{background:linear-gradient(135deg,#0d766e,#1a3a6e);color:#fff;border-radius:8px;padding:6px 10px;text-align:center;min-width:68px;flex-shrink:0}
+.ing-panel-date-d{font-size:17px;font-weight:800;font-family:'Sora',sans-serif;line-height:1}
+.ing-panel-date-m{font-size:9px;font-weight:600;text-transform:uppercase;opacity:.8;margin-top:1px}
+.ing-panel-date-y{font-size:9px;opacity:.7}
+.ing-panel-info{flex:1;min-width:0}
+.ing-panel-num{font-size:11px;font-weight:700;color:var(--accent);font-family:'IBM Plex Mono',monospace}
+.ing-panel-obj{font-size:12px;color:var(--text);line-height:1.35;margin-top:2px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.ing-panel-banco{font-size:10px;color:var(--muted);margin-top:3px}
+.ing-panel-val{font-family:'Sora',sans-serif;font-size:15px;font-weight:800;color:var(--money);white-space:nowrap;text-align:right}
+.ing-panel-dias{font-size:9px;color:var(--muted);text-align:right;margin-top:2px}
+.ing-panel-empty{padding:32px;text-align:center;color:var(--muted)}
+.ing-panel-footer{padding:12px 16px;border-top:1px solid var(--border);font-size:10px;color:var(--muted);text-align:center}
+
+/* ── OVERLAY LOADING ── */
+#overlay{position:fixed;inset:0;background:rgba(7,16,31,.85);display:flex;align-items:center;justify-content:center;z-index:200;transition:opacity .3s}
+#overlay.hide{opacity:0;pointer-events:none}
+.spin{width:36px;height:36px;border:3px solid rgba(255,255,255,.15);border-top-color:#5eead4;border-radius:50%;animation:spin .7s linear infinite;margin:0 auto 14px}
+@keyframes spin{to{transform:rotate(360deg)}}
+.overlay-txt{color:rgba(255,255,255,.6);font-size:13px;text-align:center}
+
+/* ── RESPONSIVO ── */
+@media (max-height:700px),(max-width:900px){
+  html,body{height:auto;overflow-x:hidden;overflow-y:auto}
+  .hd{padding:0 14px;height:50px}
+  .hd-pill,.hd-sep{display:none}
+  .body{overflow:visible;flex-direction:column}
+  .sidebar{width:100%;flex-direction:column;flex-wrap:nowrap;overflow:hidden;max-height:0;padding:0 10px;gap:2px;border-right:none;border-bottom:none;position:static;flex-shrink:0;transition:max-height .28s ease,padding .28s ease}
+  .sidebar.sb-open{max-height:600px;padding:18px 10px;border-bottom:1px solid rgba(255,255,255,.06)}
+  .content{overflow:visible}
+  .scroll{overflow:visible;height:auto}
+  .kpi-row{grid-template-columns:repeat(2,1fr)}
+  .sb-toggle{display:none}
+  .btn-ult-ing span{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- LOADING -->
+<div id="overlay"><div><div class="spin"></div><div class="overlay-txt">Carregando ingressos...</div></div></div>
+
+<!-- LOCKSCREEN -->
+<div id="lockscreen" style="position:fixed;inset:0;background:#07101f;display:flex;align-items:center;justify-content:center;z-index:300">
+  <div style="background:#0f1f3d;border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:40px;width:340px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.5)">
+    <div style="width:52px;height:52px;border-radius:14px;background:linear-gradient(135deg,#0d766e,#1a3a6e);display:flex;align-items:center;justify-content:center;font-size:22px;color:#fff;margin:0 auto 16px"><i class="fa-solid fa-money-bill-transfer"></i></div>
+    <div style="font-family:'Sora',sans-serif;font-size:17px;font-weight:700;color:#fff;margin-bottom:4px">IDEPI — Convênios Federais</div>
+    <div style="font-size:12px;color:rgba(255,255,255,.4);margin-bottom:24px">Acesso restrito. Digite a senha para continuar.</div>
+    <input id="pwd-input" type="password" placeholder="Senha de acesso" style="width:100%;padding:11px 16px;border-radius:8px;border:1.5px solid rgba(255,255,255,.15);background:rgba(255,255,255,.06);color:#fff;font-size:14px;outline:none;margin-bottom:10px" onkeydown="if(event.key==='Enter')checkPwd()"/>
+    <div id="pwd-err" style="font-size:12px;color:#f87171;min-height:16px;margin-bottom:10px"></div>
+    <button onclick="checkPwd()" style="width:100%;padding:11px;border-radius:8px;border:none;background:#0d766e;color:#fff;font-size:14px;font-weight:600;cursor:pointer">Entrar</button>
+  </div>
+</div>
+<script>
+var SENHA="idepi2026";
+if(sessionStorage.getItem("idepi_auth")==="1")document.getElementById("lockscreen").style.display="none";
+function checkPwd(){var v=document.getElementById("pwd-input").value;if(v===SENHA){sessionStorage.setItem("idepi_auth","1");document.getElementById("lockscreen").style.display="none";}else{document.getElementById("pwd-err").textContent="Senha incorreta.";document.getElementById("pwd-input").value="";document.getElementById("pwd-input").focus();}}
+</script>
+
+<!-- HEADER -->
+<div class="hd">
+  <div class="hd-left">
+    <div class="hd-logo">
+      <div class="hd-logo-icon"><i class="fa-solid fa-building-columns"></i></div>
+      <div><div class="hd-title">IDEPI</div><div class="hd-sub">Convênios Federais</div></div>
+    </div>
+    <div class="hd-sep"></div>
+    <div class="hd-pill"><i class="fa-solid fa-circle"></i> Ingressos de Recurso</div>
+  </div>
+  <div class="hd-right">
+    <button class="btn-ult-ing" onclick="abrirPainel()">
+      <i class="fa-solid fa-arrow-down-to-bracket"></i>
+      <span>Últimos ingressos</span>
+    </button>
+    <button class="sb-toggle" id="sbToggleBtn" onclick="toggleSidebar()" style="position:static;width:auto;height:auto;border-radius:7px;border:1px solid rgba(255,255,255,.1);padding:6px 12px;font-size:12px;color:rgba(255,255,255,.6);background:rgba(255,255,255,.05)">
+      <i class="fa-solid fa-bars" id="sbToggleIcon"></i> Menu
+    </button>
+    <div class="hd-ts" id="hd-ts">—</div>
+  </div>
+</div>
+
+<!-- BODY -->
+<div class="body">
+
+  <!-- SIDEBAR -->
+  <nav class="sidebar">
+    <div class="sb-sec">Convênios Federais</div>
+    <a class="sb-item" href="index.html"><i class="fa-solid fa-gauge-high"></i> Painel Geral</a>
+    <a class="sb-item" href="vigencias.html"><i class="fa-solid fa-table-list"></i> Vigências</a>
+    <a class="sb-item" href="execucao.html"><i class="fa-solid fa-chart-line"></i> Execução Financeira</a>
+    <a class="sb-item active" href="ingressos.html"><i class="fa-solid fa-money-bill-transfer"></i> Ingressos de Recurso</a>
+    <div class="sb-item"><i class="fa-solid fa-file-invoice"></i> Prestação de Contas<span class="soon">em breve</span></div>
+    <div class="sb-sec">Desempenho IDTRU-DL</div>
+    <a class="sb-item" href="fiscalgov.html"><i class="fa-solid fa-camera"></i> FiscalGov · EX-01</a>
+    <div class="sb-item"><i class="fa-solid fa-star"></i> Índice Geral<span class="soon">em breve</span></div>
+    <div class="sb-footer">
+      <div class="sb-card">
+        <strong>Instituto de Desenvolvimento do Piauí</strong>
+        <p>R. Altos, 277 — Primavera<br>Teresina-PI · idepi@idepi.pi.gov.br</p>
+      </div>
+    </div>
+  </nav>
+
+  <!-- CONTENT -->
+  <div class="content">
+    <div class="pg-head">
+      <div>
+        <div class="pg-title"><div class="pg-title-icon"><i class="fa-solid fa-money-bill-transfer"></i></div>Ingressos de Recurso</div>
+        <div class="pg-sub">Histórico de desembolsos por convênio · Banco, conta e datas de cada liberação recebida</div>
+      </div>
+      <a class="pg-back" href="index.html"><i class="fa-solid fa-arrow-left"></i> Voltar ao portal</a>
+    </div>
+
+    <div class="scroll">
+
+      <!-- KPIs -->
+      <div class="kpi-row">
+        <div class="kpi k-total">
+          <div class="kpi-label">Total recebido (histórico)</div>
+          <div class="kpi-val money" id="kpi-total">—</div>
+          <div class="kpi-desc" id="kpi-total-desc">soma de todos os ingressos</div>
+        </div>
+        <div class="kpi k-ano">
+          <div class="kpi-label">Recebido em <span id="kpi-ano-label">2026</span></div>
+          <div class="kpi-val money" id="kpi-ano">—</div>
+          <div class="kpi-desc" id="kpi-ano-desc">ingressos do ano corrente</div>
+        </div>
+        <div class="kpi k-ult">
+          <div class="kpi-label">Último ingresso</div>
+          <div class="kpi-val money" id="kpi-ult-val">—</div>
+          <div class="kpi-desc" id="kpi-ult-desc">—</div>
+        </div>
+        <div class="kpi k-inst">
+          <div class="kpi-label">Instrumentos monitorados</div>
+          <div class="kpi-val" id="kpi-inst">—</div>
+          <div class="kpi-desc" id="kpi-inst-desc">com pelo menos 1 ingresso</div>
+        </div>
+      </div>
+
+      <!-- ÚLTIMOS 10 INGRESSOS -->
+      <div>
+        <div class="section-title"><i class="fa-solid fa-clock-rotate-left"></i> Últimos 10 ingressos recebidos <span style="font-size:10px;font-weight:400;color:var(--muted);margin-left:4px">— ingressos dos últimos 30 dias em destaque</span></div>
+        <div class="recent-card">
+          <div class="recent-list" id="recent-list"><div class="recent-empty"><i class="fa-solid fa-spinner fa-spin"></i> Carregando...</div></div>
+        </div>
+      </div>
+
+      <!-- TABELA COMPLETA -->
+      <div class="tbl-card" id="tblCard">
+        <div class="tbl-head">
+          <div class="tbl-title"><i class="fa-solid fa-table"></i> Histórico completo por convênio</div>
+          <div class="tbl-head-right">
+            <div class="srch"><i class="fa-solid fa-magnifying-glass"></i><input type="text" id="busca" placeholder="Buscar por número ou objeto..." oninput="renderizar()"></div>
+            <button class="btn-excel" id="btnExcel" onclick="exportarExcel()"><i class="fa-solid fa-file-excel"></i> Exportar</button>
+          </div>
+        </div>
+        <div class="tbl-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th></th>
+                <th>Nº Instrumento</th>
+                <th>Objeto</th>
+                <th>Banco</th>
+                <th>Ag.</th>
+                <th>Conta</th>
+                <th>Último ingresso</th>
+                <th>Total recebido</th>
+                <th>Ingressos</th>
+              </tr>
+            </thead>
+            <tbody id="tbody"></tbody>
+          </table>
+        </div>
+      </div>
+
+    </div><!-- /scroll -->
+  </div><!-- /content -->
+</div><!-- /body -->
+
+<!-- PAINEL DESLIZANTE — ÚLTIMOS INGRESSOS -->
+<div class="ing-overlay" id="ingOverlay" onclick="fecharPainel()"></div>
+<div class="ing-panel" id="ingPanel">
+  <div class="ing-panel-hd">
+    <div class="ing-panel-title"><i class="fa-solid fa-arrow-down-to-bracket"></i> Últimos ingressos</div>
+    <button class="ing-panel-close" onclick="fecharPainel()"><i class="fa-solid fa-xmark"></i></button>
+  </div>
+  <div class="ing-panel-body" id="ingPanelBody"><div class="ing-panel-empty"><i class="fa-solid fa-spinner fa-spin"></i></div></div>
+  <div class="ing-panel-footer" id="ingPanelFooter">—</div>
+</div>
+
+<script>
+var USUARIO = "Ruan-Vitor", REPO = "painel-idepi";
+var _dados = null;          // historico_repasses
+var _todos  = [];           // lista flat de {numero, objeto, banco, agencia, conta, data, valor, ts}
+var _tabela = [];           // linhas da tabela (por convênio)
+var _expandido = null;      // número do convênio expandido
+
+// ── FETCH ──────────────────────────────────────────────────────────────────
+fetch("https://raw.githubusercontent.com/"+USUARIO+"/"+REPO+"/main/dados.json?_="+Date.now())
+  .then(function(r){ return r.json(); })
+  .then(function(json){
+    var ts = json.gerado_em || json.repasses_atualizado_em || "";
+    document.getElementById("hd-ts").innerHTML = ts
+      ? "Atualizado<br>"+ts
+      : '<span style="color:rgba(255,255,255,.2)">—</span>';
+
+    _dados = json.historico_repasses || {};
+
+    // Flatten de todos os ingressos (federal + manual/contrapartida)
+    Object.keys(_dados).forEach(function(num){
+      var conv = _dados[num];
+      (conv.ingressos||[]).forEach(function(ing){
+        _todos.push({
+          numero:  num,
+          objeto:  conv.objeto  || "",
+          banco:   conv.banco   || "",
+          agencia: conv.agencia || "",
+          conta:   conv.conta   || "",
+          data:    ing.data     || "",
+          valor:   ing.valor    || "",
+          ts:      _parseDate(ing.data),
+        });
+      });
+    });
+
+    // Ordena por data desc
+    _todos.sort(function(a,b){ return b.ts - a.ts; });
+
+    // Tabela: um item por convênio, ordenado por data do último ingresso desc
+    _tabela = Object.keys(_dados).map(function(num){
+      var c = _dados[num];
+      var ingressos = (c.ingressos||[]).slice().sort(function(a,b){
+        return _parseDate(b.data) - _parseDate(a.data);
+      });
+      return {
+        numero:  num,
+        objeto:  c.objeto  || "",
+        banco:   c.banco   || "",
+        agencia: c.agencia || "",
+        conta:   c.conta   || "",
+        total:   c.total_recebido || "",
+        ingressos: ingressos,
+        ult_ts: ingressos.length ? _parseDate(ingressos[0].data) : 0,
+      };
+    }).sort(function(a,b){ return b.ult_ts - a.ult_ts; });
+
+    calcKPIs();
+    renderRecent();
+    renderizar();
+    document.getElementById("overlay").classList.add("hide");
+  })
+  .catch(function(){
+    document.getElementById("overlay").classList.add("hide");
+    document.getElementById("tbody").innerHTML =
+      '<tr><td colspan="9" style="text-align:center;padding:28px;color:#ef4444"><i class="fa-solid fa-triangle-exclamation" style="margin-right:6px"></i>Erro ao carregar dados. Execute py monitor_repasse.py --importar primeiro.</td></tr>';
+  });
+
+// ── PARSE DATE ─────────────────────────────────────────────────────────────
+function _parseDate(s){
+  if(!s) return 0;
+  var p=s.split("/");
+  if(p.length===3) return new Date(+p[2],+p[1]-1,+p[0]).getTime();
+  return 0;
+}
+
+function _diasAtras(ts){
+  var d = Math.floor((Date.now()-ts)/(1000*60*60*24));
+  if(d===0) return "hoje";
+  if(d===1) return "ontem";
+  return "há "+d+" dias";
+}
+
+function _fmtValor(v){
+  if(!v) return "—";
+  var n=parseFloat(v.replace(/\./g,"").replace(",","."));
+  if(isNaN(n)) return v;
+  return "R$ "+n.toLocaleString("pt-BR",{minimumFractionDigits:2,maximumFractionDigits:2});
+}
+
+// ── KPIs ───────────────────────────────────────────────────────────────────
+function calcKPIs(){
+  var ano = new Date().getFullYear();
+  document.getElementById("kpi-ano-label").textContent = ano;
+  var total=0, totalAno=0;
+  _todos.forEach(function(ing){
+    var v=parseFloat((ing.valor||"").replace(/\./g,"").replace(",","."));
+    if(!isNaN(v)){ total+=v; var y=new Date(ing.ts).getFullYear(); if(y===ano) totalAno+=v; }
+  });
+  document.getElementById("kpi-total").textContent = "R$ "+total.toLocaleString("pt-BR",{minimumFractionDigits:2,maximumFractionDigits:2});
+  document.getElementById("kpi-total-desc").textContent = _todos.length+" ingresso(s) registrado(s)";
+  document.getElementById("kpi-ano").textContent = "R$ "+totalAno.toLocaleString("pt-BR",{minimumFractionDigits:2,maximumFractionDigits:2});
+  var nAno = _todos.filter(function(i){ return new Date(i.ts).getFullYear()===ano; }).length;
+  document.getElementById("kpi-ano-desc").textContent = nAno+" ingresso(s) em "+ano;
+
+  if(_todos.length){
+    var ult = _todos[0];
+    document.getElementById("kpi-ult-val").textContent = _fmtValor(ult.valor);
+    document.getElementById("kpi-ult-desc").textContent = ult.data+" · "+ult.numero+" · "+_diasAtras(ult.ts);
+  }
+
+  var comIng = Object.keys(_dados).filter(function(n){ return (_dados[n].ingressos||[]).length>0; }).length;
+  document.getElementById("kpi-inst").textContent = comIng;
+  document.getElementById("kpi-inst-desc").textContent = Object.keys(_dados).length+" monitorados no total";
+}
+
+// ── ÚLTIMOS 10 (lista visual) ───────────────────────────────────────────────
+function renderRecent(){
+  var top10 = _todos.slice(0,10);
+  var ago30 = Date.now() - 30*24*60*60*1000;
+  if(!top10.length){
+    document.getElementById("recent-list").innerHTML='<div class="recent-empty">Nenhum ingresso registrado ainda.<br>Execute: <code>py monitor_repasse.py --importar</code></div>';
+    return;
+  }
+  var html="";
+  top10.forEach(function(ing){
+    var novo = ing.ts >= ago30;
+    html += '<div class="recent-item'+(novo?' novo':'')+'">';
+    html += '<div class="recent-date"><span class="date-badge'+(novo?' hoje':'')+'">'+ing.data+'</span></div>';
+    html += '<div class="recent-body">';
+    html += '<div class="recent-num">'+ing.numero+'</div>';
+    html += '<div class="recent-obj" title="'+ing.objeto+'">'+ing.objeto+'</div>';
+    html += '<div class="recent-banco">'+[ing.banco,ing.agencia?'Ag. '+ing.agencia:'',ing.conta?'Cc. '+ing.conta:''].filter(Boolean).join(' · ')+'</div>';
+    html += '</div>';
+    html += '<div style="text-align:right"><div class="recent-val">'+_fmtValor(ing.valor)+'</div><div class="recent-dias">'+_diasAtras(ing.ts)+'</div></div>';
+    html += '</div>';
+  });
+  document.getElementById("recent-list").innerHTML = html;
+}
+
+// ── TABELA COMPLETA ────────────────────────────────────────────────────────
+function renderizar(){
+  var q = (document.getElementById("busca").value||"").toLowerCase();
+  var rows = _tabela.filter(function(r){
+    if(!q) return true;
+    return r.numero.toLowerCase().includes(q) || r.objeto.toLowerCase().includes(q);
+  });
+
+  var html="";
+  rows.forEach(function(r){
+    var expanded = (_expandido === r.numero);
+    var ult = r.ingressos.length ? r.ingressos[0] : null;
+    html += '<tr class="data-row'+(expanded?' expanded':'')+'" onclick="toggleExpand(\''+r.numero+'\')">';
+    html += '<td><i class="fa-solid fa-chevron-down expand-icon"></i></td>';
+    html += '<td><span class="num-cell">'+r.numero+'</span></td>';
+    html += '<td><div class="obj-cell" title="'+r.objeto+'">'+r.objeto+'</div></td>';
+    html += '<td class="banco-cell">'+r.banco+'</td>';
+    html += '<td class="banco-cell">'+r.agencia+'</td>';
+    html += '<td class="conta-cell">'+r.conta+'</td>';
+    html += '<td class="ult-data">'+(ult ? ult.data+'<div style="font-size:10px;color:var(--muted);margin-top:1px">'+_diasAtras(_parseDate(ult.data))+'</div>' : '—')+'</td>';
+    html += '<td><span class="val-cell">'+_fmtValor(r.total)+'</span></td>';
+    html += '<td><span class="qtd-cell">'+r.ingressos.length+'×</span></td>';
+    html += '</tr>';
+
+    if(expanded){
+      html += '<tr class="expand-row"><td colspan="9"><div class="expand-inner">';
+      html += '<div class="expand-title"><i class="fa-solid fa-clock-rotate-left" style="margin-right:5px"></i>Histórico completo de ingressos — '+r.numero+'</div>';
+      html += '<div class="hist-list">';
+      r.ingressos.forEach(function(ing, idx){
+        // Sort is newest first, display oldest first
+        html += '<div class="hist-item">';
+        html += '<span class="hist-n">'+(r.ingressos.length-idx)+'º</span>';
+        html += '<span class="hist-date">'+ing.data+'</span>';
+        html += '<span class="hist-val">'+_fmtValor(ing.valor)+'</span>';
+        html += '<span class="'+(ing.tipo==='federal'?'tipo-fed':'tipo-plan')+'">'+((ing.tipo||'planilha')==='federal'?'Federal':'Manual')+'</span>';
+        html += '</div>';
+      });
+      html += '</div></div></td></tr>';
+    }
+  });
+
+  if(!rows.length) html='<tr><td colspan="9" class="empty-row" style="text-align:center;padding:28px;color:var(--muted)">Nenhum resultado encontrado.</td></tr>';
+  document.getElementById("tbody").innerHTML = html;
+}
+
+function toggleExpand(numero){
+  _expandido = (_expandido === numero) ? null : numero;
+  renderizar();
+}
+
+// ── PAINEL DESLIZANTE ─────────────────────────────────────────────────────
+function abrirPainel(){
+  var overlay = document.getElementById("ingOverlay");
+  var panel   = document.getElementById("ingPanel");
+  overlay.classList.add("open");
+  panel.classList.add("open");
+  renderPainel();
+}
+
+function fecharPainel(){
+  document.getElementById("ingOverlay").classList.remove("open");
+  document.getElementById("ingPanel").classList.remove("open");
+}
+
+function renderPainel(){
+  var top = _todos.slice(0, 15);
+  var ago30 = Date.now() - 30*24*60*60*1000;
+  var body = document.getElementById("ingPanelBody");
+  var footer = document.getElementById("ingPanelFooter");
+
+  if(!top.length){
+    body.innerHTML='<div class="ing-panel-empty"><i class="fa-solid fa-inbox" style="font-size:28px;opacity:.3;display:block;margin-bottom:10px"></i>Nenhum ingresso registrado.<br>Execute: py monitor_repasse.py --importar</div>';
+    footer.textContent="—";
+    return;
+  }
+
+  var html="";
+  top.forEach(function(ing){
+    var novo = ing.ts >= ago30;
+    var p = ing.data.split("/");
+    var meses=["JAN","FEV","MAR","ABR","MAI","JUN","JUL","AGO","SET","OUT","NOV","DEZ"];
+    var dd=p[0]||"?", mm=meses[(+p[1]||1)-1]||"", aaaa=p[2]||"";
+    html += '<div class="ing-panel-item'+(novo?' novo-30':'')+'">';
+    html += '<div class="ing-panel-date"><div class="ing-panel-date-d">'+dd+'</div><div class="ing-panel-date-m">'+mm+'</div><div class="ing-panel-date-y">'+aaaa+'</div></div>';
+    html += '<div class="ing-panel-info">';
+    html += '<div class="ing-panel-num">'+ing.numero+'</div>';
+    html += '<div class="ing-panel-obj">'+ing.objeto+'</div>';
+    html += '<div class="ing-panel-banco">'+[ing.banco, ing.agencia?'Ag. '+ing.agencia:'', ing.conta?'Cc. '+ing.conta:''].filter(Boolean).join(' · ')+'</div>';
+    html += '<div style="margin-top:3px"><span class="'+(ing.tipo==='federal'?'tipo-fed':'tipo-plan')+'">'+((ing.tipo||'planilha')==='federal'?'🏛 Federal':'📋 Manual')+'</span></div>';
+    html += '</div>';
+    html += '<div><div class="ing-panel-val">'+_fmtValor(ing.valor)+'</div><div class="ing-panel-dias">'+_diasAtras(ing.ts)+'</div></div>';
+    html += '</div>';
+  });
+  body.innerHTML = html;
+
+  var nNovos = top.filter(function(i){ return i.ts>=ago30; }).length;
+  footer.textContent = "Exibindo "+top.length+" ingressos mais recentes"+(nNovos?" · "+nNovos+" nos últimos 30 dias":"");
+}
+
+// ── EXPORTAR EXCEL ────────────────────────────────────────────────────────
+function exportarExcel(){
+  var btn=document.getElementById("btnExcel");
+  btn.classList.add("loading");
+  btn.innerHTML='<i class="fa-solid fa-spinner fa-spin"></i> Gerando...';
+  setTimeout(function(){
+    var cab=["Instrumento","Objeto","Banco","Agência","Conta","Nº Ingresso","Data","Valor (R$)"];
+    var linhas=[];
+    _tabela.forEach(function(r){
+      r.ingressos.forEach(function(ing,i){
+        var v=parseFloat((ing.valor||"").replace(/\./g,"").replace(",","."));
+        linhas.push([r.numero,r.objeto,r.banco,r.agencia,r.conta,(r.ingressos.length-i),ing.data,isNaN(v)?ing.valor:v]);
+      });
+    });
+    var ws=XLSX.utils.aoa_to_sheet([cab].concat(linhas));
+    ws['!cols']=[{wch:14},{wch:55},{wch:8},{wch:9},{wch:14},{wch:10},{wch:12},{wch:16}];
+    var wb=XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb,ws,"Ingressos");
+    XLSX.writeFile(wb,"IDEPI_Ingressos_"+new Date().toISOString().slice(0,10)+".xlsx");
+    btn.classList.remove("loading");
+    btn.innerHTML='<i class="fa-solid fa-file-excel"></i> Exportar';
+  },100);
+}
+
+// ── SIDEBAR ───────────────────────────────────────────────────────────────
+function toggleSidebar(){
+  var sb=document.querySelector('.sidebar');
+  var ico=document.getElementById('sbToggleIcon');
+  var aberto=sb.classList.toggle('sb-open');
+  if(ico) ico.className=aberto?'fa-solid fa-xmark':'fa-solid fa-bars';
+}
+document.addEventListener('DOMContentLoaded',function(){
+  document.querySelectorAll('.sidebar .sb-item').forEach(function(el){
+    el.addEventListener('click',function(){
+      var sb=document.querySelector('.sidebar');
+      if(sb&&sb.classList.contains('sb-open')) toggleSidebar();
+    });
+  });
+});
+</script>
+
+<!-- SIDEBAR TOGGLE DESKTOP -->
+<script>
+(function(){
+  var sidebar=document.querySelector('.sidebar');
+  if(!sidebar) return;
+  var btn=document.createElement('button');
+  btn.className='sb-toggle';
+  btn.title='Recolher menu';
+  btn.setAttribute('aria-label','Recolher/expandir menu lateral');
+  btn.innerHTML='<i class="fa-solid fa-chevron-left"></i>';
+  document.body.appendChild(btn);
+  var collapsed=sessionStorage.getItem('idepi_sb_collapsed')==='1';
+  function aplicar(c){
+    collapsed=c;
+    sidebar.classList.toggle('collapsed',collapsed);
+    btn.innerHTML=collapsed?'<i class="fa-solid fa-chevron-right"></i>':'<i class="fa-solid fa-chevron-left"></i>';
+    btn.title=collapsed?'Expandir menu':'Recolher menu';
+    btn.style.left=collapsed?'0':'214px';
+  }
+  aplicar(collapsed);
+  btn.addEventListener('click',function(){ aplicar(!collapsed); sessionStorage.setItem('idepi_sb_collapsed',collapsed?'1':'0'); });
+})();
+</script>
+
+</body>
+</html>

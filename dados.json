@@ -6634,10 +6634,18 @@
           "data": "05/06/2026",
           "valor": "1.468.000,00",
           "tipo": "planilha"
+        },
+        {
+          "data": "05/06/2026",
+          "valor": "1.468.000,00",
+          "tipo": "federal"
         }
       ],
-      "total_recebido": "1.953.000,00",
-      "ultimo_ingresso_federal": {}
+      "total_recebido": "3.421.000,00",
+      "ultimo_ingresso_federal": {
+        "data": "05/06/2026",
+        "valor": "1.468.000,00"
+      }
     },
     "985797": {
       "objeto": "CONSTRUÇÃO DE PRAÇAS PÚBLICAS NO MUNICÍPIO DE SÃO RAIMUNDO NONATO/PI",
@@ -6654,10 +6662,18 @@
           "data": "28/05/2026",
           "valor": "1.168.800,00",
           "tipo": "planilha"
+        },
+        {
+          "data": "28/05/2026",
+          "valor": "1.168.800,00",
+          "tipo": "federal"
         }
       ],
-      "total_recebido": "1.216.103,00",
-      "ultimo_ingresso_federal": {}
+      "total_recebido": "2.384.903,00",
+      "ultimo_ingresso_federal": {
+        "data": "28/05/2026",
+        "valor": "1.168.800,00"
+      }
     },
     "953168": {
       "objeto": "EXECUÇÃO DAS OBRAS E SERVIÇOS DE ENGENHARIA PARA A CONSTRUÇÃO DA BARRAGEM DE NOVA ALGODÕES NO MUNICÍPIO DE COCAL - PI",
@@ -6714,10 +6730,18 @@
           "data": "11/05/2026",
           "valor": "10.003.961,31",
           "tipo": "planilha"
+        },
+        {
+          "data": "11/05/2026",
+          "valor": "10.003.961,31",
+          "tipo": "federal"
         }
       ],
-      "total_recebido": "84.653.961,31",
-      "ultimo_ingresso_federal": {}
+      "total_recebido": "94.657.922,62",
+      "ultimo_ingresso_federal": {
+        "data": "11/05/2026",
+        "valor": "10.003.961,31"
+      }
     },
     "945303": {
       "objeto": "Construção de um Campo Society no Município de Lagoa Alegre-PI",
@@ -6764,9 +6788,18 @@
       "banco": "BB",
       "agencia": "3791-5",
       "conta": "119687",
-      "ingressos": [],
-      "total_recebido": "",
-      "ultimo_ingresso_federal": {}
+      "ingressos": [
+        {
+          "data": "07/04/2026",
+          "valor": "190.761,16",
+          "tipo": "federal"
+        }
+      ],
+      "total_recebido": "190.761,16",
+      "ultimo_ingresso_federal": {
+        "data": "07/04/2026",
+        "valor": "190.761,16"
+      }
     },
     "947580": {
       "objeto": "CONSTRUÇÃO DE UM PARQUE DE EXPOSIÇÕES NO MUNICIPIO DE PIO IX-PI",
@@ -6783,10 +6816,18 @@
           "data": "24/03/2026",
           "valor": "1.441.714,00",
           "tipo": "planilha"
+        },
+        {
+          "data": "24/03/2026",
+          "valor": "1.441.714,00",
+          "tipo": "federal"
         }
       ],
-      "total_recebido": "1.510.214,00",
-      "ultimo_ingresso_federal": {}
+      "total_recebido": "2.951.928,00",
+      "ultimo_ingresso_federal": {
+        "data": "24/03/2026",
+        "valor": "1.441.714,00"
+      }
     },
     "947907": {
       "objeto": "PAVIMENTAÇÃO EM PARALELEPÍPEDO EM VIAS PUBLICAS DO MUNICÍPIO DE PAQUETA - PI.",
@@ -6803,10 +6844,18 @@
           "data": "11/03/2026",
           "valor": "571.220,00",
           "tipo": "planilha"
+        },
+        {
+          "data": "11/03/2026",
+          "valor": "571.220,00",
+          "tipo": "federal"
         }
       ],
-      "total_recebido": "594.000,00",
-      "ultimo_ingresso_federal": {}
+      "total_recebido": "1.165.220,00",
+      "ultimo_ingresso_federal": {
+        "data": "11/03/2026",
+        "valor": "571.220,00"
+      }
     },
     "945158": {
       "objeto": "PAVIMENTAÇÃO EM PARALELEPÍPEDO EM VIAS PUBLICAS DO MUNICÍPIO DE INHUMA - PI.",
@@ -6823,10 +6872,18 @@
           "data": "11/03/2026",
           "valor": "674.903,00",
           "tipo": "planilha"
+        },
+        {
+          "data": "11/03/2026",
+          "valor": "674.903,00",
+          "tipo": "federal"
         }
       ],
-      "total_recebido": "700.700,00",
-      "ultimo_ingresso_federal": {}
+      "total_recebido": "1.375.603,00",
+      "ultimo_ingresso_federal": {
+        "data": "11/03/2026",
+        "valor": "674.903,00"
+      }
     },
     "951018": {
       "objeto": "PAVIMENTAÇÃO EM PARALELEPÍPEDO EM VIAS PUBLICAS DO MUNICÍPIO DE PICOS - PI.",
@@ -6843,10 +6900,18 @@
           "data": "11/03/2026",
           "valor": "286.500,00",
           "tipo": "planilha"
+        },
+        {
+          "data": "11/03/2026",
+          "valor": "286.500,00",
+          "tipo": "federal"
         }
       ],
-      "total_recebido": "306.500,00",
-      "ultimo_ingresso_federal": {}
+      "total_recebido": "593.000,00",
+      "ultimo_ingresso_federal": {
+        "data": "11/03/2026",
+        "valor": "286.500,00"
+      }
     },
     "986179": {
       "objeto": "Execução de obras e serviços de engenharia em estradas vicinais no Município de São José do Piauí.",
@@ -6968,10 +7033,18 @@
           "data": "24/02/2026",
           "valor": "51.020,41",
           "tipo": "planilha"
+        },
+        {
+          "data": "23/02/2026",
+          "valor": "125.000,00",
+          "tipo": "federal"
         }
       ],
-      "total_recebido": "176.020,41",
-      "ultimo_ingresso_federal": {}
+      "total_recebido": "301.020,41",
+      "ultimo_ingresso_federal": {
+        "data": "23/02/2026",
+        "valor": "125.000,00"
+      }
     },
     "989250": {
       "objeto": "Pavimentação de estradas vicinais",
@@ -7078,10 +7151,18 @@
           "data": "03/12/2024",
           "valor": "8.725,00",
           "tipo": "planilha"
+        },
+        {
+          "data": "28/01/2026",
+          "valor": "290.032,94",
+          "tipo": "federal"
         }
       ],
-      "total_recebido": "298.757,94",
-      "ultimo_ingresso_federal": {}
+      "total_recebido": "588.790,88",
+      "ultimo_ingresso_federal": {
+        "data": "28/01/2026",
+        "valor": "290.032,94"
+      }
     },
     "915500": {
       "objeto": "RECUPERAÇÃO DA BARRAGEM PEDRA REDONDA, NO MUNICÍPIO DE CONCEIÇÃO DO CANINDÉ-PI",
@@ -7113,10 +7194,18 @@
           "data": "03/04/2024",
           "valor": "11.788,00",
           "tipo": "planilha"
+        },
+        {
+          "data": "31/12/2025",
+          "valor": "985.611,98",
+          "tipo": "federal"
         }
       ],
-      "total_recebido": "10.997.399,98",
-      "ultimo_ingresso_federal": {}
+      "total_recebido": "11.983.011,96",
+      "ultimo_ingresso_federal": {
+        "data": "31/12/2025",
+        "valor": "985.611,98"
+      }
     },
     "946260": {
       "objeto": "MANUTENÇÃO E ADEQUAÇÃO NAS ESTRADAS VICINAIS NO MUNICÍPIO DE LAGOA DE SÃO FRANCISCO-PI",
@@ -7133,10 +7222,18 @@
           "data": "01/02/2024",
           "valor": "8.000,00",
           "tipo": "planilha"
+        },
+        {
+          "data": "29/12/2025",
+          "valor": "955.000,00",
+          "tipo": "federal"
         }
       ],
-      "total_recebido": "963.000,00",
-      "ultimo_ingresso_federal": {}
+      "total_recebido": "1.918.000,00",
+      "ultimo_ingresso_federal": {
+        "data": "29/12/2025",
+        "valor": "955.000,00"
+      }
     },
     "946039": {
       "objeto": "PAVIMENTAÇÃO EM PARALELEPÍPEDO EM VIAS PUBLICAS DO MUNICÍPIO DE TERESINA - PI.",
@@ -7158,10 +7255,18 @@
           "data": "07/02/2024",
           "valor": "24.764,00",
           "tipo": "planilha"
+        },
+        {
+          "data": "29/12/2025",
+          "valor": "526.968,79",
+          "tipo": "federal"
         }
       ],
-      "total_recebido": "658.000,00",
-      "ultimo_ingresso_federal": {}
+      "total_recebido": "1.184.968,79",
+      "ultimo_ingresso_federal": {
+        "data": "29/12/2025",
+        "valor": "526.968,79"
+      }
     },
     "945650": {
       "objeto": "PAVIMENTAÇÃO EM PARALELEPÍPEDO EM VIAS PUBLICAS DO MUNICÍPIO DE SÃO JOÃO DA CANABRAVA - PI.",
@@ -7183,10 +7288,18 @@
           "data": "07/02/2024",
           "valor": "19.896,00",
           "tipo": "planilha"
+        },
+        {
+          "data": "29/12/2025",
+          "valor": "477.090,20",
+          "tipo": "federal"
         }
       ],
-      "total_recebido": "501.000,00",
-      "ultimo_ingresso_federal": {}
+      "total_recebido": "978.090,20",
+      "ultimo_ingresso_federal": {
+        "data": "29/12/2025",
+        "valor": "477.090,20"
+      }
     },
     "946738": {
       "objeto": "PAVIMENTAÇÃO EM PARALELEPIPEDO NA ORLA DA BARRAGEM CENTRAL EM JUREMA DO PIAUI-PI",
@@ -7203,10 +7316,18 @@
           "data": "31/10/2025",
           "valor": "19.896,00",
           "tipo": "planilha"
+        },
+        {
+          "data": "29/12/2025",
+          "valor": "481.104,00",
+          "tipo": "federal"
         }
       ],
-      "total_recebido": "501.000,00",
-      "ultimo_ingresso_federal": {}
+      "total_recebido": "982.104,00",
+      "ultimo_ingresso_federal": {
+        "data": "29/12/2025",
+        "valor": "481.104,00"
+      }
     },
     "947927": {
       "objeto": "PAVIMENTAÇÃO EM PARALELEPÍPEDO EM VIAS PUBLICAS DO MUNICÍPIO DE TERESINA - PI.",
@@ -7228,10 +7349,18 @@
           "data": "18/07/2024",
           "valor": "25.197,00",
           "tipo": "planilha"
+        },
+        {
+          "data": "10/12/2025",
+          "valor": "187.935,90",
+          "tipo": "federal"
         }
       ],
-      "total_recebido": "651.650,00",
-      "ultimo_ingresso_federal": {}
+      "total_recebido": "839.585,90",
+      "ultimo_ingresso_federal": {
+        "data": "10/12/2025",
+        "valor": "187.935,90"
+      }
     },
     "952006": {
       "objeto": "PAVIMENTAÇÃO EM PARALELEPÍPEDO EM VIAS PUBLICAS DO MUNICÍPIO DE CORRENTE - PI",
@@ -7253,10 +7382,18 @@
           "data": "03/07/2024",
           "valor": "22.000,00",
           "tipo": "planilha"
+        },
+        {
+          "data": "10/12/2025",
+          "valor": "120.897,90",
+          "tipo": "federal"
         }
       ],
-      "total_recebido": "424.993,00",
-      "ultimo_ingresso_federal": {}
+      "total_recebido": "545.890,90",
+      "ultimo_ingresso_federal": {
+        "data": "10/12/2025",
+        "valor": "120.897,90"
+      }
     },
     "900840": {
       "objeto": "PAVIMENTAÇÃO DE VIAS PUBLICAS NO MUNICÍPIO DE LUÍS CORREIA-PI.",
@@ -7273,10 +7410,18 @@
           "data": "25/04/2025",
           "valor": "10.000,00",
           "tipo": "planilha"
+        },
+        {
+          "data": "17/11/2025",
+          "valor": "477.499,74",
+          "tipo": "federal"
         }
       ],
-      "total_recebido": "487.499,74",
-      "ultimo_ingresso_federal": {}
+      "total_recebido": "964.999,48",
+      "ultimo_ingresso_federal": {
+        "data": "17/11/2025",
+        "valor": "477.499,74"
+      }
     },
     "946367": {
       "objeto": "PAVIMENTAÇÃO EM PARALELEPÍPEDO EM VIAS PUBLICAS DO MUNICÍPIO DE PICOS - PI.",
@@ -7298,10 +7443,18 @@
           "data": "07/02/2024",
           "valor": "25.000,00",
           "tipo": "planilha"
+        },
+        {
+          "data": "06/11/2025",
+          "valor": "445.783,50",
+          "tipo": "federal"
         }
       ],
-      "total_recebido": "502.500,00",
-      "ultimo_ingresso_federal": {}
+      "total_recebido": "948.283,50",
+      "ultimo_ingresso_federal": {
+        "data": "06/11/2025",
+        "valor": "445.783,50"
+      }
     },
     "737058": {
       "objeto": "Construção da Barragem Atalaia, Tipo Terra Zoneada, localizada no município de Sebastião Barros, barrando o rio Paraim, sangradouro tipo Perfil Creager. 1ª ETAPA.",
@@ -7393,10 +7546,18 @@
           "data": "31/10/2025",
           "valor": "15.777.282,00",
           "tipo": "planilha"
+        },
+        {
+          "data": "31/10/2025",
+          "valor": "15.777.282,00",
+          "tipo": "federal"
         }
       ],
-      "total_recebido": "96.864.287,00",
-      "ultimo_ingresso_federal": {}
+      "total_recebido": "112.641.569,00",
+      "ultimo_ingresso_federal": {
+        "data": "31/10/2025",
+        "valor": "15.777.282,00"
+      }
     },
     "946261": {
       "objeto": "MANUTENÇÃO E ADEQUAÇÃO NAS ESTRADAS VICINAIS NO MUNICÍPIO DE SÃO MIGUEL DO TAPUIO-PI",
@@ -7418,10 +7579,18 @@
           "data": "19/06/2024",
           "valor": "129.422,03",
           "tipo": "planilha"
+        },
+        {
+          "data": "16/10/2025",
+          "valor": "955.000,00",
+          "tipo": "federal"
         }
       ],
-      "total_recebido": "1.131.422,03",
-      "ultimo_ingresso_federal": {}
+      "total_recebido": "2.086.422,03",
+      "ultimo_ingresso_federal": {
+        "data": "16/10/2025",
+        "valor": "955.000,00"
+      }
     },
     "951016": {
       "objeto": "PAVIMENTAÇÃO EM PARALELEPÍPEDO EM VIAS PUBLICAS DO MUNICÍPIO DE PAQUETA - PI.",
@@ -7443,10 +7612,18 @@
           "data": "07/02/2025",
           "valor": "20.896,00",
           "tipo": "planilha"
+        },
+        {
+          "data": "01/10/2025",
+          "valor": "387.867,09",
+          "tipo": "federal"
         }
       ],
-      "total_recebido": "520.896,00",
-      "ultimo_ingresso_federal": {}
+      "total_recebido": "908.763,09",
+      "ultimo_ingresso_federal": {
+        "data": "01/10/2025",
+        "valor": "387.867,09"
+      }
     },
     "951943": {
       "objeto": "PAVIMENTAÇÃO EM PARALELEPÍPEDO EM VIAS PUBLICAS DO MUNICÍPIO DE TERESINA - PI",
@@ -7463,10 +7640,18 @@
           "data": "27/08/2025",
           "valor": "25.000,00",
           "tipo": "planilha"
+        },
+        {
+          "data": "01/10/2025",
+          "valor": "477.500,00",
+          "tipo": "federal"
         }
       ],
-      "total_recebido": "502.500,00",
-      "ultimo_ingresso_federal": {}
+      "total_recebido": "980.000,00",
+      "ultimo_ingresso_federal": {
+        "data": "01/10/2025",
+        "valor": "477.500,00"
+      }
     },
     "907050": {
       "objeto": "IMPLANTAÇÃO DE MELHORIAS SANITÁRIAS DOMICILIARES EM ÁREAS RURAIS DO MUNICÍPIO DE SÃO PEDRO DO PIAUÍ, ESTADO DO PIAUÍ.",
@@ -7478,10 +7663,18 @@
           "data": "09/09/2025",
           "valor": "196.265,04",
           "tipo": "planilha"
+        },
+        {
+          "data": "09/09/2025",
+          "valor": "196.265,04",
+          "tipo": "federal"
         }
       ],
-      "total_recebido": "196.265,04",
-      "ultimo_ingresso_federal": {}
+      "total_recebido": "392.530,08",
+      "ultimo_ingresso_federal": {
+        "data": "09/09/2025",
+        "valor": "196.265,04"
+      }
     },
     "907045": {
       "objeto": "IMPLANTAÇÃO DE MELHORIAS SANITÁRIAS DOMICILIARES EM ÁREAS RURAIS DO MUNICÍPIO DE SIMPLÍCIO MENDES, ESTADO DO PIAUÍ.",
@@ -7493,10 +7686,18 @@
           "data": "25/08/2025",
           "valor": "196.670,00",
           "tipo": "planilha"
+        },
+        {
+          "data": "25/08/2025",
+          "valor": "196.670,00",
+          "tipo": "federal"
         }
       ],
-      "total_recebido": "196.670,00",
-      "ultimo_ingresso_federal": {}
+      "total_recebido": "393.340,00",
+      "ultimo_ingresso_federal": {
+        "data": "25/08/2025",
+        "valor": "196.670,00"
+      }
     },
     "947350": {
       "objeto": "PAVIMENTAÇÃO EM VIAS PÚBLICAS DO MUNICÍPIO DE TERESINA-PI",
@@ -7518,10 +7719,18 @@
           "data": "29/01/2024",
           "valor": "30.250,00",
           "tipo": "planilha"
+        },
+        {
+          "data": "17/07/2025",
+          "valor": "592.737,74",
+          "tipo": "federal"
         }
       ],
-      "total_recebido": "656.703,00",
-      "ultimo_ingresso_federal": {}
+      "total_recebido": "1.249.440,74",
+      "ultimo_ingresso_federal": {
+        "data": "17/07/2025",
+        "valor": "592.737,74"
+      }
     },
     "946257": {
       "objeto": "OBRA DE MANUTENÇÃO E ADEQUAÇÃO NAS ESTRADAS VICINAIS DO MUNICÍPIO DE SÃO RAIMUNDO NONATO-PI.",
@@ -7543,10 +7752,18 @@
           "data": "07/02/2024",
           "valor": "14.500,00",
           "tipo": "planilha"
+        },
+        {
+          "data": "17/07/2025",
+          "valor": "275.951,95",
+          "tipo": "federal"
         }
       ],
-      "total_recebido": "301.000,00",
-      "ultimo_ingresso_federal": {}
+      "total_recebido": "576.951,95",
+      "ultimo_ingresso_federal": {
+        "data": "17/07/2025",
+        "valor": "275.951,95"
+      }
     },
     "946259": {
       "objeto": "MANUTENÇÃO E ADEQUAÇÃO NAS ESTRADAS VICINAIS NO MUNICÍPIO DE NOSSA SENHORA DOS REMEDIOS-P",
@@ -7568,10 +7785,18 @@
           "data": "29/01/2024",
           "valor": "33.035,90",
           "tipo": "planilha"
+        },
+        {
+          "data": "17/07/2025",
+          "valor": "672.478,00",
+          "tipo": "federal"
         }
       ],
-      "total_recebido": "712.909,00",
-      "ultimo_ingresso_federal": {}
+      "total_recebido": "1.385.387,00",
+      "ultimo_ingresso_federal": {
+        "data": "17/07/2025",
+        "valor": "672.478,00"
+      }
     },
     "947533": {
       "objeto": "MANUTENÇÃO E ADEQUAÇÃO NAS ESTRADAS VICINAIS DO MUNICÍPIO DE NOSSA SENHORA DOS REMEDIOS - PI.",
@@ -7593,10 +7818,18 @@
           "data": "17/07/2025",
           "valor": "769.476,91",
           "tipo": "planilha"
+        },
+        {
+          "data": "17/07/2025",
+          "valor": "651.650,00",
+          "tipo": "federal"
         }
       ],
-      "total_recebido": "1.490.091,00",
-      "ultimo_ingresso_federal": {}
+      "total_recebido": "2.141.741,00",
+      "ultimo_ingresso_federal": {
+        "data": "17/07/2025",
+        "valor": "651.650,00"
+      }
     },
     "947106": {
       "objeto": "MANUTENÇÃO NAS ESTRADAS VICINAIS DO MUNICÍPIO DE LAGOA DO SITIO - PI.",
@@ -7613,10 +7846,18 @@
           "data": "29/01/2024",
           "valor": "28.000,00",
           "tipo": "planilha"
+        },
+        {
+          "data": "17/07/2025",
+          "valor": "573.000,00",
+          "tipo": "federal"
         }
       ],
-      "total_recebido": "601.000,00",
-      "ultimo_ingresso_federal": {}
+      "total_recebido": "1.174.000,00",
+      "ultimo_ingresso_federal": {
+        "data": "17/07/2025",
+        "valor": "573.000,00"
+      }
     },
     "947530": {
       "objeto": "MANUTENÇÃO E ADEQUAÇÃO NAS ESTRADAS VICINAIS DO MUNICÍPIO DE SÃO JULIÃO - PI.",
@@ -7633,10 +7874,18 @@
           "data": "29/01/2024",
           "valor": "28.000,00",
           "tipo": "planilha"
+        },
+        {
+          "data": "17/07/2025",
+          "valor": "578.003,00",
+          "tipo": "federal"
         }
       ],
-      "total_recebido": "606.003,00",
-      "ultimo_ingresso_federal": {}
+      "total_recebido": "1.184.006,00",
+      "ultimo_ingresso_federal": {
+        "data": "17/07/2025",
+        "valor": "578.003,00"
+      }
     },
     "947531": {
       "objeto": "MANUTENÇÃO E ADEQUAÇÃO NAS ESTRADAS VICINAIS DO MUNICÍPIO DE SANTANA DO PIAUI - PI",
@@ -7653,10 +7902,18 @@
           "data": "29/01/2024",
           "valor": "28.000,00",
           "tipo": "planilha"
+        },
+        {
+          "data": "17/07/2025",
+          "valor": "578.003,00",
+          "tipo": "federal"
         }
       ],
-      "total_recebido": "606.003,00",
-      "ultimo_ingresso_federal": {}
+      "total_recebido": "1.184.006,00",
+      "ultimo_ingresso_federal": {
+        "data": "17/07/2025",
+        "valor": "578.003,00"
+      }
     },
     "947532": {
       "objeto": "MANUTENÇÃO E ADEQUAÇÃO NAS ESTRADAS VICINAIS DO MUNICÍPIO DE VERA MENDES - PI.",
@@ -7673,10 +7930,18 @@
           "data": "05/11/2024",
           "valor": "145.000,00",
           "tipo": "planilha"
+        },
+        {
+          "data": "17/07/2025",
+          "valor": "955.000,00",
+          "tipo": "federal"
         }
       ],
-      "total_recebido": "1.100.000,00",
-      "ultimo_ingresso_federal": {}
+      "total_recebido": "2.055.000,00",
+      "ultimo_ingresso_federal": {
+        "data": "17/07/2025",
+        "valor": "955.000,00"
+      }
     },
     "907008": {
       "objeto": "IMPLANTAÇÃO DE MELHORIAS SANITÁRIAS DOMICILIARES EM ÁREAS RURAIS DO MUNICÍPIO DE CURIMATÁ, ESTADO DO PIAUÍ.",
@@ -7693,10 +7958,18 @@
           "data": "27/06/2025",
           "valor": "196.670,00",
           "tipo": "planilha"
+        },
+        {
+          "data": "27/06/2025",
+          "valor": "196.670,00",
+          "tipo": "federal"
         }
       ],
-      "total_recebido": "393.340,00",
-      "ultimo_ingresso_federal": {}
+      "total_recebido": "590.010,00",
+      "ultimo_ingresso_federal": {
+        "data": "27/06/2025",
+        "valor": "196.670,00"
+      }
     },
     "907032": {
       "objeto": "IMPLANTAÇÃO DE MELHORIAS SANITÁRIAS DOMICILIARES EM ÁREAS RURAIS DO MUNICÍPIO DE PARNAGUÁ, ESTADO DO PIAUÍ.",
@@ -7713,10 +7986,18 @@
           "data": "27/06/2025",
           "valor": "196.784,75",
           "tipo": "planilha"
+        },
+        {
+          "data": "27/06/2025",
+          "valor": "196.784,75",
+          "tipo": "federal"
         }
       ],
-      "total_recebido": "393.569,50",
-      "ultimo_ingresso_federal": {}
+      "total_recebido": "590.354,25",
+      "ultimo_ingresso_federal": {
+        "data": "27/06/2025",
+        "valor": "196.784,75"
+      }
     },
     "907037": {
       "objeto": "IMPLANTAÇÃO DE MELHORIAS SANITÁRIAS DOMICILIARES EM ÁREAS RURAIS DO MUNICÍPIO DE UNIÃO, ESTADO DO PIAUÍ.",
@@ -7733,10 +8014,18 @@
           "data": "27/06/2025",
           "valor": "198.634,77",
           "tipo": "planilha"
+        },
+        {
+          "data": "27/06/2025",
+          "valor": "198.634,77",
+          "tipo": "federal"
         }
       ],
-      "total_recebido": "397.269,54",
-      "ultimo_ingresso_federal": {}
+      "total_recebido": "595.904,31",
+      "ultimo_ingresso_federal": {
+        "data": "27/06/2025",
+        "valor": "198.634,77"
+      }
     },
     "947493": {
       "objeto": "PAVIMENTAÇÃO EM PARALELEPÍPEDO EM VIAS PUBLICAS DO MUNICÍPIO DE TERESINA - PI.",
@@ -7758,10 +8047,18 @@
           "data": "07/02/2024",
           "valor": "15.000,00",
           "tipo": "planilha"
+        },
+        {
+          "data": "13/06/2025",
+          "valor": "222.890,35",
+          "tipo": "federal"
         }
       ],
-      "total_recebido": "253.750,00",
-      "ultimo_ingresso_federal": {}
+      "total_recebido": "476.640,35",
+      "ultimo_ingresso_federal": {
+        "data": "13/06/2025",
+        "valor": "222.890,35"
+      }
     },
     "838065": {
       "objeto": "Implantação de Melhorias Sanitários Domiciliares.",
@@ -7788,10 +8085,18 @@
           "data": "11/06/2025",
           "valor": "456.789,76",
           "tipo": "planilha"
+        },
+        {
+          "data": "11/06/2025",
+          "valor": "456.789,76",
+          "tipo": "federal"
         }
       ],
-      "total_recebido": "2.283.948,69",
-      "ultimo_ingresso_federal": {}
+      "total_recebido": "2.740.738,45",
+      "ultimo_ingresso_federal": {
+        "data": "11/06/2025",
+        "valor": "456.789,76"
+      }
     },
     "902401": {
       "objeto": "PAVIMENTAÇÃO DE VIAS PUBLICAS NO MUNICÍPIO DE ESPERANTINA-PI",
@@ -7818,10 +8123,18 @@
           "data": "26/05/2026",
           "valor": "751.776,00",
           "tipo": "planilha"
+        },
+        {
+          "data": "26/05/2026",
+          "valor": "751.776,00",
+          "tipo": "federal"
         }
       ],
-      "total_recebido": "1.919.440,00",
-      "ultimo_ingresso_federal": {}
+      "total_recebido": "2.671.216,00",
+      "ultimo_ingresso_federal": {
+        "data": "26/05/2026",
+        "valor": "751.776,00"
+      }
     },
     "967182": {
       "objeto": "IMPLANTAÇÃO DE SISTEMAS DE ABASTECIMENTO DE ÁGUA NA ZONA RURAL DO MUNICIPIO DE LAGOA DO SITIO-PI.",
@@ -7843,10 +8156,18 @@
           "data": "08/04/2025",
           "valor": "88.061,91",
           "tipo": "planilha"
+        },
+        {
+          "data": "18/07/2025",
+          "valor": "440.424,68",
+          "tipo": "federal"
         }
       ],
-      "total_recebido": "675.294,81",
-      "ultimo_ingresso_federal": {}
+      "total_recebido": "1.115.719,49",
+      "ultimo_ingresso_federal": {
+        "data": "18/07/2025",
+        "valor": "440.424,68"
+      }
     },
     "916598": {
       "objeto": "PAVIMENTAÇÃO EM PARALELEPÍPEDO EM VIAS PÚBLICAS NO PERÍMETRO URBANO DO MUNICÍPIO DE TERESINA - PI.",
@@ -7863,10 +8184,18 @@
           "data": "01/04/2024",
           "valor": "5.964,00",
           "tipo": "planilha"
+        },
+        {
+          "data": "19/02/2025",
+          "valor": "345.377,48",
+          "tipo": "federal"
         }
       ],
-      "total_recebido": "351.341,48",
-      "ultimo_ingresso_federal": {}
+      "total_recebido": "696.718,96",
+      "ultimo_ingresso_federal": {
+        "data": "19/02/2025",
+        "valor": "345.377,48"
+      }
     },
     "973618": {
       "objeto": "Implantação da 1ª Etapa do Sistema Adutor da região da Serra da Capivara.",
@@ -7903,10 +8232,18 @@
           "data": "12/12/2023",
           "valor": "8.000,00",
           "tipo": "planilha"
+        },
+        {
+          "data": "31/12/2024",
+          "valor": "364.994,75",
+          "tipo": "federal"
         }
       ],
-      "total_recebido": "392.205,00",
-      "ultimo_ingresso_federal": {}
+      "total_recebido": "757.199,75",
+      "ultimo_ingresso_federal": {
+        "data": "31/12/2024",
+        "valor": "364.994,75"
+      }
     },
     "902705": {
       "objeto": "OBRA DE CONSTRUÇÃO, ADEQUAÇÃO E/OU READEQUAÇÃO DE ESTRADAS VICINAIS NO MUNICÍPIO DE JACOBINA-PI.",
@@ -7928,10 +8265,18 @@
           "data": "27/12/2024",
           "valor": "2.651,44",
           "tipo": "planilha"
+        },
+        {
+          "data": "14/12/2020",
+          "valor": "477.500,00",
+          "tipo": "federal"
         }
       ],
-      "total_recebido": "490.151,44",
-      "ultimo_ingresso_federal": {}
+      "total_recebido": "967.651,44",
+      "ultimo_ingresso_federal": {
+        "data": "14/12/2020",
+        "valor": "477.500,00"
+      }
     },
     "900837": {
       "objeto": "PAVIMENTAÇÃO EM VIAS PUBLICAS NO MUNICÍPIO DE PARNAÍBA-PI",
@@ -7948,10 +8293,18 @@
           "data": "28/08/2023",
           "valor": "10.000,00",
           "tipo": "planilha"
+        },
+        {
+          "data": "09/12/2024",
+          "valor": "469.700,00",
+          "tipo": "federal"
         }
       ],
-      "total_recebido": "479.700,00",
-      "ultimo_ingresso_federal": {}
+      "total_recebido": "949.400,00",
+      "ultimo_ingresso_federal": {
+        "data": "09/12/2024",
+        "valor": "469.700,00"
+      }
     },
     "894024": {
       "objeto": "1. PAVIMENTAÇÃO EM PARALELEPÍPEDO EM DIVERSAS RUAS DOS MUNICÍPIOS DE AGRICOLÂNDIA,ALVORADA DO GURGUEIA, AVELINO LOPES, BETÂNIA DO PIAUÍ, BOCAINA, CABECEIRAS DO PIAUÍ, COLÔNIA DO PIAUÍ, ELESBÃO VELOSO, FRANCINÓPOLIS, IPIRANGA DO PIAUÍ, JOÃO COSTA, MASSAPÊ DO PIAUÍ, MIGUEL LEÃO, PASSAGEM FRANCA DO PIAUÍ, PAU D'ARCO DO PIAUÍ, PEDRO LAURENTINO, PORTO, QUEIMADA NOVA, SANTA FILOMENA, SANTANA DO PIAUÍ, SÃO, FÉLIX DO PIAUÍ, SÃO FRANCISCO DE ASSIS PIAUÍ, SÃO FRANCISCO DO PIAUÍ, SÃO GONÇALO DO PIAUÍ, SÃO MIGUEL DO FIDALGO, SÃO PEDRO DO PIAUÍ, SIGEFREDO PACHECO E VÁRZEA GRANDE TODOS NO ESTADO DO PIAUÍ. 2. CONSTRUÇÃO DE PONTE NO MUNICÍPIO DE JULIO BORGES; 3. CONSTRUÇÃO DE ESTRADAS VICINAIS NOS MUNICÍPIOS DE SANTA LUZ E SEBASTIÃO BARROS.",
@@ -7998,10 +8351,18 @@
           "data": "05/12/2024",
           "valor": "1.058,41",
           "tipo": "planilha"
+        },
+        {
+          "data": "20/07/2023",
+          "valor": "3.515.570,70",
+          "tipo": "federal"
         }
       ],
-      "total_recebido": "8.609.809,43",
-      "ultimo_ingresso_federal": {}
+      "total_recebido": "12.125.380,13",
+      "ultimo_ingresso_federal": {
+        "data": "20/07/2023",
+        "valor": "3.515.570,70"
+      }
     },
     "917537": {
       "objeto": "PAVIMENTAÇÃO E ADEQUAÇÃO DE VIAS PÚBLICAS NO PERÍMETRO URBANO NO MUNICÍPIO DE TERESINA - PI.",
@@ -8033,10 +8394,18 @@
           "data": "28/11/2023",
           "valor": "328.346,00",
           "tipo": "planilha"
+        },
+        {
+          "data": "04/12/2024",
+          "valor": "1.800.318,00",
+          "tipo": "federal"
         }
       ],
-      "total_recebido": "16.417.252,00",
-      "ultimo_ingresso_federal": {}
+      "total_recebido": "18.217.570,00",
+      "ultimo_ingresso_federal": {
+        "data": "04/12/2024",
+        "valor": "1.800.318,00"
+      }
     },
     "897425": {
       "objeto": "PAVIMENTAÇÃO EM PARALELEPÍPEDO DE DIVERSAS VIAS PUBLICAS NO MUNICÍPIO DE ESPERANTINA - PI",
@@ -8073,10 +8442,18 @@
           "data": "24/11/2023",
           "valor": "13.930,00",
           "tipo": "planilha"
+        },
+        {
+          "data": "08/05/2024",
+          "valor": "955.000,00",
+          "tipo": "federal"
         }
       ],
-      "total_recebido": "2.438.000,00",
-      "ultimo_ingresso_federal": {}
+      "total_recebido": "3.393.000,00",
+      "ultimo_ingresso_federal": {
+        "data": "08/05/2024",
+        "valor": "955.000,00"
+      }
     },
     "902680": {
       "objeto": "2ª ETAPA DO MELHORAMENTO DA IMPLANTAÇÃO E PAVIMENTAÇÃO ASFÁLTICA EM TRATAMENTO SUPERFICIAL DUPLO - TSD COM BANHO DILUÍDO NA PISTA DE ROLAMENTO E TRATAMENTO SUPERFICIAL SIMPLES - TSS COM BANHO DILUÍDO NOS ACOSTAMENTOS, DA RODOVIA PI-213, NO TRECHO: ESPERANTINA / ENTRONC. PI-305 (VOLTA DA JUREMA), COM 75,600 KM DE EXTENSÃO.",
@@ -8128,10 +8505,18 @@
           "data": "24/04/2024",
           "valor": "214.139,11",
           "tipo": "planilha"
+        },
+        {
+          "data": "28/11/2023",
+          "valor": "3.345.593,24",
+          "tipo": "federal"
         }
       ],
-      "total_recebido": "4.905.745,01",
-      "ultimo_ingresso_federal": {}
+      "total_recebido": "8.251.338,25",
+      "ultimo_ingresso_federal": {
+        "data": "28/11/2023",
+        "valor": "3.345.593,24"
+      }
     },
     "902704": {
       "objeto": "OBRA DE CONSTRUÇÃO, ADEQUAÇÃO E/OU READEQUAÇÃO DE ESTRADAS VICINAIS NO MUNICÍPIO DE CAMPINAS-PI.",
@@ -8148,10 +8533,18 @@
           "data": "26/03/2024",
           "valor": "10.000,00",
           "tipo": "planilha"
+        },
+        {
+          "data": "14/12/2020",
+          "valor": "477.500,00",
+          "tipo": "federal"
         }
       ],
-      "total_recebido": "487.500,00",
-      "ultimo_ingresso_federal": {}
+      "total_recebido": "965.000,00",
+      "ultimo_ingresso_federal": {
+        "data": "14/12/2020",
+        "valor": "477.500,00"
+      }
     },
     "946378": {
       "objeto": "IMPLANTAÇÃO DO SISTEMA ADUTOR NO MUNICIPIO DE SÃO LOURENÇO DO PIAUI-PI",
@@ -8193,10 +8586,18 @@
           "data": "07/02/2024",
           "valor": "32.500,00",
           "tipo": "planilha"
+        },
+        {
+          "data": "24/03/2026",
+          "valor": "668.500,00",
+          "tipo": "federal"
         }
       ],
-      "total_recebido": "32.500,00",
-      "ultimo_ingresso_federal": {}
+      "total_recebido": "701.000,00",
+      "ultimo_ingresso_federal": {
+        "data": "24/03/2026",
+        "valor": "668.500,00"
+      }
     },
     "897099": {
       "objeto": "PAVIMENTAÇÃO EM PARALELEPÍPEDO DE DIVERSAS VIAS PUBLICAS NOS MUNICÍPIOS DE BATALHA, COLÔNIA DO GURGUÉIA, LAGOA DO PIAUÍ, ALVORADA DO GURGUÉIA E FLORESTA DO PIAUÍ, TODAS NO ESTADO DO PIAUÍ.",
@@ -8233,10 +8634,18 @@
           "data": "24/07/2023",
           "valor": "13.930,00",
           "tipo": "planilha"
+        },
+        {
+          "data": "29/12/2022",
+          "valor": "1.236.486,25",
+          "tipo": "federal"
         }
       ],
-      "total_recebido": "2.438.042,00",
-      "ultimo_ingresso_federal": {}
+      "total_recebido": "3.674.528,25",
+      "ultimo_ingresso_federal": {
+        "data": "29/12/2022",
+        "valor": "1.236.486,25"
+      }
     },
     "900822": {
       "objeto": "1ª ETAPA DO MELHORAMENTO DA IMPLANTAÇÃO E PAVIMENTAÇÃO ASFÁLTICA EM TRATAMENTO SUPERFICIAL DUPLO - TSD COM BANHO DILUÍDO NA PISTA DE ROLAMENTO E TRATAMENTO SUPERFICIAL SIMPLES - TSS COM BANHO DILUÍDO NOS ACOSTAMENTOS, DA RODOVIA PI-213, NO TRECHO: ESPERANTINA / ENTRONC. PI-305 (VOLTA DA JUREMA), COM 75,600 KM DE EXTENSÃO.",
@@ -8273,10 +8682,18 @@
           "data": "21/07/2023",
           "valor": "198.255,84",
           "tipo": "planilha"
+        },
+        {
+          "data": "27/04/2023",
+          "valor": "113.089,30",
+          "tipo": "federal"
         }
       ],
-      "total_recebido": "10.830.025,00",
-      "ultimo_ingresso_federal": {}
+      "total_recebido": "10.943.114,30",
+      "ultimo_ingresso_federal": {
+        "data": "27/04/2023",
+        "valor": "113.089,30"
+      }
     },
     "887234": {
       "objeto": "PAVIMENTAÇÃO EM DIVERSAS VIAS PUBLICAS NOS MUNICÍPIOS DE CAMPO ALEGRE DO FIDALGO E JOÃO COSTA - PI",
@@ -8293,10 +8710,18 @@
           "data": "28/06/2023",
           "valor": "16.300,00",
           "tipo": "planilha"
+        },
+        {
+          "data": "26/10/2023",
+          "valor": "760.000,00",
+          "tipo": "federal"
         }
       ],
-      "total_recebido": "776.300,00",
-      "ultimo_ingresso_federal": {}
+      "total_recebido": "1.536.300,00",
+      "ultimo_ingresso_federal": {
+        "data": "26/10/2023",
+        "valor": "760.000,00"
+      }
     },
     "889040": {
       "objeto": "PAVIMENTAÇÃO EM PARALELEPÍPEDO EM VIAS PUBLICAS NOS MUNICÍPIOS DE ESPERANTINA - PI, UNIÃO - PI, BARRAS -PI, CABECEIRAS - PI, MIGUEL ALVES - PI E SÃO JOÃO DO ARRAIAL - PI.",
@@ -8338,10 +8763,18 @@
           "data": "15/06/2023",
           "valor": "12.764,75",
           "tipo": "planilha"
+        },
+        {
+          "data": "10/01/2023",
+          "valor": "3.899.625,47",
+          "tipo": "federal"
         }
       ],
-      "total_recebido": "5.850.000,00",
-      "ultimo_ingresso_federal": {}
+      "total_recebido": "9.749.625,47",
+      "ultimo_ingresso_federal": {
+        "data": "10/01/2023",
+        "valor": "3.899.625,47"
+      }
     },
     "899540": {
       "objeto": "PAVIMENTAÇÃO DE VIAS PUBLICAS NO MUNICÍPIO DE MORRO DO CHAPÉU DO PIAUÍ - PI",
@@ -8358,10 +8791,18 @@
           "data": "07/12/2022",
           "valor": "9.840,00",
           "tipo": "planilha"
+        },
+        {
+          "data": "28/12/2022",
+          "valor": "469.860,00",
+          "tipo": "federal"
         }
       ],
-      "total_recebido": "479.700,00",
-      "ultimo_ingresso_federal": {}
+      "total_recebido": "949.560,00",
+      "ultimo_ingresso_federal": {
+        "data": "28/12/2022",
+        "valor": "469.860,00"
+      }
     },
     "900838": {
       "objeto": "PAVIMENTAÇÃO EM VIAS PUBLICAS NO MUNICÍPIO DE BOA HORA-PI",
@@ -8378,10 +8819,18 @@
           "data": "22/11/2021",
           "valor": "10.000,00",
           "tipo": "planilha"
+        },
+        {
+          "data": "21/03/2022",
+          "valor": "469.860,00",
+          "tipo": "federal"
         }
       ],
-      "total_recebido": "479.860,00",
-      "ultimo_ingresso_federal": {}
+      "total_recebido": "949.720,00",
+      "ultimo_ingresso_federal": {
+        "data": "21/03/2022",
+        "valor": "469.860,00"
+      }
     },
     "781089": {
       "objeto": "IMPLANTAÇÃO DE INFRAESTRUTURA ESPORTIVA no Município de Monsenhor Hipólito – PI",
@@ -8398,10 +8847,18 @@
           "data": "19/07/2019",
           "valor": "146.250,00",
           "tipo": "planilha"
+        },
+        {
+          "data": "19/07/2019",
+          "valor": "146.250,00",
+          "tipo": "federal"
         }
       ],
-      "total_recebido": "390.000,00",
-      "ultimo_ingresso_federal": {}
+      "total_recebido": "536.250,00",
+      "ultimo_ingresso_federal": {
+        "data": "19/07/2019",
+        "valor": "146.250,00"
+      }
     },
     "907472": {
       "objeto": "IMPLANTAÇÃO DE MELHORIAS HABITACIONAIS PARA O CONTROLE DE CHAGAS NO MUNICÍPIO DE DOM INOCÊNCIO - PI",
@@ -8539,5 +8996,5 @@
       "ultimo_ingresso_federal": {}
     }
   },
-  "repasses_atualizado_em": "12/06/2026 23:26"
+  "repasses_atualizado_em": "12/06/2026 23:43"
 }

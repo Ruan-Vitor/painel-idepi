@@ -7623,9 +7623,14 @@
           "data": "17/07/2025",
           "valor": "651.650,00",
           "tipo": "planilha"
+        },
+        {
+          "data": "17/07/2025",
+          "valor": "769.476,91",
+          "tipo": "planilha"
         }
       ],
-      "total_recebido": "720.614,09",
+      "total_recebido": "1.490.091,00",
       "ultimo_ingresso_federal": {
         "data": "17/07/2025",
         "valor": "651.650,00"
@@ -8641,5 +8646,5 @@
       "ultimo_ingresso_federal": {}
     }
   },
-  "repasses_atualizado_em": "13/06/2026 06:38"
+  "repasses_atualizado_em": "13/06/2026 11:17"
 }

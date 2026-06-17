@@ -3045,7 +3045,7 @@
     {
       "numero": "946260",
       "objeto": "MANUTENCAO E ADEQUACAO NAS ESTRADAS VICINAIS NO MUNICIPIO DE LAGOA DE SAO FRANCISCO-PI.",
-      "coletado_em": "20/05/2026 18:22",
+      "coletado_em": "17/06/2026 18:55",
       "valor_global": "R$ 1.002.000,00",
       "valor_repasse": "R$ 955.000,00",
       "valor_contrapartida": "R$ 47.000,00",
@@ -3379,7 +3379,7 @@
       "ateste_concedente": false,
       "status_obra": "",
       "tem_medicao": true,
-      "saldo_rendimentos": 33022.05,
+      "saldo_rendimentos": 31062.82,
       "repasse_desembolsado": {
         "previsto": 955000.0,
         "desembolsado": 955000.0,
@@ -3388,7 +3388,10 @@
       "_id_convenio": "1078799",
       "_id_proposta": "1889727",
       "erro": "",
-      "obs_manual": ""
+      "obs_manual": "",
+      "perfil": "contrato_repasse_caixa",
+      "concedente": "",
+      "mandataria": ""
     },
     {
       "numero": "781089",
@@ -6612,7 +6615,7 @@
       "obs_manual": ""
     }
   ],
-  "exec_atualizado_em": "20/05/2026 19:54",
+  "exec_atualizado_em": "17/06/2026 18:58",
   "historico_repasses": {
     "969555": {
       "objeto": "Construção e equipagem da Casa da Mulher Brasileira no Município de Parnaiba-PI",

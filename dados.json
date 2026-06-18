@@ -9262,7 +9262,49 @@
       "ingressos": [],
       "total_recebido": "",
       "ultimo_ingresso_federal": {}
+    },
+    "899530": {
+      "objeto": "PAVIMENTACAO DE VIAS PUBLICAS NO MUNICIPIO DE MORRO DO CHAPEU DO PIAUI - PI",
+      "banco": "",
+      "agencia": "",
+      "conta": "",
+      "ingressos": [],
+      "total_recebido": "",
+      "ultimo_ingresso_federal": {
+        "data": "23/12/2024",
+        "valor": "469.700,00"
+      }
+    },
+    "946262": {
+      "objeto": "MANUTENCAO E ADEQUACAO NAS ESTRADAS VICINAIS DO MUNICIPIO DE CRISTALANDIA DO PIAUI-PI.",
+      "banco": "",
+      "agencia": "",
+      "conta": "",
+      "ingressos": [],
+      "total_recebido": "",
+      "ultimo_ingresso_federal": {
+        "data": "12/11/2024",
+        "valor": "1.337.000,00"
+      }
+    },
+    "992850": {
+      "objeto": "IMPLANTACAO DE SISTEMA DE ABASTECIMENTO DE AGUA NA ZONA RURAL DO MUNICIPIO DE BELEM DO PIAUI - PI",
+      "banco": "",
+      "agencia": "",
+      "conta": "",
+      "ingressos": [],
+      "total_recebido": "",
+      "ultimo_ingresso_federal": {}
+    },
+    "992940": {
+      "objeto": "IMPLANTACAO DE SISTEMA DE ABASTECIMENTO DE AGUA NA ZONA RURAL DO MUNICIPIO DE CURRAL NOVO DO PIAUI - PI.",
+      "banco": "",
+      "agencia": "",
+      "conta": "",
+      "ingressos": [],
+      "total_recebido": "",
+      "ultimo_ingresso_federal": {}
     }
   },
-  "repasses_atualizado_em": "17/06/2026 07:19"
+  "repasses_atualizado_em": "18/06/2026 16:34"
 }

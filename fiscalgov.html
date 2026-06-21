@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- v20260513_212500 -->
+<!-- v20260617_fix01 -->
 <html lang="pt-br">
 <head>
 <meta charset="UTF-8">
@@ -52,12 +52,22 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);display:flex;flex-dir
 .hd-ts{font-size:10px;color:rgba(255,255,255,.3);text-align:right;line-height:1.5}
 
 /* ── LAYOUT ── */
-/* Em telas grandes: sidebar fixa + conteúdo ao lado (altura da viewport)
-   Em telas pequenas: tudo em coluna, scroll natural da página inteira       */
 .body{flex:1;display:flex;overflow:hidden}
 
 /* ── SIDEBAR ── */
-.sidebar{width:214px;flex-shrink:0;background:var(--sidebar);border-right:1px solid rgba(255,255,255,.06);display:flex;flex-direction:column;padding:18px 10px;gap:2px}
+.sidebar{
+  width:214px;flex-shrink:0;background:var(--sidebar);
+  border-right:1px solid rgba(255,255,255,.06);
+  display:flex;flex-direction:column;padding:18px 10px;gap:2px;
+  /* FIX: transição unificada para desktop collapse */
+  position:relative;
+  transition:width .22s cubic-bezier(.4,0,.2,1), padding .22s cubic-bezier(.4,0,.2,1);
+  overflow:hidden;
+}
+.sidebar.collapsed{
+  width:0!important;
+  padding:0!important;
+}
 .sb-sec{font-size:9px;font-weight:700;color:rgba(255,255,255,.2);letter-spacing:1px;text-transform:uppercase;padding:10px 12px 3px;margin-top:6px}
 .sb-sec:first-child{margin-top:0}
 .sb-item{display:flex;align-items:center;gap:9px;padding:8px 12px;border-radius:7px;font-size:12.5px;color:rgba(255,255,255,.5);text-decoration:none;cursor:pointer;transition:all .14s;position:relative}
@@ -71,115 +81,35 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);display:flex;flex-dir
 .sb-card strong{color:rgba(255,255,255,.45);display:block;font-size:10px;margin-bottom:2px}
 .sb-card p{font-size:10px;color:rgba(255,255,255,.25);line-height:1.5}
 
-/* ── CONTENT ── */
-.content{flex:1;display:flex;flex-direction:column;overflow:hidden;background:var(--surface2)}
-
-/* ── PAGE HEAD ── */
-.pg-head{background:var(--surface);border-bottom:1px solid var(--border);padding:18px 28px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
-.pg-title{font-family:'Sora',sans-serif;font-size:18px;font-weight:700;color:var(--text);display:flex;align-items:center;gap:10px}
-.pg-title-icon{width:36px;height:36px;border-radius:9px;background:linear-gradient(135deg,#1a3a6e,#0d6e4a);display:flex;align-items:center;justify-content:center;color:#fff;font-size:15px}
-.pg-sub{font-size:11px;color:var(--muted);margin-top:3px}
-.pg-back{display:flex;align-items:center;gap:6px;background:var(--accent);color:#fff;border:none;padding:8px 16px;border-radius:7px;font-size:12px;font-weight:600;cursor:pointer;text-decoration:none;font-family:'DM Sans',sans-serif;transition:background .14s}
-.pg-back:hover{background:#1e4a8a}
-
-/* ── SCROLL ── */
-/* Em telas grandes: só a área de conteúdo rola (sidebar fica fixada)
-   Em telas pequenas (<900px): a página inteira vira scrollável, a tabela
-   não tem mais altura máxima limitada, e a sidebar vira um strip horizontal */
-.scroll{flex:1;overflow-y:auto;padding:22px 28px;display:flex;flex-direction:column;gap:18px}
-
-/* ── RESPONSIVO — telas pequenas ── */
-@media (max-height: 700px), (max-width: 900px) {
-  /* Página inteira rola — nada fica preso */
-  html, body { height:auto; overflow-x:hidden; overflow-y:auto; }
-
-  /* Header compacto */
-  .hd { padding:0 14px; height:50px; }
-  .hd-pill { display:none; }
-  .hd-sep  { display:none; }
-
-  /* Layout vira coluna */
-  .body { overflow:visible; flex-direction:column; }
-
-  /* ── Sidebar mobile: drawer colapsável ── */
-  /* Por padrão (fechado): altura 0, itens escondidos */
-  .sidebar {
-    width:100%;
-    flex-direction:column;
-    flex-wrap:nowrap;
-    overflow:hidden;
-    max-height:0;
-    padding:0 10px;
-    gap:2px;
-    border-right:none;
-    border-bottom:none;
-    position:static;
-    flex-shrink:0;
-    transition:max-height .28s ease, padding .28s ease, border .28s ease;
-  }
-  /* Aberto: expande para mostrar os itens */
-  .sidebar.sb-open {
-    max-height:500px;
-    padding:8px 10px;
-    border-bottom:1px solid rgba(255,255,255,.12);
-  }
-  .sidebar::-webkit-scrollbar { display:none; }
-  .sb-sec    { display:block; font-size:9px; padding:6px 10px 2px; }
-  .sb-footer { display:none; }
-  .sb-item {
-    flex-shrink:0;
-    white-space:nowrap;
-    padding:8px 12px;
-    font-size:13px;
-  }
-
-  /* Botão de toggle do menu (aparece só no mobile) */
-  .sb-toggle {
-    display:flex !important;
-  }
-
-  /* Content e scroll abrem completamente */
-  .content { overflow:visible; flex:none; width:100%; }
-  .scroll  { overflow:visible; flex:none; padding:14px 14px; gap:14px; }
-
-  /* Page head compacto */
-  .pg-head { padding:12px 14px; flex-wrap:wrap; gap:10px; }
-  .pg-title { font-size:15px; }
-  .pg-sub   { font-size:10px; }
-  .pg-back  { padding:7px 12px; font-size:11px; }
-
-  /* Banner */
-  .banner { padding:14px 16px; }
-  .banner p { font-size:11px; }
-
-  /* KPIs: 2 colunas no mobile */
-  .kpi-row { grid-template-columns:repeat(2,1fr); gap:10px; }
-  .kpi-val { font-size:22px; }
-
-  /* Tabela: card não limita altura, scroll horizontal na tabela */
-  .tbl-card   { flex:none; min-height:0; }
-  .tbl-scroll { overflow-x:auto; overflow-y:visible; max-height:none; -webkit-overflow-scrolling:touch; }
-
-  /* Filtros e cabeçalho da tabela */
-  .tbl-head { padding:10px 12px; }
-  .tbl-head-right { gap:6px; }
-  .filters { gap:4px; }
-  .fchip   { font-size:10px; padding:3px 8px; }
-  .btn-excel { font-size:10.5px; padding:5px 10px; }
+/* ── SIDEBAR TOGGLE (botão fixo desktop — criado via JS) ── */
+/* FIX: classe exclusiva .sb-desk-btn para não conflitar com .sb-mob-btn do header */
+.sb-desk-btn{
+  position:fixed;
+  left:214px; /* JS sobreporá conforme estado */
+  top:50%;
+  transform:translateY(-50%);
+  width:20px;
+  height:48px;
+  border-radius:0 8px 8px 0;
+  background:#1a3a6e;
+  border:1.5px solid rgba(255,255,255,.18);
+  border-left:none;
+  color:rgba(255,255,255,.7);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  z-index:200;
+  font-size:10px;
+  transition:left .22s cubic-bezier(.4,0,.2,1), background .15s, width .15s;
+  box-shadow:2px 0 8px rgba(0,0,0,.25);
 }
+.sb-desk-btn:hover{background:#2563eb;color:#fff;width:24px;}
 
-/* Extra-pequeno (< 480 px) */
-@media (max-width: 480px) {
-  .kpi-row { grid-template-columns:repeat(2,1fr); }
-  .pg-title { font-size:14px; gap:6px; }
-  .pg-title-icon { width:28px; height:28px; font-size:12px; }
-  .banner-formula { font-size:9px; }
-  .hd-title { font-size:13px; }
-}
-
-/* Botão toggle: oculto em desktop, visível no mobile via @media acima */
-.sb-toggle {
-  display:none;
+/* ── BOTÃO MENU MOBILE (no header) — apenas mobile ── */
+/* FIX: separado do .sb-desk-btn; nunca tem position:fixed */
+.sb-mob-btn{
+  display:none; /* oculto em desktop */
   align-items:center;
   gap:7px;
   background:rgba(255,255,255,.08);
@@ -194,7 +124,96 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);display:flex;flex-dir
   transition:background .14s;
   flex-shrink:0;
 }
-.sb-toggle:hover { background:rgba(255,255,255,.13); }
+.sb-mob-btn:hover{background:rgba(255,255,255,.13);}
+
+/* ── CONTENT ── */
+.content{flex:1;display:flex;flex-direction:column;overflow:hidden;background:var(--surface2)}
+
+/* ── PAGE HEAD ── */
+.pg-head{background:var(--surface);border-bottom:1px solid var(--border);padding:18px 28px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.pg-title{font-family:'Sora',sans-serif;font-size:18px;font-weight:700;color:var(--text);display:flex;align-items:center;gap:10px}
+.pg-title-icon{width:36px;height:36px;border-radius:9px;background:linear-gradient(135deg,#1a3a6e,#0d6e4a);display:flex;align-items:center;justify-content:center;color:#fff;font-size:15px}
+.pg-sub{font-size:11px;color:var(--muted);margin-top:3px}
+.pg-back{display:flex;align-items:center;gap:6px;background:var(--accent);color:#fff;border:none;padding:8px 16px;border-radius:7px;font-size:12px;font-weight:600;cursor:pointer;text-decoration:none;font-family:'DM Sans',sans-serif;transition:background .14s}
+.pg-back:hover{background:#1e4a8a}
+
+/* ── SCROLL ── */
+.scroll{flex:1;overflow-y:auto;padding:22px 28px;display:flex;flex-direction:column;gap:18px}
+
+/* ── RESPONSIVO ── */
+@media (max-height: 700px), (max-width: 900px) {
+  html, body { height:auto; overflow-x:hidden; overflow-y:auto; }
+
+  .hd { padding:0 14px; height:50px; }
+  .hd-pill { display:none; }
+  .hd-sep  { display:none; }
+
+  .body { overflow:visible; flex-direction:column; }
+
+  /* Mobile: sidebar vira drawer (max-height) — reset do collapse desktop */
+  .sidebar {
+    width:100% !important;
+    padding:0 10px !important;
+    flex-direction:column;
+    flex-wrap:nowrap;
+    overflow:hidden;
+    max-height:0;
+    gap:2px;
+    border-right:none;
+    border-bottom:none;
+    position:static;
+    flex-shrink:0;
+    /* Animação de max-height (drawer) substitui a de width (desktop) */
+    transition:max-height .28s ease, padding .28s ease, border .28s ease !important;
+  }
+  .sidebar.sb-open {
+    max-height:500px;
+    padding:8px 10px !important;
+    border-bottom:1px solid rgba(255,255,255,.12);
+  }
+  /* collapsed não tem efeito no mobile — sb-open é o sistema aqui */
+  .sidebar.collapsed { width:100% !important; padding:0 10px !important; }
+
+  .sidebar::-webkit-scrollbar { display:none; }
+  .sb-sec    { display:block; font-size:9px; padding:6px 10px 2px; }
+  .sb-footer { display:none; }
+  .sb-item   { flex-shrink:0; white-space:nowrap; padding:8px 12px; font-size:13px; }
+
+  /* FIX: botão mobile do header visível; botão desktop escondido */
+  .sb-mob-btn  { display:flex !important; }
+  .sb-desk-btn { display:none !important; }
+
+  .content { overflow:visible; flex:none; width:100%; }
+  .scroll  { overflow:visible; flex:none; padding:14px 14px; gap:14px; }
+
+  .pg-head { padding:12px 14px; flex-wrap:wrap; gap:10px; }
+  .pg-title { font-size:15px; }
+  .pg-sub   { font-size:10px; }
+  .pg-back  { padding:7px 12px; font-size:11px; }
+
+  .banner { padding:14px 16px; }
+  .banner p { font-size:11px; }
+
+  .kpi-row { grid-template-columns:repeat(2,1fr); gap:10px; }
+  .kpi-val { font-size:22px; }
+
+  .tbl-card   { flex:none; min-height:0; }
+  .tbl-scroll { overflow-x:auto; overflow-y:visible; max-height:none; -webkit-overflow-scrolling:touch; }
+
+  .tbl-head { padding:10px 12px; }
+  .tbl-head-right { gap:6px; }
+  .filters { gap:4px; }
+  .fchip   { font-size:10px; padding:3px 8px; }
+  .btn-excel { font-size:10.5px; padding:5px 10px; }
+}
+
+@media (max-width: 480px) {
+  .kpi-row { grid-template-columns:repeat(2,1fr); }
+  .pg-title { font-size:14px; gap:6px; }
+  .pg-title-icon { width:28px; height:28px; font-size:12px; }
+  .banner-formula { font-size:9px; }
+  .hd-title { font-size:13px; }
+}
 
 /* ── BANNER ── */
 .banner{background:linear-gradient(120deg,#0f2550 0%,#0a4a2e 100%);border-radius:12px;padding:18px 22px;display:flex;align-items:flex-start;gap:16px;color:#fff;flex-shrink:0;position:relative;overflow:hidden}
@@ -222,13 +241,17 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);display:flex;flex-dir
 .kpi.k-pct .kpi-val{color:var(--amber)}
 .kpi.k-proj .kpi-val{color:var(--slate)}
 
+/* FIX: estado de erro nos KPIs */
+.kpi.k-err .kpi-val{color:#dc2626;font-size:16px}
+.kpi.k-err .kpi-desc{color:#ef4444}
+
 /* ── PROGRESS ── */
 .prog-card{background:var(--surface);border:1px solid var(--border);border-radius:11px;padding:16px 20px;flex-shrink:0}
 .prog-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
 .prog-lbl{font-size:12.5px;font-weight:600;color:var(--text)}
 .prog-pct{font-family:'Sora',sans-serif;font-size:22px;font-weight:800;color:var(--accent)}
 .prog-track{background:#e8f0fe;border-radius:99px;height:12px;overflow:hidden}
-.prog-fill{height:100%;border-radius:99px;background:linear-gradient(90deg,#1a3a6e 0%,#16a34a 100%);transition:width 1s cubic-bezier(.22,1,.36,1)}
+.prog-fill{height:100%;border-radius:99px;background:linear-gradient(90deg,#1a3a6e 0%,#16a34a 100%);transition:width 1s cubic-bezier(.22,1,.36,1);min-width:0}
 .prog-note{font-size:10.5px;color:var(--muted);margin-top:8px;display:flex;align-items:center;gap:5px}
 .prog-note i{color:#f59e0b}
 
@@ -249,7 +272,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);display:flex;flex-dir
 }
 .btn-fullscreen:hover{background:#eff6ff;border-color:var(--accent)}
 .btn-fullscreen i{font-size:11px}
-/* Quando o tbl-card está em fullscreen */
 .tbl-card:fullscreen,
 .tbl-card:-webkit-full-screen,
 .tbl-card:-moz-full-screen{
@@ -263,10 +285,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);display:flex;flex-dir
 .tbl-card:-moz-full-screen .tbl-scroll{
   flex:1;overflow:auto;max-height:none;
 }
-.tbl-card:fullscreen .btn-fullscreen i::before,
-.tbl-card:-webkit-full-screen .btn-fullscreen i::before{
-  content:"\f066"; /* fa-compress */
-}
 .tbl-head-right{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 .filters{display:flex;gap:5px;flex-wrap:wrap}
 .fchip{font-size:10.5px;font-weight:600;padding:3px 11px;border-radius:18px;cursor:pointer;border:1.5px solid;transition:all .13s;user-select:none}
@@ -276,9 +294,14 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);display:flex;flex-dir
 .fc-proj{background:var(--slate-bg);color:var(--slate);border-color:var(--slate-bdr)}
 .fchip:hover{opacity:.8}
 .fchip.sel{box-shadow:0 0 0 2px currentColor}
+/* FIX: contador de itens no chip */
+.fchip-cnt{font-weight:400;opacity:.7;margin-left:3px;font-size:9.5px}
+
 .srch{display:flex;align-items:center;gap:8px;padding:7px 16px;border-bottom:1px solid var(--border);background:#fafbfd;flex-shrink:0}
 .srch i{color:var(--muted);font-size:12px}
 .srch input{border:none;outline:none;font-size:11.5px;color:var(--text);background:transparent;flex:1;font-family:'DM Sans',sans-serif}
+.srch-sep{width:1px;height:18px;background:var(--border);flex-shrink:0}
+.srch select{border:none;outline:none;font-size:11.5px;color:var(--text);background:transparent;font-family:'DM Sans',sans-serif;cursor:pointer}
 .tbl-scroll{overflow:auto;flex:1}
 table{width:100%;border-collapse:collapse;font-size:12.5px}
 thead tr{background:var(--surface2);position:sticky;top:0;z-index:2}
@@ -297,11 +320,41 @@ tbody tr:hover td{background:#f5f9ff}
 .b-norm{background:#f0fdf4;color:#166534;border-color:#86efac}
 
 /* ── MISC ── */
-.num-cell{color:var(--accent);font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:11.5px;white-space:nowrap}
+.num-cell{
+  color:var(--accent);font-family:'IBM Plex Mono',monospace;
+  font-weight:600;font-size:11.5px;white-space:nowrap;
+  /* FIX: cursor de cópia + tooltip */
+  cursor:pointer;
+  position:relative;
+  display:inline-flex;align-items:center;gap:5px;
+}
+.num-cell:hover{text-decoration:underline;color:#2563eb}
+.num-cell .copy-icon{font-size:9px;color:#94a3b8;opacity:0;transition:opacity .15s}
+.num-cell:hover .copy-icon{opacity:1}
+/* Toast de cópia */
+.copy-toast{
+  position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(8px);
+  background:#1e293b;color:#fff;font-size:12px;font-weight:600;
+  padding:8px 18px;border-radius:8px;
+  opacity:0;pointer-events:none;
+  transition:opacity .2s, transform .2s;
+  z-index:9000;
+  box-shadow:0 4px 16px rgba(0,0,0,.3);
+}
+.copy-toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
 .obj-cell{max-width:230px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#3a4a5c}
 .acao{font-size:11px;font-weight:600;display:flex;align-items:center;gap:4px}
 .acao.ok{color:var(--green)}.acao.pend{color:#c2410c}.acao.neutr{color:var(--muted)}
-.empty-row{text-align:center;padding:28px;color:var(--muted);font-size:12.5px}
+
+/* FIX: empty state melhorado */
+.empty-state{
+  text-align:center;padding:40px 20px;color:var(--muted);
+  display:flex;flex-direction:column;align-items:center;gap:10px;
+}
+.empty-state i{font-size:32px;opacity:.3}
+.empty-state p{font-size:13px}
+.empty-state small{font-size:11px;opacity:.7}
 
 /* ── BOTÃO EXPORTAR EXCEL ── */
 .btn-excel{
@@ -326,55 +379,12 @@ tbody tr:hover td{background:#f5f9ff}
 .overlay p{color:#fff;font-size:13px}
 #lockscreen{position:fixed;inset:0;z-index:9999;background:#07101f;display:flex;align-items:center;justify-content:center}
 
-/* ── SIDEBAR TOGGLE ── */
-/* ── SIDEBAR TOGGLE ── */
-.sidebar{
-  position:relative;
-  transition:width .22s cubic-bezier(.4,0,.2,1),
-             padding .22s cubic-bezier(.4,0,.2,1);
-  overflow:hidden;
-}
-.sidebar.collapsed{
-  width:0!important;
-  padding:0!important;
-}
-/* Botão fixo na borda esquerda, sempre visível */
-.sb-toggle{
-  position:fixed;
-  left:0;
-  top:50%;
-  transform:translateY(-50%);
-  width:20px;
-  height:48px;
-  border-radius:0 8px 8px 0;
-  background:#1a3a6e;
-  border:1.5px solid rgba(255,255,255,.18);
-  border-left:none;
-  color:rgba(255,255,255,.7);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  cursor:pointer;
-  z-index:200;
-  font-size:10px;
-  transition:left .22s cubic-bezier(.4,0,.2,1), background .15s, width .15s;
-  flex-shrink:0;
-  box-shadow:2px 0 8px rgba(0,0,0,.25);
-}
-.sb-toggle:hover{background:#2563eb;color:#fff;width:24px;}
-/* Quando sidebar aberta: botão fica na borda direita dela */
-.sidebar:not(.collapsed) .sb-toggle{
-  left:214px;
-  border-radius:0 8px 8px 0;
-}
-/* Quando colapsada: botão fica em left:0 */
-.sidebar.collapsed .sb-toggle{
-  left:0;
-}
-
 </style>
 </head>
 <body>
+
+<!-- Toast de cópia -->
+<div class="copy-toast" id="copyToast">Número copiado!</div>
 
 <!-- OVERLAY -->
 <div class="overlay" id="overlay">
@@ -396,8 +406,9 @@ tbody tr:hover td{background:#f5f9ff}
     <div class="hd-pill"><i class="fa-solid fa-circle"></i> Indicador EX-01 · IDTRU-DL Recebedores</div>
   </div>
   <div class="hd-right">
-    <button class="sb-toggle" id="sbToggleBtn" onclick="toggleSidebar()" aria-label="Menu de navegação">
-      <i class="fa-solid fa-bars" id="sbToggleIcon"></i> Menu
+    <!-- FIX: classe trocada para sb-mob-btn (sem conflito com sb-desk-btn do JS) -->
+    <button class="sb-mob-btn" id="sbMobBtn" onclick="toggleSidebarMobile()" aria-label="Menu de navegação">
+      <i class="fa-solid fa-bars" id="sbMobIcon"></i> Menu
     </button>
     <div class="hd-ts" id="hd-ts">—</div>
   </div>
@@ -407,7 +418,7 @@ tbody tr:hover td{background:#f5f9ff}
 <div class="body">
 
   <!-- SIDEBAR -->
-  <nav class="sidebar">
+  <nav class="sidebar" id="mainSidebar">
     <div class="sb-sec">Convênios Federais</div>
     <a class="sb-item" href="index.html"><i class="fa-solid fa-gauge-high"></i> Painel Geral</a>
     <a class="sb-item" href="vigencias.html"><i class="fa-solid fa-table-list"></i> Vigências</a>
@@ -512,10 +523,11 @@ tbody tr:hover td{background:#f5f9ff}
           <div class="tbl-title"><i class="fa-solid fa-list-check"></i> Instrumentos vigentes</div>
           <div class="tbl-head-right">
             <div class="filters">
-              <span class="fchip fc-all sel" id="fc-all"  onclick="filtrar('all')">Todos</span>
-              <span class="fchip fc-ok"      id="fc-ok"   onclick="filtrar('ok')">Aptos + foto ✅</span>
-              <span class="fchip fc-nok"     id="fc-nok"  onclick="filtrar('nok')">Aptos sem foto ❌</span>
-              <span class="fchip fc-proj"    id="fc-proj" onclick="filtrar('proj')">Em projeto</span>
+              <!-- FIX: spans com id para atualizar contadores -->
+              <span class="fchip fc-all sel" id="fc-all"  onclick="filtrar('all')">Todos<span class="fchip-cnt" id="cnt-all"></span></span>
+              <span class="fchip fc-ok"      id="fc-ok"   onclick="filtrar('ok')">Aptos + foto ✅<span class="fchip-cnt" id="cnt-ok"></span></span>
+              <span class="fchip fc-nok"     id="fc-nok"  onclick="filtrar('nok')">Aptos sem foto ❌<span class="fchip-cnt" id="cnt-nok"></span></span>
+              <span class="fchip fc-proj"    id="fc-proj" onclick="filtrar('proj')">Em projeto<span class="fchip-cnt" id="cnt-proj"></span></span>
             </div>
             <button class="btn-excel" id="btnExcelFG" onclick="exportarExcelFiscalGov()" title="Exportar dados visíveis para Excel">
               <i class="fa-solid fa-file-excel"></i> Exportar Excel
@@ -528,7 +540,9 @@ tbody tr:hover td{background:#f5f9ff}
         <div class="srch">
           <i class="fa-solid fa-magnifying-glass"></i>
           <input type="text" id="busca" placeholder="Buscar por número ou objeto..." oninput="renderizar()">
-          <select id="fFiscal" onchange="renderizar()" style="border:none;outline:none;font-size:11.5px;color:var(--text);background:transparent;font-family:'DM Sans',sans-serif;cursor:pointer;max-width:160px">
+          <div class="srch-sep"></div>
+          <i class="fa-solid fa-user-tie" style="color:var(--muted);font-size:11px"></i>
+          <select id="fFiscal" onchange="renderizar()" style="max-width:160px">
             <option value="">Todos os fiscais</option>
           </select>
         </div>
@@ -560,36 +574,41 @@ tbody tr:hover td{background:#f5f9ff}
 <script>
 var USUARIO = "Ruan-Vitor", REPO = "painel-idepi";
 var todos = [], filtroAtual = "all";
-var _rowsVisiveis = []; // referência para exportação
+var _rowsVisiveis = [];
 
-/* ── Sidebar mobile toggle ── */
-function toggleSidebar() {
-  var sb  = document.querySelector('.sidebar');
-  var ico = document.getElementById('sbToggleIcon');
-  var btn = document.getElementById('sbToggleBtn');
+/* ══════════════════════════════════════════════════════
+   SIDEBAR — dois sistemas independentes, sem conflito
+   Desktop: sb-desk-btn (criado via JS) + classe .collapsed
+   Mobile:  #sbMobBtn no header        + classe .sb-open
+   ══════════════════════════════════════════════════════ */
+
+/* Mobile toggle (header button) */
+function toggleSidebarMobile() {
+  var sb  = document.getElementById('mainSidebar');
+  var ico = document.getElementById('sbMobIcon');
   if (!sb) return;
   var aberto = sb.classList.toggle('sb-open');
-  if (ico) {
-    ico.className = aberto ? 'fa-solid fa-xmark' : 'fa-solid fa-bars';
-  }
-  if (btn) {
-    btn.querySelector('span') && (btn.querySelector('span').textContent = aberto ? 'Fechar' : 'Menu');
-  }
+  if (ico) ico.className = aberto ? 'fa-solid fa-xmark' : 'fa-solid fa-bars';
 }
-/* Fecha menu ao clicar em item de navegação (no mobile) */
+
+/* Fecha drawer ao clicar em item de navegação (mobile) */
 document.addEventListener('DOMContentLoaded', function() {
-  var itens = document.querySelectorAll('.sidebar .sb-item');
+  var itens = document.querySelectorAll('#mainSidebar .sb-item');
   itens.forEach(function(el) {
     el.addEventListener('click', function() {
-      var sb = document.querySelector('.sidebar');
+      var sb = document.getElementById('mainSidebar');
       if (sb && sb.classList.contains('sb-open')) {
         sb.classList.remove('sb-open');
-        var ico = document.getElementById('sbToggleIcon');
+        var ico = document.getElementById('sbMobIcon');
         if (ico) ico.className = 'fa-solid fa-bars';
       }
     });
   });
 });
+
+/* ══════════════════════════════════════════════════════
+   LÓGICA DE DADOS
+   ══════════════════════════════════════════════════════ */
 
 function parseDateBR(s) {
   if (!s) return null;
@@ -634,10 +653,12 @@ function isProjeto(c) {
   return !temMedicao(c) && !temPagamento(c);
 }
 
+/* FIX: temFoto — normaliza NFD antes de comparar, elimina falsos negativos por encoding */
 function temFoto(c) {
-  var v = c.foto_app || c.rel_fotografico || c.col_o || "";
-  v = String(v).trim().toUpperCase();
-  if (!v || v === "NÃO" || v === "NAO" || v.startsWith("NÃO") || v.startsWith("NAO") || v === "NÃO ENCONTRADO" || v === "NAO_ENCONTRADO" || v === "ERRO") return false;
+  var raw = c.foto_app || c.rel_fotografico || c.col_o || "";
+  var v = raw.normalize("NFD").replace(/[\u0300-\u036f]/g,"").trim().toUpperCase();
+  // Retorna true APENAS se começar com "SIM"
+  // Qualquer outra coisa (NÃO, NAO, ERRO, vazio) é false
   return v.startsWith("SIM");
 }
 
@@ -659,6 +680,19 @@ function vigBadge(st, dias) {
   return '<span class="b b-norm"><i class="fa-solid fa-circle-check"></i> Normal ('+dias+'d)</span>';
 }
 
+/* FIX: atualiza contadores dos chips */
+function atualizarContadoresChips() {
+  var tot   = todos.length;
+  var ok    = todos.filter(function(c){ return c._apto && c._foto; }).length;
+  var nok   = todos.filter(function(c){ return c._apto && !c._foto; }).length;
+  var proj  = todos.filter(function(c){ return c._proj; }).length;
+  var el;
+  el = document.getElementById('cnt-all');  if(el) el.textContent = ' ('+tot+')';
+  el = document.getElementById('cnt-ok');   if(el) el.textContent = ' ('+ok+')';
+  el = document.getElementById('cnt-nok');  if(el) el.textContent = ' ('+nok+')';
+  el = document.getElementById('cnt-proj'); if(el) el.textContent = ' ('+proj+')';
+}
+
 function renderizar() {
   var busca = (document.getElementById("busca").value||"").toLowerCase();
   var fFisc = (document.getElementById("fFiscal").value||"").trim();
@@ -671,7 +705,6 @@ function renderizar() {
     return true;
   });
 
-  // Ordenação
   rows.sort(function(a,b){
     var ra = a._apto && !a._foto ? 0 : (a._apto && a._foto ? 1 : 2);
     var rb = b._apto && !b._foto ? 0 : (b._apto && b._foto ? 1 : 2);
@@ -681,11 +714,17 @@ function renderizar() {
     return da - db;
   });
 
-  // Salva para exportação
   _rowsVisiveis = rows;
 
   if (!rows.length) {
-    document.getElementById("tbody").innerHTML = '<tr><td colspan="10" class="empty-row">Nenhum instrumento encontrado.</td></tr>';
+    var msg = busca || fFisc
+      ? 'Nenhum resultado para os filtros aplicados.<br><small>Tente limpar a busca ou selecionar "Todos".</small>'
+      : 'Nenhum instrumento encontrado.';
+    document.getElementById("tbody").innerHTML =
+      '<tr><td colspan="10"><div class="empty-state">' +
+      '<i class="fa-solid fa-magnifying-glass"></i>' +
+      '<p>' + msg + '</p>' +
+      '</div></td></tr>';
     return;
   }
 
@@ -723,8 +762,11 @@ function renderizar() {
       acao = '<span class="acao pend"><i class="fa-solid fa-mobile-screen"></i> Fiscal deve enviar foto pelo APP</span>';
     }
 
+    var numEscaped = num.replace(/'/g,"&#39;");
+
     html += "<tr>";
-    html += "<td><span class='num-cell'>"+num+"</span></td>";
+    /* FIX: número clicável para copiar */
+    html += "<td><span class='num-cell' onclick='copiarNumero(\""+numEscaped+"\")' title='Clique para copiar'>"+num+"<i class='fa-regular fa-copy copy-icon'></i></span></td>";
     html += "<td><div class='obj-cell' title='"+obj.replace(/'/g,"&#39;")+"'>"+obj+
             (r.situacao_tgov && r.situacao_tgov !== "—" && r.situacao_tgov !== "" ?
               "<div style='font-size:9px;color:#64748b;margin-top:2px;'><i class='fa-solid fa-arrow-right-to-bracket' style='font-size:8px;'></i> Tgov: "+r.situacao_tgov+"</div>" : "") +
@@ -751,9 +793,29 @@ function filtrar(f) {
   renderizar();
 }
 
-// ══════════════════════════════════════════════════════════════════
-//  EXPORTAR EXCEL — FISCALGOV
-// ══════════════════════════════════════════════════════════════════
+/* FIX: copiar número do instrumento com feedback visual */
+function copiarNumero(num) {
+  if (!num || num === "—") return;
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(num).then(function(){ mostrarToast("Número " + num + " copiado!"); });
+  } else {
+    var el = document.createElement('textarea');
+    el.value = num; document.body.appendChild(el);
+    el.select(); document.execCommand('copy'); document.body.removeChild(el);
+    mostrarToast("Número " + num + " copiado!");
+  }
+}
+function mostrarToast(msg) {
+  var t = document.getElementById('copyToast');
+  if (!t) return;
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(function(){ t.classList.remove('show'); }, 2200);
+}
+
+/* ══════════════════════════════════════════════════════
+   EXPORTAR EXCEL
+   ══════════════════════════════════════════════════════ */
 function exportarExcelFiscalGov() {
   var btn = document.getElementById('btnExcelFG');
   if (!_rowsVisiveis.length) { alert('Nenhum dado para exportar.'); return; }
@@ -763,7 +825,6 @@ function exportarExcelFiscalGov() {
 
   setTimeout(function() {
     try {
-      // ── Aba 1: Instrumentos ──
       var cabecalho = [
         'Nº Instrumento','Objeto','Fiscal Responsável',
         'Vigência Final','Status Vigência','Dias Restantes',
@@ -804,7 +865,6 @@ function exportarExcelFiscalGov() {
         {wch:32},{wch:28}
       ];
 
-      // ── Aba 2: Resumo EX-01 ──
       var aptos    = _rowsVisiveis.filter(function(r){ return r._apto; }).length;
       var comFoto  = _rowsVisiveis.filter(function(r){ return r._apto && r._foto; }).length;
       var semFoto  = aptos - comFoto;
@@ -827,7 +887,6 @@ function exportarExcelFiscalGov() {
       ]);
       wsRes['!cols'] = [{wch:36},{wch:20}];
 
-      // ── Workbook ──
       var wb = XLSX.utils.book_new();
       XLSX.utils.book_append_sheet(wb, ws,    'FiscalGov EX-01');
       XLSX.utils.book_append_sheet(wb, wsRes, 'Resumo EX-01');
@@ -846,14 +905,21 @@ function exportarExcelFiscalGov() {
   }, 50);
 }
 
-/* ── Carrega dados ── */
+/* ══════════════════════════════════════════════════════
+   CARREGA DADOS DO GITHUB
+   ══════════════════════════════════════════════════════ */
 var url = "https://raw.githubusercontent.com/"+USUARIO+"/"+REPO+"/main/dados.json?t="+Date.now();
 fetch(url)
   .then(function(r){ if(!r.ok) throw new Error("HTTP "+r.status); return r.json(); })
   .then(function(j){
     document.getElementById("hd-ts").innerHTML = "Atualizado<br>"+(j.gerado_em||"—");
 
-    var conv = j.convenios || [];
+    /* FIX: guard para dados.json sem chave convenios (ex: apenas exec_financeira) */
+    var conv = j.convenios;
+    if (!Array.isArray(conv)) {
+      throw new Error("Campo 'convenios' ausente no dados.json. Rode o main.py para gerar os dados de vigências.");
+    }
+
     todos = [];
     for (var i=0; i<conv.length; i++) {
       var c = conv[i];
@@ -890,6 +956,9 @@ fetch(url)
     document.getElementById("prog-bar").style.width  = pct+"%";
     document.getElementById("overlay").classList.add("hide");
 
+    /* FIX: atualiza contadores dos chips */
+    atualizarContadoresChips();
+
     var fiscais = {};
     todos.forEach(function(c){ var f=(c.fiscal||"").trim(); if(f) fiscais[f]=1; });
     var selFisc = document.getElementById("fFiscal");
@@ -902,14 +971,25 @@ fetch(url)
   })
   .catch(function(e){
     document.getElementById("overlay").classList.add("hide");
+    /* FIX: estado de erro nos KPIs + mensagem clara na tabela */
+    ["kpi-total","kpi-proj","kpi-ok","kpi-nok","kpi-pct"].forEach(function(id){
+      var el = document.getElementById(id);
+      if (el) { el.textContent = "!"; el.closest('.kpi').classList.add('k-err'); }
+    });
+    document.getElementById("prog-pct-label").textContent = "Erro";
     document.getElementById("tbody").innerHTML =
-      '<tr><td colspan="10" class="empty-row"><i class="fa-solid fa-triangle-exclamation" style="color:#ef4444;margin-right:6px"></i>Erro ao carregar dados. Verifique se o Python já rodou e o arquivo dados.json está no GitHub.</td></tr>';
+      '<tr><td colspan="10"><div class="empty-state">' +
+      '<i class="fa-solid fa-triangle-exclamation" style="color:#ef4444;opacity:1"></i>' +
+      '<p style="color:#ef4444;font-weight:600">Erro ao carregar dados</p>' +
+      '<small>' + (e.message || 'Verifique se o Python já rodou e o arquivo dados.json está no GitHub.') + '</small>' +
+      '</div></td></tr>';
   });
 
-/* ── TELA CHEIA ── */
+/* ══════════════════════════════════════════════════════
+   TELA CHEIA
+   ══════════════════════════════════════════════════════ */
 function toggleFullscreen(id) {
   var el = document.getElementById(id);
-  var btn = document.getElementById('btnFSTbl');
   var isFs = document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement;
   if (!isFs) {
     var req = el.requestFullscreen || el.webkitRequestFullscreen || el.mozRequestFullScreen;
@@ -925,11 +1005,53 @@ document.addEventListener('mozfullscreenchange', _syncFsBtn);
 function _syncFsBtn() {
   var btn = document.getElementById('btnFSTbl');
   if (!btn) return;
-  var isFs = document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement;
-  btn.innerHTML = isFs
+  var isFs = !!(document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement);
+  /* FIX: atualiza só se mudou, evita piscar */
+  var novoHtml = isFs
     ? '<i class="fa-solid fa-compress"></i> Sair'
     : '<i class="fa-solid fa-expand"></i> Tela cheia';
+  if (btn.innerHTML !== novoHtml) btn.innerHTML = novoHtml;
 }
+</script>
+
+<!-- ══════════════════════════════════════════════════
+     SIDEBAR TOGGLE — DESKTOP APENAS
+     FIX: classe exclusiva sb-desk-btn, sem conflito com header
+     ══════════════════════════════════════════════════ -->
+<script>
+(function(){
+  var sidebar = document.getElementById('mainSidebar');
+  if (!sidebar) return;
+
+  /* Só cria o botão desktop em viewports maiores */
+  function isMobile(){ return window.innerWidth <= 900 || window.innerHeight <= 700; }
+  if (isMobile()) return;  /* Mobile usa o botão do header */
+
+  var btn = document.createElement('button');
+  btn.className = 'sb-desk-btn';
+  btn.title = 'Recolher menu';
+  btn.setAttribute('aria-label','Recolher/expandir menu lateral');
+  btn.innerHTML = '<i class="fa-solid fa-chevron-left"></i>';
+  document.body.appendChild(btn);
+
+  var collapsed = sessionStorage.getItem('idepi_sb_collapsed') === '1';
+
+  function aplicar(c){
+    collapsed = c;
+    sidebar.classList.toggle('collapsed', collapsed);
+    btn.innerHTML = collapsed
+      ? '<i class="fa-solid fa-chevron-right"></i>'
+      : '<i class="fa-solid fa-chevron-left"></i>';
+    btn.title = collapsed ? 'Expandir menu' : 'Recolher menu';
+    btn.style.left = collapsed ? '0px' : '214px';
+  }
+  aplicar(collapsed);
+
+  btn.addEventListener('click', function(){
+    aplicar(!collapsed);
+    sessionStorage.setItem('idepi_sb_collapsed', collapsed ? '1' : '0');
+  });
+})();
 </script>
 
 <!-- LOCKSCREEN -->
@@ -953,41 +1075,6 @@ function checkPwd(){
   if(v===SENHA){sessionStorage.setItem("idepi_auth","1");document.getElementById("lockscreen").style.display="none";}
   else{document.getElementById("pwd-err").textContent="Senha incorreta.";document.getElementById("pwd-input").value="";document.getElementById("pwd-input").focus();}
 }
-</script>
-
-<script>
-/* ── SIDEBAR TOGGLE JS ── */
-(function(){
-  var sidebar = document.querySelector('.sidebar');
-  if(!sidebar) return;
-
-  // Botão fixo — colocado no body, não dentro da sidebar
-  var btn = document.createElement('button');
-  btn.className = 'sb-toggle';
-  btn.title = 'Recolher menu';
-  btn.setAttribute('aria-label','Recolher/expandir menu lateral');
-  btn.innerHTML = '<i class="fa-solid fa-chevron-left"></i>';
-  document.body.appendChild(btn);
-
-  // Restaura estado salvo
-  var collapsed = sessionStorage.getItem('idepi_sb_collapsed') === '1';
-  function aplicar(c){
-    collapsed = c;
-    sidebar.classList.toggle('collapsed', collapsed);
-    btn.innerHTML = collapsed
-      ? '<i class="fa-solid fa-chevron-right"></i>'
-      : '<i class="fa-solid fa-chevron-left"></i>';
-    btn.title = collapsed ? 'Expandir menu' : 'Recolher menu';
-    // Ajusta posição do botão conforme estado
-    btn.style.left = collapsed ? '0' : '214px';
-  }
-  aplicar(collapsed);
-
-  btn.addEventListener('click', function(){
-    aplicar(!collapsed);
-    sessionStorage.setItem('idepi_sb_collapsed', collapsed ? '1' : '0');
-  });
-})();
 </script>
 
 </body>

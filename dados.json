@@ -6617,7 +6617,7 @@
     {
       "numero": "947927",
       "objeto": "PAVIMENTACAO EM PARALELEPIPEDO EM VIAS PUBLICAS DO MUNICIPIO DE TERESINA - PI.",
-      "coletado_em": "01/07/2026 07:26",
+      "coletado_em": "01/07/2026 15:29",
       "valor_global": "R$ 651.650,00",
       "valor_repasse": "R$ 626.453,00",
       "valor_contrapartida": "R$ 25.197,00",
@@ -6897,10 +6897,14 @@
       "obs_manual": "",
       "perfil": "contrato_repasse_caixa",
       "concedente": "Caixa Economica Federal (inferido)",
-      "mandataria": "Caixa Economica Federal"
+      "mandataria": "Caixa Economica Federal",
+      "exec_fisica_sem_medicao": true,
+      "exec_fisica_metas_parciais": false,
+      "exec_fisica_valor_fora_obras": "",
+      "exec_fisica_pct_financeiro": 91.1
     }
   ],
-  "exec_atualizado_em": "01/07/2026 07:29",
+  "exec_atualizado_em": "01/07/2026 15:32",
   "historico_repasses": {
     "969555": {
       "objeto": "Construção e equipagem da Casa da Mulher Brasileira no Município de Parnaiba-PI",

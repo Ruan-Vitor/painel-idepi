@@ -6613,9 +6613,294 @@
       "_id_proposta": "1474330",
       "erro": "",
       "obs_manual": ""
+    },
+    {
+      "numero": "947927",
+      "objeto": "PAVIMENTACAO EM PARALELEPIPEDO EM VIAS PUBLICAS DO MUNICIPIO DE TERESINA - PI.",
+      "coletado_em": "01/07/2026 07:26",
+      "valor_global": "R$ 651.650,00",
+      "valor_repasse": "R$ 626.453,00",
+      "valor_contrapartida": "R$ 25.197,00",
+      "situacao_tgov": "Prestação de Contas Concluída",
+      "regime_simplificado": true,
+      "tipo_instrumento": "Contrato de Repasse",
+      "ano": "2023",
+      "contratos": [
+        {
+          "numero_contrato": "15/2025",
+          "situacao": "Contrato Concluído e Aditivação Concluída",
+          "valor": "R$ 619.067,50",
+          "valor_repasse": "R$ 601.139,58",
+          "dt_inicio": "03/04/2025",
+          "dt_fim": "31/12/2025",
+          "cnpj": "44.089.630/0001-50",
+          "razao_social": "PIAUI CONSTRUCOES E EMPREENDIMENTOS LTDA"
+        }
+      ],
+      "movimentacoes": [
+        {
+          "num": "10337150",
+          "data": "08/05/2026",
+          "tipo": "",
+          "v_orig": null,
+          "v_bruto": 2089.17,
+          "v_liq": 2089.17,
+          "v_retencao": 0.0,
+          "favorecido": "",
+          "tributo": "DEVOLUÇÃO DE SALDO REMANESCENTE",
+          "ndl": "",
+          "tdl": "",
+          "situacao": ""
+        },
+        {
+          "num": "10337149",
+          "data": "08/05/2026",
+          "tipo": "",
+          "v_orig": null,
+          "v_bruto": 51941.45,
+          "v_liq": 51941.45,
+          "v_retencao": 0.0,
+          "favorecido": "",
+          "tributo": "DEVOLUÇÃO DE SALDO REMANESCENTE",
+          "ndl": "",
+          "tdl": "",
+          "situacao": ""
+        },
+        {
+          "num": "10216786",
+          "data": "12/03/2026",
+          "tipo": "PAGAMENTO DE TRIBUTOS",
+          "v_orig": null,
+          "v_bruto": 215.13,
+          "v_liq": 215.13,
+          "v_retencao": 0.0,
+          "favorecido": "",
+          "tributo": "IR",
+          "ndl": "16",
+          "tdl": "NOTA FISCAL",
+          "situacao": ""
+        },
+        {
+          "num": "10211444",
+          "data": "09/03/2026",
+          "tipo": "PAGAMENTO A FAVORECIDO COM OBTV",
+          "v_orig": 17927.92,
+          "v_bruto": 17927.92,
+          "v_liq": 17712.79,
+          "v_retencao": 0.0,
+          "favorecido": "44.089.630/0001-50",
+          "tributo": "PAGAMENTO A FAVORECIDO COM OBTV",
+          "ndl": "16",
+          "tdl": "NOTA FISCAL",
+          "situacao": "NOTA FISCAL"
+        },
+        {
+          "num": "10177293",
+          "data": "24/02/2026",
+          "tipo": "PAGAMENTO DE TRIBUTOS",
+          "v_orig": null,
+          "v_bruto": 1746.97,
+          "v_liq": 1746.97,
+          "v_retencao": 0.0,
+          "favorecido": "",
+          "tributo": "IR",
+          "ndl": "15",
+          "tdl": "NOTA FISCAL",
+          "situacao": ""
+        },
+        {
+          "num": "10172666",
+          "data": "19/02/2026",
+          "tipo": "PAGAMENTO A FAVORECIDO COM OBTV",
+          "v_orig": 145580.92,
+          "v_bruto": 145580.92,
+          "v_liq": 143833.95,
+          "v_retencao": 0.0,
+          "favorecido": "44.089.630/0001-50",
+          "tributo": "PAGAMENTO A FAVORECIDO COM OBTV",
+          "ndl": "15",
+          "tdl": "NOTA FISCAL",
+          "situacao": "NOTA FISCAL"
+        },
+        {
+          "num": "10016018",
+          "data": "27/11/2025",
+          "tipo": "PAGAMENTO DE TRIBUTOS",
+          "v_orig": null,
+          "v_bruto": 5466.69,
+          "v_liq": 5466.69,
+          "v_retencao": 0.0,
+          "favorecido": "",
+          "tributo": "IR",
+          "ndl": "10, 11",
+          "tdl": "NOTA FISCAL",
+          "situacao": ""
+        },
+        {
+          "num": "10009725",
+          "data": "24/11/2025",
+          "tipo": "PAGAMENTO A FAVORECIDO COM OBTV",
+          "v_orig": 430361.66,
+          "v_bruto": 430361.66,
+          "v_liq": 425197.33,
+          "v_retencao": 0.0,
+          "favorecido": "44.089.630/0001-50",
+          "tributo": "PAGAMENTO A FAVORECIDO COM OBTV",
+          "ndl": "11",
+          "tdl": "NOTA FISCAL",
+          "situacao": "NOTA FISCAL"
+        },
+        {
+          "num": "10009720",
+          "data": "24/11/2025",
+          "tipo": "PAGAMENTO A FAVORECIDO COM OBTV",
+          "v_orig": 25197.0,
+          "v_bruto": 25197.0,
+          "v_liq": 24894.64,
+          "v_retencao": 0.0,
+          "favorecido": "44.089.630/0001-50",
+          "tributo": "PAGAMENTO A FAVORECIDO COM OBTV",
+          "ndl": "10",
+          "tdl": "NOTA FISCAL",
+          "situacao": "NOTA FISCAL"
+        },
+        {
+          "num": "8901511",
+          "data": "18/07/2024",
+          "tipo": "INGRESSO DE CONTRAPARTIDA",
+          "v_orig": null,
+          "v_bruto": 25197.0,
+          "v_liq": 25197.0,
+          "v_retencao": 0.0,
+          "favorecido": "09.034.960/0001-47",
+          "tributo": "INGRESSO DE CONTRAPARTIDA",
+          "ndl": "",
+          "tdl": "",
+          "situacao": ""
+        }
+      ],
+      "notas_fiscais": [
+        {
+          "num": "16",
+          "data": "09/03/2026",
+          "tipo": "NOTA FISCAL",
+          "razao": "PIAUI CONSTRUCOES E EMPREENDIMENTOS LTDA",
+          "v_orig": 17927.92,
+          "v_bruto": 17927.92,
+          "tributos": 215.13,
+          "v_liq": 17712.79,
+          "status": "Ativo",
+          "id_nf": "8207129",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Execução dos Serviços de Pavimentação em Paralelepípedo em Vias Públicas do Município de Teresina – PI, com área de 3.129,48 m².",
+              "valor": 17927.92,
+              "id_item": "13903684",
+              "repasse": 17927.92,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "15",
+          "data": "11/02/2026",
+          "tipo": "NOTA FISCAL",
+          "razao": "PIAUI CONSTRUCOES E EMPREENDIMENTOS LTDA",
+          "v_orig": 145580.92,
+          "v_bruto": 145580.92,
+          "tributos": 1746.97,
+          "v_liq": 143833.95,
+          "status": "Ativo",
+          "id_nf": "8175673",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Execução dos Serviços de Pavimentação em Paralelepípedo em Vias Públicas do Município de Teresina – PI, com área de 3.129,48 m².",
+              "valor": 145580.92,
+              "id_item": "13849280",
+              "repasse": 145580.92,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "11",
+          "data": "19/11/2025",
+          "tipo": "NOTA FISCAL",
+          "razao": "PIAUI CONSTRUCOES E EMPREENDIMENTOS LTDA",
+          "v_orig": 430361.66,
+          "v_bruto": 430361.66,
+          "tributos": 5164.33,
+          "v_liq": 425197.33,
+          "status": "Ativo",
+          "id_nf": "8046656",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Execução dos Serviços de Pavimentação em Paralelepípedo em Vias Públicas do Município de Teresina – PI, com área de 3.129,48 m².",
+              "valor": 430361.66,
+              "id_item": "13618945",
+              "repasse": 430361.66,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "10",
+          "data": "11/11/2025",
+          "tipo": "NOTA FISCAL",
+          "razao": "PIAUI CONSTRUCOES E EMPREENDIMENTOS LTDA",
+          "v_orig": 25197.0,
+          "v_bruto": 25197.0,
+          "tributos": 302.36,
+          "v_liq": 24894.64,
+          "status": "Ativo",
+          "id_nf": "8043762",
+          "id_item": "",
+          "origem_recurso": "Contrapartida / Rendimento",
+          "itens": [
+            {
+              "desc": "Execução dos Serviços de Pavimentação em Paralelepípedo em Vias Públicas do Município de Teresina – PI, com área de 3.129,48 m².",
+              "valor": 25197.0,
+              "id_item": "13618946",
+              "repasse": 0.0,
+              "contrapartida": 25197.0,
+              "rendimento": 0.0
+            }
+          ]
+        }
+      ],
+      "exec_fisica_pct": 0,
+      "exec_fisica_str": "0%",
+      "exec_fisica_valor_realizado": "",
+      "exec_fisica_valor_total": "",
+      "ateste_convenente": false,
+      "ateste_concedente": false,
+      "status_obra": "",
+      "tem_medicao": false,
+      "saldo_rendimentos": 0.0,
+      "repasse_desembolsado": {
+        "previsto": 626453.0,
+        "desembolsado": 626453.0,
+        "a_desembolsar": 0.0
+      },
+      "_id_convenio": "1083163",
+      "_id_proposta": "1905300",
+      "erro": "",
+      "obs_manual": "",
+      "perfil": "contrato_repasse_caixa",
+      "concedente": "Caixa Economica Federal (inferido)",
+      "mandataria": "Caixa Economica Federal"
     }
   ],
-  "exec_atualizado_em": "17/06/2026 18:58",
+  "exec_atualizado_em": "01/07/2026 07:29",
   "historico_repasses": {
     "969555": {
       "objeto": "Construção e equipagem da Casa da Mulher Brasileira no Município de Parnaiba-PI",

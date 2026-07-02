@@ -6902,9 +6902,1542 @@
       "exec_fisica_metas_parciais": false,
       "exec_fisica_valor_fora_obras": "",
       "exec_fisica_pct_financeiro": 91.1
+    },
+    {
+      "numero": "953168",
+      "objeto": "EXECUCAO DAS OBRAS E SERVICOS DE ENGENHARIA PARA A CONSTRUCAO DA BARRAGEM DE NOVA ALGODOES NO MUNICIPIO DE COCAL - PI",
+      "coletado_em": "02/07/2026 07:56",
+      "valor_global": "R$ 241.204.177,04",
+      "valor_repasse": "R$ 240.000.000,00",
+      "valor_contrapartida": "R$ 30.000,00",
+      "situacao_tgov": "Em execução",
+      "regime_simplificado": false,
+      "tipo_instrumento": "Convênio",
+      "ano": "2023",
+      "contratos": [
+        {
+          "numero_contrato": "113/2024",
+          "situacao": "Concluído",
+          "valor": "R$ 205.192.255,22",
+          "valor_repasse": "R$ 205.192.253,51",
+          "dt_inicio": "29/08/2024",
+          "dt_fim": "31/12/2026",
+          "cnpj": "45.776.055/0001-26",
+          "razao_social": "CONSTRUTORA OTIMA LTDA"
+        }
+      ],
+      "movimentacoes": [
+        {
+          "num": "10423793",
+          "data": "12/06/2026",
+          "tipo": "PAGAMENTO DE TRIBUTOS",
+          "v_orig": null,
+          "v_bruto": 13105.2,
+          "v_liq": 13105.2,
+          "v_retencao": 0.0,
+          "favorecido": "",
+          "tributo": "ISS",
+          "ndl": "1370",
+          "tdl": "NOTA FISCAL",
+          "situacao": ""
+        },
+        {
+          "num": "10423789",
+          "data": "12/06/2026",
+          "tipo": "PAGAMENTO DE TRIBUTOS",
+          "v_orig": null,
+          "v_bruto": 3145.24,
+          "v_liq": 3145.24,
+          "v_retencao": 0.0,
+          "favorecido": "",
+          "tributo": "IR",
+          "ndl": "1370",
+          "tdl": "NOTA FISCAL",
+          "situacao": ""
+        },
+        {
+          "num": "10416876",
+          "data": "10/06/2026",
+          "tipo": "PAGAMENTO A FAVORECIDO COM OBTV",
+          "v_orig": 262104.16,
+          "v_bruto": 262104.16,
+          "v_liq": 245853.72,
+          "v_retencao": 0.0,
+          "favorecido": "04.804.189/0001-26",
+          "tributo": "PAGAMENTO A FAVORECIDO COM OBTV",
+          "ndl": "1370",
+          "tdl": "NOTA FISCAL",
+          "situacao": "NOTA FISCAL"
+        },
+        {
+          "num": "10415528",
+          "data": "10/06/2026",
+          "tipo": "PAGAMENTO DE TRIBUTOS",
+          "v_orig": null,
+          "v_bruto": 89656.57,
+          "v_liq": 89656.57,
+          "v_retencao": 0.0,
+          "favorecido": "",
+          "tributo": "ISS",
+          "ndl": "467",
+          "tdl": "NOTA FISCAL",
+          "situacao": ""
+        },
+        {
+          "num": "10415508",
+          "data": "10/06/2026",
+          "tipo": "PAGAMENTO DE TRIBUTOS",
+          "v_orig": null,
+          "v_bruto": 107587.88,
+          "v_liq": 107587.88,
+          "v_retencao": 0.0,
+          "favorecido": "",
+          "tributo": "IR",
+          "ndl": "467",
+          "tdl": "NOTA FISCAL",
+          "situacao": ""
+        },
+        {
+          "num": "10409779",
+          "data": "08/06/2026",
+          "tipo": "PAGAMENTO A FAVORECIDO COM OBTV",
+          "v_orig": 8965657.07,
+          "v_bruto": 8965657.07,
+          "v_liq": 8768412.62,
+          "v_retencao": 0.0,
+          "favorecido": "45.776.055/0001-26",
+          "tributo": "PAGAMENTO A FAVORECIDO COM OBTV",
+          "ndl": "467",
+          "tdl": "NOTA FISCAL",
+          "situacao": "NOTA FISCAL"
+        },
+        {
+          "num": "10357111",
+          "data": "15/05/2026",
+          "tipo": "PAGAMENTO DE TRIBUTOS",
+          "v_orig": null,
+          "v_bruto": 3145.24,
+          "v_liq": 3145.24,
+          "v_retencao": 0.0,
+          "favorecido": "",
+          "tributo": "IR",
+          "ndl": "1358",
+          "tdl": "NOTA FISCAL",
+          "situacao": ""
+        },
+        {
+          "num": "10357105",
+          "data": "15/05/2026",
+          "tipo": "PAGAMENTO DE TRIBUTOS",
+          "v_orig": null,
+          "v_bruto": 13105.2,
+          "v_liq": 13105.2,
+          "v_retencao": 0.0,
+          "favorecido": "",
+          "tributo": "ISS",
+          "ndl": "1358",
+          "tdl": "NOTA FISCAL",
+          "situacao": ""
+        },
+        {
+          "num": "10351867",
+          "data": "13/05/2026",
+          "tipo": "PAGAMENTO A FAVORECIDO COM OBTV",
+          "v_orig": 262104.16,
+          "v_bruto": 262104.16,
+          "v_liq": 245853.72,
+          "v_retencao": 0.0,
+          "favorecido": "04.804.189/0001-26",
+          "tributo": "PAGAMENTO A FAVORECIDO COM OBTV",
+          "ndl": "1358",
+          "tdl": "NOTA FISCAL",
+          "situacao": "NOTA FISCAL"
+        },
+        {
+          "num": "10351210",
+          "data": "13/05/2026",
+          "tipo": "PAGAMENTO DE TRIBUTOS",
+          "v_orig": null,
+          "v_bruto": 86481.75,
+          "v_liq": 86481.75,
+          "v_retencao": 0.0,
+          "favorecido": "",
+          "tributo": "ISS",
+          "ndl": "450",
+          "tdl": "NOTA FISCAL",
+          "situacao": ""
+        },
+        {
+          "num": "10351208",
+          "data": "13/05/2026",
+          "tipo": "PAGAMENTO DE TRIBUTOS",
+          "v_orig": null,
+          "v_bruto": 103778.1,
+          "v_liq": 103778.1,
+          "v_retencao": 0.0,
+          "favorecido": "",
+          "tributo": "IR",
+          "ndl": "450",
+          "tdl": "NOTA FISCAL",
+          "situacao": ""
+        },
+        {
+          "num": "10347834",
+          "data": "12/05/2026",
+          "tipo": "PAGAMENTO A FAVORECIDO COM OBTV",
+          "v_orig": 8648175.03,
+          "v_bruto": 8648175.03,
+          "v_liq": 8457915.18,
+          "v_retencao": 0.0,
+          "favorecido": "45.776.055/0001-26",
+          "tributo": "PAGAMENTO A FAVORECIDO COM OBTV",
+          "ndl": "450",
+          "tdl": "NOTA FISCAL",
+          "situacao": "NOTA FISCAL"
+        },
+        {
+          "num": "10280825",
+          "data": "13/04/2026",
+          "tipo": "PAGAMENTO DE TRIBUTOS",
+          "v_orig": null,
+          "v_bruto": 13428.22,
+          "v_liq": 13428.22,
+          "v_retencao": 0.0,
+          "favorecido": "",
+          "tributo": "ISS",
+          "ndl": "1357",
+          "tdl": "NOTA FISCAL",
+          "situacao": ""
+        },
+        {
+          "num": "10280818",
+          "data": "13/04/2026",
+          "tipo": "PAGAMENTO DE TRIBUTOS",
+          "v_orig": null,
+          "v_bruto": 3222.77,
+          "v_liq": 3222.77,
+          "v_retencao": 0.0,
+          "favorecido": "",
+          "tributo": "IR",
+          "ndl": "1357",
+          "tdl": "NOTA FISCAL",
+          "situacao": ""
+        },
+        {
+          "num": "10280806",
+          "data": "13/04/2026",
+          "tipo": "PAGAMENTO DE TRIBUTOS",
+          "v_orig": null,
+          "v_bruto": 99787.78,
+          "v_liq": 99787.78,
+          "v_retencao": 0.0,
+          "favorecido": "",
+          "tributo": "ISS",
+          "ndl": "440",
+          "tdl": "NOTA FISCAL",
+          "situacao": ""
+        },
+        {
+          "num": "10280798",
+          "data": "13/04/2026",
+          "tipo": "PAGAMENTO DE TRIBUTOS",
+          "v_orig": null,
+          "v_bruto": 119745.34,
+          "v_liq": 119745.34,
+          "v_retencao": 0.0,
+          "favorecido": "",
+          "tributo": "IR",
+          "ndl": "440",
+          "tdl": "NOTA FISCAL",
+          "situacao": ""
+        },
+        {
+          "num": "10277371",
+          "data": "09/04/2026",
+          "tipo": "PAGAMENTO A FAVORECIDO COM OBTV",
+          "v_orig": 268564.41,
+          "v_bruto": 268564.41,
+          "v_liq": 251913.42,
+          "v_retencao": 0.0,
+          "favorecido": "04.804.189/0001-26",
+          "tributo": "PAGAMENTO A FAVORECIDO COM OBTV",
+          "ndl": "1357",
+          "tdl": "NOTA FISCAL",
+          "situacao": "NOTA FISCAL"
+        },
+        {
+          "num": "10273852",
+          "data": "08/04/2026",
+          "tipo": "PAGAMENTO A FAVORECIDO COM OBTV",
+          "v_orig": 9978778.24,
+          "v_bruto": 9978778.24,
+          "v_liq": 9759245.12,
+          "v_retencao": 0.0,
+          "favorecido": "45.776.055/0001-26",
+          "tributo": "PAGAMENTO A FAVORECIDO COM OBTV",
+          "ndl": "440",
+          "tdl": "NOTA FISCAL",
+          "situacao": "NOTA FISCAL"
+        },
+        {
+          "num": "10268100",
+          "data": "07/04/2026",
+          "tipo": "PAGAMENTO DE TRIBUTOS",
+          "v_orig": null,
+          "v_bruto": 94052.36,
+          "v_liq": 94052.36,
+          "v_retencao": 0.0,
+          "favorecido": "",
+          "tributo": "ISS",
+          "ndl": "436, 439, 437, 438",
+          "tdl": "NOTA FISCAL",
+          "situacao": ""
+        },
+        {
+          "num": "10268059",
+          "data": "07/04/2026",
+          "tipo": "PAGAMENTO DE TRIBUTOS",
+          "v_orig": null,
+          "v_bruto": 112862.86,
+          "v_liq": 112862.86,
+          "v_retencao": 0.0,
+          "favorecido": "",
+          "tributo": "IR",
+          "ndl": "436, 439, 437, 438",
+          "tdl": "NOTA FISCAL",
+          "situacao": ""
+        }
+      ],
+      "notas_fiscais": [
+        {
+          "num": "1370",
+          "data": "09/06/2026",
+          "tipo": "NOTA FISCAL",
+          "razao": "ENGECOR CONSULTORIA E PROJETOS LTDA",
+          "v_orig": 262104.16,
+          "v_bruto": 262104.16,
+          "tributos": 16250.44,
+          "v_liq": 245853.72,
+          "status": "Ativo",
+          "id_nf": "8372986",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "CONTRATAÇÃO DE EMPRESA ESPECIALIZADA PARA ASSESSORIA E FISCALIZAÇÃO DA BARRAGEM DE NOVA ALGODÕES, NO MUNICÍPIO DE COCAL - PI.",
+              "valor": 262104.16,
+              "id_item": "14213458",
+              "repasse": 262104.16,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "467",
+          "data": "08/06/2026",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA OTIMA LTDA",
+          "v_orig": 8965657.07,
+          "v_bruto": 8965657.07,
+          "tributos": 197244.45,
+          "v_liq": 8768412.62,
+          "status": "Ativo",
+          "id_nf": "8367128",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Execução das Obras e Serviços de Engenharia para a Construção da Barragem de Nova Algodões no município de Cocal – PI.",
+              "valor": 8965657.07,
+              "id_item": "14202955",
+              "repasse": 8965657.07,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "1358",
+          "data": "12/05/2026",
+          "tipo": "NOTA FISCAL",
+          "razao": "ENGECOR CONSULTORIA E PROJETOS LTDA",
+          "v_orig": 262104.16,
+          "v_bruto": 262104.16,
+          "tributos": 16250.44,
+          "v_liq": 245853.72,
+          "status": "Ativo",
+          "id_nf": "8320209",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "CONTRATAÇÃO DE EMPRESA ESPECIALIZADA PARA ASSESSORIA E FISCALIZAÇÃO DA BARRAGEM DE NOVA ALGODÕES, NO MUNICÍPIO DE COCAL - PI.",
+              "valor": 262104.16,
+              "id_item": "14119931",
+              "repasse": 262104.16,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "450",
+          "data": "11/05/2026",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA OTIMA LTDA",
+          "v_orig": 8648175.03,
+          "v_bruto": 8648175.03,
+          "tributos": 190259.85,
+          "v_liq": 8457915.18,
+          "status": "Ativo",
+          "id_nf": "8317120",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Execução das Obras e Serviços de Engenharia para a Construção da Barragem de Nova Algodões no município de Cocal – PI.",
+              "valor": 8648175.03,
+              "id_item": "14113353",
+              "repasse": 8648175.03,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "1357",
+          "data": "09/04/2026",
+          "tipo": "NOTA FISCAL",
+          "razao": "ENGECOR CONSULTORIA E PROJETOS LTDA",
+          "v_orig": 268564.41,
+          "v_bruto": 268564.41,
+          "tributos": 16650.99,
+          "v_liq": 251913.42,
+          "status": "Ativo",
+          "id_nf": "8259663",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "CONTRATAÇÃO DE EMPRESA ESPECIALIZADA PARA ASSESSORIA E FISCALIZAÇÃO DA BARRAGEM DE NOVA ALGODÕES, NO MUNICÍPIO DE COCAL - PI.",
+              "valor": 268564.41,
+              "id_item": "14002928",
+              "repasse": 268564.41,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "440",
+          "data": "08/04/2026",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA OTIMA LTDA",
+          "v_orig": 9978778.24,
+          "v_bruto": 9978778.24,
+          "tributos": 219533.12,
+          "v_liq": 9759245.12,
+          "status": "Ativo",
+          "id_nf": "8257328",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Execução das Obras e Serviços de Engenharia para a Construção da Barragem de Nova Algodões no município de Cocal – PI.",
+              "valor": 9978778.24,
+              "id_item": "13997954",
+              "repasse": 9978778.24,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "439",
+          "data": "31/03/2026",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA OTIMA LTDA",
+          "v_orig": 556509.59,
+          "v_bruto": 556509.59,
+          "tributos": 12243.21,
+          "v_liq": 544266.38,
+          "status": "Ativo",
+          "id_nf": "8241062",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Execução das Obras e Serviços de Engenharia para a Construção da Barragem de Nova Algodões no município de Cocal – PI.",
+              "valor": 556509.59,
+              "id_item": "13968946",
+              "repasse": 556509.59,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "438",
+          "data": "31/03/2026",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA OTIMA LTDA",
+          "v_orig": 8676423.37,
+          "v_bruto": 8676423.37,
+          "tributos": 190881.31,
+          "v_liq": 8485542.06,
+          "status": "Ativo",
+          "id_nf": "8241141",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Execução das Obras e Serviços de Engenharia para a Construção da Barragem de Nova Algodões no município de Cocal – PI.",
+              "valor": 8676423.37,
+              "id_item": "13969529",
+              "repasse": 8676423.370000001,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "437",
+          "data": "31/03/2026",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA OTIMA LTDA",
+          "v_orig": 161143.08,
+          "v_bruto": 161143.08,
+          "tributos": 3545.15,
+          "v_liq": 157597.93,
+          "status": "Ativo",
+          "id_nf": "8241123",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Execução das Obras e Serviços de Engenharia para a Construção da Barragem de Nova Algodões no município de Cocal – PI.",
+              "valor": 161143.08,
+              "id_item": "13969284",
+              "repasse": 161143.08,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "436",
+          "data": "31/03/2026",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA OTIMA LTDA",
+          "v_orig": 11161.86,
+          "v_bruto": 11161.86,
+          "tributos": 245.55,
+          "v_liq": 10916.31,
+          "status": "Ativo",
+          "id_nf": "8241096",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Execução das Obras e Serviços de Engenharia para a Construção da Barragem de Nova Algodões no município de Cocal – PI.",
+              "valor": 11161.86,
+              "id_item": "13968996",
+              "repasse": 11161.86,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "1340",
+          "data": "17/03/2026",
+          "tipo": "NOTA FISCAL",
+          "razao": "ENGECOR CONSULTORIA E PROJETOS LTDA",
+          "v_orig": 278254.8,
+          "v_bruto": 278254.8,
+          "tributos": 17251.79,
+          "v_liq": 261003.01,
+          "status": "Ativo",
+          "id_nf": "8218764",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "CONTRATAÇÃO DE EMPRESA ESPECIALIZADA PARA ASSESSORIA E FISCALIZAÇÃO DA BARRAGEM DE NOVA ALGODÕES, NO MUNICÍPIO DE COCAL - PI.",
+              "valor": 278254.8,
+              "id_item": "13927648",
+              "repasse": 278254.8,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "1330",
+          "data": "10/02/2026",
+          "tipo": "NOTA FISCAL",
+          "razao": "ENGECOR CONSULTORIA E PROJETOS LTDA",
+          "v_orig": 278254.8,
+          "v_bruto": 278254.8,
+          "tributos": 17251.79,
+          "v_liq": 261003.01,
+          "status": "Ativo",
+          "id_nf": "8169290",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "CONTRATAÇÃO DE EMPRESA ESPECIALIZADA PARA ASSESSORIA E FISCALIZAÇÃO DA BARRAGEM DE NOVA ALGODÕES, NO MUNICÍPIO DE COCAL - PI.",
+              "valor": 278254.8,
+              "id_item": "13836852",
+              "repasse": 278254.8,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "411",
+          "data": "04/02/2026",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA OTIMA LTDA",
+          "v_orig": 114.25,
+          "v_bruto": 114.25,
+          "tributos": 2.51,
+          "v_liq": 111.74,
+          "status": "Ativo",
+          "id_nf": "8169021",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Execução das Obras e Serviços de Engenharia para a Construção da Barragem de Nova Algodões no município de Cocal – PI.",
+              "valor": 114.25,
+              "id_item": "13836810",
+              "repasse": 0.0,
+              "contrapartida": 0.0,
+              "rendimento": 114.25
+            }
+          ]
+        },
+        {
+          "num": "410",
+          "data": "02/02/2026",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA OTIMA LTDA",
+          "v_orig": 3874294.03,
+          "v_bruto": 3874294.03,
+          "tributos": 85234.47,
+          "v_liq": 3789059.56,
+          "status": "Ativo",
+          "id_nf": "8154863",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Execução das Obras e Serviços de Engenharia para a Construção da Barragem de Nova Algodões no município de Cocal – PI.",
+              "valor": 3874294.03,
+              "id_item": "13810464",
+              "repasse": 3874294.0300000003,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "409",
+          "data": "02/02/2026",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA OTIMA LTDA",
+          "v_orig": 10440726.9,
+          "v_bruto": 10440726.9,
+          "tributos": 229695.98,
+          "v_liq": 10211030.92,
+          "status": "Ativo",
+          "id_nf": "8154784",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Execução das Obras e Serviços de Engenharia para a Construção da Barragem de Nova Algodões no município de Cocal – PI.",
+              "valor": 10440726.9,
+              "id_item": "13810287",
+              "repasse": 10440726.9,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "408",
+          "data": "02/02/2026",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA OTIMA LTDA",
+          "v_orig": 850214.68,
+          "v_bruto": 850214.68,
+          "tributos": 18704.72,
+          "v_liq": 831509.96,
+          "status": "Ativo",
+          "id_nf": "8154592",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Execução das Obras e Serviços de Engenharia para a Construção da Barragem de Nova Algodões no município de Cocal – PI.",
+              "valor": 850214.68,
+              "id_item": "13810446",
+              "repasse": 850214.68,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "406",
+          "data": "02/02/2026",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA OTIMA LTDA",
+          "v_orig": 144851.65,
+          "v_bruto": 144851.65,
+          "tributos": 3186.73,
+          "v_liq": 141664.92,
+          "status": "Ativo",
+          "id_nf": "8154988",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Execução das Obras e Serviços de Engenharia para a Construção da Barragem de Nova Algodões no município de Cocal – PI.",
+              "valor": 144851.65,
+              "id_item": "13810519",
+              "repasse": 0.0,
+              "contrapartida": 0.0,
+              "rendimento": 144851.65
+            }
+          ]
+        },
+        {
+          "num": "405",
+          "data": "02/02/2026",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA OTIMA LTDA",
+          "v_orig": 113582.36,
+          "v_bruto": 113582.36,
+          "tributos": 2498.81,
+          "v_liq": 111083.55,
+          "status": "Ativo",
+          "id_nf": "8154982",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Execução das Obras e Serviços de Engenharia para a Construção da Barragem de Nova Algodões no município de Cocal – PI.",
+              "valor": 113582.36,
+              "id_item": "13810492",
+              "repasse": 0.0,
+              "contrapartida": 0.0,
+              "rendimento": 113582.36
+            }
+          ]
+        },
+        {
+          "num": "404",
+          "data": "02/02/2026",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA OTIMA LTDA",
+          "v_orig": 134708.58,
+          "v_bruto": 134708.58,
+          "tributos": 2963.58,
+          "v_liq": 131745.0,
+          "status": "Ativo",
+          "id_nf": "8154966",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Execução das Obras e Serviços de Engenharia para a Construção da Barragem de Nova Algodões no município de Cocal – PI.",
+              "valor": 134708.58,
+              "id_item": "13810474",
+              "repasse": 0.0,
+              "contrapartida": 0.0,
+              "rendimento": 134708.58
+            }
+          ]
+        },
+        {
+          "num": "403",
+          "data": "02/02/2026",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA OTIMA LTDA",
+          "v_orig": 91200.78,
+          "v_bruto": 91200.78,
+          "tributos": 2006.41,
+          "v_liq": 89194.37,
+          "status": "Ativo",
+          "id_nf": "8154893",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Execução das Obras e Serviços de Engenharia para a Construção da Barragem de Nova Algodões no município de Cocal – PI.",
+              "valor": 91200.78,
+              "id_item": "13810430",
+              "repasse": 0.0,
+              "contrapartida": 0.0,
+              "rendimento": 91200.78
+            }
+          ]
+        },
+        {
+          "num": "1329",
+          "data": "28/01/2026",
+          "tipo": "NOTA FISCAL",
+          "razao": "ENGECOR CONSULTORIA E PROJETOS LTDA",
+          "v_orig": 278254.8,
+          "v_bruto": 278254.8,
+          "tributos": 17251.79,
+          "v_liq": 261003.01,
+          "status": "Ativo",
+          "id_nf": "8146423",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "CONTRATAÇÃO DE EMPRESA ESPECIALIZADA PARA ASSESSORIA E FISCALIZAÇÃO DA BARRAGEM DE NOVA ALGODÕES, NO MUNICÍPIO DE COCAL - PI.",
+              "valor": 278254.8,
+              "id_item": "13795820",
+              "repasse": 278254.8,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "385",
+          "data": "29/12/2025",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA OTIMA LTDA",
+          "v_orig": 77688.75,
+          "v_bruto": 77688.75,
+          "tributos": 1709.14,
+          "v_liq": 75979.61,
+          "status": "Ativo",
+          "id_nf": "8113405",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Execução das Obras e Serviços de Engenharia para a Construção da Barragem de Nova Algodões no município de Cocal – PI.",
+              "valor": 77688.75,
+              "id_item": "13736315",
+              "repasse": 0.0,
+              "contrapartida": 0.0,
+              "rendimento": 77688.75
+            }
+          ]
+        },
+        {
+          "num": "384",
+          "data": "29/12/2025",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA OTIMA LTDA",
+          "v_orig": 138486.75,
+          "v_bruto": 138486.75,
+          "tributos": 3046.7,
+          "v_liq": 135440.05,
+          "status": "Ativo",
+          "id_nf": "8113380",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Execução das Obras e Serviços de Engenharia para a Construção da Barragem de Nova Algodões no município de Cocal – PI.",
+              "valor": 138486.75,
+              "id_item": "13736261",
+              "repasse": 0.0,
+              "contrapartida": 0.0,
+              "rendimento": 138486.75
+            }
+          ]
+        },
+        {
+          "num": "383",
+          "data": "29/12/2025",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA OTIMA LTDA",
+          "v_orig": 128293.98,
+          "v_bruto": 128293.98,
+          "tributos": 2822.46,
+          "v_liq": 125471.52,
+          "status": "Ativo",
+          "id_nf": "8113365",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Execução das Obras e Serviços de Engenharia para a Construção da Barragem de Nova Algodões no município de Cocal – PI.",
+              "valor": 128293.98,
+              "id_item": "13736244",
+              "repasse": 0.0,
+              "contrapartida": 0.0,
+              "rendimento": 128293.98
+            }
+          ]
+        },
+        {
+          "num": "382",
+          "data": "29/12/2025",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA OTIMA LTDA",
+          "v_orig": 165594.51,
+          "v_bruto": 165594.51,
+          "tributos": 3643.07,
+          "v_liq": 161951.44,
+          "status": "Ativo",
+          "id_nf": "8113339",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Execução das Obras e Serviços de Engenharia para a Construção da Barragem de Nova Algodões no município de Cocal – PI.",
+              "valor": 165594.51,
+              "id_item": "13736194",
+              "repasse": 0.0,
+              "contrapartida": 0.0,
+              "rendimento": 165594.51
+            }
+          ]
+        },
+        {
+          "num": "381",
+          "data": "29/12/2025",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA OTIMA LTDA",
+          "v_orig": 168493.57,
+          "v_bruto": 168493.57,
+          "tributos": 3706.85,
+          "v_liq": 164786.72,
+          "status": "Ativo",
+          "id_nf": "8113301",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Execução das Obras e Serviços de Engenharia para a Construção da Barragem de Nova Algodões no município de Cocal – PI.",
+              "valor": 168493.57,
+              "id_item": "13736165",
+              "repasse": 0.0,
+              "contrapartida": 0.0,
+              "rendimento": 168493.57
+            }
+          ]
+        },
+        {
+          "num": "380",
+          "data": "26/12/2025",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA OTIMA LTDA",
+          "v_orig": 5580.07,
+          "v_bruto": 5580.07,
+          "tributos": 122.76,
+          "v_liq": 5457.31,
+          "status": "Ativo",
+          "id_nf": "8112449",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Execução das Obras e Serviços de Engenharia para a Construção da Barragem de Nova Algodões no município de Cocal – PI.",
+              "valor": 5580.07,
+              "id_item": "13734607",
+              "repasse": 0.0,
+              "contrapartida": 0.0,
+              "rendimento": 5580.07
+            }
+          ]
+        },
+        {
+          "num": "379",
+          "data": "26/12/2025",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA OTIMA LTDA",
+          "v_orig": 5581.79,
+          "v_bruto": 5581.79,
+          "tributos": 122.79,
+          "v_liq": 5459.0,
+          "status": "Ativo",
+          "id_nf": "8112447",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Execução das Obras e Serviços de Engenharia para a Construção da Barragem de Nova Algodões no município de Cocal – PI.",
+              "valor": 5581.79,
+              "id_item": "13734603",
+              "repasse": 0.0,
+              "contrapartida": 0.0,
+              "rendimento": 5581.79
+            }
+          ]
+        },
+        {
+          "num": "362",
+          "data": "18/12/2025",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA OTIMA LTDA",
+          "v_orig": 3650296.31,
+          "v_bruto": 3650296.31,
+          "tributos": 80306.51,
+          "v_liq": 3569989.8,
+          "status": "Ativo",
+          "id_nf": "8102603",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Execução das Obras e Serviços de Engenharia para a Construção da Barragem de Nova Algodões no município de Cocal – PI.",
+              "valor": 3650296.31,
+              "id_item": "13714636",
+              "repasse": 3650296.31,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "1326",
+          "data": "12/12/2025",
+          "tipo": "NOTA FISCAL",
+          "razao": "ENGECOR CONSULTORIA E PROJETOS LTDA",
+          "v_orig": 301833.12,
+          "v_bruto": 301833.12,
+          "tributos": 18714.64,
+          "v_liq": 283118.48,
+          "status": "Ativo",
+          "id_nf": "8092074",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "CONTRATAÇÃO DE EMPRESA ESPECIALIZADA PARA ASSESSORIA E FISCALIZAÇÃO DA BARRAGEM DE NOVA ALGODÕES, NO MUNICÍPIO DE COCAL - PI.",
+              "valor": 301833.12,
+              "id_item": "13695570",
+              "repasse": 301833.12,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "357",
+          "data": "10/12/2025",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA OTIMA LTDA",
+          "v_orig": 3122252.49,
+          "v_bruto": 3122252.49,
+          "tributos": 68689.54,
+          "v_liq": 3053562.95,
+          "status": "Ativo",
+          "id_nf": "8087210",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Execução das Obras e Serviços de Engenharia para a Construção da Barragem de Nova Algodões no município de Cocal – PI.",
+              "valor": 3122252.49,
+              "id_item": "13686533",
+              "repasse": 3122252.49,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "1297",
+          "data": "12/11/2025",
+          "tipo": "NOTA FISCAL",
+          "razao": "ENGECOR CONSULTORIA E PROJETOS LTDA",
+          "v_orig": 311938.12,
+          "v_bruto": 311938.12,
+          "tributos": 19340.15,
+          "v_liq": 292597.97,
+          "status": "Ativo",
+          "id_nf": "8035074",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "CONTRATAÇÃO DE EMPRESA ESPECIALIZADA PARA ASSESSORIA E FISCALIZAÇÃO DA BARRAGEM DE NOVA ALGODÕES, NO MUNICÍPIO DE COCAL - PI.",
+              "valor": 311938.12,
+              "id_item": "13599428",
+              "repasse": 311938.12,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "349",
+          "data": "05/11/2025",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA OTIMA LTDA",
+          "v_orig": 2437147.24,
+          "v_bruto": 2437147.24,
+          "tributos": 53617.23,
+          "v_liq": 2383530.01,
+          "status": "Ativo",
+          "id_nf": "8026358",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Execução das Obras e Serviços de Engenharia para a Construção da Barragem de Nova Algodões no município de Cocal – PI.",
+              "valor": 2437147.24,
+              "id_item": "13585282",
+              "repasse": 2437147.24,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "344",
+          "data": "22/10/2025",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA OTIMA LTDA",
+          "v_orig": 1090600.27,
+          "v_bruto": 1090600.27,
+          "tributos": 23993.2,
+          "v_liq": 1066607.07,
+          "status": "Ativo",
+          "id_nf": "7998035",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Execução das Obras e Serviços de Engenharia para a Construção da Barragem de Nova Algodões no município de Cocal – PI.",
+              "valor": 1090600.27,
+              "id_item": "13535871",
+              "repasse": 1090600.27,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "343",
+          "data": "22/10/2025",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA OTIMA LTDA",
+          "v_orig": 1052175.64,
+          "v_bruto": 1052175.64,
+          "tributos": 23147.85,
+          "v_liq": 1029027.79,
+          "status": "Ativo",
+          "id_nf": "7998102",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Execução das Obras e Serviços de Engenharia para a Construção da Barragem de Nova Algodões no município de Cocal – PI.",
+              "valor": 1052175.64,
+              "id_item": "13535936",
+              "repasse": 1052175.64,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "1292",
+          "data": "08/10/2025",
+          "tipo": "NOTA FISCAL",
+          "razao": "ENGECOR CONSULTORIA E PROJETOS LTDA",
+          "v_orig": 311938.12,
+          "v_bruto": 311938.12,
+          "tributos": 19340.16,
+          "v_liq": 292597.96,
+          "status": "Ativo",
+          "id_nf": "7982888",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "CONTRATAÇÃO DE EMPRESA ESPECIALIZADA PARA ASSESSORIA E FISCALIZAÇÃO DA BARRAGEM DE NOVA ALGODÕES, NO MUNICÍPIO DE COCAL - PI.",
+              "valor": 311938.12,
+              "id_item": "13507500",
+              "repasse": 311938.12,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "337",
+          "data": "23/09/2025",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA OTIMA LTDA",
+          "v_orig": 1680212.78,
+          "v_bruto": 1680212.78,
+          "tributos": 36964.67,
+          "v_liq": 1643248.11,
+          "status": "Ativo",
+          "id_nf": "7943801",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Execução das Obras e Serviços de Engenharia para a Construção da Barragem de Nova Algodões no município de Cocal – PI.",
+              "valor": 1680212.78,
+              "id_item": "13443188",
+              "repasse": 1680212.7799999998,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "1289",
+          "data": "08/09/2025",
+          "tipo": "NOTA FISCAL",
+          "razao": "ENGECOR CONSULTORIA E PROJETOS LTDA",
+          "v_orig": 311938.12,
+          "v_bruto": 311938.12,
+          "tributos": 19340.15,
+          "v_liq": 292597.97,
+          "status": "Ativo",
+          "id_nf": "7919020",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "CONTRATAÇÃO DE EMPRESA ESPECIALIZADA PARA ASSESSORIA E FISCALIZAÇÃO DA BARRAGEM DE NOVA ALGODÕES, NO MUNICÍPIO DE COCAL - PI.",
+              "valor": 311938.12,
+              "id_item": "13397218",
+              "repasse": 311938.12,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "329",
+          "data": "04/09/2025",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA OTIMA LTDA",
+          "v_orig": 1769245.57,
+          "v_bruto": 1769245.57,
+          "tributos": 38923.39,
+          "v_liq": 1730322.18,
+          "status": "Ativo",
+          "id_nf": "7916965",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Execução das Obras e Serviços de Engenharia para a Construção da Barragem de Nova Algodões no município de Cocal – PI.",
+              "valor": 1769245.57,
+              "id_item": "13393944",
+              "repasse": 1769245.5699999998,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "328",
+          "data": "04/09/2025",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA OTIMA LTDA",
+          "v_orig": 223484.87,
+          "v_bruto": 223484.87,
+          "tributos": 4916.65,
+          "v_liq": 218568.22,
+          "status": "Ativo",
+          "id_nf": "7916964",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Execução das Obras e Serviços de Engenharia para a Construção da Barragem de Nova Algodões no município de Cocal – PI.",
+              "valor": 223484.87,
+              "id_item": "13393941",
+              "repasse": 223484.87,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "1280",
+          "data": "08/08/2025",
+          "tipo": "NOTA FISCAL",
+          "razao": "ENGECOR CONSULTORIA E PROJETOS LTDA",
+          "v_orig": 112056.2,
+          "v_bruto": 112056.2,
+          "tributos": 6947.48,
+          "v_liq": 105108.72,
+          "status": "Ativo",
+          "id_nf": "7868792",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "CONTRATAÇÃO DE EMPRESA ESPECIALIZADA PARA ASSESSORIA E FISCALIZAÇÃO DA BARRAGEM DE NOVA ALGODÕES, NO MUNICÍPIO DE COCAL - PI.",
+              "valor": 112056.2,
+              "id_item": "13315114",
+              "repasse": 112056.2,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "320",
+          "data": "11/07/2025",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA OTIMA LTDA",
+          "v_orig": 2498366.01,
+          "v_bruto": 2498366.01,
+          "tributos": 67455.88,
+          "v_liq": 2430910.13,
+          "status": "Ativo",
+          "id_nf": "7815046",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Execução das Obras e Serviços de Engenharia para a Construção da Barragem de Nova Algodões no município de Cocal – PI.",
+              "valor": 2498366.01,
+              "id_item": "13224237",
+              "repasse": 2498366.01,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "307",
+          "data": "11/06/2025",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA OTIMA LTDA",
+          "v_orig": 2048620.33,
+          "v_bruto": 2048620.33,
+          "tributos": 50191.19,
+          "v_liq": 1998429.14,
+          "status": "Ativo",
+          "id_nf": "7757179",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Execução das Obras e Serviços de Engenharia para a Construção da Barragem de Nova Algodões no município de Cocal – PI.",
+              "valor": 2048620.33,
+              "id_item": "13130100",
+              "repasse": 2048620.33,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "295",
+          "data": "16/05/2025",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA OTIMA LTDA",
+          "v_orig": 1897840.01,
+          "v_bruto": 1897840.01,
+          "tributos": 79709.28,
+          "v_liq": 1818130.73,
+          "status": "Ativo",
+          "id_nf": "7710434",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Execução das Obras e Serviços de Engenharia para a Construção da Barragem de Nova Algodões no município de Cocal – PI.",
+              "valor": 1897840.01,
+              "id_item": "13049358",
+              "repasse": 1897840.01,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "286",
+          "data": "04/04/2025",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA OTIMA LTDA",
+          "v_orig": 830054.79,
+          "v_bruto": 830054.79,
+          "tributos": 34862.3,
+          "v_liq": 795192.49,
+          "status": "Ativo",
+          "id_nf": "7648639",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Execução das Obras e Serviços de Engenharia para a Construção da Barragem de Nova Algodões no município de Cocal – PI.",
+              "valor": 830054.79,
+              "id_item": "12943848",
+              "repasse": 830054.79,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "285",
+          "data": "04/04/2025",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA OTIMA LTDA",
+          "v_orig": 1619568.39,
+          "v_bruto": 1619568.39,
+          "tributos": 68021.87,
+          "v_liq": 1551546.52,
+          "status": "Ativo",
+          "id_nf": "7648632",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Execução das Obras e Serviços de Engenharia para a Construção da Barragem de Nova Algodões no município de Cocal – PI.",
+              "valor": 1619568.39,
+              "id_item": "12943833",
+              "repasse": 1619568.39,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "276",
+          "data": "11/03/2025",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA OTIMA LTDA",
+          "v_orig": 30000.0,
+          "v_bruto": 30000.0,
+          "tributos": 1260.0,
+          "v_liq": 28740.0,
+          "status": "Ativo",
+          "id_nf": "7602527",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Execução das Obras e Serviços de Engenharia para a Construção da Barragem de Nova Algodões no município de Cocal – PI.",
+              "valor": 30000.0,
+              "id_item": "12868757",
+              "repasse": 0.0,
+              "contrapartida": 30000.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "275",
+          "data": "11/03/2025",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA OTIMA LTDA",
+          "v_orig": 1550615.08,
+          "v_bruto": 1550615.08,
+          "tributos": 65125.83,
+          "v_liq": 1485489.25,
+          "status": "Ativo",
+          "id_nf": "7602488",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Execução das Obras e Serviços de Engenharia para a Construção da Barragem de Nova Algodões no município de Cocal – PI.",
+              "valor": 1550615.08,
+              "id_item": "12868583",
+              "repasse": 1550615.08,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "252",
+          "data": "04/02/2025",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA OTIMA LTDA",
+          "v_orig": 914765.23,
+          "v_bruto": 914765.23,
+          "tributos": 38420.13,
+          "v_liq": 876345.1,
+          "status": "Ativo",
+          "id_nf": "7550652",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Execução das Obras e Serviços de Engenharia para a Construção da Barragem de Nova Algodões no município de Cocal – PI.",
+              "valor": 914765.23,
+              "id_item": "12784961",
+              "repasse": 914765.23,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "229",
+          "data": "26/12/2024",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA OTIMA LTDA",
+          "v_orig": 915051.3,
+          "v_bruto": 915051.3,
+          "tributos": 38432.15,
+          "v_liq": 876619.15,
+          "status": "Ativo",
+          "id_nf": "7489254",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Execução das Obras e Serviços de Engenharia para a Construção da Barragem de Nova Algodões no município de Cocal – PI.",
+              "valor": 915051.3,
+              "id_item": "12690579",
+              "repasse": 915051.3,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        }
+      ],
+      "exec_fisica_pct": 48.0,
+      "exec_fisica_str": "48,00%",
+      "exec_fisica_valor_realizado": "R$ 175.674,07",
+      "exec_fisica_valor_total": "",
+      "ateste_convenente": true,
+      "ateste_concedente": false,
+      "status_obra": "",
+      "tem_medicao": true,
+      "saldo_rendimentos": 881954.5,
+      "repasse_desembolsado": {
+        "previsto": 240000000.0,
+        "desembolsado": 100650000.0,
+        "a_desembolsar": 139350000.0
+      },
+      "_id_convenio": "1096009",
+      "_id_proposta": "1945538",
+      "erro": "",
+      "obs_manual": "",
+      "perfil": "generico",
+      "concedente": "",
+      "mandataria": "",
+      "exec_fisica_sem_medicao": false,
+      "exec_fisica_metas_parciais": false,
+      "exec_fisica_valor_fora_obras": "",
+      "exec_fisica_pct_financeiro": 0.0
     }
   ],
-  "exec_atualizado_em": "01/07/2026 15:32",
+  "exec_atualizado_em": "02/07/2026 08:12",
   "historico_repasses": {
     "969555": {
       "objeto": "Construção e equipagem da Casa da Mulher Brasileira no Município de Parnaiba-PI",

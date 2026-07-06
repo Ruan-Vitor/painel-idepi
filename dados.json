@@ -6906,7 +6906,7 @@
     {
       "numero": "953168",
       "objeto": "EXECUCAO DAS OBRAS E SERVICOS DE ENGENHARIA PARA A CONSTRUCAO DA BARRAGEM DE NOVA ALGODOES NO MUNICIPIO DE COCAL - PI",
-      "coletado_em": "04/07/2026 10:47",
+      "coletado_em": "06/07/2026 07:18",
       "valor_global": "R$ 241.204.177,04",
       "valor_repasse": "R$ 240.000.000,00",
       "valor_contrapartida": "R$ 30.000,00",
@@ -8412,13 +8412,13 @@
       ],
       "exec_fisica_pct": 48.0,
       "exec_fisica_str": "48,00%",
-      "exec_fisica_valor_realizado": "R$ 175.674,07",
-      "exec_fisica_valor_total": "",
+      "exec_fisica_valor_realizado": "R$ 79.493.380,21",
+      "exec_fisica_valor_total": "R$ 205.192.253,51",
       "ateste_convenente": true,
       "ateste_concedente": false,
       "status_obra": "",
       "tem_medicao": true,
-      "saldo_rendimentos": 899020.37,
+      "saldo_rendimentos": 907782.68,
       "repasse_desembolsado": {
         "previsto": 240000000.0,
         "desembolsado": 100650000.0,
@@ -8432,12 +8432,12 @@
       "concedente": "",
       "mandataria": "",
       "exec_fisica_sem_medicao": false,
-      "exec_fisica_metas_parciais": false,
-      "exec_fisica_valor_fora_obras": "",
+      "exec_fisica_metas_parciais": true,
+      "exec_fisica_valor_fora_obras": "R$ 36,011,923.53 (14.9% do global nao cobre aba obras)",
       "exec_fisica_pct_financeiro": 0.0
     }
   ],
-  "exec_atualizado_em": "04/07/2026 11:06",
+  "exec_atualizado_em": "06/07/2026 07:32",
   "historico_repasses": {
     "969555": {
       "objeto": "Construção e equipagem da Casa da Mulher Brasileira no Município de Parnaiba-PI",

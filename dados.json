@@ -3396,7 +3396,7 @@
     {
       "numero": "781089",
       "objeto": "IMPLANTACAO DE INFRAESTRUTURA ESPORTIVA no Municipio de Monsenhor Hipolito  PI",
-      "coletado_em": "20/05/2026 18:12",
+      "coletado_em": "07/07/2026 11:58",
       "valor_global": "R$ 567.939,88",
       "valor_repasse": "R$ 487.500,00",
       "valor_contrapartida": "R$ 80.439,88",
@@ -3789,15 +3789,18 @@
       "status_obra": "",
       "tem_medicao": false,
       "saldo_rendimentos": 0.0,
-      "repasse_desembolsado": {
-        "previsto": 487500.0,
-        "desembolsado": 390000.0,
-        "a_desembolsar": 97500.0
-      },
+      "repasse_desembolsado": null,
       "_id_convenio": "318664",
-      "_id_proposta": "652545",
+      "_id_proposta": "",
       "erro": "",
-      "obs_manual": "Instrumento antigo (pré-OBTV). Pagamentos coletados da aba Pagamento do Transferegov — movimentações OBTV não disponíveis. Empresa executora rescindida; novo projeto aguardando análise da CAIXA para licitação do remanescente."
+      "obs_manual": "Instrumento antigo (pré-OBTV). Pagamentos coletados da aba Pagamento do Transferegov — movimentações OBTV não disponíveis. Empresa executora rescindida; novo projeto aguardando análise da CAIXA para licitação do remanescente.",
+      "perfil": "antigo_pre_obtv",
+      "concedente": "Caixa Economica Federal (inferido)",
+      "mandataria": "Caixa Economica Federal",
+      "exec_fisica_sem_medicao": true,
+      "exec_fisica_metas_parciais": false,
+      "exec_fisica_valor_fora_obras": "",
+      "exec_fisica_pct_financeiro": 58.0
     },
     {
       "numero": "889040",
@@ -8437,7 +8440,7 @@
       "exec_fisica_pct_financeiro": 0.0
     }
   ],
-  "exec_atualizado_em": "06/07/2026 07:32",
+  "exec_atualizado_em": "07/07/2026 12:03",
   "historico_repasses": {
     "969555": {
       "objeto": "Construção e equipagem da Casa da Mulher Brasileira no Município de Parnaiba-PI",

@@ -8438,9 +8438,3930 @@
       "exec_fisica_metas_parciais": true,
       "exec_fisica_valor_fora_obras": "R$ 36,011,923.53 (14.9% do global nao cobre aba obras)",
       "exec_fisica_pct_financeiro": 0.0
+    },
+    {
+      "numero": "737058",
+      "objeto": "Construcao da Barragem Atalaia, Tipo Terra Zoneada, localizada no municipio de Sebastiao Barros, barrando o rio Paraim,  sangradouro tipo Perfil Creager. 1a ETAPA.",
+      "coletado_em": "09/07/2026 08:11",
+      "valor_global": "",
+      "valor_repasse": "R$ 119.187.005,00",
+      "valor_contrapartida": "R$ 13.323.944,11",
+      "situacao_tgov": "Em execução",
+      "regime_simplificado": false,
+      "tipo_instrumento": "Convênio",
+      "ano": "2010",
+      "contratos": [
+        {
+          "numero_contrato": "—",
+          "situacao": "Rescindido (inferido)",
+          "valor": "",
+          "valor_repasse": "",
+          "dt_inicio": "",
+          "dt_fim": "",
+          "cnpj": "05.802.590/0001-90",
+          "razao_social": "ENGECOR CONSULTORIA E PROJETOS LTDA"
+        }
+      ],
+      "movimentacoes": [
+        {
+          "num": "13572",
+          "data": "11/11/2025",
+          "tipo": "PAGAMENTO",
+          "v_orig": 200426.13,
+          "v_bruto": 200426.13,
+          "v_liq": 200426.13,
+          "v_retencao": 0.0,
+          "favorecido": "CONSTRUTORA JUREMA LTDA",
+          "cnpj": "05.802.590/0001-90",
+          "tributo": "",
+          "ndl": "13572",
+          "tdl": "",
+          "ndoc_pag": "2025OB02666",
+          "situacao": "Pago"
+        },
+        {
+          "num": "13571",
+          "data": "11/11/2025",
+          "tipo": "PAGAMENTO",
+          "v_orig": 133846.49,
+          "v_bruto": 133846.49,
+          "v_liq": 133846.49,
+          "v_retencao": 0.0,
+          "favorecido": "CONSTRUTORA JUREMA LTDA",
+          "cnpj": "05.802.590/0001-90",
+          "tributo": "",
+          "ndl": "13571",
+          "tdl": "",
+          "ndoc_pag": "2025OB02666",
+          "situacao": "Pago"
+        },
+        {
+          "num": "13569",
+          "data": "11/11/2025",
+          "tipo": "PAGAMENTO",
+          "v_orig": 108379.46,
+          "v_bruto": 108379.46,
+          "v_liq": 108379.46,
+          "v_retencao": 0.0,
+          "favorecido": "CONSTRUTORA JUREMA LTDA",
+          "cnpj": "05.802.590/0001-90",
+          "tributo": "",
+          "ndl": "13569",
+          "tdl": "",
+          "ndoc_pag": "2025OB02665",
+          "situacao": "Pago"
+        },
+        {
+          "num": "13568",
+          "data": "11/11/2025",
+          "tipo": "PAGAMENTO",
+          "v_orig": 477111.75,
+          "v_bruto": 477111.75,
+          "v_liq": 477111.75,
+          "v_retencao": 0.0,
+          "favorecido": "CONSTRUTORA JUREMA LTDA",
+          "cnpj": "05.802.590/0001-90",
+          "tributo": "",
+          "ndl": "13568",
+          "tdl": "",
+          "ndoc_pag": "2025OB02628",
+          "situacao": "Pago"
+        },
+        {
+          "num": "13567",
+          "data": "11/11/2025",
+          "tipo": "PAGAMENTO",
+          "v_orig": 386331.4,
+          "v_bruto": 386331.4,
+          "v_liq": 386331.4,
+          "v_retencao": 0.0,
+          "favorecido": "CONSTRUTORA JUREMA LTDA",
+          "cnpj": "05.802.590/0001-90",
+          "tributo": "",
+          "ndl": "13567",
+          "tdl": "",
+          "ndoc_pag": "2025OB02627",
+          "situacao": "Pago"
+        },
+        {
+          "num": "13566",
+          "data": "11/11/2025",
+          "tipo": "PAGAMENTO",
+          "v_orig": 257995.82,
+          "v_bruto": 257995.82,
+          "v_liq": 257995.82,
+          "v_retencao": 0.0,
+          "favorecido": "CONSTRUTORA JUREMA LTDA",
+          "cnpj": "05.802.590/0001-90",
+          "tributo": "",
+          "ndl": "13566",
+          "tdl": "",
+          "ndoc_pag": "2025OB02626",
+          "situacao": "Pago"
+        },
+        {
+          "num": "13565",
+          "data": "11/11/2025",
+          "tipo": "PAGAMENTO",
+          "v_orig": 208906.85,
+          "v_bruto": 208906.85,
+          "v_liq": 208906.85,
+          "v_retencao": 0.0,
+          "favorecido": "CONSTRUTORA JUREMA LTDA",
+          "cnpj": "05.802.590/0001-90",
+          "tributo": "",
+          "ndl": "13565",
+          "tdl": "",
+          "ndoc_pag": "2025OB02625",
+          "situacao": "Pago"
+        },
+        {
+          "num": "1300",
+          "data": "17/11/2025",
+          "tipo": "PAGAMENTO",
+          "v_orig": 67321.0,
+          "v_bruto": 67321.0,
+          "v_liq": 67321.0,
+          "v_retencao": 0.0,
+          "favorecido": "ENGECOR CONSULTORIA E PROJETOS LTDA",
+          "cnpj": "04.804.189/0001-26",
+          "tributo": "",
+          "ndl": "1300",
+          "tdl": "",
+          "ndoc_pag": "2025OB02749",
+          "situacao": "Pago"
+        },
+        {
+          "num": "1296",
+          "data": "07/11/2025",
+          "tipo": "PAGAMENTO",
+          "v_orig": 34340.94,
+          "v_bruto": 34340.94,
+          "v_liq": 34340.94,
+          "v_retencao": 0.0,
+          "favorecido": "ENGECOR CONSULTORIA E PROJETOS LTDA",
+          "cnpj": "04.804.189/0001-26",
+          "tributo": "",
+          "ndl": "1296",
+          "tdl": "",
+          "ndoc_pag": "2025OB02622",
+          "situacao": "Pago"
+        },
+        {
+          "num": "1295",
+          "data": "05/11/2025",
+          "tipo": "PAGAMENTO",
+          "v_orig": 68144.64,
+          "v_bruto": 68144.64,
+          "v_liq": 68144.64,
+          "v_retencao": 0.0,
+          "favorecido": "ENGECOR CONSULTORIA E PROJETOS LTDA",
+          "cnpj": "04.804.189/0001-26",
+          "tributo": "",
+          "ndl": "1295",
+          "tdl": "",
+          "ndoc_pag": "2025OB02635",
+          "situacao": "Pago"
+        },
+        {
+          "num": "1294",
+          "data": "07/11/2025",
+          "tipo": "PAGAMENTO",
+          "v_orig": 83851.83,
+          "v_bruto": 83851.83,
+          "v_liq": 83851.83,
+          "v_retencao": 0.0,
+          "favorecido": "ENGECOR CONSULTORIA E PROJETOS LTDA",
+          "cnpj": "04.804.189/0001-26",
+          "tributo": "",
+          "ndl": "1294",
+          "tdl": "",
+          "ndoc_pag": "2025OB02634",
+          "situacao": "Pago"
+        },
+        {
+          "num": "1293",
+          "data": "07/11/2025",
+          "tipo": "PAGAMENTO",
+          "v_orig": 11961.57,
+          "v_bruto": 11961.57,
+          "v_liq": 11961.57,
+          "v_retencao": 0.0,
+          "favorecido": "ENGECOR CONSULTORIA E PROJETOS LTDA",
+          "cnpj": "04.804.189/0001-26",
+          "tributo": "",
+          "ndl": "1293",
+          "tdl": "",
+          "ndoc_pag": "2025OB02633",
+          "situacao": "Pago"
+        },
+        {
+          "num": "1290",
+          "data": "09/09/2025",
+          "tipo": "PAGAMENTO",
+          "v_orig": 83851.83,
+          "v_bruto": 83851.83,
+          "v_liq": 83851.83,
+          "v_retencao": 0.0,
+          "favorecido": "ENGECOR CONSULTORIA E PROJETOS LTDA",
+          "cnpj": "04.804.189/0001-26",
+          "tributo": "",
+          "ndl": "1290",
+          "tdl": "",
+          "ndoc_pag": "2025OB01928",
+          "situacao": "Pago"
+        },
+        {
+          "num": "1291",
+          "data": "09/09/2025",
+          "tipo": "PAGAMENTO",
+          "v_orig": 90524.01,
+          "v_bruto": 90524.01,
+          "v_liq": 90524.01,
+          "v_retencao": 0.0,
+          "favorecido": "ENGECOR CONSULTORIA E PROJETOS LTDA",
+          "cnpj": "04.804.189/0001-26",
+          "tributo": "",
+          "ndl": "1291",
+          "tdl": "",
+          "ndoc_pag": "2025OB01929",
+          "situacao": "Pago"
+        },
+        {
+          "num": "13511",
+          "data": "21/08/2025",
+          "tipo": "PAGAMENTO",
+          "v_orig": 313839.84,
+          "v_bruto": 313839.84,
+          "v_liq": 313839.84,
+          "v_retencao": 0.0,
+          "favorecido": "CONSTRUTORA JUREMA LTDA",
+          "cnpj": "05.802.590/0001-90",
+          "tributo": "",
+          "ndl": "13511",
+          "tdl": "",
+          "ndoc_pag": "2025OB01782",
+          "situacao": "Pago"
+        },
+        {
+          "num": "13497",
+          "data": "13/08/2025",
+          "tipo": "PAGAMENTO",
+          "v_orig": 1467874.02,
+          "v_bruto": 1467874.02,
+          "v_liq": 1467874.02,
+          "v_retencao": 0.0,
+          "favorecido": "CONSTRUTORA JUREMA LTDA",
+          "cnpj": "05.802.590/0001-90",
+          "tributo": "",
+          "ndl": "13497",
+          "tdl": "",
+          "ndoc_pag": "2025OB01703",
+          "situacao": "Pago"
+        },
+        {
+          "num": "13496",
+          "data": "13/08/2025",
+          "tipo": "PAGAMENTO",
+          "v_orig": 1437562.09,
+          "v_bruto": 1437562.09,
+          "v_liq": 1437562.09,
+          "v_retencao": 0.0,
+          "favorecido": "CONSTRUTORA JUREMA LTDA",
+          "cnpj": "05.802.590/0001-90",
+          "tributo": "",
+          "ndl": "13496",
+          "tdl": "",
+          "ndoc_pag": "2025OB01702",
+          "situacao": "Pago"
+        },
+        {
+          "num": "13495",
+          "data": "13/08/2025",
+          "tipo": "PAGAMENTO",
+          "v_orig": 1032552.47,
+          "v_bruto": 1032552.47,
+          "v_liq": 1032552.47,
+          "v_retencao": 0.0,
+          "favorecido": "CONSTRUTORA JUREMA LTDA",
+          "cnpj": "05.802.590/0001-90",
+          "tributo": "",
+          "ndl": "13495",
+          "tdl": "",
+          "ndoc_pag": "2025OB01701",
+          "situacao": "Pago"
+        },
+        {
+          "num": "13494",
+          "data": "13/08/2025",
+          "tipo": "PAGAMENTO",
+          "v_orig": 854877.55,
+          "v_bruto": 854877.55,
+          "v_liq": 854877.55,
+          "v_retencao": 0.0,
+          "favorecido": "CONSTRUTORA JUREMA LTDA",
+          "cnpj": "05.802.590/0001-90",
+          "tributo": "",
+          "ndl": "13494",
+          "tdl": "",
+          "ndoc_pag": "2025OB01700",
+          "situacao": "Pago"
+        },
+        {
+          "num": "1279",
+          "data": "08/08/2025",
+          "tipo": "PAGAMENTO",
+          "v_orig": 80237.98,
+          "v_bruto": 80237.98,
+          "v_liq": 80237.98,
+          "v_retencao": 0.0,
+          "favorecido": "ENGECOR CONSULTORIA E PROJETOS LTDA",
+          "cnpj": "04.804.189/0001-26",
+          "tributo": "",
+          "ndl": "1279",
+          "tdl": "",
+          "ndoc_pag": "2025OB01671",
+          "situacao": "Pago"
+        }
+      ],
+      "notas_fiscais": [
+        {
+          "num": "13678",
+          "data": "14/05/2026",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA JUREMA LTDA",
+          "v_orig": 788864.11,
+          "v_bruto": 788864.11,
+          "tributos": 33132.28,
+          "v_liq": 755731.83,
+          "status": "Ativo",
+          "id_nf": "8364729",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Execução do objeto da licitação.",
+              "valor": 788864.11,
+              "id_item": "14197866",
+              "repasse": 788864.11,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "13677",
+          "data": "14/05/2026",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA JUREMA LTDA",
+          "v_orig": 964167.23,
+          "v_bruto": 964167.23,
+          "tributos": 30853.34,
+          "v_liq": 933313.89,
+          "status": "Ativo",
+          "id_nf": "8364667",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Execução do objeto da licitação.",
+              "valor": 964167.23,
+              "id_item": "14197796",
+              "repasse": 964167.23,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "13676",
+          "data": "14/05/2026",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA JUREMA LTDA",
+          "v_orig": 210327.6,
+          "v_bruto": 210327.6,
+          "tributos": 6730.48,
+          "v_liq": 203597.12,
+          "status": "Ativo",
+          "id_nf": "8364630",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Execução do objeto da licitação.",
+              "valor": 210327.6,
+              "id_item": "14197740",
+              "repasse": 210327.6,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "13675",
+          "data": "14/05/2026",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA JUREMA LTDA",
+          "v_orig": 457706.85,
+          "v_bruto": 457706.85,
+          "tributos": 19223.68,
+          "v_liq": 438483.17,
+          "status": "Ativo",
+          "id_nf": "8364510",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Execução do objeto da licitação.",
+              "valor": 457706.85,
+              "id_item": "14197673",
+              "repasse": 457706.85,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "13674",
+          "data": "14/05/2026",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA JUREMA LTDA",
+          "v_orig": 559419.47,
+          "v_bruto": 559419.47,
+          "tributos": 17901.41,
+          "v_liq": 541518.06,
+          "status": "Ativo",
+          "id_nf": "8360739",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Execução do objeto da licitação.",
+              "valor": 559419.47,
+              "id_item": "14197434",
+              "repasse": 559419.47,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "1328",
+          "data": "19/12/2025",
+          "tipo": "NOTA FISCAL",
+          "razao": "ENGECOR CONSULTORIA E PROJETOS LTDA",
+          "v_orig": 97747.3,
+          "v_bruto": 97747.3,
+          "tributos": 6060.32,
+          "v_liq": 91686.98,
+          "status": "Ativo",
+          "id_nf": "8360521",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Contratação de Empresa especializada, através de contratação direta, sob o regime de INEXIGIBILIDADE, para a Execução dos Serviços de Acompanhamento Tecnológico, Assessoria e Fiscalização, elaboração do relatório circunstanciado das Obras da Barragem de Atalaia e do reassentamento, estudos Geotecnia especial (Geofísico), e Elaboração de projeto de controle erosões nas áreas jusante e montante do vertedouro, e por fim, assessoramento na triagem das famílias a serem reassentadas",
+              "valor": 97747.3,
+              "id_item": "14197339",
+              "repasse": 97747.3,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "1327",
+          "data": "19/12/2025",
+          "tipo": "NOTA FISCAL",
+          "razao": "ENGECOR CONSULTORIA E PROJETOS LTDA",
+          "v_orig": 79975.06,
+          "v_bruto": 79975.06,
+          "tributos": 4958.45,
+          "v_liq": 75016.61,
+          "status": "Ativo",
+          "id_nf": "8360336",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Contratação de Empresa especializada, através de contratação direta, sob o regime de INEXIGIBILIDADE, para a Execução dos Serviços de Acompanhamento Tecnológico, Assessoria e Fiscalização, elaboração do relatório circunstanciado das Obras da Barragem de Atalaia e do reassentamento, estudos Geotecnia especial (Geofísico), e Elaboração de projeto de controle erosões nas áreas jusante e montante do vertedouro, e por fim, assessoramento na triagem das famílias a serem reassentadas",
+              "valor": 79975.06,
+              "id_item": "14197329",
+              "repasse": 79975.06,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "13589",
+          "data": "10/12/2025",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA JUREMA LTDA",
+          "v_orig": 996537.97,
+          "v_bruto": 996537.97,
+          "tributos": 31889.2,
+          "v_liq": 964648.77,
+          "status": "Ativo",
+          "id_nf": "8146364",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Execução do objeto da licitação.",
+              "valor": 996537.97,
+              "id_item": "14191539",
+              "repasse": 996537.97,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "13588",
+          "data": "10/12/2025",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA JUREMA LTDA",
+          "v_orig": 815349.24,
+          "v_bruto": 815349.24,
+          "tributos": 34244.66,
+          "v_liq": 781104.58,
+          "status": "Ativo",
+          "id_nf": "8146356",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Execução do objeto da licitação.",
+              "valor": 815349.24,
+              "id_item": "14191537",
+              "repasse": 815349.24,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "13587",
+          "data": "10/12/2025",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA JUREMA LTDA",
+          "v_orig": 538873.07,
+          "v_bruto": 538873.07,
+          "tributos": 17243.93,
+          "v_liq": 521629.14,
+          "status": "Ativo",
+          "id_nf": "8107494",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Execução do objeto da licitação.",
+              "valor": 538873.07,
+              "id_item": "14191533",
+              "repasse": 538873.07,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "13586",
+          "data": "10/12/2025",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA JUREMA LTDA",
+          "v_orig": 440896.14,
+          "v_bruto": 440896.14,
+          "tributos": 18517.63,
+          "v_liq": 422378.51,
+          "status": "Ativo",
+          "id_nf": "8107483",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Execução do objeto da licitação.",
+              "valor": 440896.14,
+              "id_item": "14191530",
+              "repasse": 440896.14,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "1325",
+          "data": "27/11/2025",
+          "tipo": "NOTA FISCAL",
+          "razao": "ENGECOR CONSULTORIA E PROJETOS LTDA",
+          "v_orig": 20730.64,
+          "v_bruto": 20730.64,
+          "tributos": 1285.29,
+          "v_liq": 19445.35,
+          "status": "Ativo",
+          "id_nf": "8148046",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Contratação de Empresa especializada, através de contratação direta, sob o regime de INEXIGIBILIDADE, para a Execução dos Serviços de Acompanhamento Tecnológico, Assessoria e Fiscalização, elaboração do relatório circunstanciado das Obras da Barragem de Atalaia e do reassentamento, estudos Geotecnia especial (Geofísico), e Elaboração de projeto de controle erosões nas áreas jusante e montante do vertedouro, e por fim, assessoramento na triagem das famílias a serem reassentadas",
+              "valor": 20730.64,
+              "id_item": "14197304",
+              "repasse": 20730.64,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "1300",
+          "data": "13/11/2025",
+          "tipo": "NOTA FISCAL",
+          "razao": "ENGECOR CONSULTORIA E PROJETOS LTDA",
+          "v_orig": 71770.77,
+          "v_bruto": 71770.77,
+          "tributos": 4449.77,
+          "v_liq": 67321.0,
+          "status": "Ativo",
+          "id_nf": "8147988",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Contratação de Empresa especializada, através de contratação direta, sob o regime de INEXIGIBILIDADE, para a Execução dos Serviços de Acompanhamento Tecnológico, Assessoria e Fiscalização, elaboração do relatório circunstanciado das Obras da Barragem de Atalaia e do reassentamento, estudos Geotecnia especial (Geofísico), e Elaboração de projeto de controle erosões nas áreas jusante e montante do vertedouro, e por fim, assessoramento na triagem das famílias a serem reassentadas",
+              "valor": 71770.77,
+              "id_item": "13799268",
+              "repasse": 71770.77,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "1299",
+          "data": "12/11/2025",
+          "tipo": "NOTA FISCAL",
+          "razao": "ENGECOR CONSULTORIA E PROJETOS LTDA",
+          "v_orig": 113057.29,
+          "v_bruto": 113057.29,
+          "tributos": 7009.54,
+          "v_liq": 106047.75,
+          "status": "Ativo",
+          "id_nf": "8147902",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Contratação de Empresa especializada, através de contratação direta, sob o regime de INEXIGIBILIDADE, para a Execução dos Serviços de Acompanhamento Tecnológico, Assessoria e Fiscalização, elaboração do relatório circunstanciado das Obras da Barragem de Atalaia e do reassentamento, estudos Geotecnia especial (Geofísico), e Elaboração de projeto de controle erosões nas áreas jusante e montante do vertedouro, e por fim, assessoramento na triagem das famílias a serem reassentadas",
+              "valor": 113057.29,
+              "id_item": "14191690",
+              "repasse": 113057.29,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "13573",
+          "data": "05/11/2025",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA JUREMA LTDA",
+          "v_orig": 255704.86,
+          "v_bruto": 255704.86,
+          "tributos": 8182.54,
+          "v_liq": 247522.32,
+          "status": "Ativo",
+          "id_nf": "8101306",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Execução do objeto da licitação.",
+              "valor": 255704.86,
+              "id_item": "14191520",
+              "repasse": 255704.86,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "13572",
+          "data": "05/11/2025",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA JUREMA LTDA",
+          "v_orig": 209213.07,
+          "v_bruto": 209213.07,
+          "tributos": 8786.94,
+          "v_liq": 200426.13,
+          "status": "Ativo",
+          "id_nf": "8101256",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Execução do objeto da licitação.",
+              "valor": 209213.07,
+              "id_item": "14191410",
+              "repasse": 209213.07,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "13571",
+          "data": "05/11/2025",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA JUREMA LTDA",
+          "v_orig": 138271.16,
+          "v_bruto": 138271.16,
+          "tributos": 4424.67,
+          "v_liq": 133846.49,
+          "status": "Ativo",
+          "id_nf": "8101211",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Execução do objeto da licitação.",
+              "valor": 138271.16,
+              "id_item": "14191357",
+              "repasse": 138271.16,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "13569",
+          "data": "05/11/2025",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA JUREMA LTDA",
+          "v_orig": 113130.95,
+          "v_bruto": 113130.95,
+          "tributos": 4751.49,
+          "v_liq": 108379.46,
+          "status": "Ativo",
+          "id_nf": "8100907",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Execução do objeto da licitação.",
+              "valor": 113130.95,
+              "id_item": "14197920",
+              "repasse": 113130.95,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "13568",
+          "data": "05/11/2025",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA JUREMA LTDA",
+          "v_orig": 492883.95,
+          "v_bruto": 492883.95,
+          "tributos": 15772.2,
+          "v_liq": 477111.75,
+          "status": "Ativo",
+          "id_nf": "8095660",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Execução do objeto da licitação.",
+              "valor": 492883.95,
+              "id_item": "14190486",
+              "repasse": 492883.95,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "13567",
+          "data": "05/11/2025",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA JUREMA LTDA",
+          "v_orig": 403268.68,
+          "v_bruto": 403268.68,
+          "tributos": 16937.28,
+          "v_liq": 386331.4,
+          "status": "Ativo",
+          "id_nf": "8095552",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Execução do objeto da licitação.",
+              "valor": 403268.68,
+              "id_item": "14190495",
+              "repasse": 403268.68,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "13566",
+          "data": "05/11/2025",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA JUREMA LTDA",
+          "v_orig": 266524.6,
+          "v_bruto": 266524.6,
+          "tributos": 8528.78,
+          "v_liq": 257995.82,
+          "status": "Ativo",
+          "id_nf": "8089485",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Execução do objeto da licitação.",
+              "valor": 266524.6,
+              "id_item": "14154536",
+              "repasse": 266524.6,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "13565",
+          "data": "05/11/2025",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA JUREMA LTDA",
+          "v_orig": 218065.59,
+          "v_bruto": 218065.59,
+          "tributos": 9158.74,
+          "v_liq": 208906.85,
+          "status": "Ativo",
+          "id_nf": "8056627",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Execução do objeto da licitação.",
+              "valor": 218065.59,
+              "id_item": "14154531",
+              "repasse": 218065.59,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "1296",
+          "data": "05/11/2025",
+          "tipo": "NOTA FISCAL",
+          "razao": "ENGECOR CONSULTORIA E PROJETOS LTDA",
+          "v_orig": 36610.8,
+          "v_bruto": 36610.8,
+          "tributos": 2269.86,
+          "v_liq": 34340.94,
+          "status": "Ativo",
+          "id_nf": "8048370",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Contratação de Empresa especializada, através de contratação direta, sob o regime de INEXIGIBILIDADE, para a Execução dos Serviços de Acompanhamento Tecnológico, Assessoria e Fiscalização, elaboração do relatório circunstanciado das Obras da Barragem de Atalaia e do reassentamento, estudos Geotecnia especial (Geofísico), e Elaboração de projeto de controle erosões nas áreas jusante e montante do vertedouro, e por fim, assessoramento na triagem das famílias a serem reassentadas",
+              "valor": 36610.8,
+              "id_item": "13624001",
+              "repasse": 36610.8,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "1295",
+          "data": "05/11/2025",
+          "tipo": "NOTA FISCAL",
+          "razao": "ENGECOR CONSULTORIA E PROJETOS LTDA",
+          "v_orig": 72648.86,
+          "v_bruto": 72648.86,
+          "tributos": 4504.22,
+          "v_liq": 68144.64,
+          "status": "Ativo",
+          "id_nf": "8046490",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Contratação de Empresa especializada, através de contratação direta, sob o regime de INEXIGIBILIDADE, para a Execução dos Serviços de Acompanhamento Tecnológico, Assessoria e Fiscalização, elaboração do relatório circunstanciado das Obras da Barragem de Atalaia e do reassentamento, estudos Geotecnia especial (Geofísico), e Elaboração de projeto de controle erosões nas áreas jusante e montante do vertedouro, e por fim, assessoramento na triagem das famílias a serem reassentadas",
+              "valor": 72648.86,
+              "id_item": "13621283",
+              "repasse": 72648.86,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "1294",
+          "data": "05/11/2025",
+          "tipo": "NOTA FISCAL",
+          "razao": "ENGECOR CONSULTORIA E PROJETOS LTDA",
+          "v_orig": 89394.27,
+          "v_bruto": 89394.27,
+          "tributos": 5542.44,
+          "v_liq": 83851.83,
+          "status": "Ativo",
+          "id_nf": "8046406",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Contratação de Empresa especializada, através de contratação direta, sob o regime de INEXIGIBILIDADE, para a Execução dos Serviços de Acompanhamento Tecnológico, Assessoria e Fiscalização, elaboração do relatório circunstanciado das Obras da Barragem de Atalaia e do reassentamento, estudos Geotecnia especial (Geofísico), e Elaboração de projeto de controle erosões nas áreas jusante e montante do vertedouro, e por fim, assessoramento na triagem das famílias a serem reassentadas",
+              "valor": 89394.27,
+              "id_item": "13618566",
+              "repasse": 89394.27,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "1293",
+          "data": "05/11/2025",
+          "tipo": "NOTA FISCAL",
+          "razao": "ENGECOR CONSULTORIA E PROJETOS LTDA",
+          "v_orig": 12752.2,
+          "v_bruto": 12752.2,
+          "tributos": 790.63,
+          "v_liq": 11961.57,
+          "status": "Ativo",
+          "id_nf": "8037250",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Contratação de Empresa especializada, através de contratação direta, sob o regime de INEXIGIBILIDADE, para a Execução dos Serviços de Acompanhamento Tecnológico, Assessoria e Fiscalização, elaboração do relatório circunstanciado das Obras da Barragem de Atalaia e do reassentamento, estudos Geotecnia especial (Geofísico), e Elaboração de projeto de controle erosões nas áreas jusante e montante do vertedouro, e por fim, assessoramento na triagem das famílias a serem reassentadas",
+              "valor": 12752.2,
+              "id_item": "13603256",
+              "repasse": 12752.2,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "1291",
+          "data": "08/09/2025",
+          "tipo": "NOTA FISCAL",
+          "razao": "ENGECOR CONSULTORIA E PROJETOS LTDA",
+          "v_orig": 96507.46,
+          "v_bruto": 96507.46,
+          "tributos": 5983.45,
+          "v_liq": 90524.01,
+          "status": "Ativo",
+          "id_nf": "7929411",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Contratação de Empresa especializada, através de contratação direta, sob o regime de INEXIGIBILIDADE, para a Execução dos Serviços de Acompanhamento Tecnológico, Assessoria e Fiscalização, elaboração do relatório circunstanciado das Obras da Barragem de Atalaia e do reassentamento, estudos Geotecnia especial (Geofísico), e Elaboração de projeto de controle erosões nas áreas jusante e montante do vertedouro, e por fim, assessoramento na triagem das famílias a serem reassentadas",
+              "valor": 96507.46,
+              "id_item": "13416655",
+              "repasse": 96507.46,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "1290",
+          "data": "08/09/2025",
+          "tipo": "NOTA FISCAL",
+          "razao": "ENGECOR CONSULTORIA E PROJETOS LTDA",
+          "v_orig": 89394.27,
+          "v_bruto": 89394.27,
+          "tributos": 5542.44,
+          "v_liq": 83851.83,
+          "status": "Ativo",
+          "id_nf": "7929406",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Contratação de Empresa especializada, através de contratação direta, sob o regime de INEXIGIBILIDADE, para a Execução dos Serviços de Acompanhamento Tecnológico, Assessoria e Fiscalização, elaboração do relatório circunstanciado das Obras da Barragem de Atalaia e do reassentamento, estudos Geotecnia especial (Geofísico), e Elaboração de projeto de controle erosões nas áreas jusante e montante do vertedouro, e por fim, assessoramento na triagem das famílias a serem reassentadas",
+              "valor": 89394.27,
+              "id_item": "13416742",
+              "repasse": 89394.27,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "13511",
+          "data": "19/08/2025",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA JUREMA LTDA",
+          "v_orig": 317651.65,
+          "v_bruto": 317651.65,
+          "tributos": 3811.81,
+          "v_liq": 313839.84,
+          "status": "Ativo",
+          "id_nf": "7917499",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Execução do objeto da licitação.",
+              "valor": 317651.65,
+              "id_item": "13394670",
+              "repasse": 317651.65,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "13497",
+          "data": "08/08/2025",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA JUREMA LTDA",
+          "v_orig": 1516398.78,
+          "v_bruto": 1516398.78,
+          "tributos": 48524.76,
+          "v_liq": 1467874.02,
+          "status": "Ativo",
+          "id_nf": "7917484",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Execução do objeto da licitação.",
+              "valor": 1516398.78,
+              "id_item": "13394646",
+              "repasse": 1516398.78,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "13496",
+          "data": "08/08/2025",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA JUREMA LTDA",
+          "v_orig": 1500586.73,
+          "v_bruto": 1500586.73,
+          "tributos": 63024.64,
+          "v_liq": 1437562.09,
+          "status": "Ativo",
+          "id_nf": "7877381",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Execução do objeto da licitação.",
+              "valor": 1500586.73,
+              "id_item": "13330915",
+              "repasse": 1500586.73,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "13495",
+          "data": "08/08/2025",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA JUREMA LTDA",
+          "v_orig": 1090657.97,
+          "v_bruto": 1090657.97,
+          "tributos": 58105.5,
+          "v_liq": 1032552.47,
+          "status": "Ativo",
+          "id_nf": "7877254",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Execução do objeto da licitação.",
+              "valor": 1090657.97,
+              "id_item": "13394556",
+              "repasse": 1090657.97,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "13494",
+          "data": "08/08/2025",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA JUREMA LTDA",
+          "v_orig": 892356.52,
+          "v_bruto": 892356.52,
+          "tributos": 37478.97,
+          "v_liq": 854877.55,
+          "status": "Ativo",
+          "id_nf": "7877214",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Execução do objeto da licitação.",
+              "valor": 892356.52,
+              "id_item": "13394417",
+              "repasse": 892356.52,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "1279",
+          "data": "07/08/2025",
+          "tipo": "NOTA FISCAL",
+          "razao": "ENGECOR CONSULTORIA E PROJETOS LTDA",
+          "v_orig": 85541.55,
+          "v_bruto": 85541.55,
+          "tributos": 5303.57,
+          "v_liq": 80237.98,
+          "status": "Ativo",
+          "id_nf": "7875935",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Contratação de Empresa especializada, através de contratação direta, sob o regime de INEXIGIBILIDADE, para a Execução dos Serviços de Acompanhamento Tecnológico, Assessoria e Fiscalização, elaboração do relatório circunstanciado das Obras da Barragem de Atalaia e do reassentamento, estudos Geotecnia especial (Geofísico), e Elaboração de projeto de controle erosões nas áreas jusante e montante do vertedouro, e por fim, assessoramento na triagem das famílias a serem reassentadas",
+              "valor": 85541.55,
+              "id_item": "13328280",
+              "repasse": 85541.55,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "1278",
+          "data": "07/08/2025",
+          "tipo": "NOTA FISCAL",
+          "razao": "ENGECOR CONSULTORIA E PROJETOS LTDA",
+          "v_orig": 69988.54,
+          "v_bruto": 69988.54,
+          "tributos": 4339.28,
+          "v_liq": 65649.26,
+          "status": "Ativo",
+          "id_nf": "7875907",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Contratação de Empresa especializada, através de contratação direta, sob o regime de INEXIGIBILIDADE, para a Execução dos Serviços de Acompanhamento Tecnológico, Assessoria e Fiscalização, elaboração do relatório circunstanciado das Obras da Barragem de Atalaia e do reassentamento, estudos Geotecnia especial (Geofísico), e Elaboração de projeto de controle erosões nas áreas jusante e montante do vertedouro, e por fim, assessoramento na triagem das famílias a serem reassentadas",
+              "valor": 69988.54,
+              "id_item": "13328231",
+              "repasse": 69988.54,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "1256",
+          "data": "14/04/2025",
+          "tipo": "NOTA FISCAL",
+          "razao": "ENGECOR CONSULTORIA E PROJETOS LTDA",
+          "v_orig": 100384.94,
+          "v_bruto": 100384.94,
+          "tributos": 6223.86,
+          "v_liq": 94161.08,
+          "status": "Ativo",
+          "id_nf": "7702853",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Contratação de Empresa especializada, através de contratação direta, sob o regime de INEXIGIBILIDADE, para a Execução dos Serviços de Acompanhamento Tecnológico, Assessoria e Fiscalização, elaboração do relatório circunstanciado das Obras da Barragem de Atalaia e do reassentamento, estudos Geotecnia especial (Geofísico), e Elaboração de projeto de controle erosões nas áreas jusante e montante do vertedouro, e por fim, assessoramento na triagem das famílias a serem reassentadas",
+              "valor": 100384.94,
+              "id_item": "13033298",
+              "repasse": 100384.94,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "1255",
+          "data": "14/04/2025",
+          "tipo": "NOTA FISCAL",
+          "razao": "ENGECOR CONSULTORIA E PROJETOS LTDA",
+          "v_orig": 82133.14,
+          "v_bruto": 82133.14,
+          "tributos": 5092.25,
+          "v_liq": 77040.89,
+          "status": "Ativo",
+          "id_nf": "7702852",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Contratação de Empresa especializada, através de contratação direta, sob o regime de INEXIGIBILIDADE, para a Execução dos Serviços de Acompanhamento Tecnológico, Assessoria e Fiscalização, elaboração do relatório circunstanciado das Obras da Barragem de Atalaia e do reassentamento, estudos Geotecnia especial (Geofísico), e Elaboração de projeto de controle erosões nas áreas jusante e montante do vertedouro, e por fim, assessoramento na triagem das famílias a serem reassentadas",
+              "valor": 82133.14,
+              "id_item": "13033297",
+              "repasse": 82133.14,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "1240",
+          "data": "24/02/2025",
+          "tipo": "NOTA FISCAL",
+          "razao": "ENGECOR CONSULTORIA E PROJETOS LTDA",
+          "v_orig": 82133.14,
+          "v_bruto": 82133.14,
+          "tributos": 5092.25,
+          "v_liq": 77040.89,
+          "status": "Ativo",
+          "id_nf": "7610775",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Contratação de Empresa especializada, através de contratação direta, sob o regime de INEXIGIBILIDADE, para a Execução dos Serviços de Acompanhamento Tecnológico, Assessoria e Fiscalização, elaboração do relatório circunstanciado das Obras da Barragem de Atalaia e do reassentamento, estudos Geotecnia especial (Geofísico), e Elaboração de projeto de controle erosões nas áreas jusante e montante do vertedouro, e por fim, assessoramento na triagem das famílias a serem reassentadas",
+              "valor": 82133.14,
+              "id_item": "12884328",
+              "repasse": 82133.14,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "1239",
+          "data": "24/02/2025",
+          "tipo": "NOTA FISCAL",
+          "razao": "ENGECOR CONSULTORIA E PROJETOS LTDA",
+          "v_orig": 100384.94,
+          "v_bruto": 100384.94,
+          "tributos": 6223.86,
+          "v_liq": 94161.08,
+          "status": "Ativo",
+          "id_nf": "7610761",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Contratação de Empresa especializada, através de contratação direta, sob o regime de INEXIGIBILIDADE, para a Execução dos Serviços de Acompanhamento Tecnológico, Assessoria e Fiscalização, elaboração do relatório circunstanciado das Obras da Barragem de Atalaia e do reassentamento, estudos Geotecnia especial (Geofísico), e Elaboração de projeto de controle erosões nas áreas jusante e montante do vertedouro, e por fim, assessoramento na triagem das famílias a serem reassentadas",
+              "valor": 100384.94,
+              "id_item": "12884303",
+              "repasse": 100384.94,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "1226",
+          "data": "07/02/2025",
+          "tipo": "NOTA FISCAL",
+          "razao": "ENGECOR CONSULTORIA E PROJETOS LTDA",
+          "v_orig": 82133.14,
+          "v_bruto": 82133.14,
+          "tributos": 5092.25,
+          "v_liq": 77040.89,
+          "status": "Ativo",
+          "id_nf": "7560225",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Contratação de Empresa especializada, através de contratação direta, sob o regime de INEXIGIBILIDADE, para a Execução dos Serviços de Acompanhamento Tecnológico, Assessoria e Fiscalização, elaboração do relatório circunstanciado das Obras da Barragem de Atalaia e do reassentamento, estudos Geotecnia especial (Geofísico), e Elaboração de projeto de controle erosões nas áreas jusante e montante do vertedouro, e por fim, assessoramento na triagem das famílias a serem reassentadas",
+              "valor": 82133.14,
+              "id_item": "12881131",
+              "repasse": 82133.14,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "1225",
+          "data": "07/02/2025",
+          "tipo": "NOTA FISCAL",
+          "razao": "ENGECOR CONSULTORIA E PROJETOS LTDA",
+          "v_orig": 100384.94,
+          "v_bruto": 100384.94,
+          "tributos": 6223.86,
+          "v_liq": 94161.08,
+          "status": "Ativo",
+          "id_nf": "7560224",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Contratação de Empresa especializada, através de contratação direta, sob o regime de INEXIGIBILIDADE, para a Execução dos Serviços de Acompanhamento Tecnológico, Assessoria e Fiscalização, elaboração do relatório circunstanciado das Obras da Barragem de Atalaia e do reassentamento, estudos Geotecnia especial (Geofísico), e Elaboração de projeto de controle erosões nas áreas jusante e montante do vertedouro, e por fim, assessoramento na triagem das famílias a serem reassentadas",
+              "valor": 100384.94,
+              "id_item": "12881031",
+              "repasse": 100384.94,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "1217",
+          "data": "17/12/2024",
+          "tipo": "NOTA FISCAL",
+          "razao": "ENGECOR CONSULTORIA E PROJETOS LTDA",
+          "v_orig": 82133.14,
+          "v_bruto": 82133.14,
+          "tributos": 5092.25,
+          "v_liq": 77040.89,
+          "status": "Ativo",
+          "id_nf": "7494287",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Contratação de Empresa especializada, através de contratação direta, sob o regime de INEXIGIBILIDADE, para a Execução dos Serviços de Acompanhamento Tecnológico, Assessoria e Fiscalização, elaboração do relatório circunstanciado das Obras da Barragem de Atalaia e do reassentamento, estudos Geotecnia especial (Geofísico), e Elaboração de projeto de controle erosões nas áreas jusante e montante do vertedouro, e por fim, assessoramento na triagem das famílias a serem reassentadas",
+              "valor": 82133.14,
+              "id_item": "12697052",
+              "repasse": 82133.14,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "1216",
+          "data": "17/12/2024",
+          "tipo": "NOTA FISCAL",
+          "razao": "ENGECOR CONSULTORIA E PROJETOS LTDA",
+          "v_orig": 100384.94,
+          "v_bruto": 100384.94,
+          "tributos": 6223.86,
+          "v_liq": 94161.08,
+          "status": "Ativo",
+          "id_nf": "7494192",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Contratação de Empresa especializada, através de contratação direta, sob o regime de INEXIGIBILIDADE, para a Execução dos Serviços de Acompanhamento Tecnológico, Assessoria e Fiscalização, elaboração do relatório circunstanciado das Obras da Barragem de Atalaia e do reassentamento, estudos Geotecnia especial (Geofísico), e Elaboração de projeto de controle erosões nas áreas jusante e montante do vertedouro, e por fim, assessoramento na triagem das famílias a serem reassentadas",
+              "valor": 100384.94,
+              "id_item": "12696934",
+              "repasse": 100384.94,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "1215",
+          "data": "18/11/2024",
+          "tipo": "NOTA FISCAL",
+          "razao": "ENGECOR CONSULTORIA E PROJETOS LTDA",
+          "v_orig": 82133.14,
+          "v_bruto": 82133.14,
+          "tributos": 5092.25,
+          "v_liq": 77040.89,
+          "status": "Ativo",
+          "id_nf": "7399044",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Contratação de Empresa especializada, através de contratação direta, sob o regime de INEXIGIBILIDADE, para a Execução dos Serviços de Acompanhamento Tecnológico, Assessoria e Fiscalização, elaboração do relatório circunstanciado das Obras da Barragem de Atalaia e do reassentamento, estudos Geotecnia especial (Geofísico), e Elaboração de projeto de controle erosões nas áreas jusante e montante do vertedouro, e por fim, assessoramento na triagem das famílias a serem reassentadas",
+              "valor": 82133.14,
+              "id_item": "12602678",
+              "repasse": 82133.14,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "1214",
+          "data": "18/11/2024",
+          "tipo": "NOTA FISCAL",
+          "razao": "ENGECOR CONSULTORIA E PROJETOS LTDA",
+          "v_orig": 100384.94,
+          "v_bruto": 100384.94,
+          "tributos": 6223.86,
+          "v_liq": 94161.08,
+          "status": "Ativo",
+          "id_nf": "7399035",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Contratação de Empresa especializada, através de contratação direta, sob o regime de INEXIGIBILIDADE, para a Execução dos Serviços de Acompanhamento Tecnológico, Assessoria e Fiscalização, elaboração do relatório circunstanciado das Obras da Barragem de Atalaia e do reassentamento, estudos Geotecnia especial (Geofísico), e Elaboração de projeto de controle erosões nas áreas jusante e montante do vertedouro, e por fim, assessoramento na triagem das famílias a serem reassentadas",
+              "valor": 100384.94,
+              "id_item": "12602634",
+              "repasse": 100384.94,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "1213",
+          "data": "17/10/2024",
+          "tipo": "NOTA FISCAL",
+          "razao": "ENGECOR CONSULTORIA E PROJETOS LTDA",
+          "v_orig": 90335.42,
+          "v_bruto": 90335.42,
+          "tributos": 5600.8,
+          "v_liq": 84734.62,
+          "status": "Ativo",
+          "id_nf": "7321673",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Contratação de Empresa especializada, através de contratação direta, sob o regime de INEXIGIBILIDADE, para a Execução dos Serviços de Acompanhamento Tecnológico, Assessoria e Fiscalização, elaboração do relatório circunstanciado das Obras da Barragem de Atalaia e do reassentamento, estudos Geotecnia especial (Geofísico), e Elaboração de projeto de controle erosões nas áreas jusante e montante do vertedouro, e por fim, assessoramento na triagem das famílias a serem reassentadas",
+              "valor": 90335.42,
+              "id_item": "12447918",
+              "repasse": 90335.42,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "1212",
+          "data": "17/10/2024",
+          "tipo": "NOTA FISCAL",
+          "razao": "ENGECOR CONSULTORIA E PROJETOS LTDA",
+          "v_orig": 110409.95,
+          "v_bruto": 110409.95,
+          "tributos": 6845.41,
+          "v_liq": 103564.54,
+          "status": "Ativo",
+          "id_nf": "7315095",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Contratação de Empresa especializada, através de contratação direta, sob o regime de INEXIGIBILIDADE, para a Execução dos Serviços de Acompanhamento Tecnológico, Assessoria e Fiscalização, elaboração do relatório circunstanciado das Obras da Barragem de Atalaia e do reassentamento, estudos Geotecnia especial (Geofísico), e Elaboração de projeto de controle erosões nas áreas jusante e montante do vertedouro, e por fim, assessoramento na triagem das famílias a serem reassentadas",
+              "valor": 110409.95,
+              "id_item": "12439074",
+              "repasse": 110409.95,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "1207",
+          "data": "18/09/2024",
+          "tipo": "NOTA FISCAL",
+          "razao": "ENGECOR CONSULTORIA E PROJETOS LTDA",
+          "v_orig": 96978.52,
+          "v_bruto": 96978.52,
+          "tributos": 6012.66,
+          "v_liq": 90965.86,
+          "status": "Ativo",
+          "id_nf": "7310747",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Contratação de Empresa especializada, através de contratação direta, sob o regime de INEXIGIBILIDADE, para a Execução dos Serviços de Acompanhamento Tecnológico, Assessoria e Fiscalização, elaboração do relatório circunstanciado das Obras da Barragem de Atalaia e do reassentamento, estudos Geotecnia especial (Geofísico), e Elaboração de projeto de controle erosões nas áreas jusante e montante do vertedouro, e por fim, assessoramento na triagem das famílias a serem reassentadas",
+              "valor": 96978.52,
+              "id_item": "12432079",
+              "repasse": 96978.52,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "1206",
+          "data": "18/09/2024",
+          "tipo": "NOTA FISCAL",
+          "razao": "ENGECOR CONSULTORIA E PROJETOS LTDA",
+          "v_orig": 118529.3,
+          "v_bruto": 118529.3,
+          "tributos": 7348.81,
+          "v_liq": 111180.49,
+          "status": "Ativo",
+          "id_nf": "7310742",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Contratação de Empresa especializada, através de contratação direta, sob o regime de INEXIGIBILIDADE, para a Execução dos Serviços de Acompanhamento Tecnológico, Assessoria e Fiscalização, elaboração do relatório circunstanciado das Obras da Barragem de Atalaia e do reassentamento, estudos Geotecnia especial (Geofísico), e Elaboração de projeto de controle erosões nas áreas jusante e montante do vertedouro, e por fim, assessoramento na triagem das famílias a serem reassentadas",
+              "valor": 118529.3,
+              "id_item": "12432067",
+              "repasse": 118529.3,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "13209",
+          "data": "04/09/2024",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA JUREMA LTDA",
+          "v_orig": 199202.02,
+          "v_bruto": 199202.02,
+          "tributos": 6374.46,
+          "v_liq": 192827.56,
+          "status": "Ativo",
+          "id_nf": "7299382",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Execução do objeto da licitação.",
+              "valor": 199202.02,
+              "id_item": "12410299",
+              "repasse": 199202.02,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "13208",
+          "data": "04/09/2024",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA JUREMA LTDA",
+          "v_orig": 162983.48,
+          "v_bruto": 162983.48,
+          "tributos": 6845.3,
+          "v_liq": 156138.18,
+          "status": "Ativo",
+          "id_nf": "7299375",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Execução do objeto da licitação.",
+              "valor": 162983.48,
+              "id_item": "12410286",
+              "repasse": 162983.48,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "13207",
+          "data": "04/09/2024",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA JUREMA LTDA",
+          "v_orig": 118459.81,
+          "v_bruto": 118459.81,
+          "tributos": 3790.71,
+          "v_liq": 114669.1,
+          "status": "Ativo",
+          "id_nf": "7299357",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Execução do objeto da licitação.",
+              "valor": 118459.81,
+              "id_item": "12410266",
+              "repasse": 118459.81,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "13206",
+          "data": "04/09/2024",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA JUREMA LTDA",
+          "v_orig": 96921.67,
+          "v_bruto": 96921.67,
+          "tributos": 4070.71,
+          "v_liq": 92850.96,
+          "status": "Ativo",
+          "id_nf": "7286223",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Execução do objeto da licitação.",
+              "valor": 96921.67,
+              "id_item": "12410234",
+              "repasse": 96921.67,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "1197",
+          "data": "20/08/2024",
+          "tipo": "NOTA FISCAL",
+          "razao": "ENGECOR CONSULTORIA E PROJETOS LTDA",
+          "v_orig": 140590.96,
+          "v_bruto": 140590.96,
+          "tributos": 8716.63,
+          "v_liq": 131874.33,
+          "status": "Ativo",
+          "id_nf": "7310738",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Contratação de Empresa especializada, através de contratação direta, sob o regime de INEXIGIBILIDADE, para a Execução dos Serviços de Acompanhamento Tecnológico, Assessoria e Fiscalização, elaboração do relatório circunstanciado das Obras da Barragem de Atalaia e do reassentamento, estudos Geotecnia especial (Geofísico), e Elaboração de projeto de controle erosões nas áreas jusante e montante do vertedouro, e por fim, assessoramento na triagem das famílias a serem reassentadas",
+              "valor": 140590.96,
+              "id_item": "12432058",
+              "repasse": 140590.96,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "1196",
+          "data": "20/08/2024",
+          "tipo": "NOTA FISCAL",
+          "razao": "ENGECOR CONSULTORIA E PROJETOS LTDA",
+          "v_orig": 115028.96,
+          "v_bruto": 115028.96,
+          "tributos": 7131.79,
+          "v_liq": 107897.17,
+          "status": "Ativo",
+          "id_nf": "7310734",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Contratação de Empresa especializada, através de contratação direta, sob o regime de INEXIGIBILIDADE, para a Execução dos Serviços de Acompanhamento Tecnológico, Assessoria e Fiscalização, elaboração do relatório circunstanciado das Obras da Barragem de Atalaia e do reassentamento, estudos Geotecnia especial (Geofísico), e Elaboração de projeto de controle erosões nas áreas jusante e montante do vertedouro, e por fim, assessoramento na triagem das famílias a serem reassentadas",
+              "valor": 115028.96,
+              "id_item": "12432052",
+              "repasse": 115028.96,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "1195",
+          "data": "12/07/2024",
+          "tipo": "NOTA FISCAL",
+          "razao": "ENGECOR CONSULTORIA E PROJETOS LTDA",
+          "v_orig": 139765.63,
+          "v_bruto": 139765.63,
+          "tributos": 8665.47,
+          "v_liq": 131100.16,
+          "status": "Ativo",
+          "id_nf": "7190506",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Contratação de Empresa especializada, através de contratação direta, sob o regime de INEXIGIBILIDADE, para a Execução dos Serviços de Acompanhamento Tecnológico, Assessoria e Fiscalização, elaboração do relatório circunstanciado das Obras da Barragem de Atalaia e do reassentamento, estudos Geotecnia especial (Geofísico), e Elaboração de projeto de controle erosões nas áreas jusante e montante do vertedouro, e por fim, assessoramento na triagem das famílias a serem reassentadas",
+              "valor": 139765.63,
+              "id_item": "12234114",
+              "repasse": 139765.63,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "1194",
+          "data": "12/07/2024",
+          "tipo": "NOTA FISCAL",
+          "razao": "ENGECOR CONSULTORIA E PROJETOS LTDA",
+          "v_orig": 114353.7,
+          "v_bruto": 114353.7,
+          "tributos": 7089.92,
+          "v_liq": 107263.78,
+          "status": "Ativo",
+          "id_nf": "7190505",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Contratação de Empresa especializada, através de contratação direta, sob o regime de INEXIGIBILIDADE, para a Execução dos Serviços de Acompanhamento Tecnológico, Assessoria e Fiscalização, elaboração do relatório circunstanciado das Obras da Barragem de Atalaia e do reassentamento, estudos Geotecnia especial (Geofísico), e Elaboração de projeto de controle erosões nas áreas jusante e montante do vertedouro, e por fim, assessoramento na triagem das famílias a serem reassentadas",
+              "valor": 114353.7,
+              "id_item": "12234112",
+              "repasse": 114353.7,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "13085",
+          "data": "24/06/2024",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA JUREMA LTDA",
+          "v_orig": 249400.43,
+          "v_bruto": 249400.43,
+          "tributos": 7980.81,
+          "v_liq": 241419.62,
+          "status": "Ativo",
+          "id_nf": "7132966",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Execução do objeto da licitação.",
+              "valor": 249400.43,
+              "id_item": "12137950",
+              "repasse": 249400.43,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "13084",
+          "data": "24/06/2024",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA JUREMA LTDA",
+          "v_orig": 204054.9,
+          "v_bruto": 204054.9,
+          "tributos": 8570.3,
+          "v_liq": 195484.6,
+          "status": "Ativo",
+          "id_nf": "7132961",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Execução do objeto da licitação.",
+              "valor": 204054.9,
+              "id_item": "12137937",
+              "repasse": 204054.9,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "13083",
+          "data": "24/06/2024",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA JUREMA LTDA",
+          "v_orig": 148311.39,
+          "v_bruto": 148311.39,
+          "tributos": 4745.96,
+          "v_liq": 143565.43,
+          "status": "Ativo",
+          "id_nf": "7132953",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Execução do objeto da licitação.",
+              "valor": 148311.39,
+              "id_item": "12137923",
+              "repasse": 148311.39,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "13082",
+          "data": "24/06/2024",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA JUREMA LTDA",
+          "v_orig": 121345.68,
+          "v_bruto": 121345.68,
+          "tributos": 5096.52,
+          "v_liq": 116249.16,
+          "status": "Ativo",
+          "id_nf": "7132951",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Execução do objeto da licitação.",
+              "valor": 121345.68,
+              "id_item": "12137915",
+              "repasse": 121345.68,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "13081",
+          "data": "24/06/2024",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA JUREMA LTDA",
+          "v_orig": 339156.69,
+          "v_bruto": 339156.69,
+          "tributos": 10853.01,
+          "v_liq": 328303.68,
+          "status": "Ativo",
+          "id_nf": "7132908",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Execução do objeto da licitação.",
+              "valor": 339156.69,
+              "id_item": "12137842",
+              "repasse": 339156.69,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "13080",
+          "data": "24/06/2024",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA JUREMA LTDA",
+          "v_orig": 277491.83,
+          "v_bruto": 277491.83,
+          "tributos": 11654.65,
+          "v_liq": 265837.18,
+          "status": "Ativo",
+          "id_nf": "7132873",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Execução do objeto da licitação.",
+              "valor": 277491.83,
+              "id_item": "12137788",
+              "repasse": 277491.83,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "1192",
+          "data": "19/06/2024",
+          "tipo": "NOTA FISCAL",
+          "razao": "ENGECOR CONSULTORIA E PROJETOS LTDA",
+          "v_orig": 114353.7,
+          "v_bruto": 114353.7,
+          "tributos": 7089.92,
+          "v_liq": 107263.78,
+          "status": "Ativo",
+          "id_nf": "7190500",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Contratação de Empresa especializada, através de contratação direta, sob o regime de INEXIGIBILIDADE, para a Execução dos Serviços de Acompanhamento Tecnológico, Assessoria e Fiscalização, elaboração do relatório circunstanciado das Obras da Barragem de Atalaia e do reassentamento, estudos Geotecnia especial (Geofísico), e Elaboração de projeto de controle erosões nas áreas jusante e montante do vertedouro, e por fim, assessoramento na triagem das famílias a serem reassentadas",
+              "valor": 114353.7,
+              "id_item": "12313393",
+              "repasse": 114353.7,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "1191",
+          "data": "19/06/2024",
+          "tipo": "NOTA FISCAL",
+          "razao": "ENGECOR CONSULTORIA E PROJETOS LTDA",
+          "v_orig": 139765.63,
+          "v_bruto": 139765.63,
+          "tributos": 8665.47,
+          "v_liq": 131100.16,
+          "status": "Ativo",
+          "id_nf": "7190499",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Contratação de Empresa especializada, através de contratação direta, sob o regime de INEXIGIBILIDADE, para a Execução dos Serviços de Acompanhamento Tecnológico, Assessoria e Fiscalização, elaboração do relatório circunstanciado das Obras da Barragem de Atalaia e do reassentamento, estudos Geotecnia especial (Geofísico), e Elaboração de projeto de controle erosões nas áreas jusante e montante do vertedouro, e por fim, assessoramento na triagem das famílias a serem reassentadas",
+              "valor": 139765.63,
+              "id_item": "12313371",
+              "repasse": 139765.63,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "13077",
+          "data": "14/06/2024",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA JUREMA LTDA",
+          "v_orig": 201686.9,
+          "v_bruto": 201686.9,
+          "tributos": 6453.97,
+          "v_liq": 195232.93,
+          "status": "Ativo",
+          "id_nf": "7132851",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Execução do objeto da licitação.",
+              "valor": 201686.9,
+              "id_item": "12137754",
+              "repasse": 201686.9,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "13076",
+          "data": "14/06/2024",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA JUREMA LTDA",
+          "v_orig": 165016.55,
+          "v_bruto": 165016.55,
+          "tributos": 6930.69,
+          "v_liq": 158085.86,
+          "status": "Ativo",
+          "id_nf": "7132840",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Execução do objeto da licitação.",
+              "valor": 165016.55,
+              "id_item": "12137731",
+              "repasse": 165016.55,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "13075",
+          "data": "13/06/2024",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA JUREMA LTDA",
+          "v_orig": 383798.45,
+          "v_bruto": 383798.45,
+          "tributos": 12281.54,
+          "v_liq": 371516.91,
+          "status": "Ativo",
+          "id_nf": "7132819",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Execução do objeto da licitação.",
+              "valor": 383798.45,
+              "id_item": "12137660",
+              "repasse": 383798.45,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "13074",
+          "data": "13/06/2024",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA JUREMA LTDA",
+          "v_orig": 365463.8,
+          "v_bruto": 365463.8,
+          "tributos": 15349.48,
+          "v_liq": 350114.32,
+          "status": "Ativo",
+          "id_nf": "7132803",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Execução do objeto da licitação.",
+              "valor": 365463.8,
+              "id_item": "12137642",
+              "repasse": 365463.8,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "1190",
+          "data": "13/06/2024",
+          "tipo": "NOTA FISCAL",
+          "razao": "ENGECOR CONSULTORIA E PROJETOS LTDA",
+          "v_orig": 33126.44,
+          "v_bruto": 33126.44,
+          "tributos": 2053.84,
+          "v_liq": 31072.6,
+          "status": "Ativo",
+          "id_nf": "7190473",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Contratação de Empresa especializada, através de contratação direta, sob o regime de INEXIGIBILIDADE, para a Execução dos Serviços de Acompanhamento Tecnológico, Assessoria e Fiscalização, elaboração do relatório circunstanciado das Obras da Barragem de Atalaia e do reassentamento, estudos Geotecnia especial (Geofísico), e Elaboração de projeto de controle erosões nas áreas jusante e montante do vertedouro, e por fim, assessoramento na triagem das famílias a serem reassentadas",
+              "valor": 33126.44,
+              "id_item": "12234071",
+              "repasse": 33126.44,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "1189",
+          "data": "13/06/2024",
+          "tipo": "NOTA FISCAL",
+          "razao": "ENGECOR CONSULTORIA E PROJETOS LTDA",
+          "v_orig": 93832.92,
+          "v_bruto": 93832.92,
+          "tributos": 5817.64,
+          "v_liq": 88015.28,
+          "status": "Ativo",
+          "id_nf": "7190472",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Contratação de Empresa especializada, através de contratação direta, sob o regime de INEXIGIBILIDADE, para a Execução dos Serviços de Acompanhamento Tecnológico, Assessoria e Fiscalização, elaboração do relatório circunstanciado das Obras da Barragem de Atalaia e do reassentamento, estudos Geotecnia especial (Geofísico), e Elaboração de projeto de controle erosões nas áreas jusante e montante do vertedouro, e por fim, assessoramento na triagem das famílias a serem reassentadas",
+              "valor": 93832.92,
+              "id_item": "12234057",
+              "repasse": 0.0,
+              "contrapartida": 93832.92,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "1187",
+          "data": "13/06/2024",
+          "tipo": "NOTA FISCAL",
+          "razao": "ENGECOR CONSULTORIA E PROJETOS LTDA",
+          "v_orig": 155172.56,
+          "v_bruto": 155172.56,
+          "tributos": 9620.69,
+          "v_liq": 145551.87,
+          "status": "Ativo",
+          "id_nf": "7132973",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Contratação de Empresa especializada, através de contratação direta, sob o regime de INEXIGIBILIDADE, para a Execução dos Serviços de Acompanhamento Tecnológico, Assessoria e Fiscalização, elaboração do relatório circunstanciado das Obras da Barragem de Atalaia e do reassentamento, estudos Geotecnia especial (Geofísico), e Elaboração de projeto de controle erosões nas áreas jusante e montante do vertedouro, e por fim, assessoramento na triagem das famílias a serem reassentadas",
+              "valor": 155172.56,
+              "id_item": "12234047",
+              "repasse": 155172.56,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "1186",
+          "data": "24/04/2024",
+          "tipo": "NOTA FISCAL",
+          "razao": "ENGECOR CONSULTORIA E PROJETOS LTDA",
+          "v_orig": 140770.72,
+          "v_bruto": 140770.72,
+          "tributos": 8727.78,
+          "v_liq": 132042.94,
+          "status": "Ativo",
+          "id_nf": "7008324",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Contratação de Empresa especializada, através de contratação direta, sob o regime de INEXIGIBILIDADE, para a Execução dos Serviços de Acompanhamento Tecnológico, Assessoria e Fiscalização, elaboração do relatório circunstanciado das Obras da Barragem de Atalaia e do reassentamento, estudos Geotecnia especial (Geofísico), e Elaboração de projeto de controle erosões nas áreas jusante e montante do vertedouro, e por fim, assessoramento na triagem das famílias a serem reassentadas",
+              "valor": 140770.72,
+              "id_item": "11918175",
+              "repasse": 140770.72,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "1183",
+          "data": "24/04/2024",
+          "tipo": "NOTA FISCAL",
+          "razao": "ENGECOR CONSULTORIA E PROJETOS LTDA",
+          "v_orig": 76238.95,
+          "v_bruto": 76238.95,
+          "tributos": 4726.81,
+          "v_liq": 71512.14,
+          "status": "Ativo",
+          "id_nf": "7008317",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Contratação de Empresa especializada, através de contratação direta, sob o regime de INEXIGIBILIDADE, para a Execução dos Serviços de Acompanhamento Tecnológico, Assessoria e Fiscalização, elaboração do relatório circunstanciado das Obras da Barragem de Atalaia e do reassentamento, estudos Geotecnia especial (Geofísico), e Elaboração de projeto de controle erosões nas áreas jusante e montante do vertedouro, e por fim, assessoramento na triagem das famílias a serem reassentadas",
+              "valor": 76238.95,
+              "id_item": "11918140",
+              "repasse": 76238.95,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "1182",
+          "data": "24/04/2024",
+          "tipo": "NOTA FISCAL",
+          "razao": "ENGECOR CONSULTORIA E PROJETOS LTDA",
+          "v_orig": 265234.98,
+          "v_bruto": 265234.98,
+          "tributos": 16444.56,
+          "v_liq": 248790.42,
+          "status": "Ativo",
+          "id_nf": "7008297",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Contratação de Empresa especializada, através de contratação direta, sob o regime de INEXIGIBILIDADE, para a Execução dos Serviços de Acompanhamento Tecnológico, Assessoria e Fiscalização, elaboração do relatório circunstanciado das Obras da Barragem de Atalaia e do reassentamento, estudos Geotecnia especial (Geofísico), e Elaboração de projeto de controle erosões nas áreas jusante e montante do vertedouro, e por fim, assessoramento na triagem das famílias a serem reassentadas",
+              "valor": 265234.98,
+              "id_item": "11918130",
+              "repasse": 265234.98,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "13012",
+          "data": "22/04/2024",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA JUREMA LTDA",
+          "v_orig": 692977.67,
+          "v_bruto": 692977.67,
+          "tributos": 22175.28,
+          "v_liq": 670802.39,
+          "status": "Ativo",
+          "id_nf": "7008361",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Execução do objeto da licitação.",
+              "valor": 692977.67,
+              "id_item": "11918231",
+              "repasse": 692977.67,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "13011",
+          "data": "22/04/2024",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA JUREMA LTDA",
+          "v_orig": 566981.73,
+          "v_bruto": 566981.73,
+          "tributos": 23813.23,
+          "v_liq": 543168.5,
+          "status": "Ativo",
+          "id_nf": "7008360",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Execução do objeto da licitação.",
+              "valor": 566981.73,
+              "id_item": "11918235",
+              "repasse": 566981.73,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "12997",
+          "data": "04/04/2024",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA JUREMA LTDA",
+          "v_orig": 572265.43,
+          "v_bruto": 572265.43,
+          "tributos": 18312.49,
+          "v_liq": 553952.94,
+          "status": "Ativo",
+          "id_nf": "6959268",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Execução do objeto da licitação.",
+              "valor": 572265.43,
+              "id_item": "11918216",
+              "repasse": 572265.43,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "12996",
+          "data": "04/04/2024",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA JUREMA LTDA",
+          "v_orig": 468217.17,
+          "v_bruto": 468217.17,
+          "tributos": 19665.12,
+          "v_liq": 448552.05,
+          "status": "Ativo",
+          "id_nf": "6959247",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Execução do objeto da licitação.",
+              "valor": 468217.17,
+              "id_item": "11918214",
+              "repasse": 468217.17,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "12995",
+          "data": "04/04/2024",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA JUREMA LTDA",
+          "v_orig": 340310.08,
+          "v_bruto": 340310.08,
+          "tributos": 10889.92,
+          "v_liq": 329420.16,
+          "status": "Ativo",
+          "id_nf": "6959226",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Execução do objeto da licitação.",
+              "valor": 340310.08,
+              "id_item": "11918207",
+              "repasse": 340310.08,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "12993",
+          "data": "04/04/2024",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA JUREMA LTDA",
+          "v_orig": 278435.52,
+          "v_bruto": 278435.52,
+          "tributos": 11694.29,
+          "v_liq": 266741.23,
+          "status": "Ativo",
+          "id_nf": "6959219",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Execução do objeto da licitação.",
+              "valor": 278435.52,
+              "id_item": "11918203",
+              "repasse": 278435.52,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "5902",
+          "data": "19/02/2019",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA JUREMA LTDA",
+          "v_orig": 296887.21,
+          "v_bruto": 296887.21,
+          "tributos": 9648.83,
+          "v_liq": 287238.38,
+          "status": "Ativo",
+          "id_nf": "4835274",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Execução do objeto da licitação.",
+              "valor": 296887.21,
+              "id_item": "8297915",
+              "repasse": 0.0,
+              "contrapartida": 296887.21,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "5901",
+          "data": "19/02/2019",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA JUREMA LTDA",
+          "v_orig": 535800.77,
+          "v_bruto": 535800.77,
+          "tributos": 17413.52,
+          "v_liq": 518387.25,
+          "status": "Ativo",
+          "id_nf": "4835413",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Execução do objeto da licitação.",
+              "valor": 535800.77,
+              "id_item": "8298174",
+              "repasse": 0.0,
+              "contrapartida": 535800.77,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "5686",
+          "data": "11/12/2018",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA JUREMA LTDA",
+          "v_orig": 588863.88,
+          "v_bruto": 588863.88,
+          "tributos": 32450.5,
+          "v_liq": 556413.38,
+          "status": "Ativo",
+          "id_nf": "4081916",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Execução do objeto da licitação.",
+              "valor": 588863.88,
+              "id_item": "7067353",
+              "repasse": 588863.88,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "5685",
+          "data": "11/12/2018",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA JUREMA LTDA",
+          "v_orig": 1062739.36,
+          "v_bruto": 1062739.36,
+          "tributos": 48752.15,
+          "v_liq": 1013987.21,
+          "status": "Ativo",
+          "id_nf": "4083176",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Execução do objeto da licitação.",
+              "valor": 1062739.36,
+              "id_item": "7067426",
+              "repasse": 1062739.36,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "5682",
+          "data": "11/12/2018",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA JUREMA LTDA",
+          "v_orig": 236421.75,
+          "v_bruto": 236421.75,
+          "tributos": 7683.71,
+          "v_liq": 228738.04,
+          "status": "Ativo",
+          "id_nf": "4081911",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Execução do objeto da licitação.",
+              "valor": 236421.75,
+              "id_item": "7065381",
+              "repasse": 236421.75,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "1016",
+          "data": "11/12/2018",
+          "tipo": "NOTA FISCAL",
+          "razao": "ENGECOR CONSULTORIA E PROJETOS LTDA",
+          "v_orig": 34463.42,
+          "v_bruto": 34463.42,
+          "tributos": 2929.39,
+          "v_liq": 31534.03,
+          "status": "Ativo",
+          "id_nf": "4103015",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Tem por objeto acompanhamento tecnológico, assessoria e fiscalização das obras d...",
+              "valor": 34463.42,
+              "id_item": "7100499",
+              "repasse": 34463.42,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "1015",
+          "data": "11/12/2018",
+          "tipo": "NOTA FISCAL",
+          "razao": "ENGECOR CONSULTORIA E PROJETOS LTDA",
+          "v_orig": 101585.96,
+          "v_bruto": 101585.96,
+          "tributos": 8634.8,
+          "v_liq": 92951.16,
+          "status": "Ativo",
+          "id_nf": "4103000",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Tem por objeto acompanhamento tecnológico, assessoria e fiscalização das obras d...",
+              "valor": 101585.96,
+              "id_item": "7100484",
+              "repasse": 101585.96,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "1014",
+          "data": "06/12/2018",
+          "tipo": "NOTA FISCAL",
+          "razao": "ENGECOR CONSULTORIA E PROJETOS LTDA",
+          "v_orig": 34463.42,
+          "v_bruto": 34463.42,
+          "tributos": 2929.39,
+          "v_liq": 31534.03,
+          "status": "Ativo",
+          "id_nf": "4102984",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Tem por objeto acompanhamento tecnológico, assessoria e fiscalização das obras d...",
+              "valor": 34463.42,
+              "id_item": "7100448",
+              "repasse": 34463.42,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "1013",
+          "data": "06/12/2018",
+          "tipo": "NOTA FISCAL",
+          "razao": "ENGECOR CONSULTORIA E PROJETOS LTDA",
+          "v_orig": 101585.96,
+          "v_bruto": 101585.96,
+          "tributos": 8634.8,
+          "v_liq": 92951.16,
+          "status": "Ativo",
+          "id_nf": "4102972",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Tem por objeto acompanhamento tecnológico, assessoria e fiscalização das obras d...",
+              "valor": 101585.96,
+              "id_item": "7100419",
+              "repasse": 101585.96,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "1012",
+          "data": "06/12/2018",
+          "tipo": "NOTA FISCAL",
+          "razao": "ENGECOR CONSULTORIA E PROJETOS LTDA",
+          "v_orig": 34463.42,
+          "v_bruto": 34463.42,
+          "tributos": 2929.39,
+          "v_liq": 31534.03,
+          "status": "Ativo",
+          "id_nf": "4102929",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Tem por objeto acompanhamento tecnológico, assessoria e fiscalização das obras d...",
+              "valor": 34463.42,
+              "id_item": "7100368",
+              "repasse": 34463.42,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "1011",
+          "data": "06/12/2018",
+          "tipo": "NOTA FISCAL",
+          "razao": "ENGECOR CONSULTORIA E PROJETOS LTDA",
+          "v_orig": 101585.96,
+          "v_bruto": 101585.96,
+          "tributos": 8634.8,
+          "v_liq": 92951.16,
+          "status": "Ativo",
+          "id_nf": "4102898",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Tem por objeto acompanhamento tecnológico, assessoria e fiscalização das obras d...",
+              "valor": 101585.96,
+              "id_item": "7100328",
+              "repasse": 101585.96,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "1010",
+          "data": "06/12/2018",
+          "tipo": "NOTA FISCAL",
+          "razao": "ENGECOR CONSULTORIA E PROJETOS LTDA",
+          "v_orig": 34463.42,
+          "v_bruto": 34463.42,
+          "tributos": 2929.39,
+          "v_liq": 31534.03,
+          "status": "Ativo",
+          "id_nf": "4102860",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Tem por objeto acompanhamento tecnológico, assessoria e fiscalização das obras d...",
+              "valor": 34463.42,
+              "id_item": "7100280",
+              "repasse": 34463.42,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "1009",
+          "data": "06/12/2018",
+          "tipo": "NOTA FISCAL",
+          "razao": "ENGECOR CONSULTORIA E PROJETOS LTDA",
+          "v_orig": 101585.96,
+          "v_bruto": 101585.96,
+          "tributos": 8634.8,
+          "v_liq": 92951.16,
+          "status": "Ativo",
+          "id_nf": "4102827",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Tem por objeto acompanhamento tecnológico, assessoria e fiscalização das obras d...",
+              "valor": 101585.96,
+              "id_item": "7100234",
+              "repasse": 101585.96,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "1008",
+          "data": "06/12/2018",
+          "tipo": "NOTA FISCAL",
+          "razao": "ENGECOR CONSULTORIA E PROJETOS LTDA",
+          "v_orig": 34463.42,
+          "v_bruto": 34463.42,
+          "tributos": 2929.39,
+          "v_liq": 31534.03,
+          "status": "Ativo",
+          "id_nf": "4102785",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Tem por objeto acompanhamento tecnológico, assessoria e fiscalização das obras d...",
+              "valor": 34463.42,
+              "id_item": "7100181",
+              "repasse": 34463.42,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "1007",
+          "data": "06/12/2018",
+          "tipo": "NOTA FISCAL",
+          "razao": "ENGECOR CONSULTORIA E PROJETOS LTDA",
+          "v_orig": 101585.96,
+          "v_bruto": 101585.96,
+          "tributos": 8634.8,
+          "v_liq": 92951.16,
+          "status": "Ativo",
+          "id_nf": "4102737",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Tem por objeto acompanhamento tecnológico, assessoria e fiscalização das obras d...",
+              "valor": 101585.96,
+              "id_item": "7100126",
+              "repasse": 101585.96,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "1006",
+          "data": "06/12/2018",
+          "tipo": "NOTA FISCAL",
+          "razao": "ENGECOR CONSULTORIA E PROJETOS LTDA",
+          "v_orig": 34463.42,
+          "v_bruto": 34463.42,
+          "tributos": 2929.39,
+          "v_liq": 31534.03,
+          "status": "Ativo",
+          "id_nf": "4102445",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Tem por objeto acompanhamento tecnológico, assessoria e fiscalização das obras d...",
+              "valor": 34463.42,
+              "id_item": "7099659",
+              "repasse": 34463.42,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "1005",
+          "data": "06/12/2018",
+          "tipo": "NOTA FISCAL",
+          "razao": "ENGECOR CONSULTORIA E PROJETOS LTDA",
+          "v_orig": 101585.96,
+          "v_bruto": 101585.96,
+          "tributos": 8634.8,
+          "v_liq": 92951.16,
+          "status": "Ativo",
+          "id_nf": "4102384",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Tem por objeto acompanhamento tecnológico, assessoria e fiscalização das obras d...",
+              "valor": 101585.96,
+              "id_item": "7099589",
+              "repasse": 101585.96,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "1004",
+          "data": "06/12/2018",
+          "tipo": "NOTA FISCAL",
+          "razao": "ENGECOR CONSULTORIA E PROJETOS LTDA",
+          "v_orig": 34463.42,
+          "v_bruto": 34463.42,
+          "tributos": 2929.39,
+          "v_liq": 31534.03,
+          "status": "Ativo",
+          "id_nf": "4101714",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Tem por objeto acompanhamento tecnológico, assessoria e fiscalização das obras d...",
+              "valor": 34463.42,
+              "id_item": "7098581",
+              "repasse": 34463.42,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "1003",
+          "data": "06/12/2018",
+          "tipo": "NOTA FISCAL",
+          "razao": "ENGECOR CONSULTORIA E PROJETOS LTDA",
+          "v_orig": 101585.96,
+          "v_bruto": 101585.96,
+          "tributos": 8634.8,
+          "v_liq": 92951.16,
+          "status": "Ativo",
+          "id_nf": "4101616",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Tem por objeto acompanhamento tecnológico, assessoria e fiscalização das obras d...",
+              "valor": 101585.96,
+              "id_item": "7098424",
+              "repasse": 101585.96,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "1002",
+          "data": "06/12/2018",
+          "tipo": "NOTA FISCAL",
+          "razao": "ENGECOR CONSULTORIA E PROJETOS LTDA",
+          "v_orig": 34463.42,
+          "v_bruto": 34463.42,
+          "tributos": 2929.39,
+          "v_liq": 31534.03,
+          "status": "Ativo",
+          "id_nf": "4101591",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Tem por objeto acompanhamento tecnológico, assessoria e fiscalização das obras d...",
+              "valor": 34463.42,
+              "id_item": "7098383",
+              "repasse": 34463.42,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "1001",
+          "data": "06/12/2018",
+          "tipo": "NOTA FISCAL",
+          "razao": "ENGECOR CONSULTORIA E PROJETOS LTDA",
+          "v_orig": 101585.96,
+          "v_bruto": 101585.96,
+          "tributos": 8634.8,
+          "v_liq": 92951.16,
+          "status": "Ativo",
+          "id_nf": "4101575",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Tem por objeto acompanhamento tecnológico, assessoria e fiscalização das obras d...",
+              "valor": 101585.96,
+              "id_item": "7098362",
+              "repasse": 101585.96,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "0004519",
+          "data": "26/06/2018",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA JUREMA LTDA",
+          "v_orig": 581844.26,
+          "v_bruto": 581844.26,
+          "tributos": 18909.93,
+          "v_liq": 562934.33,
+          "status": "Ativo",
+          "id_nf": "3880167",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Execução do objeto da licitação.",
+              "valor": 581844.26,
+              "id_item": "6707448",
+              "repasse": 581844.26,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "963",
+          "data": "06/04/2018",
+          "tipo": "NOTA FISCAL",
+          "razao": "ENGECOR CONSULTORIA E PROJETOS LTDA",
+          "v_orig": 30392.42,
+          "v_bruto": 30392.42,
+          "tributos": 2583.36,
+          "v_liq": 27809.06,
+          "status": "Ativo",
+          "id_nf": "4101524",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Tem por objeto acompanhamento tecnológico, assessoria e fiscalização das obras d...",
+              "valor": 30392.42,
+              "id_item": "7098280",
+              "repasse": 30392.42,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "962",
+          "data": "06/04/2018",
+          "tipo": "NOTA FISCAL",
+          "razao": "ENGECOR CONSULTORIA E PROJETOS LTDA",
+          "v_orig": 101585.96,
+          "v_bruto": 101585.96,
+          "tributos": 8634.8,
+          "v_liq": 92951.16,
+          "status": "Ativo",
+          "id_nf": "4100277",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Tem por objeto acompanhamento tecnológico, assessoria e fiscalização das obras d...",
+              "valor": 101585.96,
+              "id_item": "7098232",
+              "repasse": 101585.96,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "953",
+          "data": "07/03/2018",
+          "tipo": "NOTA FISCAL",
+          "razao": "ENGECOR CONSULTORIA E PROJETOS LTDA",
+          "v_orig": 30392.42,
+          "v_bruto": 30392.42,
+          "tributos": 2583.36,
+          "v_liq": 27809.06,
+          "status": "Ativo",
+          "id_nf": "3920528",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Tem por objeto acompanhamento tecnológico, assessoria e fiscalização das obras d...",
+              "valor": 30392.42,
+              "id_item": "6779368",
+              "repasse": 30392.42,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "952",
+          "data": "07/03/2018",
+          "tipo": "NOTA FISCAL",
+          "razao": "ENGECOR CONSULTORIA E PROJETOS LTDA",
+          "v_orig": 101585.96,
+          "v_bruto": 101585.96,
+          "tributos": 8634.8,
+          "v_liq": 92951.16,
+          "status": "Ativo",
+          "id_nf": "3919421",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Tem por objeto acompanhamento tecnológico, assessoria e fiscalização das obras d...",
+              "valor": 101585.96,
+              "id_item": "6777512",
+              "repasse": 101585.96,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "940",
+          "data": "23/02/2018",
+          "tipo": "NOTA FISCAL",
+          "razao": "ENGECOR CONSULTORIA E PROJETOS LTDA",
+          "v_orig": 30392.42,
+          "v_bruto": 30392.42,
+          "tributos": 2583.37,
+          "v_liq": 27809.05,
+          "status": "Ativo",
+          "id_nf": "3920470",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Tem por objeto acompanhamento tecnológico, assessoria e fiscalização das obras d...",
+              "valor": 30392.42,
+              "id_item": "6779285",
+              "repasse": 30392.42,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "939",
+          "data": "23/02/2018",
+          "tipo": "NOTA FISCAL",
+          "razao": "ENGECOR CONSULTORIA E PROJETOS LTDA",
+          "v_orig": 101585.96,
+          "v_bruto": 101585.96,
+          "tributos": 8634.81,
+          "v_liq": 92951.15,
+          "status": "Ativo",
+          "id_nf": "3919327",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Tem por objeto acompanhamento tecnológico, assessoria e fiscalização das obras d...",
+              "valor": 101585.96,
+              "id_item": "6777387",
+              "repasse": 101585.96,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "938",
+          "data": "23/02/2018",
+          "tipo": "NOTA FISCAL",
+          "razao": "ENGECOR CONSULTORIA E PROJETOS LTDA",
+          "v_orig": 30392.42,
+          "v_bruto": 30392.42,
+          "tributos": 2583.36,
+          "v_liq": 27809.06,
+          "status": "Ativo",
+          "id_nf": "3920424",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Tem por objeto acompanhamento tecnológico, assessoria e fiscalização das obras d...",
+              "valor": 30392.42,
+              "id_item": "6779208",
+              "repasse": 30392.42,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "937",
+          "data": "23/02/2018",
+          "tipo": "NOTA FISCAL",
+          "razao": "ENGECOR CONSULTORIA E PROJETOS LTDA",
+          "v_orig": 101585.96,
+          "v_bruto": 101585.96,
+          "tributos": 8634.8,
+          "v_liq": 92951.16,
+          "status": "Ativo",
+          "id_nf": "3919259",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Tem por objeto acompanhamento tecnológico, assessoria e fiscalização das obras d...",
+              "valor": 101585.96,
+              "id_item": "6777279",
+              "repasse": 101585.96,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "925",
+          "data": "12/12/2017",
+          "tipo": "NOTA FISCAL",
+          "razao": "ENGECOR CONSULTORIA E PROJETOS LTDA",
+          "v_orig": 30392.42,
+          "v_bruto": 30392.42,
+          "tributos": 2583.36,
+          "v_liq": 27809.06,
+          "status": "Ativo",
+          "id_nf": "3920355",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Tem por objeto acompanhamento tecnológico, assessoria e fiscalização das obras d...",
+              "valor": 30392.42,
+              "id_item": "6779086",
+              "repasse": 30392.42,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "924",
+          "data": "12/12/2017",
+          "tipo": "NOTA FISCAL",
+          "razao": "ENGECOR CONSULTORIA E PROJETOS LTDA",
+          "v_orig": 101585.96,
+          "v_bruto": 101585.96,
+          "tributos": 8634.8,
+          "v_liq": 92951.16,
+          "status": "Ativo",
+          "id_nf": "3919175",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Tem por objeto acompanhamento tecnológico, assessoria e fiscalização das obras d...",
+              "valor": 101585.96,
+              "id_item": "6777162",
+              "repasse": 101585.96,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "912",
+          "data": "27/11/2017",
+          "tipo": "NOTA FISCAL",
+          "razao": "ENGECOR CONSULTORIA E PROJETOS LTDA",
+          "v_orig": 30392.42,
+          "v_bruto": 30392.42,
+          "tributos": 2583.36,
+          "v_liq": 27809.06,
+          "status": "Ativo",
+          "id_nf": "3920288",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Tem por objeto acompanhamento tecnológico, assessoria e fiscalização das obras d...",
+              "valor": 30392.42,
+              "id_item": "6778985",
+              "repasse": 30392.42,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "911",
+          "data": "27/11/2017",
+          "tipo": "NOTA FISCAL",
+          "razao": "ENGECOR CONSULTORIA E PROJETOS LTDA",
+          "v_orig": 101585.96,
+          "v_bruto": 101585.96,
+          "tributos": 8634.8,
+          "v_liq": 92951.16,
+          "status": "Ativo",
+          "id_nf": "3919122",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Tem por objeto acompanhamento tecnológico, assessoria e fiscalização das obras d...",
+              "valor": 101585.96,
+              "id_item": "6777073",
+              "repasse": 101585.96,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "0003804",
+          "data": "21/11/2017",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA JUREMA LTDA",
+          "v_orig": 237850.06,
+          "v_bruto": 237850.06,
+          "tributos": 7730.12,
+          "v_liq": 230119.94,
+          "status": "Ativo",
+          "id_nf": "3880022",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Execução do objeto da licitação.",
+              "valor": 237850.06,
+              "id_item": "6707258",
+              "repasse": 237850.06,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "0003782",
+          "data": "16/11/2017",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA JUREMA LTDA",
+          "v_orig": 133924.58,
+          "v_bruto": 133924.58,
+          "tributos": 4352.55,
+          "v_liq": 129572.03,
+          "status": "Ativo",
+          "id_nf": "3879327",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Execução do objeto da licitação.",
+              "valor": 133924.58,
+              "id_item": "6705930",
+              "repasse": 133924.58,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "902",
+          "data": "23/10/2017",
+          "tipo": "NOTA FISCAL",
+          "razao": "ENGECOR CONSULTORIA E PROJETOS LTDA",
+          "v_orig": 30392.42,
+          "v_bruto": 30392.42,
+          "tributos": 2583.38,
+          "v_liq": 27809.04,
+          "status": "Ativo",
+          "id_nf": "3919544",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Tem por objeto acompanhamento tecnológico, assessoria e fiscalização das obras d...",
+              "valor": 30392.42,
+              "id_item": "6777725",
+              "repasse": 30392.42,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "901",
+          "data": "23/10/2017",
+          "tipo": "NOTA FISCAL",
+          "razao": "ENGECOR CONSULTORIA E PROJETOS LTDA",
+          "v_orig": 101585.96,
+          "v_bruto": 101585.96,
+          "tributos": 8634.8,
+          "v_liq": 92951.16,
+          "status": "Ativo",
+          "id_nf": "3918924",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Tem por objeto acompanhamento tecnológico, assessoria e fiscalização das obras d...",
+              "valor": 101585.96,
+              "id_item": "6776826",
+              "repasse": 101585.96,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "900",
+          "data": "23/10/2017",
+          "tipo": "NOTA FISCAL",
+          "razao": "ENGECOR CONSULTORIA E PROJETOS LTDA",
+          "v_orig": 30392.42,
+          "v_bruto": 30392.42,
+          "tributos": 2583.37,
+          "v_liq": 27809.05,
+          "status": "Ativo",
+          "id_nf": "3919518",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Tem por objeto acompanhamento tecnológico, assessoria e fiscalização das obras d...",
+              "valor": 30392.42,
+              "id_item": "6777688",
+              "repasse": 30392.42,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "899",
+          "data": "23/10/2017",
+          "tipo": "NOTA FISCAL",
+          "razao": "ENGECOR CONSULTORIA E PROJETOS LTDA",
+          "v_orig": 101585.96,
+          "v_bruto": 101585.96,
+          "tributos": 8634.81,
+          "v_liq": 92951.15,
+          "status": "Ativo",
+          "id_nf": "3918194",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Tem por objeto acompanhamento tecnológico, assessoria e fiscalização das obras d...",
+              "valor": 101585.96,
+              "id_item": "6775460",
+              "repasse": 101585.96,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "898",
+          "data": "23/10/2017",
+          "tipo": "NOTA FISCAL",
+          "razao": "ENGECOR CONSULTORIA E PROJETOS LTDA",
+          "v_orig": 30392.42,
+          "v_bruto": 30392.42,
+          "tributos": 2583.36,
+          "v_liq": 27809.06,
+          "status": "Ativo",
+          "id_nf": "3919502",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Tem por objeto acompanhamento tecnológico, assessoria e fiscalização das obras d...",
+              "valor": 30392.42,
+              "id_item": "6777664",
+              "repasse": 30392.42,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "897",
+          "data": "23/10/2017",
+          "tipo": "NOTA FISCAL",
+          "razao": "ENGECOR CONSULTORIA E PROJETOS LTDA",
+          "v_orig": 101585.96,
+          "v_bruto": 101585.96,
+          "tributos": 8634.8,
+          "v_liq": 92951.16,
+          "status": "Ativo",
+          "id_nf": "3918178",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Tem por objeto acompanhamento tecnológico, assessoria e fiscalização das obras d...",
+              "valor": 101585.96,
+              "id_item": "6775422",
+              "repasse": 101585.96,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "896",
+          "data": "23/10/2017",
+          "tipo": "NOTA FISCAL",
+          "razao": "ENGECOR CONSULTORIA E PROJETOS LTDA",
+          "v_orig": 25327.02,
+          "v_bruto": 25327.02,
+          "tributos": 2152.8,
+          "v_liq": 23174.22,
+          "status": "Ativo",
+          "id_nf": "3919473",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Tem por objeto acompanhamento tecnológico, assessoria e fiscalização das obras d...",
+              "valor": 25327.02,
+              "id_item": "6777578",
+              "repasse": 25327.02,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "895",
+          "data": "23/10/2017",
+          "tipo": "NOTA FISCAL",
+          "razao": "ENGECOR CONSULTORIA E PROJETOS LTDA",
+          "v_orig": 84655.0,
+          "v_bruto": 84655.0,
+          "tributos": 7195.68,
+          "v_liq": 77459.32,
+          "status": "Ativo",
+          "id_nf": "3918132",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Tem por objeto acompanhamento tecnológico, assessoria e fiscalização das obras d...",
+              "valor": 84655.0,
+              "id_item": "6775341",
+              "repasse": 84655.0,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "003717",
+          "data": "16/10/2017",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA JUREMA LTDA",
+          "v_orig": 1476747.89,
+          "v_bruto": 1476747.89,
+          "tributos": 36364.91,
+          "v_liq": 1440382.98,
+          "status": "Ativo",
+          "id_nf": "3880115",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Execução do objeto da licitação.",
+              "valor": 1476747.89,
+              "id_item": "6707376",
+              "repasse": 1476747.89,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "0003716",
+          "data": "16/10/2017",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA JUREMA LTDA",
+          "v_orig": 428254.76,
+          "v_bruto": 428254.76,
+          "tributos": 10537.89,
+          "v_liq": 417716.87,
+          "status": "Ativo",
+          "id_nf": "3879979",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Execução do objeto da licitação.",
+              "valor": 428254.76,
+              "id_item": "6707205",
+              "repasse": 428254.76,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "0003715",
+          "data": "16/10/2017",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA JUREMA LTDA",
+          "v_orig": 241697.5,
+          "v_bruto": 241697.5,
+          "tributos": 5951.79,
+          "v_liq": 235745.71,
+          "status": "Ativo",
+          "id_nf": "3879203",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Execução do objeto da licitação.",
+              "valor": 241697.5,
+              "id_item": "6705725",
+              "repasse": 241697.5,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "734",
+          "data": "26/11/2015",
+          "tipo": "NOTA FISCAL",
+          "razao": "ENGECOR CONSULTORIA E PROJETOS LTDA",
+          "v_orig": 35531.95,
+          "v_bruto": 35531.95,
+          "tributos": 2309.58,
+          "v_liq": 33222.37,
+          "status": "Ativo",
+          "id_nf": "3284681",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "ELABORAÇÃO DE PROJETO EXCECUTIVO DE URBANIZAÇÃO TERRAPLENAGEM, SISTEMA VIÁRIO, PAVIMENTAÇÃO, DRENAGEM, ABASTECIMENTO DE ÁGUA E REDE DE ILUMINAÇÃO PÚBLICA DO REASSENTAMENTO DA BARRAGEM DE ATALAIA.",
+              "valor": 35531.95,
+              "id_item": "6781292",
+              "repasse": 35531.95,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "674",
+          "data": "11/06/2015",
+          "tipo": "NOTA FISCAL",
+          "razao": "ENGECOR CONSULTORIA E PROJETOS LTDA",
+          "v_orig": 49744.43,
+          "v_bruto": 49744.43,
+          "tributos": 1741.06,
+          "v_liq": 48003.37,
+          "status": "Ativo",
+          "id_nf": "3284664",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "ELABORAÇÃO DE PROJETO EXCECUTIVO DE URBANIZAÇÃO TERRAPLENAGEM, SISTEMA VIÁRIO, PAVIMENTAÇÃO, DRENAGEM, ABASTECIMENTO DE ÁGUA E REDE DE ILUMINAÇÃO PÚBLICA DO REASSENTAMENTO DA BARRAGEM DE ATALAIA.",
+              "valor": 49744.43,
+              "id_item": "6781205",
+              "repasse": 49744.43,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "673",
+          "data": "11/06/2015",
+          "tipo": "NOTA FISCAL",
+          "razao": "ENGECOR CONSULTORIA E PROJETOS LTDA",
+          "v_orig": 56850.84,
+          "v_bruto": 56850.84,
+          "tributos": 1989.78,
+          "v_liq": 54861.06,
+          "status": "Ativo",
+          "id_nf": "3283256",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "ELABORAÇÃO DE PROJETO EXCECUTIVO DE URBANIZAÇÃO TERRAPLENAGEM, SISTEMA VIÁRIO, PAVIMENTAÇÃO, DRENAGEM, ABASTECIMENTO DE ÁGUA E REDE DE ILUMINAÇÃO PÚBLICA DO REASSENTAMENTO DA BARRAGEM DE ATALAIA.",
+              "valor": 56850.84,
+              "id_item": "6781168",
+              "repasse": 56850.84,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "604",
+          "data": "01/10/2014",
+          "tipo": "NOTA FISCAL",
+          "razao": "ENGECOR CONSULTORIA E PROJETOS LTDA",
+          "v_orig": 36708.26,
+          "v_bruto": 36708.26,
+          "tributos": 1284.79,
+          "v_liq": 35423.47,
+          "status": "Ativo",
+          "id_nf": "3920596",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Tem por objeto acompanhamento tecnológico, assessoria e fiscalização das obras d...",
+              "valor": 36708.26,
+              "id_item": "6779462",
+              "repasse": 36708.26,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "603",
+          "data": "01/10/2014",
+          "tipo": "NOTA FISCAL",
+          "razao": "ENGECOR CONSULTORIA E PROJETOS LTDA",
+          "v_orig": 9228.51,
+          "v_bruto": 9228.51,
+          "tributos": 323.0,
+          "v_liq": 8905.51,
+          "status": "Ativo",
+          "id_nf": "3310674",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Tem por objeto acompanhamento tecnológico, assessoria e fiscalização das obras d...",
+              "valor": 9228.51,
+              "id_item": "6781080",
+              "repasse": 9228.51,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "602",
+          "data": "01/10/2014",
+          "tipo": "NOTA FISCAL",
+          "razao": "ENGECOR CONSULTORIA E PROJETOS LTDA",
+          "v_orig": 9228.51,
+          "v_bruto": 9228.51,
+          "tributos": 323.0,
+          "v_liq": 8905.51,
+          "status": "Ativo",
+          "id_nf": "3982296",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Tem por objeto acompanhamento tecnológico, assessoria e fiscalização das obras d...",
+              "valor": 9228.51,
+              "id_item": "6887644",
+              "repasse": 9228.51,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "601",
+          "data": "01/10/2014",
+          "tipo": "NOTA FISCAL",
+          "razao": "ENGECOR CONSULTORIA E PROJETOS LTDA",
+          "v_orig": 101585.96,
+          "v_bruto": 101585.96,
+          "tributos": 3555.51,
+          "v_liq": 98030.45,
+          "status": "Ativo",
+          "id_nf": "3310038",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Tem por objeto acompanhamento tecnológico, assessoria e fiscalização das obras d...",
+              "valor": 101585.96,
+              "id_item": "6781046",
+              "repasse": 101585.96,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "600",
+          "data": "01/10/2014",
+          "tipo": "NOTA FISCAL",
+          "razao": "ENGECOR CONSULTORIA E PROJETOS LTDA",
+          "v_orig": 101585.96,
+          "v_bruto": 101585.96,
+          "tributos": 3555.51,
+          "v_liq": 98030.45,
+          "status": "Ativo",
+          "id_nf": "3310030",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Tem por objeto acompanhamento tecnológico, assessoria e fiscalização das obras d...",
+              "valor": 101585.96,
+              "id_item": "6780942",
+              "repasse": 101585.96,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "1674",
+          "data": "15/07/2014",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA JUREMA LTDA",
+          "v_orig": 205561.65,
+          "v_bruto": 205561.65,
+          "tributos": 3083.42,
+          "v_liq": 202478.23,
+          "status": "Ativo",
+          "id_nf": "3277260",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Execução do objeto da licitação.",
+              "valor": 205561.65,
+              "id_item": "6779743",
+              "repasse": 205561.65,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "1673",
+          "data": "15/07/2014",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA JUREMA LTDA",
+          "v_orig": 1041345.76,
+          "v_bruto": 1041345.76,
+          "tributos": 15620.19,
+          "v_liq": 1025725.57,
+          "status": "Ativo",
+          "id_nf": "2034158",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Execução do objeto da licitação.",
+              "valor": 1041345.76,
+              "id_item": "3473362",
+              "repasse": 1041345.76,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "1621",
+          "data": "25/05/2014",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA JUREMA LTDA",
+          "v_orig": 657037.63,
+          "v_bruto": 657037.63,
+          "tributos": 9855.56,
+          "v_liq": 647182.07,
+          "status": "Ativo",
+          "id_nf": "2032271",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Execução do objeto da licitação.",
+              "valor": 657037.63,
+              "id_item": "3470556",
+              "repasse": 657037.63,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "1386",
+          "data": "19/12/2013",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA JUREMA LTDA",
+          "v_orig": 111620.75,
+          "v_bruto": 111620.75,
+          "tributos": 1674.31,
+          "v_liq": 109946.44,
+          "status": "Ativo",
+          "id_nf": "2034075",
+          "id_item": "",
+          "origem_recurso": "Contrapartida / Rendimento",
+          "itens": [
+            {
+              "desc": "Execução do objeto da licitação.",
+              "valor": 111620.75,
+              "id_item": "3473252",
+              "repasse": 0.0,
+              "contrapartida": 111620.75,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "1385",
+          "data": "19/12/2013",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA JUREMA LTDA",
+          "v_orig": 565454.65,
+          "v_bruto": 565454.65,
+          "tributos": 8481.82,
+          "v_liq": 556972.83,
+          "status": "Ativo",
+          "id_nf": "2032717",
+          "id_item": "",
+          "origem_recurso": "Contrapartida / Rendimento",
+          "itens": [
+            {
+              "desc": "Execução do objeto da licitação.",
+              "valor": 565454.65,
+              "id_item": "3471175",
+              "repasse": 0.0,
+              "contrapartida": 565454.65,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "1384",
+          "data": "19/12/2013",
+          "tipo": "NOTA FISCAL",
+          "razao": "CONSTRUTORA JUREMA LTDA",
+          "v_orig": 111620.75,
+          "v_bruto": 111620.75,
+          "tributos": 1674.31,
+          "v_liq": 109946.44,
+          "status": "Ativo",
+          "id_nf": "2032051",
+          "id_item": "",
+          "origem_recurso": "Contrapartida / Rendimento",
+          "itens": [
+            {
+              "desc": "Execução do objeto da licitação.",
+              "valor": 111620.75,
+              "id_item": "3470204",
+              "repasse": 0.0,
+              "contrapartida": 111620.75,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "468",
+          "data": "06/12/2013",
+          "tipo": "NOTA FISCAL",
+          "razao": "ENGECOR CONSULTORIA E PROJETOS LTDA",
+          "v_orig": 4146.25,
+          "v_bruto": 4146.25,
+          "tributos": 145.12,
+          "v_liq": 4001.13,
+          "status": "Ativo",
+          "id_nf": "3955669",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Tem por objeto acompanhamento tecnológico, assessoria e fiscalização das obras d...",
+              "valor": 4146.25,
+              "id_item": "6839645",
+              "repasse": 4146.25,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "467",
+          "data": "06/12/2013",
+          "tipo": "NOTA FISCAL",
+          "razao": "ENGECOR CONSULTORIA E PROJETOS LTDA",
+          "v_orig": 101585.96,
+          "v_bruto": 101585.96,
+          "tributos": 3555.51,
+          "v_liq": 98030.45,
+          "status": "Ativo",
+          "id_nf": "3310022",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Tem por objeto acompanhamento tecnológico, assessoria e fiscalização das obras d...",
+              "valor": 101585.96,
+              "id_item": "6780911",
+              "repasse": 101585.96,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "466",
+          "data": "06/12/2013",
+          "tipo": "NOTA FISCAL",
+          "razao": "ENGECOR CONSULTORIA E PROJETOS LTDA",
+          "v_orig": 4146.25,
+          "v_bruto": 4146.25,
+          "tributos": 145.12,
+          "v_liq": 4001.13,
+          "status": "Ativo",
+          "id_nf": "3956471",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Tem por objeto acompanhamento tecnológico, assessoria e fiscalização das obras d...",
+              "valor": 4146.25,
+              "id_item": "6839787",
+              "repasse": 4146.25,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "465",
+          "data": "06/12/2013",
+          "tipo": "NOTA FISCAL",
+          "razao": "ENGECOR CONSULTORIA E PROJETOS LTDA",
+          "v_orig": 101585.96,
+          "v_bruto": 101585.96,
+          "tributos": 3555.51,
+          "v_liq": 98030.45,
+          "status": "Ativo",
+          "id_nf": "3298877",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Tem por objeto acompanhamento tecnológico, assessoria e fiscalização das obras d...",
+              "valor": 101585.96,
+              "id_item": "6780905",
+              "repasse": 101585.96,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "464",
+          "data": "06/12/2013",
+          "tipo": "NOTA FISCAL",
+          "razao": "ENGECOR CONSULTORIA E PROJETOS LTDA",
+          "v_orig": 4146.25,
+          "v_bruto": 4146.25,
+          "tributos": 145.12,
+          "v_liq": 4001.13,
+          "status": "Ativo",
+          "id_nf": "3298815",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Tem por objeto acompanhamento tecnológico, assessoria e fiscalização das obras d...",
+              "valor": 4146.25,
+              "id_item": "6779827",
+              "repasse": 4146.25,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
+          "num": "463",
+          "data": "06/12/2013",
+          "tipo": "NOTA FISCAL",
+          "razao": "ENGECOR CONSULTORIA E PROJETOS LTDA",
+          "v_orig": 101585.96,
+          "v_bruto": 101585.96,
+          "tributos": 3555.51,
+          "v_liq": 98030.45,
+          "status": "Ativo",
+          "id_nf": "3298712",
+          "id_item": "",
+          "origem_recurso": "Rendimento",
+          "itens": [
+            {
+              "desc": "Tem por objeto acompanhamento tecnológico, assessoria e fiscalização das obras d...",
+              "valor": 101585.96,
+              "id_item": "6779772",
+              "repasse": 101585.96,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        }
+      ],
+      "exec_fisica_pct": 0,
+      "exec_fisica_str": "0%",
+      "exec_fisica_valor_realizado": "",
+      "exec_fisica_valor_total": "",
+      "ateste_convenente": false,
+      "ateste_concedente": false,
+      "status_obra": "",
+      "tem_medicao": false,
+      "saldo_rendimentos": 5647397.81,
+      "repasse_desembolsado": null,
+      "_id_convenio": "105795",
+      "_id_proposta": "",
+      "erro": "",
+      "obs_manual": "Instrumento antigo (pré-OBTV). Pagamentos coletados da aba Pagamento do Transferegov — movimentações OBTV não disponíveis. Empresa executora rescindida; novo projeto aguardando análise da CAIXA para licitação do remanescente.",
+      "perfil": "antigo_pre_obtv",
+      "concedente": "",
+      "mandataria": "",
+      "exec_fisica_sem_medicao": true,
+      "exec_fisica_metas_parciais": false,
+      "exec_fisica_valor_fora_obras": "",
+      "exec_fisica_pct_financeiro": 0
     }
   ],
-  "exec_atualizado_em": "07/07/2026 12:03",
+  "exec_atualizado_em": "09/07/2026 08:56",
   "historico_repasses": {
     "969555": {
       "objeto": "Construção e equipagem da Casa da Mulher Brasileira no Município de Parnaiba-PI",

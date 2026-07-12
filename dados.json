@@ -6620,7 +6620,7 @@
     {
       "numero": "947927",
       "objeto": "PAVIMENTACAO EM PARALELEPIPEDO EM VIAS PUBLICAS DO MUNICIPIO DE TERESINA - PI.",
-      "coletado_em": "01/07/2026 15:29",
+      "coletado_em": "12/07/2026 10:07",
       "valor_global": "R$ 651.650,00",
       "valor_repasse": "R$ 626.453,00",
       "valor_contrapartida": "R$ 25.197,00",
@@ -6883,7 +6883,7 @@
       "exec_fisica_pct": 0,
       "exec_fisica_str": "0%",
       "exec_fisica_valor_realizado": "",
-      "exec_fisica_valor_total": "",
+      "exec_fisica_valor_total": "R$ 601.139,58",
       "ateste_convenente": false,
       "ateste_concedente": false,
       "status_obra": "",
@@ -6902,9 +6902,10 @@
       "concedente": "Caixa Economica Federal (inferido)",
       "mandataria": "Caixa Economica Federal",
       "exec_fisica_sem_medicao": true,
-      "exec_fisica_metas_parciais": false,
-      "exec_fisica_valor_fora_obras": "",
-      "exec_fisica_pct_financeiro": 91.1
+      "exec_fisica_metas_parciais": true,
+      "exec_fisica_valor_fora_obras": "R$ 50.510,42 (7.8% do global nao cobre aba obras)",
+      "exec_fisica_pct_financeiro": 91.1,
+      "valor_global_calculado": false
     },
     {
       "numero": "953168",
@@ -12362,7 +12363,7 @@
       "valor_global_calculado": false
     }
   ],
-  "exec_atualizado_em": "12/07/2026 09:05",
+  "exec_atualizado_em": "12/07/2026 10:13",
   "historico_repasses": {
     "969555": {
       "objeto": "Construção e equipagem da Casa da Mulher Brasileira no Município de Parnaiba-PI",

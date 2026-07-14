@@ -16872,7 +16872,7 @@
     {
       "numero": "887234",
       "objeto": "PAVIMENTACAO EM DIVERSAS VIAS PUBLICAS NOS MUNICIPIOS DE CAMPO ALEGRE DO FIDALGO E JOAO COSTA - PI",
-      "coletado_em": "14/07/2026 07:21",
+      "coletado_em": "14/07/2026 07:30",
       "valor_global": "R$ 776.300,00",
       "valor_repasse": "R$ 760.000,00",
       "valor_contrapartida": "R$ 16.300,00",
@@ -16880,254 +16880,19 @@
       "regime_simplificado": false,
       "tipo_instrumento": "Convênio",
       "ano": "2019",
-      "contratos": [
-        {
-          "numero_contrato": "68/2022",
-          "situacao": "Contrato Concluído e Aditivação Concluída",
-          "valor": "R$ 299.874,62",
-          "valor_repasse": "R$ 299.874,62",
-          "dt_inicio": "10/03/2022",
-          "dt_fim": "31/12/2024",
-          "cnpj": "16.990.345/0001-70",
-          "razao_social": "CONSTRUTOP ENGENHARIA E CONSTRUCAO EIRELI"
-        },
-        {
-          "numero_contrato": "93/2022",
-          "situacao": "Contrato Concluído e Aditivação Concluída",
-          "valor": "R$ 411.848,67",
-          "valor_repasse": "R$ 411.848,67",
-          "dt_inicio": "25/03/2022",
-          "dt_fim": "31/12/2024",
-          "cnpj": "",
-          "razao_social": ""
-        }
-      ],
-      "movimentacoes": [
-        {
-          "num": "10123944",
-          "data": "23/01/2026",
-          "tipo": "PAGAMENTO DE TRIBUTOS",
-          "v_orig": null,
-          "v_bruto": 5011.49,
-          "v_liq": 5011.49,
-          "v_retencao": 0.0,
-          "favorecido": "",
-          "tributo": "ISS",
-          "ndl": "570",
-          "tdl": "NOTA FISCAL",
-          "situacao": ""
-        },
-        {
-          "num": "10091353",
-          "data": "29/12/2025",
-          "tipo": "PAGAMENTO A FAVORECIDO COM OBTV",
-          "v_orig": 167049.76,
-          "v_bruto": 167049.76,
-          "v_liq": 162038.27,
-          "v_retencao": 0.0,
-          "favorecido": "04.603.664/0001-04",
-          "tributo": "PAGAMENTO A FAVORECIDO COM OBTV",
-          "ndl": "570",
-          "tdl": "NOTA FISCAL",
-          "situacao": "NOTA FISCAL"
-        },
-        {
-          "num": "9322242",
-          "data": "24/12/2024",
-          "tipo": "PAGAMENTO DE TRIBUTOS",
-          "v_orig": null,
-          "v_bruto": 3139.4,
-          "v_liq": 3139.4,
-          "v_retencao": 0.0,
-          "favorecido": "",
-          "tributo": "ISS",
-          "ndl": "541",
-          "tdl": "NOTA FISCAL",
-          "situacao": ""
-        },
-        {
-          "num": "9314216",
-          "data": "19/12/2024",
-          "tipo": "PAGAMENTO A FAVORECIDO COM OBTV",
-          "v_orig": 104646.71,
-          "v_bruto": 104646.71,
-          "v_liq": 101507.31,
-          "v_retencao": 0.0,
-          "favorecido": "04.603.664/0001-04",
-          "tributo": "PAGAMENTO A FAVORECIDO COM OBTV",
-          "ndl": "541",
-          "tdl": "NOTA FISCAL",
-          "situacao": "NOTA FISCAL"
-        },
-        {
-          "num": "8710692",
-          "data": "24/04/2024",
-          "tipo": "PAGAMENTO DE TRIBUTOS",
-          "v_orig": null,
-          "v_bruto": 2803.03,
-          "v_liq": 2803.03,
-          "v_retencao": 0.0,
-          "favorecido": "",
-          "tributo": "ISS",
-          "ndl": "524, 525",
-          "tdl": "NOTA FISCAL",
-          "situacao": ""
-        },
-        {
-          "num": "8708295",
-          "data": "22/04/2024",
-          "tipo": "PAGAMENTO A FAVORECIDO COM OBTV",
-          "v_orig": 9591.45,
-          "v_bruto": 9591.45,
-          "v_liq": 9399.63,
-          "v_retencao": 0.0,
-          "favorecido": "04.603.664/0001-04",
-          "tributo": "PAGAMENTO A FAVORECIDO COM OBTV",
-          "ndl": "525",
-          "tdl": "NOTA FISCAL",
-          "situacao": "NOTA FISCAL"
-        },
-        {
-          "num": "8708288",
-          "data": "22/04/2024",
-          "tipo": "PAGAMENTO A FAVORECIDO COM OBTV",
-          "v_orig": 130560.75,
-          "v_bruto": 130560.75,
-          "v_liq": 127949.54,
-          "v_retencao": 0.0,
-          "favorecido": "04.603.664/0001-04",
-          "tributo": "PAGAMENTO A FAVORECIDO COM OBTV",
-          "ndl": "524",
-          "tdl": "NOTA FISCAL",
-          "situacao": "NOTA FISCAL"
-        },
-        {
-          "num": "8116429",
-          "data": "28/06/2023",
-          "tipo": "INGRESSO DE CONTRAPARTIDA",
-          "v_orig": null,
-          "v_bruto": 16300.0,
-          "v_liq": 16300.0,
-          "v_retencao": 0.0,
-          "favorecido": "09.034.960/0001-47",
-          "tributo": "INGRESSO DE CONTRAPARTIDA",
-          "ndl": "",
-          "tdl": "",
-          "situacao": ""
-        }
-      ],
-      "notas_fiscais": [
-        {
-          "num": "570",
-          "data": "19/12/2025",
-          "tipo": "NOTA FISCAL",
-          "razao": "V M PESSOA FEITOSA MONTEIRO LTDA",
-          "v_orig": 167049.76,
-          "v_bruto": 167049.76,
-          "tributos": 5011.49,
-          "v_liq": 162038.27,
-          "status": "Ativo",
-          "id_nf": "8111745",
-          "id_item": "",
-          "origem_recurso": "Rendimento",
-          "itens": [
-            {
-              "desc": "PAVIMENTAÇÃO EM PARALELEPÍPEDO NO MUNICÍPIO DE JOÃO COSTA-PI",
-              "valor": 167049.76,
-              "id_item": "13732878",
-              "repasse": 167049.76,
-              "contrapartida": 0.0,
-              "rendimento": 0.0
-            }
-          ]
-        },
-        {
-          "num": "541",
-          "data": "05/12/2024",
-          "tipo": "NOTA FISCAL",
-          "razao": "V M PESSOA FEITOSA MONTEIRO LTDA",
-          "v_orig": 104646.71,
-          "v_bruto": 104646.71,
-          "tributos": 3139.4,
-          "v_liq": 101507.31,
-          "status": "Ativo",
-          "id_nf": "7464936",
-          "id_item": "",
-          "origem_recurso": "Rendimento",
-          "itens": [
-            {
-              "desc": "PAVIMENTAÇÃO EM PARALELEPÍPEDO NO MUNICÍPIO DE JOÃO COSTA-PI",
-              "valor": 104646.71,
-              "id_item": "12654628",
-              "repasse": 104646.70999999999,
-              "contrapartida": 0.0,
-              "rendimento": 0.0
-            }
-          ]
-        },
-        {
-          "num": "525",
-          "data": "11/04/2024",
-          "tipo": "NOTA FISCAL",
-          "razao": "V M PESSOA FEITOSA MONTEIRO LTDA",
-          "v_orig": 9591.45,
-          "v_bruto": 9591.45,
-          "tributos": 191.82,
-          "v_liq": 9399.63,
-          "status": "Ativo",
-          "id_nf": "6962892",
-          "id_item": "",
-          "origem_recurso": "Rendimento",
-          "itens": [
-            {
-              "desc": "PAVIMENTAÇÃO EM PARALELEPÍPEDO NO MUNICÍPIO DE JOÃO COSTA-PI",
-              "valor": 9591.45,
-              "id_item": "11846630",
-              "repasse": 0.0,
-              "contrapartida": 9591.45,
-              "rendimento": 0.0
-            }
-          ]
-        },
-        {
-          "num": "524",
-          "data": "11/04/2024",
-          "tipo": "NOTA FISCAL",
-          "razao": "V M PESSOA FEITOSA MONTEIRO LTDA",
-          "v_orig": 130560.75,
-          "v_bruto": 130560.75,
-          "tributos": 2611.21,
-          "v_liq": 127949.54,
-          "status": "Ativo",
-          "id_nf": "6962890",
-          "id_item": "",
-          "origem_recurso": "Rendimento",
-          "itens": [
-            {
-              "desc": "PAVIMENTAÇÃO EM PARALELEPÍPEDO NO MUNICÍPIO DE JOÃO COSTA-PI",
-              "valor": 130560.75,
-              "id_item": "11846624",
-              "repasse": 130560.75000000001,
-              "contrapartida": 0.0,
-              "rendimento": 0.0
-            }
-          ]
-        }
-      ],
-      "exec_fisica_pct": 35.31,
-      "exec_fisica_str": "35,31%",
+      "contratos": [],
+      "movimentacoes": [],
+      "notas_fiscais": [],
+      "exec_fisica_pct": 0,
+      "exec_fisica_str": "0%",
       "exec_fisica_valor_realizado": "",
-      "exec_fisica_valor_total": "R$ 711.723,29",
+      "exec_fisica_valor_total": "",
       "ateste_convenente": false,
       "ateste_concedente": false,
       "status_obra": "",
       "tem_medicao": false,
-      "saldo_rendimentos": 160130.51,
-      "repasse_desembolsado": {
-        "previsto": 760000.0,
-        "desembolsado": 760000.0,
-        "a_desembolsar": 0.0
-      },
+      "saldo_rendimentos": 0.0,
+      "repasse_desembolsado": null,
       "_id_convenio": "792266",
       "_id_proposta": "1482479",
       "erro": "",
@@ -17136,10 +16901,10 @@
       "concedente": "",
       "mandataria": "",
       "exec_fisica_sem_medicao": false,
-      "exec_fisica_metas_parciais": true,
-      "exec_fisica_valor_fora_obras": "R$ 64.576,71 (8.3% do global nao cobre aba obras)",
-      "exec_fisica_pct_financeiro": 53.1,
-      "exec_fisica_medicao_travada": true,
+      "exec_fisica_metas_parciais": false,
+      "exec_fisica_valor_fora_obras": "",
+      "exec_fisica_pct_financeiro": 0,
+      "exec_fisica_medicao_travada": false,
       "valor_global_calculado": false
     },
     {
@@ -19613,7 +19378,7 @@
       "valor_global_calculado": false
     }
   ],
-  "exec_atualizado_em": "14/07/2026 07:24",
+  "exec_atualizado_em": "14/07/2026 07:31",
   "historico_repasses": {
     "969555": {
       "objeto": "Construção e equipagem da Casa da Mulher Brasileira no Município de Parnaiba-PI",

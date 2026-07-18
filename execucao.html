@@ -1284,20 +1284,41 @@ function renderInstrumento(){
   /* Progresso físico */
   var preObtv2012 = _isPreOBTV(c) && (c.ano && parseInt(c.ano) <= 2015) && !c.tem_medicao;
   var semMedicao2 = !c.tem_medicao && !c.exec_fisica_pct && !c.ateste_convenente;
+  /* Sinal calculado pelo coletor (exec_financeiro.py): 0% na aba de obras mas
+     há pagamentos/OBTV registrados — mais confiável que o heurístico local
+     acima, pois cruza com as movimentações reais do instrumento. */
+  var semMedicaoBackend = !!c.exec_fisica_sem_medicao;
+  var pctFinanceiroProxy = typeof c.exec_fisica_pct_financeiro === "number" ? c.exec_fisica_pct_financeiro : 0;
+  var temMetasParciais = !!c.exec_fisica_metas_parciais;
+  /* Caso B: reprogramação no MEIO do contrato — a física não está em 0%,
+     só parou de ser atualizada (travada) enquanto o financeiro seguiu.
+     Diferente do caso A (semMedicaoBackend), aqui existe um % físico
+     real a mostrar, então não vira "N/A" — só ganha um alerta junto. */
+  var medicaoTravada = !!c.exec_fisica_medicao_travada && !semMedicaoBackend;
+
   var pfis = typeof c.exec_fisica_pct === "number" ? c.exec_fisica_pct : 0;
   var pfisStr;
-  if(preObtv2012 || semMedicao2){
+  if(preObtv2012 || semMedicao2 || semMedicaoBackend){
     pfisStr = "N/A";
-    document.getElementById("pct-fis").style.color = "var(--muted)";
+    document.getElementById("pct-fis").style.color = semMedicaoBackend ? "var(--amber)" : "var(--muted)";
   } else {
     pfisStr = pfis % 1 === 0 ? pfis+"%" : pfis.toFixed(2).replace(".",",")+"%";
-    document.getElementById("pct-fis").style.color = "";
+    document.getElementById("pct-fis").style.color = medicaoTravada ? "var(--amber)" : "";
   }
   document.getElementById("pct-fis").textContent  = pfisStr;
   document.getElementById("bar-fis").style.width  = Math.min(pfis,100)+"%";
   /* Monta nota de exec física com valor realizado se disponível */
   var noteFis = "";
-  if(preObtv2012 || semMedicao2){
+  if(semMedicaoBackend){
+    noteFis = "⚠️ Aba de acompanhamento de obras sem medição lançada (0%), mas há pagamentos/OBTV registrados.";
+    if(pctFinanceiroProxy > 0){
+      noteFis += " Estimativa via execução financeira (pago ÷ valor global): <strong>≈"+
+        pctFinanceiroProxy.toFixed(1).replace(".",",")+"%</strong>.";
+    }
+  } else if(medicaoTravada){
+    noteFis = "⚠️ Medição física parece travada em "+pfisStr+" — o financeiro já avançou para <strong>≈"+
+      pctFinanceiroProxy.toFixed(1).replace(".",",")+"%</strong>. Possível reprogramação no meio do contrato (mudança de item/quantitativo), com a aba de obras sem atualização desde então.";
+  } else if(preObtv2012 || semMedicao2){
     noteFis = "Aba de acompanhamento de obras não disponível — instrumento anterior ao sistema de medições do Transferegov.";
   } else {
     noteFis = c.exec_fisica_obs || "";
@@ -1311,7 +1332,10 @@ function renderInstrumento(){
       noteFis = pf.join(" · ");
     }
   }
-  document.getElementById("note-fis").textContent = noteFis;
+  if(temMetasParciais && c.exec_fisica_valor_fora_obras){
+    noteFis += (noteFis ? "<br>" : "") + "⚠️ Parte do valor global fica fora da aba de obras: "+c.exec_fisica_valor_fora_obras+".";
+  }
+  document.getElementById("note-fis").innerHTML = noteFis;
 
   /* Ateste */
   renderAteste(c);

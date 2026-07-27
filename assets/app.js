@@ -326,7 +326,148 @@
     }, 50);
   }
 
+  /* ══════════════════════════════════════════════════════════════════════
+     LEITURA DE TEXTO LONGO E TABELAS EM CARTÃO
+
+     Os objetos dos convênios passam de 100 caracteres. As tabelas cortavam
+     tudo numa linha, e o texto completo só aparecia no `title`, com o mouse
+     em cima — ou seja, era inacessível no celular, que não tem hover.
+
+     Duas funções resolvem isso para o painel inteiro, sem que cada página
+     precise se preocupar:
+       • ligarTextosExpansiveis — um toque abre o texto ali mesmo;
+       • rotularTabelas — copia o cabeçalho da coluna para cada célula, que é
+         o que permite à tabela virar cartão legível no celular (ver app.css).
+     ══════════════════════════════════════════════════════════════════════ */
+
+  /**
+   * Marca quais elementos .txt-exp realmente têm texto escondido.
+   * Sem essa medição, a setinha apareceria em textos curtos também —
+   * prometendo um conteúdo que não existe.
+   */
+  function medirTextos(raiz) {
+    (raiz || document).querySelectorAll('.txt-exp').forEach(function (el) {
+      if (el.classList.contains('aberto')) return;
+      var cortado = el.scrollHeight > el.clientHeight + 1;
+      el.setAttribute('data-cortado', cortado ? '1' : '0');
+      if (cortado && !el.getAttribute('title')) {
+        // Mantemos o title como reforço no desktop, mas ele deixou de ser
+        // o único caminho: o toque abre o texto em qualquer aparelho.
+        el.setAttribute('title', 'Toque para ler o texto completo');
+      }
+    });
+  }
+
+  /** Um clique/toque em .txt-exp abre ou fecha o texto completo. */
+  function ligarTextosExpansiveis() {
+    document.addEventListener('click', function (ev) {
+      var alvo = ev.target.closest && ev.target.closest('.txt-exp');
+      if (!alvo) return;
+
+      // Medimos na hora do clique, sempre. A medida guardada pode ter ficado
+      // velha — a coluna muda de largura ao recolher o menu, ao girar o
+      // celular ou quando a fonte termina de carregar. Uma leitura a mais é
+      // barata; um toque que não faz nada é péssimo.
+      if (!alvo.classList.contains('aberto')) {
+        alvo.setAttribute('data-cortado',
+          alvo.scrollHeight > alvo.clientHeight + 1 ? '1' : '0');
+        if (alvo.getAttribute('data-cortado') !== '1') return;
+      }
+
+      // Não deixa o clique subir para a linha da tabela: em vigencias.html e
+      // ingressos.html a linha inteira abre um painel de detalhe, e as duas
+      // coisas disparando juntas confundem.
+      ev.stopPropagation();
+      alvo.classList.toggle('aberto');
+    }, true);
+
+    // Recalcula quando a largura muda. Usamos ResizeObserver, não o evento
+    // 'resize' da janela: recolher o menu lateral, girar o celular ou o
+    // carregamento tardio da fonte mudam a largura da coluna SEM que a janela
+    // mude de tamanho — e nesses casos a setinha ficaria mentindo.
+    var alvoMedida = document.querySelector('.scroll') || document.body;
+    var t;
+    function remedir() {
+      clearTimeout(t);
+      t = setTimeout(function () { medirTextos(alvoMedida); }, 150);
+    }
+    if (window.ResizeObserver) {
+      new ResizeObserver(remedir).observe(alvoMedida);
+    } else {
+      window.addEventListener('resize', remedir);
+    }
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(remedir);
+
+    // Nem todo texto longo está numa tabela — a lista "Últimos ingressos" e os
+    // painéis laterais também têm. Observamos a área de conteúdo inteira para
+    // que qualquer bloco recém-renderizado ganhe a setinha de "abre aqui".
+    var area = document.querySelector('.scroll') || document.body;
+    var t2;
+    new MutationObserver(function () {
+      clearTimeout(t2);
+      t2 = setTimeout(function () { medirTextos(area); }, 80);
+    }).observe(area, { childList: true, subtree: true });
+  }
+
+  /**
+   * Copia o texto de cada <th> para o data-rotulo das células da coluna.
+   * É o que faz a tabela virar cartão no celular sem repetir os nomes das
+   * colunas em cada página. Continua valendo depois de cada novo render,
+   * porque observamos o <tbody>.
+   */
+  function rotularTabelas(seletor) {
+    var tabelas = document.querySelectorAll(seletor || 'table.tbl-cards');
+
+    tabelas.forEach(function (tab) {
+      var corpo = tab.querySelector('tbody');
+      if (!corpo) return;
+
+      function carimbar() {
+        var titulos = Array.prototype.map.call(
+          tab.querySelectorAll('thead th'),
+          function (th) {
+            // Copiamos o cabeçalho sem os enfeites: o ícone de ajuda (.th-info)
+            // e as setas de ordenação viram lixo quando o texto vira rótulo de
+            // campo no cartão ("Suspensiva ℹ" em vez de "Suspensiva").
+            var limpo = th.cloneNode(true);
+            limpo.querySelectorAll('.th-info, .sort-ind, i').forEach(function (e) { e.remove(); });
+            return limpo.textContent.replace(/\s+/g, ' ').trim();
+          }
+        );
+
+        Array.prototype.forEach.call(corpo.rows, function (linha) {
+          // Linhas de detalhe e mensagens de vazio usam colspan: não são
+          // campos de um registro, não recebem rótulo.
+          if (linha.cells.length === 1 && linha.cells[0].hasAttribute('colspan')) return;
+
+          Array.prototype.forEach.call(linha.cells, function (celula, i) {
+            if (celula.hasAttribute('data-rotulo')) return;
+            celula.setAttribute('data-rotulo', titulos[i] || '');
+          });
+        });
+
+        medirTextos(corpo);
+      }
+
+      carimbar();
+      new MutationObserver(carimbar).observe(corpo, { childList: true });
+    });
+  }
+
+  function iniciarLeitura() {
+    ligarTextosExpansiveis();
+    rotularTabelas();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', iniciarLeitura);
+  } else {
+    iniciarLeitura();
+  }
+
   /* ── EXPORTA ───────────────────────────────────────────────────────────── */
+  IDEPI.medirTextos = medirTextos;
+  IDEPI.rotularTabelas = rotularTabelas;
   IDEPI.parseDateBR = parseDateBR;
   IDEPI.parseDate = parseDateBR;      // alias usado por vigencias.html
   IDEPI.hoje = hoje;

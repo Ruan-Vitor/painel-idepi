@@ -1,76 +1,46 @@
 <!DOCTYPE html>
-<!-- v20260612_000000 -->
+<!-- IDEPI · Ingressos de Recurso — v20260726 -->
 <html lang="pt-br">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Ingressos de Recurso — IDEPI</title>
+<meta name="description" content="Histórico de repasses federais e contrapartidas recebidos por convênio.">
+<meta name="theme-color" content="#0b1527">
+
+<!-- ── APP INSTALÁVEL (PWA) ────────────────────────────────────────────── -->
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="IDEPI">
+
+<!-- ── FONTES E ÍCONES ─────────────────────────────────────────────────── -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=IBM+Plex+Mono:wght@400;600&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
-<style>
-:root{
-  --bg:#0b1527;--sidebar:#07101f;--surface:#fff;--surface2:#f4f7fd;
-  --border:#e3eaf5;--text:#1a2640;--muted:#7a8ba0;--accent:#1a3a6e;
-  --green:#16a34a;--green-bg:#f0fdf4;--green-bdr:#86efac;
-  --teal:#0d766e;--teal-bg:#f0fdfa;--teal-bdr:#5eead4;
-  --blue:#1d4ed8;--blue-bg:#eff6ff;--blue-bdr:#93c5fd;
-  --amber:#92400e;--amber-bg:#fffbeb;--amber-bdr:#fcd34d;
-  --slate:#475569;--slate-bg:#f8fafc;--slate-bdr:#cbd5e1;
-  --money:#0f7561;
-}
-*{box-sizing:border-box;margin:0;padding:0}
-html,body{height:100%}
-body{font-family:'DM Sans',sans-serif;background:var(--bg);display:flex;flex-direction:column;min-height:100vh}
 
-/* ── HEADER ── */
-.hd{background:var(--bg);border-bottom:1px solid rgba(255,255,255,.07);padding:0 36px;height:58px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;position:sticky;top:0;z-index:50}
-.hd-left{display:flex;align-items:center;gap:14px}
-.hd-logo{display:flex;align-items:center;gap:10px}
-.hd-logo-icon{width:34px;height:34px;border-radius:8px;background:linear-gradient(135deg,#1a4a8a,#0d6e4a);display:flex;align-items:center;justify-content:center;font-size:14px;color:#fff}
-.hd-title{font-family:'Sora',sans-serif;font-size:14px;font-weight:700;color:#fff;line-height:1.1}
-.hd-sub{font-size:10px;color:rgba(255,255,255,.4)}
-.hd-sep{width:1px;height:26px;background:rgba(255,255,255,.1)}
-.hd-pill{display:flex;align-items:center;gap:6px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.09);border-radius:20px;padding:3px 11px;font-size:10px;color:rgba(255,255,255,.55)}
-.hd-pill i{color:#4ade80;font-size:8px}
-.hd-right{display:flex;align-items:center;gap:8px}
-.hd-ts{font-size:10px;color:rgba(255,255,255,.3);text-align:right;line-height:1.5}
+<!-- ── CASCA COMPARTILHADA (header, menu, login, responsivo) ───────────── -->
+<link rel="stylesheet" href="assets/app.css">
+
+<style>
+/* ═══ Estilos exclusivos do painel de Ingressos ═══════════════════════════
+   Header, sidebar, botões, login e responsivo vivem em assets/app.css.    */
 
 /* botão "Últimos ingressos" no header */
-.btn-ult-ing{display:flex;align-items:center;gap:6px;background:rgba(13,118,110,.25);border:1px solid rgba(94,234,212,.3);border-radius:20px;padding:4px 13px;font-size:11px;font-weight:600;color:#5eead4;cursor:pointer;transition:all .15s;white-space:nowrap}
+.btn-ult-ing{display:flex;align-items:center;gap:6px;background:rgba(13,118,110,.25);border:1px solid rgba(94,234,212,.3);border-radius:20px;padding:6px 13px;font-size:11px;font-weight:600;color:#5eead4;cursor:pointer;transition:background .15s,border-color .15s;white-space:nowrap;min-height:34px;font-family:inherit}
 .btn-ult-ing:hover{background:rgba(13,118,110,.45);border-color:rgba(94,234,212,.6)}
 .btn-ult-ing i{font-size:10px}
 
-/* ── LAYOUT ── */
-.body{flex:1;display:flex;overflow:hidden}
-
-/* ── SIDEBAR ── */
-.sidebar{width:214px;flex-shrink:0;background:var(--sidebar);border-right:1px solid rgba(255,255,255,.06);display:flex;flex-direction:column;padding:18px 10px;gap:2px;transition:width .2s}
-.sidebar.collapsed{width:0;padding:0;overflow:hidden}
-.sb-sec{font-size:9px;font-weight:700;color:rgba(255,255,255,.2);letter-spacing:1px;text-transform:uppercase;padding:10px 12px 3px;margin-top:6px}
-.sb-sec:first-child{margin-top:0}
-.sb-item{display:flex;align-items:center;gap:9px;padding:8px 12px;border-radius:7px;font-size:12.5px;color:rgba(255,255,255,.5);text-decoration:none;cursor:pointer;transition:all .14s;position:relative}
-.sb-item:hover{background:rgba(255,255,255,.05);color:rgba(255,255,255,.75)}
-.sb-item.active{background:#182f5a;color:#fff}
-.sb-item.active i{color:#60a5fa}
-.sb-item i{font-size:13px;width:16px;text-align:center;flex-shrink:0}
-.soon{margin-left:auto;font-size:9px;font-weight:600;background:rgba(255,255,255,.07);color:rgba(255,255,255,.25);padding:1px 6px;border-radius:8px}
-.sb-footer{margin-top:auto;padding-top:14px;border-top:1px solid rgba(255,255,255,.06)}
-.sb-card{padding:10px 12px;border-radius:8px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.05)}
-.sb-card strong{color:rgba(255,255,255,.45);display:block;font-size:10px;margin-bottom:2px}
-.sb-card p{font-size:10px;color:rgba(255,255,255,.25);line-height:1.5}
-.sb-toggle{position:fixed;left:214px;top:50%;transform:translateY(-50%);z-index:60;width:18px;height:36px;background:var(--sidebar);border:1px solid rgba(255,255,255,.08);border-left:none;border-radius:0 6px 6px 0;color:rgba(255,255,255,.35);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:9px;transition:left .2s}
-
-/* ── CONTENT ── */
-.content{flex:1;display:flex;flex-direction:column;overflow:hidden;background:var(--surface2)}
-.pg-head{background:var(--surface);border-bottom:1px solid var(--border);padding:18px 28px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
-.pg-title{font-family:'Sora',sans-serif;font-size:18px;font-weight:700;color:var(--text);display:flex;align-items:center;gap:10px}
-.pg-title-icon{width:36px;height:36px;border-radius:9px;background:linear-gradient(135deg,#0d766e,#1a3a6e);display:flex;align-items:center;justify-content:center;color:#fff;font-size:15px}
-.pg-sub{font-size:11px;color:var(--muted);margin-top:3px}
-.pg-back{display:flex;align-items:center;gap:6px;background:var(--accent);color:#fff;border:none;padding:8px 16px;border-radius:7px;font-size:12px;font-weight:600;cursor:pointer;text-decoration:none;font-family:'DM Sans',sans-serif;transition:background .14s}
-.pg-back:hover{background:#1e4a8a}
-.scroll{flex:1;overflow-y:auto;padding:22px 28px;display:flex;flex-direction:column;gap:18px}
-
+/* ── PAGE HEAD (variação com ícone; o resto vem do app.css) ── */
+.pg-title{display:flex;align-items:center;gap:10px}
+.pg-title-icon{width:36px;height:36px;border-radius:9px;background:linear-gradient(135deg,#0d766e,#1a3a6e);display:flex;align-items:center;justify-content:center;color:#fff;font-size:15px;flex-shrink:0}
+.pg-back{background:var(--accent);color:#fff;border:none;padding:8px 16px;border-radius:7px;font-size:12px;font-weight:600}
+.pg-back:hover{background:#1e4a8a;text-decoration:none}
 /* ── KPIs ── */
 .kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
 .kpi{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:18px 20px}
@@ -129,8 +99,9 @@ tr.expand-row td{padding:0;background:#f8fffd;border-bottom:1px solid var(--teal
 .hist-n{font-size:9px;font-weight:700;color:var(--teal);min-width:22px}
 .hist-date{font-size:11px;font-weight:600;color:var(--text);font-family:'IBM Plex Mono',monospace}
 .hist-val{font-size:12px;font-weight:800;color:var(--money)}
+/* F = repasse federal (OB do SIAFI) · C = contrapartida do convenente */
 .tipo-fed{font-size:9px;font-weight:700;background:#dbeafe;color:#1d4ed8;border:1px solid #93c5fd;border-radius:5px;padding:1px 5px;margin-left:2px}
-.tipo-plan{font-size:9px;font-weight:700;background:#f3f4f6;color:#6b7280;border:1px solid #d1d5db;border-radius:5px;padding:1px 5px;margin-left:2px}
+.tipo-cp{font-size:9px;font-weight:700;background:#fef3c7;color:#92400e;border:1px solid #fcd34d;border-radius:5px;padding:1px 5px;margin-left:2px}
 
 /* badges */
 .num-cell{font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:600;color:var(--accent)}
@@ -143,10 +114,7 @@ tr.expand-row td{padding:0;background:#f8fffd;border-bottom:1px solid var(--teal
 .expand-icon{color:var(--teal);font-size:10px;transition:transform .2s}
 tr.data-row.expanded .expand-icon{transform:rotate(180deg)}
 
-/* btns */
-.btn-excel{display:flex;align-items:center;gap:6px;background:#16a34a;color:#fff;border:none;padding:7px 14px;border-radius:7px;font-size:12px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background .14s}
-.btn-excel:hover{background:#15803d}
-.btn-excel.loading{opacity:.7;pointer-events:none}
+/* O botão Excel vem do app.css */
 
 /* ── ÚLTIMOS INGRESSOS — PAINEL DESLIZANTE ── */
 .ing-overlay{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:100;opacity:0;pointer-events:none;transition:opacity .25s}
@@ -174,50 +142,38 @@ tr.data-row.expanded .expand-icon{transform:rotate(180deg)}
 .ing-panel-empty{padding:32px;text-align:center;color:var(--muted)}
 .ing-panel-footer{padding:12px 16px;border-top:1px solid var(--border);font-size:10px;color:var(--muted);text-align:center}
 
-/* ── OVERLAY LOADING ── */
-#overlay{position:fixed;inset:0;background:rgba(7,16,31,.85);display:flex;align-items:center;justify-content:center;z-index:200;transition:opacity .3s}
-#overlay.hide{opacity:0;pointer-events:none}
-.spin{width:36px;height:36px;border:3px solid rgba(255,255,255,.15);border-top-color:#5eead4;border-radius:50%;animation:spin .7s linear infinite;margin:0 auto 14px}
-@keyframes spin{to{transform:rotate(360deg)}}
+/* Overlay de carregamento: base no app.css, só o tom do spinner muda aqui. */
+#overlay{z-index:200;transition:opacity .3s}
+#overlay.hide{opacity:0;pointer-events:none;display:flex}
+.spin{border-top-color:#5eead4;margin:0 auto 14px}
 .overlay-txt{color:rgba(255,255,255,.6);font-size:13px;text-align:center}
 
-/* ── RESPONSIVO ── */
-@media (max-height:700px),(max-width:900px){
-  html,body{height:auto;overflow-x:hidden;overflow-y:auto}
-  .hd{padding:0 14px;height:50px}
-  .hd-pill,.hd-sep{display:none}
-  .body{overflow:visible;flex-direction:column}
-  .sidebar{width:100%;flex-direction:column;flex-wrap:nowrap;overflow:hidden;max-height:0;padding:0 10px;gap:2px;border-right:none;border-bottom:none;position:static;flex-shrink:0;transition:max-height .28s ease,padding .28s ease}
-  .sidebar.sb-open{max-height:600px;padding:18px 10px;border-bottom:1px solid rgba(255,255,255,.06)}
-  .content{overflow:visible}
-  .scroll{overflow:visible;height:auto}
+/* ── RESPONSIVO DA PÁGINA (a casca responsiva está no app.css) ── */
+@media (max-width:900px){
   .kpi-row{grid-template-columns:repeat(2,1fr)}
-  .sb-toggle{display:none}
   .btn-ult-ing span{display:none}
+  .pg-title{font-size:15px}
+  .pg-title-icon{width:28px;height:28px;font-size:12px}
+  .srch input{width:100%}
+  .srch{flex:1}
+  .tbl-head-right{width:100%}
+  .ing-panel{width:100%;max-width:100%;right:-100%}
+  .recent-item{flex-wrap:wrap;gap:8px}
+  .recent-date{min-width:auto}
+  .recent-val{min-width:auto;font-size:15px}
+}
+@media (max-width:480px){
+  .kpi-row{grid-template-columns:1fr}
 }
 </style>
 </head>
-<body>
+<body data-page="ingressos">
+
+<!-- Tela de login: cobre tudo até o Firebase confirmar o acesso -->
+<div id="lockscreen"></div>
 
 <!-- LOADING -->
 <div id="overlay"><div><div class="spin"></div><div class="overlay-txt">Carregando ingressos...</div></div></div>
-
-<!-- LOCKSCREEN -->
-<div id="lockscreen" style="position:fixed;inset:0;background:#07101f;display:flex;align-items:center;justify-content:center;z-index:300">
-  <div style="background:#0f1f3d;border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:40px;width:340px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.5)">
-    <div style="width:52px;height:52px;border-radius:14px;background:linear-gradient(135deg,#0d766e,#1a3a6e);display:flex;align-items:center;justify-content:center;font-size:22px;color:#fff;margin:0 auto 16px"><i class="fa-solid fa-money-bill-transfer"></i></div>
-    <div style="font-family:'Sora',sans-serif;font-size:17px;font-weight:700;color:#fff;margin-bottom:4px">IDEPI — Convênios Federais</div>
-    <div style="font-size:12px;color:rgba(255,255,255,.4);margin-bottom:24px">Acesso restrito. Digite a senha para continuar.</div>
-    <input id="pwd-input" type="password" placeholder="Senha de acesso" style="width:100%;padding:11px 16px;border-radius:8px;border:1.5px solid rgba(255,255,255,.15);background:rgba(255,255,255,.06);color:#fff;font-size:14px;outline:none;margin-bottom:10px" onkeydown="if(event.key==='Enter')checkPwd()"/>
-    <div id="pwd-err" style="font-size:12px;color:#f87171;min-height:16px;margin-bottom:10px"></div>
-    <button onclick="checkPwd()" style="width:100%;padding:11px;border-radius:8px;border:none;background:#0d766e;color:#fff;font-size:14px;font-weight:600;cursor:pointer">Entrar</button>
-  </div>
-</div>
-<script>
-var SENHA="idepi2026";
-if(sessionStorage.getItem("idepi_auth")==="1")document.getElementById("lockscreen").style.display="none";
-function checkPwd(){var v=document.getElementById("pwd-input").value;if(v===SENHA){sessionStorage.setItem("idepi_auth","1");document.getElementById("lockscreen").style.display="none";}else{document.getElementById("pwd-err").textContent="Senha incorreta.";document.getElementById("pwd-input").value="";document.getElementById("pwd-input").focus();}}
-</script>
 
 <!-- HEADER -->
 <div class="hd">
@@ -234,9 +190,6 @@ function checkPwd(){var v=document.getElementById("pwd-input").value;if(v===SENH
       <i class="fa-solid fa-arrow-down-to-bracket"></i>
       <span>Últimos ingressos</span>
     </button>
-    <button class="sb-toggle" id="sbToggleBtn" onclick="toggleSidebar()" style="position:static;width:auto;height:auto;border-radius:7px;border:1px solid rgba(255,255,255,.1);padding:6px 12px;font-size:12px;color:rgba(255,255,255,.6);background:rgba(255,255,255,.05)">
-      <i class="fa-solid fa-bars" id="sbToggleIcon"></i> Menu
-    </button>
     <div class="hd-ts" id="hd-ts">—</div>
   </div>
 </div>
@@ -244,28 +197,8 @@ function checkPwd(){var v=document.getElementById("pwd-input").value;if(v===SENH
 <!-- BODY -->
 <div class="body">
 
-  <!-- SIDEBAR -->
-  <nav class="sidebar">
-    <div class="sb-sec">Convênios Federais</div>
-    <a class="sb-item" href="index.html"><i class="fa-solid fa-gauge-high"></i> Painel Geral</a>
-    <a class="sb-item" href="vigencias.html"><i class="fa-solid fa-table-list"></i> Vigências</a>
-    <a class="sb-item" href="execucao.html"><i class="fa-solid fa-chart-line"></i> Execução Financeira</a>
-    <a class="sb-item active" href="ingressos.html"><i class="fa-solid fa-money-bill-transfer"></i> Ingressos de Recurso</a>
-    <div class="sb-item"><i class="fa-solid fa-file-invoice"></i> Prestação de Contas<span class="soon">em breve</span></div>
-    <div class="sb-item"><i class="fa-solid fa-landmark-dome"></i> Emendas Parlamentares<span class="soon">em breve</span></div>
-    <div class="sb-item"><i class="fa-solid fa-map-location-dot"></i> Mapa de Obras<span class="soon">em breve</span></div>
-
-    <div class="sb-sec">Desempenho IDTRU-DL</div>
-    <a class="sb-item" href="fiscalgov.html"><i class="fa-solid fa-camera"></i> FiscalGov · EX-01</a>
-    <div class="sb-item"><i class="fa-solid fa-star"></i> Índice Geral<span class="soon">em breve</span></div>
-
-    <div class="sb-footer">
-      <div class="sb-card">
-        <strong>Instituto de Desenvolvimento do Piauí</strong>
-        <p>R. Altos, 277 — Primavera<br>Teresina-PI · idepi@idepi.pi.gov.br</p>
-      </div>
-    </div>
-  </nav>
+  <!-- O menu é montado por assets/nav.js — não escreva os itens aqui. -->
+  <nav class="sidebar" id="mainSidebar"></nav>
 
   <!-- CONTENT -->
   <div class="content">
@@ -355,25 +288,34 @@ function checkPwd(){var v=document.getElementById("pwd-input").value;if(v===SENH
   <div class="ing-panel-footer" id="ingPanelFooter">—</div>
 </div>
 
-<script>
-var USUARIO = "Ruan-Vitor", REPO = "painel-idepi";
-var _dados = null;          // historico_repasses
-var _todos  = [];           // lista flat de {numero, objeto, banco, agencia, conta, data, valor, ts}
-var _tabela = [];           // linhas da tabela (por convênio)
-var _expandido = null;      // número do convênio expandido
+<!-- ══ SDK do Firebase (login + banco) ══════════════════════════════════ -->
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore-compat.js"></script>
+<!-- ══ Casca compartilhada ═════════════════════════════════════════════ -->
+<script src="assets/firebase-config.js"></script>
+<script src="assets/app.js"></script>
+<script src="assets/auth.js"></script>
+<script src="assets/data.js"></script>
+<script src="assets/nav.js"></script>
 
-// ── FETCH ──────────────────────────────────────────────────────────────────
-fetch("https://raw.githubusercontent.com/"+USUARIO+"/"+REPO+"/main/dados.json?_="+Date.now())
-  .then(function(r){ return r.json(); })
+<script>
+var _dados = null;          // historico_repasses
+var _todos  = [];           // lista achatada de todos os ingressos
+var _tabela = [];           // uma linha por convênio
+var _expandido = null;      // número do convênio expandido
+var e = IDEPI.esc;          // escapa HTML — todo dado da planilha passa por aqui
+
+// ── CARREGAMENTO ───────────────────────────────────────────────────────────
+IDEPI.dados.carregar()
   .then(function(json){
-    var ts = json.gerado_em || json.repasses_atualizado_em || "";
-    document.getElementById("hd-ts").innerHTML = ts
-      ? "Atualizado<br>"+ts
-      : '<span style="color:rgba(255,255,255,.2)">—</span>';
+    document.getElementById("hd-ts").innerHTML =
+      IDEPI.dados.rotuloOrigem(json).replace("Atualizado ", "Atualizado<br>");
 
     _dados = json.historico_repasses || {};
 
-    // Flatten de todos os ingressos (federal + manual/contrapartida)
+    // Achata todos os ingressos numa lista só, já com o tipo normalizado
+    // ("F" federal / "C" contrapartida) — ver IDEPI.tipoIngresso.
     Object.keys(_dados).forEach(function(num){
       var conv = _dados[num];
       (conv.ingressos||[]).forEach(function(ing){
@@ -385,20 +327,21 @@ fetch("https://raw.githubusercontent.com/"+USUARIO+"/"+REPO+"/main/dados.json?_=
           conta:   conv.conta   || "",
           data:    ing.data     || "",
           valor:   ing.valor    || "",
-          ts:      _parseDate(ing.data),
+          tipo:    IDEPI.tipoIngresso(ing),
+          ts:      _parseDate(ing.data)
         });
       });
     });
 
-    // Ordena por data desc
+    // Mais recentes primeiro
     _todos.sort(function(a,b){ return b.ts - a.ts; });
 
-    // Tabela: um item por convênio, ordenado por data do último ingresso desc
+    // Tabela: um item por convênio, ordenado pela data do último ingresso
     _tabela = Object.keys(_dados).map(function(num){
       var c = _dados[num];
-      var ingressos = (c.ingressos||[]).slice().sort(function(a,b){
-        return _parseDate(b.data) - _parseDate(a.data);
-      });
+      var ingressos = (c.ingressos||[]).slice()
+        .map(function(ing){ return { data:ing.data, valor:ing.valor, tipo:IDEPI.tipoIngresso(ing) }; })
+        .sort(function(a,b){ return _parseDate(b.data) - _parseDate(a.data); });
       return {
         numero:  num,
         objeto:  c.objeto  || "",
@@ -407,7 +350,7 @@ fetch("https://raw.githubusercontent.com/"+USUARIO+"/"+REPO+"/main/dados.json?_=
         conta:   c.conta   || "",
         total:   c.total_recebido || "",
         ingressos: ingressos,
-        ult_ts: ingressos.length ? _parseDate(ingressos[0].data) : 0,
+        ult_ts: ingressos.length ? _parseDate(ingressos[0].data) : 0
       };
     }).sort(function(a,b){ return b.ult_ts - a.ult_ts; });
 
@@ -416,10 +359,13 @@ fetch("https://raw.githubusercontent.com/"+USUARIO+"/"+REPO+"/main/dados.json?_=
     renderizar();
     document.getElementById("overlay").classList.add("hide");
   })
-  .catch(function(){
+  .catch(function(e){
     document.getElementById("overlay").classList.add("hide");
     document.getElementById("tbody").innerHTML =
-      '<tr><td colspan="9" style="text-align:center;padding:28px;color:#ef4444"><i class="fa-solid fa-triangle-exclamation" style="margin-right:6px"></i>Erro ao carregar dados. Execute py monitor_repasse.py --importar primeiro.</td></tr>';
+      '<tr><td colspan="9" style="text-align:center;padding:28px;color:#ef4444">' +
+      '<i class="fa-solid fa-triangle-exclamation" style="margin-right:6px"></i>' +
+      'Não foi possível carregar os ingressos. ' + IDEPI.esc(e.message||'') +
+      '</td></tr>';
   });
 
 // ── PARSE DATE ─────────────────────────────────────────────────────────────
@@ -448,14 +394,25 @@ function _fmtValor(v){
 function calcKPIs(){
   var ano = new Date().getFullYear();
   document.getElementById("kpi-ano-label").textContent = ano;
-  var total=0, totalAno=0;
+
+  var total=0, totalAno=0, totalFed=0, totalCP=0;
   _todos.forEach(function(ing){
-    var v=parseFloat((ing.valor||"").replace(/\./g,"").replace(",","."));
-    if(!isNaN(v)){ total+=v; var y=new Date(ing.ts).getFullYear(); if(y===ano) totalAno+=v; }
+    var v = IDEPI.parseReais(ing.valor);
+    if(!v) return;
+    total += v;
+    if (ing.tipo === 'C') totalCP += v; else totalFed += v;
+    if (new Date(ing.ts).getFullYear() === ano) totalAno += v;
   });
-  document.getElementById("kpi-total").textContent = "R$ "+total.toLocaleString("pt-BR",{minimumFractionDigits:2,maximumFractionDigits:2});
-  document.getElementById("kpi-total-desc").textContent = _todos.length+" ingresso(s) registrado(s)";
-  document.getElementById("kpi-ano").textContent = "R$ "+totalAno.toLocaleString("pt-BR",{minimumFractionDigits:2,maximumFractionDigits:2});
+
+  document.getElementById("kpi-total").textContent = IDEPI.fmtReais(total);
+  // Separa federal de contrapartida — os dois entravam somados no mesmo número,
+  // o que fazia o "total recebido" parecer maior que o repasse da União.
+  document.getElementById("kpi-total-desc").innerHTML =
+    _todos.length + " ingresso(s) · " +
+    '<span class="tipo-fed">Federal ' + IDEPI.fmtReais(totalFed) + '</span> ' +
+    (totalCP > 0 ? '<span class="tipo-cp">Contrapartida ' + IDEPI.fmtReais(totalCP) + '</span>' : '');
+
+  document.getElementById("kpi-ano").textContent = IDEPI.fmtReais(totalAno);
   var nAno = _todos.filter(function(i){ return new Date(i.ts).getFullYear()===ano; }).length;
   document.getElementById("kpi-ano-desc").textContent = nAno+" ingresso(s) em "+ano;
 
@@ -482,11 +439,11 @@ function renderRecent(){
   top10.forEach(function(ing){
     var novo = ing.ts >= ago30;
     html += '<div class="recent-item'+(novo?' novo':'')+'">';
-    html += '<div class="recent-date"><span class="date-badge'+(novo?' hoje':'')+'">'+ing.data+'</span></div>';
+    html += '<div class="recent-date"><span class="date-badge'+(novo?' hoje':'')+'">'+e(ing.data)+'</span></div>';
     html += '<div class="recent-body">';
-    html += '<div class="recent-num">'+ing.numero+'</div>';
-    html += '<div class="recent-obj" title="'+ing.objeto+'">'+ing.objeto+'</div>';
-    html += '<div class="recent-banco">'+[ing.banco,ing.agencia?'Ag. '+ing.agencia:'',ing.conta?'Cc. '+ing.conta:''].filter(Boolean).join(' · ')+'</div>';
+    html += '<div class="recent-num">'+e(ing.numero)+'</div>';
+    html += '<div class="recent-obj" title="'+e(ing.objeto)+'">'+e(ing.objeto)+'</div>';
+    html += '<div class="recent-banco">'+e([ing.banco,ing.agencia?'Ag. '+ing.agencia:'',ing.conta?'Cc. '+ing.conta:''].filter(Boolean).join(' · '))+'</div>';
     html += '</div>';
     html += '<div style="text-align:right"><div class="recent-val">'+_fmtValor(ing.valor)+'</div><div class="recent-dias">'+_diasAtras(ing.ts)+'</div></div>';
     html += '</div>';
@@ -508,11 +465,11 @@ function renderizar(){
     var ult = r.ingressos.length ? r.ingressos[0] : null;
     html += '<tr class="data-row'+(expanded?' expanded':'')+'" onclick="toggleExpand(\''+r.numero+'\')">';
     html += '<td><i class="fa-solid fa-chevron-down expand-icon"></i></td>';
-    html += '<td><span class="num-cell">'+r.numero+'</span></td>';
-    html += '<td><div class="obj-cell" title="'+r.objeto+'">'+r.objeto+'</div></td>';
-    html += '<td class="banco-cell">'+r.banco+'</td>';
-    html += '<td class="banco-cell">'+r.agencia+'</td>';
-    html += '<td class="conta-cell">'+r.conta+'</td>';
+    html += '<td><span class="num-cell">'+e(r.numero)+'</span></td>';
+    html += '<td><div class="obj-cell" title="'+e(r.objeto)+'">'+e(r.objeto)+'</div></td>';
+    html += '<td class="banco-cell">'+e(r.banco)+'</td>';
+    html += '<td class="banco-cell">'+e(r.agencia)+'</td>';
+    html += '<td class="conta-cell">'+e(r.conta)+'</td>';
     html += '<td class="ult-data">'+(ult ? ult.data+'<div style="font-size:10px;color:var(--muted);margin-top:1px">'+_diasAtras(_parseDate(ult.data))+'</div>' : '—')+'</td>';
     html += '<td><span class="val-cell">'+_fmtValor(r.total)+'</span></td>';
     html += '<td><span class="qtd-cell">'+r.ingressos.length+'×</span></td>';
@@ -523,12 +480,16 @@ function renderizar(){
       html += '<div class="expand-title"><i class="fa-solid fa-clock-rotate-left" style="margin-right:5px"></i>Histórico completo de ingressos — '+r.numero+'</div>';
       html += '<div class="hist-list">';
       r.ingressos.forEach(function(ing, idx){
-        // Sort is newest first, display oldest first
+        // A lista está da mais recente para a mais antiga; a numeração mostra
+        // a ordem cronológica real (1º = primeiro ingresso recebido).
+        var fed = ing.tipo === 'F';
         html += '<div class="hist-item">';
         html += '<span class="hist-n">'+(r.ingressos.length-idx)+'º</span>';
-        html += '<span class="hist-date">'+ing.data+'</span>';
+        html += '<span class="hist-date">'+IDEPI.esc(ing.data)+'</span>';
         html += '<span class="hist-val">'+_fmtValor(ing.valor)+'</span>';
-        html += '<span class="'+(ing.tipo==='federal'?'tipo-fed':'tipo-plan')+'">'+((ing.tipo||'planilha')==='federal'?'Federal':'Manual')+'</span>';
+        html += '<span class="'+(fed?'tipo-fed':'tipo-cp')+'" title="'+
+                (fed?'Repasse federal (OB do SIAFI)':'Contrapartida depositada pelo convenente')+'">'+
+                (fed?'Federal':'Contrapartida')+'</span>';
         html += '</div>';
       });
       html += '</div></div></td></tr>';
@@ -579,10 +540,10 @@ function renderPainel(){
     html += '<div class="ing-panel-item'+(novo?' novo-30':'')+'">';
     html += '<div class="ing-panel-date"><div class="ing-panel-date-d">'+dd+'</div><div class="ing-panel-date-m">'+mm+'</div><div class="ing-panel-date-y">'+aaaa+'</div></div>';
     html += '<div class="ing-panel-info">';
-    html += '<div class="ing-panel-num">'+ing.numero+'</div>';
-    html += '<div class="ing-panel-obj">'+ing.objeto+'</div>';
-    html += '<div class="ing-panel-banco">'+[ing.banco, ing.agencia?'Ag. '+ing.agencia:'', ing.conta?'Cc. '+ing.conta:''].filter(Boolean).join(' · ')+'</div>';
-    html += '<div style="margin-top:3px"><span class="'+(ing.tipo==='federal'?'tipo-fed':'tipo-plan')+'">'+((ing.tipo||'planilha')==='federal'?'🏛 Federal':'📋 Manual')+'</span></div>';
+    html += '<div class="ing-panel-num">'+e(ing.numero)+'</div>';
+    html += '<div class="ing-panel-obj">'+e(ing.objeto)+'</div>';
+    html += '<div class="ing-panel-banco">'+e([ing.banco, ing.agencia?'Ag. '+ing.agencia:'', ing.conta?'Cc. '+ing.conta:''].filter(Boolean).join(' · '))+'</div>';
+    html += '<div style="margin-top:3px"><span class="'+(ing.tipo==='F'?'tipo-fed':'tipo-cp')+'">'+(ing.tipo==='F'?'🏛 Federal':'💰 Contrapartida')+'</span></div>';
     html += '</div>';
     html += '<div><div class="ing-panel-val">'+_fmtValor(ing.valor)+'</div><div class="ing-panel-dias">'+_diasAtras(ing.ts)+'</div></div>';
     html += '</div>';
@@ -599,16 +560,19 @@ function exportarExcel(){
   btn.classList.add("loading");
   btn.innerHTML='<i class="fa-solid fa-spinner fa-spin"></i> Gerando...';
   setTimeout(function(){
-    var cab=["Instrumento","Objeto","Banco","Agência","Conta","Nº Ingresso","Data","Valor (R$)"];
+    var cab=["Instrumento","Objeto","Banco","Agência","Conta","Nº Ingresso","Data","Tipo","Valor (R$)"];
     var linhas=[];
     _tabela.forEach(function(r){
       r.ingressos.forEach(function(ing,i){
-        var v=parseFloat((ing.valor||"").replace(/\./g,"").replace(",","."));
-        linhas.push([r.numero,r.objeto,r.banco,r.agencia,r.conta,(r.ingressos.length-i),ing.data,isNaN(v)?ing.valor:v]);
+        linhas.push([r.numero,r.objeto,r.banco,r.agencia,r.conta,
+                     (r.ingressos.length-i), ing.data,
+                     ing.tipo === 'C' ? 'Contrapartida' : 'Federal',
+                     IDEPI.parseReais(ing.valor)]);
       });
     });
     var ws=XLSX.utils.aoa_to_sheet([cab].concat(linhas));
-    ws['!cols']=[{wch:14},{wch:55},{wch:8},{wch:9},{wch:14},{wch:10},{wch:12},{wch:16}];
+    ws['!cols']=[{wch:14},{wch:55},{wch:8},{wch:9},{wch:14},{wch:10},{wch:12},{wch:14},{wch:16}];
+    ws['!autofilter']={ref:XLSX.utils.encode_range({s:{r:0,c:0},e:{r:linhas.length,c:cab.length-1}})};
     var wb=XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb,ws,"Ingressos");
     XLSX.writeFile(wb,"IDEPI_Ingressos_"+new Date().toISOString().slice(0,10)+".xlsx");
@@ -617,45 +581,9 @@ function exportarExcel(){
   },100);
 }
 
-// ── SIDEBAR ───────────────────────────────────────────────────────────────
-function toggleSidebar(){
-  var sb=document.querySelector('.sidebar');
-  var ico=document.getElementById('sbToggleIcon');
-  var aberto=sb.classList.toggle('sb-open');
-  if(ico) ico.className=aberto?'fa-solid fa-xmark':'fa-solid fa-bars';
-}
-document.addEventListener('DOMContentLoaded',function(){
-  document.querySelectorAll('.sidebar .sb-item').forEach(function(el){
-    el.addEventListener('click',function(){
-      var sb=document.querySelector('.sidebar');
-      if(sb&&sb.classList.contains('sb-open')) toggleSidebar();
-    });
-  });
-});
-</script>
-
-<!-- SIDEBAR TOGGLE DESKTOP -->
-<script>
-(function(){
-  var sidebar=document.querySelector('.sidebar');
-  if(!sidebar) return;
-  var btn=document.createElement('button');
-  btn.className='sb-toggle';
-  btn.title='Recolher menu';
-  btn.setAttribute('aria-label','Recolher/expandir menu lateral');
-  btn.innerHTML='<i class="fa-solid fa-chevron-left"></i>';
-  document.body.appendChild(btn);
-  var collapsed=sessionStorage.getItem('idepi_sb_collapsed')==='1';
-  function aplicar(c){
-    collapsed=c;
-    sidebar.classList.toggle('collapsed',collapsed);
-    btn.innerHTML=collapsed?'<i class="fa-solid fa-chevron-right"></i>':'<i class="fa-solid fa-chevron-left"></i>';
-    btn.title=collapsed?'Expandir menu':'Recolher menu';
-    btn.style.left=collapsed?'0':'214px';
-  }
-  aplicar(collapsed);
-  btn.addEventListener('click',function(){ aplicar(!collapsed); sessionStorage.setItem('idepi_sb_collapsed',collapsed?'1':'0'); });
-})();
+/* O menu (drawer no celular, recolher no desktop) é montado e controlado por
+   assets/nav.js. O botão "Menu" antes usava a classe .sb-toggle, que o CSS
+   escondia no celular — resultado: no telefone não havia como abrir o menu. */
 </script>
 
 </body>

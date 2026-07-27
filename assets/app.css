@@ -380,7 +380,143 @@ div > button:has(svg):not([class]):not([id]){display:none!important}
   *{animation-duration:.01ms!important;transition-duration:.01ms!important}
 }
 
-/* ── 12. IMPRESSÃO ─────────────────────────────────────────────────────── */
+/* ══════════════════════════════════════════════════════════════════════════
+   12. LEITURA DE TEXTO LONGO  (objeto do convênio, favorecido, razão social)
+
+   O PROBLEMA QUE ISTO RESOLVE
+   ───────────────────────────
+   Os objetos dos convênios têm 100+ caracteres ("IMPLANTAÇÃO DE MELHORIAS
+   SANITÁRIAS DOMICILIARES EM ÁREAS RURAIS DO MUNICÍPIO DE..."). As tabelas
+   cortavam tudo numa linha só, com reticências, e a única forma de ler o resto
+   era passar o mouse por cima para ver o `title`.
+
+   No celular isso simplesmente não existe: **não há hover em tela de toque**.
+   O texto ficava inacessível — restava arrastar a tabela para os lados.
+
+   A SOLUÇÃO, EM TRÊS CAMADAS
+   ──────────────────────────
+   1. Duas linhas em vez de uma. Só isso já mostra a maior parte dos objetos.
+   2. Um toque abre o texto inteiro, ali mesmo, sem sair da tabela. Funciona
+      com dedo e com mouse — diferente do `title`.
+   3. No celular, a tabela deixa de ser tabela: cada linha vira um cartão com
+      o objeto por extenso no topo. É o que torna o painel legível no telefone.
+   ══════════════════════════════════════════════════════════════════════════ */
+
+/* ── Texto que abre com um toque ────────────────────────────────────────── */
+.txt-exp{
+  display:-webkit-box;
+  -webkit-line-clamp:2;
+  -webkit-box-orient:vertical;
+  overflow:hidden;
+  line-height:1.45;
+  cursor:pointer;
+  position:relative;
+  padding-right:14px;
+  word-break:break-word;
+}
+.txt-exp.aberto{
+  display:block;
+  -webkit-line-clamp:unset;
+}
+/* A setinha só aparece quando há mesmo texto escondido — quem decide é o
+   app.js, medindo a altura real. Sem isso, prometeríamos conteúdo que não há. */
+.txt-exp[data-cortado="1"]::after{
+  content:'⌄';
+  position:absolute;right:0;bottom:-2px;
+  font-size:13px;line-height:1;color:var(--muted);
+  padding-left:6px;
+}
+.txt-exp.aberto[data-cortado="1"]::after{content:'⌃';bottom:auto;top:0}
+.txt-exp[data-cortado="1"]:hover{color:var(--accent)}
+.txt-exp[data-cortado="1"]:hover::after{color:var(--accent)}
+
+/* Uma linha só, quando a coluna é estreita (nome de fiscal, favorecido) */
+.txt-exp.uma-linha{-webkit-line-clamp:1}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   13. TABELA VIRA CARTÃO NO CELULAR
+
+   Marque a tabela com class="tbl-cards". O rótulo de cada campo sai do <thead>
+   automaticamente (app.js copia para data-rotulo), então nenhuma página precisa
+   repetir os nomes das colunas.
+   ══════════════════════════════════════════════════════════════════════════ */
+@media (max-width:900px){
+  table.tbl-cards{border-collapse:separate;border-spacing:0;font-size:12.5px}
+  table.tbl-cards thead{display:none}
+  table.tbl-cards tbody,
+  table.tbl-cards tr,
+  table.tbl-cards td{display:block;width:100%}
+
+  table.tbl-cards tbody tr{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:12px;
+    margin-bottom:10px;
+    padding:12px 14px;
+    box-shadow:0 1px 3px rgba(26,58,110,.06);
+  }
+  table.tbl-cards tbody tr:hover td{background:transparent}
+
+  table.tbl-cards td{
+    border:none!important;
+    padding:5px 0!important;
+    display:grid;
+    grid-template-columns:40% 1fr;
+    gap:10px;
+    align-items:start;
+    white-space:normal!important;
+    max-width:none!important;
+    text-align:left!important;
+  }
+  table.tbl-cards td::before{
+    content:attr(data-rotulo);
+    font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;
+    color:var(--muted);padding-top:3px;
+  }
+
+  /* Célula sem rótulo (a coluna do ícone de expandir, por exemplo) não vira
+     linha do cartão — só ocuparia espaço sem dizer nada. */
+  table.tbl-cards td[data-rotulo=""]{display:none}
+
+  /* O campo em destaque (o objeto) ocupa a largura toda, no topo do cartão */
+  table.tbl-cards td.celula-destaque{
+    display:block;
+    border-bottom:1px solid var(--border)!important;
+    padding-bottom:10px!important;
+    margin-bottom:4px;
+  }
+  table.tbl-cards td.celula-destaque::before{display:block;margin-bottom:5px}
+
+  /* Dentro do cartão não há motivo para cortar texto: o espaço é vertical */
+  table.tbl-cards .txt-exp{
+    display:block;-webkit-line-clamp:unset;
+    cursor:auto;padding-right:0;font-size:13px;color:var(--text);
+  }
+  table.tbl-cards .txt-exp::after{display:none}
+  table.tbl-cards .obj,
+  table.tbl-cards .obj-cell{max-width:none;white-space:normal;overflow:visible;text-overflow:clip}
+
+  /* Mensagens de "nenhum resultado" ocupam o cartão inteiro, sem rótulo */
+  table.tbl-cards td[colspan]{display:block;grid-template-columns:1fr}
+  table.tbl-cards td[colspan]::before{display:none}
+  table.tbl-cards tr:has(td[colspan]){background:transparent;border:none;box-shadow:none;padding:0}
+
+  /* Linhas de detalhe que abrem ao clicar continuam funcionando como bloco */
+  table.tbl-cards tr.erow,
+  table.tbl-cards tr.expand-row{display:none;padding:0;border:none;box-shadow:none;background:transparent}
+  table.tbl-cards tr.erow.open{display:block;margin-top:-8px;margin-bottom:10px}
+  table.tbl-cards tr.expand-row{display:block;margin-top:-8px;margin-bottom:10px}
+  table.tbl-cards tr.erow td,
+  table.tbl-cards tr.expand-row td{display:block;grid-template-columns:1fr}
+  table.tbl-cards tr.erow td::before,
+  table.tbl-cards tr.expand-row td::before{display:none}
+
+  /* A rolagem lateral deixa de ser necessária — o cartão cabe na tela */
+  .twrap:has(table.tbl-cards),
+  .tbl-scroll:has(table.tbl-cards){overflow-x:visible;padding:10px 12px}
+}
+
+/* ── 14. IMPRESSÃO ─────────────────────────────────────────────────────── */
 @media print{
   .hd,.sidebar,.sb-toggle,.pwa-bar,.btn-excel,.btn-fullscreen,#lockscreen,.overlay{display:none!important}
   body,.content,.scroll{background:#fff!important;overflow:visible!important;height:auto!important}

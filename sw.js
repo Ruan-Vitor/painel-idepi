@@ -22,11 +22,12 @@
    antigos de todo mundo.
    ══════════════════════════════════════════════════════════════════════════ */
 
-/* v2 (27/07/2026): entrou o admin.html e mudou o auth.js (auto-cadastro).
-   Trocar a versão é o que apaga o cache antigo nos aparelhos já instalados —
-   sem isso, quem instalou o app continuaria na tela de login sem o botão
-   "Solicitar acesso". */
-const VERSAO = 'idepi-v2';
+/* Histórico de versões (subir a VERSAO é o que apaga o cache dos aparelhos
+   já instalados — sem isso, quem instalou o app continua na versão antiga):
+     v2 — 27/07: admin.html e auto-cadastro no auth.js
+     v3 — 27/07: leitura de texto longo (objeto do convênio) e tabelas que
+                 viram cartão no celular — mudou app.css e app.js */
+const VERSAO = 'idepi-v3';
 const CACHE_SHELL = VERSAO + '-shell';
 const CACHE_PAGS  = VERSAO + '-paginas';
 

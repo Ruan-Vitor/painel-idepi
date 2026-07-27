@@ -68,7 +68,9 @@
 .date-badge.hoje{background:#fef9c3;border-color:#fde047;color:#854d0e}
 .recent-body{flex:1;min-width:0}
 .recent-num{font-size:11px;font-weight:700;color:var(--accent);font-family:'IBM Plex Mono',monospace}
-.recent-obj{font-size:12px;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:1px}
+/* Duas linhas em vez de uma cortada: cabe o municipio, que e o que
+   identifica a obra. Toque abre o resto (.txt-exp). */
+.recent-obj{font-size:12px;color:var(--text);margin-top:2px;line-height:1.4}
 .recent-banco{font-size:10px;color:var(--muted);margin-top:2px}
 .recent-val{font-family:'Sora',sans-serif;font-size:16px;font-weight:800;color:var(--money);white-space:nowrap;text-align:right;min-width:140px}
 .recent-dias{font-size:9px;color:var(--muted);text-align:right;margin-top:2px}
@@ -105,7 +107,8 @@ tr.expand-row td{padding:0;background:#f8fffd;border-bottom:1px solid var(--teal
 
 /* badges */
 .num-cell{font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:600;color:var(--accent)}
-.obj-cell{max-width:260px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+/* Duas linhas e abre com um toque (.txt-exp, no app.css). */
+.obj-cell{max-width:320px;min-width:190px}
 .banco-cell{font-size:11px;color:var(--muted)}
 .conta-cell{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--slate)}
 .val-cell{font-family:'Sora',sans-serif;font-size:13px;font-weight:800;color:var(--money)}
@@ -254,7 +257,8 @@ tr.data-row.expanded .expand-icon{transform:rotate(180deg)}
           </div>
         </div>
         <div class="tbl-scroll">
-          <table>
+          <!-- tbl-cards: no celular vira lista de cartoes (app.css, secao 13) -->
+          <table class="tbl-cards">
             <thead>
               <tr>
                 <th></th>
@@ -442,7 +446,7 @@ function renderRecent(){
     html += '<div class="recent-date"><span class="date-badge'+(novo?' hoje':'')+'">'+e(ing.data)+'</span></div>';
     html += '<div class="recent-body">';
     html += '<div class="recent-num">'+e(ing.numero)+'</div>';
-    html += '<div class="recent-obj" title="'+e(ing.objeto)+'">'+e(ing.objeto)+'</div>';
+    html += '<div class="recent-obj txt-exp">'+e(ing.objeto)+'</div>';
     html += '<div class="recent-banco">'+e([ing.banco,ing.agencia?'Ag. '+ing.agencia:'',ing.conta?'Cc. '+ing.conta:''].filter(Boolean).join(' · '))+'</div>';
     html += '</div>';
     html += '<div style="text-align:right"><div class="recent-val">'+_fmtValor(ing.valor)+'</div><div class="recent-dias">'+_diasAtras(ing.ts)+'</div></div>';
@@ -466,7 +470,7 @@ function renderizar(){
     html += '<tr class="data-row'+(expanded?' expanded':'')+'" onclick="toggleExpand(\''+r.numero+'\')">';
     html += '<td><i class="fa-solid fa-chevron-down expand-icon"></i></td>';
     html += '<td><span class="num-cell">'+e(r.numero)+'</span></td>';
-    html += '<td><div class="obj-cell" title="'+e(r.objeto)+'">'+e(r.objeto)+'</div></td>';
+    html += '<td class="celula-destaque"><div class="obj-cell txt-exp">'+e(r.objeto)+'</div></td>';
     html += '<td class="banco-cell">'+e(r.banco)+'</td>';
     html += '<td class="banco-cell">'+e(r.agencia)+'</td>';
     html += '<td class="conta-cell">'+e(r.conta)+'</td>';

@@ -1,30 +1,45 @@
 <!DOCTYPE html>
-<!-- v20260608_000000 -->
+<!-- IDEPI · Vigências — v20260726 -->
 <html lang="pt-br">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Painel de Vigências — IDEPI</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Vigências — IDEPI Convênios Federais</title>
+<meta name="description" content="Monitoramento de prazos de vigência dos convênios federais do IDEPI.">
+<meta name="theme-color" content="#0b1527">
+
+<!-- ── APP INSTALÁVEL (PWA) ────────────────────────────────────────────── -->
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="IDEPI">
+
+<!-- ── FONTES E ÍCONES ─────────────────────────────────────────────────── -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+
+<!-- ── CASCA COMPARTILHADA (header, menu, login, responsivo) ───────────── -->
+<link rel="stylesheet" href="assets/app.css">
+
 <style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+/* ═══ Estilos exclusivos do painel de Vigências ═══════════════════════════
+   Header, sidebar, botões, login, overlay e regras de celular estão em
+   assets/app.css. Só sobrevive aqui o que é específico desta tela.       */
+
+/* Esta página usa uma paleta um pouco mais fria que as demais. */
 :root{
-  --bg:#0b1527;--sidebar:#07101f;
-  --surface:#fff;--surface2:#f0f4f8;--border:#e2e8f0;
-  --text:#1e293b;--muted:#64748b;--light:#94a3b8;
-  --brand:#1e40af;--brand-light:#dbeafe;
-  --n-bg:#f0fdf4;--n-bd:#22c55e;--n-tx:#15803d;
-  --a-bg:#eff6ff;--a-bd:#3b82f6;--a-tx:#1d4ed8;
-  --at-bg:#fefce8;--at-bd:#eab308;--at-tx:#a16207;
-  --c-bg:#fff7ed;--c-bd:#f97316;--c-tx:#c2410c;
-  --v-bg:#fef2f2;--v-bd:#ef4444;--v-tx:#b91c1c;
-  --f-bg:#f8fafc;--f-bd:#94a3b8;--f-tx:#475569;
-  --s-bg:#f5f3ff;--s-bd:#8b5cf6;--s-tx:#5b21b6;
-  --r:10px;--sh:0 1px 3px rgba(0,0,0,.08);--sh2:0 10px 25px rgba(0,0,0,.12);
+  --surface2:#f0f4f8;--border:#e2e8f0;
+  --text:#1e293b;--muted:#64748b;
 }
+body{font-family:'Inter',sans-serif;color:var(--text)}
+
 .th-info{
   display:inline-flex;align-items:center;justify-content:center;
   width:14px;height:14px;border-radius:50%;
@@ -42,50 +57,6 @@
   box-shadow:0 4px 16px rgba(0,0,0,.3);
   text-transform:none;letter-spacing:0;font-family:'Inter',sans-serif;
 }
-body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
-
-/* ── HEADER UNIFICADO (padrão único de todos os painéis) ──────── */
-.hd{background:var(--bg);border-bottom:1px solid rgba(255,255,255,.07);padding:0 36px;height:58px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
-.hd-left{display:flex;align-items:center;gap:14px}
-.hd-logo{display:flex;align-items:center;gap:10px}
-.hd-logo-icon{width:34px;height:34px;border-radius:8px;background:linear-gradient(135deg,#1a4a8a,#0d6e4a);display:flex;align-items:center;justify-content:center;font-size:14px;color:#fff}
-.hd-title{font-family:'Sora',sans-serif;font-size:14px;font-weight:700;color:#fff;line-height:1.1}
-.hd-sub{font-size:10px;color:rgba(255,255,255,.4)}
-.hd-sep{width:1px;height:26px;background:rgba(255,255,255,.1)}
-.hd-pill{display:flex;align-items:center;gap:6px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.09);border-radius:20px;padding:3px 11px;font-size:10px;color:rgba(255,255,255,.55)}
-.hd-pill i{color:#4ade80;font-size:8px}
-.hd-right{display:flex;align-items:center;gap:14px}
-.hd-stat{text-align:right}
-.hd-stat strong{font-family:'Sora',sans-serif;font-size:17px;font-weight:800;color:#fff;display:block;line-height:1}
-.hd-stat span{font-size:9.5px;color:rgba(255,255,255,.35)}
-.hd-div{width:1px;height:26px;background:rgba(255,255,255,.1)}
-.hd-ts{font-size:10px;color:rgba(255,255,255,.3);text-align:right;line-height:1.5}
-
-/* ── LAYOUT ── */
-.body{flex:1;display:flex;overflow:hidden}
-.content{flex:1;display:flex;flex-direction:column;background:var(--surface2);overflow-y:auto}
-
-/* ── SIDEBAR ITENS ── */
-.sb-sec{font-size:9px;font-weight:700;color:rgba(255,255,255,.2);letter-spacing:1px;text-transform:uppercase;padding:10px 12px 3px;margin-top:6px}
-.sb-sec:first-child{margin-top:0}
-.sb-item{display:flex;align-items:center;gap:9px;padding:8px 12px;border-radius:7px;font-size:12.5px;color:rgba(255,255,255,.5);text-decoration:none;cursor:pointer;transition:all .14s}
-.sb-item:hover{background:rgba(255,255,255,.05);color:rgba(255,255,255,.75)}
-.sb-item.active{background:#182f5a;color:#fff}
-.sb-item.active i{color:#60a5fa}
-.sb-item i{font-size:13px;width:16px;text-align:center;flex-shrink:0}
-.soon{margin-left:auto;font-size:9px;font-weight:600;background:rgba(255,255,255,.07);color:rgba(255,255,255,.25);padding:1px 6px;border-radius:8px}
-.sb-item.active .soon{display:none}
-.sb-footer{margin-top:auto;padding-top:14px;border-top:1px solid rgba(255,255,255,.06)}
-.sb-card{padding:10px 12px;border-radius:8px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.05)}
-.sb-card strong{color:rgba(255,255,255,.45);display:block;font-size:10px;margin-bottom:2px}
-.sb-card p{font-size:10px;color:rgba(255,255,255,.25);line-height:1.5}
-
-/* LOADING */
-.overlay{position:fixed;inset:0;background:rgba(15,23,42,.75);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:9999;gap:14px}
-.overlay.hide{display:none}
-.spin{width:44px;height:44px;border:4px solid rgba(255,255,255,.2);border-top-color:#fff;border-radius:50%;animation:spin .8s linear infinite}
-@keyframes spin{to{transform:rotate(360deg)}}
-.overlay p{color:#fff;font-size:15px;font-weight:500}
 .overlay small{color:rgba(255,255,255,.6);font-size:13px;text-align:center;max-width:360px}
 
 /* MAIN */
@@ -211,17 +182,7 @@ tr.drow:hover td{background:var(--surface2);cursor:pointer}
 .srow{display:flex;gap:6px;align-items:center;font-size:11px;color:var(--muted);padding:7px 14px;border-top:1px solid var(--border);flex-wrap:wrap}
 .srow strong{color:var(--text)}
 
-/* ── BOTÃO TELA CHEIA ── */
-.btn-fullscreen{
-  display:inline-flex;align-items:center;gap:5px;
-  background:var(--brand-light);color:var(--brand);
-  border:1.5px solid var(--brand);border-radius:7px;
-  padding:5px 11px;font-size:11px;font-weight:600;
-  cursor:pointer;font-family:'Inter',sans-serif;
-  transition:all .15s;white-space:nowrap;
-}
-.btn-fullscreen:hover{background:var(--brand);color:#fff}
-.btn-fullscreen i{font-size:11px}
+/* Tela cheia da tabela (o botão em si vem do app.css) */
 .panel:fullscreen,.panel:-webkit-full-screen,.panel:-moz-full-screen{
   display:flex;flex-direction:column;background:var(--surface);overflow:hidden;border-radius:0;
 }
@@ -229,43 +190,9 @@ tr.drow:hover td{background:var(--surface2);cursor:pointer}
   max-height:none;flex:1;overflow:auto;
 }
 
-/* ── BOTÃO EXPORTAR EXCEL ── */
-.btn-excel{
-  display:inline-flex;align-items:center;gap:6px;
-  background:#16a34a;color:#fff;
-  border:none;border-radius:7px;
-  padding:6px 13px;font-size:11.5px;font-weight:600;
-  cursor:pointer;font-family:'Inter',sans-serif;
-  transition:background .15s,transform .1s;
-  white-space:nowrap;
-}
-.btn-excel:hover{background:#15803d;transform:translateY(-1px)}
-.btn-excel:active{transform:translateY(0)}
-.btn-excel i{font-size:12px}
-.btn-excel.loading{background:#94a3b8;cursor:not-allowed;transform:none}
-
-@media(max-width:900px){
-  .hd{padding:0 14px;height:auto;min-height:50px;flex-wrap:wrap;gap:6px;padding-top:8px;padding-bottom:8px}
-  .hd-sep,.hd-pill,.hd-stat,.hd-div{display:none}
-  .body{overflow:visible;flex-direction:column;height:auto}
-  .content{overflow:visible;flex:none;width:100%}
-  .sidebar{width:100%;flex-direction:row;flex-wrap:nowrap;overflow-x:auto;padding:8px 10px;height:auto;border-right:none;border-bottom:1px solid rgba(255,255,255,.06)}
-  .sidebar::-webkit-scrollbar{display:none}
-  .sb-sec,.sb-footer{display:none}
-  .sb-item{flex-shrink:0;white-space:nowrap;padding:6px 12px;font-size:12px}
-  .sb-toggle{display:none}
-}
 @media(max-width:1000px){.kgrid{grid-template-columns:repeat(3,1fr)}.prow{grid-template-columns:1fr}.totals{grid-template-columns:1fr 1fr}}
 
 @media(max-width:700px){
-  /* Header compacto */
-  .header { padding:0 12px; height:auto; min-height:52px; flex-wrap:wrap; gap:6px; padding-top:8px; padding-bottom:8px; }
-  .logo   { font-size:14px; }
-  .logo span { display:none; }
-  .hright { gap:6px; flex-wrap:wrap; }
-  .hbadge { font-size:11px; padding:3px 9px; }
-  .hinfo  { display:none; }
-
   /* Layout geral */
   .main { padding:14px 12px; }
   .ptitle { font-size:16px; }
@@ -311,58 +238,12 @@ tr.drow:hover td{background:var(--surface2);cursor:pointer}
   .ptitle { font-size:14px; }
 }
 
-/* ── SIDEBAR TOGGLE ── */
-/* ── SIDEBAR BASE + TOGGLE ── */
-.sidebar{
-  width:214px;flex-shrink:0;background:var(--sidebar);
-  border-right:1px solid rgba(255,255,255,.06);
-  display:flex;flex-direction:column;padding:18px 10px;gap:2px;
-  position:relative;
-  transition:width .22s cubic-bezier(.4,0,.2,1),
-             padding .22s cubic-bezier(.4,0,.2,1);
-  overflow:hidden;
-}
-.sidebar.collapsed{
-  width:0!important;
-  padding:0!important;
-}
-/* Botão fixo na borda esquerda, sempre visível */
-.sb-toggle{
-  position:fixed;
-  left:0;
-  top:50%;
-  transform:translateY(-50%);
-  width:20px;
-  height:48px;
-  border-radius:0 8px 8px 0;
-  background:#1a3a6e;
-  border:1.5px solid rgba(255,255,255,.18);
-  border-left:none;
-  color:rgba(255,255,255,.7);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  cursor:pointer;
-  z-index:200;
-  font-size:10px;
-  transition:left .22s cubic-bezier(.4,0,.2,1), background .15s, width .15s;
-  flex-shrink:0;
-  box-shadow:2px 0 8px rgba(0,0,0,.25);
-}
-.sb-toggle:hover{background:#2563eb;color:#fff;width:24px;}
-/* Quando sidebar aberta: botão fica na borda direita dela */
-.sidebar:not(.collapsed) .sb-toggle{
-  left:214px;
-  border-radius:0 8px 8px 0;
-}
-/* Quando colapsada: botão fica em left:0 */
-.sidebar.collapsed .sb-toggle{
-  left:0;
-}
-
 </style>
 </head>
-<body>
+<body data-page="vigencias">
+
+<!-- Tela de login: cobre tudo até o Firebase confirmar o acesso -->
+<div id="lockscreen"></div>
 
 <div class="overlay" id="ov">
   <div class="spin"></div>
@@ -394,27 +275,8 @@ tr.drow:hover td{background:var(--surface2);cursor:pointer}
 <!-- BODY = SIDEBAR + CONTENT -->
 <div class="body">
 
-  <nav class="sidebar">
-    <div class="sb-sec">Convênios Federais</div>
-    <a class="sb-item" href="index.html"><i class="fa-solid fa-gauge-high"></i> Painel Geral</a>
-    <a class="sb-item active" href="vigencias.html"><i class="fa-solid fa-table-list"></i> Vigências</a>
-    <a class="sb-item" href="execucao.html"><i class="fa-solid fa-chart-line"></i> Execução Financeira</a>
-    <a class="sb-item" href="ingressos.html"><i class="fa-solid fa-money-bill-transfer"></i> Ingressos de Recurso</a>
-    <div class="sb-item"><i class="fa-solid fa-file-invoice"></i> Prestação de Contas<span class="soon">em breve</span></div>
-    <div class="sb-item"><i class="fa-solid fa-landmark-dome"></i> Emendas Parlamentares<span class="soon">em breve</span></div>
-    <div class="sb-item"><i class="fa-solid fa-map-location-dot"></i> Mapa de Obras<span class="soon">em breve</span></div>
-
-    <div class="sb-sec">Desempenho IDTRU-DL</div>
-    <a class="sb-item" href="fiscalgov.html"><i class="fa-solid fa-camera"></i> FiscalGov · EX-01</a>
-    <div class="sb-item"><i class="fa-solid fa-star"></i> Índice Geral<span class="soon">em breve</span></div>
-
-    <div class="sb-footer">
-      <div class="sb-card">
-        <strong>Instituto de Desenvolvimento do Piauí</strong>
-        <p>R. Altos, 277 — Primavera<br>Teresina-PI · idepi@idepi.pi.gov.br</p>
-      </div>
-    </div>
-  </nav>
+  <!-- O menu é montado por assets/nav.js — não escreva os itens aqui. -->
+  <nav class="sidebar" id="mainSidebar"></nav>
 
   <div class="content">
 
@@ -528,12 +390,18 @@ tr.drow:hover td{background:var(--surface2);cursor:pointer}
   </div>
 </div>
 
-<script>
-// ═══════════════════════════════════════
-const USUARIO = "Ruan-Vitor";
-const REPO    = "painel-idepi";
-// ═══════════════════════════════════════
+<!-- ══ SDK do Firebase (login + banco) ══════════════════════════════════ -->
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore-compat.js"></script>
+<!-- ══ Casca compartilhada ═════════════════════════════════════════════ -->
+<script src="assets/firebase-config.js"></script>
+<script src="assets/app.js"></script>
+<script src="assets/auth.js"></script>
+<script src="assets/data.js"></script>
+<script src="assets/nav.js"></script>
 
+<script>
 let dados = [], filtroStatus = 'all', chart = null;
 let _gerado_em = '—';
 let sortCol = null, sortDir = 1;
@@ -545,26 +413,11 @@ const COR  = {normal:'#22c55e',alerta:'#3b82f6',atencao:'#eab308',critico:'#f973
 const NOME = {normal:'Normal',alerta:'Alerta',atencao:'Atenção',critico:'Crítico',vencido:'Vencido',finalizado:'Finalizado'};
 const KIDS = {normal:'kn',alerta:'ka',atencao:'kat',critico:'kc',vencido:'kv',finalizado:'kf'};
 
-// ── PARSE DE DATA ────────────────────────────────────────────────────────────
-function parseDate(s) {
-  if (!s) return null;
-  s = s.trim();
-  if (s.includes('/')) {
-    const [d,m,y] = s.split('/');
-    return new Date(+y, +m-1, +d);
-  }
-  if (s.includes('-')) return new Date(s.slice(0,10));
-  return null;
-}
-
-const hoje = (() => { const d = new Date(); d.setHours(0,0,0,0); return d; })();
-
-// ── ESCAPE HTML (previne XSS) ────────────────────────────────────────────────
-function esc(s) {
-  return (s||'').toString()
-    .replace(/&/g,'&amp;').replace(/</g,'&lt;')
-    .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-}
+// ── ATALHOS PARA AS FUNÇÕES COMPARTILHADAS (assets/app.js) ───────────────────
+// parseDate, esc e calcStatus moravam aqui. Foram para o app.js porque as
+// cópias em cada página tinham divergido entre si.
+const parseDate = IDEPI.parseDateBR;
+const esc       = IDEPI.esc;
 
 // ── SINCRONIZA CHIP ATIVO ────────────────────────────────────────────────────
 function _syncChips(s) {
@@ -573,65 +426,31 @@ function _syncChips(s) {
   if (el) el.classList.add('active');
 }
 
-// ── CALCULA STATUS ─────────────────────────────────────────────────────────
-function calcStatus(c) {
-  const REGEX_FIN = /prestacao\s*de\s*contas|finaliz|concluido|encerrad|rescindid|inadimplent|tomada\s*de\s*contas/;
-  const norm = s => (s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
-
-  if (REGEX_FIN.test(norm(c.situacao_tgov)))     return { st:'finalizado', dias:null, temSusp:false };
-  if (REGEX_FIN.test(norm(c.sit_contrat_tgov)))  return { st:'finalizado', dias:null, temSusp:false };
-  if (REGEX_FIN.test(norm(c.situacao)))           return { st:'finalizado', dias:null, temSusp:false };
-
-  const dVig  = parseDate(c.vigencia_fmt || c.vigencia);
-  const dSusp = parseDate(c.vigencia_suspensiva);
-
-  if (!dVig && !dSusp) return { st:'finalizado', dias:null, temSusp:false };
-
-  let temSusp = false;
-  let dataEf  = dVig;
-  if (dSusp) {
-    if (!dVig || dSusp <= dVig) {
-      dataEf  = dSusp;
-      temSusp = true;
-    }
-  }
-
-  const dias = Math.round((dataEf - hoje) / 86400000);
-
-  let st;
-  if      (dias < 0)    st = 'vencido';
-  else if (dias <= 30)  st = 'critico';
-  else if (dias <= 60)  st = 'atencao';
-  else if (dias <= 90)  st = 'alerta';
-  else                  st = 'normal';
-
-  return { st, dias, temSusp };
-}
-
 // ── CARREGAMENTO ─────────────────────────────────────────────────────────────
+// calcStatus() saiu daqui: virou IDEPI.calcStatus(), em assets/app.js.
+// Cada página tinha a sua cópia e elas divergiram — o fiscalgov.html chegou a
+// ignorar a cláusula suspensiva e mostrar status diferente para o mesmo convênio.
 async function carregar() {
-  const url = `https://raw.githubusercontent.com/${USUARIO}/${REPO}/main/dados.json?t=${Date.now()}`;
   try {
-    const r = await fetch(url);
-    if (!r.ok) throw new Error(`HTTP ${r.status}`);
-    const j = await r.json();
+    const j = await IDEPI.dados.carregar();
     _gerado_em = j.gerado_em || '—';
     dados = (j.convenios || []).map(c => {
-      const { st, dias, temSusp } = calcStatus(c);
+      const { st, dias, temSusp } = IDEPI.calcStatus(c);
       return { ...c, _st:st, _dias:dias, _temSusp:temSusp };
     });
     document.getElementById('ov').classList.add('hide');
     popularFiltros();
     atualizar();
-    // Deep link: vigencias.html?status=critico aplica filtro automaticamente
+    // Deep link: vigencias.html?status=critico já abre filtrado — é o que faz
+    // os cards do Painel Geral e os atalhos do app instalado funcionarem.
     const param = new URLSearchParams(window.location.search).get('status');
     if (param && ['all','normal','alerta','atencao','critico','vencido','finalizado','suspensiva'].includes(param))
       setStatus(param);
   } catch(e) {
     document.getElementById('ov').innerHTML = `
       <div style="color:#fca5a5;font-size:44px;margin-bottom:8px;"><i class="fa-solid fa-triangle-exclamation"></i></div>
-      <p style="color:#fff;">Erro ao carregar dados.json</p>
-      <small>Repositório: <strong>${USUARIO}/${REPO}</strong><br>Verifique se o Python já rodou ao menos uma vez.</small>`;
+      <p style="color:#fff;">Não foi possível carregar os dados</p>
+      <small>${esc(e.message||'')}<br>Verifique a conexão ou se os scripts Python já publicaram os dados.</small>`;
   }
 }
 
@@ -990,127 +809,20 @@ function exportarExcelVigencias() {
 
 carregar();
 
-/* ── TELA CHEIA ── */
-function toggleFullscreenVig() {
-  var el = document.getElementById('tblPanelVig');
-  var isFs = document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement;
-  if (!isFs) {
-    var req = el.requestFullscreen || el.webkitRequestFullscreen || el.mozRequestFullScreen;
-    if (req) req.call(el);
-  } else {
-    var ex = document.exitFullscreen || document.webkitExitFullscreen || document.mozCancelFullScreen;
-    if (ex) ex.call(document);
-  }
-}
-document.addEventListener('fullscreenchange', _syncFsBtnVig);
-document.addEventListener('webkitfullscreenchange', _syncFsBtnVig);
-document.addEventListener('mozfullscreenchange', _syncFsBtnVig);
-function _syncFsBtnVig() {
-  var btn = document.getElementById('btnFSVig');
-  if (!btn) return;
-  var isFs = document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement;
-  btn.innerHTML = isFs
-    ? '<i class="fa-solid fa-compress"></i> Sair'
-    : '<i class="fa-solid fa-expand"></i> Tela cheia';
-}
+/* ── TELA CHEIA (implementação em assets/app.js) ── */
+function toggleFullscreenVig(){ IDEPI.toggleFullscreen('tblPanelVig'); }
+IDEPI.ligarBotaoFullscreen('btnFSVig');
 </script>
 
   </div><!-- /content -->
 </div><!-- /body -->
 
-<!-- ── PROTEÇÃO POR SENHA ─────────────────────────────── -->
-<div id="lockscreen" style="
-  position:fixed;inset:0;z-index:9999;
-  background:#1e293b;
-  display:flex;align-items:center;justify-content:center;
-">
-  <div style="
-    background:#fff;border:1px solid #e2e8f0;
-    border-radius:16px;padding:40px;width:340px;text-align:center;
-    box-shadow:0 20px 60px rgba(0,0,0,.25);
-  ">
-    <div style="
-      width:52px;height:52px;border-radius:14px;
-      background:#1e40af;
-      display:flex;align-items:center;justify-content:center;
-      font-size:22px;color:#fff;margin:0 auto 16px;
-    "><i class="fa-solid fa-lock"></i></div>
-    <div style="font-size:17px;font-weight:700;color:#1e293b;margin-bottom:4px;">IDEPI — Convênios Federais</div>
-    <div style="font-size:12px;color:#64748b;margin-bottom:24px;">Acesso restrito. Digite a senha para continuar.</div>
-    <input id="pwd-input" type="password" placeholder="Senha de acesso"
-      style="
-        width:100%;padding:11px 16px;border-radius:8px;
-        border:1.5px solid #e2e8f0;
-        background:#f8fafc;color:#1e293b;
-        font-size:14px;font-family:'Inter',sans-serif;
-        outline:none;margin-bottom:10px;
-      "
-      onkeydown="if(event.key==='Enter')checkPwd()"
-    />
-    <div id="pwd-err" style="font-size:12px;color:#ef4444;min-height:16px;margin-bottom:10px;"></div>
-    <button onclick="checkPwd()" style="
-      width:100%;padding:11px;border-radius:8px;border:none;
-      background:#1e40af;color:#fff;font-size:14px;font-weight:600;
-      cursor:pointer;font-family:'Inter',sans-serif;
-    ">Entrar</button>
-    <div style="margin-top:16px;font-size:11px;color:#94a3b8;">
-      ⚠️ Esta senha protege apenas o acesso visual.<br>
-      Para segurança real, use um repositório GitHub privado.
-    </div>
-  </div>
-</div>
-<script>
-const SENHA = "idepi2026";
-if (sessionStorage.getItem('idepi_auth') === '1') {
-  document.getElementById('lockscreen').style.display = 'none';
-}
-function checkPwd() {
-  const v = document.getElementById('pwd-input').value;
-  if (v === SENHA) {
-    sessionStorage.setItem('idepi_auth','1');
-    document.getElementById('lockscreen').style.display = 'none';
-  } else {
-    document.getElementById('pwd-err').textContent = 'Senha incorreta. Tente novamente.';
-    document.getElementById('pwd-input').value = '';
-    document.getElementById('pwd-input').focus();
-  }
-}
-</script>
 
-<script>
-/* ── SIDEBAR TOGGLE JS ── */
-(function(){
-  var sidebar = document.querySelector('.sidebar');
-  if(!sidebar) return;
+<!-- O login agora é feito pelo Firebase (assets/auth.js). A antiga tela
+     com a senha fixa escrita no HTML foi removida: qualquer pessoa
+     via a senha no código-fonte, e o dados.json era público de qualquer jeito. -->
 
-  // Botão fixo — colocado no body, não dentro da sidebar
-  var btn = document.createElement('button');
-  btn.className = 'sb-toggle';
-  btn.title = 'Recolher menu';
-  btn.setAttribute('aria-label','Recolher/expandir menu lateral');
-  btn.innerHTML = '<i class="fa-solid fa-chevron-left"></i>';
-  document.body.appendChild(btn);
-
-  // Restaura estado salvo
-  var collapsed = sessionStorage.getItem('idepi_sb_collapsed') === '1';
-  function aplicar(c){
-    collapsed = c;
-    sidebar.classList.toggle('collapsed', collapsed);
-    btn.innerHTML = collapsed
-      ? '<i class="fa-solid fa-chevron-right"></i>'
-      : '<i class="fa-solid fa-chevron-left"></i>';
-    btn.title = collapsed ? 'Expandir menu' : 'Recolher menu';
-    // Ajusta posição do botão conforme estado
-    btn.style.left = collapsed ? '0' : '214px';
-  }
-  aplicar(collapsed);
-
-  btn.addEventListener('click', function(){
-    aplicar(!collapsed);
-    sessionStorage.setItem('idepi_sb_collapsed', collapsed ? '1' : '0');
-  });
-})();
-</script>
+<!-- O menu lateral e o botão de recolher são montados por assets/nav.js. -->
 
 </body>
 </html>

@@ -1,0 +1,367 @@
+/* ══════════════════════════════════════════════════════════════════════════
+   IDEPI — app.js
+   Funções compartilhadas por todos os painéis.
+
+   MOTIVO DE EXISTIR: até 26/07/2026 cada HTML tinha a sua própria cópia de
+   parseDate/calcStatus/temFoto/isFinalizado. As cópias tinham divergido —
+   o fiscalgov.html, por exemplo, ignorava a vigência suspensiva e mostrava
+   um status diferente do vigencias.html para o MESMO convênio.
+   Agora existe uma única implementação: esta.
+
+   Expõe tudo em window.IDEPI (namespace global, sem módulos, para funcionar
+   com os onclick="..." inline que as páginas já usam).
+   ══════════════════════════════════════════════════════════════════════════ */
+(function (global) {
+  'use strict';
+
+  var IDEPI = global.IDEPI || (global.IDEPI = {});
+
+  /* ── DATAS ─────────────────────────────────────────────────────────────── */
+
+  /** Converte "DD/MM/AAAA" ou "AAAA-MM-DD" em Date (meia-noite local). */
+  function parseDateBR(s) {
+    if (!s) return null;
+    s = String(s).trim();
+    var m = s.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);
+    if (m) return new Date(+m[3], +m[2] - 1, +m[1]);
+    m = s.match(/^(\d{4})-(\d{2})-(\d{2})/);
+    if (m) return new Date(+m[1], +m[2] - 1, +m[3]);
+    return null;
+  }
+
+  /** Hoje à meia-noite — recalculado a cada chamada (a aba pode ficar aberta
+      virando o dia; usar uma constante daria contagem errada). */
+  function hoje() {
+    var d = new Date();
+    d.setHours(0, 0, 0, 0);
+    return d;
+  }
+
+  function diasAte(data) {
+    if (!data) return null;
+    return Math.round((data - hoje()) / 86400000);
+  }
+
+  /* ── TEXTO ─────────────────────────────────────────────────────────────── */
+
+  /** Remove acentos e baixa a caixa — para comparar situações vindas da API. */
+  function norm(s) {
+    return (s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+  }
+
+  /** Escapa HTML. Use SEMPRE que jogar dado da API dentro de innerHTML. */
+  function esc(s) {
+    return (s === null || s === undefined ? '' : String(s))
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+  }
+
+  /* ── NÚMEROS / MOEDA ───────────────────────────────────────────────────── */
+
+  /** "1.234.567,89" → 1234567.89 · devolve 0 quando não dá para converter. */
+  function parseReais(v) {
+    if (typeof v === 'number') return isFinite(v) ? v : 0;
+    if (!v) return 0;
+    var n = parseFloat(
+      String(v).replace(/R\$/g, '').replace(/\s| /g, '')
+               .replace(/\./g, '').replace(',', '.')
+    );
+    return isNaN(n) ? 0 : n;
+  }
+
+  function fmtNum(n) {
+    return (n || 0).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  }
+
+  function fmtReais(n) {
+    return 'R$ ' + fmtNum(parseReais(n));
+  }
+
+  /** Resumo curto para header: 12.345.678 → "R$ 12,3M". */
+  function fmtCompacto(n) {
+    n = parseReais(n);
+    if (!n) return '—';
+    if (n >= 1e9) return 'R$ ' + (n / 1e9).toFixed(1).replace('.', ',') + 'B';
+    if (n >= 1e6) return 'R$ ' + (n / 1e6).toFixed(1).replace('.', ',') + 'M';
+    if (n >= 1e3) return 'R$ ' + (n / 1e3).toFixed(0) + 'k';
+    return fmtReais(n);
+  }
+
+  function diasAtras(ts) {
+    var d = Math.floor((Date.now() - ts) / 86400000);
+    if (d <= 0) return 'hoje';
+    if (d === 1) return 'ontem';
+    return 'há ' + d + ' dias';
+  }
+
+  /* ══════════════════════════════════════════════════════════════════════
+     REGRAS DE NEGÓCIO — fonte única da verdade
+     ══════════════════════════════════════════════════════════════════════ */
+
+  /* Situações que significam "acabou". Verificamos os três campos porque a
+     API da CGU tem bug conhecido (chamado #48358198): devolve "NORMAL" para
+     instrumentos que o Transferegov já mostra como encerrados. Por isso
+     situacao_tgov e sit_contrat_tgov têm prioridade sobre situacao. */
+  var REGEX_FIN = /prestacao\s*de\s*contas|tomada\s*de\s*contas|finaliz|concluido|encerrad|rescindid|inadimplent/;
+
+  function isFinalizado(c) {
+    if (!c) return false;
+    var t = norm(c.situacao_tgov);
+    if (t && t !== '—' && t !== 'erro' && REGEX_FIN.test(t)) return true;
+    var u = norm(c.sit_contrat_tgov);
+    if (u && u !== '—' && u !== 'erro' && REGEX_FIN.test(u)) return true;
+    return REGEX_FIN.test(norm(c.situacao));
+  }
+
+  /**
+   * Status de vigência de um convênio.
+   * Considera a cláusula suspensiva quando ela é anterior (ou igual) à
+   * vigência normal — é ela que passa a valer como prazo efetivo.
+   *
+   * @returns {{st:string, dias:number|null, temSusp:boolean}}
+   *   st ∈ normal | alerta | atencao | critico | vencido | finalizado
+   */
+  function calcStatus(c) {
+    if (isFinalizado(c)) return { st: 'finalizado', dias: null, temSusp: false };
+
+    var dVig = parseDateBR(c.vigencia_fmt || c.vigencia);
+    var dSus = parseDateBR(c.vigencia_suspensiva);
+    if (!dVig && !dSus) return { st: 'finalizado', dias: null, temSusp: false };
+
+    var temSusp = false;
+    var dataEf = dVig;
+    if (dSus && (!dVig || dSus <= dVig)) { dataEf = dSus; temSusp = true; }
+
+    var dias = diasAte(dataEf);
+    var st = dias < 0 ? 'vencido'
+           : dias <= 30 ? 'critico'
+           : dias <= 60 ? 'atencao'
+           : dias <= 90 ? 'alerta'
+           : 'normal';
+    return { st: st, dias: dias, temSusp: temSusp };
+  }
+
+  /* ── Indicador EX-01 (FiscalGov) ──────────────────────────────────────── */
+
+  function temMedicao(c) {
+    return String(c.medicao || c.col_p || '').trim().toUpperCase().indexOf('SIM') === 0;
+  }
+  function temPagamento(c) {
+    return String(c.pagamento || c.col_q || '').trim().toUpperCase().indexOf('SIM') === 0;
+  }
+  /** Apto ao EX-01 = obra iniciada (tem medição ou pagamento) e não encerrado. */
+  function isApto(c) {
+    return !isFinalizado(c) && (temMedicao(c) || temPagamento(c));
+  }
+  /** Em projeto = vigente mas ainda sem medição nem pagamento. */
+  function isProjeto(c) {
+    return !isFinalizado(c) && !temMedicao(c) && !temPagamento(c);
+  }
+  /** Normaliza NFD antes de comparar: "NÃO" chega de formas diferentes. */
+  function temFoto(c) {
+    var v = String(c.foto_app || c.rel_fotografico || c.col_o || '')
+      .normalize('NFD').replace(/[\u0300-\u036f]/g, '').trim().toUpperCase();
+    return v.indexOf('SIM') === 0;
+  }
+
+  /** Métricas agregadas do EX-01 sobre uma lista de convênios. */
+  function resumoEX01(convenios) {
+    var vigentes = (convenios || []).filter(function (c) { return !isFinalizado(c); });
+    var aptos = vigentes.filter(isApto).length;
+    var comFoto = vigentes.filter(function (c) { return isApto(c) && temFoto(c); }).length;
+    return {
+      vigentes: vigentes.length,
+      emProjeto: vigentes.filter(isProjeto).length,
+      aptos: aptos,
+      comFoto: comFoto,
+      semFoto: aptos - comFoto,
+      pct: aptos > 0 ? Math.round(comFoto / aptos * 100) : 0
+    };
+  }
+
+  /* ── Ingressos de recurso ─────────────────────────────────────────────── */
+
+  /**
+   * Normaliza o tipo de um ingresso.
+   * O campo `tipo` foi gravado com dois vocabulários diferentes ao longo do
+   * projeto e os dois convivem no dados.json:
+   *   • classificar_e_migrar.py (planilha, formato triplete) → "F" / "C"
+   *   • monitor_repasse.py (detecção automática)            → "federal" / "planilha"
+   * Esta função entende os dois e devolve sempre "F" (federal — OB do SIAFI)
+   * ou "C" (contrapartida — depósito do convenente).
+   */
+  function tipoIngresso(ing) {
+    var t = norm(ing && ing.tipo);
+    if (t === 'f' || t === 'federal') return 'F';
+    if (t === 'c' || t === 'contrapartida') return 'C';
+    // "planilha" e vazio = importado sem classificação → tratamos como federal,
+    // que é a origem da esmagadora maioria dos ingressos.
+    return 'F';
+  }
+
+  function rotuloTipoIngresso(ing) {
+    return tipoIngresso(ing) === 'C' ? 'Contrapartida' : 'Federal';
+  }
+
+  /* ── DOM ───────────────────────────────────────────────────────────────── */
+
+  function $(id) { return document.getElementById(id); }
+
+  /** Escreve texto num elemento se ele existir (evita erro em página sem o id). */
+  function setTxt(id, valor) {
+    var el = $(id);
+    if (el) el.textContent = valor;
+    return el;
+  }
+  function setHtml(id, valor) {
+    var el = $(id);
+    if (el) el.innerHTML = valor;
+    return el;
+  }
+
+  function esconderOverlay() {
+    var el = $('overlay') || document.querySelector('.overlay');
+    if (el) el.classList.add('hide');
+  }
+
+  /* ── TELA CHEIA ────────────────────────────────────────────────────────── */
+
+  function toggleFullscreen(elOuId) {
+    var el = typeof elOuId === 'string' ? $(elOuId) : elOuId;
+    if (!el) return;
+    var ativo = document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement;
+    if (!ativo) {
+      var req = el.requestFullscreen || el.webkitRequestFullscreen || el.mozRequestFullScreen;
+      if (req) req.call(el);
+    } else {
+      var sai = document.exitFullscreen || document.webkitExitFullscreen || document.mozCancelFullScreen;
+      if (sai) sai.call(document);
+    }
+  }
+
+  /** Mantém o rótulo do botão coerente com o estado de tela cheia. */
+  function ligarBotaoFullscreen(idBotao) {
+    function sync() {
+      var btn = $(idBotao);
+      if (!btn) return;
+      var ativo = !!(document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement);
+      var html = ativo
+        ? '<i class="fa-solid fa-compress"></i> Sair'
+        : '<i class="fa-solid fa-expand"></i> Tela cheia';
+      if (btn.innerHTML !== html) btn.innerHTML = html;
+    }
+    ['fullscreenchange', 'webkitfullscreenchange', 'mozfullscreenchange'].forEach(function (ev) {
+      document.addEventListener(ev, sync);
+    });
+    sync();
+  }
+
+  /* ── TOAST ─────────────────────────────────────────────────────────────── */
+
+  function toast(msg) {
+    var t = $('copyToast');
+    if (!t) {
+      t = document.createElement('div');
+      t.id = 'copyToast';
+      t.style.cssText = 'position:fixed;left:50%;transform:translateX(-50%);' +
+        'bottom:calc(24px + env(safe-area-inset-bottom,0px));background:#0f1f3d;color:#fff;' +
+        'padding:11px 18px;border-radius:10px;font-size:12.5px;z-index:9500;' +
+        'box-shadow:0 8px 26px rgba(0,0,0,.4);opacity:0;transition:opacity .2s;' +
+        'pointer-events:none;max-width:90vw;text-align:center';
+      document.body.appendChild(t);
+    }
+    t.textContent = msg;
+    t.style.opacity = '1';
+    t.classList.add('show');
+    clearTimeout(t._timer);
+    t._timer = setTimeout(function () {
+      t.style.opacity = '0';
+      t.classList.remove('show');
+    }, 2200);
+  }
+
+  function copiar(texto) {
+    if (!texto || texto === '—') return;
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(texto).then(function () { toast(texto + ' copiado!'); });
+      return;
+    }
+    var el = document.createElement('textarea');
+    el.value = texto;
+    el.style.position = 'fixed';
+    el.style.opacity = '0';
+    document.body.appendChild(el);
+    el.select();
+    try { document.execCommand('copy'); toast(texto + ' copiado!'); } catch (e) { /* ignora */ }
+    document.body.removeChild(el);
+  }
+
+  /* ── EXPORTAÇÃO ────────────────────────────────────────────────────────── */
+
+  /** Data de hoje no formato usado nos nomes de arquivo: DD-MM-AAAA. */
+  function carimboData() {
+    var d = new Date();
+    return String(d.getDate()).padStart(2, '0') + '-' +
+           String(d.getMonth() + 1).padStart(2, '0') + '-' + d.getFullYear();
+  }
+
+  /** Envolve a geração de um .xlsx com estado de "Gerando..." no botão. */
+  function comBotaoOcupado(idBotao, htmlOriginal, tarefa) {
+    var btn = $(idBotao);
+    if (btn) {
+      btn.classList.add('loading');
+      btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Gerando...';
+    }
+    setTimeout(function () {
+      try {
+        tarefa();
+      } catch (e) {
+        alert('Erro ao gerar o arquivo: ' + e.message);
+      } finally {
+        if (btn) {
+          btn.classList.remove('loading');
+          btn.innerHTML = htmlOriginal;
+        }
+      }
+    }, 50);
+  }
+
+  /* ── EXPORTA ───────────────────────────────────────────────────────────── */
+  IDEPI.parseDateBR = parseDateBR;
+  IDEPI.parseDate = parseDateBR;      // alias usado por vigencias.html
+  IDEPI.hoje = hoje;
+  IDEPI.diasAte = diasAte;
+  IDEPI.diasAtras = diasAtras;
+  IDEPI.norm = norm;
+  IDEPI.esc = esc;
+  IDEPI.parseReais = parseReais;
+  IDEPI.fmtNum = fmtNum;
+  IDEPI.fmtReais = fmtReais;
+  IDEPI.fmtCompacto = fmtCompacto;
+  IDEPI.REGEX_FIN = REGEX_FIN;
+  IDEPI.isFinalizado = isFinalizado;
+  IDEPI.calcStatus = calcStatus;
+  IDEPI.temMedicao = temMedicao;
+  IDEPI.temPagamento = temPagamento;
+  IDEPI.isApto = isApto;
+  IDEPI.isProjeto = isProjeto;
+  IDEPI.temFoto = temFoto;
+  IDEPI.resumoEX01 = resumoEX01;
+  IDEPI.tipoIngresso = tipoIngresso;
+  IDEPI.rotuloTipoIngresso = rotuloTipoIngresso;
+  IDEPI.$ = $;
+  IDEPI.setTxt = setTxt;
+  IDEPI.setHtml = setHtml;
+  IDEPI.esconderOverlay = esconderOverlay;
+  IDEPI.toggleFullscreen = toggleFullscreen;
+  IDEPI.ligarBotaoFullscreen = ligarBotaoFullscreen;
+  IDEPI.toast = toast;
+  IDEPI.copiar = copiar;
+  IDEPI.carimboData = carimboData;
+  IDEPI.comBotaoOcupado = comBotaoOcupado;
+
+  /* Rótulos e cores de status — usados por mais de uma página */
+  IDEPI.NOME_ST = { normal: 'Normal', alerta: 'Alerta', atencao: 'Atenção', critico: 'Crítico', vencido: 'Vencido', finalizado: 'Finalizado', sem_data: 'Sem data' };
+  IDEPI.COR_ST = { normal: '#22c55e', alerta: '#3b82f6', atencao: '#eab308', critico: '#f97316', vencido: '#ef4444', finalizado: '#94a3b8' };
+
+})(window);

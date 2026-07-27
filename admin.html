@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<!-- IDEPI · Administração de acessos — v20260727 -->
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Usuários e Acessos — IDEPI</title>
+<meta name="description" content="Aprovação de solicitações de acesso e gestão de usuários do painel IDEPI.">
+<meta name="theme-color" content="#0b1527">
+
+<!-- ── APP INSTALÁVEL (PWA) ────────────────────────────────────────────── -->
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="IDEPI">
+
+<!-- ── FONTES E ÍCONES ─────────────────────────────────────────────────── -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<!-- ── CASCA COMPARTILHADA ─────────────────────────────────────────────── -->
+<link rel="stylesheet" href="assets/app.css">
+
+<style>
+/* ═══ Estilos exclusivos da Administração ═════════════════════════════════ */
+
+.pg-title{display:flex;align-items:center;gap:10px}
+.pg-title-icon{width:36px;height:36px;border-radius:9px;background:linear-gradient(135deg,#1a3a6e,#0d6e4a);display:flex;align-items:center;justify-content:center;color:#fff;font-size:15px;flex-shrink:0}
+.pg-back{background:var(--accent);color:#fff;border:none;padding:8px 16px;border-radius:7px;font-size:12px;font-weight:600}
+.pg-back:hover{background:#1e4a8a;text-decoration:none}
+
+/* ── Aviso de acesso negado ── */
+.negado{background:var(--red-bg);border:1px solid var(--red-bdr);border-radius:12px;padding:28px;text-align:center;color:var(--red)}
+.negado i{font-size:34px;opacity:.5;display:block;margin-bottom:12px}
+.negado strong{display:block;font-size:15px;margin-bottom:6px}
+.negado p{font-size:12.5px;color:var(--slate);line-height:1.6}
+
+/* ── Cartão de seção ── */
+.sec{background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden}
+.sec-head{padding:14px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.sec-title{font-size:13px;font-weight:700;color:var(--text);display:flex;align-items:center;gap:8px}
+.sec-title i{color:var(--accent)}
+.sec-cont{font-size:11px;font-weight:700;color:#fff;background:var(--accent);border-radius:10px;padding:1px 8px;min-width:20px;text-align:center}
+.sec-cont.alerta{background:#dc2626}
+.sec-cont.zero{background:var(--slate-bdr);color:var(--slate)}
+.sec-body{padding:0}
+
+/* ── Item de solicitação ── */
+.pend{display:flex;align-items:center;gap:14px;padding:16px 18px;border-bottom:1px solid var(--border);flex-wrap:wrap}
+.pend:last-child{border-bottom:none}
+.pend-av{width:40px;height:40px;border-radius:50%;flex-shrink:0;background:linear-gradient(135deg,#92400e,#f59e0b);display:flex;align-items:center;justify-content:center;color:#fff;font-size:14px;font-weight:700;text-transform:uppercase}
+.pend-info{flex:1;min-width:180px}
+.pend-nome{font-size:13.5px;font-weight:700;color:var(--text)}
+.pend-email{font-size:11.5px;color:var(--muted);font-family:'IBM Plex Mono',monospace;margin-top:1px;word-break:break-all}
+.pend-data{font-size:10.5px;color:#b0bbc8;margin-top:3px}
+.pend-acoes{display:flex;gap:8px;flex-wrap:wrap}
+
+.btn-ok,.btn-nao,.btn-neutro{
+  display:inline-flex;align-items:center;gap:6px;border:none;border-radius:8px;
+  padding:9px 15px;font-size:12px;font-weight:700;cursor:pointer;
+  font-family:inherit;transition:filter .15s;min-height:38px;white-space:nowrap;
+}
+.btn-ok{background:var(--green);color:#fff}
+.btn-nao{background:var(--red-bg);color:var(--red);border:1.5px solid var(--red-bdr)}
+.btn-neutro{background:var(--slate-bg);color:var(--slate);border:1.5px solid var(--slate-bdr)}
+.btn-ok:hover,.btn-nao:hover,.btn-neutro:hover{filter:brightness(.94)}
+.btn-ok:disabled,.btn-nao:disabled,.btn-neutro:disabled{opacity:.55;cursor:not-allowed}
+
+/* Escolha do papel na aprovação */
+.pend-papel{
+  font-size:11.5px;border:1px solid var(--border);border-radius:7px;
+  padding:8px 10px;background:var(--surface);color:var(--text);
+  font-family:inherit;cursor:pointer;min-height:38px;
+}
+
+/* ── Tabela de usuários ── */
+.usr{display:flex;align-items:center;gap:14px;padding:14px 18px;border-bottom:1px solid var(--border);flex-wrap:wrap}
+.usr:last-child{border-bottom:none}
+.usr-av{width:34px;height:34px;border-radius:50%;flex-shrink:0;background:linear-gradient(135deg,#1a4a8a,#0d6e4a);display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;font-weight:700;text-transform:uppercase}
+.usr-info{flex:1;min-width:180px}
+.usr-nome{font-size:13px;font-weight:600;color:var(--text);display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.usr-email{font-size:11px;color:var(--muted);font-family:'IBM Plex Mono',monospace;margin-top:1px;word-break:break-all}
+.usr-acoes{display:flex;gap:7px;align-items:center;flex-wrap:wrap}
+.usr.inativo{background:#fafbfd}
+.usr.inativo .usr-nome,.usr.inativo .usr-email{opacity:.5}
+.usr.eu{background:#f0f9ff}
+
+.tag{font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;border-radius:5px;padding:2px 7px;border:1px solid}
+.tag-admin{background:var(--blue-bg);color:var(--blue);border-color:var(--blue-bdr)}
+.tag-leitor{background:var(--slate-bg);color:var(--slate);border-color:var(--slate-bdr)}
+.tag-off{background:var(--red-bg);color:var(--red);border-color:var(--red-bdr)}
+.tag-eu{background:var(--green-bg);color:var(--green);border-color:var(--green-bdr)}
+
+/* ── Estados ── */
+.vazio{padding:34px 20px;text-align:center;color:var(--muted)}
+.vazio i{font-size:30px;opacity:.25;display:block;margin-bottom:10px}
+.vazio p{font-size:13px}
+.vazio small{font-size:11.5px;opacity:.75;display:block;margin-top:5px}
+
+/* ── Explicação de como funciona ── */
+.explica{background:linear-gradient(120deg,#0f2550 0%,#0a4a2e 100%);border-radius:12px;padding:18px 22px;color:#fff;position:relative;overflow:hidden}
+.explica::after{content:'';position:absolute;right:-20px;top:-20px;width:140px;height:140px;border-radius:50%;background:rgba(255,255,255,.04)}
+.explica h3{font-family:'Sora',sans-serif;font-size:14px;font-weight:700;margin-bottom:8px;position:relative;z-index:1}
+.explica ol{margin:0 0 0 18px;position:relative;z-index:1}
+.explica li{font-size:11.5px;color:rgba(255,255,255,.72);line-height:1.75}
+.explica code{background:rgba(255,255,255,.12);border-radius:4px;padding:1px 5px;font-size:10.5px}
+
+@media (max-width:900px){
+  .pg-title{font-size:15px}
+  .pg-title-icon{width:28px;height:28px;font-size:12px}
+  .pend,.usr{gap:10px}
+  .pend-acoes,.usr-acoes{width:100%}
+  .btn-ok,.btn-nao,.btn-neutro{flex:1;justify-content:center}
+}
+</style>
+</head>
+<body data-page="admin">
+
+<!-- Tela de login: cobre tudo até o Firebase confirmar o acesso -->
+<div id="lockscreen"></div>
+
+<div class="overlay" id="overlay">
+  <div class="spin"></div>
+  <p>Carregando...</p>
+</div>
+
+<!-- HEADER -->
+<div class="hd">
+  <div class="hd-left">
+    <div class="hd-logo">
+      <div class="hd-logo-icon"><i class="fa-solid fa-users-gear"></i></div>
+      <div>
+        <div class="hd-title">IDEPI</div>
+        <div class="hd-sub">Administração</div>
+      </div>
+    </div>
+    <div class="hd-sep"></div>
+    <div class="hd-pill"><i class="fa-solid fa-circle"></i> Controle de acesso ao painel</div>
+  </div>
+  <div class="hd-right">
+    <div class="hd-ts" id="hd-ts">—</div>
+  </div>
+</div>
+
+<!-- BODY -->
+<div class="body">
+  <nav class="sidebar" id="mainSidebar"></nav>
+
+  <div class="content">
+    <div class="pg-head">
+      <div>
+        <div class="pg-title">
+          <div class="pg-title-icon"><i class="fa-solid fa-users-gear"></i></div>
+          Usuários e Acessos
+        </div>
+        <div class="pg-sub">Aprove ou recuse quem pediu acesso · Gerencie quem já entra</div>
+      </div>
+      <a class="pg-back" href="index.html"><i class="fa-solid fa-arrow-left"></i> Voltar ao painel</a>
+    </div>
+
+    <div class="scroll" id="conteudo" style="display:none">
+
+      <!-- COMO FUNCIONA -->
+      <div class="explica">
+        <h3><i class="fa-solid fa-circle-info"></i> Como uma pessoa ganha acesso</h3>
+        <ol>
+          <li>Ela abre o painel e escolhe <strong>Solicitar acesso</strong>, criando a própria conta e senha.</li>
+          <li>O pedido aparece aqui. Enquanto isso, ela <strong>não vê nenhum dado</strong> — só uma tela de espera.</li>
+          <li>Você aprova. Só nesse momento o registro em <code>usuarios</code> é criado, e é ele que as regras do Firestore exigem para liberar a leitura.</li>
+          <li><strong>Leitor</strong> consulta os painéis. <strong>Administrador</strong> também aprova outras pessoas — dê com parcimônia.</li>
+        </ol>
+      </div>
+
+      <!-- SOLICITAÇÕES PENDENTES -->
+      <div class="sec">
+        <div class="sec-head">
+          <div class="sec-title">
+            <i class="fa-solid fa-user-clock"></i> Solicitações aguardando decisão
+            <span class="sec-cont zero" id="cntPend">0</span>
+          </div>
+          <button class="btn-neutro" onclick="carregarTudo()" title="Recarregar">
+            <i class="fa-solid fa-rotate"></i> Atualizar
+          </button>
+        </div>
+        <div class="sec-body" id="listaPend"></div>
+      </div>
+
+      <!-- USUÁRIOS COM ACESSO -->
+      <div class="sec">
+        <div class="sec-head">
+          <div class="sec-title">
+            <i class="fa-solid fa-user-check"></i> Quem tem acesso hoje
+            <span class="sec-cont" id="cntUsr">0</span>
+          </div>
+        </div>
+        <div class="sec-body" id="listaUsr"></div>
+      </div>
+
+      <!-- RECUSADOS -->
+      <div class="sec">
+        <div class="sec-head">
+          <div class="sec-title">
+            <i class="fa-solid fa-ban"></i> Pedidos recusados
+            <span class="sec-cont zero" id="cntRec">0</span>
+          </div>
+        </div>
+        <div class="sec-body" id="listaRec"></div>
+      </div>
+
+    </div>
+
+    <!-- Mostrado para quem não é admin -->
+    <div class="scroll" id="semPermissao" style="display:none">
+      <div class="negado">
+        <i class="fa-solid fa-shield-halved"></i>
+        <strong>Esta área é só para administradores</strong>
+        <p>
+          Seu acesso ao painel está ativo, mas com papel de <strong>leitor</strong>.<br>
+          Para administrar acessos, peça a outro administrador que altere seu papel —<br>
+          ou rode na máquina dos scripts:<br><br>
+          <code style="background:#e8f0fe;padding:4px 8px;border-radius:5px">py publicar_firestore.py --tornar-admin SEU@EMAIL</code>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SDK do Firebase ══════════════════════════════════════════════════ -->
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore-compat.js"></script>
+<!-- ══ Casca compartilhada ═════════════════════════════════════════════ -->
+<script src="assets/firebase-config.js"></script>
+<script src="assets/app.js"></script>
+<script src="assets/auth.js"></script>
+<script src="assets/data.js"></script>
+<script src="assets/nav.js"></script>
+
+<script>
+/* ══════════════════════════════════════════════════════════════════════
+   ADMINISTRAÇÃO DE ACESSOS
+
+   Esta é a única tela do painel que ESCREVE no Firestore. As regras permitem
+   isso apenas para quem tem papel "admin", e apenas nas coleções `usuarios` e
+   `solicitacoes` — os dados dos convênios continuam somente-leitura para todo
+   navegador, inclusive o do administrador.
+   ══════════════════════════════════════════════════════════════════════ */
+
+var esc = IDEPI.esc;
+var _euEmail = '';
+
+document.addEventListener('idepi-auth', function (e) {
+  IDEPI.esconderOverlay();
+  _euEmail = ((e.detail.usuario && e.detail.usuario.email) || '').toLowerCase();
+
+  if (!e.detail.admin) {
+    document.getElementById('semPermissao').style.display = '';
+    return;
+  }
+  document.getElementById('conteudo').style.display = '';
+  carregarTudo();
+});
+
+function iniciais(nome, email) {
+  var base = (nome || email || '?').trim();
+  return base.split(/\s+/).slice(0, 2).map(function (p) { return p[0]; }).join('');
+}
+
+function quando(ts) {
+  if (!ts) return '';
+  var d = ts.toDate ? ts.toDate() : new Date(ts);
+  return d.toLocaleString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric',
+                                     hour: '2-digit', minute: '2-digit' });
+}
+
+/* ── CARREGAMENTO ──────────────────────────────────────────────────────── */
+function carregarTudo() {
+  Promise.all([
+    IDEPI.auth.admin.listarSolicitacoes(),
+    IDEPI.auth.admin.listarUsuarios()
+  ]).then(function (r) {
+    var solicitacoes = r[0], usuarios = r[1];
+    renderPendentes(solicitacoes.filter(function (s) { return s.status === 'pendente'; }));
+    renderRecusadas(solicitacoes.filter(function (s) { return s.status === 'recusada'; }));
+    renderUsuarios(usuarios);
+    if (IDEPI.nav && IDEPI.nav.atualizarBadgePendentes) IDEPI.nav.atualizarBadgePendentes();
+  }).catch(function (e) {
+    console.error('[IDEPI]', e);
+    document.getElementById('listaPend').innerHTML =
+      '<div class="vazio"><i class="fa-solid fa-triangle-exclamation"></i>' +
+      '<p>Não foi possível carregar</p><small>' + esc(e.message || '') + '</small></div>';
+  });
+}
+
+/* ── PENDENTES ─────────────────────────────────────────────────────────── */
+function renderPendentes(lista) {
+  var cnt = document.getElementById('cntPend');
+  cnt.textContent = lista.length;
+  cnt.className = 'sec-cont' + (lista.length ? ' alerta' : ' zero');
+
+  var alvo = document.getElementById('listaPend');
+  if (!lista.length) {
+    alvo.innerHTML =
+      '<div class="vazio"><i class="fa-solid fa-inbox"></i>' +
+      '<p>Nenhuma solicitação aguardando</p>' +
+      '<small>Quando alguém pedir acesso, aparece aqui.</small></div>';
+    return;
+  }
+
+  lista.sort(function (a, b) {
+    var ta = a.criado_em && a.criado_em.seconds || 0;
+    var tb = b.criado_em && b.criado_em.seconds || 0;
+    return ta - tb;   // mais antigo primeiro: quem espera há mais tempo
+  });
+
+  alvo.innerHTML = lista.map(function (s) {
+    var id = s._id;
+    return '<div class="pend" id="row-' + esc(id) + '">' +
+      '<div class="pend-av">' + esc(iniciais(s.nome, id)) + '</div>' +
+      '<div class="pend-info">' +
+        '<div class="pend-nome">' + esc(s.nome || '(sem nome)') + '</div>' +
+        '<div class="pend-email">' + esc(id) + '</div>' +
+        '<div class="pend-data">Solicitado em ' + esc(quando(s.criado_em) || '—') + '</div>' +
+      '</div>' +
+      '<div class="pend-acoes">' +
+        '<select class="pend-papel" id="papel-' + esc(id) + '" title="Papel ao aprovar">' +
+          '<option value="leitor">Leitor</option>' +
+          '<option value="admin">Administrador</option>' +
+        '</select>' +
+        '<button class="btn-ok"  onclick="aprovar(\'' + esc(id) + '\')">' +
+          '<i class="fa-solid fa-check"></i> Aprovar</button>' +
+        '<button class="btn-nao" onclick="recusar(\'' + esc(id) + '\')">' +
+          '<i class="fa-solid fa-xmark"></i> Recusar</button>' +
+      '</div>' +
+    '</div>';
+  }).join('');
+}
+
+function travarLinha(email, texto) {
+  var linha = document.getElementById('row-' + email);
+  if (!linha) return;
+  linha.querySelectorAll('button,select').forEach(function (b) { b.disabled = true; });
+  var acoes = linha.querySelector('.pend-acoes');
+  if (acoes) acoes.innerHTML = '<span style="font-size:12px;color:var(--muted)">' +
+    '<i class="fa-solid fa-spinner fa-spin"></i> ' + texto + '</span>';
+}
+
+function aprovar(email) {
+  var sel = document.getElementById('papel-' + email);
+  var papel = sel ? sel.value : 'leitor';
+
+  var aviso = papel === 'admin'
+    ? '\n\nATENÇÃO: como administrador, esta pessoa também poderá aprovar e ' +
+      'remover outros usuários.'
+    : '';
+  if (!confirm('Liberar o acesso de ' + email + ' como ' + papel + '?' + aviso)) return;
+
+  travarLinha(email, 'Aprovando...');
+  IDEPI.auth.admin.aprovar(email, papel)
+    .then(function () {
+      IDEPI.toast(email + ' aprovado.');
+      carregarTudo();
+    })
+    .catch(function (e) {
+      console.error('[IDEPI]', e);
+      alert('Não foi possível aprovar: ' + (e.message || e.code));
+      carregarTudo();
+    });
+}
+
+function recusar(email) {
+  var motivo = prompt('Recusar o acesso de ' + email + '?\n\n' +
+                      'Motivo (opcional — a pessoa vai ver esta mensagem):', '');
+  if (motivo === null) return;   // cancelou
+
+  travarLinha(email, 'Recusando...');
+  IDEPI.auth.admin.recusar(email, motivo)
+    .then(function () {
+      IDEPI.toast('Solicitação recusada.');
+      carregarTudo();
+    })
+    .catch(function (e) {
+      console.error('[IDEPI]', e);
+      alert('Não foi possível recusar: ' + (e.message || e.code));
+      carregarTudo();
+    });
+}
+
+/* ── USUÁRIOS ──────────────────────────────────────────────────────────── */
+function renderUsuarios(lista) {
+  document.getElementById('cntUsr').textContent = lista.length;
+
+  var alvo = document.getElementById('listaUsr');
+  if (!lista.length) {
+    alvo.innerHTML = '<div class="vazio"><i class="fa-solid fa-users"></i>' +
+      '<p>Nenhum usuário cadastrado</p></div>';
+    return;
+  }
+
+  // Admins primeiro, depois em ordem alfabética
+  lista.sort(function (a, b) {
+    if ((a.papel === 'admin') !== (b.papel === 'admin')) return a.papel === 'admin' ? -1 : 1;
+    return a._id.localeCompare(b._id);
+  });
+
+  alvo.innerHTML = lista.map(function (u) {
+    var id     = u._id;
+    var souEu  = id === _euEmail;
+    var admin  = u.papel === 'admin';
+    var ativo  = u.ativo !== false;
+
+    var tags = '<span class="tag ' + (admin ? 'tag-admin' : 'tag-leitor') + '">' +
+               (admin ? 'admin' : 'leitor') + '</span>' +
+               (ativo ? '' : '<span class="tag tag-off">desativado</span>') +
+               (souEu ? '<span class="tag tag-eu">você</span>' : '');
+
+    // Um admin não pode rebaixar nem remover a si mesmo: é o jeito mais comum
+    // de ficar trancado para fora do próprio painel.
+    var acoes = souEu
+      ? '<span style="font-size:11px;color:var(--muted)">sua própria conta</span>'
+      : '<button class="btn-neutro" onclick="trocarPapel(\'' + esc(id) + '\',\'' +
+          (admin ? 'leitor' : 'admin') + '\')">' +
+          '<i class="fa-solid fa-' + (admin ? 'arrow-down' : 'arrow-up') + '"></i> ' +
+          (admin ? 'Tornar leitor' : 'Tornar admin') + '</button>' +
+        '<button class="btn-neutro" onclick="alternarAtivo(\'' + esc(id) + '\',' + (!ativo) + ')">' +
+          '<i class="fa-solid fa-' + (ativo ? 'pause' : 'play') + '"></i> ' +
+          (ativo ? 'Desativar' : 'Reativar') + '</button>' +
+        '<button class="btn-nao" onclick="removerUsuario(\'' + esc(id) + '\')">' +
+          '<i class="fa-solid fa-trash"></i> Remover</button>';
+
+    return '<div class="usr' + (ativo ? '' : ' inativo') + (souEu ? ' eu' : '') + '">' +
+      '<div class="usr-av">' + esc(iniciais(u.nome, id)) + '</div>' +
+      '<div class="usr-info">' +
+        '<div class="usr-nome">' + esc(u.nome || '(sem nome)') + tags + '</div>' +
+        '<div class="usr-email">' + esc(id) + '</div>' +
+      '</div>' +
+      '<div class="usr-acoes">' + acoes + '</div>' +
+    '</div>';
+  }).join('');
+}
+
+function trocarPapel(email, novo) {
+  var aviso = novo === 'admin'
+    ? 'Tornar ' + email + ' ADMINISTRADOR?\n\n' +
+      'Ele poderá aprovar, desativar e remover outros usuários — inclusive você.'
+    : 'Rebaixar ' + email + ' para leitor?\n\nEle perde o acesso a esta tela.';
+  if (!confirm(aviso)) return;
+
+  IDEPI.auth.admin.definirPapel(email, novo)
+    .then(function () { IDEPI.toast('Papel alterado.'); carregarTudo(); })
+    .catch(function (e) { alert('Não foi possível alterar: ' + (e.message || e.code)); });
+}
+
+function alternarAtivo(email, ativar) {
+  var txt = ativar
+    ? 'Reativar o acesso de ' + email + '?'
+    : 'Desativar o acesso de ' + email + '?\n\n' +
+      'Ele perde a visualização dos dados imediatamente, mas a conta continua ' +
+      'existindo — dá para reativar depois.';
+  if (!confirm(txt)) return;
+
+  IDEPI.auth.admin.definirAtivo(email, ativar)
+    .then(function () { IDEPI.toast(ativar ? 'Acesso reativado.' : 'Acesso desativado.'); carregarTudo(); })
+    .catch(function (e) { alert('Não foi possível alterar: ' + (e.message || e.code)); });
+}
+
+function removerUsuario(email) {
+  if (!confirm('Remover o acesso de ' + email + ' de vez?\n\n' +
+               'Apaga a liberação e o histórico da solicitação. A conta de login ' +
+               'continua existindo no Firebase, mas sem acesso a nada.\n\n' +
+               'Para bloquear temporariamente, prefira "Desativar".')) return;
+
+  IDEPI.auth.admin.remover(email)
+    .then(function () { IDEPI.toast('Acesso removido.'); carregarTudo(); })
+    .catch(function (e) { alert('Não foi possível remover: ' + (e.message || e.code)); });
+}
+
+/* ── RECUSADOS ─────────────────────────────────────────────────────────── */
+function renderRecusadas(lista) {
+  var cnt = document.getElementById('cntRec');
+  cnt.textContent = lista.length;
+  cnt.className = 'sec-cont' + (lista.length ? '' : ' zero');
+
+  var alvo = document.getElementById('listaRec');
+  if (!lista.length) {
+    alvo.innerHTML = '<div class="vazio"><i class="fa-solid fa-check"></i>' +
+      '<p>Nenhum pedido recusado</p></div>';
+    return;
+  }
+
+  alvo.innerHTML = lista.map(function (s) {
+    var id = s._id;
+    return '<div class="usr">' +
+      '<div class="usr-av" style="background:linear-gradient(135deg,#7f1d1d,#b91c1c)">' +
+        esc(iniciais(s.nome, id)) + '</div>' +
+      '<div class="usr-info">' +
+        '<div class="usr-nome">' + esc(s.nome || '(sem nome)') + '</div>' +
+        '<div class="usr-email">' + esc(id) + '</div>' +
+        (s.motivo ? '<div class="pend-data">Motivo: ' + esc(s.motivo) + '</div>' : '') +
+        '<div class="pend-data">Recusado em ' + esc(quando(s.decidido_em) || '—') + '</div>' +
+      '</div>' +
+      '<div class="usr-acoes">' +
+        '<button class="btn-ok" onclick="reconsiderar(\'' + esc(id) + '\')">' +
+          '<i class="fa-solid fa-rotate-left"></i> Reconsiderar</button>' +
+        '<button class="btn-neutro" onclick="removerUsuario(\'' + esc(id) + '\')">' +
+          '<i class="fa-solid fa-trash"></i> Apagar registro</button>' +
+      '</div>' +
+    '</div>';
+  }).join('');
+}
+
+function reconsiderar(email) {
+  if (!confirm('Aprovar o acesso de ' + email + ' como leitor?')) return;
+  IDEPI.auth.admin.aprovar(email, 'leitor')
+    .then(function () { IDEPI.toast(email + ' aprovado.'); carregarTudo(); })
+    .catch(function (e) { alert('Não foi possível aprovar: ' + (e.message || e.code)); });
+}
+</script>
+
+</body>
+</html>

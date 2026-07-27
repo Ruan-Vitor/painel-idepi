@@ -1,195 +1,48 @@
 <!DOCTYPE html>
-<!-- v20260617_fix01 -->
+<!-- IDEPI · FiscalGov EX-01 — v20260726 -->
 <html lang="pt-br">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>FiscalGov · EX-01 — IDEPI</title>
+<meta name="description" content="Indicador EX-01 do IDTRU-DL: instrumentos aptos com e sem foto enviada pelo aplicativo FiscalGov.">
+<meta name="theme-color" content="#0b1527">
+
+<!-- ── APP INSTALÁVEL (PWA) ────────────────────────────────────────────── -->
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="IDEPI">
+
+<!-- ── FONTES E ÍCONES ─────────────────────────────────────────────────── -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=IBM+Plex+Mono:wght@400;600&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+
+<!-- ── CASCA COMPARTILHADA (header, menu, login, responsivo) ───────────── -->
+<link rel="stylesheet" href="assets/app.css">
+
 <style>
-:root{
-  --bg:#0b1527;
-  --sidebar:#07101f;
-  --surface:#fff;
-  --surface2:#f4f7fd;
-  --border:#e3eaf5;
-  --text:#1a2640;
-  --muted:#7a8ba0;
-  --accent:#1a3a6e;
-  --green:#16a34a;
-  --green-bg:#f0fdf4;
-  --green-bdr:#86efac;
-  --red:#b91c1c;
-  --red-bg:#fef2f2;
-  --red-bdr:#fca5a5;
-  --amber:#92400e;
-  --amber-bg:#fffbeb;
-  --amber-bdr:#fcd34d;
-  --slate:#475569;
-  --slate-bg:#f8fafc;
-  --slate-bdr:#cbd5e1;
-  --blue:#1d4ed8;
-  --blue-bg:#eff6ff;
-  --blue-bdr:#93c5fd;
-}
-*{box-sizing:border-box;margin:0;padding:0}
-html,body{height:100%}
-body{font-family:'DM Sans',sans-serif;background:var(--bg);display:flex;flex-direction:column;min-height:100vh}
+/* ═══ Estilos exclusivos do painel FiscalGov ═══════════════════════════════
+   Header, sidebar, botões, login, overlay e regras de celular vivem em
+   assets/app.css. Aqui fica só o que é desta tela.                        */
+/* Esta tela não precisa redeclarar tokens nem header/sidebar: vêm do app.css. */
+/* ── PAGE HEAD (variação com ícone; o resto vem do app.css) ── */
+.pg-title{display:flex;align-items:center;gap:10px}
+.pg-title-icon{width:36px;height:36px;border-radius:9px;background:linear-gradient(135deg,#1a3a6e,#0d6e4a);display:flex;align-items:center;justify-content:center;color:#fff;font-size:15px;flex-shrink:0}
+.pg-back{background:var(--accent);color:#fff;border:none;padding:8px 16px;border-radius:7px;font-size:12px;font-weight:600}
+.pg-back:hover{background:#1e4a8a;text-decoration:none}
 
-/* ── HEADER ── */
-.hd{background:var(--bg);border-bottom:1px solid rgba(255,255,255,.07);padding:0 36px;height:58px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;position:sticky;top:0;z-index:50}
-.hd-left{display:flex;align-items:center;gap:14px}
-.hd-logo{display:flex;align-items:center;gap:10px}
-.hd-logo-icon{width:34px;height:34px;border-radius:8px;background:linear-gradient(135deg,#1a4a8a,#0d6e4a);display:flex;align-items:center;justify-content:center;font-size:14px;color:#fff}
-.hd-title{font-family:'Sora',sans-serif;font-size:14px;font-weight:700;color:#fff;line-height:1.1}
-.hd-sub{font-size:10px;color:rgba(255,255,255,.4)}
-.hd-sep{width:1px;height:26px;background:rgba(255,255,255,.1)}
-.hd-pill{display:flex;align-items:center;gap:6px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.09);border-radius:20px;padding:3px 11px;font-size:10px;color:rgba(255,255,255,.55)}
-.hd-pill i{color:#4ade80;font-size:8px}
-.hd-right{display:flex;align-items:center;gap:8px}
-.hd-ts{font-size:10px;color:rgba(255,255,255,.3);text-align:right;line-height:1.5}
-
-/* ── LAYOUT ── */
-.body{flex:1;display:flex;overflow:hidden}
-
-/* ── SIDEBAR ── */
-.sidebar{
-  width:214px;flex-shrink:0;background:var(--sidebar);
-  border-right:1px solid rgba(255,255,255,.06);
-  display:flex;flex-direction:column;padding:18px 10px;gap:2px;
-  /* FIX: transição unificada para desktop collapse */
-  position:relative;
-  transition:width .22s cubic-bezier(.4,0,.2,1), padding .22s cubic-bezier(.4,0,.2,1);
-  overflow:hidden;
-}
-.sidebar.collapsed{
-  width:0!important;
-  padding:0!important;
-}
-.sb-sec{font-size:9px;font-weight:700;color:rgba(255,255,255,.2);letter-spacing:1px;text-transform:uppercase;padding:10px 12px 3px;margin-top:6px}
-.sb-sec:first-child{margin-top:0}
-.sb-item{display:flex;align-items:center;gap:9px;padding:8px 12px;border-radius:7px;font-size:12.5px;color:rgba(255,255,255,.5);text-decoration:none;cursor:pointer;transition:all .14s;position:relative}
-.sb-item:hover{background:rgba(255,255,255,.05);color:rgba(255,255,255,.75)}
-.sb-item.active{background:#182f5a;color:#fff}
-.sb-item.active i{color:#60a5fa}
-.sb-item i{font-size:13px;width:16px;text-align:center;flex-shrink:0}
-.soon{margin-left:auto;font-size:9px;font-weight:600;background:rgba(255,255,255,.07);color:rgba(255,255,255,.25);padding:1px 6px;border-radius:8px}
-.sb-footer{margin-top:auto;padding-top:14px;border-top:1px solid rgba(255,255,255,.06)}
-.sb-card{padding:10px 12px;border-radius:8px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.05)}
-.sb-card strong{color:rgba(255,255,255,.45);display:block;font-size:10px;margin-bottom:2px}
-.sb-card p{font-size:10px;color:rgba(255,255,255,.25);line-height:1.5}
-
-/* ── SIDEBAR TOGGLE (botão fixo desktop — criado via JS) ── */
-/* FIX: classe exclusiva .sb-desk-btn para não conflitar com .sb-mob-btn do header */
-.sb-desk-btn{
-  position:fixed;
-  left:214px; /* JS sobreporá conforme estado */
-  top:50%;
-  transform:translateY(-50%);
-  width:20px;
-  height:48px;
-  border-radius:0 8px 8px 0;
-  background:#1a3a6e;
-  border:1.5px solid rgba(255,255,255,.18);
-  border-left:none;
-  color:rgba(255,255,255,.7);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  cursor:pointer;
-  z-index:200;
-  font-size:10px;
-  transition:left .22s cubic-bezier(.4,0,.2,1), background .15s, width .15s;
-  box-shadow:2px 0 8px rgba(0,0,0,.25);
-}
-.sb-desk-btn:hover{background:#2563eb;color:#fff;width:24px;}
-
-/* ── BOTÃO MENU MOBILE (no header) — apenas mobile ── */
-/* FIX: separado do .sb-desk-btn; nunca tem position:fixed */
-.sb-mob-btn{
-  display:none; /* oculto em desktop */
-  align-items:center;
-  gap:7px;
-  background:rgba(255,255,255,.08);
-  border:1px solid rgba(255,255,255,.13);
-  border-radius:7px;
-  color:rgba(255,255,255,.8);
-  font-size:12px;
-  font-weight:600;
-  font-family:'DM Sans',sans-serif;
-  padding:5px 13px;
-  cursor:pointer;
-  transition:background .14s;
-  flex-shrink:0;
-}
-.sb-mob-btn:hover{background:rgba(255,255,255,.13);}
-
-/* ── CONTENT ── */
-.content{flex:1;display:flex;flex-direction:column;overflow:hidden;background:var(--surface2)}
-
-/* ── PAGE HEAD ── */
-.pg-head{background:var(--surface);border-bottom:1px solid var(--border);padding:18px 28px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
-.pg-title{font-family:'Sora',sans-serif;font-size:18px;font-weight:700;color:var(--text);display:flex;align-items:center;gap:10px}
-.pg-title-icon{width:36px;height:36px;border-radius:9px;background:linear-gradient(135deg,#1a3a6e,#0d6e4a);display:flex;align-items:center;justify-content:center;color:#fff;font-size:15px}
-.pg-sub{font-size:11px;color:var(--muted);margin-top:3px}
-.pg-back{display:flex;align-items:center;gap:6px;background:var(--accent);color:#fff;border:none;padding:8px 16px;border-radius:7px;font-size:12px;font-weight:600;cursor:pointer;text-decoration:none;font-family:'DM Sans',sans-serif;transition:background .14s}
-.pg-back:hover{background:#1e4a8a}
-
-/* ── SCROLL ── */
-.scroll{flex:1;overflow-y:auto;padding:22px 28px;display:flex;flex-direction:column;gap:18px}
-
-/* ── RESPONSIVO ── */
-@media (max-height: 700px), (max-width: 900px) {
-  html, body { height:auto; overflow-x:hidden; overflow-y:auto; }
-
-  .hd { padding:0 14px; height:50px; }
-  .hd-pill { display:none; }
-  .hd-sep  { display:none; }
-
-  .body { overflow:visible; flex-direction:column; }
-
-  /* Mobile: sidebar vira drawer (max-height) — reset do collapse desktop */
-  .sidebar {
-    width:100% !important;
-    padding:0 10px !important;
-    flex-direction:column;
-    flex-wrap:nowrap;
-    overflow:hidden;
-    max-height:0;
-    gap:2px;
-    border-right:none;
-    border-bottom:none;
-    position:static;
-    flex-shrink:0;
-    /* Animação de max-height (drawer) substitui a de width (desktop) */
-    transition:max-height .28s ease, padding .28s ease, border .28s ease !important;
-  }
-  .sidebar.sb-open {
-    max-height:500px;
-    padding:8px 10px !important;
-    border-bottom:1px solid rgba(255,255,255,.12);
-  }
-  /* collapsed não tem efeito no mobile — sb-open é o sistema aqui */
-  .sidebar.collapsed { width:100% !important; padding:0 10px !important; }
-
-  .sidebar::-webkit-scrollbar { display:none; }
-  .sb-sec    { display:block; font-size:9px; padding:6px 10px 2px; }
-  .sb-footer { display:none; }
-  .sb-item   { flex-shrink:0; white-space:nowrap; padding:8px 12px; font-size:13px; }
-
-  /* FIX: botão mobile do header visível; botão desktop escondido */
-  .sb-mob-btn  { display:flex !important; }
-  .sb-desk-btn { display:none !important; }
-
-  .content { overflow:visible; flex:none; width:100%; }
-  .scroll  { overflow:visible; flex:none; padding:14px 14px; gap:14px; }
-
-  .pg-head { padding:12px 14px; flex-wrap:wrap; gap:10px; }
+/* ── RESPONSIVO DA PÁGINA (a casca responsiva está no app.css) ── */
+@media (max-width: 900px) {
   .pg-title { font-size:15px; }
-  .pg-sub   { font-size:10px; }
-  .pg-back  { padding:7px 12px; font-size:11px; }
+  .pg-title-icon { width:28px; height:28px; font-size:12px; }
+  .pg-back  { padding:8px 12px; font-size:11px; }
 
   .banner { padding:14px 16px; }
   .banner p { font-size:11px; }
@@ -197,22 +50,16 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);display:flex;flex-dir
   .kpi-row { grid-template-columns:repeat(2,1fr); gap:10px; }
   .kpi-val { font-size:22px; }
 
-  .tbl-card   { flex:none; min-height:0; }
-  .tbl-scroll { overflow-x:auto; overflow-y:visible; max-height:none; -webkit-overflow-scrolling:touch; }
-
+  .tbl-card { flex:none; min-height:0; }
   .tbl-head { padding:10px 12px; }
   .tbl-head-right { gap:6px; }
   .filters { gap:4px; }
-  .fchip   { font-size:10px; padding:3px 8px; }
-  .btn-excel { font-size:10.5px; padding:5px 10px; }
+  .fchip { font-size:11px; padding:5px 10px; }
 }
 
 @media (max-width: 480px) {
-  .kpi-row { grid-template-columns:repeat(2,1fr); }
   .pg-title { font-size:14px; gap:6px; }
-  .pg-title-icon { width:28px; height:28px; font-size:12px; }
   .banner-formula { font-size:9px; }
-  .hd-title { font-size:13px; }
 }
 
 /* ── BANNER ── */
@@ -261,17 +108,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);display:flex;flex-dir
 .tbl-title{font-size:13px;font-weight:700;color:var(--text);display:flex;align-items:center;gap:7px}
 .tbl-title i{color:var(--accent)}
 
-/* ── FULLSCREEN ── */
-.btn-fullscreen{
-  display:inline-flex;align-items:center;gap:5px;
-  background:rgba(26,58,110,.08);color:var(--accent);
-  border:1.5px solid var(--blue-bdr);border-radius:7px;
-  padding:5px 11px;font-size:11px;font-weight:600;
-  cursor:pointer;font-family:'DM Sans',sans-serif;
-  transition:all .15s;white-space:nowrap;
-}
-.btn-fullscreen:hover{background:#eff6ff;border-color:var(--accent)}
-.btn-fullscreen i{font-size:11px}
+/* ── FULLSCREEN (o botão vem do app.css) ── */
 .tbl-card:fullscreen,
 .tbl-card:-webkit-full-screen,
 .tbl-card:-moz-full-screen{
@@ -356,32 +193,14 @@ tbody tr:hover td{background:#f5f9ff}
 .empty-state p{font-size:13px}
 .empty-state small{font-size:11px;opacity:.7}
 
-/* ── BOTÃO EXPORTAR EXCEL ── */
-.btn-excel{
-  display:inline-flex;align-items:center;gap:6px;
-  background:#16a34a;color:#fff;
-  border:none;border-radius:7px;
-  padding:6px 13px;font-size:11.5px;font-weight:600;
-  cursor:pointer;font-family:'DM Sans',sans-serif;
-  transition:background .15s,transform .1s;
-  white-space:nowrap;
-}
-.btn-excel:hover{background:#15803d;transform:translateY(-1px)}
-.btn-excel:active{transform:translateY(0)}
-.btn-excel i{font-size:12px}
-.btn-excel.loading{background:#94a3b8;cursor:not-allowed;transform:none}
-
-/* ── OVERLAY / LOCK ── */
-.overlay{position:fixed;inset:0;background:rgba(7,16,31,.85);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:998;gap:12px}
-.overlay.hide{display:none}
-.spin{width:36px;height:36px;border:3px solid rgba(255,255,255,.15);border-top-color:#60a5fa;border-radius:50%;animation:spin .75s linear infinite}
-@keyframes spin{to{transform:rotate(360deg)}}
-.overlay p{color:#fff;font-size:13px}
-#lockscreen{position:fixed;inset:0;z-index:9999;background:#07101f;display:flex;align-items:center;justify-content:center}
+/* Botão Excel, overlay e tela de login: assets/app.css */
 
 </style>
 </head>
-<body>
+<body data-page="fiscalgov">
+
+<!-- Tela de login: cobre tudo ate o Firebase confirmar o acesso -->
+<div id="lockscreen"></div>
 
 <!-- Toast de cópia -->
 <div class="copy-toast" id="copyToast">Número copiado!</div>
@@ -406,10 +225,6 @@ tbody tr:hover td{background:#f5f9ff}
     <div class="hd-pill"><i class="fa-solid fa-circle"></i> Indicador EX-01 · IDTRU-DL Recebedores</div>
   </div>
   <div class="hd-right">
-    <!-- FIX: classe trocada para sb-mob-btn (sem conflito com sb-desk-btn do JS) -->
-    <button class="sb-mob-btn" id="sbMobBtn" onclick="toggleSidebarMobile()" aria-label="Menu de navegação">
-      <i class="fa-solid fa-bars" id="sbMobIcon"></i> Menu
-    </button>
     <div class="hd-ts" id="hd-ts">—</div>
   </div>
 </div>
@@ -417,28 +232,8 @@ tbody tr:hover td{background:#f5f9ff}
 <!-- BODY -->
 <div class="body">
 
-  <!-- SIDEBAR -->
-  <nav class="sidebar" id="mainSidebar">
-    <div class="sb-sec">Convênios Federais</div>
-    <a class="sb-item" href="index.html"><i class="fa-solid fa-gauge-high"></i> Painel Geral</a>
-    <a class="sb-item" href="vigencias.html"><i class="fa-solid fa-table-list"></i> Vigências</a>
-    <a class="sb-item" href="execucao.html"><i class="fa-solid fa-chart-line"></i> Execução Financeira</a>
-    <a class="sb-item" href="ingressos.html"><i class="fa-solid fa-money-bill-transfer"></i> Ingressos de Recurso</a>
-    <div class="sb-item"><i class="fa-solid fa-file-invoice"></i> Prestação de Contas<span class="soon">em breve</span></div>
-    <div class="sb-item"><i class="fa-solid fa-landmark-dome"></i> Emendas Parlamentares<span class="soon">em breve</span></div>
-    <div class="sb-item"><i class="fa-solid fa-map-location-dot"></i> Mapa de Obras<span class="soon">em breve</span></div>
-
-    <div class="sb-sec">Desempenho IDTRU-DL</div>
-    <a class="sb-item active" href="fiscalgov.html"><i class="fa-solid fa-camera"></i> FiscalGov · EX-01</a>
-    <div class="sb-item"><i class="fa-solid fa-star"></i> Índice Geral<span class="soon">em breve</span></div>
-
-    <div class="sb-footer">
-      <div class="sb-card">
-        <strong>Instituto de Desenvolvimento do Piauí</strong>
-        <p>R. Altos, 277 — Primavera<br>Teresina-PI · idepi@idepi.pi.gov.br</p>
-      </div>
-    </div>
-  </nav>
+  <!-- O menu é montado por assets/nav.js — não escreva os itens aqui. -->
+  <nav class="sidebar" id="mainSidebar"></nav>
 
   <!-- CONTENT -->
   <div class="content">
@@ -571,104 +366,46 @@ tbody tr:hover td{background:#f5f9ff}
   </div><!-- /content -->
 </div><!-- /body -->
 
+<!-- ══ SDK do Firebase (login + banco) ══════════════════════════════════ -->
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore-compat.js"></script>
+<!-- ══ Casca compartilhada ═════════════════════════════════════════════ -->
+<script src="assets/firebase-config.js"></script>
+<script src="assets/app.js"></script>
+<script src="assets/auth.js"></script>
+<script src="assets/data.js"></script>
+<script src="assets/nav.js"></script>
+
 <script>
-var USUARIO = "Ruan-Vitor", REPO = "painel-idepi";
 var todos = [], filtroAtual = "all";
 var _rowsVisiveis = [];
 
-/* ══════════════════════════════════════════════════════
-   SIDEBAR — dois sistemas independentes, sem conflito
-   Desktop: sb-desk-btn (criado via JS) + classe .collapsed
-   Mobile:  #sbMobBtn no header        + classe .sb-open
-   ══════════════════════════════════════════════════════ */
-
-/* Mobile toggle (header button) */
-function toggleSidebarMobile() {
-  var sb  = document.getElementById('mainSidebar');
-  var ico = document.getElementById('sbMobIcon');
-  if (!sb) return;
-  var aberto = sb.classList.toggle('sb-open');
-  if (ico) ico.className = aberto ? 'fa-solid fa-xmark' : 'fa-solid fa-bars';
-}
-
-/* Fecha drawer ao clicar em item de navegação (mobile) */
-document.addEventListener('DOMContentLoaded', function() {
-  var itens = document.querySelectorAll('#mainSidebar .sb-item');
-  itens.forEach(function(el) {
-    el.addEventListener('click', function() {
-      var sb = document.getElementById('mainSidebar');
-      if (sb && sb.classList.contains('sb-open')) {
-        sb.classList.remove('sb-open');
-        var ico = document.getElementById('sbMobIcon');
-        if (ico) ico.className = 'fa-solid fa-bars';
-      }
-    });
-  });
-});
-
+/* O controle do menu (drawer no celular, recolher no desktop) saiu daqui e
+   virou assets/nav.js — os dois sistemas conviviam mal e viviam brigando
+   pela mesma classe. */
 /* ══════════════════════════════════════════════════════
    LÓGICA DE DADOS
    ══════════════════════════════════════════════════════ */
 
-function parseDateBR(s) {
-  if (!s) return null;
-  s = String(s).trim();
-  var m = s.match(/^(\d{2})\/(\d{2})\/(\d{4})$/);
-  if (m) return new Date(m[3]+"-"+m[2]+"-"+m[1]);
-  m = s.match(/^(\d{4})-(\d{2})-(\d{2})/);
-  if (m) return new Date(m[1]+"-"+m[2]+"-"+m[3]);
-  return null;
-}
+/* Regras de negócio: uma implementação só, em assets/app.js.
+   Antes cada painel tinha a sua cópia e elas divergiram — este arquivo, por
+   exemplo, calculava a vigência SEM olhar a cláusula suspensiva, então o
+   mesmo convênio aparecia "Normal" aqui e "Crítico" no painel de Vigências. */
+var parseDateBR  = IDEPI.parseDateBR;
+var isFinalizado = IDEPI.isFinalizado;
+var temMedicao   = IDEPI.temMedicao;
+var temPagamento = IDEPI.temPagamento;
+var isApto       = IDEPI.isApto;
+var isProjeto    = IDEPI.isProjeto;
+var temFoto      = IDEPI.temFoto;
 
-function normSit(s){ return (s||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase(); }
-
-function isFinalizado(c) {
-  var REGEX_FIN = /prestacao\s*de\s*contas|finaliz|concluido|encerrad|rescindid|inadimplent|tomada\s*de\s*contas/;
-  var sitTgov = normSit(c.situacao_tgov || "");
-  if (sitTgov && sitTgov !== "—" && sitTgov !== "erro" && REGEX_FIN.test(sitTgov)) return true;
-  var sitContrat = normSit(c.sit_contrat_tgov || "");
-  if (sitContrat && sitContrat !== "—" && sitContrat !== "erro" && REGEX_FIN.test(sitContrat)) return true;
-  var sitApi = normSit(c.situacao || "");
-  if (REGEX_FIN.test(sitApi)) return true;
-  return false;
-}
-
-function temMedicao(c) {
-  var v = c.medicao || c.col_p || "";
-  return String(v).trim().toUpperCase().startsWith("SIM");
-}
-
-function temPagamento(c) {
-  var v = c.pagamento || c.col_q || "";
-  return String(v).trim().toUpperCase().startsWith("SIM");
-}
-
-function isApto(c) {
-  if (isFinalizado(c)) return false;
-  return temMedicao(c) || temPagamento(c);
-}
-
-function isProjeto(c) {
-  if (isFinalizado(c)) return false;
-  return !temMedicao(c) && !temPagamento(c);
-}
-
-/* FIX: temFoto — normaliza NFD antes de comparar, elimina falsos negativos por encoding */
-function temFoto(c) {
-  var raw = c.foto_app || c.rel_fotografico || c.col_o || "";
-  var v = raw.normalize("NFD").replace(/[\u0300-\u036f]/g,"").trim().toUpperCase();
-  // Retorna true APENAS se começar com "SIM"
-  // Qualquer outra coisa (NÃO, NAO, ERRO, vazio) é false
-  return v.startsWith("SIM");
-}
-
+/* Aqui os finalizados já foram filtrados antes de entrar na tabela, então um
+   "finalizado" devolvido pelo cálculo só pode significar ausência de datas. */
 function calcStatus(c) {
-  var hoje = new Date(); hoje.setHours(0,0,0,0);
-  var dVig = parseDateBR(c.vigencia_fmt || c.vigencia);
-  if (!dVig) return {st:"sem_data", dias:null};
-  var dias = Math.round((dVig - hoje)/86400000);
-  var st = dias < 0 ? "vencido" : dias <= 30 ? "critico" : dias <= 60 ? "atencao" : dias <= 90 ? "alerta" : "normal";
-  return {st:st, dias:dias};
+  var r = IDEPI.calcStatus(c);
+  if (r.st === 'finalizado' && r.dias === null) return { st:'sem_data', dias:null, temSusp:false };
+  return r;
 }
 
 function vigBadge(st, dias) {
@@ -762,17 +499,18 @@ function renderizar() {
       acao = '<span class="acao pend"><i class="fa-solid fa-mobile-screen"></i> Fiscal deve enviar foto pelo APP</span>';
     }
 
-    var numEscaped = num.replace(/'/g,"&#39;");
+    /* Tudo que vem da planilha/API passa por esc() antes de virar HTML:
+       um objeto com aspas ou "<" quebrava a linha inteira da tabela. */
+    var esc = IDEPI.esc;
 
     html += "<tr>";
-    /* FIX: número clicável para copiar */
-    html += "<td><span class='num-cell' onclick='copiarNumero(\""+numEscaped+"\")' title='Clique para copiar'>"+num+"<i class='fa-regular fa-copy copy-icon'></i></span></td>";
-    html += "<td><div class='obj-cell' title='"+obj.replace(/'/g,"&#39;")+"'>"+obj+
+    html += "<td><span class='num-cell' onclick='copiarNumero(\""+esc(num)+"\")' title='Clique para copiar'>"+esc(num)+"<i class='fa-regular fa-copy copy-icon'></i></span></td>";
+    html += "<td><div class='obj-cell' title='"+esc(obj)+"'>"+esc(obj)+
             (r.situacao_tgov && r.situacao_tgov !== "—" && r.situacao_tgov !== "" ?
-              "<div style='font-size:9px;color:#64748b;margin-top:2px;'><i class='fa-solid fa-arrow-right-to-bracket' style='font-size:8px;'></i> Tgov: "+r.situacao_tgov+"</div>" : "") +
+              "<div style='font-size:9px;color:#64748b;margin-top:2px;'><i class='fa-solid fa-arrow-right-to-bracket' style='font-size:8px;'></i> Tgov: "+esc(r.situacao_tgov)+"</div>" : "") +
             "</div></td>";
-    html += "<td style='white-space:nowrap;font-size:11.5px;color:#3a4a5c'>"+(r.fiscal||'<span style="color:#b0bbc8">—</span>')+"</td>";
-    html += "<td style='white-space:nowrap;color:#5a6a82;font-size:11.5px'>"+vigFmt+"</td>";
+    html += "<td style='white-space:nowrap;font-size:11.5px;color:#3a4a5c'>"+(r.fiscal ? esc(r.fiscal) : '<span style="color:#b0bbc8">—</span>')+"</td>";
+    html += "<td style='white-space:nowrap;color:#5a6a82;font-size:11.5px'>"+esc(vigFmt)+"</td>";
     html += "<td>"+vigBadge(r._st, r._dias)+"</td>";
     html += "<td>"+medBadge+"</td>";
     html += "<td>"+pagBadge+"</td>";
@@ -793,25 +531,8 @@ function filtrar(f) {
   renderizar();
 }
 
-/* FIX: copiar número do instrumento com feedback visual */
-function copiarNumero(num) {
-  if (!num || num === "—") return;
-  if (navigator.clipboard && navigator.clipboard.writeText) {
-    navigator.clipboard.writeText(num).then(function(){ mostrarToast("Número " + num + " copiado!"); });
-  } else {
-    var el = document.createElement('textarea');
-    el.value = num; document.body.appendChild(el);
-    el.select(); document.execCommand('copy'); document.body.removeChild(el);
-    mostrarToast("Número " + num + " copiado!");
-  }
-}
-function mostrarToast(msg) {
-  var t = document.getElementById('copyToast');
-  if (!t) return;
-  t.textContent = msg;
-  t.classList.add('show');
-  setTimeout(function(){ t.classList.remove('show'); }, 2200);
-}
+/* Copiar o número do instrumento com um toque — implementação em app.js */
+function copiarNumero(num){ IDEPI.copiar(num); }
 
 /* ══════════════════════════════════════════════════════
    EXPORTAR EXCEL
@@ -906,18 +627,17 @@ function exportarExcelFiscalGov() {
 }
 
 /* ══════════════════════════════════════════════════════
-   CARREGA DADOS DO GITHUB
+   CARREGA OS DADOS (Firestore, com o GitHub como plano B)
    ══════════════════════════════════════════════════════ */
-var url = "https://raw.githubusercontent.com/"+USUARIO+"/"+REPO+"/main/dados.json?t="+Date.now();
-fetch(url)
-  .then(function(r){ if(!r.ok) throw new Error("HTTP "+r.status); return r.json(); })
+IDEPI.dados.carregar()
   .then(function(j){
-    document.getElementById("hd-ts").innerHTML = "Atualizado<br>"+(j.gerado_em||"—");
+    document.getElementById("hd-ts").innerHTML =
+      IDEPI.dados.rotuloOrigem(j).replace("Atualizado ", "Atualizado<br>");
 
-    /* FIX: guard para dados.json sem chave convenios (ex: apenas exec_financeira) */
+    /* Guarda para o caso de vir só exec_financeira, sem as vigências. */
     var conv = j.convenios;
-    if (!Array.isArray(conv)) {
-      throw new Error("Campo 'convenios' ausente no dados.json. Rode o main.py para gerar os dados de vigências.");
+    if (!Array.isArray(conv) || !conv.length) {
+      throw new Error("Não há dados de vigências publicados. Rode o main.py para gerá-los.");
     }
 
     todos = [];
@@ -985,97 +705,14 @@ fetch(url)
       '</div></td></tr>';
   });
 
-/* ══════════════════════════════════════════════════════
-   TELA CHEIA
-   ══════════════════════════════════════════════════════ */
-function toggleFullscreen(id) {
-  var el = document.getElementById(id);
-  var isFs = document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement;
-  if (!isFs) {
-    var req = el.requestFullscreen || el.webkitRequestFullscreen || el.mozRequestFullScreen;
-    if (req) req.call(el);
-  } else {
-    var ex = document.exitFullscreen || document.webkitExitFullscreen || document.mozCancelFullScreen;
-    if (ex) ex.call(document);
-  }
-}
-document.addEventListener('fullscreenchange', _syncFsBtn);
-document.addEventListener('webkitfullscreenchange', _syncFsBtn);
-document.addEventListener('mozfullscreenchange', _syncFsBtn);
-function _syncFsBtn() {
-  var btn = document.getElementById('btnFSTbl');
-  if (!btn) return;
-  var isFs = !!(document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement);
-  /* FIX: atualiza só se mudou, evita piscar */
-  var novoHtml = isFs
-    ? '<i class="fa-solid fa-compress"></i> Sair'
-    : '<i class="fa-solid fa-expand"></i> Tela cheia';
-  if (btn.innerHTML !== novoHtml) btn.innerHTML = novoHtml;
-}
+/* ── TELA CHEIA (implementação em assets/app.js) ── */
+function toggleFullscreen(id){ IDEPI.toggleFullscreen(id); }
+IDEPI.ligarBotaoFullscreen('btnFSTbl');
 </script>
 
-<!-- ══════════════════════════════════════════════════
-     SIDEBAR TOGGLE — DESKTOP APENAS
-     FIX: classe exclusiva sb-desk-btn, sem conflito com header
-     ══════════════════════════════════════════════════ -->
-<script>
-(function(){
-  var sidebar = document.getElementById('mainSidebar');
-  if (!sidebar) return;
-
-  /* Só cria o botão desktop em viewports maiores */
-  function isMobile(){ return window.innerWidth <= 900 || window.innerHeight <= 700; }
-  if (isMobile()) return;  /* Mobile usa o botão do header */
-
-  var btn = document.createElement('button');
-  btn.className = 'sb-desk-btn';
-  btn.title = 'Recolher menu';
-  btn.setAttribute('aria-label','Recolher/expandir menu lateral');
-  btn.innerHTML = '<i class="fa-solid fa-chevron-left"></i>';
-  document.body.appendChild(btn);
-
-  var collapsed = sessionStorage.getItem('idepi_sb_collapsed') === '1';
-
-  function aplicar(c){
-    collapsed = c;
-    sidebar.classList.toggle('collapsed', collapsed);
-    btn.innerHTML = collapsed
-      ? '<i class="fa-solid fa-chevron-right"></i>'
-      : '<i class="fa-solid fa-chevron-left"></i>';
-    btn.title = collapsed ? 'Expandir menu' : 'Recolher menu';
-    btn.style.left = collapsed ? '0px' : '214px';
-  }
-  aplicar(collapsed);
-
-  btn.addEventListener('click', function(){
-    aplicar(!collapsed);
-    sessionStorage.setItem('idepi_sb_collapsed', collapsed ? '1' : '0');
-  });
-})();
-</script>
-
-<!-- LOCKSCREEN -->
-<div id="lockscreen">
-  <div style="background:#0f1f3d;border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:40px;width:340px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.5);">
-    <div style="width:52px;height:52px;border-radius:14px;background:linear-gradient(135deg,#1a4a8a,#0d6e4a);display:flex;align-items:center;justify-content:center;font-size:22px;color:#fff;margin:0 auto 16px;"><i class="fa-solid fa-lock"></i></div>
-    <div style="font-family:'Sora',sans-serif;font-size:17px;font-weight:700;color:#fff;margin-bottom:4px;">IDEPI — Convênios Federais</div>
-    <div style="font-size:12px;color:rgba(255,255,255,.4);margin-bottom:24px;">Acesso restrito. Digite a senha para continuar.</div>
-    <input id="pwd-input" type="password" placeholder="Senha de acesso"
-      style="width:100%;padding:11px 16px;border-radius:8px;border:1.5px solid rgba(255,255,255,.15);background:rgba(255,255,255,.06);color:#fff;font-size:14px;outline:none;margin-bottom:10px;"
-      onkeydown="if(event.key==='Enter')checkPwd()"/>
-    <div id="pwd-err" style="font-size:12px;color:#f87171;min-height:16px;margin-bottom:10px;"></div>
-    <button onclick="checkPwd()" style="width:100%;padding:11px;border-radius:8px;border:none;background:#1a3a6e;color:#fff;font-size:14px;font-weight:600;cursor:pointer;">Entrar</button>
-  </div>
-</div>
-<script>
-var SENHA = "idepi2026";
-if (sessionStorage.getItem("idepi_auth")==="1") document.getElementById("lockscreen").style.display="none";
-function checkPwd(){
-  var v=document.getElementById("pwd-input").value;
-  if(v===SENHA){sessionStorage.setItem("idepi_auth","1");document.getElementById("lockscreen").style.display="none";}
-  else{document.getElementById("pwd-err").textContent="Senha incorreta.";document.getElementById("pwd-input").value="";document.getElementById("pwd-input").focus();}
-}
-</script>
+<!-- O menu lateral (drawer no celular, recolher no desktop) é montado por
+     assets/nav.js, e o login é do Firebase (assets/auth.js). A antiga tela com
+     a senha fixa escrita no HTML foi removida daqui. -->
 
 </body>
 </html>

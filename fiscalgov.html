@@ -180,7 +180,9 @@ tbody tr:hover td{background:#f5f9ff}
 }
 .copy-toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 
-.obj-cell{max-width:230px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#3a4a5c}
+/* Duas linhas e abre com um toque (.txt-exp, no app.css). Antes era uma
+   linha so com reticencias, legivel apenas com o mouse em cima. */
+.obj-cell{max-width:300px;min-width:190px;color:#3a4a5c}
 .acao{font-size:11px;font-weight:600;display:flex;align-items:center;gap:4px}
 .acao.ok{color:var(--green)}.acao.pend{color:#c2410c}.acao.neutr{color:var(--muted)}
 
@@ -342,7 +344,8 @@ tbody tr:hover td{background:#f5f9ff}
           </select>
         </div>
         <div class="tbl-scroll">
-          <table>
+          <!-- tbl-cards: no celular vira lista de cartoes (app.css, secao 13) -->
+        <table class="tbl-cards">
             <thead>
               <tr>
                 <th>Nº Instrumento</th>
@@ -505,7 +508,7 @@ function renderizar() {
 
     html += "<tr>";
     html += "<td><span class='num-cell' onclick='copiarNumero(\""+esc(num)+"\")' title='Clique para copiar'>"+esc(num)+"<i class='fa-regular fa-copy copy-icon'></i></span></td>";
-    html += "<td><div class='obj-cell' title='"+esc(obj)+"'>"+esc(obj)+
+    html += "<td class='celula-destaque'><div class='obj-cell txt-exp'>"+esc(obj)+
             (r.situacao_tgov && r.situacao_tgov !== "—" && r.situacao_tgov !== "" ?
               "<div style='font-size:9px;color:#64748b;margin-top:2px;'><i class='fa-solid fa-arrow-right-to-bracket' style='font-size:8px;'></i> Tgov: "+esc(r.situacao_tgov)+"</div>" : "") +
             "</div></td>";

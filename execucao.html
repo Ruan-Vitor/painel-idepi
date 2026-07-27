@@ -225,14 +225,16 @@ tbody tr:hover td{background:#f5f9ff}
 .inst-dd-act-btn{font-size:10.5px;font-weight:600;color:var(--accent);background:none;border:none;cursor:pointer;padding:2px 4px;font-family:'DM Sans',sans-serif}
 .inst-dd-act-btn:hover{text-decoration:underline}
 .inst-dd-list{max-height:260px;overflow-y:auto}
-.inst-dd-item{display:flex;align-items:center;gap:0;border-bottom:1px solid #f3f6fb;transition:background .1s;cursor:pointer}
+.inst-dd-item{display:flex;align-items:flex-start;gap:0;border-bottom:1px solid #f3f6fb;transition:background .1s;cursor:pointer}
 .inst-dd-item:last-child{border-bottom:none}
 .inst-dd-item:hover{background:#f0f6ff}
 .inst-dd-item.selected-view{background:#eff6ff}
 .inst-dd-item.selected-view .inst-dd-num{color:#1d4ed8}
 .inst-dd-item-main{display:flex;align-items:center;gap:9px;flex:1;padding:8px 12px;min-width:0}
 .inst-dd-num{font-family:'IBM Plex Mono',monospace;font-size:11.5px;font-weight:700;color:var(--accent);white-space:nowrap;flex-shrink:0}
-.inst-dd-obj{font-size:11px;color:var(--text);flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+/* Duas linhas: o municipio costuma estar no fim do objeto, e era
+   exatamente ele que sumia no corte de uma linha so. */
+.inst-dd-obj{font-size:11px;color:var(--text);flex:1;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;word-break:break-word}
 .inst-dd-check-wrap{padding:8px 12px 8px 4px;display:flex;align-items:center;flex-shrink:0;border-left:1px solid #edf2fb}
 .inst-dd-check-wrap input[type=checkbox]{accent-color:#b91c1c;width:15px;height:15px;cursor:pointer}
 .inst-dd-check-wrap:hover{background:rgba(185,28,28,.05)}

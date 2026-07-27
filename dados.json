@@ -1,5 +1,5 @@
 {
-  "gerado_em": "27/07/2026 11:52",
+  "gerado_em": "27/07/2026 13:08",
   "total": 98,
   "convenios": [
     {
@@ -2744,7 +2744,7 @@
       "situacao": "EM EXECUÇÃO",
       "v_total": "955.000,00",
       "v_liberado": "0,00",
-      "v_contrapartida": "1,00",
+      "v_contrapartida": "10.000,00",
       "v_ultima_liberacao": "0,00",
       "ultima_liberacao": "",
       "pct_exec": "",

@@ -22,7 +22,11 @@
    antigos de todo mundo.
    ══════════════════════════════════════════════════════════════════════════ */
 
-const VERSAO = 'idepi-v1';
+/* v2 (27/07/2026): entrou o admin.html e mudou o auth.js (auto-cadastro).
+   Trocar a versão é o que apaga o cache antigo nos aparelhos já instalados —
+   sem isso, quem instalou o app continuaria na tela de login sem o botão
+   "Solicitar acesso". */
+const VERSAO = 'idepi-v2';
 const CACHE_SHELL = VERSAO + '-shell';
 const CACHE_PAGS  = VERSAO + '-paginas';
 
@@ -34,6 +38,7 @@ const SHELL = [
   'execucao.html',
   'fiscalgov.html',
   'ingressos.html',
+  'admin.html',
   'assets/app.css',
   'assets/app.js',
   'assets/nav.js',

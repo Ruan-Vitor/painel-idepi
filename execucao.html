@@ -1,82 +1,36 @@
 <!DOCTYPE html>
-<!-- v20260514_v8 -->
+<!-- IDEPI · Execução Financeira — v20260726 -->
 <html lang="pt-br">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Execução Financeira — IDEPI</title>
+<meta name="description" content="Movimentações financeiras, notas fiscais e rateio por instrumento de transferência.">
+<meta name="theme-color" content="#0b1527">
+
+<!-- ── APP INSTALÁVEL (PWA) ────────────────────────────────────────────── -->
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="IDEPI">
+
+<!-- ── FONTES E ÍCONES ─────────────────────────────────────────────────── -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=IBM+Plex+Mono:wght@400;600&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+
+<!-- ── CASCA COMPARTILHADA (header, menu, login, responsivo) ───────────── -->
+<link rel="stylesheet" href="assets/app.css">
+
 <style>
-:root{
-  --bg:#0b1527;
-  --sidebar:#07101f;
-  --surface:#fff;
-  --surface2:#f4f7fd;
-  --border:#e3eaf5;
-  --text:#1a2640;
-  --muted:#7a8ba0;
-  --accent:#1a3a6e;
-  --green:#16a34a;
-  --green-bg:#f0fdf4;
-  --green-bdr:#86efac;
-  --red:#b91c1c;
-  --red-bg:#fef2f2;
-  --red-bdr:#fca5a5;
-  --amber:#92400e;
-  --amber-bg:#fffbeb;
-  --amber-bdr:#fcd34d;
-  --slate:#475569;
-  --slate-bg:#f8fafc;
-  --slate-bdr:#cbd5e1;
-  --blue:#1d4ed8;
-  --blue-bg:#eff6ff;
-  --blue-bdr:#93c5fd;
-  --purple:#6d28d9;
-  --purple-bg:#f5f3ff;
-  --purple-bdr:#c4b5fd;
-}
-*{box-sizing:border-box;margin:0;padding:0}
-html,body{height:100%;overflow-y:auto}
-body{font-family:'DM Sans',sans-serif;background:var(--bg);display:flex;flex-direction:column;min-height:100vh}
-
-/* ── HEADER ── */
-.hd{background:var(--bg);border-bottom:1px solid rgba(255,255,255,.07);padding:0 36px;height:58px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;position:sticky;top:0;z-index:50}
-.hd-left{display:flex;align-items:center;gap:14px}
-.hd-logo{display:flex;align-items:center;gap:10px}
-.hd-logo-icon{width:34px;height:34px;border-radius:8px;background:linear-gradient(135deg,#1a4a8a,#0d6e4a);display:flex;align-items:center;justify-content:center;font-size:14px;color:#fff}
-.hd-title{font-family:'Sora',sans-serif;font-size:14px;font-weight:700;color:#fff;line-height:1.1}
-.hd-sub{font-size:10px;color:rgba(255,255,255,.4)}
-.hd-sep{width:1px;height:26px;background:rgba(255,255,255,.1)}
-.hd-pill{display:flex;align-items:center;gap:6px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.09);border-radius:20px;padding:3px 11px;font-size:10px;color:rgba(255,255,255,.55)}
-.hd-pill i{color:#4ade80;font-size:8px}
-.hd-right{display:flex;align-items:center;gap:8px}
-.hd-ts{font-size:10px;color:rgba(255,255,255,.3);text-align:right;line-height:1.5}
-
-/* ── OCULTAR BOTÃO INJETADO PELO PREVIEW ── */
-body > button, .vs-exec-grid > button, .vs-teto > button,
-.vs-ecol > button, .val-strip > button, .scroll > button,
-div > button:not([class]):not([id]) { display:none !important; }
-button:has(svg):not([class]):not([id]) { display:none !important; }
-
-
-.body{flex:1;display:flex}
-
-/* ── SIDEBAR ── */
-.sidebar{width:214px;flex-shrink:0;background:var(--sidebar);border-right:1px solid rgba(255,255,255,.06);display:flex;flex-direction:column;padding:18px 10px;gap:2px}
-.sb-sec{font-size:9px;font-weight:700;color:rgba(255,255,255,.2);letter-spacing:1px;text-transform:uppercase;padding:10px 12px 3px;margin-top:6px}
-.sb-sec:first-child{margin-top:0}
-.sb-item{display:flex;align-items:center;gap:9px;padding:8px 12px;border-radius:7px;font-size:12.5px;color:rgba(255,255,255,.5);text-decoration:none;cursor:pointer;transition:all .14s}
-.sb-item:hover{background:rgba(255,255,255,.05);color:rgba(255,255,255,.75)}
-.sb-item.active{background:#182f5a;color:#fff}
-.sb-item.active i{color:#60a5fa}
-.sb-item i{font-size:13px;width:16px;text-align:center;flex-shrink:0}
-.soon{margin-left:auto;font-size:9px;font-weight:600;background:rgba(255,255,255,.07);color:rgba(255,255,255,.25);padding:1px 6px;border-radius:8px}
-.sb-footer{margin-top:auto;padding-top:14px;border-top:1px solid rgba(255,255,255,.06)}
-.sb-card{padding:10px 12px;border-radius:8px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.05)}
-.sb-card strong{color:rgba(255,255,255,.45);display:block;font-size:10px;margin-bottom:2px}
-.sb-card p{font-size:10px;color:rgba(255,255,255,.25);line-height:1.5}
+/* ═══ Estilos exclusivos do painel de Execução Financeira ════════════════
+   Header, sidebar, botões, login, overlay e responsivo vivem no app.css. */
+/* Tokens, reset, header e menu lateral vêm todos do app.css. */
 
 /* ── CONTENT ── */
 .content{flex:1;display:flex;flex-direction:column;background:var(--surface2)}
@@ -296,34 +250,21 @@ tbody tr:hover td{background:#f5f9ff}
 /* ── EMPTY ── */
 .empty-row{text-align:center;padding:32px;color:var(--muted);font-size:12.5px}
 
-/* ── OVERLAY / LOCK ── */
-.overlay{position:fixed;inset:0;background:rgba(7,16,31,.85);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:998;gap:12px}
-.overlay.hide{display:none}
-.spin{width:36px;height:36px;border:3px solid rgba(255,255,255,.15);border-top-color:#60a5fa;border-radius:50%;animation:spin .75s linear infinite}
-@keyframes spin{to{transform:rotate(360deg)}}
-.overlay p{color:#fff;font-size:13px}
-#lockscreen{position:fixed;inset:0;z-index:9999;background:#07101f;display:flex;align-items:center;justify-content:center}
+/* Overlay de carregamento e tela de login: assets/app.css */
+
 
 /* tbl-card fullscreen */
 .tbl-card:fullscreen,.tbl-card:-webkit-full-screen,.tbl-card:-moz-full-screen{display:flex;flex-direction:column;background:var(--surface);border-radius:0;overflow:hidden}
 .tbl-card:fullscreen .tbl-scroll,.tbl-card:-webkit-full-screen .tbl-scroll,.tbl-card:-moz-full-screen .tbl-scroll{flex:1;overflow:auto;max-height:none}
 
-/* ── RESPONSIVO ── */
-@media (max-height:700px),(max-width:900px){
-  html,body{height:auto;overflow-x:hidden;overflow-y:auto}
-  .hd{padding:0 14px;height:50px}
-  .hd-pill,.hd-sep{display:none}
-  .body{flex-direction:column}
-  .sidebar{width:100%;flex-direction:row;flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;padding:6px 10px;gap:4px;border-right:none;border-bottom:1px solid rgba(255,255,255,.12);position:static;flex-shrink:0}
-  .sidebar::-webkit-scrollbar{display:none}
-  .sb-sec,.sb-footer{display:none}
-  .sb-item{flex-shrink:0;white-space:nowrap;padding:6px 12px;font-size:12px}
-  .content{flex:none;width:100%}
-  .scroll{flex:none;padding:14px}
+/* ── RESPONSIVO DA PÁGINA (a casca responsiva está no app.css) ── */
+@media (max-width:900px){
   .inst-bar{padding:10px 14px;gap:8px}
   .filt-sep{display:none}
-  .filt-sel{max-width:120px;font-size:10px}
-  .pg-head{padding:12px 14px}
+  .filt-sel{max-width:120px;font-size:11px}
+  .pg-title{font-size:15px}
+  .pg-title-icon{width:28px;height:28px;font-size:12px}
+  .pg-back{padding:8px 12px;font-size:11px}
   .val-strip{grid-template-columns:1fr;gap:10px}
   .vs-exec-grid{grid-template-columns:1fr}
   .vs-ecol{border-right:none;border-bottom:1px solid rgba(255,255,255,.1)}
@@ -334,64 +275,17 @@ tbody tr:hover td{background:#f5f9ff}
   .rateio-row{flex-direction:column}
   .tbl-card{flex:none;min-height:0}
   .tbl-card.tbl-main{min-height:0}
-  .tbl-scroll{overflow-x:auto;overflow-y:visible;max-height:none;-webkit-overflow-scrolling:touch}
 }
 @media(max-width:480px){
-  .val-strip{grid-template-columns:1fr}
-  .vs-exec-grid{grid-template-columns:1fr}
   .cc-grid{grid-template-columns:1fr}
   .ateste-row{flex-direction:column}
 }
-
-/* ── SIDEBAR TOGGLE ── */
-/* ── SIDEBAR TOGGLE ── */
-.sidebar{
-  position:relative;
-  transition:width .22s cubic-bezier(.4,0,.2,1),
-             padding .22s cubic-bezier(.4,0,.2,1);
-  overflow:hidden;
-}
-.sidebar.collapsed{
-  width:0!important;
-  padding:0!important;
-}
-/* Botão fixo na borda esquerda, sempre visível */
-.sb-toggle{
-  position:fixed;
-  left:0;
-  top:50%;
-  transform:translateY(-50%);
-  width:20px;
-  height:48px;
-  border-radius:0 8px 8px 0;
-  background:#1a3a6e;
-  border:1.5px solid rgba(255,255,255,.18);
-  border-left:none;
-  color:rgba(255,255,255,.7);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  cursor:pointer;
-  z-index:200;
-  font-size:10px;
-  transition:left .22s cubic-bezier(.4,0,.2,1), background .15s, width .15s;
-  flex-shrink:0;
-  box-shadow:2px 0 8px rgba(0,0,0,.25);
-}
-.sb-toggle:hover{background:#2563eb;color:#fff;width:24px;}
-/* Quando sidebar aberta: botão fica na borda direita dela */
-.sidebar:not(.collapsed) .sb-toggle{
-  left:214px;
-  border-radius:0 8px 8px 0;
-}
-/* Quando colapsada: botão fica em left:0 */
-.sidebar.collapsed .sb-toggle{
-  left:0;
-}
-
 </style>
 </head>
-<body>
+<body data-page="execucao">
+
+<!-- Tela de login: cobre tudo até o Firebase confirmar o acesso -->
+<div id="lockscreen"></div>
 
 <!-- OVERLAY -->
 <div class="overlay" id="overlay">
@@ -420,28 +314,8 @@ tbody tr:hover td{background:#f5f9ff}
 <!-- BODY -->
 <div class="body">
 
-  <!-- SIDEBAR -->
-  <nav class="sidebar">
-    <div class="sb-sec">Convênios Federais</div>
-    <a class="sb-item" href="index.html"><i class="fa-solid fa-gauge-high"></i> Painel Geral</a>
-    <a class="sb-item" href="vigencias.html"><i class="fa-solid fa-table-list"></i> Vigências</a>
-    <a class="sb-item active" href="execucao.html"><i class="fa-solid fa-chart-line"></i> Execução Financeira</a>
-    <a class="sb-item" href="ingressos.html"><i class="fa-solid fa-money-bill-transfer"></i> Ingressos de Recurso</a>
-    <div class="sb-item"><i class="fa-solid fa-file-invoice"></i> Prestação de Contas<span class="soon">em breve</span></div>
-    <div class="sb-item"><i class="fa-solid fa-landmark-dome"></i> Emendas Parlamentares<span class="soon">em breve</span></div>
-    <div class="sb-item"><i class="fa-solid fa-map-location-dot"></i> Mapa de Obras<span class="soon">em breve</span></div>
-
-    <div class="sb-sec">Desempenho IDTRU-DL</div>
-    <a class="sb-item" href="fiscalgov.html"><i class="fa-solid fa-camera"></i> FiscalGov · EX-01</a>
-    <div class="sb-item"><i class="fa-solid fa-star"></i> Índice Geral<span class="soon">em breve</span></div>
-
-    <div class="sb-footer">
-      <div class="sb-card">
-        <strong>Instituto de Desenvolvimento do Piauí</strong>
-        <p>R. Altos, 277 — Primavera<br>Teresina-PI · idepi@idepi.pi.gov.br</p>
-      </div>
-    </div>
-  </nav>
+  <!-- O menu é montado por assets/nav.js — não escreva os itens aqui. -->
+  <nav class="sidebar" id="mainSidebar"></nav>
 
   <!-- CONTENT -->
   <div class="content">
@@ -725,90 +599,32 @@ tbody tr:hover td{background:#f5f9ff}
   </div><!-- /content -->
 </div><!-- /body -->
 
+<!-- ══ SDK do Firebase (login + banco) ══════════════════════════════════ -->
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore-compat.js"></script>
+<!-- ══ Casca compartilhada ═════════════════════════════════════════════ -->
+<script src="assets/firebase-config.js"></script>
+<script src="assets/app.js"></script>
+<script src="assets/auth.js"></script>
+<script src="assets/data.js"></script>
+<script src="assets/nav.js"></script>
+
 <script>
 /* ══════════════════════════════════════════════════════
    IDEPI — Execução Financeira
-   Fonte: dados.json (gerado pelo main.py)
-   Fallback: dados embutidos do instrumento 946260
-   para demonstração enquanto os dados reais não chegam.
+   Fonte: Firestore (coleção exec_financeira), com o dados.json do GitHub
+   como plano B. Ver assets/data.js.
+
+   MUDANÇA DE 26/07/2026: os dados de demonstração do instrumento 946260,
+   que ficavam embutidos aqui (~10 KB), foram removidos. Eles apareciam
+   sempre que o carregamento falhava — sem nenhum aviso de que eram fictícios,
+   num painel que informa execução de dinheiro público. Agora, se não houver
+   dados, a tela diz isso com todas as letras.
 ══════════════════════════════════════════════════════ */
-var USUARIO = "Ruan-Vitor", REPO = "painel-idepi";
 
-/* ── BANCO DE DADOS LOCAL (modelo 946260) ─────────── */
-/* Estrutura que o main.py deverá gerar em dados.json  */
-var INSTRUMENTOS_EXEC = [
-  {
-    numero: "946260",
-    objeto: "Recuperação de estradas vicinais — Lagoa de São Francisco/PI",
-    situacao: "Em execução",
-    regime_simplificado: true,
-    mandataria: "CAIXA ECONÔMICA FEDERAL",
-    ministerio: "53000 — MINISTÉRIO DA INTEGRAÇÃO E DO DESENVOLVIMENTO REGIONAL",
-
-    /* Valores */
-    valor_global:       1002000.00,
-    valor_repasse:       955000.00,
-    valor_contrapartida:  47000.00,
-    saldo_rendimentos:   150937.98,  /* Valor da aba Rendimento de Aplicação no Transferegov */
-    /* Repasse real desembolsado pelo concedente (OBs GERCOMP — Execução Concedente) */
-    repasse_desembolsado: { previsto: 955000.00, desembolsado: 955000.00, a_desembolsar: 0.00 },
-
-    /* Datas */
-    data_assinatura:   "22/11/2023",
-    data_inicio:       "22/11/2023",
-    data_termino:      "30/09/2026",
-    data_limite_pc:    "30/10/2026",
-
-    /* Dados bancários */
-    banco: "CAIXA ECONÔMICA FEDERAL",
-    agencia: "0029-9",
-    conta: "5742157335",
-
-    /* Execução física */
-    exec_fisica_pct: 100,
-    exec_fisica_obs: "Valor realizado: R$ 961.313,35 · Medição 3 · Atestado pelo Convenente",
-    ateste_convenente: true,
-    ateste_concedente: false, /* Regime simplificado — concedente atesta ao final */
-    ateste_obs: "Instrumento em regime simplificado — ateste do Concedente ocorre na prestação de contas final, não a cada medição.",
-
-    /* Contrato com empresa */
-    contrato: {
-      numero: "72/2025",
-      empresa: "CONSTRUTORA RENATA LTDA",
-      cnpj: "02.577.913/0001-09",
-      valor: 961313.35,
-      situacao: "Concluído",
-      data_inicio: "26/12/2025",
-      data_fim: "31/12/2026"
-    },
-
-    /* Movimentações financeiras */
-    movimentacoes: [
-      { num:"10360266", data:"18/05/2026", tipo:"PAGAMENTO DE TRIBUTOS", v_orig:1109.44, v_bruto:1109.44, v_liq:1109.44, v_retencao:0.0, favorecido:"ISS", tributo:"ISS", ndl:"904, 905", tdl:"NOTA FISCAL", situacao:"Movimentação Financeira Incluída" },
-      { num:"10360255", data:"18/05/2026", tipo:"PAGAMENTO DE TRIBUTOS", v_orig:1479.25, v_bruto:1479.25, v_liq:1479.25, v_retencao:0.0, favorecido:"IR", tributo:"IR", ndl:"904, 905", tdl:"NOTA FISCAL", situacao:"Movimentação Financeira Incluída" },
-      { num:"10357642", data:"15/05/2026", tipo:"PAGAMENTO A FAVORECIDO COM OBTV", v_orig:47000.0, v_bruto:47000.0, v_liq:46013.0, v_retencao:987.0, favorecido:"02.577.913/0001-09", tributo:"", ndl:"905", tdl:"NOTA FISCAL", situacao:"Movimentação Financeira Concluída" },
-      { num:"10357641", data:"15/05/2026", tipo:"PAGAMENTO A FAVORECIDO COM OBTV", v_orig:76271.54, v_bruto:76271.54, v_liq:74669.85, v_retencao:1601.69, favorecido:"02.577.913/0001-09", tributo:"", ndl:"904", tdl:"NOTA FISCAL", situacao:"Movimentação Financeira Concluída" },
-      { num:"10249848", data:"30/03/2026", tipo:"INGRESSO DE CONTRAPARTIDA", v_orig:39000.0, v_bruto:39000.0, v_liq:39000.0, v_retencao:0.0, favorecido:"", tributo:"", ndl:"", tdl:"", situacao:"Movimentação Financeira Concluída" },
-      { num:"10231942", data:"20/03/2026", tipo:"PAGAMENTO DE TRIBUTOS", v_orig:4497.27, v_bruto:4497.27, v_liq:4497.27, v_retencao:0.0, favorecido:"ISS", tributo:"ISS", ndl:"897, 898", tdl:"NOTA FISCAL", situacao:"Movimentação Financeira Concluída" },
-      { num:"10231930", data:"20/03/2026", tipo:"PAGAMENTO DE TRIBUTOS", v_orig:5996.35, v_bruto:5996.35, v_liq:5996.35, v_retencao:0.0, favorecido:"IR", tributo:"IR", ndl:"897, 898", tdl:"NOTA FISCAL", situacao:"Movimentação Financeira Concluída" },
-      { num:"10231891", data:"20/03/2026", tipo:"PAGAMENTO DE TRIBUTOS", v_orig:4060.14, v_bruto:4060.14, v_liq:4060.14, v_retencao:0.0, favorecido:"IR", tributo:"IR", ndl:"896", tdl:"NOTA FISCAL", situacao:"Movimentação Financeira Concluída" },
-      { num:"10231888", data:"20/03/2026", tipo:"PAGAMENTO DE TRIBUTOS", v_orig:3045.11, v_bruto:3045.11, v_liq:3045.11, v_retencao:0.0, favorecido:"ISS", tributo:"ISS", ndl:"896", tdl:"NOTA FISCAL", situacao:"Movimentação Financeira Concluída" },
-      { num:"10227940", data:"18/03/2026", tipo:"PAGAMENTO A FAVORECIDO COM OBTV", v_orig:111654.56, v_bruto:111654.56, v_liq:109309.81, v_retencao:2344.75, favorecido:"02.577.913/0001-09", tributo:"", ndl:"898", tdl:"NOTA FISCAL", situacao:"Movimentação Financeira Conciliada" },
-      { num:"10227938", data:"18/03/2026", tipo:"PAGAMENTO A FAVORECIDO COM OBTV", v_orig:388041.81, v_bruto:388041.81, v_liq:379892.94, v_retencao:8148.87, favorecido:"02.577.913/0001-09", tributo:"", ndl:"897", tdl:"NOTA FISCAL", situacao:"Movimentação Financeira Conciliada" },
-      { num:"10227934", data:"18/03/2026", tipo:"PAGAMENTO A FAVORECIDO COM OBTV", v_orig:338345.44, v_bruto:338345.44, v_liq:331240.19, v_retencao:7105.25, favorecido:"02.577.913/0001-09", tributo:"", ndl:"896", tdl:"NOTA FISCAL", situacao:"Movimentação Financeira Conciliada" },
-      { num:"8590923", data:"21/02/2024", tipo:"INGRESSO DE CONTRAPARTIDA", v_orig:8000.0, v_bruto:8000.0, v_liq:8000.0, v_retencao:0.0, favorecido:"", tributo:"", ndl:"", tdl:"", situacao:"Movimentação Financeira Concluída" }
-    ],
-
-    /* Notas Fiscais / Docs de Liquidação */
-    notas_fiscais: [
-      { num:"905", data:"22/04/2026", razao:"CONSTRUTORA RENATA LTDA", cnpj:"02.577.913/0001-09", v_orig:47000.0, v_bruto:47000.0, tributos:987.0, v_liq:46013.0, status:"Ativo", tipo:"NOTA FISCAL", itens:[{"desc": "EXECUÇÃO DOS SERVIÇOS DE MANUTENÇÃO E ADEQUAÇÃO NAS ESTRADAS VICINAIS NO MUNICÍPIO LAGOA DE SÃO FRANCISCO - PI, CONTRATO DE REPASSE CIDADES 946260", "valor": 47000.0, "id_item": "14127706", "repasse": 0.0, "contrapartida": 47000.0, "rendimento": 0.0}] },
-      { num:"904", data:"22/04/2026", razao:"CONSTRUTORA RENATA LTDA", cnpj:"02.577.913/0001-09", v_orig:76271.54, v_bruto:76271.54, tributos:1601.69, v_liq:74669.85, status:"Ativo", tipo:"NOTA FISCAL", itens:[{"desc": "EXECUÇÃO DOS SERVIÇOS DE MANUTENÇÃO E ADEQUAÇÃO NAS ESTRADAS VICINAIS NO MUNICÍPIO LAGOA DE SÃO FRANCISCO - PI, CONTRATO DE REPASSE CIDADES 946260", "valor": 76271.54, "id_item": "14127688", "repasse": 76271.54, "contrapartida": 0.0, "rendimento": 0.0}] },
-      { num:"898", data:"16/03/2026", razao:"CONSTRUTORA RENATA LTDA", cnpj:"02.577.913/0001-09", v_orig:111654.56, v_bruto:111654.56, tributos:2344.75, v_liq:109309.81, status:"Ativo", tipo:"NOTA FISCAL", itens:[{"desc": "EXECUÇÃO DOS SERVIÇOS DE MANUTENÇÃO E ADEQUAÇÃO NAS ESTRADAS VICINAIS NO MUNICÍPIO LAGOA DE SÃO FRANCISCO - PI, CONTRATO DE REPASSE CIDADES 946260", "valor": 111654.56, "id_item": "13929179", "repasse": 111654.56, "contrapartida": 0.0, "rendimento": 0.0}] },
-      { num:"897", data:"16/03/2026", razao:"CONSTRUTORA RENATA LTDA", cnpj:"02.577.913/0001-09", v_orig:388041.81, v_bruto:388041.81, tributos:8148.87, v_liq:379892.94, status:"Ativo", tipo:"NOTA FISCAL", itens:[{"desc": "EXECUÇÃO DOS SERVIÇOS DE MANUTENÇÃO E ADEQUAÇÃO NAS ESTRADAS VICINAIS NO MUNICÍPIO LAGOA DE SÃO FRANCISCO - PI, CONTRATO DE REPASSE CIDADES 946260", "valor": 388041.81, "id_item": "13929148", "repasse": 388041.81, "contrapartida": 0.0, "rendimento": 0.0}] },
-      { num:"896", data:"16/03/2026", razao:"CONSTRUTORA RENATA LTDA", cnpj:"02.577.913/0001-09", v_orig:338345.44, v_bruto:338345.44, tributos:7105.25, v_liq:331240.19, status:"Ativo", tipo:"NOTA FISCAL", itens:[{"desc": "EXECUÇÃO DOS SERVIÇOS DE MANUTENÇÃO E ADEQUAÇÃO NAS ESTRADAS VICINAIS NO MUNICÍPIO LAGOA DE SÃO FRANCISCO - PI, CONTRATO DE REPASSE CIDADES 946260", "valor": 338345.44, "id_item": "13928974", "repasse": 338345.44, "contrapartida": 0.0, "rendimento": 0.0}] }
-    ]
-  }
-];
+/* Instrumentos com execução financeira publicada (preenchido no boot). */
+var INSTRUMENTOS_EXEC = [];
 
 /* ── STATE ─────────────────────────────────────────── */
 var instAtual = null;
@@ -1019,17 +835,7 @@ function toggleMarcado(num, cb, e){
 
 function visualizarDd(num, e){
   e && e.stopPropagation();
-  _numVisualizando = num;
-  localStorage.setItem("idepi_exec_ultimo", num);
-  instAtual = INSTRUMENTOS_EXEC.find(function(c){ return c.numero===num; });
-  if(instAtual){
-    instAtual = normalizarInstrumento(instAtual);
-    document.getElementById("inst-nome-num").textContent = instAtual.numero || "—";
-    document.getElementById("inst-nome-obj").textContent = instAtual.objeto || "—";
-    document.getElementById("inst-nome-data").textContent = instAtual.coletado_em ? "Coletado em " + instAtual.coletado_em : "—";
-    renderInstrumento();
-    atualizarTriggerLabel();
-  }
+  abrirInstrumento(num);
   // Atualiza highlight no dropdown sem fechá-lo
   document.querySelectorAll(".inst-dd-item").forEach(function(el){
     el.classList.toggle("selected-view", el.dataset.num === num);
@@ -1131,7 +937,7 @@ function aplicarFiltros(){
   document.getElementById("filtCount").textContent =
     filtrados.length + (filtrados.length === 1 ? " instrumento" : " instrumentos");
 
-  // Restaura último instrumento visto; se não estiver na lista filtrada, usa o primeiro
+  // Restaura o último instrumento visto; se não estiver na lista filtrada, usa o primeiro
   var ultimo = localStorage.getItem("idepi_exec_ultimo");
   var preferido = (ultimo && filtrados.find(function(c){ return c.numero===ultimo; }))
     ? ultimo
@@ -1139,34 +945,68 @@ function aplicarFiltros(){
 
   if(!preferido && filtrados.length) preferido = filtrados[0].numero;
 
-  if(preferido && preferido !== _numVisualizando){
-    _numVisualizando = preferido;
-    instAtual = normalizarInstrumento(filtrados.find(function(c){ return c.numero===preferido; }));
-    document.getElementById("inst-nome-num").textContent = instAtual.numero || "—";
-    document.getElementById("inst-nome-obj").textContent = instAtual.objeto || "—";
-    document.getElementById("inst-nome-data").textContent = instAtual.coletado_em ? "Coletado em " + instAtual.coletado_em : "—";
-    renderInstrumento();
-  } else if(!instAtual && filtrados.length){
-    _numVisualizando = filtrados[0].numero;
-    instAtual = normalizarInstrumento(filtrados[0]);
-    document.getElementById("inst-nome-num").textContent = instAtual.numero || "—";
-    document.getElementById("inst-nome-obj").textContent = instAtual.objeto || "—";
-    document.getElementById("inst-nome-data").textContent = instAtual.coletado_em ? "Coletado em " + instAtual.coletado_em : "—";
-    renderInstrumento();
-  }
+  if(preferido && (preferido !== _numVisualizando || !instAtual)) abrirInstrumento(preferido);
+
   atualizarTriggerLabel();
   if(_ddAberto) renderDdLista(filtrados);
 }
 
-/* ── CARREGAR INSTRUMENTO (compat.) ─────────────────── */
+/* ── ABRIR UM INSTRUMENTO ─────────────────────────────────────────────────
+   O índice carregado no boot traz só o resumo de cada instrumento (número,
+   objeto, ano, situação). Os dados pesados — movimentações, notas fiscais,
+   rateio — vêm sob demanda, um documento por vez. É o que evita baixar a
+   execução dos 98 instrumentos para consultar um.
+   ───────────────────────────────────────────────────────────────────────── */
+var _carregandoInst = null;
+
+function abrirInstrumento(numero){
+  if(!numero || _carregandoInst === numero) return;
+  _carregandoInst = numero;
+  _numVisualizando = numero;
+  localStorage.setItem("idepi_exec_ultimo", numero);
+
+  var resumo = INSTRUMENTOS_EXEC.find(function(c){ return c.numero === numero; }) || { numero: numero };
+  document.getElementById("inst-nome-num").textContent = resumo.numero || "—";
+  document.getElementById("inst-nome-obj").textContent = resumo.objeto || "Carregando...";
+  document.getElementById("inst-nome-data").textContent = "carregando...";
+
+  IDEPI.dados.execInstrumento(numero)
+    .then(function(dados){
+      /* Ignora respostas de um clique anterior que chegaram atrasadas. */
+      if(_numVisualizando !== numero) return;
+      _carregandoInst = null;
+
+      if(!dados){
+        document.getElementById("inst-nome-obj").textContent =
+          "Sem dados de execução publicados para este instrumento.";
+        document.getElementById("inst-nome-data").textContent = "—";
+        return;
+      }
+
+      instAtual = normalizarInstrumento(dados);
+      /* Mantém o resumo da lista em dia com o que veio do banco. */
+      var i = INSTRUMENTOS_EXEC.findIndex(function(c){ return c.numero === numero; });
+      if(i >= 0) INSTRUMENTOS_EXEC[i] = instAtual;
+
+      document.getElementById("inst-nome-num").textContent  = instAtual.numero || "—";
+      document.getElementById("inst-nome-obj").textContent  = instAtual.objeto || "—";
+      document.getElementById("inst-nome-data").textContent =
+        instAtual.coletado_em ? "Coletado em " + instAtual.coletado_em : "—";
+      atualizarTriggerLabel();
+      renderInstrumento();
+    })
+    .catch(function(e){
+      _carregandoInst = null;
+      console.error('[IDEPI]', e);
+      document.getElementById("inst-nome-obj").textContent =
+        "Não foi possível carregar este instrumento.";
+      document.getElementById("inst-nome-data").textContent = "—";
+    });
+}
+
+/* Mantida porque ainda existem chamadas antigas espalhadas pela página. */
 function carregarInstrumento(){
-  // mantida para não quebrar chamadas antigas
-  if(!instAtual && INSTRUMENTOS_EXEC.length){
-    instAtual = normalizarInstrumento(INSTRUMENTOS_EXEC[0]);
-    _numVisualizando = instAtual.numero;
-    atualizarTriggerLabel();
-    renderInstrumento();
-  }
+  if(!instAtual && INSTRUMENTOS_EXEC.length) abrirInstrumento(INSTRUMENTOS_EXEC[0].numero);
 }
 
 /* ── RENDER PRINCIPAL ───────────────────────────────── */
@@ -1855,42 +1695,28 @@ function showTab(t){
   });
 }
 
-/* ── REMOVER INSTRUMENTOS SELECIONADOS ──────────────── */
+/* ── REMOVER INSTRUMENTOS SELECIONADOS ────────────────────────────────────
+   Isto gerava um dados.json para o usuário baixar e substituir à mão no
+   GitHub, liberado por um prompt que comparava com a senha escrita na página.
+   Com os dados no Firestore, remover pela tela seria escrever no banco a
+   partir do navegador — e as Security Rules (corretamente) não permitem isso:
+   só a service account dos scripts escreve. Então a tela agora mostra o
+   comando certo em vez de fingir que removeu.
+   ───────────────────────────────────────────────────────────────────────── */
 function removerSelecionados(){
   var nums = Object.keys(_marcadosParaRemover);
   if(!nums.length){ alert("Nenhum instrumento marcado."); return; }
 
-  var lista = nums.map(function(n){
-    var c = INSTRUMENTOS_EXEC.find(function(x){ return x.numero===n; });
-    return n + (c ? " — " + (c.objeto||"").substring(0,50) : "");
-  }).join("\n");
-
-  if(!confirm("Remover " + nums.length + " instrumento(s)?\n\n" + lista + "\n\nUm único dados.json será gerado sem eles.")) return;
-
-  var s = prompt("Digite a senha para confirmar:");
-  if(s === null) return;
-  if(s !== SENHA){ alert("Senha incorreta. Operação cancelada."); return; }
-
-  INSTRUMENTOS_EXEC = INSTRUMENTOS_EXEC.filter(function(c){ return !_marcadosParaRemover[c.numero]; });
-  _marcadosParaRemover = {};
-
-  var payload = { exec_financeira: INSTRUMENTOS_EXEC, gerado_em: new Date().toLocaleString("pt-BR") };
-  var blob = new Blob([JSON.stringify(payload, null, 2)], {type:"application/json"});
-  var a = document.createElement("a"); a.href = URL.createObjectURL(blob);
-  a.download = "dados.json"; a.click();
-
-  // Reseta visualização
-  if(INSTRUMENTOS_EXEC.length){
-    _numVisualizando = INSTRUMENTOS_EXEC[0].numero;
-    instAtual = normalizarInstrumento(INSTRUMENTOS_EXEC[0]);
-    document.getElementById("inst-nome-num").textContent = instAtual.numero || "—";
-    document.getElementById("inst-nome-obj").textContent = instAtual.objeto || "—";
-    document.getElementById("inst-nome-data").textContent = instAtual.coletado_em ? "Coletado em " + instAtual.coletado_em : "—";
-    renderInstrumento();
-  }
-  popularSelector(INSTRUMENTOS_EXEC);
-  fecharDd();
-  alert(nums.length + " instrumento(s) removido(s).\nSubstitua o dados.json baixado no repositório do GitHub.");
+  var lista = nums.join(" ");
+  alert(
+    "Remoção de instrumentos não é feita pelo painel.\n\n" +
+    "Os dados ficam no Firestore e só os scripts têm permissão de escrita —\n" +
+    "isso é proposital: evita que alguém apague execução financeira pelo navegador.\n\n" +
+    "Rode na máquina dos scripts:\n\n" +
+    "  py publicar_firestore.py --remover-exec " + lista + "\n\n" +
+    "Marcados: " + nums.length + " instrumento(s)."
+  );
+  IDEPI.copiar("py publicar_firestore.py --remover-exec " + lista);
 }
 
 function removerInstrumentoAtual(){ removerSelecionados(); } // compat.
@@ -1948,114 +1774,68 @@ function exportarExcel(){
   },50);
 }
 
-/* ── FULLSCREEN ─────────────────────────────────────── */
+/* ── TELA CHEIA (implementação em assets/app.js) ── */
 function toggleFullscreenExec(){
-  var paineis = {mov:"panelMov",nf:"panelNF"};
-  var el = document.getElementById(paineis[tabAtual]||"panelMov");
-  if(!el) return;
-  var isFs = document.fullscreenElement||document.webkitFullscreenElement||document.mozFullScreenElement;
-  if(!isFs){ var r=el.requestFullscreen||el.webkitRequestFullscreen||el.mozRequestFullScreen; if(r) r.call(el); }
-  else { var ex=document.exitFullscreen||document.webkitExitFullscreen||document.mozCancelFullScreen; if(ex) ex.call(document); }
+  var paineis = {mov:"panelMov", nf:"panelNF"};
+  IDEPI.toggleFullscreen(paineis[tabAtual] || "panelMov");
 }
-document.addEventListener('fullscreenchange',_syncFsExec);
-document.addEventListener('webkitfullscreenchange',_syncFsExec);
-function _syncFsExec(){
-  var btn=document.getElementById('btnFSExec'); if(!btn) return;
-  var isFs=document.fullscreenElement||document.webkitFullscreenElement||document.mozFullScreenElement;
-  btn.innerHTML=isFs?'<i class="fa-solid fa-compress"></i> Sair':'<i class="fa-solid fa-expand"></i> Tela cheia';
-}
+IDEPI.ligarBotaoFullscreen('btnFSExec');
 
-/* ── BOOT ───────────────────────────────────────────── */
+/* ── CARREGAMENTO ───────────────────────────────────────────────────────
+   Antes esta tela baixava o dados.json inteiro (~1 MB, com a execução de
+   TODOS os instrumentos) só para exibir um. Agora pede ao data.js o índice
+   enxuto e busca o instrumento sob demanda — no Firestore isso é 1 documento.
+   ─────────────────────────────────────────────────────────────────────── */
 (function(){
-  /* Tenta carregar dados.json do GitHub */
-  var url="https://raw.githubusercontent.com/"+USUARIO+"/"+REPO+"/main/dados.json?t="+Date.now();
-  fetch(url)
-    .then(function(r){ if(!r.ok) throw new Error("HTTP "+r.status); return r.json(); })
-    .then(function(j){
-      document.getElementById("hd-ts").innerHTML="Atualizado<br>"+(j.gerado_em||"—");
+  IDEPI.dados.execIndice()
+    .then(function(idx){
+      var lista = idx.instrumentos || [];
+      document.getElementById("hd-ts").innerHTML = idx.exec_atualizado_em
+        ? "Atualizado<br>" + IDEPI.esc(idx.exec_atualizado_em)
+        : "—";
 
-      /* Se dados.json tiver seção exec_financeira, usa ela; senão usa fallback local */
-      var execData = j.exec_financeira || null;
-      if(execData && execData.length){
-        INSTRUMENTOS_EXEC = execData.map(normalizarInstrumento);
-      } else {
-        INSTRUMENTOS_EXEC = INSTRUMENTOS_EXEC.map(normalizarInstrumento);
+      if(!lista.length){
+        mostrarSemDados();
+        return;
       }
-      /* Restaura último instrumento visto antes de popular o seletor */
-      var _ultimo = localStorage.getItem("idepi_exec_ultimo");
-      if(_ultimo && INSTRUMENTOS_EXEC.find(function(c){ return c.numero===_ultimo; })){
-        _numVisualizando = _ultimo;
-        instAtual = INSTRUMENTOS_EXEC.find(function(c){ return c.numero===_ultimo; });
+
+      INSTRUMENTOS_EXEC = lista.map(normalizarInstrumento);
+
+      /* Reabre no último instrumento consultado. */
+      var ultimo = localStorage.getItem("idepi_exec_ultimo");
+      if(ultimo && INSTRUMENTOS_EXEC.some(function(c){ return c.numero === ultimo; })){
+        _numVisualizando = ultimo;
       }
       popularSelector(INSTRUMENTOS_EXEC);
       document.getElementById("overlay").classList.add("hide");
     })
-    .catch(function(){
-      /* Fallback: usa dados embutidos */
-      document.getElementById("hd-ts").innerHTML="Dados modelo<br>946260";
-      popularSelector(INSTRUMENTOS_EXEC);
-      document.getElementById("overlay").classList.add("hide");
+    .catch(function(e){
+      console.error('[IDEPI]', e);
+      mostrarSemDados(e && e.message);
     });
-})();
-</script>
 
-<!-- LOCKSCREEN -->
-<div id="lockscreen">
-  <div style="background:#0f1f3d;border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:40px;width:340px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.5);">
-    <div style="width:52px;height:52px;border-radius:14px;background:linear-gradient(135deg,#1a4a8a,#0d6e4a);display:flex;align-items:center;justify-content:center;font-size:22px;color:#fff;margin:0 auto 16px;"><i class="fa-solid fa-lock"></i></div>
-    <div style="font-family:'Sora',sans-serif;font-size:17px;font-weight:700;color:#fff;margin-bottom:4px;">IDEPI — Convênios Federais</div>
-    <div style="font-size:12px;color:rgba(255,255,255,.4);margin-bottom:24px;">Acesso restrito. Digite a senha para continuar.</div>
-    <input id="pwd-input" type="password" placeholder="Senha de acesso"
-      style="width:100%;padding:11px 16px;border-radius:8px;border:1.5px solid rgba(255,255,255,.15);background:rgba(255,255,255,.06);color:#fff;font-size:14px;outline:none;margin-bottom:10px;"
-      onkeydown="if(event.key==='Enter')checkPwd()"/>
-    <div id="pwd-err" style="font-size:12px;color:#f87171;min-height:16px;margin-bottom:10px;"></div>
-    <button onclick="checkPwd()" style="width:100%;padding:11px;border-radius:8px;border:none;background:#1a3a6e;color:#fff;font-size:14px;font-weight:600;cursor:pointer;">Entrar</button>
-  </div>
-</div>
-<script>
-var SENHA="idepi2026";
-if(sessionStorage.getItem("idepi_auth")==="1") document.getElementById("lockscreen").style.display="none";
-function checkPwd(){
-  var v=document.getElementById("pwd-input").value;
-  if(v===SENHA){sessionStorage.setItem("idepi_auth","1");document.getElementById("lockscreen").style.display="none";}
-  else{document.getElementById("pwd-err").textContent="Senha incorreta.";document.getElementById("pwd-input").value="";document.getElementById("pwd-input").focus();}
-}
-</script>
-
-<script>
-/* ── SIDEBAR TOGGLE JS ── */
-(function(){
-  var sidebar = document.querySelector('.sidebar');
-  if(!sidebar) return;
-
-  // Botão fixo — colocado no body, não dentro da sidebar
-  var btn = document.createElement('button');
-  btn.className = 'sb-toggle';
-  btn.title = 'Recolher menu';
-  btn.setAttribute('aria-label','Recolher/expandir menu lateral');
-  btn.innerHTML = '<i class="fa-solid fa-chevron-left"></i>';
-  document.body.appendChild(btn);
-
-  // Restaura estado salvo
-  var collapsed = sessionStorage.getItem('idepi_sb_collapsed') === '1';
-  function aplicar(c){
-    collapsed = c;
-    sidebar.classList.toggle('collapsed', collapsed);
-    btn.innerHTML = collapsed
-      ? '<i class="fa-solid fa-chevron-right"></i>'
-      : '<i class="fa-solid fa-chevron-left"></i>';
-    btn.title = collapsed ? 'Expandir menu' : 'Recolher menu';
-    // Ajusta posição do botão conforme estado
-    btn.style.left = collapsed ? '0' : '214px';
+  /* Sem dados publicados: dizer isso claramente. Este painel já mostrou dados
+     fictícios de demonstração nessa situação, sem avisar que eram fictícios —
+     num painel de execução de dinheiro público, isso não pode acontecer. */
+  function mostrarSemDados(detalhe){
+    document.getElementById("overlay").classList.add("hide");
+    document.getElementById("hd-ts").innerHTML = '<span style="color:#f87171">Sem dados</span>';
+    var alvo = document.getElementById("inst-nome-num");
+    if (alvo) alvo.textContent = "—";
+    var obj = document.getElementById("inst-nome-obj");
+    if (obj) {
+      obj.innerHTML = 'Nenhuma execução financeira publicada ainda. ' +
+        'Rode <code>py exec_financeiro.py</code> e depois ' +
+        '<code>py publicar_firestore.py --exec</code>.' +
+        (detalhe ? '<br><small style="opacity:.7">' + IDEPI.esc(detalhe) + '</small>' : '');
+    }
   }
-  aplicar(collapsed);
-
-  btn.addEventListener('click', function(){
-    aplicar(!collapsed);
-    sessionStorage.setItem('idepi_sb_collapsed', collapsed ? '1' : '0');
-  });
 })();
 </script>
+
+<!-- O menu lateral é montado por assets/nav.js e o login é do Firebase
+     (assets/auth.js). A antiga tela com a senha fixa escrita no HTML
+     foi removida daqui: ela aparecia no código-fonte para qualquer visitante. -->
 
 </body>
 </html>

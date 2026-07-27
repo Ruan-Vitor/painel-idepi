@@ -30,6 +30,13 @@
     { id: 'indice',     icone: 'fa-star',                 rotulo: 'Índice Geral',          embreve: true }
   ];
 
+  /* Itens que só aparecem para quem tem papel "admin". Ficam fora do MENU
+     acima porque são acrescentados depois, quando o login resolve o perfil. */
+  var MENU_ADMIN = [
+    { secao: 'Administração' },
+    { id: 'admin', icone: 'fa-users-gear', rotulo: 'Usuários e Acessos', href: 'admin.html' }
+  ];
+
   var RODAPE =
     '<div class="sb-footer">' +
       '<div class="sb-card">' +
@@ -66,6 +73,45 @@
     nav.className = 'sidebar';
     nav.innerHTML = html;
     return nav;
+  }
+
+  /**
+   * Acrescenta a seção de Administração ao menu, com o número de solicitações
+   * pendentes ao lado. Só roda depois que o login confirma que a pessoa é
+   * admin — antes disso o item nem existe no HTML.
+   */
+  function adicionarMenuAdmin(paginaAtual) {
+    if (!sidebar || document.getElementById('sbAdmin')) return;
+
+    var rodape = sidebar.querySelector('.sb-footer');
+    var html = '';
+    MENU_ADMIN.forEach(function (it) {
+      if (it.secao) { html += '<div class="sb-sec">' + it.secao + '</div>'; return; }
+      var ativo = it.id === paginaAtual ? ' active' : '';
+      html += '<a class="sb-item' + ativo + '" id="sbAdmin" href="' + it.href + '">' +
+              '<i class="fa-solid ' + it.icone + '"></i> ' + it.rotulo +
+              '<span class="sb-badge" id="sbBadgePend" hidden>0</span></a>';
+    });
+
+    var bloco = document.createElement('div');
+    bloco.innerHTML = html;
+    while (bloco.firstChild) {
+      // Entra antes do rodapé para não empurrar o cartão de contato.
+      if (rodape) sidebar.insertBefore(bloco.firstChild, rodape);
+      else sidebar.appendChild(bloco.firstChild);
+    }
+
+    atualizarBadgePendentes();
+  }
+
+  /** Mostra quantos pedidos de acesso estão esperando decisão. */
+  function atualizarBadgePendentes() {
+    var badge = document.getElementById('sbBadgePend');
+    if (!badge || !IDEPI.auth || !IDEPI.auth.admin) return;
+    IDEPI.auth.admin.contarPendentes().then(function (n) {
+      badge.textContent = n;
+      badge.hidden = !n;
+    });
   }
 
   /* ── ABRIR / FECHAR ────────────────────────────────────────────────────── */
@@ -291,6 +337,12 @@
       t = setTimeout(ajustarPorLargura, 150);
     });
 
+    // O auth.js avisa quando o login resolve. É aí que sabemos se a pessoa é
+    // admin e se o menu ganha a seção de Administração.
+    document.addEventListener('idepi-auth', function (e) {
+      if (e.detail && e.detail.admin) adicionarMenuAdmin(pagina);
+    });
+
     // Instalação
     global.addEventListener('beforeinstallprompt', function (e) {
       e.preventDefault();
@@ -326,7 +378,8 @@
     instalar: instalar,
     jaInstalado: jaInstalado,
     ehIOS: ehIOS,
-    isMobile: isMobile
+    isMobile: isMobile,
+    atualizarBadgePendentes: atualizarBadgePendentes
   };
   // Compatibilidade com onclick="" que já existiam nas páginas
   global.toggleSidebar = abrirFechar;

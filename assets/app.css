@@ -226,6 +226,35 @@ div > button:has(svg):not([class]):not([id]){display:none!important}
 .lk-link:hover{color:rgba(255,255,255,.75)}
 .lk-foot{margin-top:18px;font-size:10px;color:rgba(255,255,255,.22);line-height:1.6}
 
+/* Botão secundário (solicitar acesso) — não compete com o "Entrar" */
+.lk-btn-fora{
+  background:transparent;border:1.5px solid rgba(255,255,255,.22);
+  color:rgba(255,255,255,.8);display:flex;align-items:center;
+  justify-content:center;gap:8px;
+}
+.lk-btn-fora:hover{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.4)}
+
+/* Separador "ou" entre entrar e solicitar */
+.lk-sep{display:flex;align-items:center;gap:10px;margin:18px 0 12px}
+.lk-sep::before,.lk-sep::after{content:'';flex:1;height:1px;background:rgba(255,255,255,.1)}
+.lk-sep span{font-size:10px;color:rgba(255,255,255,.3);text-transform:uppercase;letter-spacing:.5px}
+
+/* Etiqueta "admin" ao lado do nome no header */
+.hd-user-papel{
+  font-size:8.5px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;
+  background:rgba(96,165,250,.18);color:#93c5fd;
+  border:1px solid rgba(96,165,250,.35);border-radius:5px;padding:1px 5px;margin-left:3px;
+}
+
+/* Contador de solicitações pendentes no menu */
+.sb-badge{
+  margin-left:auto;min-width:19px;height:19px;padding:0 5px;
+  border-radius:10px;background:#dc2626;color:#fff;
+  font-size:10px;font-weight:800;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 0 0 2px rgba(220,38,38,.25);
+}
+
 /* Identificação do usuário logado no header */
 .hd-user{display:flex;align-items:center;gap:8px}
 .hd-user-av{

@@ -632,6 +632,7 @@ function exportarExcelFiscalGov() {
 /* ══════════════════════════════════════════════════════
    CARREGA OS DADOS (Firestore, com o GitHub como plano B)
    ══════════════════════════════════════════════════════ */
+if (IDEPI.auth.exigirPainel('fiscalgov'))
 IDEPI.dados.carregar()
   .then(function(j){
     document.getElementById("hd-ts").innerHTML =

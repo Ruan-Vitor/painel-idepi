@@ -41,7 +41,11 @@
 .negado p{font-size:12.5px;color:var(--slate);line-height:1.6}
 
 /* ── Cartão de seção ── */
-.sec{background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden}
+/* flex-shrink:0 é obrigatório: o .scroll é um flex column, e sem isso os
+   cartões são comprimidos para caber na altura da tela — foi o que cortava
+   a lista de usuários pela metade, escondendo quem estava no fim. */
+.sec{background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden;flex-shrink:0}
+.explica{flex-shrink:0}
 .sec-head{padding:14px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
 .sec-title{font-size:13px;font-weight:700;color:var(--text);display:flex;align-items:center;gap:8px}
 .sec-title i{color:var(--accent)}
@@ -89,6 +93,21 @@
 .usr.inativo{background:#fafbfd}
 .usr.inativo .usr-nome,.usr.inativo .usr-email{opacity:.5}
 .usr.eu{background:#f0f9ff}
+
+/* ── Escolha de painéis por usuário ── */
+.paineis{display:flex;flex-wrap:wrap;gap:5px;margin-top:7px}
+.paineis-rot{font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;color:var(--muted);width:100%;margin-bottom:1px}
+.pchip{
+  font-size:10.5px;font-weight:600;padding:4px 10px;border-radius:14px;
+  border:1.5px solid var(--slate-bdr);background:var(--slate-bg);color:var(--slate);
+  cursor:pointer;user-select:none;transition:background .12s,color .12s,border-color .12s;
+  display:inline-flex;align-items:center;gap:5px;font-family:inherit;min-height:28px;
+}
+.pchip:hover{border-color:var(--accent)}
+.pchip.on{background:var(--blue-bg);color:var(--blue);border-color:var(--blue-bdr)}
+.pchip.on::before{content:'✓';font-weight:800}
+.pchip:disabled{opacity:.5;cursor:not-allowed}
+.paineis-nota{font-size:10px;color:var(--muted);width:100%;margin-top:3px;line-height:1.5}
 
 .tag{font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;border-radius:5px;padding:2px 7px;border:1px solid}
 .tag-admin{background:var(--blue-bg);color:var(--blue);border-color:var(--blue-bdr)}
@@ -173,6 +192,7 @@
           <li>O pedido aparece aqui. Enquanto isso, ela <strong>não vê nenhum dado</strong> — só uma tela de espera.</li>
           <li>Você aprova. Só nesse momento o registro em <code>usuarios</code> é criado, e é ele que as regras do Firestore exigem para liberar a leitura.</li>
           <li><strong>Leitor</strong> consulta os painéis. <strong>Administrador</strong> também aprova outras pessoas — dê com parcimônia.</li>
+          <li>Depois de aprovar, use os botões <strong>Painéis liberados</strong> para deixar cada pessoa só com o que ela precisa. O Painel Geral é de todos.</li>
         </ol>
       </div>
 
@@ -438,10 +458,72 @@ function renderUsuarios(lista) {
       '<div class="usr-info">' +
         '<div class="usr-nome">' + esc(u.nome || '(sem nome)') + tags + '</div>' +
         '<div class="usr-email">' + esc(id) + '</div>' +
+        painelChips(id, u, admin) +
       '</div>' +
       '<div class="usr-acoes">' + acoes + '</div>' +
     '</div>';
   }).join('');
+}
+
+/* ── Quais painéis cada pessoa enxerga ─────────────────────────────────────
+   Admin vê tudo por definição, então para ele os chips ficam desligados.
+   Quem não tem a lista `paineis` no perfil vê tudo — é o caso de quem foi
+   cadastrado antes desta funcionalidade, e tirar acesso retroativamente
+   quebraria o trabalho de quem já usa o painel.
+   ───────────────────────────────────────────────────────────────────────── */
+var ROTULO_PAINEL = {
+  vigencias: 'Vigências',
+  execucao:  'Execução Financeira',
+  ingressos: 'Ingressos de Recurso',
+  fiscalgov: 'FiscalGov'
+};
+
+function painelChips(email, u, ehAdministrador) {
+  if (ehAdministrador) {
+    return '<div class="paineis"><span class="paineis-nota">' +
+           'Administrador enxerga todos os painéis.</span></div>';
+  }
+
+  var lista = Array.isArray(u.paineis) ? u.paineis : null;
+  var chips = IDEPI.auth.PAINEIS.map(function (p) {
+    var ligado = lista === null || lista.indexOf(p) !== -1;
+    return '<button class="pchip' + (ligado ? ' on' : '') + '" type="button" ' +
+           'onclick="alternarPainel(\'' + esc(email) + '\',\'' + p + '\')">' +
+           esc(ROTULO_PAINEL[p] || p) + '</button>';
+  }).join('');
+
+  return '<div class="paineis">' +
+    '<span class="paineis-rot">Painéis liberados</span>' + chips +
+    (lista === null
+      ? '<span class="paineis-nota">Sem restrição definida — vê todos. ' +
+        'Clique para começar a restringir.</span>'
+      : (lista.length === 0
+          ? '<span class="paineis-nota">Só o Painel Geral.</span>'
+          : '')) +
+  '</div>';
+}
+
+function alternarPainel(email, painel) {
+  IDEPI.auth.admin.listarUsuarios().then(function (todos) {
+    var u = todos.find(function (x) { return x._id === email; });
+    if (!u) return;
+
+    // Sem lista definida significa "vê tudo". O primeiro clique materializa
+    // essa lista completa e então remove o painel clicado — senão o clique
+    // pareceria não fazer nada.
+    var atual = Array.isArray(u.paineis) ? u.paineis.slice() : IDEPI.auth.PAINEIS.slice();
+    var i = atual.indexOf(painel);
+    if (i === -1) atual.push(painel); else atual.splice(i, 1);
+
+    return IDEPI.auth.admin.definirPaineis(email, atual).then(function () {
+      IDEPI.toast(atual.length
+        ? 'Painéis de ' + email + ': ' + atual.length
+        : email + ' agora vê só o Painel Geral');
+      carregarTudo();
+    });
+  }).catch(function (e) {
+    alert('Não foi possível alterar: ' + (e.message || e.code));
+  });
 }
 
 function trocarPapel(email, novo) {

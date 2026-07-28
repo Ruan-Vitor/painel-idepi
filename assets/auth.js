@@ -466,6 +466,72 @@
   }
 
   /* ══════════════════════════════════════════════════════════════════════
+     PERMISSÃO POR PAINEL
+
+     Cada usuário tem uma lista `paineis` no perfil. Quem não a tiver vê tudo
+     (é o caso de quem foi cadastrado antes desta funcionalidade — mudar isso
+     retroativamente tiraria acesso de gente que já trabalha com o painel).
+
+     O Painel Geral é sempre liberado: é a porta de entrada e mostra apenas
+     números agregados.
+
+     ⚠️  ALCANCE DESTA TRAVA — leia antes de confiar nela:
+     Esconder o item do menu é conveniência, não segurança. A trava de verdade
+     está nas Security Rules do Firestore, e ela alcança:
+        • Ingressos de Recurso   → painel/repasses          ✅ trava real
+        • Execução Financeira    → exec_financeira/*        ✅ trava real
+        • Vigências e FiscalGov  → painel/vigencias         ⚠️  só na interface
+     Vigências e FiscalGov leem o MESMO documento que o Painel Geral precisa
+     para montar os totais. Enquanto for assim, quem souber usar o console do
+     navegador consegue ler a lista de convênios mesmo sem o painel liberado.
+     Para virar trava real, o Painel Geral precisaria ler um documento só de
+     agregados (painel/resumo), separado da lista de convênios.
+     ══════════════════════════════════════════════════════════════════════ */
+
+  var PAINEIS = ['vigencias', 'execucao', 'ingressos', 'fiscalgov'];
+
+  /** Um leitor pode abrir este painel? Admin e Painel Geral sempre podem. */
+  function podeVer(painel) {
+    if (!CONFIGURADO) return true;              // modo transição, sem login
+    if (painel === 'index' || !painel) return true;
+    var p = IDEPI.auth.perfil;
+    if (!p) return false;
+    if (p.papel === 'admin') return true;
+    if (!Array.isArray(p.paineis)) return true; // perfil antigo: vê tudo
+    return p.paineis.indexOf(painel) !== -1;
+  }
+
+  /**
+   * Chamado por cada página protegida. Se a pessoa não tem o painel liberado,
+   * troca a tela por um aviso em vez de deixar carregar dados pela metade.
+   */
+  function exigirPainel(painel) {
+    if (podeVer(painel)) return true;
+
+    var NOMES = {
+      vigencias: 'Vigências',
+      execucao:  'Execução Financeira',
+      ingressos: 'Ingressos de Recurso',
+      fiscalgov: 'FiscalGov · EX-01'
+    };
+
+    esconderTela();
+    var alvo = document.querySelector('.scroll') || document.body;
+    alvo.innerHTML =
+      '<div class="sem-permissao">' +
+        '<i class="fa-solid fa-lock"></i>' +
+        '<strong>Você não tem acesso ao painel ' + IDEPI.esc(NOMES[painel] || painel) + '</strong>' +
+        '<p>Seu acesso ao sistema está ativo, mas este painel não foi liberado ' +
+          'para o seu usuário.<br>Peça a um administrador do IDEPI se precisar dele.</p>' +
+        '<a class="lk-btn" style="max-width:260px;margin:18px auto 0;text-decoration:none;' +
+          'display:flex;align-items:center;justify-content:center;gap:8px" href="index.html">' +
+          '<i class="fa-solid fa-arrow-left"></i> Voltar ao Painel Geral</a>' +
+      '</div>';
+    IDEPI.esconderOverlay();
+    return false;
+  }
+
+  /* ══════════════════════════════════════════════════════════════════════
      ADMINISTRAÇÃO — usado por admin.html
      Só funciona para quem tem papel "admin"; as Security Rules recusam o resto.
      ══════════════════════════════════════════════════════════════════════ */
@@ -550,6 +616,14 @@
         .set({ papel: papel }, { merge: true });
     },
 
+    /** Define quais painéis o usuário enxerga. Lista vazia = só o Painel Geral. */
+    definirPaineis: function (email, paineis) {
+      return db.collection('usuarios').doc(String(email).toLowerCase())
+        .set({ paineis: paineis || [] }, { merge: true });
+    },
+
+    PAINEIS: PAINEIS,
+
     /** Remove o acesso. A conta continua existindo no Authentication. */
     remover: function (email) {
       email = String(email).toLowerCase();
@@ -570,6 +644,9 @@
     admin: admin,
 
     ehAdmin: function () { return admin.ehAdmin(); },
+    podeVer: podeVer,
+    exigirPainel: exigirPainel,
+    PAINEIS: PAINEIS,
 
     /** Executa `fn` assim que houver acesso liberado (ou já liberado). */
     aoEntrar: function (fn) {

@@ -632,7 +632,7 @@ function exportarExcelFiscalGov() {
 /* ══════════════════════════════════════════════════════
    CARREGA OS DADOS (Firestore, com o GitHub como plano B)
    ══════════════════════════════════════════════════════ */
-if (IDEPI.auth.exigirPainel('fiscalgov'))
+IDEPI.auth.comPainel('fiscalgov', function () {
 IDEPI.dados.carregar()
   .then(function(j){
     document.getElementById("hd-ts").innerHTML =
@@ -708,6 +708,7 @@ IDEPI.dados.carregar()
       '<small>' + (e.message || 'Verifique se o Python já rodou e o arquivo dados.json está no GitHub.') + '</small>' +
       '</div></td></tr>';
   });
+});
 
 /* ── TELA CHEIA (implementação em assets/app.js) ── */
 function toggleFullscreen(id){ IDEPI.toggleFullscreen(id); }

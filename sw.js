@@ -32,8 +32,12 @@
      v5 — 28/07: correção do bloqueio indevido — a checagem de painel rodava
                  antes do login resolver e negava até para administradores
      v6 — 28/07: Ingressos com lista completa, busca própria, filtros por tipo
-                 e ano, e aviso de lançamento em duplicidade */
-const VERSAO = 'idepi-v6';
+                 e ano, e aviso de lançamento em duplicidade
+     v7 — 28/07: cards deixam de ser espremidos pelo flex do .scroll. Era o
+                 mesmo defeito que cortou a lista de usuários: o card ficava
+                 com 316px de altura para 1798px de conteúdo e o resto sumia
+                 sem barra de rolagem */
+const VERSAO = 'idepi-v7';
 const CACHE_SHELL = VERSAO + '-shell';
 const CACHE_PAGS  = VERSAO + '-paginas';
 

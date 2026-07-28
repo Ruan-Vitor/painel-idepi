@@ -1788,8 +1788,7 @@ IDEPI.ligarBotaoFullscreen('btnFSExec');
    TODOS os instrumentos) só para exibir um. Agora pede ao data.js o índice
    enxuto e busca o instrumento sob demanda — no Firestore isso é 1 documento.
    ─────────────────────────────────────────────────────────────────────── */
-(function(){
-  if (!IDEPI.auth.exigirPainel('execucao')) return;
+IDEPI.auth.comPainel('execucao', function () {
   IDEPI.dados.execIndice()
     .then(function(idx){
       var lista = idx.instrumentos || [];
@@ -1833,7 +1832,7 @@ IDEPI.ligarBotaoFullscreen('btnFSExec');
         (detalhe ? '<br><small style="opacity:.7">' + IDEPI.esc(detalhe) + '</small>' : '');
     }
   }
-})();
+});
 </script>
 
 <!-- O menu lateral é montado por assets/nav.js e o login é do Firebase

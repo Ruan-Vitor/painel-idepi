@@ -255,6 +255,15 @@ div > button:has(svg):not([class]):not([id]){display:none!important}
   box-shadow:0 0 0 2px rgba(220,38,38,.25);
 }
 
+/* Aviso de painel não liberado para o usuário */
+.sem-permissao{
+  background:var(--surface);border:1px solid var(--border);border-radius:14px;
+  padding:44px 28px;text-align:center;max-width:520px;margin:24px auto;
+}
+.sem-permissao i{font-size:38px;color:var(--slate-bdr);display:block;margin-bottom:16px}
+.sem-permissao strong{display:block;font-family:'Sora',sans-serif;font-size:16px;color:var(--text);margin-bottom:10px}
+.sem-permissao p{font-size:13px;color:var(--muted);line-height:1.7}
+
 /* Identificação do usuário logado no header */
 .hd-user{display:flex;align-items:center;gap:8px}
 .hd-user-av{

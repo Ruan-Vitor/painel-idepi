@@ -76,6 +76,72 @@
 .recent-dias{font-size:9px;color:var(--muted);text-align:right;margin-top:2px}
 .recent-empty{padding:28px;text-align:center;color:var(--muted);font-size:13px}
 
+/* ── AVISO DE INGRESSOS DUPLICADOS ─────────────────────────────────────────
+   Duplicata infla o "Total recebido" e faz o painel divergir do Transferegov.
+   Por isso o aviso é chamativo: é erro de dado, não detalhe estético.      */
+.aviso-dup{
+  display:flex;align-items:center;gap:14px;
+  background:var(--amber-bg);border:1px solid var(--amber-bdr);
+  border-left:4px solid #f59e0b;border-radius:10px;padding:14px 18px;
+}
+.aviso-dup i{font-size:20px;color:#b45309;flex-shrink:0}
+.aviso-dup div{flex:1;min-width:0}
+.aviso-dup strong{display:block;font-size:13px;color:#92400e;margin-bottom:2px}
+.aviso-dup span{font-size:11.5px;color:#a16207;line-height:1.5}
+.aviso-dup-btn{
+  background:#b45309;color:#fff;border:none;border-radius:7px;
+  padding:8px 14px;font-size:11.5px;font-weight:700;cursor:pointer;
+  font-family:inherit;white-space:nowrap;min-height:36px;
+}
+.aviso-dup-btn:hover{background:#92400e}
+
+/* ── FILTROS DA LISTA DE INGRESSOS ── */
+.ing-filtros{
+  display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+  padding:10px 18px;border-bottom:1px solid var(--border);background:#fafcff;
+}
+.ing-chips{display:flex;gap:6px;flex-wrap:wrap}
+.ing-chip{
+  font-size:11px;font-weight:600;padding:5px 12px;border-radius:16px;
+  cursor:pointer;user-select:none;border:1.5px solid var(--slate-bdr);
+  background:var(--slate-bg);color:var(--slate);
+  transition:box-shadow .12s;display:inline-flex;align-items:center;gap:5px;
+}
+.ing-chip b{font-weight:800;opacity:.75}
+.ing-chip.ic-fed{background:#dbeafe;color:#1d4ed8;border-color:#93c5fd}
+.ing-chip.ic-cp{background:#fef3c7;color:#92400e;border-color:#fcd34d}
+.ing-chip.ic-dup{background:#fee2e2;color:#b91c1c;border-color:#fca5a5}
+.ing-chip.sel{box-shadow:0 0 0 2px currentColor}
+.ing-chip:hover{opacity:.85}
+.ing-ano{
+  font-size:11.5px;border:1px solid var(--border);border-radius:7px;
+  padding:6px 10px;background:var(--surface);color:var(--text);
+  font-family:inherit;cursor:pointer;min-height:32px;
+}
+.ing-ano:focus{outline:none;border-color:var(--accent)}
+
+/* Etiqueta de tipo dentro de cada ingresso da lista */
+.recent-tipo{
+  font-size:9px;font-weight:700;border-radius:5px;padding:1px 6px;
+  border:1px solid;margin-left:6px;white-space:nowrap;
+}
+.recent-tipo.f{background:#dbeafe;color:#1d4ed8;border-color:#93c5fd}
+.recent-tipo.c{background:#fef3c7;color:#92400e;border-color:#fcd34d}
+.recent-item.duplicado{background:#fff7ed;border-left:3px solid #f59e0b}
+.recent-dup-tag{
+  font-size:9px;font-weight:700;background:#fee2e2;color:#b91c1c;
+  border:1px solid #fca5a5;border-radius:5px;padding:1px 6px;margin-left:6px;
+}
+
+/* Botão "mostrar mais" no fim da lista */
+.ing-mais{padding:14px;text-align:center;border-top:1px solid var(--border)}
+.btn-neutro-ing{
+  background:var(--surface2);border:1px solid var(--border);border-radius:8px;
+  padding:10px 20px;font-size:12px;font-weight:600;color:var(--accent);
+  cursor:pointer;font-family:inherit;min-height:40px;
+}
+.btn-neutro-ing:hover{background:#eef4ff;border-color:var(--accent)}
+
 /* ── TABLE CARD ── */
 .tbl-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden}
 .tbl-head{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;border-bottom:1px solid var(--border);gap:10px;flex-wrap:wrap}
@@ -239,11 +305,61 @@ tr.data-row.expanded .expand-icon{transform:rotate(180deg)}
         </div>
       </div>
 
-      <!-- ÚLTIMOS 10 INGRESSOS -->
-      <div>
-        <div class="section-title"><i class="fa-solid fa-clock-rotate-left"></i> Últimos 10 ingressos recebidos <span style="font-size:10px;font-weight:400;color:var(--muted);margin-left:4px">— ingressos dos últimos 30 dias em destaque</span></div>
-        <div class="recent-card">
-          <div class="recent-list" id="recent-list"><div class="recent-empty"><i class="fa-solid fa-spinner fa-spin"></i> Carregando...</div></div>
+      <!-- AVISO DE DUPLICATAS (só aparece quando há) -->
+      <div class="aviso-dup" id="avisoDup" hidden>
+        <i class="fa-solid fa-triangle-exclamation"></i>
+        <div>
+          <strong id="avisoDupTitulo"></strong>
+          <span id="avisoDupTexto"></span>
+        </div>
+        <button class="aviso-dup-btn" onclick="filtrarTipo('dup')">Ver quais</button>
+      </div>
+
+      <!-- TODOS OS INGRESSOS — lista completa, pesquisável -->
+      <div class="tbl-card">
+        <div class="tbl-head">
+          <div class="tbl-title">
+            <i class="fa-solid fa-clock-rotate-left"></i> Todos os ingressos
+            <span id="ingCount" style="font-size:11px;font-weight:400;color:var(--muted)"></span>
+          </div>
+          <div class="tbl-head-right">
+            <div class="srch">
+              <i class="fa-solid fa-magnifying-glass"></i>
+              <input type="text" id="buscaIng" placeholder="Instrumento, objeto, banco, conta ou valor..."
+                     oninput="renderIngressos()" autocomplete="off">
+            </div>
+            <button class="btn-excel" id="btnExcelIng" onclick="exportarExcel()">
+              <i class="fa-solid fa-file-excel"></i> Exportar
+            </button>
+          </div>
+        </div>
+
+        <div class="ing-filtros">
+          <div class="ing-chips">
+            <span class="ing-chip sel" id="ic-todos" onclick="filtrarTipo('todos')">Todos <b id="qtd-todos">0</b></span>
+            <span class="ing-chip ic-fed"  id="ic-F"   onclick="filtrarTipo('F')">Federal <b id="qtd-F">0</b></span>
+            <span class="ing-chip ic-cp"   id="ic-C"   onclick="filtrarTipo('C')">Contrapartida <b id="qtd-C">0</b></span>
+            <span class="ing-chip ic-dup"  id="ic-dup" onclick="filtrarTipo('dup')" hidden>⚠ Duplicados <b id="qtd-dup">0</b></span>
+          </div>
+          <select class="ing-ano" id="filtroAno" onchange="renderIngressos()">
+            <option value="">Todos os anos</option>
+          </select>
+          <select class="ing-ano" id="filtroOrdem" onchange="renderIngressos()">
+            <option value="data-desc">Mais recentes primeiro</option>
+            <option value="data-asc">Mais antigos primeiro</option>
+            <option value="valor-desc">Maior valor</option>
+            <option value="valor-asc">Menor valor</option>
+          </select>
+        </div>
+
+        <div class="recent-list" id="recent-list">
+          <div class="recent-empty"><i class="fa-solid fa-spinner fa-spin"></i> Carregando...</div>
+        </div>
+
+        <div class="ing-mais" id="ingMais" hidden>
+          <button class="btn-neutro-ing" onclick="mostrarMais()">
+            <i class="fa-solid fa-chevron-down"></i> Mostrar mais <span id="ingRestantes"></span>
+          </button>
         </div>
       </div>
 
@@ -433,28 +549,187 @@ function calcKPIs(){
   document.getElementById("kpi-inst-desc").textContent = Object.keys(_dados).length+" monitorados no total";
 }
 
-// ── ÚLTIMOS 10 (lista visual) ───────────────────────────────────────────────
-function renderRecent(){
-  var top10 = _todos.slice(0,10);
+/* ══════════════════════════════════════════════════════════════════════════
+   LISTA COMPLETA DE INGRESSOS
+
+   Antes esta seção mostrava só os 10 últimos, sem busca. Para achar um
+   instrumento específico não havia caminho: o Ctrl+F do navegador encontrava
+   o texto, mas ele podia estar dentro de uma célula recolhida ou numa parte
+   da página fora da vista — o navegador dizia "achei" e a pessoa não via.
+
+   Agora a lista é completa e tem busca própria, filtro por tipo e por ano,
+   e ordenação. Nada fica escondido do usuário.
+   ══════════════════════════════════════════════════════════════════════════ */
+
+var _filtroTipo = 'todos';
+var _limite     = 40;      // quantos itens desenhar de cada vez
+var PAGINA      = 40;
+
+/**
+ * Marca ingressos repetidos (mesmo convênio, mesma data, mesmo valor).
+ *
+ * Duplicata não é curiosidade: ela infla o "Total recebido" e faz o painel
+ * divergir do Transferegov. Em 28/07/2026 havia 12 convênios nessa situação,
+ * somando R$ 33 milhões contados duas vezes — herança do período em que o
+ * monitor_repasse.py lia a planilha no formato errado e regravava por cima.
+ */
+function marcarDuplicados(){
+  var vistos = {};
+  _todos.forEach(function(ing){
+    var chave = ing.numero + '|' + ing.data + '|' + ing.valor;
+    vistos[chave] = (vistos[chave] || 0) + 1;
+  });
+  _todos.forEach(function(ing){
+    var chave = ing.numero + '|' + ing.data + '|' + ing.valor;
+    ing.dup = vistos[chave] > 1;
+  });
+  return _todos.filter(function(i){ return i.dup; });
+}
+
+function prepararFiltros(){
+  var dups = marcarDuplicados();
+
+  // Contadores dos chips
+  var nF = _todos.filter(function(i){ return i.tipo !== 'C'; }).length;
+  var nC = _todos.filter(function(i){ return i.tipo === 'C'; }).length;
+  document.getElementById('qtd-todos').textContent = _todos.length;
+  document.getElementById('qtd-F').textContent = nF;
+  document.getElementById('qtd-C').textContent = nC;
+
+  var chipDup = document.getElementById('ic-dup');
+  document.getElementById('qtd-dup').textContent = dups.length;
+  chipDup.hidden = !dups.length;
+
+  // Aviso no topo, com o valor contado a mais
+  var aviso = document.getElementById('avisoDup');
+  if (dups.length) {
+    var excedente = 0;
+    var contados = {};
+    dups.forEach(function(i){
+      var k = i.numero + '|' + i.data + '|' + i.valor;
+      if (contados[k]) excedente += IDEPI.parseReais(i.valor);
+      contados[k] = true;
+    });
+    var convs = {};
+    dups.forEach(function(i){ convs[i.numero] = true; });
+    document.getElementById('avisoDupTitulo').textContent =
+      Object.keys(convs).length + ' convênio(s) com ingresso lançado em duplicidade';
+    document.getElementById('avisoDupTexto').innerHTML =
+      'O mesmo repasse aparece duas vezes na planilha, somando <strong>' +
+      IDEPI.fmtReais(excedente) + '</strong> a mais no total. ' +
+      'Corrija na planilha de ingressos e rode <code>py monitor_repasse.py</code>.';
+    aviso.hidden = false;
+  } else {
+    aviso.hidden = true;
+  }
+
+  // Anos disponíveis
+  var anos = {};
+  _todos.forEach(function(i){
+    var a = new Date(i.ts).getFullYear();
+    if (a > 1990) anos[a] = true;
+  });
+  var sel = document.getElementById('filtroAno');
+  sel.innerHTML = '<option value="">Todos os anos</option>' +
+    Object.keys(anos).sort().reverse()
+      .map(function(a){ return '<option value="' + a + '">' + a + '</option>'; }).join('');
+}
+
+function filtrarTipo(t){
+  _filtroTipo = t;
+  _limite = PAGINA;
+  ['todos','F','C','dup'].forEach(function(k){
+    var el = document.getElementById('ic-' + k);
+    if (el) el.classList.toggle('sel', k === t);
+  });
+  renderIngressos();
+}
+
+function mostrarMais(){
+  _limite += PAGINA * 2;
+  renderIngressos();
+}
+
+/** Aplica busca, tipo, ano e ordenação. */
+function filtrarIngressos(){
+  var q   = (document.getElementById('buscaIng').value || '').toLowerCase().trim();
+  var ano = document.getElementById('filtroAno').value;
+  var ord = document.getElementById('filtroOrdem').value;
+
+  var lista = _todos.filter(function(i){
+    if (_filtroTipo === 'F'   && i.tipo === 'C') return false;
+    if (_filtroTipo === 'C'   && i.tipo !== 'C') return false;
+    if (_filtroTipo === 'dup' && !i.dup)         return false;
+    if (ano && String(new Date(i.ts).getFullYear()) !== ano) return false;
+    if (!q) return true;
+    // Busca ampla: número, objeto, banco, agência, conta, data e valor.
+    // É o que permite achar "953168", "Belém", "CAIXA" ou "5.792.250".
+    return (i.numero  + ' ' + i.objeto + ' ' + i.banco + ' ' +
+            i.agencia + ' ' + i.conta  + ' ' + i.data  + ' ' + i.valor)
+           .toLowerCase().indexOf(q) !== -1;
+  });
+
+  lista.sort(function(a,b){
+    if (ord === 'data-asc')   return a.ts - b.ts;
+    if (ord === 'valor-desc') return IDEPI.parseReais(b.valor) - IDEPI.parseReais(a.valor);
+    if (ord === 'valor-asc')  return IDEPI.parseReais(a.valor) - IDEPI.parseReais(b.valor);
+    return b.ts - a.ts;
+  });
+  return lista;
+}
+
+function renderIngressos(){
+  var lista = filtrarIngressos();
   var ago30 = Date.now() - 30*24*60*60*1000;
-  if(!top10.length){
-    document.getElementById("recent-list").innerHTML='<div class="recent-empty">Nenhum ingresso registrado ainda.<br>Execute: <code>py monitor_repasse.py --importar</code></div>';
+  var alvo  = document.getElementById('recent-list');
+
+  var soma = lista.reduce(function(s,i){ return s + IDEPI.parseReais(i.valor); }, 0);
+  document.getElementById('ingCount').textContent =
+    '— ' + lista.length + ' de ' + _todos.length + ' · ' + IDEPI.fmtReais(soma);
+
+  if (!lista.length){
+    alvo.innerHTML = '<div class="recent-empty">' +
+      '<i class="fa-solid fa-magnifying-glass" style="opacity:.3;font-size:24px;display:block;margin-bottom:8px"></i>' +
+      'Nenhum ingresso encontrado com estes filtros.</div>';
+    document.getElementById('ingMais').hidden = true;
     return;
   }
-  var html="";
-  top10.forEach(function(ing){
+
+  var visiveis = lista.slice(0, _limite);
+  alvo.innerHTML = visiveis.map(function(ing){
     var novo = ing.ts >= ago30;
-    html += '<div class="recent-item'+(novo?' novo':'')+'">';
-    html += '<div class="recent-date"><span class="date-badge'+(novo?' hoje':'')+'">'+e(ing.data)+'</span></div>';
-    html += '<div class="recent-body">';
-    html += '<div class="recent-num">'+e(ing.numero)+'</div>';
-    html += '<div class="recent-obj txt-exp">'+e(ing.objeto)+'</div>';
-    html += '<div class="recent-banco">'+e([ing.banco,ing.agencia?'Ag. '+ing.agencia:'',ing.conta?'Cc. '+ing.conta:''].filter(Boolean).join(' · '))+'</div>';
-    html += '</div>';
-    html += '<div style="text-align:right"><div class="recent-val">'+_fmtValor(ing.valor)+'</div><div class="recent-dias">'+_diasAtras(ing.ts)+'</div></div>';
-    html += '</div>';
-  });
-  document.getElementById("recent-list").innerHTML = html;
+    var fed  = ing.tipo !== 'C';
+    return '<div class="recent-item' + (novo ? ' novo' : '') + (ing.dup ? ' duplicado' : '') + '">' +
+      '<div class="recent-date"><span class="date-badge' + (novo ? ' hoje' : '') + '">' +
+        e(ing.data) + '</span></div>' +
+      '<div class="recent-body">' +
+        '<div class="recent-num">' + e(ing.numero) +
+          '<span class="recent-tipo ' + (fed ? 'f' : 'c') + '">' +
+            (fed ? 'Federal' : 'Contrapartida') + '</span>' +
+          (ing.dup ? '<span class="recent-dup-tag">⚠ duplicado</span>' : '') +
+        '</div>' +
+        '<div class="recent-obj txt-exp">' + e(ing.objeto) + '</div>' +
+        '<div class="recent-banco">' +
+          e([ing.banco, ing.agencia ? 'Ag. ' + ing.agencia : '',
+             ing.conta ? 'Cc. ' + ing.conta : ''].filter(Boolean).join(' · ')) +
+        '</div>' +
+      '</div>' +
+      '<div style="text-align:right">' +
+        '<div class="recent-val">' + _fmtValor(ing.valor) + '</div>' +
+        '<div class="recent-dias">' + _diasAtras(ing.ts) + '</div>' +
+      '</div>' +
+    '</div>';
+  }).join('');
+
+  var restam = lista.length - visiveis.length;
+  document.getElementById('ingMais').hidden = restam <= 0;
+  document.getElementById('ingRestantes').textContent = restam > 0 ? '(' + restam + ')' : '';
+}
+
+/* Nome antigo, mantido porque o carregamento ainda o chama. */
+function renderRecent(){
+  prepararFiltros();
+  renderIngressos();
 }
 
 // ── TABELA COMPLETA ────────────────────────────────────────────────────────

@@ -311,6 +311,7 @@ var _expandido = null;      // número do convênio expandido
 var e = IDEPI.esc;          // escapa HTML — todo dado da planilha passa por aqui
 
 // ── CARREGAMENTO ───────────────────────────────────────────────────────────
+if (IDEPI.auth.exigirPainel('ingressos'))
 IDEPI.dados.carregar()
   .then(function(json){
     document.getElementById("hd-ts").innerHTML =

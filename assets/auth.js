@@ -502,10 +502,34 @@
   }
 
   /**
-   * Chamado por cada página protegida. Se a pessoa não tem o painel liberado,
-   * troca a tela por um aviso em vez de deixar carregar dados pela metade.
+   * A forma CERTA de proteger uma página. Espera o login resolver e só então
+   * decide — chamando `aoLiberar()` se puder, ou trocando a tela pelo aviso.
+   *
+   * ⚠️  POR QUE ISTO EXISTE, e não só o exigirPainel():
+   * Em 28/07/2026 três páginas chamavam exigirPainel() na hora em que o script
+   * era lido, antes de o Firebase confirmar quem era o usuário. Nesse instante
+   * o perfil ainda é null, então a resposta era sempre "não pode" — e até
+   * administradores viam "Você não tem acesso a este painel".
+   *
+   * Use SEMPRE comPainel(). Ele não tem como ser chamado cedo demais.
+   */
+  function comPainel(painel, aoLiberar) {
+    IDEPI.auth.aoEntrar(function () {
+      if (exigirPainel(painel) && typeof aoLiberar === 'function') aoLiberar();
+    });
+  }
+
+  /**
+   * Decide na hora, com o perfil que já estiver carregado. Só chame depois do
+   * login resolver — na prática, de dentro do comPainel() ou do aoEntrar().
    */
   function exigirPainel(painel) {
+    // Rede de proteção: chamado cedo demais, avisa em vez de negar em silêncio.
+    if (CONFIGURADO && !usuarioAtual) {
+      console.warn('[IDEPI] exigirPainel("' + painel + '") foi chamado antes do ' +
+                   'login resolver. Use IDEPI.auth.comPainel(painel, callback).');
+      return false;
+    }
     if (podeVer(painel)) return true;
 
     var NOMES = {
@@ -645,7 +669,8 @@
 
     ehAdmin: function () { return admin.ehAdmin(); },
     podeVer: podeVer,
-    exigirPainel: exigirPainel,
+    comPainel: comPainel,       // ← use este nas páginas
+    exigirPainel: exigirPainel, // só depois do login resolver
     PAINEIS: PAINEIS,
 
     /** Executa `fn` assim que houver acesso liberado (ou já liberado). */

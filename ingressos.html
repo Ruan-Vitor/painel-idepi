@@ -311,7 +311,7 @@ var _expandido = null;      // número do convênio expandido
 var e = IDEPI.esc;          // escapa HTML — todo dado da planilha passa por aqui
 
 // ── CARREGAMENTO ───────────────────────────────────────────────────────────
-if (IDEPI.auth.exigirPainel('ingressos'))
+IDEPI.auth.comPainel('ingressos', function () {
 IDEPI.dados.carregar()
   .then(function(json){
     document.getElementById("hd-ts").innerHTML =
@@ -372,6 +372,7 @@ IDEPI.dados.carregar()
       'Não foi possível carregar os ingressos. ' + IDEPI.esc(e.message||'') +
       '</td></tr>';
   });
+});
 
 // ── PARSE DATE ─────────────────────────────────────────────────────────────
 function _parseDate(s){

@@ -26,8 +26,10 @@
    já instalados — sem isso, quem instalou o app continua na versão antiga):
      v2 — 27/07: admin.html e auto-cadastro no auth.js
      v3 — 27/07: leitura de texto longo (objeto do convênio) e tabelas que
-                 viram cartão no celular — mudou app.css e app.js */
-const VERSAO = 'idepi-v3';
+                 viram cartão no celular — mudou app.css e app.js
+     v4 — 28/07: permissão por painel (auth.js, nav.js, admin.html) e correção
+                 do corte na lista de usuários */
+const VERSAO = 'idepi-v4';
 const CACHE_SHELL = VERSAO + '-shell';
 const CACHE_PAGS  = VERSAO + '-paginas';
 

@@ -104,6 +104,38 @@
     atualizarBadgePendentes();
   }
 
+  /**
+   * Esconde do menu os painéis que o usuário não tem liberados.
+   *
+   * ⚠️  Isto é conveniência, não segurança — quem digitar a URL direto chega
+   *     na página, e lá o IDEPI.auth.exigirPainel() é que barra. E a trava que
+   *     realmente conta são as Security Rules do Firestore. Ver o comentário
+   *     em auth.js sobre o alcance de cada camada.
+   */
+  function aplicarPermissoes() {
+    if (!sidebar || !IDEPI.auth || !IDEPI.auth.podeVer) return;
+
+    MENU.forEach(function (it) {
+      if (it.secao || it.embreve || !it.href) return;
+      if (it.id === 'index') return;                 // Painel Geral é de todos
+      if (IDEPI.auth.podeVer(it.id)) return;
+
+      var link = sidebar.querySelector('.sb-item[href="' + it.href + '"]');
+      if (link) link.remove();
+    });
+
+    // Se uma seção ficou sem nenhum item, o título dela vira ruído.
+    sidebar.querySelectorAll('.sb-sec').forEach(function (sec) {
+      var prox = sec.nextElementSibling;
+      var temItem = false;
+      while (prox && !prox.classList.contains('sb-sec')) {
+        if (prox.classList.contains('sb-item')) { temItem = true; break; }
+        prox = prox.nextElementSibling;
+      }
+      if (!temItem) sec.remove();
+    });
+  }
+
   /** Mostra quantos pedidos de acesso estão esperando decisão. */
   function atualizarBadgePendentes() {
     var badge = document.getElementById('sbBadgePend');
@@ -341,6 +373,7 @@
     // admin e se o menu ganha a seção de Administração.
     document.addEventListener('idepi-auth', function (e) {
       if (e.detail && e.detail.admin) adicionarMenuAdmin(pagina);
+      aplicarPermissoes();
     });
 
     // Instalação

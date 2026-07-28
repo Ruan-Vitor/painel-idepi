@@ -813,9 +813,7 @@ function exportarExcelVigencias() {
 
 /* Só carrega se este painel estiver liberado para o usuário. O bloqueio de
    verdade está nas Security Rules; aqui evitamos uma tela meio carregada. */
-IDEPI.auth.aoEntrar(function(){
-  if (IDEPI.auth.exigirPainel('vigencias')) carregar();
-});
+IDEPI.auth.comPainel('vigencias', carregar);
 
 /* ── TELA CHEIA (implementação em assets/app.js) ── */
 function toggleFullscreenVig(){ IDEPI.toggleFullscreen('tblPanelVig'); }

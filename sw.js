@@ -30,8 +30,10 @@
      v4 — 28/07: permissão por painel (auth.js, nav.js, admin.html) e correção
                  do corte na lista de usuários
      v5 — 28/07: correção do bloqueio indevido — a checagem de painel rodava
-                 antes do login resolver e negava até para administradores */
-const VERSAO = 'idepi-v5';
+                 antes do login resolver e negava até para administradores
+     v6 — 28/07: Ingressos com lista completa, busca própria, filtros por tipo
+                 e ano, e aviso de lançamento em duplicidade */
+const VERSAO = 'idepi-v6';
 const CACHE_SHELL = VERSAO + '-shell';
 const CACHE_PAGS  = VERSAO + '-paginas';
 

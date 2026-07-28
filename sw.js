@@ -28,8 +28,10 @@
      v3 — 27/07: leitura de texto longo (objeto do convênio) e tabelas que
                  viram cartão no celular — mudou app.css e app.js
      v4 — 28/07: permissão por painel (auth.js, nav.js, admin.html) e correção
-                 do corte na lista de usuários */
-const VERSAO = 'idepi-v4';
+                 do corte na lista de usuários
+     v5 — 28/07: correção do bloqueio indevido — a checagem de painel rodava
+                 antes do login resolver e negava até para administradores */
+const VERSAO = 'idepi-v5';
 const CACHE_SHELL = VERSAO + '-shell';
 const CACHE_PAGS  = VERSAO + '-paginas';
 

@@ -1789,6 +1789,7 @@ IDEPI.ligarBotaoFullscreen('btnFSExec');
    enxuto e busca o instrumento sob demanda — no Firestore isso é 1 documento.
    ─────────────────────────────────────────────────────────────────────── */
 (function(){
+  if (!IDEPI.auth.exigirPainel('execucao')) return;
   IDEPI.dados.execIndice()
     .then(function(idx){
       var lista = idx.instrumentos || [];

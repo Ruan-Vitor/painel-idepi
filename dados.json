@@ -31051,15 +31051,20 @@
         {
           "data": "07/02/2025",
           "valor": "10.000,00",
-          "tipo": "F"
+          "tipo": "C"
         },
         {
           "data": "05/06/2026",
           "valor": "1.468.000,00",
           "tipo": "F"
+        },
+        {
+          "data": "03/06/2026",
+          "valor": "432.000,00",
+          "tipo": "F"
         }
       ],
-      "total_recebido": "1.953.000,00",
+      "total_recebido": "2.385.000,00",
       "ultimo_ingresso_federal": {
         "data": "05/06/2026",
         "valor": "1.468.000,00"
@@ -31143,9 +31148,24 @@
           "data": "18/06/2026",
           "valor": "15.996.038,69",
           "tipo": "F"
+        },
+        {
+          "data": "22/07/2025",
+          "valor": "4.099.007,93",
+          "tipo": "F"
+        },
+        {
+          "data": "22/07/2026",
+          "valor": "14.000.000,00",
+          "tipo": "F"
+        },
+        {
+          "data": "22/07/2026",
+          "valor": "2.000.000,00",
+          "tipo": "F"
         }
       ],
-      "total_recebido": "96.550.992,07",
+      "total_recebido": "116.650.000,00",
       "ultimo_ingresso_federal": {
         "data": "18/06/2026",
         "valor": "15.996.038,69"
@@ -31842,7 +31862,7 @@
           "tipo": "F"
         },
         {
-          "data": "21/10/2012",
+          "data": "21/12/2012",
           "valor": "8.800.000,00",
           "tipo": "F"
         },
@@ -31890,9 +31910,19 @@
           "data": "31/05/2011",
           "valor": "2.850.000,00",
           "tipo": "F"
+        },
+        {
+          "data": "31/05/2012",
+          "valor": "1.424.434,76",
+          "tipo": "F"
+        },
+        {
+          "data": "31/05/2011",
+          "valor": "2.247.596,69",
+          "tipo": "F"
         }
       ],
-      "total_recebido": "93.192.255,55",
+      "total_recebido": "96.864.287,00",
       "ultimo_ingresso_federal": {
         "data": "31/10/2025",
         "valor": "15.777.282,00"
@@ -33229,9 +33259,14 @@
           "data": "03/07/2026",
           "valor": "97.610,00",
           "tipo": "F"
+        },
+        {
+          "data": "03/07/2026",
+          "valor": "100.000,00",
+          "tipo": "F"
         }
       ],
-      "total_recebido": "97.610,00",
+      "total_recebido": "197.610,00",
       "ultimo_ingresso_federal": {
         "data": "03/07/2026",
         "valor": "97.610,00"
@@ -33247,14 +33282,19 @@
           "data": "03/07/2026",
           "valor": "68.226,00",
           "tipo": "F"
+        },
+        {
+          "data": "03/07/2026",
+          "valor": "50.000,00",
+          "tipo": "F"
         }
       ],
-      "total_recebido": "68.226,00",
+      "total_recebido": "118.226,00",
       "ultimo_ingresso_federal": {
         "data": "03/07/2026",
         "valor": "68.226,00"
       }
     }
   },
-  "repasses_atualizado_em": "29/07/2026 08:48"
+  "repasses_atualizado_em": "29/07/2026 09:28"
 }

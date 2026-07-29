@@ -199,6 +199,12 @@ div > button:has(svg):not([class]):not([id]){display:none!important}
   overflow-y:auto;
 }
 #lockscreen[hidden]{display:none!important}
+/* Toda classe que fixa `display` (flex, grid, inline-flex) vence o atributo
+   `hidden`, que só vale por causa do display:none da folha do navegador. O JS
+   fazia `el.hidden = true` e o elemento continuava na tela — foi assim que a
+   faixa de duplicidade ficou aparecendo VAZIA e o chip "Duplicados 0"
+   continuou visível com zero itens. Uma regra só resolve nas 5 páginas. */
+[hidden]{display:none!important}
 .lk-card{
   background:#0f1f3d;border:1px solid rgba(255,255,255,.1);border-radius:16px;
   padding:36px 32px;width:100%;max-width:360px;text-align:center;

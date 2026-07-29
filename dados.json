@@ -31167,8 +31167,8 @@
       ],
       "total_recebido": "116.650.000,00",
       "ultimo_ingresso_federal": {
-        "data": "18/06/2026",
-        "valor": "15.996.038,69"
+        "data": "22/07/2026",
+        "valor": "2.000.000,00"
       }
     },
     "945303": {
@@ -32977,10 +32977,10 @@
       }
     },
     "899540": {
-      "objeto": "PAVIMENTAÇÃO DE VIAS PUBLICAS NO MUNICÍPIO DE MORRO DO CHAPÉU DO PIAUÍ - PI",
+      "objeto": "PAVIMENTAÇÃO DE VIAS PÚBLICAS NO MUNICÍPIO DE BRASILEIRA - PI.",
       "banco": "BB",
       "agencia": "3791-5",
-      "conta": "108251",
+      "conta": "108308",
       "ingressos": [
         {
           "data": "28/12/2022",
@@ -33215,9 +33215,9 @@
     },
     "899530": {
       "objeto": "PAVIMENTACAO DE VIAS PUBLICAS NO MUNICIPIO DE MORRO DO CHAPEU DO PIAUI - PI",
-      "banco": "",
-      "agencia": "",
-      "conta": "",
+      "banco": "BB",
+      "agencia": "3791-5",
+      "conta": "108251",
       "ingressos": [
         {
           "data": "23/12/2024",
@@ -33296,5 +33296,5 @@
       }
     }
   },
-  "repasses_atualizado_em": "29/07/2026 09:45"
+  "repasses_atualizado_em": "29/07/2026 09:56"
 }

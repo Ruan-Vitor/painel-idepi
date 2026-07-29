@@ -95,6 +95,18 @@
 }
 .aviso-dup-btn:hover{background:#92400e}
 
+/* ── ATALHOS DO CABEÇALHO ── */
+.pg-acoes{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.pg-atalho{
+  display:inline-flex;align-items:center;gap:7px;
+  background:var(--surface);color:var(--accent);
+  border:1.5px solid var(--accent);border-radius:8px;
+  padding:8px 14px;font-size:12px;font-weight:600;cursor:pointer;
+  font-family:inherit;white-space:nowrap;min-height:36px;
+  transition:background .15s,color .15s;
+}
+.pg-atalho:hover{background:var(--accent);color:#fff}
+
 /* ── FILTROS DA LISTA DE INGRESSOS ── */
 .ing-filtros{
   display:flex;align-items:center;gap:10px;flex-wrap:wrap;
@@ -276,7 +288,15 @@ tr.data-row.expanded .expand-icon{transform:rotate(180deg)}
         <div class="pg-title"><div class="pg-title-icon"><i class="fa-solid fa-money-bill-transfer"></i></div>Ingressos de Recurso</div>
         <div class="pg-sub">Histórico de desembolsos por convênio · Banco, conta e datas de cada liberação recebida</div>
       </div>
-      <a class="pg-back" href="index.html"><i class="fa-solid fa-arrow-left"></i> Voltar ao portal</a>
+      <div class="pg-acoes">
+        <!-- O histórico por convênio fica no fim da página e ninguém rolava
+             até lá. Estes atalhos existem para que ele seja descoberto sem
+             precisar percorrer a lista inteira de ingressos. -->
+        <button class="pg-atalho" onclick="irPara('tblCard')">
+          <i class="fa-solid fa-table"></i> Histórico por convênio
+        </button>
+        <a class="pg-back" href="index.html"><i class="fa-solid fa-arrow-left"></i> Voltar ao portal</a>
+      </div>
     </div>
 
     <div class="scroll">
@@ -368,7 +388,7 @@ tr.data-row.expanded .expand-icon{transform:rotate(180deg)}
         <div class="tbl-head">
           <div class="tbl-title"><i class="fa-solid fa-table"></i> Histórico completo por convênio</div>
           <div class="tbl-head-right">
-            <div class="srch"><i class="fa-solid fa-magnifying-glass"></i><input type="text" id="busca" placeholder="Buscar por número ou objeto..." oninput="renderizar()"></div>
+            <div class="srch"><i class="fa-solid fa-magnifying-glass"></i><input type="text" id="busca" placeholder="Número, objeto, banco, agência ou conta..." oninput="renderizar()"></div>
             <button class="btn-excel" id="btnExcel" onclick="exportarExcel()"><i class="fa-solid fa-file-excel"></i> Exportar</button>
           </div>
         </div>
@@ -635,6 +655,27 @@ function prepararFiltros(){
       .map(function(a){ return '<option value="' + a + '">' + a + '</option>'; }).join('');
 }
 
+/* Rola até um bloco da página.
+
+   Quem rola muda conforme a tela: no desktop é o .scroll; no celular o
+   app.css passa o .scroll para overflow:visible e quem rola é a página. Por
+   isso o destino é calculado na mão, em vez de scrollIntoView — que além de
+   não saber qual caixa usar, com behavior:'smooth' não moveu nada aqui. */
+function irPara(id){
+  var alvo = document.getElementById(id);
+  if (!alvo) return;
+  var caixa = alvo.closest('.scroll');
+  if (!caixa || caixa.scrollHeight <= caixa.clientHeight) caixa = document.scrollingElement;
+  var topo = alvo.getBoundingClientRect().top
+           - caixa.getBoundingClientRect().top + caixa.scrollTop - 8;
+  // scrollTop direto, não scrollTo({behavior:'smooth'}): a animação é ignorada
+  // em parte dos navegadores e o botão simplesmente não fazia nada. Um salto
+  // que funciona vale mais que um deslize que às vezes não acontece.
+  caixa.scrollTop = topo;
+  var busca = alvo.querySelector('input[type=text]');
+  if (busca) setTimeout(function(){ busca.focus({preventScroll: true}); }, 450);
+}
+
 function filtrarTipo(t){
   _filtroTipo = t;
   _limite = PAGINA;
@@ -734,10 +775,20 @@ function renderRecent(){
 
 // ── TABELA COMPLETA ────────────────────────────────────────────────────────
 function renderizar(){
-  var q = (document.getElementById("busca").value||"").toLowerCase();
+  var q = (document.getElementById("busca").value||"").toLowerCase().trim();
+  // Conta e agência entram na busca porque é por elas que se identifica o
+  // convênio no extrato bancário — e "5742155421" não aparece em nenhum outro
+  // campo. Os separadores são ignorados: procurar "0029-9" acha "00299".
+  var qNum = q.replace(/[.\-\/\s]/g, "");
   var rows = _tabela.filter(function(r){
     if(!q) return true;
-    return r.numero.toLowerCase().includes(q) || r.objeto.toLowerCase().includes(q);
+    var limpo = function(v){ return String(v||"").toLowerCase().replace(/[.\-\/\s]/g, ""); };
+    return r.numero.toLowerCase().includes(q)
+        || r.objeto.toLowerCase().includes(q)
+        || (qNum && (limpo(r.conta).includes(qNum)
+                  || limpo(r.agencia).includes(qNum)
+                  || limpo(r.numero).includes(qNum)))
+        || String(r.banco||"").toLowerCase().includes(q);
   });
 
   var html="";

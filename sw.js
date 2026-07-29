@@ -36,8 +36,12 @@
      v7 — 28/07: cards deixam de ser espremidos pelo flex do .scroll. Era o
                  mesmo defeito que cortou a lista de usuários: o card ficava
                  com 316px de altura para 1798px de conteúdo e o resto sumia
-                 sem barra de rolagem */
-const VERSAO = 'idepi-v7';
+                 sem barra de rolagem
+     v8 — 29/07: `[hidden]` volta a esconder de verdade (classe com display
+                 fixo vencia o atributo, e a faixa de duplicidade aparecia
+                 vazia); atalho "Histórico por convênio" no topo; busca da
+                 tabela passa a achar por banco, agência e conta */
+const VERSAO = 'idepi-v8';
 const CACHE_SHELL = VERSAO + '-shell';
 const CACHE_PAGS  = VERSAO + '-paginas';
 

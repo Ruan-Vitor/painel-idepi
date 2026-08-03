@@ -101,16 +101,43 @@
   /* Situações que significam "acabou". Verificamos os três campos porque a
      API da CGU tem bug conhecido (chamado #48358198): devolve "NORMAL" para
      instrumentos que o Transferegov já mostra como encerrados. Por isso
-     situacao_tgov e sit_contrat_tgov têm prioridade sobre situacao. */
-  var REGEX_FIN = /prestacao\s*de\s*contas|tomada\s*de\s*contas|finaliz|concluido|encerrad|rescindid|inadimplent/;
+     situacao_tgov e sit_contrat_tgov têm prioridade sobre situacao.
+
+     Qualquer estado de prestação de contas encerra o acompanhamento — abrir
+     a PCF, mesmo por antecipação, é dizer que a obra acabou. A ÚNICA exceção
+     é "Aguardando Prestação de Contas", tratada logo abaixo: ali a PCF ainda
+     não foi aberta. Por isso REGEX_AGUARDA_PC é consultada ANTES desta. */
+  var REGEX_FIN = /prestacao\s*de\s*contas|tomada\s*de\s*contas|finalizad|concluid|encerrad|rescindid|anulad|inadimplent/;
+
+  /* O Transferegov nunca escreve "vencido": um instrumento cuja vigência
+     acabou sem prestação de contas entregue aparece assim. É o vencido mais
+     grave que existe. */
+  var REGEX_AGUARDA_PC = /aguardando\s*prestacao\s*de\s*contas/;
+
+  /* Ruído conhecido das colunas T/U — valor do filtro da tela que vazou. */
+  var SIT_IGNORADA = { '': 1, '—': 1, '-': 1, 'erro': 1, 'todas': 1, 'n/a': 1, 'n/d': 1 };
+
+  /** Primeiro campo que disser algo decisivo é o que vale.
+   *  @returns {'fim'|'aguarda'|null} */
+  function leSituacao(c) {
+    if (!c) return null;
+    var campos = [c.situacao_tgov, c.sit_contrat_tgov, c.situacao];
+    for (var i = 0; i < campos.length; i++) {
+      var s = norm(campos[i]).trim();
+      if (SIT_IGNORADA[s]) continue;
+      if (REGEX_AGUARDA_PC.test(s)) return 'aguarda';
+      if (REGEX_FIN.test(s)) return 'fim';
+    }
+    return null;
+  }
 
   function isFinalizado(c) {
-    if (!c) return false;
-    var t = norm(c.situacao_tgov);
-    if (t && t !== '—' && t !== 'erro' && REGEX_FIN.test(t)) return true;
-    var u = norm(c.sit_contrat_tgov);
-    if (u && u !== '—' && u !== 'erro' && REGEX_FIN.test(u)) return true;
-    return REGEX_FIN.test(norm(c.situacao));
+    return leSituacao(c) === 'fim';
+  }
+
+  /** Vigência encerrada com a prestação de contas ainda por entregar. */
+  function aguardaPrestacao(c) {
+    return leSituacao(c) === 'aguarda';
   }
 
   /**
@@ -122,17 +149,24 @@
    *   st ∈ normal | alerta | atencao | critico | vencido | finalizado
    */
   function calcStatus(c) {
-    if (isFinalizado(c)) return { st: 'finalizado', dias: null, temSusp: false };
+    var sit = leSituacao(c);
+    if (sit === 'fim') return { st: 'finalizado', dias: null, temSusp: false };
 
     var dVig = parseDateBR(c.vigencia_fmt || c.vigencia);
     var dSus = parseDateBR(c.vigencia_suspensiva);
-    if (!dVig && !dSus) return { st: 'finalizado', dias: null, temSusp: false };
 
     var temSusp = false;
     var dataEf = dVig;
     if (dSus && (!dVig || dSus <= dVig)) { dataEf = dSus; temSusp = true; }
 
-    var dias = diasAte(dataEf);
+    var dias = dataEf ? diasAte(dataEf) : null;
+
+    /* Aguardando PCF é vencido mesmo sem data utilizável: a própria situação
+       do Transferegov já diz que a vigência acabou. */
+    if (sit === 'aguarda') return { st: 'vencido', dias: dias, temSusp: temSusp };
+
+    if (dias === null) return { st: 'finalizado', dias: null, temSusp: false };
+
     var st = dias < 0 ? 'vencido'
            : dias <= 30 ? 'critico'
            : dias <= 60 ? 'atencao'
@@ -481,6 +515,7 @@
   IDEPI.fmtCompacto = fmtCompacto;
   IDEPI.REGEX_FIN = REGEX_FIN;
   IDEPI.isFinalizado = isFinalizado;
+  IDEPI.aguardaPrestacao = aguardaPrestacao;
   IDEPI.calcStatus = calcStatus;
   IDEPI.temMedicao = temMedicao;
   IDEPI.temPagamento = temPagamento;

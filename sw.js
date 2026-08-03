@@ -40,8 +40,18 @@
      v8 — 29/07: `[hidden]` volta a esconder de verdade (classe com display
                  fixo vencia o atributo, e a faixa de duplicidade aparecia
                  vazia); atalho "Histórico por convênio" no topo; busca da
-                 tabela passa a achar por banco, agência e conta */
-const VERSAO = 'idepi-v8';
+                 tabela passa a achar por banco, agência e conta
+     v9 — 03/08: "Aguardando Prestação de Contas" deixa de contar como
+                 finalizado. O Transferegov nunca escreve "vencido": um
+                 instrumento cuja vigência acabou sem PCF entregue aparece
+                 com essa frase, e o termo solto "prestação de contas"
+                 mandava justamente ele para o card de FINALIZADO. Agora vai
+                 para VENCIDO. Só conta como finalizado a PCF já entregue
+                 (enviada, em análise, aprovada, com ressalvas, concluída),
+                 mais rescindido/encerrado/anulado. "Iniciada por
+                 Antecipação" fica com a data, porque foi aberta antes do
+                 fim da vigência. 6 convênios mudam de card */
+const VERSAO = 'idepi-v9';
 const CACHE_SHELL = VERSAO + '-shell';
 const CACHE_PAGS  = VERSAO + '-paginas';
 

@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<!-- IDEPI · Prestação de Contas Final — v20260804 -->
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Prestação de Contas Final — IDEPI</title>
+<meta name="description" content="Acompanhamento das prestações de contas finais dos convênios federais do IDEPI.">
+<meta name="theme-color" content="#0b1527">
+
+<!-- ── APP INSTALÁVEL (PWA) ────────────────────────────────────────────── -->
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="IDEPI">
+
+<!-- ── FONTES E ÍCONES ─────────────────────────────────────────────────── -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+
+<!-- ── CASCA COMPARTILHADA ─────────────────────────────────────────────── -->
+<link rel="stylesheet" href="assets/app.css">
+
+<style>
+/* ═══ Estilos exclusivos da Prestação de Contas ═══════════════════════════
+   Header, sidebar, botões, login e responsivo estão em assets/app.css.    */
+
+/* ── ETAPAS ── */
+.et-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;flex-shrink:0}
+.et-card{background:var(--surface);border:1px solid var(--border);border-radius:11px;
+  padding:15px 17px;border-top:3px solid transparent;cursor:pointer;
+  transition:transform .14s,box-shadow .14s;text-align:left;width:100%;font:inherit}
+.et-card:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(26,58,110,.1)}
+.et-card.on{box-shadow:0 0 0 2px var(--accent) inset}
+.et-card.e-ni{border-top-color:#ef4444}
+.et-card.e-an{border-top-color:#eab308}
+.et-card.e-ap{border-top-color:#3b82f6}
+.et-card.e-cn{border-top-color:#16a34a}
+.et-num{font-family:'Sora',sans-serif;font-size:28px;font-weight:800;color:var(--text);line-height:1;margin-bottom:4px}
+.et-lbl{font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:2px}
+.et-desc{font-size:10px;color:#b0bbc8;line-height:1.4}
+
+/* ── CARTÕES DE PCF ── */
+.pcf-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;flex-shrink:0}
+.pcf-head{padding:14px 20px;border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.pcf-title{font-size:13px;font-weight:700;color:var(--text);display:flex;align-items:center;gap:8px}
+.pcf-title i{color:var(--accent)}
+.pcf-busca{flex:1;min-width:190px;max-width:340px;position:relative}
+.pcf-busca input{width:100%;padding:7px 11px 7px 30px;border:1px solid var(--border);
+  border-radius:8px;font-size:12px;font-family:inherit;color:var(--text);background:var(--surface2)}
+.pcf-busca i{position:absolute;left:10px;top:50%;transform:translateY(-50%);font-size:11px;color:var(--muted)}
+
+.pcf-lista{padding:4px 0}
+.pcf-item{display:grid;grid-template-columns:112px 1fr 190px;gap:14px;
+  padding:13px 20px;border-bottom:1px solid var(--border);align-items:start}
+.pcf-item:last-child{border-bottom:none}
+.pcf-item:hover{background:var(--surface2)}
+
+.pcf-num{font-weight:700;font-size:12.5px;display:block;margin-bottom:5px}
+.pcf-etapa{display:inline-block;font-size:9.5px;font-weight:700;padding:2px 7px;
+  border-radius:11px;white-space:nowrap;line-height:1.5}
+.et-ni{background:var(--red-bg);color:var(--red);border:1px solid var(--red-bdr)}
+.et-an{background:#fefce8;color:#a16207;border:1px solid #fde68a}
+.et-ap{background:var(--blue-bg);color:var(--blue);border:1px solid var(--blue-bdr)}
+.et-cn{background:var(--green-bg);color:var(--green);border:1px solid var(--green-bdr)}
+.et-ou{background:var(--slate-bg);color:var(--slate);border:1px solid var(--slate-bdr)}
+
+.pcf-obj{font-size:12px;color:var(--text);line-height:1.45;margin-bottom:4px}
+.pcf-meta{font-size:10.5px;color:var(--muted);display:flex;gap:12px;flex-wrap:wrap}
+.pcf-meta span{display:inline-flex;align-items:center;gap:4px}
+.pcf-meta i{font-size:9px}
+
+/* A Observação é a ÚNICA coluna que o sistema não sabe preencher: vem do
+   SEI, escrita à mão pelo setor. Por isso ganha destaque próprio — é o que
+   diz o que está travando a prestação. */
+.pcf-obs{background:#fffbeb;border:1px solid #fde68a;border-radius:8px;
+  padding:8px 10px;font-size:11px;color:#78350f;line-height:1.45}
+.pcf-obs strong{display:block;font-size:9px;text-transform:uppercase;
+  letter-spacing:.5px;color:#92400e;margin-bottom:2px;font-weight:700}
+.pcf-obs.vazia{background:var(--surface2);border-color:var(--border);color:var(--muted)}
+
+.pcf-fora{display:inline-flex;align-items:center;gap:4px;font-size:9.5px;
+  font-weight:700;color:#92400e;background:#fffbeb;border:1px solid #fcd34d;
+  border-radius:10px;padding:1px 6px;margin-left:6px}
+
+.pcf-vazio{padding:26px 20px;text-align:center;font-size:12.5px;color:var(--muted)}
+
+@media(max-width:1000px){
+  .et-grid{grid-template-columns:repeat(2,1fr)}
+  .pcf-item{grid-template-columns:1fr;row-gap:9px}
+}
+</style>
+</head>
+
+<body data-page="pcf">
+
+<!-- HEADER -->
+<div class="hd">
+  <div class="hd-left">
+    <div class="hd-logo">
+      <div class="hd-logo-icon"><i class="fa-solid fa-building-columns"></i></div>
+      <div>
+        <div class="hd-title">IDEPI</div>
+        <div class="hd-sub">Convênios Federais</div>
+      </div>
+    </div>
+    <div class="hd-sep"></div>
+    <div class="hd-pill"><i class="fa-solid fa-circle"></i> Prestação de Contas Final</div>
+  </div>
+  <div class="hd-right">
+    <div class="hd-stat"><strong id="hs-tot">—</strong><span>PCFs acompanhadas</span></div>
+    <div class="hd-div"></div>
+    <div class="hd-ts" id="hd-ts">—</div>
+  </div>
+</div>
+
+<!-- BODY -->
+<div class="body">
+
+  <!-- O menu é montado por assets/nav.js — não escreva os itens aqui. -->
+  <nav class="sidebar" id="mainSidebar"></nav>
+
+  <div class="content">
+
+    <div class="pg-head">
+      <div>
+        <div class="pg-title">Prestação de Contas Final</div>
+        <div class="pg-sub">Situação, conta, período e processo SEI de cada PCF · a Observação vem do SEI e é preenchida pelo setor</div>
+      </div>
+      <button class="btn-excel" id="btnExcelPcf" onclick="exportarPcf()">
+        <i class="fa-solid fa-file-excel"></i> Exportar
+      </button>
+    </div>
+
+    <div class="scroll">
+
+      <!-- ETAPAS -->
+      <div class="et-grid">
+        <button class="et-card e-ni" data-etapa="nao_iniciada" onclick="filtrarEtapa('nao_iniciada')">
+          <div class="et-lbl">Não iniciada</div>
+          <div class="et-num" id="e-ni">—</div>
+          <div class="et-desc">Aguardando início da PCF</div>
+        </button>
+        <button class="et-card e-an" data-etapa="em_analise" onclick="filtrarEtapa('em_analise')">
+          <div class="et-lbl">Em análise</div>
+          <div class="et-num" id="e-an">—</div>
+          <div class="et-desc">Enviada, aguardando o concedente</div>
+        </button>
+        <button class="et-card e-ap" data-etapa="aprovada" onclick="filtrarEtapa('aprovada')">
+          <div class="et-lbl">Aprovada</div>
+          <div class="et-num" id="e-ap">—</div>
+          <div class="et-desc">Aprovada, com ou sem ressalvas</div>
+        </button>
+        <button class="et-card e-cn" data-etapa="concluida" onclick="filtrarEtapa('concluida')">
+          <div class="et-lbl">Concluída</div>
+          <div class="et-num" id="e-cn">—</div>
+          <div class="et-desc">Encerrada no Transferegov</div>
+        </button>
+      </div>
+
+      <!-- LISTA -->
+      <div class="pcf-card">
+        <div class="pcf-head">
+          <div class="pcf-title"><i class="fa-solid fa-file-circle-check"></i> PCFs em acompanhamento</div>
+          <div class="pcf-busca">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="busca" placeholder="Buscar por nº, objeto, processo ou observação…"
+                   oninput="render()" autocomplete="off">
+          </div>
+          <button class="btn-fullscreen" id="btnLimpar" onclick="filtrarEtapa(null)" style="display:none">
+            <i class="fa-solid fa-xmark"></i> Limpar filtro
+          </button>
+        </div>
+        <div class="pcf-lista" id="lista">
+          <div class="pcf-vazio">Carregando…</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ══ SDK do Firebase (login + banco) ══════════════════════════════════ -->
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore-compat.js"></script>
+
+<script src="assets/firebase-config.js"></script>
+<script src="assets/app.js"></script>
+<script src="assets/auth.js"></script>
+<script src="assets/data.js"></script>
+<script src="assets/nav.js"></script>
+
+<script>
+/* ═══════════════════════════════════════════════════════════════════════
+   PRESTAÇÃO DE CONTAS FINAL
+
+   Origem: planilha "PCFs_Pendentes_Atualizado", mantida à mão pelo setor,
+   publicada em painel/pcf pelo publicar_pcf.py.
+
+   O que NÃO fazer aqui: reimplementar regra de status. A etapa já vem
+   classificada do Python (etapa/etapa_rotulo) para que planilha, script e
+   painel não divirjam — foi assim que o mesmo convênio chegou a ter dois
+   status em julho.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+var _pcfs = [];
+var _filtroEtapa = null;
+
+var CLASSE_ETAPA = {
+  nao_iniciada: 'et-ni', em_analise: 'et-an',
+  aprovada:     'et-ap', concluida:  'et-cn'
+};
+
+function filtrarEtapa(etapa) {
+  _filtroEtapa = (_filtroEtapa === etapa) ? null : etapa;
+  document.querySelectorAll('.et-card').forEach(function (b) {
+    b.classList.toggle('on', b.dataset.etapa === _filtroEtapa);
+  });
+  IDEPI.$('btnLimpar').style.display = _filtroEtapa ? '' : 'none';
+  render();
+}
+
+function render() {
+  var termo = IDEPI.norm(IDEPI.$('busca').value.trim());
+  var lista = _pcfs.filter(function (p) {
+    if (_filtroEtapa && p.etapa !== _filtroEtapa) return false;
+    if (!termo) return true;
+    return IDEPI.norm([p.numero, p.objeto, p.objeto_oficial, p.processo,
+                       p.observacao, p.situacao, p.municipio]
+                      .join(' ')).indexOf(termo) !== -1;
+  });
+
+  var box = IDEPI.$('lista');
+  if (!lista.length) {
+    box.innerHTML = '<div class="pcf-vazio">Nenhuma PCF encontrada' +
+      (termo || _filtroEtapa ? ' com esse filtro.' : '.') + '</div>';
+    return;
+  }
+
+  box.innerHTML = lista.map(function (p) {
+    var cls = CLASSE_ETAPA[p.etapa] || 'et-ou';
+
+    /* Convênio que tem PCF mas não está na coluna A: não aparece em nenhum
+       outro painel. Marcar aqui é o único lugar onde isso fica visível. */
+    var fora = p.no_painel === false
+      ? '<span class="pcf-fora" title="Este convênio não está na coluna A da ' +
+        'planilha de vigências, então não aparece nos outros painéis">' +
+        '<i class="fa-solid fa-triangle-exclamation"></i> fora do painel</span>'
+      : '';
+
+    var meta = [];
+    if (p.conta)     meta.push('<span><i class="fa-solid fa-building-columns"></i>' + IDEPI.esc(p.conta) + '</span>');
+    if (p.periodo)   meta.push('<span><i class="fa-solid fa-calendar-days"></i>' + IDEPI.esc(p.periodo) + '</span>');
+    if (p.processo)  meta.push('<span><i class="fa-solid fa-folder-open"></i>' + IDEPI.esc(p.processo) + '</span>');
+    if (p.vigencia)  meta.push('<span><i class="fa-solid fa-hourglass-end"></i>vigência ' + IDEPI.esc(p.vigencia) + '</span>');
+    if (p.fiscal)    meta.push('<span><i class="fa-solid fa-user"></i>' + IDEPI.esc(p.fiscal) + '</span>');
+
+    var obs = p.observacao
+      ? '<div class="pcf-obs"><strong>Observação (SEI)</strong>' + IDEPI.esc(p.observacao) + '</div>'
+      : '<div class="pcf-obs vazia"><strong>Observação (SEI)</strong>sem registro</div>';
+
+    return '<div class="pcf-item">' +
+      '<div>' +
+        '<a class="pcf-num num-link" href="execucao.html?num=' +
+          encodeURIComponent(p.numero || '') + '" ' +
+          'title="Abrir a execução financeira deste instrumento">' +
+          IDEPI.esc(p.numero_orig || p.numero) + '</a>' +
+        '<span class="pcf-etapa ' + cls + '">' + IDEPI.esc(p.etapa_rotulo) + '</span>' +
+      '</div>' +
+      '<div>' +
+        '<div class="pcf-obj">' + IDEPI.esc(p.objeto || p.objeto_oficial || '—') + fora + '</div>' +
+        '<div class="pcf-meta">' + meta.join('') + '</div>' +
+      '</div>' +
+      obs +
+    '</div>';
+  }).join('');
+}
+
+function exportarPcf() {
+  IDEPI.comBotaoOcupado('btnExcelPcf', function () {
+    var linhas = [['Nº', 'Etapa', 'Situação (planilha)', 'Objeto', 'Conta',
+                   'Período', 'Processo SEI', 'Observação (SEI)',
+                   'Vigência', 'Fiscal', 'No painel?']];
+    _pcfs.forEach(function (p) {
+      linhas.push([p.numero_orig || p.numero, p.etapa_rotulo, p.situacao,
+                   p.objeto || p.objeto_oficial || '', p.conta, p.periodo,
+                   p.processo, p.observacao, p.vigencia || '', p.fiscal || '',
+                   p.no_painel === false ? 'NÃO' : 'sim']);
+    });
+    var wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, XLSX.utils.aoa_to_sheet(linhas), 'PCF');
+    XLSX.writeFile(wb, 'IDEPI_PrestacaoContas_' + IDEPI.carimboData() + '.xlsx');
+  });
+}
+
+IDEPI.dados.pcf()
+  .then(function (d) {
+    _pcfs = d.pcfs || [];
+    var r = d.resumo || {};
+    IDEPI.setTxt('e-ni', r.nao_iniciada || 0);
+    IDEPI.setTxt('e-an', r.em_analise   || 0);
+    IDEPI.setTxt('e-ap', r.aprovada     || 0);
+    IDEPI.setTxt('e-cn', r.concluida    || 0);
+    IDEPI.setTxt('hs-tot', _pcfs.length);
+    IDEPI.setTxt('hd-ts', 'Atualizado: ' + (d.gerado_em || '—'));
+    render();
+    IDEPI.esconderOverlay();
+  })
+  .catch(function (e) {
+    IDEPI.esconderOverlay();
+    IDEPI.setHtml('hd-ts', '<span style="color:#f87171">Erro ao carregar</span>');
+    IDEPI.setHtml('lista', '<div class="pcf-vazio">Não foi possível carregar as PCFs. ' +
+      IDEPI.esc(String(e && e.message || e)) + '</div>');
+  });
+</script>
+</body>
+</html>

@@ -21,7 +21,7 @@
     { id: 'vigencias',  icone: 'fa-table-list',           rotulo: 'Vigências',             href: 'vigencias.html' },
     { id: 'execucao',   icone: 'fa-chart-line',           rotulo: 'Execução Financeira',   href: 'execucao.html' },
     { id: 'ingressos',  icone: 'fa-money-bill-transfer',  rotulo: 'Ingressos de Recurso',  href: 'ingressos.html' },
-    { id: 'contas',     icone: 'fa-file-invoice',         rotulo: 'Prestação de Contas',   embreve: true },
+    { id: 'pcf',        icone: 'fa-file-invoice',         rotulo: 'Prestação de Contas',   href: 'pcf.html' },
     { id: 'emendas',    icone: 'fa-landmark-dome',        rotulo: 'Emendas Parlamentares', embreve: true },
     { id: 'mapa',       icone: 'fa-map-location-dot',     rotulo: 'Mapa de Obras',         embreve: true },
 

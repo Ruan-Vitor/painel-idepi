@@ -488,7 +488,15 @@
      agregados (painel/resumo), separado da lista de convênios.
      ══════════════════════════════════════════════════════════════════════ */
 
-  var PAINEIS = ['vigencias', 'execucao', 'ingressos', 'fiscalgov'];
+  /* Esta lista é o que o admin.html usa para desenhar os botões de liberar
+     painel. Painel novo TEM de entrar aqui, senão ele não aparece na tela de
+     permissões e ninguém com lista explícita consegue recebê-lo — foi o que
+     aconteceu com a PCF em 04/08/2026, que só abria para quem não tinha
+     lista nenhuma.
+
+     Ela também precisa combinar com PAINEIS_VALIDOS no publicar_firestore.py
+     e com as regras do firestore.rules. */
+  var PAINEIS = ['vigencias', 'execucao', 'ingressos', 'fiscalgov', 'pcf'];
 
   /** Um leitor pode abrir este painel? Admin e Painel Geral sempre podem. */
   function podeVer(painel) {

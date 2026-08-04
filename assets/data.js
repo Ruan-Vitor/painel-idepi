@@ -220,10 +220,43 @@
     return 'Atualizado ' + (j.gerado_em || '—');
   }
 
+  /* ══════════════════════════════════════════════════════════════════════
+     PRESTAÇÃO DE CONTAS FINAL
+     ══════════════════════════════════════════════════════════════════════ */
+
+  /** Documento painel/pcf, publicado pelo publicar_pcf.py.
+   *
+   *  Não tem plano B no GitHub como as vigências: a planilha de origem é de
+   *  outra conta (idepconv@gmail.com) e nunca esteve no dados.json. Se o
+   *  Firestore falhar, cai no cache local — e, sem ele, devolve vazio em vez
+   *  de inventar. */
+  function pcf() {
+    return IDEPI.auth.pronto().then(function () {
+      if (!temFirestore()) {
+        var c0 = lerCache('pcf');
+        return c0 ? c0.dados : { pcfs: [], total: 0, resumo: {} };
+      }
+      return doc('painel', 'pcf')
+        .then(function (d) {
+          if (!d) {
+            var c1 = lerCache('pcf');
+            return c1 ? c1.dados : { pcfs: [], total: 0, resumo: {} };
+          }
+          gravarCache('pcf', d);
+          return d;
+        })
+        .catch(function () {
+          var c2 = lerCache('pcf');
+          return c2 ? c2.dados : { pcfs: [], total: 0, resumo: {} };
+        });
+    });
+  }
+
   IDEPI.dados = {
     carregar: carregar,
     execIndice: execIndice,
     execInstrumento: execInstrumento,
+    pcf: pcf,
     rotuloOrigem: rotuloOrigem,
     limparCache: limparCache
   };

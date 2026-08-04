@@ -356,6 +356,7 @@ tr.drow:hover td{background:var(--surface2);cursor:pointer}
         <span class="chip cv"  data-status="vencido"    onclick="setStatus('vencido')">Vencido</span>
         <span class="chip cs"  data-status="suspensiva" onclick="setStatus('suspensiva')">Com Suspensiva</span>
         <span class="chip cf"  data-status="finalizado" onclick="setStatus('finalizado')">Finalizado</span>
+        <span class="chip csd" data-status="sem_data"   onclick="setStatus('sem_data')">Sem data</span>
       </div>
 
       <!-- Filtros por coluna -->
@@ -414,8 +415,8 @@ let sortCol = null, sortDir = 1;
 let _rowsVisiveis = []; // guarda as linhas visíveis para export
 
 const CLS  = {normal:'n',alerta:'a',atencao:'at',critico:'c',vencido:'v',finalizado:'f',suspensiva:'s'};
-const LBL  = {normal:'Normal (>90d)',alerta:'Alerta (60–90d)',atencao:'Atenção (30–60d)',critico:'Crítico (<30d)',vencido:'Vencido',finalizado:'Finalizado'};
-const COR  = {normal:'#22c55e',alerta:'#3b82f6',atencao:'#eab308',critico:'#f97316',vencido:'#ef4444',finalizado:'#94a3b8'};
+const LBL  = {normal:'Normal (>90d)',alerta:'Alerta (60–90d)',atencao:'Atenção (30–60d)',critico:'Crítico (<30d)',vencido:'Vencido',finalizado:'Finalizado',sem_data:'Sem data'};
+const COR  = {normal:'#22c55e',alerta:'#3b82f6',atencao:'#eab308',critico:'#f97316',vencido:'#ef4444',finalizado:'#94a3b8',sem_data:'#a78bfa'};
 const NOME = {normal:'Normal',alerta:'Alerta',atencao:'Atenção',critico:'Crítico',vencido:'Vencido',finalizado:'Finalizado'};
 const KIDS = {normal:'kn',alerta:'ka',atencao:'kat',critico:'kc',vencido:'kv',finalizado:'kf'};
 
@@ -450,7 +451,7 @@ async function carregar() {
     // Deep link: vigencias.html?status=critico já abre filtrado — é o que faz
     // os cards do Painel Geral e os atalhos do app instalado funcionarem.
     const param = new URLSearchParams(window.location.search).get('status');
-    if (param && ['all','normal','alerta','atencao','critico','vencido','finalizado','suspensiva'].includes(param))
+    if (param && ['all','normal','alerta','atencao','critico','vencido','finalizado','suspensiva','sem_data'].includes(param))
       setStatus(param);
   } catch(e) {
     document.getElementById('ov').innerHTML = `
@@ -478,7 +479,7 @@ function popularFiltros() {
 
 // ── DASHBOARD ────────────────────────────────────────────────────────────────
 function atualizar() {
-  const ct = {normal:0,alerta:0,atencao:0,critico:0,vencido:0,finalizado:0};
+  const ct = {normal:0,alerta:0,atencao:0,critico:0,vencido:0,finalizado:0,sem_data:0};
   let sT=0,sL=0,sE=0,nE=0;
   dados.forEach(d => {
     ct[d._st] = (ct[d._st]||0)+1;
@@ -487,9 +488,10 @@ function atualizar() {
     const pe = parseFloat((d.pct_exec||'').replace('%','')) || 0;
     sT+=vt; sL+=vl; if(pe>0){sE+=pe;nE++;}
   });
-  ['cn','ca','cat','cc','cv','cf'].forEach((id,i)=>{
-    const keys=['normal','alerta','atencao','critico','vencido','finalizado'];
-    document.getElementById(id).textContent = ct[keys[i]];
+  ['cn','ca','cat','cc','cv','cf','csd'].forEach((id,i)=>{
+    const keys=['normal','alerta','atencao','critico','vencido','finalizado','sem_data'];
+    const el = document.getElementById(id);
+    if (el) el.textContent = ct[keys[i]];
   });
   const urg = ct.critico + ct.vencido;
   document.getElementById('urg').classList.toggle('hide', urg===0);
@@ -508,7 +510,7 @@ function fN(n){return n.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumF
 
 // ── GRÁFICO ──────────────────────────────────────────────────────────────────
 function graf(ct) {
-  const keys=['normal','alerta','atencao','critico','vencido','finalizado'];
+  const keys=['normal','alerta','atencao','critico','vencido','finalizado','sem_data'];
   const vals=keys.map(k=>ct[k]||0), cors=keys.map(k=>COR[k]);
   const tot=vals.reduce((a,b)=>a+b,0);
   if(chart) chart.destroy();
@@ -671,9 +673,9 @@ function render() {
 
     return `<tr class="drow" onclick="exp(${i})">
       <td style="text-align:center;"><i class="fa-solid fa-chevron-right" id="ic${i}" style="font-size:9px;color:#94a3b8;transition:transform .2s;"></i></td>
-      <td><span class="num">${IDEPI.faixaFase(r)}<a class="num-link" href="execucao.html?num=${encodeURIComponent(r.numero||'')}" title="Abrir a execução financeira deste instrumento">${esc(r.numero)||'—'}</a></span>${IDEPI.municipioExtra(r)}</td>
+      <td><span class="num">${IDEPI.faixaFase(r)}<a class="num-link" href="execucao.html?num=${encodeURIComponent(r.numero||'')}" title="Abrir a execução financeira deste instrumento">${esc(r.numero)||'—'}</a></span></td>
       <td class="celula-destaque">
-        <div class="obj txt-exp">${esc(r.objeto)||'—'}</div>
+        <div class="obj txt-exp">${esc(r.objeto)||'—'}${IDEPI.municipioExtra(r)}</div>
         ${r.autor_emenda?`<div style="font-size:10px;color:#94a3b8;margin-top:3px;"><i class="fa-solid fa-user" style="font-size:9px;"></i> ${esc(r.autor_emenda)}</div>`:''}
       </td>
       <td style="white-space:nowrap;font-size:11px;">${r.vigencia_fmt||r.vigencia||'—'}</td>

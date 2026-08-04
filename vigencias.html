@@ -671,7 +671,7 @@ function render() {
 
     return `<tr class="drow" onclick="exp(${i})">
       <td style="text-align:center;"><i class="fa-solid fa-chevron-right" id="ic${i}" style="font-size:9px;color:#94a3b8;transition:transform .2s;"></i></td>
-      <td><span class="num">${IDEPI.faixaFase(r)}${esc(r.numero)||'—'}</span></td>
+      <td><span class="num">${IDEPI.faixaFase(r)}<a class="num-link" href="execucao.html?num=${encodeURIComponent(r.numero||'')}" title="Abrir a execução financeira deste instrumento">${esc(r.numero)||'—'}</a></span>${IDEPI.municipioExtra(r)}</td>
       <td class="celula-destaque">
         <div class="obj txt-exp">${esc(r.objeto)||'—'}</div>
         ${r.autor_emenda?`<div style="font-size:10px;color:#94a3b8;margin-top:3px;"><i class="fa-solid fa-user" style="font-size:9px;"></i> ${esc(r.autor_emenda)}</div>`:''}

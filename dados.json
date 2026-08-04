@@ -1,6 +1,6 @@
 {
-  "gerado_em": "04/08/2026 07:35",
-  "total": 98,
+  "gerado_em": "04/08/2026 08:24",
+  "total": 99,
   "convenios": [
     {
       "numero": "781089",
@@ -31,7 +31,8 @@
       "pagamento": "NÃO",
       "apto_fiscalgov": "NÃO ⬜",
       "situacao_tgov": "Em execução",
-      "sit_contrat_tgov": "Normal"
+      "sit_contrat_tgov": "Normal",
+      "fase_emendas": "em andamento"
     },
     {
       "numero": "889040",
@@ -62,7 +63,8 @@
       "pagamento": "",
       "apto_fiscalgov": "",
       "situacao_tgov": "Prestação de Contas Concluída",
-      "sit_contrat_tgov": "Normal"
+      "sit_contrat_tgov": "Normal",
+      "fase_emendas": "recurso recebido"
     },
     {
       "numero": "894024",
@@ -93,7 +95,8 @@
       "pagamento": "SIM",
       "apto_fiscalgov": "SIM ✅",
       "situacao_tgov": "Em execução",
-      "sit_contrat_tgov": "Normal"
+      "sit_contrat_tgov": "Normal",
+      "fase_emendas": "em andamento"
     },
     {
       "numero": "897425",
@@ -124,7 +127,8 @@
       "pagamento": "SIM",
       "apto_fiscalgov": "SIM ✅",
       "situacao_tgov": "Em execução",
-      "sit_contrat_tgov": "Normal"
+      "sit_contrat_tgov": "Normal",
+      "fase_emendas": "em andamento"
     },
     {
       "numero": "897099",
@@ -155,7 +159,8 @@
       "pagamento": "SIM",
       "apto_fiscalgov": "SIM ✅",
       "situacao_tgov": "Em execução",
-      "sit_contrat_tgov": "Normal"
+      "sit_contrat_tgov": "Normal",
+      "fase_emendas": "em andamento"
     },
     {
       "numero": "900822",
@@ -186,7 +191,8 @@
       "pagamento": "SIM",
       "apto_fiscalgov": "SIM ✅",
       "situacao_tgov": "Em execução",
-      "sit_contrat_tgov": "Normal"
+      "sit_contrat_tgov": "Normal",
+      "fase_emendas": "em andamento"
     },
     {
       "numero": "902680",
@@ -217,7 +223,8 @@
       "pagamento": "SIM",
       "apto_fiscalgov": "SIM ✅",
       "situacao_tgov": "Em execução",
-      "sit_contrat_tgov": "Normal"
+      "sit_contrat_tgov": "Normal",
+      "fase_emendas": "em andamento"
     },
     {
       "numero": "906442",
@@ -248,7 +255,8 @@
       "pagamento": "",
       "apto_fiscalgov": "",
       "situacao_tgov": "Prestação de Contas Concluída",
-      "sit_contrat_tgov": "Normal"
+      "sit_contrat_tgov": "Normal",
+      "fase_emendas": "recurso recebido"
     },
     {
       "numero": "916598",
@@ -279,7 +287,8 @@
       "pagamento": "SIM",
       "apto_fiscalgov": "SIM ✅",
       "situacao_tgov": "Em execução",
-      "sit_contrat_tgov": "Normal"
+      "sit_contrat_tgov": "Normal",
+      "fase_emendas": "em andamento"
     },
     {
       "numero": "917537",
@@ -310,7 +319,8 @@
       "pagamento": "",
       "apto_fiscalgov": "",
       "situacao_tgov": "Em execução",
-      "sit_contrat_tgov": "Normal"
+      "sit_contrat_tgov": "Normal",
+      "fase_emendas": "em andamento"
     },
     {
       "numero": "902704",
@@ -341,7 +351,8 @@
       "pagamento": "",
       "apto_fiscalgov": "",
       "situacao_tgov": "Prestação de Contas enviada para Análise",
-      "sit_contrat_tgov": "Normal"
+      "sit_contrat_tgov": "Normal",
+      "fase_emendas": "em andamento"
     },
     {
       "numero": "902705",
@@ -372,7 +383,8 @@
       "pagamento": "SIM",
       "apto_fiscalgov": "SIM ✅",
       "situacao_tgov": "Aguardando Prestação de Contas",
-      "sit_contrat_tgov": "Normal"
+      "sit_contrat_tgov": "Normal",
+      "fase_emendas": "em andamento"
     },
     {
       "numero": "838065",
@@ -403,7 +415,8 @@
       "pagamento": "SIM",
       "apto_fiscalgov": "SIM ✅",
       "situacao_tgov": "Em execução",
-      "sit_contrat_tgov": "Normal"
+      "sit_contrat_tgov": "Normal",
+      "fase_emendas": "em andamento"
     },
     {
       "numero": "907472",
@@ -434,7 +447,8 @@
       "pagamento": "NÃO",
       "apto_fiscalgov": "NÃO ⬜",
       "situacao_tgov": "Em execução",
-      "sit_contrat_tgov": "Normal"
+      "sit_contrat_tgov": "Normal",
+      "fase_emendas": "em andamento"
     },
     {
       "numero": "907471",
@@ -465,7 +479,8 @@
       "pagamento": "NÃO",
       "apto_fiscalgov": "NÃO ⬜",
       "situacao_tgov": "Em execução",
-      "sit_contrat_tgov": "Normal"
+      "sit_contrat_tgov": "Normal",
+      "fase_emendas": "em andamento"
     },
     {
       "numero": "907470",
@@ -496,7 +511,8 @@
       "pagamento": "NÃO",
       "apto_fiscalgov": "NÃO ⬜",
       "situacao_tgov": "Em execução",
-      "sit_contrat_tgov": "Normal"
+      "sit_contrat_tgov": "Normal",
+      "fase_emendas": "em andamento"
     },
     {
       "numero": "907469",
@@ -527,7 +543,8 @@
       "pagamento": "NÃO",
       "apto_fiscalgov": "NÃO ⬜",
       "situacao_tgov": "Em execução",
-      "sit_contrat_tgov": "Normal"
+      "sit_contrat_tgov": "Normal",
+      "fase_emendas": "em andamento"
     },
     {
       "numero": "907008",
@@ -558,7 +575,8 @@
       "pagamento": "SIM",
       "apto_fiscalgov": "SIM ✅",
       "situacao_tgov": "Em execução",
-      "sit_contrat_tgov": "Normal"
+      "sit_contrat_tgov": "Normal",
+      "fase_emendas": "em andamento"
     },
     {
       "numero": "907015",
@@ -589,7 +607,8 @@
       "pagamento": "NÃO",
       "apto_fiscalgov": "NÃO ⬜",
       "situacao_tgov": "Em execução",
-      "sit_contrat_tgov": "Normal"
+      "sit_contrat_tgov": "Normal",
+      "fase_emendas": "em andamento"
     },
     {
       "numero": "907031",
@@ -620,7 +639,8 @@
       "pagamento": "NÃO",
       "apto_fiscalgov": "NÃO ⬜",
       "situacao_tgov": "Em execução",
-      "sit_contrat_tgov": "Normal"
+      "sit_contrat_tgov": "Normal",
+      "fase_emendas": "em andamento"
     },
     {
       "numero": "907032",
@@ -651,7 +671,8 @@
       "pagamento": "SIM",
       "apto_fiscalgov": "SIM ✅",
       "situacao_tgov": "Em execução",
-      "sit_contrat_tgov": "Normal"
+      "sit_contrat_tgov": "Normal",
+      "fase_emendas": "em andamento"
     },
     {
       "numero": "907033",
@@ -682,7 +703,8 @@
       "pagamento": "NÃO",
       "apto_fiscalgov": "NÃO ⬜",
       "situacao_tgov": "Em execução",
-      "sit_contrat_tgov": "Normal"
+      "sit_contrat_tgov": "Normal",
+      "fase_emendas": "em andamento"
     },
     {
       "numero": "907035",
@@ -713,7 +735,8 @@
       "pagamento": "NÃO",
       "apto_fiscalgov": "NÃO ⬜",
       "situacao_tgov": "Em execução",
-      "sit_contrat_tgov": "Normal"
+      "sit_contrat_tgov": "Normal",
+      "fase_emendas": "em andamento"
     },
     {
       "numero": "907037",
@@ -744,7 +767,8 @@
       "pagamento": "SIM",
       "apto_fiscalgov": "SIM ✅",
       "situacao_tgov": "Todas",
-      "sit_contrat_tgov": "Normal"
+      "sit_contrat_tgov": "Normal",
+      "fase_emendas": "em andamento"
     },
     {
       "numero": "907038",
@@ -775,7 +799,8 @@
       "pagamento": "NÃO",
       "apto_fiscalgov": "NÃO ⬜",
       "situacao_tgov": "Em execução",
-      "sit_contrat_tgov": "Normal"
+      "sit_contrat_tgov": "Normal",
+      "fase_emendas": "em andamento"
     },
     {
       "numero": "907040",
@@ -806,7 +831,8 @@
       "pagamento": "NÃO",
       "apto_fiscalgov": "NÃO ⬜",
       "situacao_tgov": "Em execução",
-      "sit_contrat_tgov": "Normal"
+      "sit_contrat_tgov": "Normal",
+      "fase_emendas": "em andamento"
     },
     {
       "numero": "907045",
@@ -837,7 +863,8 @@
       "pagamento": "SIM",
       "apto_fiscalgov": "SIM ✅",
       "situacao_tgov": "Em execução",
-      "sit_contrat_tgov": "Normal"
+      "sit_contrat_tgov": "Normal",
+      "fase_emendas": "em andamento"
     },
     {
       "numero": "907050",
@@ -868,7 +895,8 @@
       "pagamento": "NÃO",
       "apto_fiscalgov": "NÃO ⬜",
       "situacao_tgov": "Em execução",
-      "sit_contrat_tgov": "Normal"
+      "sit_contrat_tgov": "Normal",
+      "fase_emendas": "em andamento"
     },
     {
       "numero": "737058",
@@ -899,7 +927,8 @@
       "pagamento": "NÃO",
       "apto_fiscalgov": "NÃO ⬜",
       "situacao_tgov": "Em execução",
-      "sit_contrat_tgov": "Normal"
+      "sit_contrat_tgov": "Normal",
+      "fase_emendas": "em andamento"
     },
     {
       "numero": "887234",
@@ -930,7 +959,8 @@
       "pagamento": "SIM",
       "apto_fiscalgov": "SIM ✅",
       "situacao_tgov": "Em execução",
-      "sit_contrat_tgov": "Normal"
+      "sit_contrat_tgov": "Normal",
+      "fase_emendas": "em andamento"
     },
     {
       "numero": "902401",
@@ -961,7 +991,8 @@
       "pagamento": "SIM",
       "apto_fiscalgov": "SIM ✅",
       "situacao_tgov": "Em execução",
-      "sit_contrat_tgov": "Normal"
+      "sit_contrat_tgov": "Normal",
+      "fase_emendas": "em andamento"
     },
     {
       "numero": "899533",
@@ -992,7 +1023,8 @@
       "pagamento": "NÃO",
       "apto_fiscalgov": "NÃO ⬜",
       "situacao_tgov": "Em execução",
-      "sit_contrat_tgov": "Normal"
+      "sit_contrat_tgov": "Normal",
+      "fase_emendas": "em andamento"
     },
     {
       "numero": "900838",
@@ -1023,7 +1055,8 @@
       "pagamento": "",
       "apto_fiscalgov": "",
       "situacao_tgov": "Prestação de Contas em Análise",
-      "sit_contrat_tgov": "Normal"
+      "sit_contrat_tgov": "Normal",
+      "fase_emendas": "em andamento"
     },
     {
       "numero": "900837",
@@ -1054,7 +1087,8 @@
       "pagamento": "SIM",
       "apto_fiscalgov": "SIM ✅",
       "situacao_tgov": "Em execução",
-      "sit_contrat_tgov": "Normal"
+      "sit_contrat_tgov": "Normal",
+      "fase_emendas": "em andamento"
     },
     {
       "numero": "900840",
@@ -1085,7 +1119,8 @@
       "pagamento": "SIM",
       "apto_fiscalgov": "SIM ✅",
       "situacao_tgov": "Em execução",
-      "sit_contrat_tgov": "Normal"
+      "sit_contrat_tgov": "Normal",
+      "fase_emendas": "em andamento"
     },
     {
       "numero": "899540",
@@ -1116,7 +1151,8 @@
       "pagamento": "",
       "apto_fiscalgov": "",
       "situacao_tgov": "Prestação de Contas em Análise",
-      "sit_contrat_tgov": "Normal"
+      "sit_contrat_tgov": "Normal",
+      "fase_emendas": "em andamento"
     },
     {
       "numero": "899530",
@@ -1147,7 +1183,8 @@
       "pagamento": "NÃO",
       "apto_fiscalgov": "NÃO ⬜",
       "situacao_tgov": "Em execução",
-      "sit_contrat_tgov": "Normal"
+      "sit_contrat_tgov": "Normal",
+      "fase_emendas": "em andamento"
     },
     {
       "numero": "847194",
@@ -1178,7 +1215,8 @@
       "pagamento": "NÃO",
       "apto_fiscalgov": "NÃO ⬜",
       "situacao_tgov": "Em execução",
-      "sit_contrat_tgov": "Normal"
+      "sit_contrat_tgov": "Normal",
+      "fase_emendas": "em andamento"
     },
     {
       "numero": "920090",
@@ -1209,7 +1247,8 @@
       "pagamento": "SIM",
       "apto_fiscalgov": "SIM ✅",
       "situacao_tgov": "Em execução",
-      "sit_contrat_tgov": "Normal"
+      "sit_contrat_tgov": "Normal",
+      "fase_emendas": "projeto aprovado"
     },
     {
       "numero": "915500",
@@ -1240,7 +1279,8 @@
       "pagamento": "",
       "apto_fiscalgov": "",
       "situacao_tgov": "Em execução",
-      "sit_contrat_tgov": "Normal"
+      "sit_contrat_tgov": "Normal",
+      "fase_emendas": "em andamento"
     },
     {
       "numero": "946262",
@@ -1271,7 +1311,8 @@
       "pagamento": "",
       "apto_fiscalgov": "",
       "situacao_tgov": "Prestação de Contas Concluída",
-      "sit_contrat_tgov": "Normal"
+      "sit_contrat_tgov": "Normal",
+      "fase_emendas": "recurso recebido"
     },
     {
       "numero": "947350",
@@ -1302,7 +1343,8 @@
       "pagamento": "",
       "apto_fiscalgov": "",
       "situacao_tgov": "Prestação de Contas Aprovada",
-      "sit_contrat_tgov": "Normal"
+      "sit_contrat_tgov": "Normal",
+      "fase_emendas": "recurso recebido"
     },
     {
       "numero": "946258",
@@ -1333,7 +1375,8 @@
       "pagamento": "SIM",
       "apto_fiscalgov": "SIM ✅",
       "situacao_tgov": "Em execução",
-      "sit_contrat_tgov": "Normal"
+      "sit_contrat_tgov": "Normal",
+      "fase_emendas": "projeto aprovado"
     },
     {
       "numero": "946257",
@@ -1364,7 +1407,8 @@
       "pagamento": "",
       "apto_fiscalgov": "",
       "situacao_tgov": "Prestação de Contas Iniciada por Antecipação",
-      "sit_contrat_tgov": "Normal"
+      "sit_contrat_tgov": "Normal",
+      "fase_emendas": "projeto aprovado"
     },
     {
       "numero": "946261",
@@ -1395,7 +1439,8 @@
       "pagamento": "",
       "apto_fiscalgov": "",
       "situacao_tgov": "Prestação de Contas Concluída",
-      "sit_contrat_tgov": "Normal"
+      "sit_contrat_tgov": "Normal",
+      "fase_emendas": "projeto aprovado"
     },
     {
       "numero": "946260",
@@ -1426,7 +1471,8 @@
       "pagamento": "SIM",
       "apto_fiscalgov": "SIM ✅",
       "situacao_tgov": "Em execução",
-      "sit_contrat_tgov": "Normal"
+      "sit_contrat_tgov": "Normal",
+      "fase_emendas": "projeto aprovado"
     },
     {
       "numero": "946259",
@@ -1457,7 +1503,8 @@
       "pagamento": "",
       "apto_fiscalgov": "",
       "situacao_tgov": "Prestação de Contas Concluída",
-      "sit_contrat_tgov": "Normal"
+      "sit_contrat_tgov": "Normal",
+      "fase_emendas": "projeto aprovado"
     },
     {
       "numero": "947533",
@@ -1488,7 +1535,8 @@
       "pagamento": "SIM",
       "apto_fiscalgov": "SIM ✅",
       "situacao_tgov": "Em execução",
-      "sit_contrat_tgov": "Normal"
+      "sit_contrat_tgov": "Normal",
+      "fase_emendas": "projeto aprovado"
     },
     {
       "numero": "947106",
@@ -1519,7 +1567,8 @@
       "pagamento": "",
       "apto_fiscalgov": "",
       "situacao_tgov": "Prestação de Contas Concluída",
-      "sit_contrat_tgov": "Normal"
+      "sit_contrat_tgov": "Normal",
+      "fase_emendas": "projeto aprovado"
     },
     {
       "numero": "947530",
@@ -1550,7 +1599,8 @@
       "pagamento": "",
       "apto_fiscalgov": "",
       "situacao_tgov": "Prestação de Contas Iniciada por Antecipação",
-      "sit_contrat_tgov": "Normal"
+      "sit_contrat_tgov": "Normal",
+      "fase_emendas": "projeto aprovado"
     },
     {
       "numero": "947531",
@@ -1581,7 +1631,8 @@
       "pagamento": "",
       "apto_fiscalgov": "",
       "situacao_tgov": "Prestação de Contas Iniciada por Antecipação",
-      "sit_contrat_tgov": "Normal"
+      "sit_contrat_tgov": "Normal",
+      "fase_emendas": "projeto aprovado"
     },
     {
       "numero": "947532",
@@ -1612,7 +1663,8 @@
       "pagamento": "",
       "apto_fiscalgov": "",
       "situacao_tgov": "Prestação de Contas Concluída",
-      "sit_contrat_tgov": "Normal"
+      "sit_contrat_tgov": "Normal",
+      "fase_emendas": "projeto aprovado"
     },
     {
       "numero": "946801",
@@ -1643,7 +1695,8 @@
       "pagamento": "NÃO",
       "apto_fiscalgov": "NÃO ⬜",
       "situacao_tgov": "Em execução",
-      "sit_contrat_tgov": "Normal"
+      "sit_contrat_tgov": "Normal",
+      "fase_emendas": "projeto aprovado"
     },
     {
       "numero": "946378",
@@ -1674,7 +1727,8 @@
       "pagamento": "NÃO",
       "apto_fiscalgov": "NÃO ⬜",
       "situacao_tgov": "Em execução",
-      "sit_contrat_tgov": "Normal"
+      "sit_contrat_tgov": "Normal",
+      "fase_emendas": "projeto aprovado"
     },
     {
       "numero": "947580",
@@ -1705,7 +1759,8 @@
       "pagamento": "SIM",
       "apto_fiscalgov": "SIM ✅",
       "situacao_tgov": "Em execução",
-      "sit_contrat_tgov": "Normal"
+      "sit_contrat_tgov": "Normal",
+      "fase_emendas": "projeto aprovado"
     },
     {
       "numero": "953168",
@@ -1736,7 +1791,8 @@
       "pagamento": "SIM",
       "apto_fiscalgov": "SIM ✅",
       "situacao_tgov": "Em execução",
-      "sit_contrat_tgov": "Normal"
+      "sit_contrat_tgov": "Normal",
+      "fase_emendas": "projeto aprovado"
     },
     {
       "numero": "947927",
@@ -1767,7 +1823,8 @@
       "pagamento": "",
       "apto_fiscalgov": "",
       "situacao_tgov": "Prestação de Contas Concluída",
-      "sit_contrat_tgov": "Normal"
+      "sit_contrat_tgov": "Normal",
+      "fase_emendas": "projeto aprovado"
     },
     {
       "numero": "946039",
@@ -1798,7 +1855,8 @@
       "pagamento": "SIM",
       "apto_fiscalgov": "SIM ✅",
       "situacao_tgov": "Em execução",
-      "sit_contrat_tgov": "Normal"
+      "sit_contrat_tgov": "Normal",
+      "fase_emendas": "projeto aprovado"
     },
     {
       "numero": "945650",
@@ -1829,7 +1887,8 @@
       "pagamento": "SIM",
       "apto_fiscalgov": "SIM ✅",
       "situacao_tgov": "Em execução",
-      "sit_contrat_tgov": "Normal"
+      "sit_contrat_tgov": "Normal",
+      "fase_emendas": "projeto aprovado"
     },
     {
       "numero": "947907",
@@ -1860,7 +1919,8 @@
       "pagamento": "NÃO",
       "apto_fiscalgov": "NÃO ⬜",
       "situacao_tgov": "Em execução",
-      "sit_contrat_tgov": "Normal"
+      "sit_contrat_tgov": "Normal",
+      "fase_emendas": "projeto aprovado"
     },
     {
       "numero": "946738",
@@ -1891,7 +1951,8 @@
       "pagamento": "NÃO",
       "apto_fiscalgov": "NÃO ⬜",
       "situacao_tgov": "Em execução",
-      "sit_contrat_tgov": "Normal"
+      "sit_contrat_tgov": "Normal",
+      "fase_emendas": "projeto aprovado"
     },
     {
       "numero": "945158",
@@ -1922,7 +1983,8 @@
       "pagamento": "SIM",
       "apto_fiscalgov": "SIM ✅",
       "situacao_tgov": "Em execução",
-      "sit_contrat_tgov": "Normal"
+      "sit_contrat_tgov": "Normal",
+      "fase_emendas": "projeto aprovado"
     },
     {
       "numero": "947493",
@@ -1953,7 +2015,8 @@
       "pagamento": "",
       "apto_fiscalgov": "",
       "situacao_tgov": "Prestação de Contas Concluída",
-      "sit_contrat_tgov": "Normal"
+      "sit_contrat_tgov": "Normal",
+      "fase_emendas": "recurso recebido"
     },
     {
       "numero": "946367",
@@ -1984,7 +2047,8 @@
       "pagamento": "SIM",
       "apto_fiscalgov": "SIM ✅",
       "situacao_tgov": "Em execução",
-      "sit_contrat_tgov": "Normal"
+      "sit_contrat_tgov": "Normal",
+      "fase_emendas": "projeto aprovado"
     },
     {
       "numero": "951016",
@@ -2015,7 +2079,8 @@
       "pagamento": "NÃO",
       "apto_fiscalgov": "SIM ✅",
       "situacao_tgov": "Em execução",
-      "sit_contrat_tgov": "Normal"
+      "sit_contrat_tgov": "Normal",
+      "fase_emendas": "projeto aprovado"
     },
     {
       "numero": "951018",
@@ -2046,7 +2111,8 @@
       "pagamento": "NÃO",
       "apto_fiscalgov": "SIM ✅",
       "situacao_tgov": "Em execução",
-      "sit_contrat_tgov": "Normal"
+      "sit_contrat_tgov": "Normal",
+      "fase_emendas": "projeto aprovado"
     },
     {
       "numero": "951943",
@@ -2077,7 +2143,8 @@
       "pagamento": "",
       "apto_fiscalgov": "",
       "situacao_tgov": "Prestação de Contas Concluída",
-      "sit_contrat_tgov": "Normal"
+      "sit_contrat_tgov": "Normal",
+      "fase_emendas": "recurso recebido"
     },
     {
       "numero": "952006",
@@ -2108,7 +2175,8 @@
       "pagamento": "SIM",
       "apto_fiscalgov": "SIM ✅",
       "situacao_tgov": "Em execução",
-      "sit_contrat_tgov": "Normal"
+      "sit_contrat_tgov": "Normal",
+      "fase_emendas": "projeto aprovado"
     },
     {
       "numero": "967173",
@@ -2139,7 +2207,8 @@
       "pagamento": "NÃO",
       "apto_fiscalgov": "NÃO ⬜",
       "situacao_tgov": "Em execução",
-      "sit_contrat_tgov": "Normal"
+      "sit_contrat_tgov": "Normal",
+      "fase_emendas": "projeto aprovado"
     },
     {
       "numero": "967182",
@@ -2170,7 +2239,8 @@
       "pagamento": "SIM",
       "apto_fiscalgov": "SIM ✅",
       "situacao_tgov": "Em execução",
-      "sit_contrat_tgov": "Normal"
+      "sit_contrat_tgov": "Normal",
+      "fase_emendas": "projeto aprovado"
     },
     {
       "numero": "945303",
@@ -2201,7 +2271,8 @@
       "pagamento": "NÃO",
       "apto_fiscalgov": "NÃO ⬜",
       "situacao_tgov": "Em execução",
-      "sit_contrat_tgov": "Normal"
+      "sit_contrat_tgov": "Normal",
+      "fase_emendas": "projeto aprovado"
     },
     {
       "numero": "945299",
@@ -2232,7 +2303,8 @@
       "pagamento": "NÃO",
       "apto_fiscalgov": "NÃO ⬜",
       "situacao_tgov": "Em execução",
-      "sit_contrat_tgov": "Normal"
+      "sit_contrat_tgov": "Normal",
+      "fase_emendas": "projeto aprovado"
     },
     {
       "numero": "953190",
@@ -2263,7 +2335,8 @@
       "pagamento": "NÃO",
       "apto_fiscalgov": "NÃO ⬜",
       "situacao_tgov": "Em execução",
-      "sit_contrat_tgov": "Normal"
+      "sit_contrat_tgov": "Normal",
+      "fase_emendas": "projeto aprovado"
     },
     {
       "numero": "969555",
@@ -2294,7 +2367,8 @@
       "pagamento": "SIM",
       "apto_fiscalgov": "SIM ✅",
       "situacao_tgov": "Em execução",
-      "sit_contrat_tgov": "Normal"
+      "sit_contrat_tgov": "Normal",
+      "fase_emendas": "projeto aprovado"
     },
     {
       "numero": "973618",
@@ -2325,7 +2399,8 @@
       "pagamento": "NÃO",
       "apto_fiscalgov": "NÃO ⬜",
       "situacao_tgov": "Em execução",
-      "sit_contrat_tgov": "Cláusula Suspensiva"
+      "sit_contrat_tgov": "Cláusula Suspensiva",
+      "fase_emendas": "em andamento"
     },
     {
       "numero": "965789",
@@ -2356,7 +2431,8 @@
       "pagamento": "NÃO",
       "apto_fiscalgov": "NÃO ⬜",
       "situacao_tgov": "Em execução",
-      "sit_contrat_tgov": "Normal"
+      "sit_contrat_tgov": "Normal",
+      "fase_emendas": "projeto aprovado"
     },
     {
       "numero": "992850",
@@ -2387,7 +2463,8 @@
       "pagamento": "NÃO",
       "apto_fiscalgov": "NÃO ⬜",
       "situacao_tgov": "Em execução",
-      "sit_contrat_tgov": "Cláusula Suspensiva"
+      "sit_contrat_tgov": "Cláusula Suspensiva",
+      "fase_emendas": "em andamento"
     },
     {
       "numero": "992940",
@@ -2418,7 +2495,8 @@
       "pagamento": "NÃO",
       "apto_fiscalgov": "NÃO ⬜",
       "situacao_tgov": "Em execução",
-      "sit_contrat_tgov": "Cláusula Suspensiva"
+      "sit_contrat_tgov": "Cláusula Suspensiva",
+      "fase_emendas": "em andamento"
     },
     {
       "numero": "980844",
@@ -2449,7 +2527,8 @@
       "pagamento": "NÃO",
       "apto_fiscalgov": "NÃO ⬜",
       "situacao_tgov": "Em execução",
-      "sit_contrat_tgov": "Normal"
+      "sit_contrat_tgov": "Normal",
+      "fase_emendas": "projeto aprovado"
     },
     {
       "numero": "981146",
@@ -2480,7 +2559,8 @@
       "pagamento": "NÃO",
       "apto_fiscalgov": "NÃO ⬜",
       "situacao_tgov": "Em execução",
-      "sit_contrat_tgov": "Normal"
+      "sit_contrat_tgov": "Normal",
+      "fase_emendas": "projeto aprovado"
     },
     {
       "numero": "983950",
@@ -2511,7 +2591,8 @@
       "pagamento": "NÃO",
       "apto_fiscalgov": "NÃO ⬜",
       "situacao_tgov": "Em execução",
-      "sit_contrat_tgov": "Cláusula Suspensiva"
+      "sit_contrat_tgov": "Cláusula Suspensiva",
+      "fase_emendas": "em andamento"
     },
     {
       "numero": "986179",
@@ -2542,7 +2623,8 @@
       "pagamento": "NÃO",
       "apto_fiscalgov": "NÃO ⬜",
       "situacao_tgov": "Em execução",
-      "sit_contrat_tgov": "Normal"
+      "sit_contrat_tgov": "Normal",
+      "fase_emendas": "projeto aprovado"
     },
     {
       "numero": "986155",
@@ -2573,7 +2655,8 @@
       "pagamento": "NÃO",
       "apto_fiscalgov": "NÃO ⬜",
       "situacao_tgov": "Em execução",
-      "sit_contrat_tgov": "Cláusula Suspensiva"
+      "sit_contrat_tgov": "Cláusula Suspensiva",
+      "fase_emendas": "em andamento"
     },
     {
       "numero": "985797",
@@ -2604,7 +2687,8 @@
       "pagamento": "NÃO",
       "apto_fiscalgov": "NÃO ⬜",
       "situacao_tgov": "Em execução",
-      "sit_contrat_tgov": "Normal"
+      "sit_contrat_tgov": "Normal",
+      "fase_emendas": "projeto aprovado"
     },
     {
       "numero": "986602",
@@ -2635,7 +2719,8 @@
       "pagamento": "NÃO",
       "apto_fiscalgov": "NÃO ⬜",
       "situacao_tgov": "Em execução",
-      "sit_contrat_tgov": "Cláusula Suspensiva"
+      "sit_contrat_tgov": "Cláusula Suspensiva",
+      "fase_emendas": "em andamento"
     },
     {
       "numero": "988101",
@@ -2666,7 +2751,8 @@
       "pagamento": "NÃO",
       "apto_fiscalgov": "NÃO ⬜",
       "situacao_tgov": "Em execução",
-      "sit_contrat_tgov": "Cláusula Suspensiva"
+      "sit_contrat_tgov": "Cláusula Suspensiva",
+      "fase_emendas": "em andamento"
     },
     {
       "numero": "988500",
@@ -2697,7 +2783,8 @@
       "pagamento": "NÃO",
       "apto_fiscalgov": "NÃO ⬜",
       "situacao_tgov": "Em execução",
-      "sit_contrat_tgov": "Normal"
+      "sit_contrat_tgov": "Normal",
+      "fase_emendas": "projeto aprovado"
     },
     {
       "numero": "989250",
@@ -2728,7 +2815,8 @@
       "pagamento": "NÃO",
       "apto_fiscalgov": "NÃO ⬜",
       "situacao_tgov": "Em execução",
-      "sit_contrat_tgov": "Cláusula Suspensiva"
+      "sit_contrat_tgov": "Cláusula Suspensiva",
+      "fase_emendas": "em andamento"
     },
     {
       "numero": "988784",
@@ -2759,7 +2847,8 @@
       "pagamento": "NÃO",
       "apto_fiscalgov": "NÃO ⬜",
       "situacao_tgov": "Em execução",
-      "sit_contrat_tgov": "Cláusula Suspensiva"
+      "sit_contrat_tgov": "Cláusula Suspensiva",
+      "fase_emendas": "em andamento"
     },
     {
       "numero": "988634",
@@ -2790,7 +2879,8 @@
       "pagamento": "NÃO",
       "apto_fiscalgov": "NÃO ⬜",
       "situacao_tgov": "Em execução",
-      "sit_contrat_tgov": "Cláusula Suspensiva"
+      "sit_contrat_tgov": "Cláusula Suspensiva",
+      "fase_emendas": "em andamento"
     },
     {
       "numero": "988972",
@@ -2821,7 +2911,8 @@
       "pagamento": "NÃO",
       "apto_fiscalgov": "NÃO ⬜",
       "situacao_tgov": "Em execução",
-      "sit_contrat_tgov": "Cláusula Suspensiva"
+      "sit_contrat_tgov": "Cláusula Suspensiva",
+      "fase_emendas": "em andamento"
     },
     {
       "numero": "988779",
@@ -2852,7 +2943,8 @@
       "pagamento": "NÃO",
       "apto_fiscalgov": "NÃO ⬜",
       "situacao_tgov": "Em execução",
-      "sit_contrat_tgov": "Cláusula Suspensiva"
+      "sit_contrat_tgov": "Cláusula Suspensiva",
+      "fase_emendas": "em andamento"
     },
     {
       "numero": "988901",
@@ -2883,7 +2975,8 @@
       "pagamento": "NÃO",
       "apto_fiscalgov": "NÃO ⬜",
       "situacao_tgov": "Em execução",
-      "sit_contrat_tgov": "Cláusula Suspensiva"
+      "sit_contrat_tgov": "Cláusula Suspensiva",
+      "fase_emendas": "em andamento"
     },
     {
       "numero": "998329",
@@ -2914,7 +3007,8 @@
       "pagamento": "Não encontrado",
       "apto_fiscalgov": "NÃO ⬜",
       "situacao_tgov": "",
-      "sit_contrat_tgov": ""
+      "sit_contrat_tgov": "",
+      "fase_emendas": "em andamento"
     },
     {
       "numero": "999001",
@@ -2945,7 +3039,8 @@
       "pagamento": "Não encontrado",
       "apto_fiscalgov": "NÃO ⬜",
       "situacao_tgov": "",
-      "sit_contrat_tgov": ""
+      "sit_contrat_tgov": "",
+      "fase_emendas": "em andamento"
     },
     {
       "numero": "999050",
@@ -2976,7 +3071,8 @@
       "pagamento": "Não encontrado",
       "apto_fiscalgov": "NÃO ⬜",
       "situacao_tgov": "",
-      "sit_contrat_tgov": ""
+      "sit_contrat_tgov": "",
+      "fase_emendas": "em andamento"
     },
     {
       "numero": "999010",
@@ -3007,7 +3103,8 @@
       "pagamento": "Não encontrado",
       "apto_fiscalgov": "NÃO ⬜",
       "situacao_tgov": "",
-      "sit_contrat_tgov": ""
+      "sit_contrat_tgov": "",
+      "fase_emendas": "em andamento"
     },
     {
       "numero": "999021",
@@ -3038,7 +3135,40 @@
       "pagamento": "Não encontrado",
       "apto_fiscalgov": "NÃO ⬜",
       "situacao_tgov": "",
-      "sit_contrat_tgov": ""
+      "sit_contrat_tgov": "",
+      "fase_emendas": "em andamento"
+    },
+    {
+      "numero": "7AAALY",
+      "objeto": "Não encontrado",
+      "vigencia": "",
+      "vigencia_fmt": "",
+      "vigencia_inicio": "",
+      "vigencia_suspensiva": "",
+      "sei": "",
+      "fiscal": "",
+      "dias": null,
+      "status": "SEM DADOS",
+      "situacao": "",
+      "v_total": "",
+      "v_liberado": "",
+      "v_contrapartida": "",
+      "v_ultima_liberacao": "",
+      "ultima_liberacao": "",
+      "pct_exec": "",
+      "autor_emenda": "",
+      "prestacao": "",
+      "concedente": "",
+      "concedente_sigla": "",
+      "mandataria": "",
+      "numero_original": "",
+      "foto_app": "",
+      "medicao": "",
+      "pagamento": "",
+      "apto_fiscalgov": "",
+      "situacao_tgov": "",
+      "sit_contrat_tgov": "",
+      "fase_emendas": "em andamento"
     }
   ],
   "exec_financeira": [

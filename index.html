@@ -336,6 +336,8 @@
         <div class="sus-lista" id="sus-lista">
           <div class="sus-vazio">Carregando…</div>
         </div>
+        <!-- Legenda obrigatória: no celular não existe o balão de hover. -->
+        <div class="fase-legenda" id="fase-legenda"></div>
       </div>
 
       <!-- FISCALGOV -->
@@ -500,6 +502,8 @@ function renderCoortes(conv) {
 
 /* ── Travados por cláusula suspensiva ────────────────────────────────────── */
 function renderSuspensivas(conv) {
+  IDEPI.setHtml('fase-legenda', '<strong style="color:var(--text)">Fase:</strong>' +
+                IDEPI.legendaFases());
   var lista = IDEPI.travadosPorSuspensiva(conv);
   IDEPI.setTxt('sus-qtd', lista.length + (lista.length === 1 ? ' convênio' : ' convênios'));
   var box = IDEPI.$('sus-lista');
@@ -519,7 +523,7 @@ function renderSuspensivas(conv) {
     }
     return '<div class="sus-item">' +
              '<a class="sus-num" href="vigencias.html?busca=' + IDEPI.esc(c.numero) + '">' +
-               IDEPI.esc(c.numero) + '</a>' +
+               IDEPI.faixaFase(c) + IDEPI.esc(c.numero) + '</a>' +
              '<div class="sus-obj" title="' + IDEPI.esc(c.objeto || '') + '">' +
                IDEPI.esc(c.objeto || '—') + '</div>' +
              '<div class="sus-prazo' + cls + '">' + txt + '<small>' + sub + '</small></div>' +

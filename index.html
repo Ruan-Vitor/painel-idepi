@@ -103,7 +103,7 @@
 }
 
 /* ── GRADE DE STATUS ── */
-.status-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;flex-shrink:0}
+.status-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:12px;flex-shrink:0}
 .st-card{background:var(--surface);border:1px solid var(--border);border-radius:11px;padding:14px 16px;border-top:3px solid transparent;cursor:pointer;transition:transform .14s,box-shadow .14s;text-decoration:none;display:block}
 .st-card:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(26,58,110,.1)}
 .st-card.s-n{border-top-color:#22c55e}
@@ -112,6 +112,7 @@
 .st-card.s-c{border-top-color:#f97316}
 .st-card.s-v{border-top-color:#ef4444}
 .st-card.s-f{border-top-color:#94a3b8}
+.st-card.s-sd{border-top-color:#a78bfa}
 .st-num{font-family:'Sora',sans-serif;font-size:28px;font-weight:800;color:var(--text);line-height:1;margin-bottom:4px}
 .st-lbl{font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:2px}
 .st-desc{font-size:10px;color:#b0bbc8}
@@ -270,6 +271,71 @@
         <a class="st-card s-f" href="vigencias.html?status=finalizado">
           <div class="st-lbl">Finalizado</div><div class="st-num" id="sf">—</div><div class="st-desc">Encerrado</div>
         </a>
+        <a class="st-card s-sd" href="vigencias.html">
+          <div class="st-lbl">Sem data</div><div class="st-num" id="ssd">—</div><div class="st-desc">Proposta não assinada</div>
+        </a>
+      </div>
+
+      <!-- COORTE: legado x nova gestão -->
+      <div class="panels-label"><i class="fa-solid fa-layer-group"></i> Legado e nova gestão</div>
+      <div class="coorte-grid">
+        <div class="co-card">
+          <div class="co-head">
+            <div class="co-titulo">Legado</div>
+            <div class="co-periodo">assinados até 31/12/2022</div>
+          </div>
+          <div class="co-total" id="co-leg-tot">—<small>instrumentos</small></div>
+          <div class="co-barra" id="co-leg-barra"></div>
+          <div class="co-legenda">
+            <span><i style="background:#0d6e4a"></i><b id="co-leg-f">—</b> finalizados</span>
+            <span><i style="background:#3b82f6"></i><b id="co-leg-v">—</b> em execução</span>
+            <span><i style="background:#ef4444"></i><b id="co-leg-x">—</b> vencidos</span>
+          </div>
+        </div>
+        <div class="co-card">
+          <div class="co-head">
+            <div class="co-titulo">Nova gestão</div>
+            <div class="co-periodo">assinados a partir de 01/01/2023</div>
+          </div>
+          <div class="co-total" id="co-nov-tot">—<small>instrumentos</small></div>
+          <div class="co-barra" id="co-nov-barra"></div>
+          <div class="co-legenda">
+            <span><i style="background:#0d6e4a"></i><b id="co-nov-f">—</b> finalizados</span>
+            <span><i style="background:#3b82f6"></i><b id="co-nov-v">—</b> em execução</span>
+            <span><i style="background:#ef4444"></i><b id="co-nov-x">—</b> vencidos</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- KPI: EFICIÊNCIA EM CONCLUIR -->
+      <div class="kpi-card">
+        <div class="kpi-head">
+          <div class="kpi-title"><i class="fa-solid fa-flag-checkered"></i> Eficiência em concluir — % finalizados por coorte</div>
+        </div>
+        <div class="kpi-body">
+          <div class="kpi-linha">
+            <div class="kpi-rot">Legado<small>até 2022</small></div>
+            <div class="kpi-track"><div class="kpi-fill legado" id="kpi-leg" style="width:0%"></div></div>
+            <div class="kpi-pct" id="kpi-leg-pct">—</div>
+          </div>
+          <div class="kpi-linha">
+            <div class="kpi-rot">Nova gestão<small>a partir de 2023</small></div>
+            <div class="kpi-track"><div class="kpi-fill nova" id="kpi-nov" style="width:0%"></div></div>
+            <div class="kpi-pct" id="kpi-nov-pct">—</div>
+          </div>
+          <div class="kpi-nota" id="kpi-nota">—</div>
+        </div>
+      </div>
+
+      <!-- CLÁUSULA SUSPENSIVA -->
+      <div class="fg-card">
+        <div class="fg-card-head">
+          <div class="fg-card-title"><i class="fa-solid fa-hand"></i> Travados por cláusula suspensiva — <span id="sus-qtd">—</span></div>
+          <a class="fg-link" href="vigencias.html"><i class="fa-solid fa-arrow-up-right-from-square"></i> Ver no painel completo</a>
+        </div>
+        <div class="sus-lista" id="sus-lista">
+          <div class="sus-vazio">Carregando…</div>
+        </div>
       </div>
 
       <!-- FISCALGOV -->
@@ -368,6 +434,99 @@
    ══════════════════════════════════════════════════════════════════════ */
 var _dadosGerais = [];   // guardado para a exportação em Excel
 
+/* ── Coortes: legado x nova gestão, e o KPI de eficiência ──────────────────
+   A regra de quem é legado e quem é nova gestão vive no app.js, não aqui —
+   duplicar regra de negócio no HTML foi como o mesmo convênio passou a ter
+   dois status em julho. Esta função só desenha o que o app.js calculou. */
+function renderCoortes(conv) {
+  var g = IDEPI.resumoGestao(conv);
+
+  function pinta(pref, d) {
+    IDEPI.setHtml(pref + '-tot', d.total + '<small>instrumentos</small>');
+    IDEPI.setTxt(pref + '-f', d.finalizados);
+    IDEPI.setTxt(pref + '-v', d.vigentes);
+    IDEPI.setTxt(pref + '-x', d.vencidos);
+    var barra = IDEPI.$(pref + '-barra');
+    if (!barra) return;
+    barra.innerHTML = '';
+    if (!d.total) return;
+    [['f', d.finalizados], ['v', d.vigentes], ['x', d.vencidos]]
+      .forEach(function (par) {
+        if (!par[1]) return;
+        var seg = document.createElement('div');
+        seg.className = 'co-seg ' + par[0];
+        seg.style.width = (par[1] / d.total * 100) + '%';
+        /* Só rotula a fatia que comporta o número — abaixo disso o texto
+           sai cortado e fica pior do que não ter rótulo. */
+        seg.textContent = (par[1] / d.total) > 0.11 ? par[1] : '';
+        seg.title = par[1] + ' de ' + d.total;
+        barra.appendChild(seg);
+      });
+  }
+
+  pinta('co-leg', g.legado);
+  pinta('co-nov', g.nova);
+
+  IDEPI.$('kpi-leg').style.width = g.legado.pct + '%';
+  IDEPI.$('kpi-nov').style.width = g.nova.pct + '%';
+  IDEPI.setTxt('kpi-leg-pct', g.legado.pct + '%');
+  IDEPI.setTxt('kpi-nov-pct', g.nova.pct + '%');
+
+  /* A leitura do número, escrita aqui para o painel não exigir que alguém
+     lembre da regra: concluir o legado é a prioridade, então um percentual
+     alto na nova gestão NÃO compensa um legado parado. */
+  var nota;
+  if (!g.legado.total) {
+    nota = 'Sem convênios de legado para comparar.';
+  } else if (g.legado.pct >= g.nova.pct) {
+    nota = '<strong>O legado está sendo liquidado.</strong> ' + g.legado.finalizados +
+           ' de ' + g.legado.total + ' convênios até 2022 já foram concluídos — ' +
+           'ritmo igual ou melhor que o da nova gestão. É o que se quer ver.';
+  } else {
+    var faltam = g.legado.total - g.legado.finalizados;
+    nota = '<strong>A nova gestão conclui mais rápido</strong> (' + g.nova.pct +
+           '% contra ' + g.legado.pct + '%), o que era esperado: são instrumentos ' +
+           'com menos pendências de origem. Mas a prioridade é o legado — ainda ' +
+           'faltam <strong>' + faltam + '</strong> convênios de até 2022 por concluir' +
+           (g.legado.vencidos ? ', sendo <strong>' + g.legado.vencidos +
+            '</strong> já vencidos' : '') + '.';
+  }
+  if (g.proposta.total) {
+    nota += '<br>Fora da conta: <strong>' + g.proposta.total + '</strong> propostas ' +
+            'ainda não assinadas, que não têm data de início para classificar.';
+  }
+  IDEPI.setHtml('kpi-nota', nota);
+}
+
+/* ── Travados por cláusula suspensiva ────────────────────────────────────── */
+function renderSuspensivas(conv) {
+  var lista = IDEPI.travadosPorSuspensiva(conv);
+  IDEPI.setTxt('sus-qtd', lista.length + (lista.length === 1 ? ' convênio' : ' convênios'));
+  var box = IDEPI.$('sus-lista');
+  if (!box) return;
+  if (!lista.length) {
+    box.innerHTML = '<div class="sus-vazio">Nenhum convênio travado por cláusula suspensiva.</div>';
+    return;
+  }
+  box.innerHTML = lista.map(function (it) {
+    var c = it.c;
+    var cls = '', txt = 'sem data prevista', sub = 'preencher coluna M';
+    if (it.dias !== null) {
+      txt = IDEPI.esc(c.vigencia_suspensiva);
+      sub = it.dias < 0 ? Math.abs(it.dias) + ' dias em atraso'
+                        : 'em ' + it.dias + ' dias';
+      cls = it.dias < 0 ? ' passou' : (it.dias <= 60 ? ' perto' : '');
+    }
+    return '<div class="sus-item">' +
+             '<a class="sus-num" href="vigencias.html?busca=' + IDEPI.esc(c.numero) + '">' +
+               IDEPI.esc(c.numero) + '</a>' +
+             '<div class="sus-obj" title="' + IDEPI.esc(c.objeto || '') + '">' +
+               IDEPI.esc(c.objeto || '—') + '</div>' +
+             '<div class="sus-prazo' + cls + '">' + txt + '<small>' + sub + '</small></div>' +
+           '</div>';
+  }).join('');
+}
+
 IDEPI.dados.carregar()
   .then(function (j) {
     IDEPI.setHtml('hd-ts', IDEPI.dados.rotuloOrigem(j).replace('Atualizado ', 'Atualizado<br>'));
@@ -375,7 +534,7 @@ IDEPI.dados.carregar()
     var conv = j.convenios || [];
     _dadosGerais = conv;
 
-    var ct = { normal:0, alerta:0, atencao:0, critico:0, vencido:0, finalizado:0 };
+    var ct = { normal:0, alerta:0, atencao:0, critico:0, vencido:0, finalizado:0, sem_data:0 };
     var liberado = 0;
 
     conv.forEach(function (c) {
@@ -396,8 +555,12 @@ IDEPI.dados.carregar()
     IDEPI.setTxt('sc',  ct.critico);
     IDEPI.setTxt('sv',  ct.vencido);
     IDEPI.setTxt('sf',  ct.finalizado);
+    IDEPI.setTxt('ssd', ct.sem_data);
     IDEPI.setTxt('pc-crit', ct.critico);
     IDEPI.setTxt('pc-venc', ct.vencido);
+
+    renderCoortes(conv);
+    renderSuspensivas(conv);
 
     var ex = IDEPI.resumoEX01(conv);
     IDEPI.setTxt('fg-total', ex.vigentes);
@@ -437,7 +600,7 @@ function exportarExcelGeral() {
       'Nº SEI','Mandatária','Emenda','Autor Emenda'
     ];
 
-    var ct = { normal:0, alerta:0, atencao:0, critico:0, vencido:0, finalizado:0 };
+    var ct = { normal:0, alerta:0, atencao:0, critico:0, vencido:0, finalizado:0, sem_data:0 };
     var libTotal = 0;
 
     var linhas = _dadosGerais.map(function (c) {

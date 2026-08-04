@@ -228,6 +228,27 @@
            '"><span class="sr-only">' + esc(f.rotulo) + '</span></span>';
   }
 
+  /** Município entre parênteses, quando o objeto não o nomeia.
+   *
+   *  Parte dos objetos da CGU não diz a cidade — o 988901 é só "PAVIMENTAÇÃO
+   *  DE ESTRADAS VICINAIS" e fica em Paulistana. O nome vem do controle do
+   *  setor (planilha Emendas), NÃO da CGU nem do Transferegov: por isso sai
+   *  entre parênteses e em estilo próprio, separado do objeto, em vez de ser
+   *  emendado ao texto como se fosse oficial.
+   *
+   *  Se o objeto já cita a cidade, não repete. */
+  function municipioExtra(c) {
+    var m = String((c && c.municipio_emendas) || '').trim();
+    if (!m) return '';
+    var obj = norm(c.objeto);
+    var alvo = norm(m).replace(/[-–]\s*pi\.?$/, '').replace(/\/\s*pi\.?$/, '').trim();
+    if (!alvo) return '';
+    if (obj.indexOf(alvo) !== -1) return '';
+    return ' <span class="muni-extra" title="Município conforme o controle ' +
+           'do setor (planilha Emendas Senador) — não consta do objeto oficial">(' +
+           esc(m) + ')</span>';
+  }
+
   /** Legenda — obrigatória, porque no celular o balão de hover não existe. */
   function legendaFases() {
     return Object.keys(FASES).map(function (k) {
@@ -643,6 +664,7 @@
   IDEPI.aguardaPrestacao = aguardaPrestacao;
   IDEPI.calcStatus = calcStatus;
   IDEPI.faseDe = faseDe;
+  IDEPI.municipioExtra = municipioExtra;
   IDEPI.faixaFase = faixaFase;
   IDEPI.legendaFases = legendaFases;
   IDEPI.FASES = FASES;

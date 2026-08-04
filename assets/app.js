@@ -165,7 +165,13 @@
        do Transferegov já diz que a vigência acabou. */
     if (sit === 'aguarda') return { st: 'vencido', dias: dias, temSusp: temSusp };
 
-    if (dias === null) return { st: 'finalizado', dias: null, temSusp: false };
+    /* Sem data e sem situação decisiva NÃO é finalizado — é dado que falta.
+       São as propostas ainda não assinadas (999001, 999050, 999010, 999021),
+       que não têm início nem término de vigência em fonte nenhuma. Devolver
+       'finalizado' aqui inflava o card de encerrados e, pior, fazia o KPI de
+       eficiência mostrar 100% de conclusão para quem sequer começou.
+       O main.py sempre chamou isso de SEM DATA — os dois agora concordam. */
+    if (dias === null) return { st: 'sem_data', dias: null, temSusp: false };
 
     var st = dias < 0 ? 'vencido'
            : dias <= 30 ? 'critico'
@@ -604,6 +610,6 @@
 
   /* Rótulos e cores de status — usados por mais de uma página */
   IDEPI.NOME_ST = { normal: 'Normal', alerta: 'Alerta', atencao: 'Atenção', critico: 'Crítico', vencido: 'Vencido', finalizado: 'Finalizado', sem_data: 'Sem data' };
-  IDEPI.COR_ST = { normal: '#22c55e', alerta: '#3b82f6', atencao: '#eab308', critico: '#f97316', vencido: '#ef4444', finalizado: '#94a3b8' };
+  IDEPI.COR_ST = { normal: '#22c55e', alerta: '#3b82f6', atencao: '#eab308', critico: '#f97316', vencido: '#ef4444', finalizado: '#94a3b8', sem_data: '#a78bfa' };
 
 })(window);

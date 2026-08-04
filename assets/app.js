@@ -175,6 +175,69 @@
     return { st: st, dias: dias, temSusp: temSusp };
   }
 
+  /* ── Coorte: legado (até 2022) x nova gestão (a partir de 2023) ───────── */
+
+  /* O corte é a data de INÍCIO DE VIGÊNCIA, que a CGU devolve em
+     `dataInicioVigencia` e o main.py publica como `vigencia_inicio`. Em
+     03/08/2026 ela foi conferida contra as abas "ATE 2022 VIGENTES" e
+     "A PARTIR DE 2023.01.01" da planilha oficial Emendas Senador: 94 dos 98
+     convênios, zero divergências. Os 4 restantes são propostas ainda não
+     assinadas — não têm data de início em lugar nenhum, nem na CGU nem no
+     Transferegov, e por isso formam uma terceira categoria em vez de serem
+     empurrados para um dos lados. */
+  var CORTE_GESTAO = 2023;
+
+  /** @returns {'legado'|'nova'|'proposta'} */
+  function gestaoDe(c) {
+    var d = parseDateBR(c && (c.vigencia_inicio || c.vigencia_inicio_fmt));
+    if (!d) return 'proposta';
+    return d.getFullYear() >= CORTE_GESTAO ? 'nova' : 'legado';
+  }
+
+  /** Eficiência em CONCLUIR, por coorte.
+   *
+   *  A pergunta que este número responde: a nova gestão conclui mais fácil
+   *  que o legado? A hipótese do IDEPI é que sim, por ter menos pendências
+   *  de origem. Mas a PRIORIDADE é liquidar os antigos — então o que
+   *  interessa acompanhar é o percentual do LEGADO subindo, não o da nova
+   *  sendo maior. Um legado parado é o alerta, mesmo com a nova indo bem. */
+  function resumoGestao(convenios) {
+    var base = { total: 0, finalizados: 0, vigentes: 0, vencidos: 0, pct: 0 };
+    var r = {
+      legado:   Object.assign({}, base),
+      nova:     Object.assign({}, base),
+      proposta: Object.assign({}, base)
+    };
+    (convenios || []).forEach(function (c) {
+      var g = r[gestaoDe(c)];
+      g.total++;
+      var st = calcStatus(c).st;
+      if (st === 'finalizado') g.finalizados++;
+      else if (st === 'vencido') g.vencidos++;
+      else g.vigentes++;
+    });
+    ['legado', 'nova', 'proposta'].forEach(function (k) {
+      r[k].pct = r[k].total ? Math.round(r[k].finalizados / r[k].total * 100) : 0;
+    });
+    return r;
+  }
+
+  /** Convênios travados por cláusula suspensiva, com o prazo de resolução.
+   *  Ordena pelos que vencem primeiro — é o que precisa de cobrança. */
+  function travadosPorSuspensiva(convenios) {
+    return (convenios || []).filter(function (c) {
+      return REGEX_SUSPENSIVA.test(norm(c.sit_contrat_tgov));
+    }).map(function (c) {
+      var d = parseDateBR(c.vigencia_suspensiva);
+      return { c: c, data: d, dias: d ? diasAte(d) : null };
+    }).sort(function (a, b) {
+      if (a.data && b.data) return a.data - b.data;
+      return a.data ? -1 : 1;
+    });
+  }
+
+  var REGEX_SUSPENSIVA = /clausula\s*suspensiva|liminar\s*judicial/;
+
   /* ── Indicador EX-01 (FiscalGov) ──────────────────────────────────────── */
 
   function temMedicao(c) {
@@ -517,6 +580,9 @@
   IDEPI.isFinalizado = isFinalizado;
   IDEPI.aguardaPrestacao = aguardaPrestacao;
   IDEPI.calcStatus = calcStatus;
+  IDEPI.gestaoDe = gestaoDe;
+  IDEPI.resumoGestao = resumoGestao;
+  IDEPI.travadosPorSuspensiva = travadosPorSuspensiva;
   IDEPI.temMedicao = temMedicao;
   IDEPI.temPagamento = temPagamento;
   IDEPI.isApto = isApto;

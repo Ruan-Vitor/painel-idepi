@@ -370,6 +370,17 @@
         <div class="fase-legenda" id="fase-legenda"></div>
       </div>
 
+      <!-- REPASSE FEDERAL -->
+      <div class="fg-card">
+        <div class="fg-card-head">
+          <div class="fg-card-title"><i class="fa-solid fa-money-bill-transfer"></i> Repasse federal a receber — <span id="rp-qtd">—</span></div>
+          <div class="cp-resumo" id="rp-resumo"></div>
+        </div>
+        <div class="sus-lista" id="rp-lista">
+          <div class="sus-vazio">Carregando…</div>
+        </div>
+      </div>
+
       <!-- CONTRAPARTIDA -->
       <div class="fg-card">
         <div class="fg-card-head">
@@ -541,13 +552,59 @@ function renderCoortes(conv) {
   IDEPI.setHtml('kpi-nota', nota);
 }
 
+/* ── Repasse federal a receber ────────────────────────────────────────────
+   Só instrumentos VIGENTES: repasse que não veio até o fim do convênio não
+   vem mais, e listá-lo como pendência transformaria histórico em cobrança. */
+function renderRepasse(conv) {
+  var r = IDEPI.resumoRepasse(conv);
+  var lista = IDEPI.repassesPendentes(conv);
+
+  IDEPI.setTxt('rp-qtd', lista.length + (lista.length === 1 ? ' convênio' : ' convênios'));
+  IDEPI.setHtml('rp-resumo',
+    '<span>falta <b>' + IDEPI.fmtCompacto(r.falta) + '</b></span>' +
+    '<span><b>' + r.quitado + '</b> integralmente liberados</span>' +
+    '<span><b>' + r.nada + '</b> sem nenhum repasse</span>');
+
+  var box = IDEPI.$('rp-lista');
+  if (!box) return;
+  if (!lista.length) {
+    box.innerHTML = '<div class="sus-vazio">Nenhum repasse federal pendente ' +
+                    'entre os instrumentos vigentes.</div>';
+    return;
+  }
+
+  box.innerHTML = lista.map(function (it) {
+    var c = it.c, rp = it.rp;
+    var tag = rp.situacao === 'nada'
+      ? '<span class="cp-tag nada">nada liberado</span>'
+      : '<span class="cp-tag parcial">' +
+        (rp.pct >= 1 ? rp.pct + '% liberado'
+                     : IDEPI.fmtReais(rp.liberado) + ' liberados') + '</span>';
+    return '<div class="cp-item">' +
+             '<a class="sus-num" href="execucao.html?num=' +
+               encodeURIComponent(c.numero || '') + '" ' +
+               'title="Abrir a execução financeira">' +
+               IDEPI.faixaFase(c) + IDEPI.esc(c.numero) + '</a>' +
+             '<div>' +
+               '<div class="sus-obj" title="' + IDEPI.esc(c.objeto || '') + '">' +
+                 IDEPI.esc(c.objeto || '—') + IDEPI.municipioExtra(c) + tag + '</div>' +
+               '<div class="cp-barra"><i style="width:' + rp.pct + '%"></i></div>' +
+             '</div>' +
+             '<div class="cp-val">' +
+               '<span class="cp-falta">' + IDEPI.fmtReais(rp.falta) + '</span>' +
+               '<div class="cp-det">de ' + IDEPI.fmtReais(rp.previsto) + ' previstos</div>' +
+             '</div>' +
+           '</div>';
+  }).join('');
+}
+
 /* ── Contrapartida a depositar ────────────────────────────────────────────
    Nem todo convênio tem contrapartida: 23 dos 99 não têm previsão nenhuma.
    Esses ficam FORA da lista de propósito — ausência de obrigação não é
    pendência, e misturá-los faria o card acusar 23 falsos devedores. */
-function renderContrapartida(conv, historico) {
-  var r = IDEPI.resumoContrapartida(conv, historico);
-  var lista = IDEPI.contrapartidasPendentes(conv, historico);
+function renderContrapartida(conv) {
+  var r = IDEPI.resumoContrapartida(conv);
+  var lista = IDEPI.contrapartidasPendentes(conv);
 
   IDEPI.setTxt('cp-qtd', lista.length + (lista.length === 1 ? ' convênio' : ' convênios'));
   IDEPI.setHtml('cp-resumo',
@@ -638,7 +695,7 @@ IDEPI.dados.carregar()
     conv.forEach(function (c) {
       var st = IDEPI.calcStatus(c).st;
       if (ct[st] !== undefined) ct[st]++;
-      liberado += IDEPI.parseReais(c.v_liberado);
+      liberado += IDEPI.liberadoDe(c);
     });
 
     IDEPI.setTxt('hs-tot',   conv.length);
@@ -659,7 +716,12 @@ IDEPI.dados.carregar()
 
     renderCoortes(conv);
     renderSuspensivas(conv);
-    renderContrapartida(conv, j.historico_repasses || {});
+    /* Registra o histórico ANTES de qualquer cálculo: é ele que faz
+       liberadoDe() usar o Transferegov em vez da CGU. */
+    IDEPI.usarHistorico(j.historico_repasses || {});
+
+    renderRepasse(conv);
+    renderContrapartida(conv);
 
     var ex = IDEPI.resumoEX01(conv);
     IDEPI.setTxt('fg-total', ex.vigentes);
@@ -705,7 +767,7 @@ function exportarExcelGeral() {
     var linhas = _dadosGerais.map(function (c) {
       var res = IDEPI.calcStatus(c);
       ct[res.st] = (ct[res.st] || 0) + 1;
-      libTotal += IDEPI.parseReais(c.v_liberado);
+      libTotal += IDEPI.liberadoDe(c);
 
       var apto = IDEPI.isApto(c);
       return [
@@ -719,7 +781,7 @@ function exportarExcelGeral() {
         IDEPI.NOME_ST[res.st] || res.st || '',
         res.dias === null || res.dias === undefined ? '' : res.dias,
         IDEPI.parseReais(c.v_total),
-        IDEPI.parseReais(c.v_liberado),
+        IDEPI.liberadoDe(c),
         c.pct_exec || '',
         IDEPI.temMedicao(c) ? 'SIM' : 'NÃO',
         IDEPI.temPagamento(c) ? 'SIM' : 'NÃO',

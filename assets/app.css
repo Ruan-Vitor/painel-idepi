@@ -549,10 +549,11 @@ div > button:has(svg):not([class]):not([id]){display:none!important}
   display:inline-block;width:4px;height:1em;border-radius:2px;
   margin-right:7px;vertical-align:-2px;flex-shrink:0;background:#cbd5e1;
 }
-.fase-recurso  {background:#16a34a}
-.fase-projeto  {background:#eab308}
-.fase-andamento{background:#94a3b8}
-.fase-arquivado{background:#ef4444}
+.fase-recurso   {background:#16a34a}
+.fase-projeto   {background:#eab308}
+.fase-suspensiva{background:#f97316}
+.fase-proposta  {background:#a78bfa}
+.fase-arquivado {background:#ef4444}
 
 .fase-legenda{
   display:flex;gap:16px;flex-wrap:wrap;align-items:center;

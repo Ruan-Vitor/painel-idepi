@@ -240,13 +240,27 @@
   function municipioExtra(c) {
     var m = String((c && c.municipio_emendas) || '').trim();
     if (!m) return '';
+
+    /* Obra multimunicípio traz a lista inteira: o 894024 tem 24 cidades e,
+       inteiro, arrebentava a largura da coluna (04/08/2026). Mostra as duas
+       primeiras e conta o resto; a lista completa fica no balão. */
+    var partes = m.split(/\s*,\s*/).filter(Boolean);
+    var curto = m;
+    if (partes.length > 2) {
+      curto = partes.slice(0, 2).join(', ') + ' +' + (partes.length - 2);
+    }
+
+    /* Se o objeto já cita a (primeira) cidade, não repete. */
     var obj = norm(c.objeto);
-    var alvo = norm(m).replace(/[-–]\s*pi\.?$/, '').replace(/\/\s*pi\.?$/, '').trim();
-    if (!alvo) return '';
-    if (obj.indexOf(alvo) !== -1) return '';
-    return ' <span class="muni-extra" title="Município conforme o controle ' +
-           'do setor (planilha Emendas Senador) — não consta do objeto oficial">(' +
-           esc(m) + ')</span>';
+    var alvo = norm(partes[0] || '')
+      .replace(/[-–/]\s*pi\.?$/, '').trim();
+    if (alvo && partes.length === 1 && obj.indexOf(alvo) !== -1) return '';
+
+    var titulo = (partes.length > 2 ? partes.length + ' municípios: ' + m : m) +
+      ' — conforme o controle do setor (planilha Emendas Senador); não consta ' +
+      'do objeto oficial';
+    return ' <span class="muni-extra" title="' + esc(titulo) + '">(' +
+           esc(curto) + ')</span>';
   }
 
   /** Legenda — obrigatória, porque no celular o balão de hover não existe. */

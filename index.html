@@ -522,10 +522,11 @@ function renderSuspensivas(conv) {
       cls = it.dias < 0 ? ' passou' : (it.dias <= 60 ? ' perto' : '');
     }
     return '<div class="sus-item">' +
-             '<a class="sus-num" href="vigencias.html?busca=' + IDEPI.esc(c.numero) + '">' +
+             '<a class="sus-num" href="execucao.html?num=' +
+               encodeURIComponent(c.numero || '') + '" title="Abrir a execução financeira">' +
                IDEPI.faixaFase(c) + IDEPI.esc(c.numero) + '</a>' +
              '<div class="sus-obj" title="' + IDEPI.esc(c.objeto || '') + '">' +
-               IDEPI.esc(c.objeto || '—') + '</div>' +
+               IDEPI.esc(c.objeto || '—') + IDEPI.municipioExtra(c) + '</div>' +
              '<div class="sus-prazo' + cls + '">' + txt + '<small>' + sub + '</small></div>' +
            '</div>';
   }).join('');

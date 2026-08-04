@@ -797,7 +797,12 @@ function renderizar(){
     var ult = r.ingressos.length ? r.ingressos[0] : null;
     html += '<tr class="data-row'+(expanded?' expanded':'')+'" onclick="toggleExpand(\''+r.numero+'\')">';
     html += '<td><i class="fa-solid fa-chevron-down expand-icon"></i></td>';
-    html += '<td><span class="num-cell">'+e(r.numero)+'</span></td>';
+    // Numero clicavel: abre a execucao financeira daquele instrumento.
+    html += '<td><span class="num-cell">' + IDEPI.faixaFase(r) +
+            '<a class="num-link" href="execucao.html?num=' +
+            encodeURIComponent(r.numero || '') +
+            '" title="Abrir a execucao financeira deste instrumento">' +
+            e(r.numero) + '</a></span></td>';
     html += '<td class="celula-destaque"><div class="obj-cell txt-exp">'+e(r.objeto)+'</div></td>';
     html += '<td class="banco-cell">'+e(r.banco)+'</td>';
     html += '<td class="banco-cell">'+e(r.agencia)+'</td>';

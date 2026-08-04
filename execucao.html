@@ -52,6 +52,8 @@
 .inst-chip.ic-exec{background:#f0fdf4;color:#166534;border-color:#86efac}
 .inst-chip.ic-simp{background:#f5f3ff;color:#5b21b6;border-color:#c4b5fd}
 .inst-chip.ic-mandataria{background:#eff6ff;color:#1d4ed8;border-color:#93c5fd}
+.inst-chip.ic-sei{background:#eef2ff;color:#3730a3;border-color:#c7d2fe;font-family:'IBM Plex Mono',monospace}
+.inst-chip.ic-fiscal{background:#f0fdfa;color:#0d766e;border-color:#5eead4}
 .inst-chip.ic-tipo{background:#fff7ed;color:#92400e;border-color:#fcd34d}
 .inst-chip.ic-ano{background:#f0fdf4;color:#065f46;border-color:#6ee7b7}
 
@@ -939,11 +941,30 @@ function aplicarFiltros(){
   document.getElementById("filtCount").textContent =
     filtrados.length + (filtrados.length === 1 ? " instrumento" : " instrumentos");
 
+  var preferido = null;
+
+  /* ?num= VENCE o localStorage. Sem esta prioridade, o link vindo dos outros
+     painéis abria sempre o último instrumento visitado — parecia que o clique
+     não funcionava (04/08/2026). Vale só na primeira passada: depois disso os
+     filtros voltam a mandar. */
+  if(_numPedidoURL){
+    var pedido = _numPedidoURL;
+    _numPedidoURL = "";
+    if(INSTRUMENTOS_EXEC.find(function(c){ return String(c.numero).trim() === pedido; })){
+      preferido = pedido;
+    } else {
+      avisarSemExecucao(pedido);
+      return;   // não abre outro no lugar: seria ler dado de convênio errado
+    }
+  }
+
   // Restaura o último instrumento visto; se não estiver na lista filtrada, usa o primeiro
-  var ultimo = localStorage.getItem("idepi_exec_ultimo");
-  var preferido = (ultimo && filtrados.find(function(c){ return c.numero===ultimo; }))
-    ? ultimo
-    : (_numVisualizando && filtrados.find(function(c){ return c.numero===_numVisualizando; }) ? _numVisualizando : null);
+  if(!preferido){
+    var ultimo = localStorage.getItem("idepi_exec_ultimo");
+    preferido = (ultimo && filtrados.find(function(c){ return c.numero===ultimo; }))
+      ? ultimo
+      : (_numVisualizando && filtrados.find(function(c){ return c.numero===_numVisualizando; }) ? _numVisualizando : null);
+  }
 
   if(!preferido && filtrados.length) preferido = filtrados[0].numero;
 
@@ -1007,30 +1028,32 @@ function abrirInstrumento(numero){
 }
 
 /* Mantida porque ainda existem chamadas antigas espalhadas pela página. */
-function carregarInstrumento(){
-  if(instAtual || !INSTRUMENTOS_EXEC.length) return;
+/* Link direto: execucao.html?num=988901 abre aquele instrumento — é o que
+   torna o número clicável nas outras páginas. Quem aplica a preferência é o
+   aplicarFiltros(), que roda depois de a lista existir. */
+var _numPedidoURL = (new URLSearchParams(location.search).get("num") || "").trim();
 
-  /* Link direto: execucao.html?num=988901 abre aquele instrumento.
-     É o que torna o número clicável nas outras páginas. Se o instrumento
-     não tiver execução coletada ainda, avisamos em vez de abrir outro
-     calado — abrir o primeiro da lista faria a pessoa ler os dados de um
-     convênio achando que são de outro. */
-  var pedido = new URLSearchParams(location.search).get('num');
-  if(pedido){
-    pedido = pedido.trim();
-    var achou = INSTRUMENTOS_EXEC.some(function(i){
-      return String(i.numero).trim() === pedido;
-    });
-    if(achou){ abrirInstrumento(pedido); return; }
-    IDEPI.setHtml('instMeta',
-      '<span class="inst-chip" style="background:#fef3c7;color:#92400e">' +
-      '<i class="fa-solid fa-triangle-exclamation"></i> O instrumento ' +
-      IDEPI.esc(pedido) + ' ainda não tem execução financeira coletada. ' +
-      'Rode <code>py exec_financeiro.py</code> ou escolha outro na lista.</span>');
-    return;
+/** Instrumento pedido pela URL que ainda não tem execução coletada.
+    Avisamos em vez de abrir outro calado: abrir o primeiro da lista faria a
+    pessoa ler os números de um convênio achando que são de outro. */
+function avisarSemExecucao(numero){
+  var alvo = document.getElementById("instMeta");
+  if(alvo){
+    alvo.innerHTML =
+      '<span class="inst-chip" style="background:#fef3c7;color:#92400e;border-color:#fcd34d">' +
+      '<i class="fa-solid fa-triangle-exclamation" style="font-size:9px"></i> O instrumento ' +
+      IDEPI.esc(numero) + ' ainda não tem execução financeira coletada — ' +
+      'rode <code>py exec_financeiro.py</code> ou escolha outro na lista acima.</span>';
   }
+  var n = document.getElementById("inst-nome-num");
+  if(n) n.textContent = numero;
+  var o = document.getElementById("inst-nome-obj");
+  if(o) o.textContent = "sem execução financeira coletada";
+  IDEPI.esconderOverlay();
+}
 
-  abrirInstrumento(INSTRUMENTOS_EXEC[0].numero);
+function carregarInstrumento(){
+  if(!instAtual && INSTRUMENTOS_EXEC.length) abrirInstrumento(INSTRUMENTOS_EXEC[0].numero);
 }
 
 /* ── RENDER PRINCIPAL ───────────────────────────────── */
@@ -1044,6 +1067,17 @@ function renderInstrumento(){
   if(c.ano) meta.push('<span class="inst-chip ic-ano"><i class="fa-solid fa-calendar" style="font-size:8px"></i> '+sanitize(c.ano)+'</span>');
   if(c.regime_simplificado) meta.push('<span class="inst-chip ic-simp"><i class="fa-solid fa-bolt" style="font-size:8px"></i> Regime Simplificado</span>');
   if(c.mandataria) meta.push('<span class="inst-chip ic-mandataria"><i class="fa-solid fa-building-columns" style="font-size:8px"></i> '+sanitize(c.mandataria)+'</span>');
+
+  /* SEI e Fiscal não vêm da coleta de execução — são colunas manuais da
+     planilha de vigências, trazidas pelo exec_index. Sem eles era preciso
+     voltar ao painel de vigências só para saber o processo e o responsável. */
+  var _resumo = (INSTRUMENTOS_EXEC || []).find(function(i){
+    return String(i.numero).trim() === String(c.numero).trim();
+  }) || {};
+  var _sei    = c.sei    || _resumo.sei    || "";
+  var _fiscal = c.fiscal || _resumo.fiscal || "";
+  if(_sei)    meta.push('<span class="inst-chip ic-sei" title="Processo SEI"><i class="fa-solid fa-folder-open" style="font-size:8px"></i> '+sanitize(_sei)+'</span>');
+  if(_fiscal) meta.push('<span class="inst-chip ic-fiscal" title="Fiscal responsável"><i class="fa-solid fa-user" style="font-size:8px"></i> '+sanitize(_fiscal)+'</span>');
   document.getElementById("instMeta").innerHTML = meta.join("");
 
   /* Valores */

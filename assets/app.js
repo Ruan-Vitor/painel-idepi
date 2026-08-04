@@ -193,29 +193,55 @@
      toque não tem hover (lição de 27/07/2026), e verde/vermelho é o par que
      mais exclui quem não distingue cor. */
   var FASES = {
-    'recurso recebido':  { chave: 'recurso',   sigla: 'R', cor: '#16a34a',
-                           desc: 'Recurso federal já na conta do instrumento' },
-    'projeto aprovado':  { chave: 'projeto',   sigla: 'P', cor: '#eab308',
-                           desc: 'Projeto aprovado, aguardando recurso' },
-    'em andamento':      { chave: 'andamento', sigla: 'A', cor: '#94a3b8',
-                           desc: 'Em andamento — ainda sem projeto aprovado' },
-    'arquivado (não segue)': { chave: 'arquivado', sigla: 'X', cor: '#ef4444',
-                           desc: 'Arquivado — o instrumento não segue adiante' }
+    recurso: { rotulo: 'Recurso recebido', sigla: 'R', cor: '#16a34a',
+               desc: 'Já entrou repasse federal na conta do instrumento' },
+    projeto: { rotulo: 'Projeto aprovado', sigla: 'P', cor: '#eab308',
+               desc: 'Contratado e sem cláusula suspensiva — o projeto passou, ' +
+                     'mas ainda não entrou recurso' },
+    suspensiva: { rotulo: 'Em cláusula suspensiva', sigla: 'S', cor: '#f97316',
+               desc: 'Contratado, mas travado por cláusula suspensiva e ainda ' +
+                     'sem recurso' },
+    proposta: { rotulo: 'Proposta não assinada', sigla: 'N', cor: '#a78bfa',
+               desc: 'Ainda não virou instrumento: não há prazo correndo' },
+    arquivado: { rotulo: 'Arquivado', sigla: 'X', cor: '#ef4444',
+               desc: 'Não segue adiante (linha vermelha na Emendas Senador)' }
   };
 
-  /** @returns {{chave,sigla,cor,desc,rotulo}|null} */
+  var ORDEM_FASE = ['proposta', 'suspensiva', 'projeto', 'recurso'];
+
+  /** Fase DERIVADA do que o próprio painel já sabe.
+   *
+   *  Antes vinha da cor que o setor pinta na Emendas (coluna V). Trocamos em
+   *  04/08/2026 por dois motivos: a aba de 2022 não usa o amarelo, então os
+   *  40 do legado ficavam todos como "em andamento" mesmo tendo projeto
+   *  aprovado; e o que de fato comprova a aprovação do projeto é a SAÍDA da
+   *  cláusula suspensiva, que o sistema já lê do Transferegov.
+   *
+   *  ⚠️  Não é uma escada rígida. Recurso pode entrar ANTES de a suspensiva
+   *  sair — acontece hoje no 992850 (Belém) e no 992940 (Curral Novo). Por
+   *  isso o dinheiro é verificado primeiro: é o fato mais forte, e quem quer
+   *  saber da cláusula tem a tag e o card próprios no Painel Geral.
+   *
+   *  @returns {{chave,sigla,cor,desc,rotulo}|null} */
   function faseDe(c) {
-    var v = norm(c && c.fase_emendas).trim();
-    if (!v) return null;
-    var achou = null;
-    Object.keys(FASES).forEach(function (k) {
-      if (norm(k) === v) achou = FASES[k];
-    });
-    if (!achou) return null;
-    var rotulo = '';
-    Object.keys(FASES).forEach(function (k) { if (FASES[k] === achou) rotulo = k; });
-    return { chave: achou.chave, sigla: achou.sigla, cor: achou.cor,
-             desc: achou.desc, rotulo: rotulo };
+    if (!c) return null;
+    var chave;
+
+    if (norm(c.fase_emendas).indexOf('arquivad') !== -1) {
+      chave = 'arquivado';
+    } else if (!parseDateBR(c.vigencia_inicio)) {
+      chave = 'proposta';                       // sem início: nem assinado
+    } else if (parseReais(c.v_liberado) > 0) {
+      chave = 'recurso';                        // dinheiro em conta vence tudo
+    } else if (REGEX_SUSPENSIVA.test(norm(c.sit_contrat_tgov))) {
+      chave = 'suspensiva';
+    } else {
+      chave = 'projeto';
+    }
+
+    var f = FASES[chave];
+    return { chave: chave, sigla: f.sigla, cor: f.cor,
+             desc: f.desc, rotulo: f.rotulo };
   }
 
   /** Faixa lateral fina + rótulo acessível. Fundo pintado brigaria com o
@@ -263,12 +289,14 @@
            esc(curto) + ')</span>';
   }
 
-  /** Legenda — obrigatória, porque no celular o balão de hover não existe. */
+  /** Legenda — obrigatória, porque no celular o balão de hover não existe.
+   *  Segue ORDEM_FASE (do mais atrasado ao mais adiantado); "arquivado" fica
+   *  de fora porque instrumento arquivado nem entra na coluna A. */
   function legendaFases() {
-    return Object.keys(FASES).map(function (k) {
+    return ORDEM_FASE.map(function (k) {
       var f = FASES[k];
-      return '<span class="fase-leg"><i class="fase-faixa fase-' + f.chave +
-             '"></i>' + esc(k) + '</span>';
+      return '<span class="fase-leg" title="' + esc(f.desc) + '">' +
+             '<i class="fase-faixa fase-' + k + '"></i>' + esc(f.rotulo) + '</span>';
     }).join('');
   }
 

@@ -1008,7 +1008,29 @@ function abrirInstrumento(numero){
 
 /* Mantida porque ainda existem chamadas antigas espalhadas pela página. */
 function carregarInstrumento(){
-  if(!instAtual && INSTRUMENTOS_EXEC.length) abrirInstrumento(INSTRUMENTOS_EXEC[0].numero);
+  if(instAtual || !INSTRUMENTOS_EXEC.length) return;
+
+  /* Link direto: execucao.html?num=988901 abre aquele instrumento.
+     É o que torna o número clicável nas outras páginas. Se o instrumento
+     não tiver execução coletada ainda, avisamos em vez de abrir outro
+     calado — abrir o primeiro da lista faria a pessoa ler os dados de um
+     convênio achando que são de outro. */
+  var pedido = new URLSearchParams(location.search).get('num');
+  if(pedido){
+    pedido = pedido.trim();
+    var achou = INSTRUMENTOS_EXEC.some(function(i){
+      return String(i.numero).trim() === pedido;
+    });
+    if(achou){ abrirInstrumento(pedido); return; }
+    IDEPI.setHtml('instMeta',
+      '<span class="inst-chip" style="background:#fef3c7;color:#92400e">' +
+      '<i class="fa-solid fa-triangle-exclamation"></i> O instrumento ' +
+      IDEPI.esc(pedido) + ' ainda não tem execução financeira coletada. ' +
+      'Rode <code>py exec_financeiro.py</code> ou escolha outro na lista.</span>');
+    return;
+  }
+
+  abrirInstrumento(INSTRUMENTOS_EXEC[0].numero);
 }
 
 /* ── RENDER PRINCIPAL ───────────────────────────────── */

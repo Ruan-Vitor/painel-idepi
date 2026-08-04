@@ -111,6 +111,27 @@
   .sus-prazo small{display:inline;margin-left:6px}
 }
 
+/* ── CONTRAPARTIDA ── */
+.cp-resumo{display:flex;gap:14px;flex-wrap:wrap;font-size:10.5px;color:var(--muted)}
+.cp-resumo b{color:var(--text);font-weight:700}
+.cp-item{display:grid;grid-template-columns:78px minmax(0,1fr) 150px;gap:12px;
+  align-items:center;padding:11px 20px;border-bottom:1px solid var(--border);font-size:11.5px}
+.cp-item:last-child{border-bottom:none}
+.cp-val{text-align:right;font-size:11px;line-height:1.5}
+.cp-falta{font-weight:800;color:var(--red);font-family:'Sora',sans-serif;font-size:12.5px}
+.cp-det{color:var(--muted);font-size:9.5px}
+.cp-barra{height:5px;border-radius:99px;background:#eef2f7;overflow:hidden;margin-top:4px}
+.cp-barra i{display:block;height:100%;background:#16a34a;border-radius:99px}
+.cp-tag{display:inline-block;font-size:9px;font-weight:700;padding:1px 6px;border-radius:9px;
+  border:1px solid;margin-left:6px;white-space:nowrap}
+.cp-tag.nada{background:var(--red-bg);color:var(--red);border-color:var(--red-bdr)}
+.cp-tag.parcial{background:#fffbeb;color:#92400e;border-color:#fcd34d}
+
+@media(max-width:900px){
+  .cp-item{grid-template-columns:1fr;row-gap:5px}
+  .cp-val{text-align:left}
+}
+
 /* ── GRADE DE STATUS ── */
 .status-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:12px;flex-shrink:0}
 .st-card{background:var(--surface);border:1px solid var(--border);border-radius:11px;padding:14px 16px;border-top:3px solid transparent;cursor:pointer;transition:transform .14s,box-shadow .14s;text-decoration:none;display:block}
@@ -349,6 +370,17 @@
         <div class="fase-legenda" id="fase-legenda"></div>
       </div>
 
+      <!-- CONTRAPARTIDA -->
+      <div class="fg-card">
+        <div class="fg-card-head">
+          <div class="fg-card-title"><i class="fa-solid fa-scale-balanced"></i> Contrapartida a depositar — <span id="cp-qtd">—</span></div>
+          <div class="cp-resumo" id="cp-resumo"></div>
+        </div>
+        <div class="sus-lista" id="cp-lista">
+          <div class="sus-vazio">Carregando…</div>
+        </div>
+      </div>
+
       <!-- FISCALGOV -->
       <div class="fg-card" id="fgCard">
         <div class="fg-card-head">
@@ -509,6 +541,58 @@ function renderCoortes(conv) {
   IDEPI.setHtml('kpi-nota', nota);
 }
 
+/* ── Contrapartida a depositar ────────────────────────────────────────────
+   Nem todo convênio tem contrapartida: 23 dos 99 não têm previsão nenhuma.
+   Esses ficam FORA da lista de propósito — ausência de obrigação não é
+   pendência, e misturá-los faria o card acusar 23 falsos devedores. */
+function renderContrapartida(conv, historico) {
+  var r = IDEPI.resumoContrapartida(conv, historico);
+  var lista = IDEPI.contrapartidasPendentes(conv, historico);
+
+  IDEPI.setTxt('cp-qtd', lista.length + (lista.length === 1 ? ' convênio' : ' convênios'));
+  IDEPI.setHtml('cp-resumo',
+    '<span><b>' + r.quitada + '</b> quitadas</span>' +
+    '<span><b>' + r.parcial + '</b> parciais</span>' +
+    '<span><b>' + r.nada + '</b> sem depósito</span>' +
+    '<span><b>' + r.sem + '</b> sem contrapartida prevista</span>');
+
+  var box = IDEPI.$('cp-lista');
+  if (!box) return;
+  if (!lista.length) {
+    box.innerHTML = '<div class="sus-vazio">Todas as contrapartidas previstas ' +
+                    'estão depositadas.</div>';
+    return;
+  }
+
+  box.innerHTML = lista.map(function (it) {
+    var c = it.c, cp = it.cp;
+    /* "0% depositado" mentia: o 946801 depositou R$ 23 mil de R$ 5,99 mi e o
+       arredondamento zerava, ficando igual a quem não pagou nada. Abaixo de
+       1% mostramos o valor, que é o que a pessoa precisa saber. */
+    var tag = cp.situacao === 'nada'
+      ? '<span class="cp-tag nada">nada depositado</span>'
+      : '<span class="cp-tag parcial">' +
+        (cp.pct >= 1 ? cp.pct + '% depositado'
+                     : IDEPI.fmtReais(cp.depositado) + ' depositados') +
+        '</span>';
+    return '<div class="cp-item">' +
+             '<a class="sus-num" href="execucao.html?num=' +
+               encodeURIComponent(c.numero || '') + '" ' +
+               'title="Abrir a execução financeira">' +
+               IDEPI.faixaFase(c) + IDEPI.esc(c.numero) + '</a>' +
+             '<div>' +
+               '<div class="sus-obj" title="' + IDEPI.esc(c.objeto || '') + '">' +
+                 IDEPI.esc(c.objeto || '—') + IDEPI.municipioExtra(c) + tag + '</div>' +
+               '<div class="cp-barra"><i style="width:' + cp.pct + '%"></i></div>' +
+             '</div>' +
+             '<div class="cp-val">' +
+               '<span class="cp-falta">' + IDEPI.fmtReais(cp.falta) + '</span>' +
+               '<div class="cp-det">de ' + IDEPI.fmtReais(cp.previsto) + ' previstos</div>' +
+             '</div>' +
+           '</div>';
+  }).join('');
+}
+
 /* ── Travados por cláusula suspensiva ────────────────────────────────────── */
 function renderSuspensivas(conv) {
   IDEPI.setHtml('fase-legenda', '<strong style="color:var(--text)">Fase:</strong>' +
@@ -575,6 +659,7 @@ IDEPI.dados.carregar()
 
     renderCoortes(conv);
     renderSuspensivas(conv);
+    renderContrapartida(conv, j.historico_repasses || {});
 
     var ex = IDEPI.resumoEX01(conv);
     IDEPI.setTxt('fg-total', ex.vigentes);

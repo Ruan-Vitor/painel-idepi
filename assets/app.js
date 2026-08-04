@@ -300,6 +300,71 @@
     }).join('');
   }
 
+  /* ── Contrapartida ────────────────────────────────────────────────────── */
+
+  /** Situação da contrapartida de UM convênio.
+   *
+   *  Dois números que vêm de fontes diferentes:
+   *    • previsto   — `valorContrapartida` da CGU, no documento de vigências
+   *    • depositado — soma dos ingressos tipo "C" no histórico de repasses
+   *
+   *  Nem todo convênio tem contrapartida (23 dos 99 não têm). Para esses a
+   *  função devolve `previsto: 0` e `situacao: 'sem'` — não é pendência, é
+   *  ausência de obrigação, e tratar como pendência encheria o painel de
+   *  alarme falso.
+   *
+   *  @param historico  o `historico_repasses` inteiro (mapa por número)
+   *  @returns {{previsto,depositado,falta,pct,situacao}}
+   *           situacao ∈ sem | quitada | parcial | nada
+   */
+  function contrapartidaDe(c, historico) {
+    var previsto = parseReais(c && c.v_contrapartida);
+    var h = (historico || {})[c && c.numero] || {};
+    var depositado = 0;
+    (h.ingressos || []).forEach(function (i) {
+      if (String(i && i.tipo || '').toUpperCase() === 'C') {
+        depositado += parseReais(i.valor);
+      }
+    });
+
+    if (previsto <= 0) {
+      return { previsto: 0, depositado: depositado, falta: 0, pct: 100,
+               situacao: 'sem' };
+    }
+    /* Um centavo de folga: previsto e depositado vêm de fontes distintas e
+       divergem no arredondamento — sem isso, convênio quitado aparecia
+       devendo R$ 0,004. */
+    var falta = Math.max(0, previsto - depositado);
+    var situacao = falta <= 0.01 ? 'quitada' : (depositado > 0 ? 'parcial' : 'nada');
+    return {
+      previsto: previsto, depositado: depositado, falta: falta,
+      pct: Math.min(100, Math.round(depositado / previsto * 100)),
+      situacao: situacao
+    };
+  }
+
+  /** Quem ainda deve contrapartida, do maior débito para o menor. */
+  function contrapartidasPendentes(convenios, historico) {
+    return (convenios || []).map(function (c) {
+      return { c: c, cp: contrapartidaDe(c, historico) };
+    }).filter(function (x) {
+      return x.cp.situacao === 'parcial' || x.cp.situacao === 'nada';
+    }).sort(function (a, b) { return b.cp.falta - a.cp.falta; });
+  }
+
+  /** Contagem por situação, para os cartões de resumo. */
+  function resumoContrapartida(convenios, historico) {
+    var r = { sem: 0, quitada: 0, parcial: 0, nada: 0, falta: 0, previsto: 0 };
+    (convenios || []).forEach(function (c) {
+      var cp = contrapartidaDe(c, historico);
+      r[cp.situacao]++;
+      r.falta += cp.falta;
+      r.previsto += cp.previsto;
+    });
+    r.comObrigacao = r.quitada + r.parcial + r.nada;
+    return r;
+  }
+
   /* ── Coorte: legado (até 2022) x nova gestão (a partir de 2023) ───────── */
 
   /* O corte é a data de INÍCIO DE VIGÊNCIA, que a CGU devolve em
@@ -707,6 +772,9 @@
   IDEPI.calcStatus = calcStatus;
   IDEPI.faseDe = faseDe;
   IDEPI.municipioExtra = municipioExtra;
+  IDEPI.contrapartidaDe = contrapartidaDe;
+  IDEPI.contrapartidasPendentes = contrapartidasPendentes;
+  IDEPI.resumoContrapartida = resumoContrapartida;
   IDEPI.faixaFase = faixaFase;
   IDEPI.legendaFases = legendaFases;
   IDEPI.FASES = FASES;

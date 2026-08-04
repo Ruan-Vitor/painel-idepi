@@ -51,7 +51,7 @@
                  mais rescindido/encerrado/anulado. "Iniciada por
                  Antecipação" fica com a data, porque foi aberta antes do
                  fim da vigência. 6 convênios mudam de card */
-const VERSAO = 'idepi-v12';
+const VERSAO = 'idepi-v13';
 const CACHE_SHELL = VERSAO + '-shell';
 const CACHE_PAGS  = VERSAO + '-paginas';
 
@@ -63,6 +63,7 @@ const SHELL = [
   'execucao.html',
   'fiscalgov.html',
   'ingressos.html',
+  'pcf.html',
   'admin.html',
   'assets/app.css',
   'assets/app.js',

@@ -441,6 +441,8 @@ async function carregar() {
   try {
     const j = await IDEPI.dados.carregar();
     _gerado_em = j.gerado_em || '—';
+    // Histórico primeiro: é ele que faz o "liberado" vir do Transferegov.
+    IDEPI.usarHistorico(j.historico_repasses || {});
     dados = (j.convenios || []).map(c => {
       const { st, dias, temSusp } = IDEPI.calcStatus(c);
       return { ...c, _st:st, _dias:dias, _temSusp:temSusp };
@@ -484,7 +486,7 @@ function atualizar() {
   dados.forEach(d => {
     ct[d._st] = (ct[d._st]||0)+1;
     const vt = parseFloat((d.v_total||'').replace(/\./g,'').replace(',','.')) || 0;
-    const vl = parseFloat((d.v_liberado||'').replace(/\./g,'').replace(',','.')) || 0;
+    const vl = IDEPI.liberadoDe(d);
     const pe = parseFloat((d.pct_exec||'').replace('%','')) || 0;
     sT+=vt; sL+=vl; if(pe>0){sE+=pe;nE++;}
   });
@@ -701,7 +703,7 @@ function render() {
       <div class="ef"><label>Dias p/ data efetiva</label><span>${dias!==null?(dias<0?Math.abs(dias)+'d vencido':dias+'d restantes'):'—'}</span></div>
       <div class="ef"><label>Nº Processo SEI</label><span style="font-family:monospace;color:var(--brand);font-weight:600;">${esc(r.sei)||'—'}</span></div>
       <div class="ef"><label>Valor total</label><span>${r.v_total?'R$ '+esc(r.v_total):'—'}</span></div>
-      <div class="ef"><label>Valor liberado</label><span>${r.v_liberado?'R$ '+esc(r.v_liberado):'—'}</span></div>
+      <div class="ef"><label>Valor liberado</label><span>${IDEPI.fmtReais(IDEPI.liberadoDe(r))}</span></div>
       <div class="ef"><label>% Execução</label><span>${esc(r.pct_exec)||'—'}</span></div>
       <div class="ef"><label>Status</label><span><span class="badge ${cl}">${nm}</span>${r._temSusp?'<span style="font-size:10px;color:var(--s-tx);margin-left:4px;">(pela suspensiva)</span>':''}</span></div>
     </div></div></td></tr>`;
@@ -761,7 +763,7 @@ function exportarExcelVigencias() {
         r._dias !== null && r._dias !== undefined ? r._dias : '',
         NOME_ST[r._st] || r._st || '',
         r.v_total ? r.v_total.replace(/\./g,'').replace(',','.') : '',
-        r.v_liberado ? r.v_liberado.replace(/\./g,'').replace(',','.') : '',
+        IDEPI.liberadoDe(r),
         r.pct_exec || '',
         r.sei || '',
         r.mandataria || r.mandatária || '',

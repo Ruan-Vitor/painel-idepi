@@ -181,6 +181,62 @@
     return { st: st, dias: dias, temSusp: temSusp };
   }
 
+  /* ── Fase pela planilha Emendas Senador (coluna V) ────────────────────────
+     O setor pinta a linha da Emendas para marcar em que pé está a obra. A cor
+     vira texto na coluna V e chega aqui como `fase_emendas`.
+
+     É PROPOSITALMENTE independente do Transferegov: a Emendas reflete o
+     acompanhamento interno, que anda em ritmo próprio. Onde as duas
+     divergirem, é informação, não erro.
+
+     A cor NUNCA é o único sinal: cada fase tem também rótulo e sigla. Tela de
+     toque não tem hover (lição de 27/07/2026), e verde/vermelho é o par que
+     mais exclui quem não distingue cor. */
+  var FASES = {
+    'recurso recebido':  { chave: 'recurso',   sigla: 'R', cor: '#16a34a',
+                           desc: 'Recurso federal já na conta do instrumento' },
+    'projeto aprovado':  { chave: 'projeto',   sigla: 'P', cor: '#eab308',
+                           desc: 'Projeto aprovado, aguardando recurso' },
+    'em andamento':      { chave: 'andamento', sigla: 'A', cor: '#94a3b8',
+                           desc: 'Em andamento — ainda sem projeto aprovado' },
+    'arquivado (não segue)': { chave: 'arquivado', sigla: 'X', cor: '#ef4444',
+                           desc: 'Arquivado — o instrumento não segue adiante' }
+  };
+
+  /** @returns {{chave,sigla,cor,desc,rotulo}|null} */
+  function faseDe(c) {
+    var v = norm(c && c.fase_emendas).trim();
+    if (!v) return null;
+    var achou = null;
+    Object.keys(FASES).forEach(function (k) {
+      if (norm(k) === v) achou = FASES[k];
+    });
+    if (!achou) return null;
+    var rotulo = '';
+    Object.keys(FASES).forEach(function (k) { if (FASES[k] === achou) rotulo = k; });
+    return { chave: achou.chave, sigla: achou.sigla, cor: achou.cor,
+             desc: achou.desc, rotulo: rotulo };
+  }
+
+  /** Faixa lateral fina + rótulo acessível. Fundo pintado brigaria com o
+   *  texto e com as cores de status que os cards já usam. */
+  function faixaFase(c) {
+    var f = faseDe(c);
+    if (!f) return '';
+    return '<span class="fase-faixa fase-' + f.chave + '" title="' +
+           esc(f.rotulo + ' — ' + f.desc) + '" aria-label="' + esc(f.rotulo) +
+           '"><span class="sr-only">' + esc(f.rotulo) + '</span></span>';
+  }
+
+  /** Legenda — obrigatória, porque no celular o balão de hover não existe. */
+  function legendaFases() {
+    return Object.keys(FASES).map(function (k) {
+      var f = FASES[k];
+      return '<span class="fase-leg"><i class="fase-faixa fase-' + f.chave +
+             '"></i>' + esc(k) + '</span>';
+    }).join('');
+  }
+
   /* ── Coorte: legado (até 2022) x nova gestão (a partir de 2023) ───────── */
 
   /* O corte é a data de INÍCIO DE VIGÊNCIA, que a CGU devolve em
@@ -586,6 +642,10 @@
   IDEPI.isFinalizado = isFinalizado;
   IDEPI.aguardaPrestacao = aguardaPrestacao;
   IDEPI.calcStatus = calcStatus;
+  IDEPI.faseDe = faseDe;
+  IDEPI.faixaFase = faixaFase;
+  IDEPI.legendaFases = legendaFases;
+  IDEPI.FASES = FASES;
   IDEPI.gestaoDe = gestaoDe;
   IDEPI.resumoGestao = resumoGestao;
   IDEPI.travadosPorSuspensiva = travadosPorSuspensiva;

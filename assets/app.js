@@ -231,7 +231,7 @@
       chave = 'arquivado';
     } else if (!parseDateBR(c.vigencia_inicio)) {
       chave = 'proposta';                       // sem início: nem assinado
-    } else if (parseReais(c.v_liberado) > 0) {
+    } else if (liberadoDe(c) > 0) {
       chave = 'recurso';                        // dinheiro em conta vence tudo
     } else if (REGEX_SUSPENSIVA.test(norm(c.sit_contrat_tgov))) {
       chave = 'suspensiva';
@@ -300,6 +300,52 @@
     }).join('');
   }
 
+  /* ══════════════════════════════════════════════════════════════════════
+     QUANTO JÁ ENTROU — fonte única
+
+     REGRA DO PROJETO: o TRANSFEREGOV é a fonte de verdade; a CGU é a cômoda.
+     A CGU atrasa semanas e às vezes não publica (em 04/08/2026 dava R$ 2,375
+     mi ao 969555 contra R$ 2,625 mi reais). Vale para TUDO que envolva
+     dinheiro recebido, não só para um card.
+
+     Ordem de preferência:
+       1. ingressos tipo "F" do `historico_repasses` — vêm do Transferegov e
+          a varredura das 08:30 atualiza todo dia útil;
+       2. `v_liberado` da CGU — só quando não há histórico do convênio.
+
+     O histórico é guardado aqui uma vez (IDEPI.usarHistorico) para que
+     nenhuma tela precise passá-lo em cada chamada — passar à mão foi como o
+     mesmo convênio já apareceu com dois números em telas diferentes.
+     ══════════════════════════════════════════════════════════════════════ */
+
+  var _historico = {};
+
+  /** Chame uma vez, ao carregar os dados. */
+  function usarHistorico(h) { _historico = h || {}; }
+
+  /** Soma dos ingressos de um tipo ('F' federal, 'C' contrapartida). */
+  function somaIngressos(numero, tipo) {
+    var h = _historico[numero];
+    if (!h || !Array.isArray(h.ingressos) || !h.ingressos.length) return null;
+    var t = String(tipo).toUpperCase(), s = 0;
+    h.ingressos.forEach(function (i) {
+      if (String(i && i.tipo || '').toUpperCase() === t) s += parseReais(i.valor);
+    });
+    return s;
+  }
+
+  /** Repasse FEDERAL já recebido. Transferegov primeiro, CGU como reserva. */
+  function liberadoDe(c) {
+    if (!c) return 0;
+    var doTgov = somaIngressos(c.numero, 'F');
+    return doTgov === null ? parseReais(c.v_liberado) : doTgov;
+  }
+
+  /** Contrapartida já depositada. Só existe no histórico. */
+  function contrapartidaRecebidaDe(c) {
+    return c ? (somaIngressos(c.numero, 'C') || 0) : 0;
+  }
+
   /* ── Contrapartida ────────────────────────────────────────────────────── */
 
   /** Situação da contrapartida de UM convênio.
@@ -317,15 +363,9 @@
    *  @returns {{previsto,depositado,falta,pct,situacao}}
    *           situacao ∈ sem | quitada | parcial | nada
    */
-  function contrapartidaDe(c, historico) {
+  function contrapartidaDe(c) {
     var previsto = parseReais(c && c.v_contrapartida);
-    var h = (historico || {})[c && c.numero] || {};
-    var depositado = 0;
-    (h.ingressos || []).forEach(function (i) {
-      if (String(i && i.tipo || '').toUpperCase() === 'C') {
-        depositado += parseReais(i.valor);
-      }
-    });
+    var depositado = contrapartidaRecebidaDe(c);
 
     if (previsto <= 0) {
       return { previsto: 0, depositado: depositado, falta: 0, pct: 100,
@@ -343,20 +383,83 @@
     };
   }
 
-  /** Quem ainda deve contrapartida, do maior débito para o menor. */
-  function contrapartidasPendentes(convenios, historico) {
+  /** Repasse FEDERAL que a União ainda não liberou.
+   *
+   *  previsto = `v_total`, que é o `valorTotalConvenio` da CGU. NÃO subtraia a
+   *  contrapartida dele: conferido em 04/08/2026 contra o `valor_repasse` que
+   *  o exec_financeiro coleta do Transferegov, os dois batem ao centavo em
+   *  953168 (240.000.000,00), 973618 (156.180.000,00) e 992850
+   *  (4.880.521,26) — ou seja, esse campo da CGU já é só a parte federal.
+   *  Quem inclui a contrapartida é o `valor_global` do Transferegov, que o
+   *  painel não usa.
+   *
+   *  liberado = soma dos ingressos tipo "F" do `historico_repasses`. Esta é a
+   *  fonte mais atual que existe: vem do TRANSFEREGOV e a varredura das 08:30
+   *  a atualiza todo dia útil. A CGU é a cômoda, não a correta — em
+   *  04/08/2026 ela dava R$ 2,375 mi ao 969555 contra R$ 2,625 mi reais, e o
+   *  `repasse_desembolsado` da execução financeira estava de 15/07, dizendo
+   *  R$ 100,65 mi ao 953168 contra R$ 116,65 mi. Sem histórico para o
+   *  convênio, cai no `v_liberado` da CGU.
+   *
+   *  Convênio FINALIZADO fica de fora: o que não veio até o fim não vem mais,
+   *  e listá-lo como pendência transformaria histórico em cobrança.
+   */
+  function repasseDe(c) {
+    var previsto = parseReais(c && c.v_total);
+    var liberado = liberadoDe(c);
+
+    if (previsto <= 0) {
+      return { previsto: 0, liberado: liberado, falta: 0, pct: 100,
+               situacao: 'sem' };
+    }
+    var falta = Math.max(0, previsto - liberado);
+    /* Um real de folga: total e liberado vêm de campos distintos da CGU e
+       divergem em centavos por arredondamento. */
+    var situacao = falta <= 1 ? 'quitado' : (liberado > 0 ? 'parcial' : 'nada');
+    return {
+      previsto: previsto, liberado: liberado, falta: falta,
+      pct: Math.min(100, Math.round(liberado / previsto * 100)),
+      situacao: situacao
+    };
+  }
+
+  /** Quem ainda tem repasse federal a receber, do maior saldo para o menor. */
+  function repassesPendentes(convenios) {
     return (convenios || []).map(function (c) {
-      return { c: c, cp: contrapartidaDe(c, historico) };
+      return { c: c, rp: repasseDe(c) };
+    }).filter(function (x) {
+      if (calcStatus(x.c).st === 'finalizado') return false;
+      return x.rp.situacao === 'parcial' || x.rp.situacao === 'nada';
+    }).sort(function (a, b) { return b.rp.falta - a.rp.falta; });
+  }
+
+  function resumoRepasse(convenios) {
+    var r = { sem: 0, quitado: 0, parcial: 0, nada: 0, falta: 0, previsto: 0,
+              liberado: 0 };
+    (convenios || []).forEach(function (c) {
+      var rp = repasseDe(c);
+      r[rp.situacao]++;
+      r.previsto += rp.previsto;
+      r.liberado += rp.liberado;
+      if (calcStatus(c).st !== 'finalizado') r.falta += rp.falta;
+    });
+    return r;
+  }
+
+  /** Quem ainda deve contrapartida, do maior débito para o menor. */
+  function contrapartidasPendentes(convenios) {
+    return (convenios || []).map(function (c) {
+      return { c: c, cp: contrapartidaDe(c) };
     }).filter(function (x) {
       return x.cp.situacao === 'parcial' || x.cp.situacao === 'nada';
     }).sort(function (a, b) { return b.cp.falta - a.cp.falta; });
   }
 
   /** Contagem por situação, para os cartões de resumo. */
-  function resumoContrapartida(convenios, historico) {
+  function resumoContrapartida(convenios) {
     var r = { sem: 0, quitada: 0, parcial: 0, nada: 0, falta: 0, previsto: 0 };
     (convenios || []).forEach(function (c) {
-      var cp = contrapartidaDe(c, historico);
+      var cp = contrapartidaDe(c);
       r[cp.situacao]++;
       r.falta += cp.falta;
       r.previsto += cp.previsto;
@@ -772,6 +875,12 @@
   IDEPI.calcStatus = calcStatus;
   IDEPI.faseDe = faseDe;
   IDEPI.municipioExtra = municipioExtra;
+  IDEPI.usarHistorico = usarHistorico;
+  IDEPI.liberadoDe = liberadoDe;
+  IDEPI.contrapartidaRecebidaDe = contrapartidaRecebidaDe;
+  IDEPI.repasseDe = repasseDe;
+  IDEPI.repassesPendentes = repassesPendentes;
+  IDEPI.resumoRepasse = resumoRepasse;
   IDEPI.contrapartidaDe = contrapartidaDe;
   IDEPI.contrapartidasPendentes = contrapartidasPendentes;
   IDEPI.resumoContrapartida = resumoContrapartida;

@@ -1033,24 +1033,113 @@ function abrirInstrumento(numero){
    aplicarFiltros(), que roda depois de a lista existir. */
 var _numPedidoURL = (new URLSearchParams(location.search).get("num") || "").trim();
 
+/* Cadastro (painel/vigencias): é de onde saem previsto, SEI, fiscal e
+   contrapartida. A execução coletada não tem esses campos. */
+var _CONVENIOS_VIG = [];
+
 /** Instrumento pedido pela URL que ainda não tem execução coletada.
     Avisamos em vez de abrir outro calado: abrir o primeiro da lista faria a
     pessoa ler os números de um convênio achando que são de outro. */
 function avisarSemExecucao(numero){
+  var c = (_CONVENIOS_VIG || []).find(function(x){
+    return String(x.numero).trim() === String(numero).trim();
+  }) || { numero: numero };
+
   var alvo = document.getElementById("instMeta");
   if(alvo){
     alvo.innerHTML =
       '<span class="inst-chip" style="background:#fef3c7;color:#92400e;border-color:#fcd34d">' +
-      '<i class="fa-solid fa-triangle-exclamation" style="font-size:9px"></i> O instrumento ' +
-      IDEPI.esc(numero) + ' ainda não tem execução financeira coletada — ' +
-      'rode <code>py exec_financeiro.py</code> ou escolha outro na lista acima.</span>';
+      '<i class="fa-solid fa-triangle-exclamation" style="font-size:9px"></i> ' +
+      'Sem execução financeira coletada — os dados abaixo vêm do cadastro</span>';
   }
   var n = document.getElementById("inst-nome-num");
-  if(n) n.textContent = numero;
+  if(n) n.textContent = IDEPI.esc(c.numero);
   var o = document.getElementById("inst-nome-obj");
-  if(o) o.textContent = "sem execução financeira coletada";
+  if(o) o.textContent = c.objeto || "—";
+
+  renderFichaBasica(c);
   IDEPI.esconderOverlay();
 }
+
+/* Ficha do que EXISTE, quando a execução ainda não foi coletada.
+   Mostrar previsto, SEI e fiscal é melhor que mostrar nada — e melhor ainda
+   que abrir outro convênio no lugar, que faria a pessoa ler número errado. */
+function renderFichaBasica(c){
+  var painel = document.getElementById("fichaBasica");
+  if(!painel) return;
+
+  var seis = IDEPI.seisDe(c);
+  var seiHtml = seis.length
+    ? '<span class="fb-sei-vig">' + IDEPI.esc(seis[seis.length - 1]) + '</span>' +
+      (seis.length > 1
+        ? ' <button class="fb-mais" type="button" onclick="alternarSeis()">' +
+          '+' + (seis.length - 1) + ' anteriores</button>' +
+          '<div class="fb-seis" id="fbSeis" hidden>' +
+            seis.slice(0, -1).reverse().map(function(x){
+              /* data-sei + delegação: onclick inline com aspas aninhadas é
+                 onde nasce erro de sintaxe difícil de achar. */
+              return '<button class="fb-sei-item" type="button" data-sei="' +
+                     IDEPI.esc(x) + '" title="Clique para copiar">' +
+                     IDEPI.esc(x) + '<i class="fa-regular fa-copy"></i></button>';
+            }).join('') +
+          '</div>'
+        : '')
+    : '—';
+
+  var cp = IDEPI.contrapartidaDe(c);
+  var rp = IDEPI.repasseDe(c);
+  var st = IDEPI.calcStatus(c);
+  var fase = IDEPI.faseDe(c);
+
+  var campos = [
+    ["Situação de vigência", (IDEPI.NOME_ST[st.st] || st.st) +
+      (st.dias !== null ? ' · ' + st.dias + ' dias' : '')],
+    ["Vigência final",       c.vigencia_fmt || c.vigencia || "—"],
+    ["Fase",                 fase ? fase.rotulo : "—"],
+    ["Repasse previsto",     IDEPI.fmtReais(rp.previsto)],
+    ["Repasse já liberado",  IDEPI.fmtReais(rp.liberado)],
+    ["Repasse a receber",    IDEPI.fmtReais(rp.falta)],
+    ["Contrapartida prevista",   cp.previsto ? IDEPI.fmtReais(cp.previsto) : "não há"],
+    ["Contrapartida depositada", cp.previsto ? IDEPI.fmtReais(cp.depositado) : "—"],
+    ["Fiscal responsável",   c.fiscal || "—"],
+    ["Município",            c.municipio_emendas || "—"],
+    ["Situação (Transferegov)",  c.situacao_tgov || "—"],
+    ["Contratação (Transferegov)", c.sit_contrat_tgov || "—"]
+  ];
+
+  painel.innerHTML =
+    '<div class="fb-titulo"><i class="fa-solid fa-id-card"></i> Dados do cadastro</div>' +
+    '<div class="fb-grid">' +
+      campos.map(function(p){
+        return '<div class="fb-campo"><label>' + IDEPI.esc(p[0]) + '</label>' +
+               '<span>' + IDEPI.esc(p[1]) + '</span></div>';
+      }).join('') +
+      '<div class="fb-campo fb-largo"><label>Processo SEI</label><span>' + seiHtml + '</span></div>' +
+      '<div class="fb-campo fb-largo"><label>Objeto</label><span>' +
+        IDEPI.esc(c.objeto || "—") + '</span></div>' +
+    '</div>' +
+    '<div class="fb-nota"><i class="fa-solid fa-circle-info"></i> ' +
+      'Movimentações, notas fiscais e rateio aparecem depois que o ' +
+      '<code>exec_financeiro.py</code> coletar este instrumento no Transferegov.</div>';
+  painel.hidden = false;
+}
+
+function alternarSeis(){
+  var b = document.getElementById("fbSeis");
+  if(b) b.hidden = !b.hidden;
+}
+
+/* Um só ouvinte para todos os botões de SEI, presentes e futuros. */
+document.addEventListener('click', function(ev){
+  var b = ev.target.closest && ev.target.closest('.fb-sei-item');
+  if(!b) return;
+  var txt = b.getAttribute('data-sei') || '';
+  navigator.clipboard.writeText(txt).then(function(){
+    var antes = b.innerHTML;
+    b.innerHTML = txt + ' <i class="fa-solid fa-check"></i>';
+    setTimeout(function(){ b.innerHTML = antes; }, 1400);
+  });
+});
 
 function carregarInstrumento(){
   if(!instAtual && INSTRUMENTOS_EXEC.length) abrirInstrumento(INSTRUMENTOS_EXEC[0].numero);
@@ -1274,6 +1363,7 @@ function calcTotalPago(c){
   });
 
   (c.movimentacoes||[]).forEach(function(m){
+    if(IDEPI.movCancelada(m)) return;
     var t = (m.tipo||"").toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"");
     var isObtv = t.includes("OBTV") || t.includes("PAGAMENTO A FAVORECIDO")
               || t.includes("PGTO OBTV") || t.includes("PAGAMENTO FAVORECIDO");
@@ -1355,6 +1445,7 @@ function calcPagoRepasse(c){
     if(temCp && !temRep) cpNdls[String(n.num)] = true;
   });
   (c.movimentacoes||[]).forEach(function(m){
+    if(IDEPI.movCancelada(m)) return;
     var t = (m.tipo||"").toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"");
     var isObtv = t.includes("OBTV")||t.includes("PAGAMENTO A FAVORECIDO")||t.includes("PGTO OBTV");
     if(!isObtv) return;
@@ -1390,6 +1481,7 @@ function calcPagoContrapartida(c){
   });
   (c.movimentacoes||[]).forEach(function(m){
     var t = (m.tipo||"").toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"");
+    if(IDEPI.movCancelada(m)) return;
     /* INGRESSO DE CONTRAPARTIDA: depósito na conta, NÃO é pagamento executado — ignorar */
     if(t.includes("INGRESSO") && t.includes("CONTRAPARTIDA")) return;
     var isObtv = t.includes("OBTV")||t.includes("PAGAMENTO A FAVORECIDO")||t.includes("PGTO OBTV");
@@ -1845,8 +1937,13 @@ IDEPI.ligarBotaoFullscreen('btnFSExec');
    enxuto e busca o instrumento sob demanda — no Firestore isso é 1 documento.
    ─────────────────────────────────────────────────────────────────────── */
 IDEPI.auth.comPainel('execucao', function () {
-  IDEPI.dados.execIndice()
-    .then(function(idx){
+  Promise.all([IDEPI.dados.execIndice(), IDEPI.dados.carregar()])
+    .then(function(r){
+      var idx = r[0], base = r[1] || {};
+      _CONVENIOS_VIG = base.convenios || [];
+      /* Histórico primeiro: é ele que faz o liberado vir do Transferegov. */
+      IDEPI.usarHistorico(base.historico_repasses || {});
+
       var lista = idx.instrumentos || [];
       document.getElementById("hd-ts").innerHTML = idx.exec_atualizado_em
         ? "Atualizado<br>" + IDEPI.esc(idx.exec_atualizado_em)

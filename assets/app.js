@@ -152,7 +152,13 @@
     var sit = leSituacao(c);
     if (sit === 'fim') return { st: 'finalizado', dias: null, temSusp: false };
 
-    var dVig = parseDateBR(c.vigencia_fmt || c.vigencia);
+    /* A vigência da Emendas Senador entra como RESERVA, nunca por cima da
+       CGU. Proposta ainda não celebrada não existe para a CGU, então o
+       main.py grava vazio — mas o setor já definiu o prazo (os cinco
+       pré-instrumentos terminam em 31/12/2029). Sem isso eles apareciam como
+       "sem data" tendo prazo, SEI e fiscal (04/08/2026). */
+    var dVig = parseDateBR(c.vigencia_fmt || c.vigencia) ||
+               parseDateBR(c.vigencia_emendas);
     var dSus = parseDateBR(c.vigencia_suspensiva);
 
     var temSusp = false;
@@ -344,6 +350,36 @@
   /** Contrapartida já depositada. Só existe no histórico. */
   function contrapartidaRecebidaDe(c) {
     return c ? (somaIngressos(c.numero, 'C') || 0) : 0;
+  }
+
+  /* ── Processos SEI ────────────────────────────────────────────────────── */
+
+  /** Todos os processos SEI do convênio, do mais antigo ao mais recente.
+   *
+   *  O setor acumula processos na mesma célula da Emendas Senador (19 casos
+   *  hoje), separados por quebra de linha, barra ou só espaços. O ÚLTIMO é o
+   *  vigente; os anteriores continuam servindo para consulta, então são
+   *  guardados em vez de descartados. */
+  var RE_SEI = /\d{5}\.\d{6}\/\d{4}-\d{2}/g;
+
+  function seisDe(c) {
+    if (!c) return [];
+    var achados = String(c.sei_todos || '').match(RE_SEI) || [];
+    var manual = String(c.sei || '').trim();
+    /* O que está na coluna N (manual) vale como o vigente: quem digitou ali
+       pode saber de algo que a Emendas não registrou. Por isso ele vai para o
+       fim da lista, mesmo que a Emendas tenha outro. */
+    if (manual && achados.indexOf(manual) === -1) achados = achados.concat(manual);
+    else if (manual && achados[achados.length - 1] !== manual) {
+      achados = achados.filter(function (x) { return x !== manual; }).concat(manual);
+    }
+    return achados;
+  }
+
+  /** O processo vigente — o último da lista. */
+  function seiVigenteDe(c) {
+    var l = seisDe(c);
+    return l.length ? l[l.length - 1] : '';
   }
 
   /* ── Contrapartida ────────────────────────────────────────────────────── */
@@ -538,6 +574,14 @@
   }
   function temPagamento(c) {
     return String(c.pagamento || c.col_q || '').trim().toUpperCase().indexOf('SIM') === 0;
+  }
+  /** Movimentação CANCELADA não é dinheiro que saiu — fica fora de toda soma.
+   *  Ela continua aparecendo na LISTA, com a situação à vista; o que não pode
+   *  é entrar em total. Descoberto em 05/08/2026: no 838065 a soma das linhas
+   *  de tributo passava R$ 2.851,20 do (bruto − líquido) dos pagamentos, e
+   *  esses R$ 2.851,20 eram exatamente a única linha cancelada da tela. */
+  function movCancelada(m) {
+    return /cancel/i.test(String((m && m.situacao) || ''));
   }
   /** Apto ao EX-01 = obra iniciada (tem medição ou pagamento) e não encerrado. */
   function isApto(c) {
@@ -875,6 +919,8 @@
   IDEPI.calcStatus = calcStatus;
   IDEPI.faseDe = faseDe;
   IDEPI.municipioExtra = municipioExtra;
+  IDEPI.seisDe = seisDe;
+  IDEPI.seiVigenteDe = seiVigenteDe;
   IDEPI.usarHistorico = usarHistorico;
   IDEPI.liberadoDe = liberadoDe;
   IDEPI.contrapartidaRecebidaDe = contrapartidaRecebidaDe;
@@ -892,6 +938,7 @@
   IDEPI.travadosPorSuspensiva = travadosPorSuspensiva;
   IDEPI.temMedicao = temMedicao;
   IDEPI.temPagamento = temPagamento;
+  IDEPI.movCancelada = movCancelada;
   IDEPI.isApto = isApto;
   IDEPI.isProjeto = isProjeto;
   IDEPI.temFoto = temFoto;

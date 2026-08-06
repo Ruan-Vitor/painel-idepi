@@ -583,6 +583,58 @@
   function movCancelada(m) {
     return /cancel/i.test(String((m && m.situacao) || ''));
   }
+  /* ── PARADA: quanto tempo sem execução financeira ───────────────────────
+   *  Os prazos não são estéticos, são exigência do concedente/mandatária:
+   *    90 dias  → justificativa obrigatória
+   *    180 dias → nova justificativa
+   *    360 dias → risco de perda do convênio (nunca aconteceu até 2026)
+   *  A data vem de `ultima_mov` no painel/exec_index, que é o último
+   *  PAGAMENTO — ingresso e aplicação não são execução. */
+  var FAIXAS_PARADA = [
+    { id: 'risco',    dias: 360, rotulo: 'Risco de perda',   cor: '#ef4444' },
+    { id: 'grave',    dias: 180, rotulo: '2ª justificativa', cor: '#f97316' },
+    { id: 'justifica',dias:  90, rotulo: 'Justificativa',    cor: '#eab308' },
+    { id: 'ok',       dias:   0, rotulo: 'Em dia',           cor: '#22c55e' }
+  ];
+
+  /** {dias, faixa, data} do instrumento, ou null quando não se aplica.
+   *  Instrumento encerrado ou que nunca movimentou não entra: parada
+   *  pressupõe execução em curso que parou. */
+  function paradaDe(c) {
+    if (!c || isFinalizado(c)) return null;
+    var data = c.ultima_mov || '';
+    if (!data) return null;
+    var d = parseDateBR(data);
+    if (!d) return null;
+    var dias = diasAtras(d);
+    if (dias === null || dias < 0) return null;
+    var faixa = FAIXAS_PARADA[FAIXAS_PARADA.length - 1];
+    for (var i = 0; i < FAIXAS_PARADA.length; i++) {
+      if (dias >= FAIXAS_PARADA[i].dias) { faixa = FAIXAS_PARADA[i]; break; }
+    }
+    return { dias: dias, faixa: faixa, data: data };
+  }
+
+  /** Os parados há 90 dias ou mais, do mais antigo para o mais recente. */
+  function paradosSemExecucao(lista) {
+    return (lista || []).map(function (c) {
+      var p = paradaDe(c);
+      return p ? { c: c, dias: p.dias, faixa: p.faixa, data: p.data } : null;
+    }).filter(function (x) {
+      return x && x.faixa.id !== 'ok';
+    }).sort(function (a, b) { return b.dias - a.dias; });
+  }
+
+  /** Contagem por faixa, para os cartões do topo. */
+  function resumoParada(lista) {
+    var r = { ok: 0, justifica: 0, grave: 0, risco: 0, sem_dado: 0 };
+    (lista || []).forEach(function (c) {
+      var p = paradaDe(c);
+      if (!p) { r.sem_dado++; return; }
+      r[p.faixa.id]++;
+    });
+    return r;
+  }
   /** Apto ao EX-01 = obra iniciada (tem medição ou pagamento) e não encerrado. */
   function isApto(c) {
     return !isFinalizado(c) && (temMedicao(c) || temPagamento(c));
@@ -939,6 +991,10 @@
   IDEPI.temMedicao = temMedicao;
   IDEPI.temPagamento = temPagamento;
   IDEPI.movCancelada = movCancelada;
+  IDEPI.FAIXAS_PARADA = FAIXAS_PARADA;
+  IDEPI.paradaDe = paradaDe;
+  IDEPI.paradosSemExecucao = paradosSemExecucao;
+  IDEPI.resumoParada = resumoParada;
   IDEPI.isApto = isApto;
   IDEPI.isProjeto = isProjeto;
   IDEPI.temFoto = temFoto;

@@ -1620,7 +1620,7 @@ function renderContrato(c){
     emp.forEach(function(e){
       h += '<div class="cc-item"><div class="cc-lbl">' + sanitize(e.nome || "(sem nome)") +
            (e.cnpj ? ' <span class="mono" style="font-weight:400">' + sanitize(e.cnpj) + '</span>' : '') +
-           '</div><div class="cc-val">' + fmtBRL(e.total) +
+           '</div><div class="cc-val">' + fmt(e.total) +
            ' <small style="color:var(--muted);font-weight:400">em ' + e.n +
            (e.n === 1 ? ' pagamento' : ' pagamentos') + '</small></div></div>';
     });

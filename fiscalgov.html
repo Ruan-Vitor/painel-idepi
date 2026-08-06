@@ -280,7 +280,8 @@ tbody tr:hover td{background:#f5f9ff}
         <div class="kpi k-proj">
           <div class="kpi-label">Em projeto <i class="fa-solid fa-hammer" style="font-size:9px"></i></div>
           <div class="kpi-val" id="kpi-proj">—</div>
-          <div class="kpi-desc">vigentes sem medição ou pagamento — não aptos ainda</div>
+          <div class="kpi-desc">não se aplica: sem recurso ou obra não iniciada</div>
+          <div class="kpi-desc" id="kpi-proj-nota" style="font-weight:600;color:var(--muted)"></div>
         </div>
         <div class="kpi k-ok">
           <div class="kpi-label">Aptos com foto ✅</div>
@@ -640,7 +641,32 @@ function exportarExcelFiscalGov() {
    CARREGA OS DADOS (Firestore, com o GitHub como plano B)
    ══════════════════════════════════════════════════════ */
 IDEPI.auth.comPainel('fiscalgov', function () {
+/* A execução coletada é que diz se a obra começou — coluna manual de planilha
+   não se atualiza sozinha quando a obra atrasa. Sem isto, o painel cobrava
+   relatório fotográfico de quem ainda não tem AIO (SEPLAN, 06/08/2026). */
+function _juntarExecucao(conv){
+  if(!IDEPI.dados || !IDEPI.dados.execIndice) return Promise.resolve(conv);
+  return IDEPI.dados.execIndice().then(function(idx){
+    var porNum = {};
+    ((idx && idx.instrumentos) || []).forEach(function(e){
+      porNum[String(e.numero||"").trim()] = e;
+    });
+    conv.forEach(function(c){
+      var e = porNum[String(c.numero||"").trim()];
+      if(!e) return;
+      c.qtd_mov         = e.qtd_mov || 0;
+      c.qtd_nf          = e.qtd_nf  || 0;
+      c.exec_fisica_pct = e.exec_fisica_pct || 0;
+      c.ultima_mov      = e.ultima_mov || "";
+    });
+    return conv;
+  }).catch(function(){ return conv; });   /* sem execução, segue pela planilha */
+}
+
 IDEPI.dados.carregar()
+  .then(function(j){
+    return _juntarExecucao(j.convenios || []).then(function(){ return j; });
+  })
   .then(function(j){
     document.getElementById("hd-ts").innerHTML =
       IDEPI.dados.rotuloOrigem(j).replace("Atualizado ", "Atualizado<br>");
@@ -667,12 +693,15 @@ IDEPI.dados.carregar()
       item._pag  = temPagamento(c);
       item._apto = isApto(c);
       item._proj = isProjeto(c);
+      item._naoAplica = IDEPI.motivoNaoAplica(c);   /* null | sem_recurso | sem_inicio */
       item._foto = item._apto ? temFoto(c) : false;
       todos.push(item);
     }
 
     var totalVig = todos.length;
     var emProj   = todos.filter(function(c){ return c._proj; }).length;
+    var semRec   = todos.filter(function(c){ return c._naoAplica === 'sem_recurso'; }).length;
+    var semIni   = todos.filter(function(c){ return c._naoAplica === 'sem_inicio'; }).length;
     var aptos    = todos.filter(function(c){ return c._apto; }).length;
     var comFoto  = todos.filter(function(c){ return c._apto && c._foto; }).length;
     var semFoto  = aptos - comFoto;
@@ -680,6 +709,8 @@ IDEPI.dados.carregar()
 
     document.getElementById("kpi-total").textContent = totalVig;
     document.getElementById("kpi-proj").textContent  = emProj;
+    var _rot = document.getElementById("kpi-proj-nota");
+    if(_rot) _rot.textContent = semRec + " sem recurso · " + semIni + " sem AIO";
     document.getElementById("kpi-ok").textContent    = comFoto;
     document.getElementById("kpi-nok").textContent   = semFoto;
     document.getElementById("kpi-pct").textContent   = pct+"%";

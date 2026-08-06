@@ -1158,12 +1158,16 @@ var CARDS_XLS = {
               IDEPI.seiVigenteDe(c)];
     },
     resumo: function (itens) {
+      /* As duas últimas linhas são do PAINEL INTEIRO, não da seleção — e
+         dizem isso no rótulo. Sem essa marca, uma exportação filtrada
+         mostraria "3 convênios" logo acima de "49 integralmente liberados"
+         e ninguém saberia qual dos dois números vale. */
       var r = IDEPI.resumoRepasse(_dadosGerais);
       var falta = itens.reduce(function (s, it) { return s + it.rp.falta; }, 0);
-      return [['Convênios com repasse a receber', itens.length],
-              ['Falta receber (R$)',              falta],
-              ['Integralmente liberados',         r.quitado],
-              ['Sem nenhum repasse',              r.nada]];
+      return [['Convênios nesta exportação',           itens.length],
+              ['Falta receber, nesta exportação (R$)', falta],
+              ['Integralmente liberados (painel todo)', r.quitado],
+              ['Sem nenhum repasse (painel todo)',      r.nada]];
     }
   },
 
@@ -1186,12 +1190,12 @@ var CARDS_XLS = {
     resumo: function (itens) {
       var r = IDEPI.resumoContrapartida(_dadosGerais);
       var falta = itens.reduce(function (s, it) { return s + it.cp.falta; }, 0);
-      return [['Convênios devendo contrapartida', itens.length],
-              ['Falta depositar (R$)',            falta],
-              ['Quitadas',                        r.quitada],
-              ['Parciais',                        r.parcial],
-              ['Sem nenhum depósito',             r.nada],
-              ['Sem contrapartida prevista',      r.sem]];
+      return [['Convênios nesta exportação',             itens.length],
+              ['Falta depositar, nesta exportação (R$)', falta],
+              ['Quitadas (painel todo)',                 r.quitada],
+              ['Parciais (painel todo)',                 r.parcial],
+              ['Sem nenhum depósito (painel todo)',      r.nada],
+              ['Sem contrapartida prevista (painel todo)', r.sem]];
     }
   }
 };

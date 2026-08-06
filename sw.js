@@ -50,7 +50,26 @@
                  (enviada, em análise, aprovada, com ressalvas, concluída),
                  mais rescindido/encerrado/anulado. "Iniciada por
                  Antecipação" fica com a data, porque foi aberta antes do
-                 fim da vigência. 6 convênios mudam de card */
+                 fim da vigência. 6 convênios mudam de card
+     v10..v18 — 03 a 05/08: painel geral refeito (legado x nova gestão, KPI de
+                 eficiência, travados por suspensiva), painel de PCF, números
+                 clicáveis, SEI múltiplo e fiscal no cabeçalho
+     v19 — 05/08: movimentação CANCELADA sai de toda soma. No 838065 a soma dos
+                 tributos passava R$ 2.851,20 do (bruto - líquido), e esses
+                 R$ 2.851,20 eram exatamente a única linha cancelada
+     v20..v22 — 05/08: card "Sem execução financeira" (90/180/360 dias), busca
+                 nos quatro cards do painel geral, remoção de instrumento só
+                 para admin, empresas pelos pagamentos quando não há contrato
+     v23 — 06/08: correção do card de parada, que vinha zerado — diasAtras()
+                 devolve TEXTO ("há 1476 dias") e a comparação com 90 era
+                 sempre falsa; e do fmtBRL() inexistente, cujo ReferenceError
+                 derrubava o card de contratos inteiro
+     v24 — 06/08: marco do aditivo na execução financeira (Atalaia): antes do
+                 marco conta como quitado, do marco em diante vale o rateio
+                 por nota fiscal
+     v25..v27 — 06/08: EX-01 deixa de cobrar relatório fotográfico de quem não
+                 tem recurso federal ou está sem AIO emitida. A AIO é lida do
+                 Checklist do contrato no Transferegov, não inferida */
 const VERSAO = 'idepi-v27';
 const CACHE_SHELL = VERSAO + '-shell';
 const CACHE_PAGS  = VERSAO + '-paginas';

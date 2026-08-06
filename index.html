@@ -370,6 +370,23 @@
         <div class="fase-legenda" id="fase-legenda"></div>
       </div>
 
+      <!-- PERÍODO SEM EXECUÇÃO FINANCEIRA -->
+      <div class="fg-card">
+        <div class="fg-card-head">
+          <div class="fg-card-title"><i class="fa-solid fa-hourglass-half"></i> Sem execução financeira — <span id="par-qtd">—</span></div>
+          <div class="cp-resumo" id="par-resumo"></div>
+        </div>
+        <div class="sus-lista" id="par-lista">
+          <div class="sus-vazio">Carregando…</div>
+        </div>
+        <div class="fase-legenda">
+          <strong style="color:var(--text)">Prazos:</strong>
+          <span class="fase-item"><i class="fase-bolinha" style="background:#eab308"></i>90 dias — justificativa ao concedente</span>
+          <span class="fase-item"><i class="fase-bolinha" style="background:#f97316"></i>180 dias — nova justificativa</span>
+          <span class="fase-item"><i class="fase-bolinha" style="background:#ef4444"></i>360 dias — risco de perda do convênio</span>
+        </div>
+      </div>
+
       <!-- REPASSE FEDERAL -->
       <div class="fg-card">
         <div class="fg-card-head">
@@ -682,6 +699,63 @@ function renderSuspensivas(conv) {
   }).join('');
 }
 
+/* ── Sem execução financeira ─────────────────────────────────────────────
+   A data da última movimentação não está no documento de vigências: vem do
+   painel/exec_index, que a coleta alimenta. Por isso este bloco carrega
+   depois e casa por número — sem ele o card ficaria mudo. */
+function renderParada(conv) {
+  var lista = IDEPI.paradosSemExecucao(conv);
+  var r = IDEPI.resumoParada(conv);
+  IDEPI.setTxt('par-qtd', lista.length + (lista.length === 1 ? ' convênio' : ' convênios'));
+  IDEPI.setHtml('par-resumo',
+    '<span class="cp-chip">' + r.risco + ' em risco</span>' +
+    '<span class="cp-chip">' + r.grave + ' acima de 180d</span>' +
+    '<span class="cp-chip">' + r.ok + ' em dia</span>' +
+    (r.sem_dado ? '<span class="cp-chip">' + r.sem_dado + ' sem movimentação</span>' : ''));
+
+  var box = IDEPI.$('par-lista');
+  if (!box) return;
+  if (!lista.length) {
+    box.innerHTML = '<div class="sus-vazio">Nenhum convênio parado há 90 dias ou mais.</div>';
+    return;
+  }
+  box.innerHTML = lista.map(function (it) {
+    var c = it.c;
+    return '<div class="sus-item">' +
+             '<a class="sus-num" href="execucao.html?num=' +
+               encodeURIComponent(c.numero || '') + '" title="Abrir a execução financeira">' +
+               IDEPI.faixaFase(c) + IDEPI.esc(c.numero) + '</a>' +
+             '<div class="sus-obj" title="' + IDEPI.esc(c.objeto || '') + '">' +
+               IDEPI.esc(c.objeto || '—') + IDEPI.municipioExtra(c) + '</div>' +
+             '<div class="sus-prazo' +
+               (it.faixa.id === 'risco' ? ' passou' :
+                it.faixa.id === 'grave' ? ' perto' : '') + '">' +
+               it.dias + ' dias' +
+               '<small>' + it.faixa.rotulo + ' · última mov. ' +
+               IDEPI.esc(it.data) + '</small>' +
+             '</div>' +
+           '</div>';
+  }).join('');
+}
+
+function carregarParada(conv) {
+  if (!IDEPI.dados || !IDEPI.dados.execIndice) return;
+  IDEPI.dados.execIndice().then(function (idx) {
+    var porNum = {};
+    ((idx && idx.instrumentos) || []).forEach(function (e) {
+      porNum[String(e.numero || '').trim()] = e;
+    });
+    conv.forEach(function (c) {
+      var e = porNum[String(c.numero || '').trim()];
+      if (e) { c.ultima_mov = e.ultima_mov || ''; c.qtd_mov = e.qtd_mov || 0; }
+    });
+    renderParada(conv);
+  }).catch(function () {
+    IDEPI.setHtml('par-lista',
+      '<div class="sus-vazio">Não foi possível ler a execução financeira.</div>');
+  });
+}
+
 IDEPI.dados.carregar()
   .then(function (j) {
     IDEPI.setHtml('hd-ts', IDEPI.dados.rotuloOrigem(j).replace('Atualizado ', 'Atualizado<br>'));
@@ -716,6 +790,7 @@ IDEPI.dados.carregar()
 
     renderCoortes(conv);
     renderSuspensivas(conv);
+    carregarParada(conv);
     /* Registra o histórico ANTES de qualquer cálculo: é ele que faz
        liberadoDe() usar o Transferegov em vez da CGU. */
     IDEPI.usarHistorico(j.historico_repasses || {});

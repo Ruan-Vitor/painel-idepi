@@ -84,6 +84,13 @@
 
 /* ── CLÁUSULA SUSPENSIVA ── */
 .sus-lista{max-height:270px;overflow-y:auto}
+/* Busca dentro do card. Com 45 convênios em "repasse a receber", rolar a lista
+   inteira para achar um instrumento é pior que não ter a lista. */
+.fg-busca{padding:8px 20px;border-bottom:1px solid var(--border);display:flex;gap:8px;align-items:center}
+.fg-busca input{flex:1;min-width:0;background:var(--bg);border:1px solid var(--border);border-radius:8px;
+  padding:7px 11px;font-size:12px;color:var(--text);font-family:inherit}
+.fg-busca input:focus{outline:none;border-color:var(--acc)}
+.fg-busca .fg-busca-n{font-size:11px;color:var(--muted);white-space:nowrap}
 /* minmax(0,1fr), não 1fr: o mínimo automático de `1fr` é o tamanho do
    conteúdo, e com `nowrap` no objeto a coluna se recusava a encolher — ela
    ia a 0px e o texto empurrava a página para rolar na horizontal
@@ -363,7 +370,11 @@
           <div class="fg-card-title"><i class="fa-solid fa-hand"></i> Travados por cláusula suspensiva — <span id="sus-qtd">—</span></div>
           <a class="fg-link" href="vigencias.html"><i class="fa-solid fa-arrow-up-right-from-square"></i> Ver no painel completo</a>
         </div>
-        <div class="sus-lista" id="sus-lista">
+        <div class="fg-busca">
+            <input type="text" id="sus-busca" placeholder="Buscar por número, objeto ou município…" oninput="filtrarCard('sus')">
+            <span class="fg-busca-n" id="sus-busca-n"></span>
+          </div>
+          <div class="sus-lista" id="sus-lista">
           <div class="sus-vazio">Carregando…</div>
         </div>
         <!-- Legenda obrigatória: no celular não existe o balão de hover. -->
@@ -376,7 +387,11 @@
           <div class="fg-card-title"><i class="fa-solid fa-hourglass-half"></i> Sem execução financeira — <span id="par-qtd">—</span></div>
           <div class="cp-resumo" id="par-resumo"></div>
         </div>
-        <div class="sus-lista" id="par-lista">
+        <div class="fg-busca">
+            <input type="text" id="par-busca" placeholder="Buscar por número, objeto ou município…" oninput="filtrarCard('par')">
+            <span class="fg-busca-n" id="par-busca-n"></span>
+          </div>
+          <div class="sus-lista" id="par-lista">
           <div class="sus-vazio">Carregando…</div>
         </div>
         <div class="fase-legenda">
@@ -393,7 +408,11 @@
           <div class="fg-card-title"><i class="fa-solid fa-money-bill-transfer"></i> Repasse federal a receber — <span id="rp-qtd">—</span></div>
           <div class="cp-resumo" id="rp-resumo"></div>
         </div>
-        <div class="sus-lista" id="rp-lista">
+        <div class="fg-busca">
+            <input type="text" id="rp-busca" placeholder="Buscar por número, objeto ou município…" oninput="filtrarCard('rp')">
+            <span class="fg-busca-n" id="rp-busca-n"></span>
+          </div>
+          <div class="sus-lista" id="rp-lista">
           <div class="sus-vazio">Carregando…</div>
         </div>
       </div>
@@ -404,7 +423,11 @@
           <div class="fg-card-title"><i class="fa-solid fa-scale-balanced"></i> Contrapartida a depositar — <span id="cp-qtd">—</span></div>
           <div class="cp-resumo" id="cp-resumo"></div>
         </div>
-        <div class="sus-lista" id="cp-lista">
+        <div class="fg-busca">
+            <input type="text" id="cp-busca" placeholder="Buscar por número, objeto ou município…" oninput="filtrarCard('cp')">
+            <span class="fg-busca-n" id="cp-busca-n"></span>
+          </div>
+          <div class="sus-lista" id="cp-lista">
           <div class="sus-vazio">Carregando…</div>
         </div>
       </div>
@@ -750,9 +773,41 @@ function carregarParada(conv) {
       if (e) { c.ultima_mov = e.ultima_mov || ''; c.qtd_mov = e.qtd_mov || 0; }
     });
     renderParada(conv);
+    ajustarBuscas();
   }).catch(function () {
     IDEPI.setHtml('par-lista',
       '<div class="sus-vazio">Não foi possível ler a execução financeira.</div>');
+  });
+}
+
+
+/* ── Busca dentro dos cards de lista ─────────────────────────────────────
+   Filtra pelo texto já renderizado (número, objeto e município entram nele),
+   sem refazer o render. Vale para os quatro cards e some sozinha quando a
+   lista é curta — caixa de busca em lista de 3 itens só ocupa espaço. */
+function filtrarCard(pref){
+  var inp = IDEPI.$(pref + '-busca'), box = IDEPI.$(pref + '-lista');
+  if(!inp || !box) return;
+  var q = IDEPI.norm(inp.value.trim());
+  var itens = box.querySelectorAll('.sus-item');
+  var n = 0;
+  Array.prototype.forEach.call(itens, function(el){
+    var bate = !q || IDEPI.norm(el.textContent).indexOf(q) >= 0;
+    el.hidden = !bate;
+    if(bate) n++;
+  });
+  IDEPI.setTxt(pref + '-busca-n',
+               q ? (n + (n === 1 ? ' achado' : ' achados')) : '');
+}
+
+/* Esconde a busca quando a lista não precisa dela. */
+function ajustarBuscas(){
+  ['sus','par','rp','cp'].forEach(function(pref){
+    var box = IDEPI.$(pref + '-lista'), inp = IDEPI.$(pref + '-busca');
+    if(!box || !inp) return;
+    var qtd = box.querySelectorAll('.sus-item').length;
+    var wrap = inp.parentNode;
+    if(wrap) wrap.hidden = qtd < 6;
   });
 }
 
@@ -791,12 +846,14 @@ IDEPI.dados.carregar()
     renderCoortes(conv);
     renderSuspensivas(conv);
     carregarParada(conv);
+    ajustarBuscas();
     /* Registra o histórico ANTES de qualquer cálculo: é ele que faz
        liberadoDe() usar o Transferegov em vez da CGU. */
     IDEPI.usarHistorico(j.historico_repasses || {});
 
     renderRepasse(conv);
     renderContrapartida(conv);
+    ajustarBuscas();
 
     var ex = IDEPI.resumoEX01(conv);
     IDEPI.setTxt('fg-total', ex.vigentes);

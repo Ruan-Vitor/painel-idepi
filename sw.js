@@ -69,8 +69,13 @@
                  por nota fiscal
      v25..v27 — 06/08: EX-01 deixa de cobrar relatório fotográfico de quem não
                  tem recurso federal ou está sem AIO emitida. A AIO é lida do
-                 Checklist do contrato no Transferegov, não inferida */
-const VERSAO = 'idepi-v27';
+                 Checklist do contrato no Transferegov, não inferida
+     v28 — 06/08: tela cheia e exportação em Excel nos quatro cards de lista do
+                 painel geral (suspensiva, sem execução, repasse a receber,
+                 contrapartida). Junto, a busca de repasse e contrapartida
+                 voltou a funcionar: o filtro procurava só `.sus-item` e esses
+                 dois cards desenham `.cp-item`, então a caixa nem aparecia */
+const VERSAO = 'idepi-v28';
 const CACHE_SHELL = VERSAO + '-shell';
 const CACHE_PAGS  = VERSAO + '-paginas';
 

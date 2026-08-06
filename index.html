@@ -199,6 +199,27 @@
 .fg-fill{height:100%;border-radius:99px;background:linear-gradient(90deg,#1a3a6e,#16a34a);transition:width 1s cubic-bezier(.22,1,.36,1)}
 .fg-card:fullscreen{background:var(--surface);display:flex;flex-direction:column;border-radius:0;overflow:auto;padding:20px}
 
+/* ── AÇÕES DO CARD (tela cheia + Excel) ──────────────────────────────────
+   Ficam no cabeçalho, ao lado do resumo. O `flex-wrap` do .fg-card-head já
+   quebra a linha quando não cabe — no celular o de tela cheia some sozinho
+   (regra do app.css), e o de Excel continua, que é o que se leva para a
+   reunião. */
+.fg-acoes{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-left:auto}
+.btn-excel.mini{padding:5px 11px;font-size:11px;min-height:32px;gap:5px}
+
+/* Em tela cheia a lista deixa de ter altura fixa e passa a ocupar o que
+   sobra — sem isso o card abria em tela cheia com a mesma janelinha de
+   270px e 60 convênios rolando dentro dela.
+   Regras SEPARADAS de propósito: numa lista única, o seletor que o
+   navegador não reconhece derruba a regra inteira. */
+.fg-card:fullscreen .sus-lista{max-height:none;flex:1 1 auto;overflow:auto}
+.fg-card:-webkit-full-screen .sus-lista{max-height:none;flex:1 1 auto;overflow:auto}
+.fg-card:-moz-full-screen .sus-lista{max-height:none;flex:1 1 auto;overflow:auto}
+/* Cabeçalho, busca e legenda não encolhem: são eles que dão o contexto. */
+.fg-card:fullscreen .fg-card-head,
+.fg-card:fullscreen .fg-busca,
+.fg-card:fullscreen .fase-legenda{flex-shrink:0}
+
 /* ── RESPONSIVO DA PÁGINA ── */
 @media (max-width:900px){
   .hero{flex-direction:column;align-items:flex-start;padding:18px}
@@ -365,10 +386,18 @@
       </div>
 
       <!-- CLÁUSULA SUSPENSIVA -->
-      <div class="fg-card">
+      <div class="fg-card" id="card-sus">
         <div class="fg-card-head">
           <div class="fg-card-title"><i class="fa-solid fa-hand"></i> Travados por cláusula suspensiva — <span id="sus-qtd">—</span></div>
-          <a class="fg-link" href="vigencias.html"><i class="fa-solid fa-arrow-up-right-from-square"></i> Ver no painel completo</a>
+          <div class="fg-acoes">
+            <a class="fg-link" href="vigencias.html"><i class="fa-solid fa-arrow-up-right-from-square"></i> Ver no painel completo</a>
+            <button class="btn-fullscreen" id="sus-fs" onclick="IDEPI.toggleFullscreen('card-sus')" title="Tela cheia">
+              <i class="fa-solid fa-expand"></i> Tela cheia
+            </button>
+            <button class="btn-excel mini" id="sus-xls" onclick="exportarCard('sus')" title="Exportar esta lista em Excel">
+              <i class="fa-solid fa-file-excel"></i> Excel
+            </button>
+          </div>
         </div>
         <div class="fg-busca">
             <input type="text" id="sus-busca" placeholder="Buscar por número, objeto ou município…" oninput="filtrarCard('sus')">
@@ -382,10 +411,18 @@
       </div>
 
       <!-- PERÍODO SEM EXECUÇÃO FINANCEIRA -->
-      <div class="fg-card">
+      <div class="fg-card" id="card-par">
         <div class="fg-card-head">
           <div class="fg-card-title"><i class="fa-solid fa-hourglass-half"></i> Sem execução financeira — <span id="par-qtd">—</span></div>
-          <div class="cp-resumo" id="par-resumo"></div>
+          <div class="fg-acoes">
+            <div class="cp-resumo" id="par-resumo"></div>
+            <button class="btn-fullscreen" id="par-fs" onclick="IDEPI.toggleFullscreen('card-par')" title="Tela cheia">
+              <i class="fa-solid fa-expand"></i> Tela cheia
+            </button>
+            <button class="btn-excel mini" id="par-xls" onclick="exportarCard('par')" title="Exportar esta lista em Excel">
+              <i class="fa-solid fa-file-excel"></i> Excel
+            </button>
+          </div>
         </div>
         <div class="fg-busca">
             <input type="text" id="par-busca" placeholder="Buscar por número, objeto ou município…" oninput="filtrarCard('par')">
@@ -403,10 +440,18 @@
       </div>
 
       <!-- REPASSE FEDERAL -->
-      <div class="fg-card">
+      <div class="fg-card" id="card-rp">
         <div class="fg-card-head">
           <div class="fg-card-title"><i class="fa-solid fa-money-bill-transfer"></i> Repasse federal a receber — <span id="rp-qtd">—</span></div>
-          <div class="cp-resumo" id="rp-resumo"></div>
+          <div class="fg-acoes">
+            <div class="cp-resumo" id="rp-resumo"></div>
+            <button class="btn-fullscreen" id="rp-fs" onclick="IDEPI.toggleFullscreen('card-rp')" title="Tela cheia">
+              <i class="fa-solid fa-expand"></i> Tela cheia
+            </button>
+            <button class="btn-excel mini" id="rp-xls" onclick="exportarCard('rp')" title="Exportar esta lista em Excel">
+              <i class="fa-solid fa-file-excel"></i> Excel
+            </button>
+          </div>
         </div>
         <div class="fg-busca">
             <input type="text" id="rp-busca" placeholder="Buscar por número, objeto ou município…" oninput="filtrarCard('rp')">
@@ -418,10 +463,18 @@
       </div>
 
       <!-- CONTRAPARTIDA -->
-      <div class="fg-card">
+      <div class="fg-card" id="card-cp">
         <div class="fg-card-head">
           <div class="fg-card-title"><i class="fa-solid fa-scale-balanced"></i> Contrapartida a depositar — <span id="cp-qtd">—</span></div>
-          <div class="cp-resumo" id="cp-resumo"></div>
+          <div class="fg-acoes">
+            <div class="cp-resumo" id="cp-resumo"></div>
+            <button class="btn-fullscreen" id="cp-fs" onclick="IDEPI.toggleFullscreen('card-cp')" title="Tela cheia">
+              <i class="fa-solid fa-expand"></i> Tela cheia
+            </button>
+            <button class="btn-excel mini" id="cp-xls" onclick="exportarCard('cp')" title="Exportar esta lista em Excel">
+              <i class="fa-solid fa-file-excel"></i> Excel
+            </button>
+          </div>
         </div>
         <div class="fg-busca">
             <input type="text" id="cp-busca" placeholder="Buscar por número, objeto ou município…" oninput="filtrarCard('cp')">
@@ -528,6 +581,12 @@
    ══════════════════════════════════════════════════════════════════════ */
 var _dadosGerais = [];   // guardado para a exportação em Excel
 
+/* O que cada card de lista está mostrando, guardado no momento do render.
+   A exportação lê DAQUI, não do HTML: raspar a tela devolveria "R$ 1,2 mi"
+   onde o Excel precisa de número, e perderia o que a coluna não mostra
+   (SEI, fiscal, concedente). */
+var _cards = { sus: [], par: [], rp: [], cp: [] };
+
 /* ── Coortes: legado x nova gestão, e o KPI de eficiência ──────────────────
    A regra de quem é legado e quem é nova gestão vive no app.js, não aqui —
    duplicar regra de negócio no HTML foi como o mesmo convênio passou a ter
@@ -598,6 +657,7 @@ function renderCoortes(conv) {
 function renderRepasse(conv) {
   var r = IDEPI.resumoRepasse(conv);
   var lista = IDEPI.repassesPendentes(conv);
+  _cards.rp = lista;
 
   IDEPI.setTxt('rp-qtd', lista.length + (lista.length === 1 ? ' convênio' : ' convênios'));
   IDEPI.setHtml('rp-resumo',
@@ -645,6 +705,7 @@ function renderRepasse(conv) {
 function renderContrapartida(conv) {
   var r = IDEPI.resumoContrapartida(conv);
   var lista = IDEPI.contrapartidasPendentes(conv);
+  _cards.cp = lista;
 
   IDEPI.setTxt('cp-qtd', lista.length + (lista.length === 1 ? ' convênio' : ' convênios'));
   IDEPI.setHtml('cp-resumo',
@@ -695,6 +756,7 @@ function renderSuspensivas(conv) {
   IDEPI.setHtml('fase-legenda', '<strong style="color:var(--text)">Fase:</strong>' +
                 IDEPI.legendaFases());
   var lista = IDEPI.travadosPorSuspensiva(conv);
+  _cards.sus = lista;
   IDEPI.setTxt('sus-qtd', lista.length + (lista.length === 1 ? ' convênio' : ' convênios'));
   var box = IDEPI.$('sus-lista');
   if (!box) return;
@@ -729,6 +791,7 @@ function renderSuspensivas(conv) {
 function renderParada(conv) {
   var lista = IDEPI.paradosSemExecucao(conv);
   var r = IDEPI.resumoParada(conv);
+  _cards.par = lista;
   IDEPI.setTxt('par-qtd', lista.length + (lista.length === 1 ? ' convênio' : ' convênios'));
   IDEPI.setHtml('par-resumo',
     '<span class="cp-chip">' + r.risco + ' em risco</span>' +
@@ -784,12 +847,20 @@ function carregarParada(conv) {
 /* ── Busca dentro dos cards de lista ─────────────────────────────────────
    Filtra pelo texto já renderizado (número, objeto e município entram nele),
    sem refazer o render. Vale para os quatro cards e some sozinha quando a
-   lista é curta — caixa de busca em lista de 3 itens só ocupa espaço. */
+   lista é curta — caixa de busca em lista de 3 itens só ocupa espaço.
+
+   O seletor precisa dos DOIS: suspensiva e parada desenham `.sus-item`,
+   repasse e contrapartida desenham `.cp-item`. Só com `.sus-item` a busca
+   destes dois cards contava zero itens — a caixa nunca aparecia (o
+   `ajustarBuscas` esconde abaixo de 6) e, aparecendo, não filtrava nada.
+   Achado em 06/08/2026. */
+var SEL_ITEM = '.sus-item, .cp-item';
+
 function filtrarCard(pref){
   var inp = IDEPI.$(pref + '-busca'), box = IDEPI.$(pref + '-lista');
   if(!inp || !box) return;
   var q = IDEPI.norm(inp.value.trim());
-  var itens = box.querySelectorAll('.sus-item');
+  var itens = box.querySelectorAll(SEL_ITEM);
   var n = 0;
   Array.prototype.forEach.call(itens, function(el){
     var bate = !q || IDEPI.norm(el.textContent).indexOf(q) >= 0;
@@ -805,7 +876,7 @@ function ajustarBuscas(){
   ['sus','par','rp','cp'].forEach(function(pref){
     var box = IDEPI.$(pref + '-lista'), inp = IDEPI.$(pref + '-busca');
     if(!box || !inp) return;
-    var qtd = box.querySelectorAll('.sus-item').length;
+    var qtd = box.querySelectorAll(SEL_ITEM).length;
     var wrap = inp.parentNode;
     if(wrap) wrap.hidden = qtd < 6;
   });
@@ -969,6 +1040,197 @@ function exportarExcelGeral() {
     XLSX.utils.book_append_sheet(wb, wsRes, 'Resumo por Status');
     XLSX.utils.book_append_sheet(wb, wsFG,  'FiscalGov EX-01');
     XLSX.writeFile(wb, 'IDEPI_Resumo_Geral_' + IDEPI.carimboData() + '.xlsx');
+  });
+}
+
+/* ══════════════════════════════════════════════════════════════════════
+   TELA CHEIA E EXCEL POR CARD
+
+   Os quatro cards de lista mostram no máximo 270px de altura e três
+   colunas. Quem precisa do dado inteiro — para levar à reunião ou para
+   cobrar o concedente — não tinha para onde ir: era ler rolando ou
+   exportar o painel todo e filtrar na mão.
+
+   Tela cheia reaproveita o `IDEPI.toggleFullscreen` que o fiscalgov já
+   usa; o Excel reaproveita o SheetJS que todas as páginas já carregam.
+   Nada novo foi inventado aqui.
+   ══════════════════════════════════════════════════════════════════════ */
+
+['sus','par','rp','cp'].forEach(function (p) {
+  IDEPI.ligarBotaoFullscreen(p + '-fs');
+});
+
+function _muni(c)  { return String((c && c.municipio_emendas) || '').trim(); }
+function _fase(c)  { var f = IDEPI.faseDe(c); return f ? f.rotulo : ''; }
+function _vig(c)   { return c.vigencia_fmt || c.vigencia || ''; }
+function _stVig(c) { var r = IDEPI.calcStatus(c); return IDEPI.NOME_ST[r.st] || r.st || ''; }
+
+/* Exporta o que está À VISTA. Se a pessoa buscou "Teresina" e vê 3 linhas,
+   o arquivo sai com 3 — devolver as 45 faria a conferência não fechar na
+   reunião. Quando a contagem do DOM não bate com a dos dados (render em
+   andamento), exporta a lista inteira em vez de arriscar linha trocada. */
+function _visiveis(pref) {
+  var lista = _cards[pref] || [];
+  var box = IDEPI.$(pref + '-lista');
+  if (!box) return lista;
+  var els = box.querySelectorAll(SEL_ITEM);
+  if (els.length !== lista.length) return lista;
+  return lista.filter(function (_, i) { return !els[i].hidden; });
+}
+
+var CARDS_XLS = {
+  sus: {
+    nome: 'Travados por cláusula suspensiva',
+    aba: 'Cláusula suspensiva',
+    arquivo: 'IDEPI_Clausula_Suspensiva',
+    cols: ['Nº Instrumento','Objeto','Município','Fase','Concedente',
+           'Data prevista p/ resolução','Dias (negativo = em atraso)',
+           'Situação do prazo','Vigência final','Status vigência',
+           'Valor total (R$)','Liberado (R$)','Nº SEI','Fiscal'],
+    larg: [16,52,24,20,14,16,16,18,14,14,18,18,24,18],
+    linha: function (it) {
+      var c = it.c;
+      return [c.numero || '', c.objeto || '', _muni(c), _fase(c),
+              c.concedente_sigla || c.concedente || '',
+              c.vigencia_suspensiva || '',
+              it.dias === null ? '' : it.dias,
+              it.dias === null ? 'sem data prevista'
+                               : (it.dias < 0 ? 'em atraso' : 'no prazo'),
+              _vig(c), _stVig(c),
+              IDEPI.parseReais(c.v_total), IDEPI.liberadoDe(c),
+              IDEPI.seiVigenteDe(c), c.fiscal || ''];
+    },
+    resumo: function (itens) {
+      var atraso = 0, semData = 0;
+      itens.forEach(function (it) {
+        if (it.dias === null) semData++; else if (it.dias < 0) atraso++;
+      });
+      return [['Travados por cláusula suspensiva', itens.length],
+              ['Com data prevista já vencida',     atraso],
+              ['Sem data prevista (coluna M)',     semData]];
+    }
+  },
+
+  par: {
+    nome: 'Sem execução financeira',
+    aba: 'Sem execução',
+    arquivo: 'IDEPI_Sem_Execucao_Financeira',
+    cols: ['Nº Instrumento','Objeto','Município','Fase','Dias parado',
+           'Faixa','Última movimentação','Qtd. movimentações',
+           'Vigência final','Status vigência','Valor total (R$)',
+           'Liberado (R$)','Nº SEI','Fiscal'],
+    larg: [16,52,24,20,12,18,18,16,14,14,18,18,24,18],
+    linha: function (it) {
+      var c = it.c;
+      return [c.numero || '', c.objeto || '', _muni(c), _fase(c),
+              it.dias, it.faixa.rotulo, it.data || '', c.qtd_mov || 0,
+              _vig(c), _stVig(c),
+              IDEPI.parseReais(c.v_total), IDEPI.liberadoDe(c),
+              IDEPI.seiVigenteDe(c), c.fiscal || ''];
+    },
+    resumo: function (itens) {
+      var r = { risco: 0, grave: 0, justifica: 0 };
+      itens.forEach(function (it) { r[it.faixa.id] = (r[it.faixa.id] || 0) + 1; });
+      return [['Parados há 90 dias ou mais',      itens.length],
+              ['360+ dias — risco de perda',      r.risco],
+              ['180–359 dias — 2ª justificativa', r.grave],
+              ['90–179 dias — justificativa',     r.justifica]];
+    }
+  },
+
+  rp: {
+    nome: 'Repasse federal a receber',
+    aba: 'Repasse a receber',
+    arquivo: 'IDEPI_Repasse_A_Receber',
+    cols: ['Nº Instrumento','Objeto','Município','Fase','Situação',
+           'Previsto (R$)','Liberado (R$)','Falta (R$)','% liberado',
+           'Vigência final','Status vigência','Concedente','Nº SEI'],
+    larg: [16,52,24,20,22,18,18,18,11,14,14,14,24],
+    linha: function (it) {
+      var c = it.c, rp = it.rp;
+      return [c.numero || '', c.objeto || '', _muni(c), _fase(c),
+              rp.situacao === 'nada' ? 'Nada liberado' : 'Parcialmente liberado',
+              rp.previsto, rp.liberado, rp.falta, rp.pct,
+              _vig(c), _stVig(c), c.concedente_sigla || c.concedente || '',
+              IDEPI.seiVigenteDe(c)];
+    },
+    resumo: function (itens) {
+      var r = IDEPI.resumoRepasse(_dadosGerais);
+      var falta = itens.reduce(function (s, it) { return s + it.rp.falta; }, 0);
+      return [['Convênios com repasse a receber', itens.length],
+              ['Falta receber (R$)',              falta],
+              ['Integralmente liberados',         r.quitado],
+              ['Sem nenhum repasse',              r.nada]];
+    }
+  },
+
+  cp: {
+    nome: 'Contrapartida a depositar',
+    aba: 'Contrapartida',
+    arquivo: 'IDEPI_Contrapartida_A_Depositar',
+    cols: ['Nº Instrumento','Objeto','Município','Fase','Situação',
+           'Prevista (R$)','Depositada (R$)','Falta (R$)','% depositado',
+           'Vigência final','Status vigência','Concedente','Nº SEI'],
+    larg: [16,52,24,20,24,18,18,18,13,14,14,14,24],
+    linha: function (it) {
+      var c = it.c, cp = it.cp;
+      return [c.numero || '', c.objeto || '', _muni(c), _fase(c),
+              cp.situacao === 'nada' ? 'Nada depositado' : 'Parcialmente depositada',
+              cp.previsto, cp.depositado, cp.falta, cp.pct,
+              _vig(c), _stVig(c), c.concedente_sigla || c.concedente || '',
+              IDEPI.seiVigenteDe(c)];
+    },
+    resumo: function (itens) {
+      var r = IDEPI.resumoContrapartida(_dadosGerais);
+      var falta = itens.reduce(function (s, it) { return s + it.cp.falta; }, 0);
+      return [['Convênios devendo contrapartida', itens.length],
+              ['Falta depositar (R$)',            falta],
+              ['Quitadas',                        r.quitada],
+              ['Parciais',                        r.parcial],
+              ['Sem nenhum depósito',             r.nada],
+              ['Sem contrapartida prevista',      r.sem]];
+    }
+  }
+};
+
+function exportarCard(pref) {
+  var def = CARDS_XLS[pref];
+  if (!def) return;
+  var itens = _visiveis(pref);
+  if (!itens.length) {
+    alert('Não há nada para exportar neste card' +
+          (IDEPI.$(pref + '-busca') && IDEPI.$(pref + '-busca').value.trim()
+            ? ' com a busca atual.' : '.'));
+    return;
+  }
+
+  IDEPI.comBotaoOcupado(pref + '-xls',
+    '<i class="fa-solid fa-file-excel"></i> Excel', function () {
+
+    var linhas = itens.map(def.linha);
+    var ws = XLSX.utils.aoa_to_sheet([def.cols].concat(linhas));
+    ws['!cols'] = def.larg.map(function (w) { return { wch: w }; });
+    ws['!autofilter'] = { ref: XLSX.utils.encode_range({
+      s: { r: 0, c: 0 }, e: { r: linhas.length, c: def.cols.length - 1 } }) };
+
+    /* O filtro de busca vai escrito no arquivo. Uma planilha com 3 de 45
+       linhas e nada explicando por quê é a próxima divergência a ser
+       investigada por alguém que não estava na sala. */
+    var busca = IDEPI.$(pref + '-busca');
+    busca = busca ? busca.value.trim() : '';
+    var wsRes = XLSX.utils.aoa_to_sheet(
+      [['Painel Geral IDEPI — ' + def.nome, ''],
+       ['Gerado em', IDEPI.carimboData()],
+       ['Linhas exportadas', linhas.length],
+       ['Filtro de busca', busca || '(nenhum — lista completa)'],
+       ['', '']]
+      .concat(def.resumo(itens)));
+    wsRes['!cols'] = [{ wch: 34 }, { wch: 22 }];
+
+    var wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws,    def.aba);
+    XLSX.utils.book_append_sheet(wb, wsRes, 'Resumo');
+    XLSX.writeFile(wb, def.arquivo + '_' + IDEPI.carimboData() + '.xlsx');
   });
 }
 </script>

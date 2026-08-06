@@ -1582,8 +1582,49 @@ function renderContrato(c){
   var lista = c.contratos && c.contratos.length ? c.contratos : (c.contrato ? [c.contrato] : []);
 
   if(!lista.length){
-    document.getElementById("cc-status-badge").innerHTML = '<span class="b b-slate">Sem contrato registrado</span>';
-    document.getElementById("ccGrid").innerHTML = '<div style="padding:18px;color:var(--muted);font-size:12px;">Nenhum instrumento contratual/CTEF cadastrado para este convênio.</div>';
+    /* Instrumento anterior ao módulo de Instrumentos Contratuais (o Atalaia é
+       de 2010) fica sem contrato cadastrado no Transferegov. Deixar o card
+       vazio esconde informação que o painel TEM: quem recebeu e quanto. Aqui
+       montamos as empresas a partir do favorecido dos próprios pagamentos —
+       marcado como derivado, para ninguém confundir com contrato cadastrado. */
+    var porEmpresa = {};
+    (c.movimentacoes||[]).forEach(function(m){
+      if(IDEPI.movCancelada(m)) return;
+      var t = (m.tipo||"").toUpperCase();
+      if(t.indexOf("OBTV") < 0 && t !== "PAGAMENTO") return;
+      var nome = (m.favorecido||"").trim();
+      var doc  = (m.cnpj||"").trim();
+      if(!nome && !doc) return;
+      var chave = nome || doc;
+      if(!porEmpresa[chave]) porEmpresa[chave] = { nome: nome, cnpj: doc, total: 0, n: 0 };
+      if(!porEmpresa[chave].cnpj && doc) porEmpresa[chave].cnpj = doc;
+      porEmpresa[chave].total += parseReais(m.v_bruto);
+      porEmpresa[chave].n++;
+    });
+    var emp = Object.keys(porEmpresa).map(function(k){ return porEmpresa[k]; })
+                    .sort(function(a,b){ return b.total - a.total; });
+
+    if(!emp.length){
+      document.getElementById("cc-status-badge").innerHTML = '<span class="b b-slate">Sem contrato registrado</span>';
+      document.getElementById("ccGrid").innerHTML = '<div style="padding:18px;color:var(--muted);font-size:12px;">Nenhum instrumento contratual/CTEF cadastrado para este convênio.</div>';
+      return;
+    }
+
+    document.getElementById("cc-status-badge").innerHTML =
+      '<span class="b b-amber">Sem contrato no Transferegov — empresas pelos pagamentos</span>';
+    var h = '<div style="padding:12px 18px 4px;color:var(--muted);font-size:11.5px;line-height:1.5">' +
+            'Este instrumento é anterior ao módulo de Instrumentos Contratuais, ' +
+            'então o Transferegov não tem contrato cadastrado. As empresas abaixo ' +
+            'vêm do favorecido das movimentações — <strong>não</strong> substituem ' +
+            'o contrato, e os números de contrato ficam no rateio.</div>';
+    emp.forEach(function(e){
+      h += '<div class="cc-item"><div class="cc-lbl">' + sanitize(e.nome || "(sem nome)") +
+           (e.cnpj ? ' <span class="mono" style="font-weight:400">' + sanitize(e.cnpj) + '</span>' : '') +
+           '</div><div class="cc-val">' + fmtBRL(e.total) +
+           ' <small style="color:var(--muted);font-weight:400">em ' + e.n +
+           (e.n === 1 ? ' pagamento' : ' pagamentos') + '</small></div></div>';
+    });
+    document.getElementById("ccGrid").innerHTML = h;
     return;
   }
 

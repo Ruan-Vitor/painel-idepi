@@ -638,13 +638,49 @@
     });
     return r;
   }
-  /** Apto ao EX-01 = obra iniciada (tem medição ou pagamento) e não encerrado. */
-  function isApto(c) {
-    return !isFinalizado(c) && (temMedicao(c) || temPagamento(c));
+  /* ── EX-01: de quem SE COBRA relatório fotográfico ──────────────────────
+   *  Em 06/08/2026 a SEPLAN cobrou 29 instrumentos e o setor devolveu dois
+   *  que não cabiam: o 907038 ainda não tem AIO (obra não começou) e o
+   *  907033 não tem AIO nem recurso federal. Cobrar foto de obra que não
+   *  começou gasta o crédito do indicador — e o painel tem como saber.
+   *
+   *  Dois filtros, nesta ordem:
+   *    1. sem recurso federal recebido → não se aplica;
+   *    2. recurso recebido mas obra não iniciada → ainda não se aplica.
+   *
+   *  "Obra iniciada" sai da execução coletada (pagamento, nota fiscal ou
+   *  execução física > 0) e, na falta dela, das colunas manuais da planilha.
+   *  A coleta é mais confiável: coluna manual não se atualiza sozinha. */
+  function obraIniciada(c) {
+    if (!c) return false;
+    if ((c.qtd_mov || 0) > 0 || (c.qtd_nf || 0) > 0) return true;
+    if (parseFloat(c.exec_fisica_pct || 0) > 0) return true;
+    /* Sem dado de execução no índice, cai no que a planilha diz. */
+    if (c.qtd_mov === undefined && c.qtd_nf === undefined) {
+      return temMedicao(c) || temPagamento(c);
+    }
+    return false;
   }
-  /** Em projeto = vigente mas ainda sem medição nem pagamento. */
+
+  /** Por que o EX-01 não se aplica a este instrumento — ou null se se aplica. */
+  function motivoNaoAplica(c) {
+    if (!c || isFinalizado(c)) return null;
+    if (!(liberadoDe(c) > 0)) return 'sem_recurso';
+    if (!obraIniciada(c))     return 'sem_inicio';
+    return null;
+  }
+  var ROTULO_NAO_APLICA = {
+    sem_recurso: 'Sem recurso federal recebido',
+    sem_inicio:  'Obra não iniciada (sem AIO)'
+  };
+
+  /** Apto ao EX-01 = vigente, com recurso recebido e obra iniciada. */
+  function isApto(c) {
+    return !isFinalizado(c) && motivoNaoAplica(c) === null;
+  }
+  /** Em projeto = vigente e ainda não apto (sem recurso ou sem início). */
   function isProjeto(c) {
-    return !isFinalizado(c) && !temMedicao(c) && !temPagamento(c);
+    return !isFinalizado(c) && motivoNaoAplica(c) !== null;
   }
   /** Normaliza NFD antes de comparar: "NÃO" chega de formas diferentes. */
   function temFoto(c) {
@@ -658,9 +694,17 @@
     var vigentes = (convenios || []).filter(function (c) { return !isFinalizado(c); });
     var aptos = vigentes.filter(isApto).length;
     var comFoto = vigentes.filter(function (c) { return isApto(c) && temFoto(c); }).length;
+    var semRecurso = 0, semInicio = 0;
+    vigentes.forEach(function (c) {
+      var m = motivoNaoAplica(c);
+      if (m === 'sem_recurso') semRecurso++;
+      else if (m === 'sem_inicio') semInicio++;
+    });
     return {
       vigentes: vigentes.length,
       emProjeto: vigentes.filter(isProjeto).length,
+      semRecurso: semRecurso,
+      semInicio: semInicio,
       aptos: aptos,
       comFoto: comFoto,
       semFoto: aptos - comFoto,
@@ -998,6 +1042,9 @@
   IDEPI.paradaDe = paradaDe;
   IDEPI.paradosSemExecucao = paradosSemExecucao;
   IDEPI.resumoParada = resumoParada;
+  IDEPI.obraIniciada = obraIniciada;
+  IDEPI.motivoNaoAplica = motivoNaoAplica;
+  IDEPI.ROTULO_NAO_APLICA = ROTULO_NAO_APLICA;
   IDEPI.isApto = isApto;
   IDEPI.isProjeto = isProjeto;
   IDEPI.temFoto = temFoto;

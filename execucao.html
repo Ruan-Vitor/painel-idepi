@@ -1830,6 +1830,44 @@ function renderNF(c){
 }
 
 /* ── RATEIO ─────────────────────────────────────────── */
+/* Divide as notas fiscais no marco do aditivo, pela DATA DE EMISSÃO.
+   Conferido no 737058 em 06/08/2026: com o marco em 05/11/2025 o trecho
+   anterior soma R$ 90.177.615,78 — o valor do instrumento antes do aditivo
+   (R$ 90.177.615,77) mais o R$ 0,01 que o Despacho 548/2025 explica. */
+function _cortarNoMarco(nfs, dataMarco){
+  var corte = IDEPI.parseDateBR(dataMarco);
+  var antes = [], depois = [];
+  (nfs||[]).forEach(function(n){
+    var d = IDEPI.parseDateBR(n.data || "");
+    (d && corte && d >= corte ? depois : antes).push(n);
+  });
+  return { antes: antes, depois: depois };
+}
+
+/* Soma repasse/contrapartida/rendimento de um conjunto de notas fiscais,
+   usando os itens do documento de liquidação — que é onde o Transferegov
+   guarda o rateio de verdade. */
+function _somarRateio(nfs){
+  var r = { rep: 0, cp: 0, rend: 0, total: 0 };
+  (nfs||[]).forEach(function(n){
+    if(n.itens && n.itens.length){
+      n.itens.forEach(function(it){
+        r.rep  += it.repasse       || 0;
+        r.cp   += it.contrapartida || 0;
+        r.rend += it.rendimento    || 0;
+      });
+    } else {
+      var or = (n.origem_recurso || "Repasse").toLowerCase();
+      var v  = n.v_orig || n.v_bruto || 0;
+      if(or.indexOf("contrapartida") >= 0)    r.cp   += v;
+      else if(or.indexOf("rendimento") >= 0)  r.rend += v;
+      else                                    r.rep  += v;
+    }
+  });
+  r.total = r.rep + r.cp + r.rend;
+  return r;
+}
+
 function renderRateio(c){
   var nfs = c.notas_fiscais||[];
   var totalRep=0,totalCP=0,totalRend=0;
@@ -1854,6 +1892,70 @@ function renderRateio(c){
   var pRend = pct(totalRend,totalGeral);
 
   var html = "";
+
+  /* ── MARCO DO ADITIVO ──────────────────────────────────────────────────
+     Quando o instrumento tem marco, a prestação de contas do período
+     anterior já foi aprovada pelo concedente: aquele trecho conta como
+     QUITADO, repasse e contrapartida, e não se reabre. O rateio por nota
+     fiscal vale do marco em diante — em diante, não só dentro do aditivo,
+     porque virão outros. O corte é por DATA DE EMISSÃO da NF: a numeração
+     de medição se repete entre contratos e até dentro da mesma empresa. */
+  var marco = c.marco_aditivo;
+  if(marco && marco.data){
+    var cAd = _cortarNoMarco(nfs, marco.data);
+    var aAntes = _somarRateio(cAd.antes), aDepois = _somarRateio(cAd.depois);
+    var prev = marco.previsto || {}, des = marco.desembolsado || {};
+
+    html += '<div class="rateio-card" style="flex:2.2">';
+    html +=   '<div class="rateio-title"><i class="fa-solid fa-flag-checkered"></i>' +
+              (marco.termo ? sanitize(marco.termo) : 'Aditivo') +
+              ' — marco em ' + sanitize(marco.data) + '</div>';
+    html +=   '<div style="font-size:11px;color:var(--muted);line-height:1.55;margin:-2px 0 10px">' +
+              'Corte na NF ' + sanitize(marco.nf || '—') +
+              (marco.medicao ? ' (' + sanitize(marco.medicao) + ')' : '') + '. ' +
+              sanitize(marco.motivo || '') + '</div>';
+
+    /* O valor de antes vem do MARCO, não da soma das notas: o Transferegov só
+       tem documento de liquidação para parte do período (113 de 285 no
+       Atalaia), porque o módulo é posterior a boa parte da obra. O valor do
+       instrumento antes do aditivo é o número certo e é o que foi prestado. */
+    html +=   '<div class="rleg"><span class="rleg-label"><strong>Antes do marco — quitado</strong>' +
+              '<br><small style="color:var(--muted)">prestação de contas do período já aprovada</small></span>' +
+              '<span class="rleg-val">' + fmt(marco.valor_antes || aAntes.total) + '<br>' +
+              '<small style="color:var(--muted)">' +
+              (marco.valor_antes ? 'valor do instrumento antes do aditivo'
+                                 : cAd.antes.length + ' nota(s) fiscal(is)') +
+              '</small></span></div>';
+
+    html +=   '<div class="rleg" style="border-top:1px solid var(--border);padding-top:8px;margin-top:6px">' +
+              '<span class="rleg-label"><strong>Do marco em diante — rateado</strong></span>' +
+              '<span class="rleg-val">' + fmt(aDepois.total) + '<br>' +
+              '<small style="color:var(--muted)">' + cAd.depois.length + ' nota(s) fiscal(is)</small></span></div>';
+    html +=   '<div class="rleg"><span class="rleg-dot" style="background:#1a3a6e"></span>' +
+              '<span class="rleg-label">Repasse pago</span><span class="rleg-val">' + fmt(aDepois.rep) +
+              (prev.repasse ? '<br><small style="color:var(--muted)">de ' + fmt(des.repasse||0) +
+               ' desembolsado · previsto ' + fmt(prev.repasse) + '</small>' : '') + '</span></div>';
+    html +=   '<div class="rleg"><span class="rleg-dot" style="background:#16a34a"></span>' +
+              '<span class="rleg-label">Contrapartida paga</span><span class="rleg-val">' + fmt(aDepois.cp) +
+              (prev.contrapartida ? '<br><small style="color:var(--muted)">de ' + fmt(des.contrapartida||0) +
+               ' depositado · previsto ' + fmt(prev.contrapartida) + '</small>' : '') + '</span></div>';
+    if(aDepois.rend)
+      html += '<div class="rleg"><span class="rleg-dot" style="background:#6d28d9"></span>' +
+              '<span class="rleg-label">Rendimento</span><span class="rleg-val">' + fmt(aDepois.rend) + '</span></div>';
+
+    var faltaRep = (des.repasse||0) - aDepois.rep;
+    var faltaCP  = (des.contrapartida||0) - aDepois.cp;
+    html +=   '<div class="rleg" style="border-top:1px solid var(--border);padding-top:8px;margin-top:6px">' +
+              '<span class="rleg-label"><strong>Saldo do desembolsado</strong>' +
+              '<br><small style="color:var(--muted)">já na conta e ainda não pago</small></span>' +
+              '<span class="rleg-val">' + fmt(faltaRep + faltaCP) +
+              '<br><small style="color:var(--muted)">repasse ' + fmt(faltaRep) +
+              ' · contrapartida ' + fmt(faltaCP) + '</small></span></div>';
+    if(marco.observacao)
+      html += '<div style="font-size:10.5px;color:var(--muted);line-height:1.5;margin-top:8px">' +
+              sanitize(marco.observacao) + '</div>';
+    html += '</div>';
+  }
 
   /* Card global */
   html += '<div class="rateio-card" style="flex:1.5">';

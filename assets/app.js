@@ -606,8 +606,11 @@
     if (!data) return null;
     var d = parseDateBR(data);
     if (!d) return null;
-    var dias = diasAtras(d);
-    if (dias === null || dias < 0) return null;
+    /* NÃO usar diasAtras(): ela devolve TEXTO ("há 1476 dias"), para legenda.
+       Comparar esse texto com 90 dá sempre falso e todo mundo aparece "em dia"
+       — foi o que aconteceu na primeira versão deste card. */
+    var dias = -diasAte(d);
+    if (dias === null || isNaN(dias) || dias < 0) return null;
     var faixa = FAIXAS_PARADA[FAIXAS_PARADA.length - 1];
     for (var i = 0; i < FAIXAS_PARADA.length; i++) {
       if (dias >= FAIXAS_PARADA[i].dias) { faixa = FAIXAS_PARADA[i]; break; }

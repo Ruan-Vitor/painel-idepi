@@ -658,6 +658,10 @@ function _juntarExecucao(conv){
       c.qtd_nf          = e.qtd_nf  || 0;
       c.exec_fisica_pct = e.exec_fisica_pct || 0;
       c.ultima_mov      = e.ultima_mov || "";
+      /* Só copia quando a coleta respondeu. Ausente é "não sei", e nesse
+         caso o instrumento continua sendo cobrado — dispensar por falta de
+         dado é pior do que cobrar a mais. */
+      if(e.tem_aio !== undefined){ c.tem_aio = e.tem_aio; c.aio_data = e.aio_data || ""; }
     });
     return conv;
   }).catch(function(){ return conv; });   /* sem execução, segue pela planilha */

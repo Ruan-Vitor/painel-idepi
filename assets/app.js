@@ -662,16 +662,27 @@
     return false;
   }
 
-  /** Por que o EX-01 não se aplica a este instrumento — ou null se se aplica. */
+  /** Por que o EX-01 não se aplica a este instrumento — ou null se se aplica.
+   *
+   *  ATENÇÃO — só o filtro de RECURSO está ativo. O de "obra não iniciada"
+   *  ficou desligado em 06/08/2026: usá-lo como proxy da AIO estava errado.
+   *  O 907035 e o 907015 já têm AIO e recurso, logo já devem ter foto, mas
+   *  como ainda não pagaram nada o proxy os excluía — o painel deixaria de
+   *  cobrar quem tem obrigação. Errar para o lado de cobrar a mais é menos
+   *  grave do que dispensar quem deve.
+   *
+   *  A AIO de verdade está no Transferegov em Instrumentos Contratuais >
+   *  Detalhar > Checklist, e a coleta ainda não a lê. Quando ler, este filtro
+   *  volta usando o dado, não a inferência. */
   function motivoNaoAplica(c) {
     if (!c || isFinalizado(c)) return null;
     if (!(liberadoDe(c) > 0)) return 'sem_recurso';
-    if (!obraIniciada(c))     return 'sem_inicio';
+    if (c.tem_aio === false)  return 'sem_aio';   // só quando a coleta souber
     return null;
   }
   var ROTULO_NAO_APLICA = {
     sem_recurso: 'Sem recurso federal recebido',
-    sem_inicio:  'Obra não iniciada (sem AIO)'
+    sem_aio:     'Sem AIO emitida'
   };
 
   /** Apto ao EX-01 = vigente, com recurso recebido e obra iniciada. */
@@ -698,7 +709,7 @@
     vigentes.forEach(function (c) {
       var m = motivoNaoAplica(c);
       if (m === 'sem_recurso') semRecurso++;
-      else if (m === 'sem_inicio') semInicio++;
+      else if (m === 'sem_aio') semInicio++;
     });
     return {
       vigentes: vigentes.length,

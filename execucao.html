@@ -347,12 +347,15 @@ tbody tr:hover td{background:#f5f9ff}
         </div>
         <div class="inst-dropdown" id="instDropdown">
           <div class="inst-dd-search"><input type="text" id="instDdSearch" placeholder="Buscar instrumento…" oninput="filtrarDdLista()" onclick="event.stopPropagation()"></div>
-          <div class="inst-dd-actions">
+          <!-- Remoção de instrumento é ação de ADMIN: fica oculta por padrão e
+               só aparece quando o evento idepi-auth confirma o papel. Começar
+               visível e esconder depois deixaria o botão piscar para o leitor. -->
+          <div class="inst-dd-actions" id="instDdActions" hidden>
             <button class="inst-dd-act-btn" onclick="selecionarTodosDd(true)">Marcar todos</button>
             <button class="inst-dd-act-btn" onclick="selecionarTodosDd(false)">Desmarcar todos</button>
           </div>
           <div class="inst-dd-list" id="instDdList"><!-- populado via JS --></div>
-          <div class="inst-dd-footer">
+          <div class="inst-dd-footer" id="instDdFooter" hidden>
             <span class="inst-dd-sel-count" id="instDdSelCount">Nenhum marcado para remoção</span>
             <button class="btn-remover-sel" id="btnRemoverSel" disabled onclick="removerSelecionados()">
               <i class="fa-solid fa-trash"></i> Remover marcados
@@ -775,6 +778,22 @@ function nfStatusBadge(s){
 var _ddAberto = false;
 var _numVisualizando = null; // número do instrumento sendo visualizado
 var _marcadosParaRemover = {}; // {numero: true}
+
+/* Remover instrumento do painel é ação de administrador. Quem é leitor não
+   vê caixa de marcação, nem os botões de marcar/remover — a trava de verdade
+   está nas regras do Firestore, isto aqui é para não oferecer o que a pessoa
+   não pode fazer. */
+var _ehAdmin = false;
+document.addEventListener('idepi-auth', function (e) {
+  _ehAdmin = !!(e.detail && e.detail.admin);
+  ['instDdActions', 'instDdFooter'].forEach(function (id) {
+    var el = document.getElementById(id);
+    if (el) el.hidden = !_ehAdmin;
+  });
+  if (_ehAdmin && typeof _filtradosDd !== 'undefined' && _filtradosDd.length) {
+    renderDdLista(_filtradosDd);      // redesenha com as caixas de marcação
+  }
+});
 var _filtradosDd = []; // lista visível no dropdown
 
 function toggleInstDropdown(){
@@ -820,9 +839,11 @@ function renderDdLista(lista){
     html +=     '<span class="inst-dd-num">'+num+'</span>';
     html +=     '<span class="inst-dd-obj">'+sanitize(obj)+(c.objeto&&c.objeto.length>60?"…":"")+'</span>';
     html +=   '</div>';
-    html +=   '<div class="inst-dd-check-wrap" title="Marcar para remoção" onclick="event.stopPropagation()">';
-    html +=     '<input type="checkbox"'+checked+' onchange="toggleMarcado(\''+num+'\',this,event)">';
-    html +=   '</div>';
+    if(_ehAdmin){
+      html += '<div class="inst-dd-check-wrap" title="Marcar para remoção" onclick="event.stopPropagation()">';
+      html +=   '<input type="checkbox"'+checked+' onchange="toggleMarcado(\''+num+'\',this,event)">';
+      html += '</div>';
+    }
     html += '</div>';
   });
   if(!html) html = '<div style="padding:16px;text-align:center;font-size:12px;color:var(--muted)">Nenhum instrumento encontrado</div>';

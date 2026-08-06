@@ -701,7 +701,7 @@ IDEPI.dados.carregar()
     var totalVig = todos.length;
     var emProj   = todos.filter(function(c){ return c._proj; }).length;
     var semRec   = todos.filter(function(c){ return c._naoAplica === 'sem_recurso'; }).length;
-    var semIni   = todos.filter(function(c){ return c._naoAplica === 'sem_inicio'; }).length;
+    var semIni   = todos.filter(function(c){ return c._naoAplica === 'sem_aio'; }).length;
     var aptos    = todos.filter(function(c){ return c._apto; }).length;
     var comFoto  = todos.filter(function(c){ return c._apto && c._foto; }).length;
     var semFoto  = aptos - comFoto;
@@ -710,7 +710,7 @@ IDEPI.dados.carregar()
     document.getElementById("kpi-total").textContent = totalVig;
     document.getElementById("kpi-proj").textContent  = emProj;
     var _rot = document.getElementById("kpi-proj-nota");
-    if(_rot) _rot.textContent = semRec + " sem recurso · " + semIni + " sem AIO";
+    if(_rot) _rot.textContent = semRec + " sem recurso" + (semIni ? " · " + semIni + " sem AIO" : "");
     document.getElementById("kpi-ok").textContent    = comFoto;
     document.getElementById("kpi-nok").textContent   = semFoto;
     document.getElementById("kpi-pct").textContent   = pct+"%";

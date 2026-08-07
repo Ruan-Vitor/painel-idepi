@@ -492,6 +492,11 @@ tbody tr:hover td{background:#f5f9ff}
             <div class="vs-ecol-divider"></div>
             <div class="vs-ecol-saldo-lbl">Saldo disponível</div>
             <div class="vs-ecol-saldo v-amber" id="vs-cp-saldo">—</div>
+            <div id="vs-cp-dep-row" style="display:none;margin-top:4px">
+              <div style="font-size:8.5px;color:rgba(255,255,255,.3)">depositado</div>
+              <div style="font-size:11px;font-weight:600;color:rgba(255,255,255,.55);font-family:'IBM Plex Mono',monospace" id="vs-cp-dep">—</div>
+              <div style="font-size:8.5px;color:var(--amber);margin-top:1px" id="vs-cp-falta">—</div>
+            </div>
             <div class="vs-ecol-bar"><div class="vs-ecol-bar-fill bf-cp" id="vs-cp-bar" style="width:0%"></div></div>
           </div>
 
@@ -499,11 +504,16 @@ tbody tr:hover td{background:#f5f9ff}
           <div class="vs-ecol">
             <div class="vs-ecol-header"><i class="fa-solid fa-chart-line"></i>Rendimentos</div>
             <div style="font-size:8.5px;color:rgba(255,255,255,.3);margin-bottom:6px">Rendimento de aplicação</div>
-            <div class="vs-ecol-pago v-purple" id="vs-rend-saldo">—</div>
-            <div style="font-size:9px;color:rgba(255,255,255,.3);margin-bottom:4px">disponível (previsto)</div>
+            <div class="vs-ecol-pago v-purple" id="vs-rend-lib">—</div>
+            <div style="font-size:9px;color:rgba(255,255,255,.3);margin-bottom:4px" id="vs-rend-lib-lbl">liberado para uso</div>
             <div class="vs-ecol-divider"></div>
-            <div class="vs-ecol-saldo-lbl">Última mov.</div>
-            <div class="vs-ecol-saldo" id="vs-rend-ultima">—</div>
+            <div class="vs-ecol-saldo-lbl">Disponível em conta</div>
+            <div class="vs-ecol-saldo" id="vs-rend-saldo">—</div>
+            <div id="vs-rend-aguarda-row" style="display:none;margin-top:4px">
+              <div style="font-size:8.5px;color:rgba(255,255,255,.3)">aguardando o concedente</div>
+              <div style="font-size:11px;font-weight:600;color:var(--amber);font-family:'IBM Plex Mono',monospace" id="vs-rend-aguarda">—</div>
+            </div>
+            <div style="font-size:8.5px;color:rgba(255,255,255,.3);margin-top:3px" id="vs-rend-total">—</div>
             <div class="vs-ecol-bar"><div class="vs-ecol-bar-fill bf-rend" id="vs-rend-bar" style="width:100%"></div></div>
           </div>
 
@@ -1231,17 +1241,58 @@ function renderInstrumento(){
   /* Valores */
   var pagoRepasse = calcPagoRepasse(c);
   var pagoCP      = calcPagoContrapartida(c);
+
+  /* ── MARCO DO ADITIVO: o pago NÃO é a soma das notas ────────────────────
+     O módulo de documento de liquidação do Transferegov é posterior a boa
+     parte da obra: no Atalaia ele tem 158 notas para um instrumento que
+     pagou R$ 105,7 milhões. Somar só as notas mostrava R$ 40,3 mi pagos e
+     29% de execução — números que não descrevem obra nenhuma.
+
+     Onde há marco, o que foi pago ANTES vem do próprio marco (valor já
+     prestado e aprovado, com a repartição em `pago_antes`) e as notas só
+     valem do marco em diante. Conferido em 07/08/2026 contra a aba
+     PROCESSO 46 JUREMA do rateio: pago 105.658.506,05 contra 105.658.506,10
+     da planilha, saldo de repasse 296.391,72 contra 296.391,71, e saldo de
+     contrapartida 1.753.031,34 exato. */
+  var _marco = c.marco_aditivo;
+  if (_marco && _marco.data && _marco.pago_antes) {
+    var _dep = _somarRateio(_cortarNoMarco(c.notas_fiscais || [], _marco.data).depois);
+    pagoRepasse = (_marco.pago_antes.repasse || 0) + _dep.rep;
+    pagoCP      = (_marco.pago_antes.contrapartida || 0) + _dep.cp;
+  }
+
   var totalPago   = pagoRepasse + pagoCP;
 
   /* ── Repasse: usa valor real desembolsado (OBs GERCOMP) quando disponível ── */
   var rd = c.repasse_desembolsado; // {previsto, desembolsado, a_desembolsar} ou null
   var repasseRecebido  = (rd && rd.desembolsado > 0) ? rd.desembolsado : null;
   var repassePrevisto  = parseReais(c.valor_repasse);
-  /* Base do saldo: desembolsado real se tiver, senão previsto (fallback) */
+  var cpPrevisto       = parseReais(c.valor_contrapartida);
+  var cpDepositado     = null;
+
+  /* Com marco, o que AINDA falta receber está no aditivo — e é a fonte mais
+     confiável que existe: `repasse_desembolsado` vem de uma coleta que pode
+     estar velha (em 04/08 dava R$ 100,65 mi ao 953168 contra R$ 116,65 mi
+     reais). Recebido = previsto − a desembolsar. No Atalaia dá
+     R$ 96.864.287,00, o mesmo que a soma dos ingressos federais. */
+  if (_marco && _marco.a_desembolsar) {
+    if (_marco.a_desembolsar.repasse !== undefined)
+      repasseRecebido = repassePrevisto - _marco.a_desembolsar.repasse;
+    if (_marco.a_desembolsar.contrapartida !== undefined)
+      cpDepositado = cpPrevisto - _marco.a_desembolsar.contrapartida;
+  }
+
+  /* Base do saldo: o que ENTROU, não o previsto — saldo disponível é dinheiro
+     em conta. Sem dado de entrada, cai no previsto como antes. */
   var repasseBase = repasseRecebido !== null ? repasseRecebido : repassePrevisto;
+  var cpBase      = cpDepositado    !== null ? cpDepositado    : cpPrevisto;
   var saldoRep    = Math.max(0, repasseBase - pagoRepasse);
-  var saldoCP     = Math.max(0, parseReais(c.valor_contrapartida) - pagoCP);
-  var saldoRend   = parseReais(c.saldo_rendimentos) || 0;
+  var saldoCP     = Math.max(0, cpBase - pagoCP);
+
+  /* Rendimento: `rendimentos` (coletar_rendimentos.py) traz o quadro inteiro.
+     Sem ele, resta o saldo da coleta antiga. */
+  var rend        = c.rendimentos || null;
+  var saldoRend   = rend ? (rend.disponivel || 0) : (parseReais(c.saldo_rendimentos) || 0);
   /* valorContrato: soma todos os contratos (múltiplos) ou usa valor único */
   var _todosContratos = (c.contratos && c.contratos.length) ? c.contratos : (c.contrato ? [c.contrato] : []);
   var _vcContrato = 0;
@@ -1281,7 +1332,8 @@ function renderInstrumento(){
     document.getElementById("vs-rep-previsto").textContent = fmt(repassePrevisto);
     repRecRow.style.display = "";
     /* Badge PARCIAL: quando ainda há valor a desembolsar */
-    var aDesemb = (rd && rd.a_desembolsar > 0) ? rd.a_desembolsar : 0;
+    var aDesemb = (_marco && _marco.a_desembolsar && _marco.a_desembolsar.repasse)
+                  || ((rd && rd.a_desembolsar > 0) ? rd.a_desembolsar : 0);
     var badgeEl = document.getElementById("vs-rep-parcial-badge");
     if(aDesemb > 0.01){
       badgeEl.style.display = "inline";
@@ -1305,20 +1357,53 @@ function renderInstrumento(){
     ? Math.min(100, Math.round(pagoRepasse / repasseBase * 100)) : 0;
   document.getElementById("vs-rep-bar").style.width   = pctRep + "%";
 
-  /* Contrapartida */
+  /* Contrapartida — mesma leitura do repasse: o saldo é sobre o DEPOSITADO,
+     não sobre o previsto. No Atalaia a contrapartida do aditivo foi
+     depositada e ainda nao foi paga: saldo R$ 1.753.031,34, e faltam
+     R$ 2.480.302,00 a integralizar. */
   document.getElementById("vs-cp-pago").textContent  = fmt(pagoCP);
   document.getElementById("vs-cp-total").textContent = fmt(c.valor_contrapartida);
   document.getElementById("vs-cp-saldo").textContent = fmt(saldoCP);
   document.getElementById("vs-cp-bar").style.width   = pctCP + "%";
+  var cpRow = document.getElementById("vs-cp-dep-row");
+  if(cpRow){
+    if(cpDepositado !== null){
+      cpRow.style.display = "";
+      document.getElementById("vs-cp-dep").textContent = fmt(cpDepositado);
+      var faltaCP = Math.max(0, cpPrevisto - cpDepositado);
+      document.getElementById("vs-cp-falta").textContent =
+        faltaCP > 0.01 ? "faltam " + fmt(faltaCP) + " a depositar" : "integralizada";
+    } else {
+      cpRow.style.display = "none";
+    }
+  }
 
-  /* Rendimentos */
+  /* Rendimentos — três coisas diferentes, e confundi-las custa caro:
+       LIBERADO PARA USO  solicitação aprovada pelo concedente; é o que pode
+                          pagar reajuste hoje;
+       AGUARDANDO         solicitado e ainda não aprovado — existe, mas não
+                          se pode gastar (o caso do Nova Algodões);
+       DISPONÍVEL         o que está rendendo na conta e ainda não foi pedido.
+     Vêm da tela "Solicitação de Rendimentos de Aplicação"
+     (coletar_rendimentos.py). No Atalaia: liberado R$ 4.447.043,19 —
+     conferido por três caminhos, inclusive porque o valor dos contratos
+     menos o contrato federal da planilha dá exatamente isso. */
   document.getElementById("vs-rend-saldo").textContent = saldoRend > 0 ? fmt(saldoRend) : "—";
-  var ultimaMov = "";
-  (c.movimentacoes||[]).forEach(function(m){
-    var t=(m.tipo||"").toUpperCase();
-    if(t.includes("RENDIMENTO") && m.data) ultimaMov = m.data;
-  });
-  document.getElementById("vs-rend-ultima").textContent = ultimaMov || "—";
+  var _rendLib  = rend ? (rend.liberado || 0) : 0;
+  var _rendAgu  = rend ? (rend.aguardando || 0) : 0;
+  document.getElementById("vs-rend-lib").textContent = _rendLib > 0 ? fmt(_rendLib) : "—";
+  document.getElementById("vs-rend-lib-lbl").textContent =
+    rend ? "liberado para uso" : "sem coleta de solicitações";
+  var aguRow = document.getElementById("vs-rend-aguarda-row");
+  if(_rendAgu > 0.01){
+    aguRow.style.display = "";
+    document.getElementById("vs-rend-aguarda").textContent = fmt(_rendAgu);
+  } else {
+    aguRow.style.display = "none";
+  }
+  var _rendTot = _rendLib + _rendAgu + saldoRend;
+  document.getElementById("vs-rend-total").textContent =
+    _rendTot > 0 ? "total rendido " + fmt(_rendTot) : "";
 
   /* Progresso financeiro (base = valor do contrato) */
   document.getElementById("pct-fin").textContent  = pctFin+"%";

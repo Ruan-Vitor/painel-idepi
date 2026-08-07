@@ -99,8 +99,22 @@
                  Agora a origem sai dos VALORES dos itens. E o card do
                  aditivo deixou de embolar: rótulo e valor com explicação
                  disputavam a mesma linha num card estreito e quebravam um
-                 por cima do outro */
-const VERSAO = 'idepi-v31';
+                 por cima do outro
+     v32 — 07/08: (1) o "espaco em branco" do Painel Geral: a .sr-only da
+                 faixa de fase e `position:absolute` e o pai nao era
+                 posicionado, entao cada uma escapava do corte e esticava a
+                 pagina — 6.561px para 720px de conteudo. Uma linha de CSS.
+                 (2) EX-01 do Painel Geral batia diferente do FiscalGov: a
+                 pagina calculava sem juntar a execucao, logo sem `tem_aio`,
+                 e nao dispensava ninguem (47 aptos x 45). A juncao passou
+                 para o app.js. (3) ATALAIA: o pago deixou de ser a soma das
+                 notas (R$ 40,3 mi) e passou a incluir o que o marco do
+                 aditivo ja da por quitado — R$ 105,66 mi, 77% de execucao.
+                 Repasse mostra recebido x previsto, contrapartida mostra
+                 depositado, e os rendimentos separam liberado, aguardando
+                 e disponivel. (4) pagamentos: mais recentes primeiro e o
+                 bloco por mes recolhido */
+const VERSAO = 'idepi-v32';
 const CACHE_SHELL = VERSAO + '-shell';
 const CACHE_PAGS  = VERSAO + '-paginas';
 

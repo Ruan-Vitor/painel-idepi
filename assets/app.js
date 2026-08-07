@@ -736,8 +736,52 @@
   }
 
   /** Métricas agregadas do EX-01 sobre uma lista de convênios. */
+  /** Junta ao convênio os campos da coleta de execução que as regras do EX-01
+   *  e do card de parada precisam.
+   *
+   *  MORA AQUI, e não numa página, porque quem NÃO chama isto calcula o EX-01
+   *  com dado faltando — e sem `tem_aio` a regra nunca dispensa ninguém. Foi
+   *  exatamente o que aconteceu: o fiscalgov.html juntava, o index.html não, e
+   *  o Painel Geral mostrava 47 aptos e 0 sem AIO contra 45 e 2 do FiscalGov,
+   *  voltando a cobrar foto do 907033 e do 907038 (07/08/2026). Mesma função
+   *  de classificação nos dois lados; o que divergia era a ENTRADA. */
+  function juntarExecucao(conv) {
+    if (!IDEPI.dados || !IDEPI.dados.execIndice) return Promise.resolve(conv);
+    return IDEPI.dados.execIndice().then(function (idx) {
+      var porNum = {};
+      ((idx && idx.instrumentos) || []).forEach(function (e) {
+        porNum[String(e.numero || '').trim()] = e;
+      });
+      (conv || []).forEach(function (c) {
+        var e = porNum[String(c.numero || '').trim()];
+        if (!e) return;
+        c.qtd_mov         = e.qtd_mov || 0;
+        c.qtd_nf          = e.qtd_nf  || 0;
+        c.exec_fisica_pct = e.exec_fisica_pct || 0;
+        c.ultima_mov      = e.ultima_mov || '';
+        /* Só copia quando a coleta respondeu. Ausente é "não sei", e nesse
+           caso o instrumento continua sendo cobrado — dispensar por falta de
+           dado é pior do que cobrar a mais. */
+        if (e.tem_aio !== undefined) { c.tem_aio = e.tem_aio; c.aio_data = e.aio_data || ''; }
+      });
+      return conv;
+    }).catch(function () { return conv; });   /* sem execução, segue pela planilha */
+  }
+
+  /** Instrumento cancelado/anulado não é "vigente" para o indicador: ele não
+   *  vai gerar foto nem obra. Ficava só no fiscalgov.html; passou para cá para
+   *  os dois lados contarem igual por construção. */
+  var REGEX_FORA_EX01 = /cancelad|anulad|sem\s*dados/;
+
+  function vigentesEX01(convenios) {
+    return (convenios || []).filter(function (c) {
+      if (isFinalizado(c)) return false;
+      return !REGEX_FORA_EX01.test(norm(c.situacao));
+    });
+  }
+
   function resumoEX01(convenios) {
-    var vigentes = (convenios || []).filter(function (c) { return !isFinalizado(c); });
+    var vigentes = vigentesEX01(convenios);
     var aptos = vigentes.filter(isApto).length;
     var comFoto = vigentes.filter(function (c) { return isApto(c) && temFoto(c); }).length;
     var semRecurso = 0, semInicio = 0;
@@ -1097,6 +1141,8 @@
   IDEPI.isProjeto = isProjeto;
   IDEPI.temFoto = temFoto;
   IDEPI.resumoEX01 = resumoEX01;
+  IDEPI.juntarExecucao = juntarExecucao;
+  IDEPI.vigentesEX01 = vigentesEX01;
   IDEPI.tipoIngresso = tipoIngresso;
   IDEPI.rotuloTipoIngresso = rotuloTipoIngresso;
   IDEPI.$ = $;

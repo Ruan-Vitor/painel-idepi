@@ -644,28 +644,9 @@ IDEPI.auth.comPainel('fiscalgov', function () {
 /* A execução coletada é que diz se a obra começou — coluna manual de planilha
    não se atualiza sozinha quando a obra atrasa. Sem isto, o painel cobrava
    relatório fotográfico de quem ainda não tem AIO (SEPLAN, 06/08/2026). */
-function _juntarExecucao(conv){
-  if(!IDEPI.dados || !IDEPI.dados.execIndice) return Promise.resolve(conv);
-  return IDEPI.dados.execIndice().then(function(idx){
-    var porNum = {};
-    ((idx && idx.instrumentos) || []).forEach(function(e){
-      porNum[String(e.numero||"").trim()] = e;
-    });
-    conv.forEach(function(c){
-      var e = porNum[String(c.numero||"").trim()];
-      if(!e) return;
-      c.qtd_mov         = e.qtd_mov || 0;
-      c.qtd_nf          = e.qtd_nf  || 0;
-      c.exec_fisica_pct = e.exec_fisica_pct || 0;
-      c.ultima_mov      = e.ultima_mov || "";
-      /* Só copia quando a coleta respondeu. Ausente é "não sei", e nesse
-         caso o instrumento continua sendo cobrado — dispensar por falta de
-         dado é pior do que cobrar a mais. */
-      if(e.tem_aio !== undefined){ c.tem_aio = e.tem_aio; c.aio_data = e.aio_data || ""; }
-    });
-    return conv;
-  }).catch(function(){ return conv; });   /* sem execução, segue pela planilha */
-}
+/* A junção mora no app.js (IDEPI.juntarExecucao): quem não a chama
+   calcula o EX-01 sem `tem_aio` e não dispensa ninguém. */
+var _juntarExecucao = IDEPI.juntarExecucao;
 
 IDEPI.dados.carregar()
   .then(function(j){
@@ -682,11 +663,11 @@ IDEPI.dados.carregar()
     }
 
     todos = [];
-    for (var i=0; i<conv.length; i++) {
-      var c = conv[i];
-      if (isFinalizado(c)) continue;
-      var sit = String(c.situacao||"").toUpperCase();
-      if (sit.includes("CANCELADO") || sit.includes("ANULADO") || sit.includes("SEM DADOS")) continue;
+    /* Quem entra no indicador é decidido pelo app.js, não aqui — assim o
+       Painel Geral e esta página contam o mesmo conjunto por construção. */
+    var _vig = IDEPI.vigentesEX01(conv);
+    for (var i=0; i<_vig.length; i++) {
+      var c = _vig[i];
 
       var stObj = calcStatus(c);
       var item = {};

@@ -548,6 +548,15 @@ div > button:has(svg):not([class]):not([id]){display:none!important}
 .fase-faixa{
   display:inline-block;width:4px;height:1em;border-radius:2px;
   margin-right:7px;vertical-align:-2px;flex-shrink:0;background:#cbd5e1;
+  /* `position:relative` é o que prende a .sr-only aqui dentro.
+     Sem isto, a .sr-only (que é `position:absolute`) procura referência até
+     o topo do documento e ESCAPA de todo ancestral que corta — inclusive do
+     `.scroll`. Cada uma passava a esticar a área rolável da página até a
+     posição onde ela cairia no fluxo sem corte. No Painel Geral são 65
+     (uma por instrumento nos quatro cards), a última lá pelos 6.500px: a
+     página rolava 6.561px para 720px de conteúdo, tudo vazio. Era esse o
+     "espaço em branco embaixo" (07/08/2026). */
+  position:relative;
 }
 .fase-recurso   {background:#16a34a}
 .fase-projeto   {background:#eab308}

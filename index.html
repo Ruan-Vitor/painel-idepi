@@ -827,23 +827,34 @@ function renderParada(conv) {
   }).join('');
 }
 
-function carregarParada(conv) {
-  if (!IDEPI.dados || !IDEPI.dados.execIndice) return;
-  IDEPI.dados.execIndice().then(function (idx) {
-    var porNum = {};
-    ((idx && idx.instrumentos) || []).forEach(function (e) {
-      porNum[String(e.numero || '').trim()] = e;
-    });
-    conv.forEach(function (c) {
-      var e = porNum[String(c.numero || '').trim()];
-      if (e) { c.ultima_mov = e.ultima_mov || ''; c.qtd_mov = e.qtd_mov || 0; }
-    });
+/* Junta a execução e redesenha o que depende dela.
+   São DOIS blocos, não um: o card de parada precisa de `ultima_mov`, e o
+   EX-01 precisa de `tem_aio` e da contagem de notas. Antes, esta página
+   juntava só o que o card de parada usava e calculava o EX-01 sem o resto —
+   resultado: 47 aptos e 0 sem AIO aqui contra 45 e 2 no FiscalGov, com o
+   907033 e o 907038 voltando a ser cobrados (07/08/2026). A junção agora é a
+   do app.js, a mesma que o FiscalGov usa. */
+function carregarExecucao(conv) {
+  return IDEPI.juntarExecucao(conv).then(function () {
     renderParada(conv);
+    renderEX01(conv);
     ajustarBuscas();
   }).catch(function () {
     IDEPI.setHtml('par-lista',
       '<div class="sus-vazio">Não foi possível ler a execução financeira.</div>');
   });
+}
+
+function renderEX01(conv) {
+  var ex = IDEPI.resumoEX01(conv);
+  IDEPI.setTxt('fg-total', ex.vigentes);
+  IDEPI.setTxt('fg-proj',  ex.emProjeto);
+  IDEPI.setTxt('fg-ok',    ex.comFoto);
+  IDEPI.setTxt('fg-nok',   ex.semFoto);
+  IDEPI.setTxt('fg-pct',   ex.pct + '%');
+  IDEPI.$('fg-bar').style.width = ex.pct + '%';
+  IDEPI.setTxt('pc-fg-pct', ex.pct + '%');
+  IDEPI.setTxt('pc-fg-nok', ex.semFoto);
 }
 
 
@@ -919,7 +930,7 @@ IDEPI.dados.carregar()
 
     renderCoortes(conv);
     renderSuspensivas(conv);
-    carregarParada(conv);
+    carregarExecucao(conv);
     ajustarBuscas();
     /* Registra o histórico ANTES de qualquer cálculo: é ele que faz
        liberadoDe() usar o Transferegov em vez da CGU. */
@@ -929,15 +940,8 @@ IDEPI.dados.carregar()
     renderContrapartida(conv);
     ajustarBuscas();
 
-    var ex = IDEPI.resumoEX01(conv);
-    IDEPI.setTxt('fg-total', ex.vigentes);
-    IDEPI.setTxt('fg-proj',  ex.emProjeto);
-    IDEPI.setTxt('fg-ok',    ex.comFoto);
-    IDEPI.setTxt('fg-nok',   ex.semFoto);
-    IDEPI.setTxt('fg-pct',   ex.pct + '%');
-    IDEPI.$('fg-bar').style.width = ex.pct + '%';
-    IDEPI.setTxt('pc-fg-pct', ex.pct + '%');
-    IDEPI.setTxt('pc-fg-nok', ex.semFoto);
+    /* O EX-01 é desenhado pelo carregarExecucao, DEPOIS de juntar a
+       execução — sem `tem_aio` a conta sai diferente da do FiscalGov. */
 
     IDEPI.esconderOverlay();
   })

@@ -194,12 +194,15 @@
           <div class="pg-titulo"><i class="fa-solid fa-chart-column"></i> Medições pagas por mês</div>
           <div class="cp-resumo" id="mes-resumo"></div>
           <div class="pg-acoes">
-            <button class="btn-fullscreen" id="btnFSMes" onclick="IDEPI.toggleFullscreen('mesCard')" title="Tela cheia">
+            <button class="btn-fullscreen" id="btnAbrirMes" onclick="alternarMeses()">
+              <i class="fa-solid fa-chevron-down"></i> Ver por mês
+            </button>
+            <button class="btn-fullscreen" id="btnFSMes" onclick="IDEPI.toggleFullscreen('mesCard')" title="Tela cheia" hidden>
               <i class="fa-solid fa-expand"></i> Tela cheia
             </button>
           </div>
         </div>
-        <div class="mes-lista" id="mes-lista">
+        <div class="mes-lista" id="mes-lista" hidden>
           <div class="pg-vazio">Carregando…</div>
         </div>
       </div>
@@ -289,7 +292,12 @@ function filtrarSituacao(sit) {
 /** O que está à vista — é também o que a exportação leva. */
 function visiveis() {
   var termo = IDEPI.norm(IDEPI.$('busca').value.trim());
-  return _pagamentos.filter(function (p) {
+  /* Do mais RECENTE para o mais antigo. A planilha é cronológica e a página
+     nasceu copiando essa ordem — só que quem abre quer ver o que se pagou
+     agora, e estava tendo de rolar 42 meses para chegar lá (07/08/2026).
+     `slice()` antes de inverter: `reverse()` altera o array no lugar, e
+     `_pagamentos` é a fonte de todas as outras contas da página. */
+  return _pagamentos.slice().reverse().filter(function (p) {
     if (_filtroSit && p.situacao !== _filtroSit) return false;
     if (!termo) return true;
     return IDEPI.norm([p.convenio, p.numero, p.empresa, p.obra, p.medicao,
@@ -352,6 +360,19 @@ function render() {
    Duas barras no mesmo trilho: bruto atrás, líquido na frente. A diferença
    entre elas é a retenção, e vê-la mês a mês é o ponto — foi assim que se
    descobriu que `bruto − líquido` é exatamente a soma dos tributos. */
+/* O bloco por mês nasce RECOLHIDO: ele é análise, e o que a pessoa abre a
+   página para ver é o pagamento do mês corrente e o que falta pagar. Aberto
+   por padrão, empurrava a lista para fora da tela. */
+function alternarMeses() {
+  var lista = IDEPI.$('mes-lista'), btn = IDEPI.$('btnAbrirMes');
+  var abrindo = lista.hidden;
+  lista.hidden = !abrindo;
+  IDEPI.$('btnFSMes').hidden = !abrindo;
+  btn.innerHTML = abrindo
+    ? '<i class="fa-solid fa-chevron-up"></i> Recolher'
+    : '<i class="fa-solid fa-chevron-down"></i> Ver por mês';
+}
+
 function renderMeses() {
   var box = IDEPI.$('mes-lista');
   if (!_meses.length) {

@@ -55,6 +55,9 @@
 .inst-chip.ic-sei{background:#eef2ff;color:#3730a3;border-color:#c7d2fe;font-family:'IBM Plex Mono',monospace}
 .inst-chip.ic-fiscal{background:#f0fdfa;color:#0d766e;border-color:#5eead4}
 .inst-chip.ic-tipo{background:#fff7ed;color:#92400e;border-color:#fcd34d}
+.inst-chip.ic-conc{background:#f8fafc;color:#334155;border-color:#cbd5e1}
+/* PAC em destaque: é o que muda o rito de acompanhamento. */
+.inst-chip.ic-pac{background:#052e16;color:#bbf7d0;border-color:#166534}
 .inst-chip.ic-ano{background:#f0fdf4;color:#065f46;border-color:#6ee7b7}
 
 /* ── FILTROS DE INSTRUMENTO ── */
@@ -191,6 +194,11 @@ tbody tr:hover td{background:#f5f9ff}
 /* ── RATEIO MINI TABLE ── */
 .rateio-row{display:flex;gap:10px;flex-wrap:wrap}
 .rateio-card{flex:1;min-width:180px;background:var(--surface);border:1px solid var(--border);border-radius:11px;padding:14px 18px}
+/* Cards de RESUMO (aditivo, rateio global, rendimentos) carregam linhas com
+   explicação e não podem ser espremidos ao mínimo dos cards de nota fiscal.
+   Sem isto, o card do aditivo do Atalaia ficava com ~200px e o texto
+   embolava (06/08/2026). */
+.rateio-card.largo{min-width:330px}
 .rateio-title{font-size:11.5px;font-weight:700;color:var(--text);margin-bottom:10px;display:flex;align-items:center;gap:6px}
 .rateio-title i{color:var(--accent);font-size:11px}
 .rateio-bar-wrap{background:#e8f0fe;border-radius:99px;height:8px;clip-path:inset(0 0 0 0 round 99px);margin-bottom:8px}
@@ -199,10 +207,22 @@ tbody tr:hover td{background:#f5f9ff}
 .rateio-bar.rb-cp{background:linear-gradient(90deg,#0d6e4a,#16a34a)}
 .rateio-bar.rb-rend{background:linear-gradient(90deg,#6d28d9,#8b5cf6)}
 .rateio-legend{display:flex;flex-direction:column;gap:5px}
-.rleg{display:flex;align-items:center;justify-content:space-between;font-size:10.5px}
-.rleg-dot{width:8px;height:8px;border-radius:2px;flex-shrink:0}
-.rleg-label{color:var(--muted);flex:1;margin-left:6px}
-.rleg-val{font-family:'IBM Plex Mono',monospace;font-weight:700;font-size:10.5px;color:var(--text)}
+/* Rótulo e valor na mesma linha — mas só enquanto couber.
+   O card do aditivo tem linhas com explicação embaixo (`<br><small>`), e num
+   card estreito o rótulo quebrava em 4 linhas e o valor em 3, um por cima do
+   outro, virando um bloco ilegível (visto em 06/08/2026 no Atalaia). Com
+   `flex-wrap` e uma base mínima, abaixo de ~230px eles passam a ocupar linhas
+   inteiras, um sob o outro, em vez de se espremerem lado a lado. */
+.rleg{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;
+  gap:1px 8px;font-size:10.5px;line-height:1.5;margin-bottom:2px}
+.rleg-dot{width:8px;height:8px;border-radius:2px;flex-shrink:0;align-self:center}
+.rleg-label{color:var(--muted);flex:1 1 110px;min-width:0;margin-left:6px}
+.rleg-val{font-family:'IBM Plex Mono',monospace;font-weight:700;font-size:10.5px;
+  color:var(--text);flex:1 1 auto;text-align:right;min-width:0}
+/* A explicação sempre em linha própria, nunca colada ao número. */
+.rleg-label small,.rleg-val small{display:block;font-family:'DM Sans',sans-serif;
+  font-weight:500;line-height:1.45;margin-top:1px}
+.rleg-label br,.rleg-val br{display:none}   /* o <small> já quebra a linha */
 
 /* ── BOTÕES ── */
 .btn-excel{display:inline-flex;align-items:center;gap:6px;background:#16a34a;color:#fff;border:none;border-radius:7px;padding:6px 13px;font-size:11.5px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background .15s,transform .1s;white-space:nowrap}
@@ -1186,6 +1206,24 @@ function renderInstrumento(){
   }) || {};
   var _sei    = c.sei    || _resumo.sei    || "";
   var _fiscal = c.fiscal || _resumo.fiscal || "";
+
+  /* CONCEDENTE e PAC.
+     O concedente vem do documento de vigências, pelo _resumo — o campo de
+     mesmo nome no registro de execução guarda a MANDATÁRIA ("Caixa
+     Economica Federal (inferido)") e mostraria Caixa onde deveria estar
+     MIDR, MCID ou FUNASA. Em contrato de repasse os dois existem: a Caixa
+     opera, o ministério concede — por isso são chips separados.
+     PAC é derivado do tipo (IDEPI.isPAC), não de campo coletado. */
+  var _conc = IDEPI.concedenteDe(_resumo.concedente_sigla ? _resumo : c);
+  if(_conc.sigla || _conc.nome)
+    meta.push('<span class="inst-chip ic-conc" title="Órgão concedente'+
+      (_conc.nome ? ' — '+sanitize(_conc.nome) : '')+'">'+
+      '<i class="fa-solid fa-landmark" style="font-size:8px"></i> '+
+      sanitize(_conc.sigla || _conc.nome)+'</span>');
+  if(IDEPI.isPAC(c))
+    meta.push('<span class="inst-chip ic-pac" title="Novo PAC — Termo de '+
+      'Compromisso, firmado direto com o ministério, sem mandatária">'+
+      '<i class="fa-solid fa-star" style="font-size:8px"></i> Novo PAC</span>');
   if(_sei)    meta.push('<span class="inst-chip ic-sei" title="Processo SEI"><i class="fa-solid fa-folder-open" style="font-size:8px"></i> '+sanitize(_sei)+'</span>');
   if(_fiscal) meta.push('<span class="inst-chip ic-fiscal" title="Fiscal responsável"><i class="fa-solid fa-user" style="font-size:8px"></i> '+sanitize(_fiscal)+'</span>');
   document.getElementById("instMeta").innerHTML = meta.join("");
@@ -1906,7 +1944,7 @@ function renderRateio(c){
     var aAntes = _somarRateio(cAd.antes), aDepois = _somarRateio(cAd.depois);
     var prev = marco.previsto || {}, des = marco.desembolsado || {};
 
-    html += '<div class="rateio-card" style="flex:2.2">';
+    html += '<div class="rateio-card largo" style="flex:2.2">';
     html +=   '<div class="rateio-title"><i class="fa-solid fa-flag-checkered"></i>' +
               (marco.termo ? sanitize(marco.termo) : 'Aditivo') +
               ' — marco em ' + sanitize(marco.data) + '</div>';
@@ -1958,7 +1996,7 @@ function renderRateio(c){
   }
 
   /* Card global */
-  html += '<div class="rateio-card" style="flex:1.5">';
+  html += '<div class="rateio-card largo" style="flex:1.5">';
   html +=   '<div class="rateio-title"><i class="fa-solid fa-chart-pie"></i>Rateio Global — Origem dos Recursos</div>';
   html +=   '<div class="rateio-bar-wrap"><div class="rateio-bar rb-rep" style="width:'+pRep+'%"></div></div>';
   html +=   '<div class="rateio-legend">';
@@ -1967,6 +2005,71 @@ function renderRateio(c){
   html +=     '<div class="rleg"><span class="rleg-dot" style="background:#6d28d9"></span><span class="rleg-label">Rendimento de Aplicação</span><span class="rleg-val">'+fmt(totalRend)+' ('+pRend+'%)</span></div>';
   html +=   '</div>';
   html += '</div>';
+
+  /* ── RENDIMENTOS DA APLICAÇÃO ──────────────────────────────────────────
+     O dinheiro do convênio fica em conta remunerada, e o que ela rende é do
+     convênio — mas com destino amarrado: serve para pagar reajuste, não para
+     ampliar objeto. Duas fontes, e nenhuma é palpite:
+       • DISPONÍVEL — `saldo_rendimentos`, colhido da tela do Transferegov;
+       • JÁ USADO   — soma da coluna Rendimento dos itens do documento de
+                      liquidação, nota a nota.
+
+     ⚠️  NÃO mostramos "liberado para uso" × "na iminência de liberar". Essa
+     distinção existe (é o caso do Nova Algodões) mas NÃO está coletada: o
+     Transferegov a exibe em outra tela, que a coleta ainda não abre.
+     Inventá-la a partir do saldo seria dar por liberado o que talvez não
+     esteja — e é dinheiro de reajuste, que ou pode ser usado ou não pode.
+
+     Histórico que justifica o cuidado: até 06/08/2026 o campo
+     `origem_recurso` dizia "Rendimento" em 507 das 578 NFs, porque a origem
+     era detectada procurando a palavra no texto da página — e o cabeçalho da
+     tabela de rateio traz as três palavras sempre. O Atalaia aparecia com
+     R$ 38,67 mi pagos com rendimento; pelos itens, pagou ZERO. Quem paga com
+     rendimento hoje é só o 953168. */
+  var rendUsado = totalRend;
+  var rendSaldo = parseReais(c.saldo_rendimentos) || 0;
+  if(rendSaldo > 0 || rendUsado > 0){
+    var rendGerado = rendSaldo + rendUsado;
+    var pctUsado = pct(rendUsado, rendGerado);
+    html += '<div class="rateio-card largo" style="flex:1.5">';
+    html +=   '<div class="rateio-title"><i class="fa-solid fa-piggy-bank"></i>Rendimentos da aplicação</div>';
+    html +=   '<div class="rateio-bar-wrap"><div class="rateio-bar rb-rend" style="width:'+pctUsado+'%"></div></div>';
+    html +=   '<div class="rateio-legend">';
+    html +=     '<div class="rleg"><span class="rleg-dot" style="background:#6d28d9"></span>' +
+                '<span class="rleg-label">Já usado em pagamentos<br>' +
+                '<small style="color:var(--muted)">coluna Rendimento dos itens de liquidação</small></span>' +
+                '<span class="rleg-val">'+fmt(rendUsado)+' ('+pctUsado+'%)</span></div>';
+    html +=     '<div class="rleg"><span class="rleg-dot" style="background:#c4b5fd"></span>' +
+                '<span class="rleg-label">Disponível em conta</span>' +
+                '<span class="rleg-val">'+fmt(rendSaldo)+'</span></div>';
+    html +=     '<div class="rleg" style="border-top:1px solid var(--border);padding-top:8px;margin-top:6px">' +
+                '<span class="rleg-label" style="font-weight:700;color:var(--text)">Total rendido</span>' +
+                '<span class="rleg-val" style="color:var(--text)">'+fmt(rendGerado)+'</span></div>';
+    html +=   '</div>';
+
+    /* Quais notas consumiram rendimento — sem isso o número fica sem lastro. */
+    var nfsRend = nfs.filter(function(n){
+      return (n.itens||[]).reduce(function(s,it){ return s + (it.rendimento||0); }, 0) > 0.005;
+    });
+    if(nfsRend.length){
+      html += '<div style="font-size:10.5px;color:var(--muted);line-height:1.6;margin-top:10px;' +
+              'border-top:1px solid var(--border);padding-top:8px">' +
+              '<strong style="color:var(--text)">Notas pagas com rendimento</strong><br>';
+      nfsRend.forEach(function(n){
+        var v = (n.itens||[]).reduce(function(s,it){ return s + (it.rendimento||0); }, 0);
+        html += 'NF ' + sanitize(n.num) + ' · ' + sanitize(n.data||'') + ' — ' + fmt(v) + '<br>';
+      });
+      html += '</div>';
+    }
+
+    html +=   '<div style="font-size:10px;color:var(--muted);line-height:1.5;margin-top:8px;' +
+              'background:var(--surface2);padding:7px 9px;border-radius:7px">' +
+              'Rendimento tem destino amarrado: paga <strong>reajuste</strong>. ' +
+              'A distinção entre o que já está <strong>liberado para uso</strong> e o ' +
+              'que está <strong>na iminência de liberar</strong> ainda não é coletada — ' +
+              'está em outra tela do Transferegov.</div>';
+    html += '</div>';
+  }
 
   /* Um card por NF */
   nfs.forEach(function(n){

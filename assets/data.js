@@ -230,26 +230,32 @@
    *  outra conta (idepconv@gmail.com) e nunca esteve no dados.json. Se o
    *  Firestore falhar, cai no cache local — e, sem ele, devolve vazio em vez
    *  de inventar. */
-  function pcf() {
+  function docDoPainel(nome, vazio) {
     return IDEPI.auth.pronto().then(function () {
-      if (!temFirestore()) {
-        var c0 = lerCache('pcf');
-        return c0 ? c0.dados : { pcfs: [], total: 0, resumo: {} };
+      function doCache() {
+        var c = lerCache(nome);
+        return c ? c.dados : vazio;
       }
-      return doc('painel', 'pcf')
+      if (!temFirestore()) return doCache();
+      return doc('painel', nome)
         .then(function (d) {
-          if (!d) {
-            var c1 = lerCache('pcf');
-            return c1 ? c1.dados : { pcfs: [], total: 0, resumo: {} };
-          }
-          gravarCache('pcf', d);
+          if (!d) return doCache();
+          gravarCache(nome, d);
           return d;
         })
-        .catch(function () {
-          var c2 = lerCache('pcf');
-          return c2 ? c2.dados : { pcfs: [], total: 0, resumo: {} };
-        });
+        .catch(doCache);
     });
+  }
+
+  function pcf() {
+    return docDoPainel('pcf', { pcfs: [], total: 0, resumo: {} });
+  }
+
+  /** Documento painel/pagamentos, publicado pelo publicar_pagamentos.py.
+   *  Mesma natureza da PCF: origem em planilha do setor, sem plano B no
+   *  GitHub. */
+  function pagamentos() {
+    return docDoPainel('pagamentos', { pagamentos: [], total: 0, resumo: {} });
   }
 
   IDEPI.dados = {
@@ -257,6 +263,7 @@
     execIndice: execIndice,
     execInstrumento: execInstrumento,
     pcf: pcf,
+    pagamentos: pagamentos,
     rotuloOrigem: rotuloOrigem,
     limparCache: limparCache
   };

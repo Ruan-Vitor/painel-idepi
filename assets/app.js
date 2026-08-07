@@ -306,6 +306,41 @@
     }).join('');
   }
 
+  /* ── PAC e concedente ─────────────────────────────────────────────────
+   *
+   *  PAC é DERIVADO do tipo de instrumento: Termo de Compromisso é a forma
+   *  que o Novo PAC usa, direto com o ministério, sem mandatária. Regra dita
+   *  pelo setor em 06/08/2026 e conferida contra as abas "NOVO PAC SELEÇÕES"
+   *  e "NOVO PAC PRIORIDADES" da Emendas Senador: dos que viraram
+   *  instrumento, 967173, 967182 e 965789 estão nas abas e os três são Termo
+   *  de Compromisso. As linhas de Atalaia, Tinguis e Nova Algodões NÃO
+   *  contam — são pedido ao ministério ("Aguardar Ministerio abrir Programa
+   *  pra gente conseguir cadastrar propostas"), sem número e sem programa.
+   *
+   *  Não existe campo de PAC em fonte nenhuma: o que parecia citar PAC nos
+   *  dados era "PACHECO" e "PAC ENGENHARIA LTDA", nomes de empresa.
+   *
+   *  Hoje são 5: 967173, 967182, 992850, 992940 (MCID) e 965789 (MIDR). */
+  function isPAC(c) {
+    return /termo\s+de\s+compromisso/.test(norm(c && c.tipo_instrumento));
+  }
+
+  /** Órgão concedente — o ministério de quem é o convênio.
+   *
+   *  ⚠️  Vem do documento de VIGÊNCIAS. O registro da execução tem um campo
+   *  de mesmo nome que guarda coisa diferente: a MANDATÁRIA, e sempre
+   *  "Caixa Economica Federal (inferido)". Em contrato de repasse a Caixa
+   *  opera, mas o concedente continua sendo o ministério — os dois aparecem,
+   *  em chips separados. */
+  function concedenteDe(c) {
+    if (!c) return { sigla: '', nome: '' };
+    var sigla = String(c.concedente_sigla || '').trim();
+    var nome  = String(c.concedente || '').trim();
+    /* Só o do exec ("Caixa ... (inferido)") não serve de concedente. */
+    if (!sigla && /inferido/i.test(nome)) nome = '';
+    return { sigla: sigla, nome: nome };
+  }
+
   /* ══════════════════════════════════════════════════════════════════════
      QUANTO JÁ ENTROU — fonte única
 
@@ -1042,6 +1077,8 @@
   IDEPI.resumoContrapartida = resumoContrapartida;
   IDEPI.faixaFase = faixaFase;
   IDEPI.legendaFases = legendaFases;
+  IDEPI.isPAC = isPAC;
+  IDEPI.concedenteDe = concedenteDe;
   IDEPI.FASES = FASES;
   IDEPI.gestaoDe = gestaoDe;
   IDEPI.resumoGestao = resumoGestao;

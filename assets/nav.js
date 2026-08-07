@@ -22,6 +22,7 @@
     { id: 'execucao',   icone: 'fa-chart-line',           rotulo: 'Execução Financeira',   href: 'execucao.html' },
     { id: 'ingressos',  icone: 'fa-money-bill-transfer',  rotulo: 'Ingressos de Recurso',  href: 'ingressos.html' },
     { id: 'pcf',        icone: 'fa-file-invoice',         rotulo: 'Prestação de Contas',   href: 'pcf.html' },
+    { id: 'pagamentos', icone: 'fa-receipt',              rotulo: 'Relação de Pagamentos', href: 'pagamentos.html' },
     { id: 'emendas',    icone: 'fa-landmark-dome',        rotulo: 'Emendas Parlamentares', embreve: true },
     { id: 'mapa',       icone: 'fa-map-location-dot',     rotulo: 'Mapa de Obras',         embreve: true },
 

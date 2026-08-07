@@ -74,8 +74,33 @@
                  painel geral (suspensiva, sem execução, repasse a receber,
                  contrapartida). Junto, a busca de repasse e contrapartida
                  voltou a funcionar: o filtro procurava só `.sus-item` e esses
-                 dois cards desenham `.cp-item`, então a caixa nem aparecia */
-const VERSAO = 'idepi-v28';
+                 dois cards desenham `.cp-item`, então a caixa nem aparecia
+     v29 — 06/08: concedente e Novo PAC no cabeçalho do instrumento. O
+                 concedente vem do documento de vigências: o campo de mesmo
+                 nome no registro de execução guarda a MANDATÁRIA ("Caixa
+                 ... (inferido)") e mostraria Caixa no lugar do ministério.
+                 PAC é DERIVADO — Termo de Compromisso é a forma do Novo
+                 PAC, direto com o ministério; não existe campo de PAC em
+                 fonte nenhuma. São 5: 967173, 967182, 992850, 992940
+                 e 965789
+     v30 — 06/08: 7ª página — RELAÇÃO DE PAGAMENTOS. Qual medição foi paga,
+                 em que processo SEI ela tramitou e quanto saiu; medições
+                 pagas por mês (bruto x líquido, a diferença é a retenção);
+                 e o mês atual com a previsão — pago + medições enviadas e
+                 ainda não pagas. As 15 linhas sem data NÃO são descarte:
+                 são medições na fila, e é delas que sai a previsão
+     v31 — 06/08: rendimentos da aplicação dentro de cada instrumento —
+                 disponível, já usado em pagamentos e total, com as notas
+                 que consumiram rendimento. Junto, a correção de um dado
+                 errado: `origem_recurso` dizia "Rendimento" em 507 de 578
+                 NFs porque procurava a palavra no texto da página, e o
+                 cabeçalho da tabela de rateio traz as três sempre. O
+                 Atalaia aparecia com R$ 38,67 mi de rendimento; pagou ZERO.
+                 Agora a origem sai dos VALORES dos itens. E o card do
+                 aditivo deixou de embolar: rótulo e valor com explicação
+                 disputavam a mesma linha num card estreito e quebravam um
+                 por cima do outro */
+const VERSAO = 'idepi-v31';
 const CACHE_SHELL = VERSAO + '-shell';
 const CACHE_PAGS  = VERSAO + '-paginas';
 
@@ -88,6 +113,7 @@ const SHELL = [
   'fiscalgov.html',
   'ingressos.html',
   'pcf.html',
+  'pagamentos.html',
   'admin.html',
   'assets/app.css',
   'assets/app.js',

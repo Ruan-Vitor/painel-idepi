@@ -496,7 +496,8 @@
 
      Ela também precisa combinar com PAINEIS_VALIDOS no publicar_firestore.py
      e com as regras do firestore.rules. */
-  var PAINEIS = ['vigencias', 'execucao', 'ingressos', 'fiscalgov', 'pcf'];
+  var PAINEIS = ['vigencias', 'execucao', 'ingressos', 'fiscalgov', 'pcf',
+                 'pagamentos'];
 
   /** Um leitor pode abrir este painel? Admin e Painel Geral sempre podem. */
   function podeVer(painel) {

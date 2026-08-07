@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<!-- IDEPI · Relação de Pagamentos — v20260806 -->
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Relação de Pagamentos — IDEPI</title>
+<meta name="description" content="Pagamentos por medição dos convênios federais do IDEPI, com o processo SEI de cada medição.">
+<meta name="theme-color" content="#0b1527">
+
+<!-- ── APP INSTALÁVEL (PWA) ────────────────────────────────────────────── -->
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="IDEPI">
+
+<!-- ── FONTES E ÍCONES ─────────────────────────────────────────────────── -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+
+<!-- ── CASCA COMPARTILHADA ─────────────────────────────────────────────── -->
+<link rel="stylesheet" href="assets/app.css">
+
+<style>
+/* ═══ Estilos exclusivos da Relação de Pagamentos ═════════════════════════
+   Header, sidebar, botões, login e responsivo estão em assets/app.css.    */
+
+/* ── RESUMO ── */
+.rs-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;flex-shrink:0}
+.rs-card{background:var(--surface);border:1px solid var(--border);border-radius:11px;
+  padding:15px 17px;border-top:3px solid transparent;text-align:left;width:100%;font:inherit}
+.rs-card.clicavel{cursor:pointer;transition:transform .14s,box-shadow .14s}
+.rs-card.clicavel:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(26,58,110,.1)}
+.rs-card.on{box-shadow:0 0 0 2px var(--accent) inset}
+.rs-card.r-pg{border-top-color:#16a34a}
+.rs-card.r-ag{border-top-color:#f97316}
+.rs-card.r-br{border-top-color:#1a3a6e}
+.rs-card.r-lq{border-top-color:#3b82f6}
+.rs-num{font-family:'Sora',sans-serif;font-size:24px;font-weight:800;color:var(--text);line-height:1.1;margin-bottom:4px}
+.rs-lbl{font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:2px}
+.rs-desc{font-size:10px;color:#b0bbc8;line-height:1.4}
+
+/* ── CARTÃO DA LISTA ── */
+.pg-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;flex-shrink:0}
+.pg-head{padding:14px 20px;border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.pg-titulo{font-size:13px;font-weight:700;color:var(--text);display:flex;align-items:center;gap:8px}
+.pg-titulo i{color:var(--accent)}
+.pg-busca{flex:1;min-width:190px;max-width:360px;position:relative}
+.pg-busca input{width:100%;padding:7px 11px 7px 30px;border:1px solid var(--border);
+  border-radius:8px;font-size:12px;font-family:inherit;color:var(--text);background:var(--surface2)}
+.pg-busca i{position:absolute;left:10px;top:50%;transform:translateY(-50%);font-size:11px;color:var(--muted)}
+.pg-acoes{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+
+.pg-lista{padding:2px 0;max-height:none}
+/* Colunas: nº · empresa+obra · medição+SEI · valores. No celular vira uma
+   coluna só — tela de toque não tem hover para o title salvar texto cortado. */
+.pg-item{display:grid;grid-template-columns:96px minmax(0,1fr) 210px 150px;gap:14px;
+  align-items:start;padding:11px 20px;border-bottom:1px solid var(--border);font-size:11.5px}
+.pg-item:last-child{border-bottom:none}
+.pg-num{font-weight:700;color:var(--accent);text-decoration:none;display:block}
+.pg-num:hover{text-decoration:underline}
+.pg-data{display:block;color:var(--muted);font-size:10px;margin-top:2px}
+.pg-emp{font-weight:600;color:var(--text)}
+.pg-obra{color:var(--muted);margin-top:2px}
+.pg-med{font-weight:700;color:var(--text)}
+.pg-sei{display:block;color:var(--muted);font-size:10px;margin-top:2px;
+  font-family:'IBM Plex Mono',ui-monospace,monospace}
+.pg-val{text-align:right;line-height:1.5}
+.pg-liq{font-weight:800;font-family:'Sora',sans-serif;font-size:12.5px;color:var(--text)}
+.pg-bruto{color:var(--muted);font-size:9.5px}
+.pg-tag{display:inline-block;font-size:9px;font-weight:700;padding:1px 6px;border-radius:9px;
+  border:1px solid;margin-left:6px;white-space:nowrap}
+.pg-tag.ag{background:#fff7ed;color:#9a3412;border-color:#fdba74}
+.pg-tag.pc{background:#f0fdf4;color:#166534;border-color:#86efac}
+.pg-obs{grid-column:1/-1;background:var(--surface2);border-left:3px solid var(--border);
+  padding:7px 11px;border-radius:0 7px 7px 0;font-size:10.5px;color:var(--muted);margin-top:2px}
+.pg-vazio{padding:18px 20px;font-size:12px;color:var(--muted)}
+.pg-mes{padding:7px 20px;background:var(--surface2);border-bottom:1px solid var(--border);
+  font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.6px}
+
+.pg-card:fullscreen{background:var(--surface);display:flex;flex-direction:column;border-radius:0;overflow:auto;padding:20px}
+.pg-card:fullscreen .pg-lista{flex:1 1 auto;overflow:auto}
+.pg-card:fullscreen .mes-lista{flex:1 1 auto;overflow:auto;max-height:none}
+
+/* ── POR MÊS ──
+   Barra proporcional ao maior mês. Sem biblioteca de gráfico: a leitura é
+   comparativa ("qual mês pesou mais"), e para isso a barra basta — trazer
+   Chart.js só para isto seria mais uma dependência de CDN a falhar. */
+.mes-lista{max-height:340px;overflow-y:auto}
+.mes-item{display:grid;grid-template-columns:120px minmax(0,1fr) 150px 150px;gap:12px;
+  align-items:center;padding:9px 20px;border-bottom:1px solid var(--border);font-size:11.5px}
+.mes-item:last-child{border-bottom:none}
+.mes-item.atual{background:#f0f9ff}
+.mes-rot{font-weight:700;color:var(--text);text-transform:capitalize}
+.mes-rot small{display:block;font-weight:500;color:var(--muted);font-size:9.5px;text-transform:none}
+.mes-track{background:#eef2f7;border-radius:99px;height:16px;overflow:hidden;position:relative}
+.mes-fill{height:100%;border-radius:99px;background:linear-gradient(90deg,#1a3a6e,#3b82f6)}
+.mes-fill.liq{background:linear-gradient(90deg,#0d6e4a,#22c55e);margin-top:-16px;opacity:.85}
+.mes-val{text-align:right;font-family:'Sora',sans-serif;font-weight:700;font-size:11.5px;color:var(--text)}
+.mes-val small{display:block;font-family:'DM Sans',sans-serif;font-weight:500;color:var(--muted);font-size:9.5px}
+.mes-cab{display:grid;grid-template-columns:120px minmax(0,1fr) 150px 150px;gap:12px;
+  padding:7px 20px;background:var(--surface2);border-bottom:1px solid var(--border);
+  font-size:9.5px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
+.mes-cab div:nth-child(3),.mes-cab div:nth-child(4){text-align:right}
+
+@media (max-width:900px){
+  .rs-grid{grid-template-columns:repeat(2,1fr)}
+  .pg-item{grid-template-columns:1fr;row-gap:7px}
+  .pg-val{text-align:left}
+  .mes-cab{display:none}
+  .mes-item{grid-template-columns:1fr 1fr;row-gap:6px}
+  .mes-item .mes-track{grid-column:1/-1}
+  .mes-val{text-align:left}
+}
+</style>
+</head>
+
+<body data-page="pagamentos">
+
+<!-- HEADER -->
+<div class="hd">
+  <div class="hd-left">
+    <div class="hd-logo">
+      <div class="hd-logo-icon"><i class="fa-solid fa-receipt"></i></div>
+      <div>
+        <div class="hd-title">IDEPI</div>
+        <div class="hd-sub">Convênios Federais</div>
+      </div>
+    </div>
+    <div class="hd-sep"></div>
+    <div class="hd-pill"><i class="fa-solid fa-circle"></i> Relação de Pagamentos</div>
+  </div>
+  <div class="hd-right">
+    <div class="hd-stat"><strong id="hs-tot">—</strong><span>Lançamentos</span></div>
+    <div class="hd-div"></div>
+    <div class="hd-ts" id="hd-ts">—</div>
+  </div>
+</div>
+
+<!-- BODY -->
+<div class="body">
+
+  <!-- O menu é montado por assets/nav.js — não escreva os itens aqui. -->
+  <nav class="sidebar" id="mainSidebar"></nav>
+
+  <div class="content">
+
+    <div class="pg-head-topo pg-head" style="border:none;background:transparent;padding:0">
+      <div>
+        <div class="pg-title">Relação de Pagamentos</div>
+        <div class="pg-sub">Qual medição foi paga, em que processo SEI ela tramitou e quanto saiu · controle do setor</div>
+      </div>
+      <button class="btn-excel" id="btnExcelPag" onclick="exportarPagamentos()">
+        <i class="fa-solid fa-file-excel"></i> Exportar
+      </button>
+    </div>
+
+    <div class="scroll">
+
+      <!-- RESUMO -->
+      <div class="rs-grid">
+        <button class="rs-card r-pg clicavel" data-sit="pago" onclick="filtrarSituacao('pago')">
+          <div class="rs-lbl">Pagos</div>
+          <div class="rs-num" id="rs-pagos">—</div>
+          <div class="rs-desc">Com data de pagamento</div>
+        </button>
+        <button class="rs-card r-ag clicavel" data-sit="aguardando" onclick="filtrarSituacao('aguardando')">
+          <div class="rs-lbl">Aguardando</div>
+          <div class="rs-num" id="rs-ag">—</div>
+          <div class="rs-desc">Medição enviada, sem pagamento</div>
+        </button>
+        <div class="rs-card r-br">
+          <div class="rs-lbl">Mês atual — pago</div>
+          <div class="rs-num" id="rs-mes">—</div>
+          <div class="rs-desc" id="rs-mes-sub">—</div>
+        </div>
+        <div class="rs-card r-lq">
+          <div class="rs-lbl">Previsão do mês</div>
+          <div class="rs-num" id="rs-prev">—</div>
+          <div class="rs-desc" id="rs-prev-sub">—</div>
+        </div>
+      </div>
+
+      <!-- POR MÊS -->
+      <div class="pg-card" id="mesCard">
+        <div class="pg-head">
+          <div class="pg-titulo"><i class="fa-solid fa-chart-column"></i> Medições pagas por mês</div>
+          <div class="cp-resumo" id="mes-resumo"></div>
+          <div class="pg-acoes">
+            <button class="btn-fullscreen" id="btnFSMes" onclick="IDEPI.toggleFullscreen('mesCard')" title="Tela cheia">
+              <i class="fa-solid fa-expand"></i> Tela cheia
+            </button>
+          </div>
+        </div>
+        <div class="mes-lista" id="mes-lista">
+          <div class="pg-vazio">Carregando…</div>
+        </div>
+      </div>
+
+      <!-- LISTA -->
+      <div class="pg-card" id="pgCard">
+        <div class="pg-head">
+          <div class="pg-titulo"><i class="fa-solid fa-receipt"></i> Pagamentos — <span id="pg-qtd">—</span></div>
+          <div class="pg-busca">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="busca" placeholder="Buscar por convênio, empresa, obra, medição ou SEI…"
+                   oninput="render()" autocomplete="off">
+          </div>
+          <div class="pg-acoes">
+            <button class="btn-fullscreen" id="btnLimpar" onclick="filtrarSituacao(null)" style="display:none">
+              <i class="fa-solid fa-xmark"></i> Limpar filtro
+            </button>
+            <button class="btn-fullscreen" id="btnFSPag" onclick="IDEPI.toggleFullscreen('pgCard')" title="Tela cheia">
+              <i class="fa-solid fa-expand"></i> Tela cheia
+            </button>
+          </div>
+        </div>
+        <div class="pg-lista" id="lista">
+          <div class="pg-vazio">Carregando…</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ══ SDK do Firebase (login + banco) ══════════════════════════════════ -->
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore-compat.js"></script>
+
+<script src="assets/firebase-config.js"></script>
+<script src="assets/app.js"></script>
+<script src="assets/auth.js"></script>
+<script src="assets/data.js"></script>
+<script src="assets/nav.js"></script>
+
+<script>
+/* ═══════════════════════════════════════════════════════════════════════
+   RELAÇÃO DE PAGAMENTOS
+
+   Origem: a planilha do diretor, publicada em painel/pagamentos pelo
+   publicar_pagamentos.py. É o único lugar que registra A QUE MEDIÇÃO cada
+   pagamento corresponde e em que processo SEI ela tramitou — no
+   Transferegov o pagamento é uma linha de valor com favorecido.
+
+   ⚠️  A página NÃO diz qual é a última medição de uma obra. Isso não é
+   derivável: a planilha marca à mão, em texto livre, e só em 2 das 366
+   linhas. Decidido com o setor em 06/08/2026 — mostra-se o NÚMERO da
+   medição, que é o que existe, e não se afirma o que não se sabe.
+
+   Regra de negócio nenhuma vive aqui: a situação (pago/aguardando) já vem
+   classificada do Python, para planilha, script e painel não divergirem.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+var _pagamentos = [];
+var _meses      = [];
+var _filtroSit  = null;
+
+/** Ano-mês de HOJE, no relógio de quem está olhando.
+ *  Não vem do Python de propósito: o documento pode ter sido publicado dias
+ *  atrás, e "mês atual" tem de ser o mês de quem lê, não o da publicação. */
+function ymHoje() {
+  var d = new Date();
+  return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0');
+}
+
+function fmtBR(n) {
+  return 'R$ ' + (n || 0).toLocaleString('pt-BR',
+    { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+}
+
+function filtrarSituacao(sit) {
+  _filtroSit = (_filtroSit === sit) ? null : sit;
+  document.querySelectorAll('.rs-card[data-sit]').forEach(function (b) {
+    b.classList.toggle('on', b.dataset.sit === _filtroSit);
+  });
+  IDEPI.$('btnLimpar').style.display = _filtroSit ? '' : 'none';
+  render();
+}
+
+/** O que está à vista — é também o que a exportação leva. */
+function visiveis() {
+  var termo = IDEPI.norm(IDEPI.$('busca').value.trim());
+  return _pagamentos.filter(function (p) {
+    if (_filtroSit && p.situacao !== _filtroSit) return false;
+    if (!termo) return true;
+    return IDEPI.norm([p.convenio, p.numero, p.empresa, p.obra, p.medicao,
+                       p.sei, p.prestacao, p.mes, p.obs]
+                      .join(' ')).indexOf(termo) !== -1;
+  });
+}
+
+function render() {
+  var lista = visiveis();
+  IDEPI.setTxt('pg-qtd', lista.length +
+    (lista.length === 1 ? ' lançamento' : ' lançamentos'));
+
+  var box = IDEPI.$('lista');
+  if (!lista.length) {
+    box.innerHTML = '<div class="pg-vazio">Nenhum pagamento encontrado com esse filtro.</div>';
+    return;
+  }
+
+  /* Cabeçalho de mês, como na planilha: é assim que o setor procura. */
+  var mesAtual = null, html = '';
+  lista.forEach(function (p) {
+    if (p.mes !== mesAtual) {
+      mesAtual = p.mes;
+      if (mesAtual) html += '<div class="pg-mes">' + IDEPI.esc(mesAtual) + '</div>';
+    }
+
+    var tagSit = p.situacao === 'aguardando'
+      ? '<span class="pg-tag ag">aguardando pagamento</span>' : '';
+    var tagPC = /aprovad/i.test(p.prestacao || '')
+      ? '<span class="pg-tag pc">' + IDEPI.esc(p.prestacao) + '</span>' : '';
+
+    html += '<div class="pg-item">' +
+      '<div>' +
+        '<a class="pg-num" href="execucao.html?num=' +
+          encodeURIComponent(p.numero || '') + '" ' +
+          'title="Abrir a execução financeira deste instrumento">' +
+          IDEPI.esc(p.convenio || p.numero) + '</a>' +
+        '<span class="pg-data">' + IDEPI.esc(p.data || 'sem data') + '</span>' +
+      '</div>' +
+      '<div>' +
+        '<div class="pg-emp">' + IDEPI.esc(p.empresa || '—') + tagSit + '</div>' +
+        '<div class="pg-obra">' + IDEPI.esc(p.obra || '') + tagPC + '</div>' +
+      '</div>' +
+      '<div>' +
+        '<span class="pg-med">' + IDEPI.esc(p.medicao || '— sem nº de medição') + '</span>' +
+        (p.sei ? '<span class="pg-sei">' + IDEPI.esc(p.sei) + '</span>' : '') +
+      '</div>' +
+      '<div class="pg-val">' +
+        '<span class="pg-liq">' + fmtBR(p.liquido || p.bruto) + '</span>' +
+        '<div class="pg-bruto">bruto ' + fmtBR(p.bruto) + '</div>' +
+      '</div>' +
+      (p.obs ? '<div class="pg-obs">' + IDEPI.esc(p.obs) + '</div>' : '') +
+    '</div>';
+  });
+  box.innerHTML = html;
+}
+
+/* ── Medições pagas por mês ─────────────────────────────────────────────
+   Duas barras no mesmo trilho: bruto atrás, líquido na frente. A diferença
+   entre elas é a retenção, e vê-la mês a mês é o ponto — foi assim que se
+   descobriu que `bruto − líquido` é exatamente a soma dos tributos. */
+function renderMeses() {
+  var box = IDEPI.$('mes-lista');
+  if (!_meses.length) {
+    box.innerHTML = '<div class="pg-vazio">Sem pagamentos com data para agrupar.</div>';
+    return;
+  }
+  var teto = Math.max.apply(null, _meses.map(function (m) { return m.bruto; })) || 1;
+  var hoje = ymHoje();
+
+  /* Do mês mais recente para o mais antigo: o que interessa está no fim da
+     planilha, e obrigar a rolar 42 meses para chegar nele é perder o dado. */
+  var html = '<div class="mes-cab"><div>Mês</div><div>Bruto × líquido</div>' +
+             '<div>Bruto</div><div>Líquido</div></div>';
+  _meses.slice().reverse().forEach(function (m) {
+    var ret = m.bruto - m.liquido;
+    var pctRet = m.bruto ? (ret / m.bruto * 100) : 0;
+    html += '<div class="mes-item' + (m.ym === hoje ? ' atual' : '') + '">' +
+      '<div class="mes-rot">' + IDEPI.esc(m.rotulo) +
+        '<small>' + m.qtd + (m.qtd === 1 ? ' medição' : ' medições') +
+        (m.ym === hoje ? ' · mês atual' : '') + '</small></div>' +
+      '<div class="mes-track" title="Retenção de ' + fmtBR(ret) + ' (' +
+        pctRet.toFixed(1).replace('.', ',') + '%)">' +
+        '<div class="mes-fill" style="width:' + (m.bruto / teto * 100) + '%"></div>' +
+        '<div class="mes-fill liq" style="width:' + (m.liquido / teto * 100) + '%"></div>' +
+      '</div>' +
+      '<div class="mes-val">' + fmtBR(m.bruto) + '<small>bruto</small></div>' +
+      '<div class="mes-val">' + fmtBR(m.liquido) +
+        '<small>retido ' + fmtBR(ret) + '</small></div>' +
+    '</div>';
+  });
+  box.innerHTML = html;
+
+  var somaB = _meses.reduce(function (s, m) { return s + m.bruto; }, 0);
+  var somaL = _meses.reduce(function (s, m) { return s + m.liquido; }, 0);
+  IDEPI.setHtml('mes-resumo',
+    '<span>' + _meses.length + ' meses</span>' +
+    '<span>bruto <b>' + IDEPI.fmtCompacto(somaB) + '</b></span>' +
+    '<span>líquido <b>' + IDEPI.fmtCompacto(somaL) + '</b></span>' +
+    '<span>retido <b>' + IDEPI.fmtCompacto(somaB - somaL) + '</b></span>');
+}
+
+/* ── Mês atual e previsão ───────────────────────────────────────────────
+   PREVISÃO = o que já foi pago no mês + as medições enviadas e ainda não
+   pagas. Não é projeção estatística nem média de meses anteriores: é o que
+   está na fila, com valor conhecido. Dito assim na tela, para ninguém ler
+   como estimativa. */
+function renderMesAtual(resumo) {
+  var hoje = ymHoje();
+  var m = _meses.filter(function (x) { return x.ym === hoje; })[0];
+  var pagoB = m ? m.bruto : 0, pagoL = m ? m.liquido : 0, qtd = m ? m.qtd : 0;
+
+  IDEPI.setTxt('rs-mes', IDEPI.fmtCompacto(pagoB));
+  IDEPI.setTxt('rs-mes-sub', qtd
+    ? qtd + (qtd === 1 ? ' medição' : ' medições') +
+      ' · líquido ' + IDEPI.fmtCompacto(pagoL)
+    : 'nenhum pagamento neste mês ainda');
+
+  var fila = (resumo && resumo.aguardando_bruto) || 0;
+  var nFila = (resumo && resumo.aguardando) || 0;
+  IDEPI.setTxt('rs-prev', IDEPI.fmtCompacto(pagoB + fila));
+  IDEPI.setTxt('rs-prev-sub', nFila
+    ? 'pago + ' + nFila + (nFila === 1 ? ' medição enviada' : ' medições enviadas') +
+      ' (' + IDEPI.fmtCompacto(fila) + ')'
+    : 'nenhuma medição na fila');
+}
+
+function exportarPagamentos() {
+  var lista = visiveis();
+  if (!lista.length) { alert('Não há nada para exportar com o filtro atual.'); return; }
+
+  IDEPI.comBotaoOcupado('btnExcelPag',
+    '<i class="fa-solid fa-file-excel"></i> Exportar', function () {
+    var cab = ['Mês', 'Convênio', 'Nº Instrumento', 'Empresa', 'Obra',
+               'Medição', 'Processo SEI', 'Data do pagamento', 'Situação',
+               'Valor bruto (R$)', 'Valor líquido (R$)',
+               'Prestação de contas', 'Observação'];
+    var linhas = lista.map(function (p) {
+      return [p.mes || '', p.convenio || '', p.numero || '', p.empresa || '',
+              p.obra || '', p.medicao || '', p.sei || '', p.data || '',
+              p.situacao === 'aguardando' ? 'Aguardando pagamento' : 'Pago',
+              p.bruto || 0, p.liquido || 0, p.prestacao || '', p.obs || ''];
+    });
+    var ws = XLSX.utils.aoa_to_sheet([cab].concat(linhas));
+    ws['!cols'] = [{wch:24},{wch:16},{wch:14},{wch:26},{wch:32},{wch:22},
+                   {wch:24},{wch:16},{wch:20},{wch:18},{wch:18},{wch:22},{wch:40}];
+    ws['!autofilter'] = { ref: XLSX.utils.encode_range({
+      s:{r:0,c:0}, e:{r:linhas.length, c:cab.length-1} }) };
+
+    /* A aba por mês sai SEMPRE completa, mesmo com a lista filtrada: ela
+       responde "quanto se pagou em cada mês", e um recorte de busca daria
+       um total que não é o do mês. */
+    var cabM = ['Mês', 'Medições', 'Bruto (R$)', 'Líquido (R$)', 'Retido (R$)'];
+    var wsM = XLSX.utils.aoa_to_sheet([cabM].concat(_meses.map(function (m) {
+      return [m.rotulo, m.qtd, m.bruto, m.liquido,
+              Math.round((m.bruto - m.liquido) * 100) / 100];
+    })));
+    wsM['!cols'] = [{wch:18},{wch:11},{wch:18},{wch:18},{wch:18}];
+
+    var wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws,  'Pagamentos');
+    XLSX.utils.book_append_sheet(wb, wsM, 'Por mês');
+    XLSX.writeFile(wb, 'IDEPI_Relacao_Pagamentos_' + IDEPI.carimboData() + '.xlsx');
+  });
+}
+
+IDEPI.dados.pagamentos()
+  .then(function (d) {
+    _pagamentos = d.pagamentos || [];
+    _meses      = d.meses || [];
+    var r = d.resumo || {};
+    IDEPI.setTxt('rs-pagos', r.pagos || 0);
+    IDEPI.setTxt('rs-ag',    r.aguardando || 0);
+    IDEPI.setTxt('hs-tot',   _pagamentos.length);
+    IDEPI.setTxt('hd-ts', 'Atualizado: ' + (d.gerado_em || '—'));
+    renderMeses();
+    renderMesAtual(r);
+    render();
+    IDEPI.esconderOverlay();
+  })
+  .catch(function (e) {
+    IDEPI.esconderOverlay();
+    IDEPI.setHtml('hd-ts', '<span style="color:#f87171">Erro ao carregar</span>');
+    IDEPI.setHtml('lista', '<div class="pg-vazio">Não foi possível carregar os ' +
+      'pagamentos. ' + IDEPI.esc(String(e && e.message || e)) + '</div>');
+  });
+
+IDEPI.ligarBotaoFullscreen('btnFSPag');
+IDEPI.ligarBotaoFullscreen('btnFSMes');
+</script>
+</body>
+</html>

@@ -113,8 +113,15 @@
                  Repasse mostra recebido x previsto, contrapartida mostra
                  depositado, e os rendimentos separam liberado, aguardando
                  e disponivel. (4) pagamentos: mais recentes primeiro e o
-                 bloco por mes recolhido */
-const VERSAO = 'idepi-v32';
+                 bloco por mes recolhido
+     v33 — 07/08: o RECEBIDO de repasse e o DEPOSITADO de contrapartida
+                 passam a vir do historico de ingressos, que a varredura das
+                 08:30 atualiza todo dia util — antes vinham do
+                 marcos_aditivo.json, escrito a mao, e o painel diria
+                 "a receber R$ 22.322.718,00" para sempre depois que a
+                 parcela caisse. Os numeros de hoje sao os mesmos; o que
+                 muda e que agora eles se corrigem sozinhos */
+const VERSAO = 'idepi-v33';
 const CACHE_SHELL = VERSAO + '-shell';
 const CACHE_PAGS  = VERSAO + '-paginas';
 

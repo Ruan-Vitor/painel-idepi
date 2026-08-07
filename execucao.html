@@ -1270,17 +1270,28 @@ function renderInstrumento(){
   var cpPrevisto       = parseReais(c.valor_contrapartida);
   var cpDepositado     = null;
 
-  /* Com marco, o que AINDA falta receber está no aditivo — e é a fonte mais
-     confiável que existe: `repasse_desembolsado` vem de uma coleta que pode
-     estar velha (em 04/08 dava R$ 100,65 mi ao 953168 contra R$ 116,65 mi
-     reais). Recebido = previsto − a desembolsar. No Atalaia dá
-     R$ 96.864.287,00, o mesmo que a soma dos ingressos federais. */
-  if (_marco && _marco.a_desembolsar) {
-    if (_marco.a_desembolsar.repasse !== undefined)
-      repasseRecebido = repassePrevisto - _marco.a_desembolsar.repasse;
-    if (_marco.a_desembolsar.contrapartida !== undefined)
-      cpDepositado = cpPrevisto - _marco.a_desembolsar.contrapartida;
-  }
+  /* ── O QUE ENTROU: histórico de ingressos, não o marco ──────────────────
+     Regra do projeto: "quanto já entrou" tem uma fonte só, o
+     `historico_repasses` do Transferegov — e é ela que a varredura das 08:30
+     atualiza todo dia útil. O marco do aditivo tem os mesmos números HOJE
+     (no Atalaia, R$ 96.864.287,00 federal e R$ 10.843.642,11 de
+     contrapartida, conferido em 07/08/2026), mas é uma FOTO: escrito à mão
+     num json, não muda quando a parcela cai. Ligar o card nele faria o
+     painel dizer "a receber R$ 22.322.718,00" para sempre — errado e com
+     cara de certo.
+
+     O marco fica de reserva, para instrumento que ainda não tenha histórico
+     publicado. E o "a receber" passa a ser previsto − recebido, que se
+     corrige sozinho junto. */
+  var _repHist = IDEPI.liberadoDe(c);
+  var _cpHist  = IDEPI.contrapartidaRecebidaDe(c);
+  if (_repHist > 0) repasseRecebido = _repHist;
+  else if (_marco && _marco.a_desembolsar && _marco.a_desembolsar.repasse !== undefined)
+    repasseRecebido = repassePrevisto - _marco.a_desembolsar.repasse;
+
+  if (_cpHist > 0) cpDepositado = _cpHist;
+  else if (_marco && _marco.a_desembolsar && _marco.a_desembolsar.contrapartida !== undefined)
+    cpDepositado = cpPrevisto - _marco.a_desembolsar.contrapartida;
 
   /* Base do saldo: o que ENTROU, não o previsto — saldo disponível é dinheiro
      em conta. Sem dado de entrada, cai no previsto como antes. */
@@ -1332,8 +1343,11 @@ function renderInstrumento(){
     document.getElementById("vs-rep-previsto").textContent = fmt(repassePrevisto);
     repRecRow.style.display = "";
     /* Badge PARCIAL: quando ainda há valor a desembolsar */
-    var aDesemb = (_marco && _marco.a_desembolsar && _marco.a_desembolsar.repasse)
-                  || ((rd && rd.a_desembolsar > 0) ? rd.a_desembolsar : 0);
+    /* previsto − recebido, para acompanhar a entrada de parcela nova.
+       Um real de folga: previsto e recebido vêm de fontes distintas e
+       divergem em centavos por arredondamento. */
+    var aDesemb = Math.max(0, repassePrevisto - repasseRecebido);
+    if (aDesemb <= 1) aDesemb = 0;
     var badgeEl = document.getElementById("vs-rep-parcial-badge");
     if(aDesemb > 0.01){
       badgeEl.style.display = "inline";

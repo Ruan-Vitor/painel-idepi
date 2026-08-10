@@ -46907,7 +46907,7 @@
     {
       "numero": "988634",
       "objeto": "PAVIMENTACAO DE VIAS VICINAIS NO MUNICIPIO DE BARRA DALCANTARA/PI",
-      "coletado_em": "05/08/2026 20:08",
+      "coletado_em": "10/08/2026 16:43",
       "valor_global": "R$ 965.000,00",
       "valor_repasse": "R$ 955.000,00",
       "valor_contrapartida": "R$ 10.000,00",
@@ -46942,7 +46942,7 @@
       "ateste_concedente": false,
       "status_obra": "",
       "tem_medicao": false,
-      "saldo_rendimentos": 504.25,
+      "saldo_rendimentos": 523.37,
       "repasse_desembolsado": null,
       "_id_convenio": "1229519",
       "_id_proposta": "2156809",
@@ -46962,7 +46962,7 @@
     {
       "numero": "988972",
       "objeto": "PAVIMENTACAO DE ESTRADAS VICINAIS",
-      "coletado_em": "05/08/2026 20:11",
+      "coletado_em": "10/08/2026 16:45",
       "valor_global": "R$ 965.000,00",
       "valor_repasse": "R$ 955.000,00",
       "valor_contrapartida": "R$ 10.000,00",
@@ -46997,7 +46997,7 @@
       "ateste_concedente": false,
       "status_obra": "",
       "tem_medicao": false,
-      "saldo_rendimentos": 529.73,
+      "saldo_rendimentos": 548.9,
       "repasse_desembolsado": null,
       "_id_convenio": "1230293",
       "_id_proposta": "2157010",
@@ -47017,7 +47017,7 @@
     {
       "numero": "988779",
       "objeto": "PAVIMENTACAO DE ESTRADAS VICINAIS",
-      "coletado_em": "05/08/2026 20:14",
+      "coletado_em": "10/08/2026 16:47",
       "valor_global": "R$ 965.000,00",
       "valor_repasse": "R$ 955.000,00",
       "valor_contrapartida": "R$ 10.000,00",
@@ -47052,7 +47052,7 @@
       "ateste_concedente": false,
       "status_obra": "",
       "tem_medicao": false,
-      "saldo_rendimentos": 504.25,
+      "saldo_rendimentos": 523.37,
       "repasse_desembolsado": null,
       "_id_convenio": "1229927",
       "_id_proposta": "2157022",
@@ -47072,7 +47072,7 @@
     {
       "numero": "988901",
       "objeto": "PAVIMENTACAO DE ESTRADAS VICINAIS",
-      "coletado_em": "05/08/2026 20:17",
+      "coletado_em": "10/08/2026 16:49",
       "valor_global": "R$ 965.000,00",
       "valor_repasse": "R$ 955.000,00",
       "valor_contrapartida": "R$ 10.000,00",
@@ -47107,7 +47107,7 @@
       "ateste_concedente": false,
       "status_obra": "",
       "tem_medicao": false,
-      "saldo_rendimentos": 509.38,
+      "saldo_rendimentos": 528.52,
       "repasse_desembolsado": null,
       "_id_convenio": "1230211",
       "_id_proposta": "2157030",
@@ -47127,7 +47127,7 @@
     {
       "numero": "998329",
       "objeto": "PAVIMENTACAO DE ESTRADAS VICINAIS",
-      "coletado_em": "05/08/2026 20:20",
+      "coletado_em": "10/08/2026 16:51",
       "valor_global": "R$ 500.000,00",
       "valor_repasse": "R$ 477.500,00",
       "valor_contrapartida": "R$ 22.500,00",
@@ -47354,7 +47354,7 @@
       "valor_global_calculado": false
     }
   ],
-  "exec_atualizado_em": "10/08/2026 16:42",
+  "exec_atualizado_em": "10/08/2026 16:53",
   "historico_repasses": {
     "969555": {
       "objeto": "Construção e equipagem da Casa da Mulher Brasileira no Município de Parnaiba-PI",

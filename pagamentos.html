@@ -495,9 +495,16 @@ function abrirBalao(el, chave, numero) {
   var doGrupo  = _pagamentos.filter(function (p) { return chaveEmp(p) === chave; });
   if (!doGrupo.length) return;
   var noInstr  = doGrupo.filter(function (p) { return p.numero === numero; });
-  var grafias  = [];
+  /* Grafias da MAIS usada para a menos — é ela que vira o título do balão.
+     Pela ordem de aparição, o consórcio da Pedra Redonda apareceria como
+     'CONSORCIO S & G' (2 linhas) em vez de 'CONSÓRCIO S & G BARRAGEM
+     CANINDÉ' (12). Empate desempata pela mais completa. */
+  var conta = {};
   doGrupo.forEach(function (p) {
-    if (p.empresa && grafias.indexOf(p.empresa) === -1) grafias.push(p.empresa);
+    if (p.empresa) conta[p.empresa] = (conta[p.empresa] || 0) + 1;
+  });
+  var grafias = Object.keys(conta).sort(function (a, b) {
+    return (conta[b] - conta[a]) || (b.length - a.length);
   });
 
   var pagosI = porDataDesc(noInstr.filter(function (p) { return p.situacao === 'pago'; }));

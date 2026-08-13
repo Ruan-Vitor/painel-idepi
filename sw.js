@@ -142,8 +142,16 @@
                  existia lia um campo que nunca chegava e vinha sempre vazio.
                  Convenio e Termo de Compromisso nao tem mandataria por
                  natureza (sao direto com o ministerio) e a linha diz isso, em
-                 vez de um traco que parece dado faltando */
-const VERSAO = 'idepi-v36';
+                 vez de um traco que parece dado faltando
+     v37 — 13/08: ORGAO VINCULADO (quem executa: CODEVASF, FUNASA), LIMITE P/
+                 PRESTACAO DE CONTAS e a ORIGEM da vigencia no detalhe de
+                 Vigencias. Os tres vem do tgov_monitor, que passou a ler a
+                 tela do instrumento — campos que estavam a vista e o projeto
+                 nao lia. A vigencia passa a preferir o "Termino de Vigencia
+                 Atual" do Transferegov: a CGU leva semanas para publicar um
+                 aditivo e ate la o painel vence o convenio antes da hora.
+                 A origem fica escrita ao lado da data */
+const VERSAO = 'idepi-v37';
 const CACHE_SHELL = VERSAO + '-shell';
 const CACHE_PAGS  = VERSAO + '-paginas';
 

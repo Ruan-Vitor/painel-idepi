@@ -1,5 +1,5 @@
 {
-  "gerado_em": "13/08/2026 11:59",
+  "gerado_em": "13/08/2026 12:37",
   "total": 99,
   "convenios": [
     {
@@ -1115,7 +1115,7 @@
       "medicao": "NÃO",
       "pagamento": "NÃO",
       "apto_fiscalgov": "NÃO ⬜",
-      "situacao_tgov": "Aguardando Prestação de Contas",
+      "situacao_tgov": "Em execução",
       "sit_contrat_tgov": "Normal",
       "fase_emendas": "em andamento",
       "municipio_emendas": "União",
@@ -2569,9 +2569,9 @@
       "dias": 846,
       "status": "NORMAL",
       "situacao": "EM EXECUÇÃO",
-      "v_total": "950,00",
+      "v_total": "9.500.000,00",
       "v_liberado": "2.625.000,00",
-      "v_contrapartida": "1,00",
+      "v_contrapartida": "10.000,00",
       "v_ultima_liberacao": "203.500,00",
       "ultima_liberacao": "29/07/2026",
       "pct_exec": "",
@@ -3061,7 +3061,7 @@
       "situacao": "EM EXECUÇÃO",
       "v_total": "1.273.333,34",
       "v_liberado": "0,00",
-      "v_contrapartida": "60.000,00",
+      "v_contrapartida": "6,00",
       "v_ultima_liberacao": "0,00",
       "ultima_liberacao": "",
       "pct_exec": "",

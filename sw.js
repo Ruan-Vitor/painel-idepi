@@ -134,8 +134,16 @@
                  OBJETO da obra — so o numero do convenio nao basta para
                  reconhecer de qual se trata. Em tela de TOQUE, que nao tem
                  hover, o objeto vem escrito embaixo: esconder atras de hover
-                 num celular e esconder para sempre */
-const VERSAO = 'idepi-v35';
+                 num celular e esconder para sempre
+     v36 — 13/08: CONCEDENTE e MANDATARIA no detalhe de Vigencias. Nao faltava
+                 dado: os 41 contratos de repasse tem Caixa desde sempre e o
+                 concedente cobre 94 de 99 — faltava MOSTRAR. A pagina nem
+                 juntava a execucao, entao o filtro por mandataria que ja
+                 existia lia um campo que nunca chegava e vinha sempre vazio.
+                 Convenio e Termo de Compromisso nao tem mandataria por
+                 natureza (sao direto com o ministerio) e a linha diz isso, em
+                 vez de um traco que parece dado faltando */
+const VERSAO = 'idepi-v36';
 const CACHE_SHELL = VERSAO + '-shell';
 const CACHE_PAGS  = VERSAO + '-paginas';
 

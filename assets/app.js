@@ -763,6 +763,16 @@
            caso o instrumento continua sendo cobrado — dispensar por falta de
            dado é pior do que cobrar a mais. */
         if (e.tem_aio !== undefined) { c.tem_aio = e.tem_aio; c.aio_data = e.aio_data || ''; }
+        /* MANDATÁRIA e TIPO só existem no registro de execução — vêm do
+           Transferegov, e a CGU não tem nem um nem outro. Sem esta cópia, o
+           filtro por mandatária do vigencias.html lia um campo que nunca
+           chegava e vinha sempre vazio, embora os 41 contratos de repasse
+           tenham Caixa desde sempre. Não sobrescreve o que a planilha já
+           trouxe: dado da vigência manda. */
+        if (!c.mandataria && e.mandataria) c.mandataria = e.mandataria;
+        if (!c.tipo_instrumento && e.tipo_instrumento) {
+          c.tipo_instrumento = e.tipo_instrumento;
+        }
       });
       return conv;
     }).catch(function () { return conv; });   /* sem execução, segue pela planilha */

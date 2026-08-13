@@ -448,6 +448,11 @@ async function carregar() {
     _gerado_em = j.gerado_em || '—';
     // Histórico primeiro: é ele que faz o "liberado" vir do Transferegov.
     IDEPI.usarHistorico(j.historico_repasses || {});
+    // MANDATÁRIA e TIPO só existem no registro de execução (Transferegov). Sem
+    // esta junção o filtro por mandatária desta página lia um campo que nunca
+    // chegava: ficava sempre vazio, embora os 41 contratos de repasse tenham
+    // Caixa. É a mesma junção que o Painel Geral já fazia.
+    await IDEPI.juntarExecucao(j.convenios || []);
     dados = (j.convenios || []).map(c => {
       const { st, dias, temSusp } = IDEPI.calcStatus(c);
       return { ...c, _st:st, _dias:dias, _temSusp:temSusp };
@@ -701,6 +706,13 @@ function render() {
       ? `<span class="susp-tag"><i class="fa-solid fa-hourglass-half"></i>${esc(r.vigencia_suspensiva)||'—'}</span>`
       : `<span style="color:#94a3b8;font-size:11px;">—</span>`;
 
+    /* Devolve { sigla, nome } — nunca texto. Concatenar direto imprimiria
+       "[object Object]" na tela. */
+    const _conc = IDEPI.concedenteDe(r);
+    const concHtml = _conc.nome
+      ? esc(_conc.nome) + (_conc.sigla ? ` <span style="color:#94a3b8;">(${esc(_conc.sigla)})</span>` : '')
+      : (_conc.sigla ? esc(_conc.sigla) : '—');
+
     /* SEI: mostra o VIGENTE (o último) e, havendo anteriores, um botão que
        abre a lista. São 19 convênios com mais de um processo — descartar os
        antigos tiraria histórico que ainda serve para consulta. */
@@ -736,6 +748,17 @@ function render() {
       <div class="ef"><label>Prestação de contas</label><span>${esc(r.prestacao)||'—'}</span></div>
       <div class="ef"><label>Autor da emenda</label><span>${esc(r.autor_emenda)||'—'}</span></div>
       <div class="ef"><label>Fiscal responsável</label><span style="font-weight:600;color:var(--brand);">${esc(r.fiscal)||'—'}</span></div>
+      <!-- Concedente e mandatária são coisas diferentes e ficam em campos
+           separados de propósito: o ministério CONCEDE, a Caixa OPERA. Juntar
+           os dois mostraria "Caixa" onde deveria estar o MIDR — ver
+           IDEPI.concedenteDe(). Convênio e Termo de Compromisso são direto com
+           o ministério e por isso não têm mandatária: aí a linha diz isso, em
+           vez de um traço que parece dado faltando. -->
+      <div class="ef"><label>Concedente</label><span>${concHtml}</span></div>
+      <div class="ef"><label>Mandatária</label><span>${r.mandataria
+          ? esc(r.mandataria)
+          : `<span style="color:#94a3b8;font-size:11px;">sem mandatária${
+              r.tipo_instrumento ? ' · '+esc(r.tipo_instrumento)+' é direto com o concedente' : ''}</span>`}</span></div>
       <div class="ef full"><label>Objeto completo</label><span>${esc(r.objeto)||'—'}</span></div>
       <div class="ef"><label>Vigência final</label><span>${esc(r.vigencia_fmt||r.vigencia)||'—'}</span></div>
       <div class="ef"><label>Vigência suspensiva</label><span style="color:${r._temSusp?'var(--s-tx)':'inherit'};font-weight:${r._temSusp?700:400}">${esc(r.vigencia_suspensiva)||'—'}</span></div>

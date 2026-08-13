@@ -121,7 +121,7 @@
                  "a receber R$ 22.322.718,00" para sempre depois que a
                  parcela caisse. Os numeros de hoje sao os mesmos; o que
                  muda e que agora eles se corrigem sozinhos */
-const VERSAO = 'idepi-v33';
+const VERSAO = 'idepi-v34';
 const CACHE_SHELL = VERSAO + '-shell';
 const CACHE_PAGS  = VERSAO + '-paginas';
 

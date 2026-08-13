@@ -82,6 +82,57 @@
 .pg-obs{grid-column:1/-1;background:var(--surface2);border-left:3px solid var(--border);
   padding:7px 11px;border-radius:0 7px 7px 0;font-size:10.5px;color:var(--muted);margin-top:2px}
 .pg-vazio{padding:18px 20px;font-size:12px;color:var(--muted)}
+
+/* ── BALÃO DA EMPRESA ──
+   A empresa é o único campo da lista que responde a uma pergunta que a
+   linha não responde: "quanto já pagamos a esta empresa, aqui e nos outros
+   convênios". Vira botão — sublinhado pontilhado para dizer que abre algo,
+   já que tela de toque não tem hover para insinuar isso. */
+.pg-emp-btn{background:none;border:none;padding:0;font:inherit;color:inherit;
+  font-weight:600;cursor:pointer;text-align:left;
+  border-bottom:1px dotted var(--muted)}
+.pg-emp-btn:hover,.pg-emp-btn:focus{color:var(--accent);border-bottom-color:var(--accent)}
+
+.emp-pop{position:fixed;z-index:600;width:min(430px,calc(100vw - 24px));
+  background:var(--surface);border:1px solid var(--border);border-radius:12px;
+  box-shadow:0 18px 44px rgba(11,21,39,.26);
+  max-height:min(72vh,600px);display:flex;flex-direction:column;overflow:hidden}
+.emp-head{padding:12px 15px;border-bottom:1px solid var(--border);
+  display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
+.emp-nome{font-family:'Sora',sans-serif;font-size:14px;font-weight:800;color:var(--text)}
+.emp-sub{font-size:10px;color:var(--muted);margin-top:3px}
+.emp-x{background:none;border:none;color:var(--muted);cursor:pointer;
+  font-size:14px;padding:2px 4px;line-height:1}
+.emp-x:hover{color:var(--text)}
+.emp-corpo{overflow-y:auto}
+.emp-sec{padding:11px 15px;border-top:1px solid var(--border)}
+.emp-sec:first-child{border-top:none}
+.emp-tit{font-size:9.5px;font-weight:700;color:var(--muted);text-transform:uppercase;
+  letter-spacing:.6px;margin-bottom:7px}
+.emp-forte{font-family:'Sora',sans-serif;font-size:13px;font-weight:700;color:var(--text)}
+.emp-nota{font-size:10.5px;color:var(--muted);margin-top:3px}
+.emp-linha{display:grid;grid-template-columns:66px minmax(0,1fr) 92px;gap:8px;
+  padding:5px 0;border-top:1px dashed var(--border);font-size:10.5px;align-items:baseline}
+.emp-linha:first-of-type{border-top:none}
+.emp-linha b{font-weight:700;color:var(--text)}
+.emp-linha .v{text-align:right;font-family:'Sora',sans-serif;font-weight:700;color:var(--text)}
+.emp-linha .m{color:var(--muted);overflow:hidden;text-overflow:ellipsis}
+.emp-linha a{color:var(--accent);text-decoration:none;font-weight:700}
+.emp-linha a:hover{text-decoration:underline}
+.emp-ag{color:#9a3412}
+.emp-rod{padding:9px 15px;border-top:1px solid var(--border);background:var(--surface2);
+  font-size:9.5px;color:var(--muted);display:flex;gap:9px;align-items:center;
+  justify-content:space-between;flex-wrap:wrap}
+.emp-btn{background:var(--accent);color:#fff;border:none;border-radius:7px;
+  padding:5px 10px;font:inherit;font-size:10px;font-weight:700;cursor:pointer;white-space:nowrap}
+.emp-btn:hover{filter:brightness(1.08)}
+
+/* No celular o balão vira gaveta no rodapé: flutuando ao lado do toque, ele
+   ficaria embaixo do dedo e metade dele fora da tela. */
+@media (max-width:640px){
+  .emp-pop{left:8px!important;right:8px;top:auto!important;bottom:8px;
+    width:auto;max-height:76vh}
+}
 .pg-mes{padding:7px 20px;background:var(--surface2);border-bottom:1px solid var(--border);
   font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.6px}
 
@@ -217,7 +268,7 @@
                    oninput="render()" autocomplete="off">
           </div>
           <div class="pg-acoes">
-            <button class="btn-fullscreen" id="btnLimpar" onclick="filtrarSituacao(null)" style="display:none">
+            <button class="btn-fullscreen" id="btnLimpar" onclick="limparFiltros()" style="display:none">
               <i class="fa-solid fa-xmark"></i> Limpar filtro
             </button>
             <button class="btn-fullscreen" id="btnFSPag" onclick="IDEPI.toggleFullscreen('pgCard')" title="Tela cheia">
@@ -285,7 +336,7 @@ function filtrarSituacao(sit) {
   document.querySelectorAll('.rs-card[data-sit]').forEach(function (b) {
     b.classList.toggle('on', b.dataset.sit === _filtroSit);
   });
-  IDEPI.$('btnLimpar').style.display = _filtroSit ? '' : 'none';
+  IDEPI.$('btnLimpar').style.display = (_filtroSit || _filtroEmp) ? '' : 'none';
   render();
 }
 
@@ -299,6 +350,9 @@ function visiveis() {
      `_pagamentos` é a fonte de todas as outras contas da página. */
   return _pagamentos.slice().reverse().filter(function (p) {
     if (_filtroSit && p.situacao !== _filtroSit) return false;
+    /* Por CHAVE, não pelo nome escrito: é o que faz "ver só esta empresa"
+       trazer também as linhas em que ela foi digitada de outro jeito. */
+    if (_filtroEmp && chaveEmp(p) !== _filtroEmp.chave) return false;
     if (!termo) return true;
     return IDEPI.norm([p.convenio, p.numero, p.empresa, p.obra, p.medicao,
                        p.sei, p.prestacao, p.mes, p.obs]
@@ -309,7 +363,8 @@ function visiveis() {
 function render() {
   var lista = visiveis();
   IDEPI.setTxt('pg-qtd', lista.length +
-    (lista.length === 1 ? ' lançamento' : ' lançamentos'));
+    (lista.length === 1 ? ' lançamento' : ' lançamentos') +
+    (_filtroEmp ? ' · ' + _filtroEmp.rotulo : ''));
 
   var box = IDEPI.$('lista');
   if (!lista.length) {
@@ -339,7 +394,7 @@ function render() {
         '<span class="pg-data">' + IDEPI.esc(p.data || 'sem data') + '</span>' +
       '</div>' +
       '<div>' +
-        '<div class="pg-emp">' + IDEPI.esc(p.empresa || '—') + tagSit + '</div>' +
+        '<div class="pg-emp">' + botaoEmpresa(p) + tagSit + '</div>' +
         '<div class="pg-obra">' + IDEPI.esc(p.obra || '') + tagPC + '</div>' +
       '</div>' +
       '<div>' +
@@ -354,6 +409,241 @@ function render() {
     '</div>';
   });
   box.innerHTML = html;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   BALÃO DA EMPRESA
+
+   Clicar na empresa responde duas perguntas que a linha da lista não
+   responde: o que essa empresa já mediu NESTE instrumento, e o que ela já
+   mediu NO GERAL — porque a mesma construtora costuma tocar obra em vários
+   convênios.
+
+   ⚠️  QUEM JUNTA AS GRAFIAS É O PYTHON, não esta página. A planilha é
+   digitada à mão e a mesma empresa aparece como 'BS CONSTRUTORA',
+   'B S CONSTRUTORA' e 'B S Construtora Eireli'; o publicar_pagamentos.py
+   normaliza e publica `empresa_chave`. Fosse feito aqui, cada tela teria a
+   sua cópia da regra — foi assim que o mesmo convênio passou a ter dois
+   status em 26/07/2026.
+
+   O balão MOSTRA as grafias que agrupou. Somar empresas erradas não dá erro
+   nenhum na tela: dá um total que ninguém confere.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+var _balao = null;
+var _filtroEmp = null;      // { chave, rotulo } — filtro por empresa
+
+/** Chave do agrupamento. O `||` é ponte para o documento publicado ANTES de
+ *  06/2026… — antes de a chave existir: nesse caso cai no nome literal, que
+ *  agrupa menos, mas nunca agrupa errado. */
+function chaveEmp(p) {
+  return p.empresa_chave ||
+         IDEPI.norm(p.empresa || '').replace(/[^a-z0-9]/g, '');
+}
+
+function totais(lista) {
+  var t = { qtd: 0, bruto: 0, liquido: 0 };
+  lista.forEach(function (p) {
+    t.qtd++; t.bruto += (p.bruto || 0); t.liquido += (p.liquido || 0);
+  });
+  return t;
+}
+
+/** Do mais recente para o mais antigo. Sem data vai para o fim — é medição
+ *  na fila, e ela tem lugar próprio no balão. */
+function porDataDesc(lista) {
+  return lista.slice().sort(function (a, b) {
+    var da = IDEPI.parseDateBR(a.data), db = IDEPI.parseDateBR(b.data);
+    if (!da && !db) return 0;
+    if (!da) return 1;
+    if (!db) return -1;
+    return db - da;
+  });
+}
+
+function botaoEmpresa(p) {
+  var nome = p.empresa || '';
+  if (!nome) return '—';
+  return '<button class="pg-emp-btn" title="Ver as medições desta empresa" ' +
+    'onclick="abrirBalao(this,\'' + IDEPI.esc(chaveEmp(p)) + '\',\'' +
+    IDEPI.esc(p.numero || '') + '\')">' + IDEPI.esc(nome) + '</button>';
+}
+
+function linhasMedicao(lista, comConvenio) {
+  return lista.map(function (p) {
+    return '<div class="emp-linha">' +
+      '<div>' + (comConvenio
+        ? '<a href="execucao.html?num=' + encodeURIComponent(p.numero || '') + '">' +
+          IDEPI.esc(p.convenio || p.numero) + '</a>'
+        : '<b class="' + (p.situacao === 'aguardando' ? 'emp-ag' : '') + '">' +
+          IDEPI.esc(p.data || 'na fila') + '</b>') + '</div>' +
+      '<div class="m">' + IDEPI.esc(p.medicao || 'sem nº de medição') +
+        (comConvenio && p.data ? ' · ' + IDEPI.esc(p.data) : '') + '</div>' +
+      '<div class="v">' + IDEPI.fmtCompacto(p.liquido || p.bruto) + '</div>' +
+    '</div>';
+  }).join('');
+}
+
+function fecharBalao() {
+  if (_balao && _balao.parentNode) _balao.parentNode.removeChild(_balao);
+  _balao = null;
+}
+
+function abrirBalao(el, chave, numero) {
+  fecharBalao();
+
+  var doGrupo  = _pagamentos.filter(function (p) { return chaveEmp(p) === chave; });
+  if (!doGrupo.length) return;
+  var noInstr  = doGrupo.filter(function (p) { return p.numero === numero; });
+  var grafias  = [];
+  doGrupo.forEach(function (p) {
+    if (p.empresa && grafias.indexOf(p.empresa) === -1) grafias.push(p.empresa);
+  });
+
+  var pagosI = porDataDesc(noInstr.filter(function (p) { return p.situacao === 'pago'; }));
+  var filaI  = noInstr.filter(function (p) { return p.situacao === 'aguardando'; });
+  var tI = totais(pagosI), tFilaI = totais(filaI);
+
+  var pagosG = doGrupo.filter(function (p) { return p.situacao === 'pago'; });
+  var filaG  = doGrupo.filter(function (p) { return p.situacao === 'aguardando'; });
+  var tG = totais(pagosG), tFilaG = totais(filaG);
+
+  /* Por instrumento, do que mais recebeu para o que menos. É a leitura que
+     interessa: "onde mais essa empresa está". */
+  var porNum = {};
+  pagosG.forEach(function (p) {
+    var k = p.numero || '—';
+    var g = porNum[k] || (porNum[k] = { numero: k, convenio: p.convenio,
+                                        qtd: 0, liquido: 0, ult: null });
+    g.qtd++; g.liquido += (p.liquido || p.bruto || 0);
+    var d = IDEPI.parseDateBR(p.data);
+    if (d && (!g.ult || d > g.ult)) g.ult = d;
+  });
+  var instrumentos = Object.keys(porNum).map(function (k) { return porNum[k]; })
+    .sort(function (a, b) { return b.liquido - a.liquido; });
+
+  var conv = (noInstr[0] && noInstr[0].convenio) || numero || '—';
+  var obra = (noInstr[0] && noInstr[0].obra) || '';
+
+  var h = '';
+
+  /* ── 1. Neste instrumento ── */
+  h += '<div class="emp-sec">' +
+    '<div class="emp-tit">Neste instrumento · ' + IDEPI.esc(conv) + '</div>';
+  if (tI.qtd) {
+    h += '<div class="emp-forte">' + tI.qtd +
+      (tI.qtd === 1 ? ' medição paga' : ' medições pagas') + ' · ' +
+      IDEPI.fmtCompacto(tI.liquido) + ' líquido</div>' +
+      '<div class="emp-nota">bruto ' + IDEPI.fmtCompacto(tI.bruto) +
+      ' · última em ' + IDEPI.esc(pagosI[0].data) + '</div>' +
+      linhasMedicao(pagosI.slice(0, 5), false);
+    if (pagosI.length > 5) {
+      h += '<div class="emp-nota">+ ' + (pagosI.length - 5) +
+           ' medição(ões) anterior(es)</div>';
+    }
+  } else {
+    h += '<div class="emp-nota">Nenhuma medição paga registrada aqui.</div>';
+  }
+  if (tFilaI.qtd) {
+    h += '<div class="emp-nota emp-ag" style="margin-top:6px"><b>' + tFilaI.qtd +
+      (tFilaI.qtd === 1 ? ' medição enviada' : ' medições enviadas') +
+      ' e ainda não paga(s)</b> · ' + IDEPI.fmtCompacto(tFilaI.bruto) + '</div>' +
+      linhasMedicao(filaI, false);
+  }
+  h += '</div>';
+
+  /* ── 2. A empresa no geral ── */
+  h += '<div class="emp-sec">' +
+    '<div class="emp-tit">Esta empresa no geral · ' + instrumentos.length +
+    (instrumentos.length === 1 ? ' instrumento' : ' instrumentos') + '</div>' +
+    '<div class="emp-forte">' + tG.qtd +
+      (tG.qtd === 1 ? ' medição paga' : ' medições pagas') + ' · ' +
+      IDEPI.fmtCompacto(tG.liquido) + ' líquido</div>' +
+    '<div class="emp-nota">bruto ' + IDEPI.fmtCompacto(tG.bruto) +
+      ' · retido ' + IDEPI.fmtCompacto(tG.bruto - tG.liquido) + '</div>';
+  h += instrumentos.map(function (g) {
+    return '<div class="emp-linha">' +
+      '<div><a href="execucao.html?num=' + encodeURIComponent(g.numero) + '">' +
+        IDEPI.esc(g.convenio || g.numero) + '</a></div>' +
+      '<div class="m">' + g.qtd + (g.qtd === 1 ? ' medição' : ' medições') +
+        (g.ult ? ' · até ' + g.ult.toLocaleDateString('pt-BR') : '') + '</div>' +
+      '<div class="v">' + IDEPI.fmtCompacto(g.liquido) + '</div>' +
+    '</div>';
+  }).join('');
+  if (tFilaG.qtd) {
+    h += '<div class="emp-nota emp-ag" style="margin-top:6px">' + tFilaG.qtd +
+      ' na fila em todos os convênios · ' + IDEPI.fmtCompacto(tFilaG.bruto) + '</div>';
+  }
+  h += '</div>';
+
+  var pop = document.createElement('div');
+  pop.className = 'emp-pop';
+  pop.innerHTML =
+    '<div class="emp-head">' +
+      '<div><div class="emp-nome">' + IDEPI.esc(grafias[0]) + '</div>' +
+      '<div class="emp-sub">' + IDEPI.esc(obra || 'sem obra informada') + '</div></div>' +
+      '<button class="emp-x" onclick="fecharBalao()" title="Fechar" ' +
+        'aria-label="Fechar">✕</button>' +
+    '</div>' +
+    '<div class="emp-corpo">' + h + '</div>' +
+    '<div class="emp-rod">' +
+      '<span>' + (grafias.length > 1
+        ? 'agrupa ' + grafias.length + ' grafias: ' + IDEPI.esc(grafias.join(' · '))
+        : 'grafia única na planilha') + '</span>' +
+      '<button class="emp-btn" onclick="filtrarEmpresa(\'' + IDEPI.esc(chave) +
+        '\')">Ver só esta empresa</button>' +
+    '</div>';
+
+  /* Em tela cheia o balão TEM de entrar dentro do elemento em fullscreen:
+     o navegador desenha o fullscreen por cima de tudo, e um position:fixed
+     pendurado no <body> simplesmente não apareceria. */
+  (document.fullscreenElement || document.body).appendChild(pop);
+  _balao = pop;
+  posicionarBalao(pop, el);
+}
+
+/** Abaixo do nome clicado, preso dentro da tela. */
+function posicionarBalao(pop, el) {
+  var r = el.getBoundingClientRect();
+  var c = pop.getBoundingClientRect();
+  var esq = Math.max(8, Math.min(r.left, window.innerWidth - c.width - 8));
+  var topo = r.bottom + 6;
+  if (topo + c.height > window.innerHeight - 8) {
+    topo = Math.max(8, r.top - c.height - 6);
+  }
+  pop.style.left = esq + 'px';
+  pop.style.top = topo + 'px';
+}
+
+/* Fechar: clique fora, Esc, e rolagem — o balão é ancorado no elemento, e
+   rolando a lista ele ficaria apontando para a linha errada. */
+document.addEventListener('mousedown', function (e) {
+  if (_balao && !_balao.contains(e.target) &&
+      !(e.target.closest && e.target.closest('.pg-emp-btn'))) fecharBalao();
+});
+document.addEventListener('keydown', function (e) {
+  if (e.key === 'Escape') fecharBalao();
+});
+/* A rolagem DENTRO do balão não conta — ele tem lista própria e passa dos
+   72vh em empresa com muitas medições. Sem esta guarda, arrastar a lista do
+   balão o fechava na cara de quem estava lendo. */
+document.addEventListener('scroll', function (e) {
+  if (_balao && _balao.contains(e.target)) return;
+  fecharBalao();
+}, true);
+window.addEventListener('resize', fecharBalao);
+
+function filtrarEmpresa(chave) {
+  var p = _pagamentos.filter(function (x) { return chaveEmp(x) === chave; })[0];
+  _filtroEmp = { chave: chave, rotulo: (p && p.empresa) || chave };
+  fecharBalao();
+  IDEPI.$('btnLimpar').style.display = '';
+  render();
+}
+
+function limparFiltros() {
+  _filtroEmp = null;
+  filtrarSituacao(null);          // já cuida do botão e do re-render
 }
 
 /* ── Medições pagas por mês ─────────────────────────────────────────────
@@ -471,7 +761,27 @@ function exportarPagamentos() {
     })));
     wsM['!cols'] = [{wch:18},{wch:11},{wch:18},{wch:18},{wch:18}];
 
+    /* Planilha com 12 de 382 linhas e nada explicando por quê é a próxima
+       divergência a ser investigada por quem não estava na sala. O recorte
+       vai escrito. */
+    var somaB = lista.reduce(function (s, p) { return s + (p.bruto || 0); }, 0);
+    var somaL = lista.reduce(function (s, p) { return s + (p.liquido || 0); }, 0);
+    var wsR = XLSX.utils.aoa_to_sheet([
+      ['Relação de Pagamentos — IDEPI'],
+      ['Exportado em', new Date().toLocaleString('pt-BR')],
+      ['Busca',    IDEPI.$('busca').value.trim() || '(sem busca)'],
+      ['Situação', _filtroSit || '(todas)'],
+      ['Empresa',  _filtroEmp ? _filtroEmp.rotulo + ' (todas as grafias)' : '(todas)'],
+      ['Lançamentos exportados', lista.length],
+      ['Total bruto (R$)',   Math.round(somaB * 100) / 100],
+      ['Total líquido (R$)', Math.round(somaL * 100) / 100],
+      [],
+      ['A aba "Por mês" sai sempre completa, sem o filtro acima.']
+    ]);
+    wsR['!cols'] = [{wch:26},{wch:44}];
+
     var wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, wsR, 'Resumo');
     XLSX.utils.book_append_sheet(wb, ws,  'Pagamentos');
     XLSX.utils.book_append_sheet(wb, wsM, 'Por mês');
     XLSX.writeFile(wb, 'IDEPI_Relacao_Pagamentos_' + IDEPI.carimboData() + '.xlsx');

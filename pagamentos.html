@@ -120,6 +120,25 @@
 .emp-linha a{color:var(--accent);text-decoration:none;font-weight:700}
 .emp-linha a:hover{text-decoration:underline}
 .emp-ag{color:#9a3412}
+/* ── OBRA DO INSTRUMENTO, dentro do balão ──
+   Só o número do convênio não diz de que obra se trata. No hover aparece um
+   recado flutuante com o objeto; em tela de TOQUE, que não tem hover, a
+   mesma informação vem escrita embaixo — esconder atrás de hover num celular
+   é esconder para sempre (mesma razão do .txt-exp no app.css). */
+.emp-tip{position:fixed;z-index:601;max-width:290px;pointer-events:none;
+  background:#0b1527;color:#eef3fa;border-radius:8px;padding:7px 10px;
+  font-size:10.5px;line-height:1.45;box-shadow:0 8px 22px rgba(11,21,39,.34)}
+.emp-tip b{display:block;color:#9db7de;font-size:9px;text-transform:uppercase;
+  letter-spacing:.5px;margin-bottom:2px}
+.emp-obra{display:none;grid-column:1/-1;color:var(--muted);font-size:9.5px;
+  margin-top:1px}
+@media (hover:none){
+  .emp-obra{display:block}
+}
+@media (hover:hover){
+  .emp-linha[data-obra]{cursor:help}
+}
+
 .emp-rod{padding:9px 15px;border-top:1px solid var(--border);background:var(--surface2);
   font-size:9.5px;color:var(--muted);display:flex;gap:9px;align-items:center;
   justify-content:space-between;flex-wrap:wrap}
@@ -485,7 +504,10 @@ function linhasMedicao(lista, comConvenio) {
 }
 
 function fecharBalao() {
-  if (_balao && _balao.parentNode) _balao.parentNode.removeChild(_balao);
+  if (_balao) {
+    if (_balao._esconderDica) _balao._esconderDica();
+    if (_balao.parentNode) _balao.parentNode.removeChild(_balao);
+  }
   _balao = null;
 }
 
@@ -521,10 +543,14 @@ function abrirBalao(el, chave, numero) {
   pagosG.forEach(function (p) {
     var k = p.numero || '—';
     var g = porNum[k] || (porNum[k] = { numero: k, convenio: p.convenio,
-                                        qtd: 0, liquido: 0, ult: null });
+                                        qtd: 0, liquido: 0, ult: null,
+                                        obras: {} });
     g.qtd++; g.liquido += (p.liquido || p.bruto || 0);
     var d = IDEPI.parseDateBR(p.data);
     if (d && (!g.ult || d > g.ult)) g.ult = d;
+    /* A obra é digitada a cada linha e varia ("PAV EM X" x "PAV. EM X").
+       Vale a mais repetida — é a que o setor usa. */
+    if (p.obra) g.obras[p.obra] = (g.obras[p.obra] || 0) + 1;
   });
   var instrumentos = Object.keys(porNum).map(function (k) { return porNum[k]; })
     .sort(function (a, b) { return b.liquido - a.liquido; });
@@ -569,12 +595,17 @@ function abrirBalao(el, chave, numero) {
     '<div class="emp-nota">bruto ' + IDEPI.fmtCompacto(tG.bruto) +
       ' · retido ' + IDEPI.fmtCompacto(tG.bruto - tG.liquido) + '</div>';
   h += instrumentos.map(function (g) {
-    return '<div class="emp-linha">' +
+    var obra = Object.keys(g.obras).sort(function (a, b) {
+      return (g.obras[b] - g.obras[a]) || (b.length - a.length);
+    })[0] || '';
+    return '<div class="emp-linha"' +
+        (obra ? ' data-obra="' + IDEPI.esc(obra) + '"' : '') + '>' +
       '<div><a href="execucao.html?num=' + encodeURIComponent(g.numero) + '">' +
         IDEPI.esc(g.convenio || g.numero) + '</a></div>' +
       '<div class="m">' + g.qtd + (g.qtd === 1 ? ' medição' : ' medições') +
         (g.ult ? ' · até ' + g.ult.toLocaleDateString('pt-BR') : '') + '</div>' +
       '<div class="v">' + IDEPI.fmtCompacto(g.liquido) + '</div>' +
+      (obra ? '<div class="emp-obra">' + IDEPI.esc(obra) + '</div>' : '') +
     '</div>';
   }).join('');
   if (tFilaG.qtd) {
@@ -606,7 +637,60 @@ function abrirBalao(el, chave, numero) {
      pendurado no <body> simplesmente não apareceria. */
   (document.fullscreenElement || document.body).appendChild(pop);
   _balao = pop;
+  ligarDicaDeObra(pop);
   posicionarBalao(pop, el);
+}
+
+/* ── Dica da obra ───────────────────────────────────────────────────────
+   Só o número do convênio não basta para reconhecer de que obra se trata.
+   Passando o mouse na linha, aparece o objeto; tirando o mouse, some.
+
+   Um só elemento, reaproveitado, e por delegação: pendurar um listener em
+   cada linha deixaria lixo solto quando o balão fosse trocado. Ele nasce no
+   MESMO pai do balão porque em tela cheia nada que esteja fora do elemento
+   em fullscreen aparece. */
+function ligarDicaDeObra(pop) {
+  var tip = null;
+
+  function esconder() {
+    if (tip && tip.parentNode) tip.parentNode.removeChild(tip);
+    tip = null;
+  }
+
+  function posicionar(e) {
+    if (!tip) return;
+    var c = tip.getBoundingClientRect();
+    var x = Math.min(e.clientX + 14, window.innerWidth - c.width - 8);
+    var y = e.clientY + 16;
+    if (y + c.height > window.innerHeight - 8) y = e.clientY - c.height - 10;
+    tip.style.left = Math.max(8, x) + 'px';
+    tip.style.top = Math.max(8, y) + 'px';
+  }
+
+  pop.addEventListener('mouseover', function (e) {
+    var linha = e.target.closest && e.target.closest('.emp-linha[data-obra]');
+    if (!linha || !pop.contains(linha)) return;
+    if (tip && tip._dono === linha) return;
+    esconder();
+    tip = document.createElement('div');
+    tip.className = 'emp-tip';
+    tip._dono = linha;
+    tip.innerHTML = '<b>Objeto</b>' + IDEPI.esc(linha.dataset.obra);
+    (pop.parentNode || document.body).appendChild(tip);
+    posicionar(e);
+  });
+  pop.addEventListener('mousemove', function (e) {
+    if (tip && e.target.closest && e.target.closest('.emp-linha[data-obra]')) {
+      posicionar(e);
+    }
+  });
+  pop.addEventListener('mouseout', function (e) {
+    var para = e.relatedTarget;
+    if (tip && (!para || !tip._dono.contains(para))) esconder();
+  });
+  /* Some junto com o balão: sem isto, fechar o balão com o mouse parado em
+     cima de uma linha deixaria a dica órfã na tela. */
+  pop._esconderDica = esconder;
 }
 
 /** Abaixo do nome clicado, preso dentro da tela. */

@@ -120,8 +120,22 @@
                  marcos_aditivo.json, escrito a mao, e o painel diria
                  "a receber R$ 22.322.718,00" para sempre depois que a
                  parcela caisse. Os numeros de hoje sao os mesmos; o que
-                 muda e que agora eles se corrigem sozinhos */
-const VERSAO = 'idepi-v34';
+                 muda e que agora eles se corrigem sozinhos
+     v34 — 13/08: clicar na EMPRESA abre um balao com o que ela mediu naquele
+                 instrumento e no geral, instrumento a instrumento — a mesma
+                 construtora toca obra em varios convenios. Quem junta as
+                 grafias ('BS CONSTRUTORA' x 'B S Construtora Eireli') e o
+                 Python, que publica `empresa_chave`; o balao mostra quais
+                 grafias agrupou, porque somar empresa errada nao da erro na
+                 tela, da um total que ninguem confere. "Ver so esta empresa"
+                 filtra pela chave, entao traz tambem as linhas escritas de
+                 outro jeito
+     v35 — 13/08: dentro do balao, passar o mouse no instrumento mostra o
+                 OBJETO da obra — so o numero do convenio nao basta para
+                 reconhecer de qual se trata. Em tela de TOQUE, que nao tem
+                 hover, o objeto vem escrito embaixo: esconder atras de hover
+                 num celular e esconder para sempre */
+const VERSAO = 'idepi-v35';
 const CACHE_SHELL = VERSAO + '-shell';
 const CACHE_PAGS  = VERSAO + '-paginas';
 

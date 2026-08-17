@@ -1,5 +1,5 @@
 {
-  "gerado_em": "17/08/2026 15:15",
+  "gerado_em": "17/08/2026 15:28",
   "total": 99,
   "convenios": [
     {
@@ -9,10 +9,10 @@
       "vigencia_fmt": "30/09/2026",
       "vigencia_inicio": "28/12/2012",
       "vigencia_suspensiva": "",
-      "vigencia_origem": "CGU",
+      "vigencia_origem": "Transferegov",
       "orgao_vinculado": "",
-      "orgao_tgov": "",
-      "limite_prestacao": "",
+      "orgao_tgov": "51000 - MINISTERIO DO ESPORTE",
+      "limite_prestacao": "29/11/2026",
       "sei": "00119.001068/2025-45",
       "fiscal": "Milton",
       "dias": 44,
@@ -39,7 +39,9 @@
       "fase_emendas": "em andamento",
       "municipio_emendas": "Monsenhor Hipólito",
       "sei_todos": "00119.000282/2022-31",
-      "vigencia_emendas": "30/09/2026"
+      "vigencia_emendas": "30/09/2026",
+      "dono_emenda": "Iracema Portela",
+      "ponto_focal": ""
     },
     {
       "numero": "889040",
@@ -78,7 +80,9 @@
       "fase_emendas": "recurso recebido",
       "municipio_emendas": "Esperantina",
       "sei_todos": "00119.001413/2023-89",
-      "vigencia_emendas": "06/12/2025"
+      "vigencia_emendas": "06/12/2025",
+      "dono_emenda": "Marcos Aurelio",
+      "ponto_focal": ""
     },
     {
       "numero": "894024",
@@ -117,7 +121,9 @@
       "fase_emendas": "em andamento",
       "municipio_emendas": "Agricolândia,Alvorada do Gurgueia, Avelino Lopes, Betânia do Piauí, Bocaina, Cabeceiras do Piauí, Colônia do Piauí, Elesbão Veloso, Francinópolis, Ipiranga do Piauí, João Costa, Massapê, Miguel Leão, Passagem Franca, Pau D'arco, Pedro Laurentino, Porto, Queimada Nova, Santa Filomena, Santana do PI, São Felix, São Francisco de Assis, São Francisco do Pi, São Gonçalo, São Miguel do Fidalgo, São Pedro, Sigefredo Pacheco, Varzea Grande. 2 Construção de ponte em Julio Borges e Construção de estradas vicinais em Santa Luz e Sebastião Barros",
       "sei_todos": "",
-      "vigencia_emendas": "30/09/2026"
+      "vigencia_emendas": "30/09/2026",
+      "dono_emenda": "Iracema Portela",
+      "ponto_focal": ""
     },
     {
       "numero": "897425",
@@ -156,7 +162,9 @@
       "fase_emendas": "em andamento",
       "municipio_emendas": "Esperantina",
       "sei_todos": "00119.000143/2021-27",
-      "vigencia_emendas": "30/09/2026"
+      "vigencia_emendas": "30/09/2026",
+      "dono_emenda": "Marcos Aurelio",
+      "ponto_focal": ""
     },
     {
       "numero": "897099",
@@ -165,10 +173,10 @@
       "vigencia_fmt": "30/09/2026",
       "vigencia_inicio": "31/12/2019",
       "vigencia_suspensiva": "",
-      "vigencia_origem": "CGU",
+      "vigencia_origem": "Transferegov",
       "orgao_vinculado": "",
-      "orgao_tgov": "",
-      "limite_prestacao": "",
+      "orgao_tgov": "56000 - MINISTERIO DAS CIDADES",
+      "limite_prestacao": "29/11/2026",
       "sei": "00119.002183/2023-75",
       "fiscal": "Noé",
       "dias": 44,
@@ -195,7 +203,9 @@
       "fase_emendas": "em andamento",
       "municipio_emendas": "Alvorada do Gurgueia",
       "sei_todos": "00119.002183/2023-75",
-      "vigencia_emendas": "30/09/2026"
+      "vigencia_emendas": "30/09/2026",
+      "dono_emenda": "Marcos Aurelio",
+      "ponto_focal": ""
     },
     {
       "numero": "900822",
@@ -204,10 +214,10 @@
       "vigencia_fmt": "30/09/2026",
       "vigencia_inicio": "24/07/2020",
       "vigencia_suspensiva": "",
-      "vigencia_origem": "CGU",
+      "vigencia_origem": "Transferegov",
       "orgao_vinculado": "",
-      "orgao_tgov": "",
-      "limite_prestacao": "",
+      "orgao_tgov": "53000 - MINISTÉRIO DA INTEGRAÇÃO E DO DESENVOLVIMENTO REGIONAL",
+      "limite_prestacao": "29/11/2026",
       "sei": "00119.000274/2020-23",
       "fiscal": "Kamyla",
       "dias": 44,
@@ -234,7 +244,9 @@
       "fase_emendas": "em andamento",
       "municipio_emendas": "Esperantina",
       "sei_todos": "00119.000274/2020-23",
-      "vigencia_emendas": "30/09/2026"
+      "vigencia_emendas": "30/09/2026",
+      "dono_emenda": "Marcos Aurelio",
+      "ponto_focal": ""
     },
     {
       "numero": "902680",
@@ -243,10 +255,10 @@
       "vigencia_fmt": "30/09/2026",
       "vigencia_inicio": "24/07/2020",
       "vigencia_suspensiva": "",
-      "vigencia_origem": "CGU",
+      "vigencia_origem": "Transferegov",
       "orgao_vinculado": "",
-      "orgao_tgov": "",
-      "limite_prestacao": "",
+      "orgao_tgov": "53000 - MINISTÉRIO DA INTEGRAÇÃO E DO DESENVOLVIMENTO REGIONAL",
+      "limite_prestacao": "29/11/2026",
       "sei": "00119.000765/2024-06",
       "fiscal": "Kamyla",
       "dias": 44,
@@ -273,7 +285,9 @@
       "fase_emendas": "em andamento",
       "municipio_emendas": "Esperantina",
       "sei_todos": "00119.000843/2023-83 · 00119.000765/2024-06",
-      "vigencia_emendas": "04/01/2026"
+      "vigencia_emendas": "04/01/2026",
+      "dono_emenda": "Marcos Aurelio",
+      "ponto_focal": ""
     },
     {
       "numero": "906442",
@@ -312,7 +326,9 @@
       "fase_emendas": "recurso recebido",
       "municipio_emendas": "São Braz",
       "sei_todos": "00119.000118/2022-24",
-      "vigencia_emendas": "29/12/2025"
+      "vigencia_emendas": "29/12/2025",
+      "dono_emenda": "Marcos Aurelio",
+      "ponto_focal": ""
     },
     {
       "numero": "916598",
@@ -351,7 +367,9 @@
       "fase_emendas": "em andamento",
       "municipio_emendas": "Teresina",
       "sei_todos": "00119.000022/2022-66",
-      "vigencia_emendas": "30/09/2026"
+      "vigencia_emendas": "30/09/2026",
+      "dono_emenda": "Marcos Aurelio",
+      "ponto_focal": ""
     },
     {
       "numero": "917537",
@@ -390,7 +408,9 @@
       "fase_emendas": "recurso recebido",
       "municipio_emendas": "Teresina",
       "sei_todos": "00119.000020/2022-77 · 00119.001717/2024-27",
-      "vigencia_emendas": "30/12/2026"
+      "vigencia_emendas": "30/12/2026",
+      "dono_emenda": "Fabio Abreu",
+      "ponto_focal": ""
     },
     {
       "numero": "902704",
@@ -429,7 +449,9 @@
       "fase_emendas": "em andamento",
       "municipio_emendas": "Campinas",
       "sei_todos": "00119.000053/2022-17 · 00119.002034/2023-14 · 00119.000673/2024-18",
-      "vigencia_emendas": "11/04/2025"
+      "vigencia_emendas": "11/04/2025",
+      "dono_emenda": "Marcos Aurelio",
+      "ponto_focal": ""
     },
     {
       "numero": "902705",
@@ -468,7 +490,9 @@
       "fase_emendas": "em andamento",
       "municipio_emendas": "Jacobina",
       "sei_todos": "00119.000051/2022-28 · 00119.000316/2023-79",
-      "vigencia_emendas": "31/12/2025"
+      "vigencia_emendas": "31/12/2025",
+      "dono_emenda": "Marcos Aurelio",
+      "ponto_focal": ""
     },
     {
       "numero": "838065",
@@ -507,7 +531,9 @@
       "fase_emendas": "em andamento",
       "municipio_emendas": "Altos, Curimatá, Demerval Lobão, Jatobá do Piaui, José de Freitas, Miguel Alves e Morro Cabeça no Tempo",
       "sei_todos": "00119.000970/2024-63 · 00119.000404/2023-71",
-      "vigencia_emendas": "31/12/2026"
+      "vigencia_emendas": "31/12/2026",
+      "dono_emenda": "Fabio Abreu",
+      "ponto_focal": ""
     },
     {
       "numero": "907472",
@@ -516,10 +542,10 @@
       "vigencia_fmt": "31/12/2026",
       "vigencia_inicio": "31/12/2020",
       "vigencia_suspensiva": "",
-      "vigencia_origem": "CGU",
-      "orgao_vinculado": "",
-      "orgao_tgov": "",
-      "limite_prestacao": "",
+      "vigencia_origem": "Transferegov",
+      "orgao_vinculado": "36211 - FUNDACAO NACIONAL DE SAUDE",
+      "orgao_tgov": "36000 - MINISTERIO DA SAUDE",
+      "limite_prestacao": "01/03/2027",
       "sei": "00119.000251/2022-81",
       "fiscal": "Manoel",
       "dias": 136,
@@ -546,7 +572,9 @@
       "fase_emendas": "em andamento",
       "municipio_emendas": "Dom Inocencio",
       "sei_todos": "00119.000251/2022-81",
-      "vigencia_emendas": "31/12/2026"
+      "vigencia_emendas": "31/12/2026",
+      "dono_emenda": "Marcelo Castro",
+      "ponto_focal": ""
     },
     {
       "numero": "907471",
@@ -555,10 +583,10 @@
       "vigencia_fmt": "31/12/2026",
       "vigencia_inicio": "31/12/2020",
       "vigencia_suspensiva": "",
-      "vigencia_origem": "CGU",
-      "orgao_vinculado": "",
-      "orgao_tgov": "",
-      "limite_prestacao": "",
+      "vigencia_origem": "Transferegov",
+      "orgao_vinculado": "36211 - FUNDACAO NACIONAL DE SAUDE",
+      "orgao_tgov": "36000 - MINISTERIO DA SAUDE",
+      "limite_prestacao": "01/03/2027",
       "sei": "00119.000282/2022-31",
       "fiscal": "Ângelo",
       "dias": 136,
@@ -585,7 +613,9 @@
       "fase_emendas": "em andamento",
       "municipio_emendas": "Lagoa de São Francisco",
       "sei_todos": "00119.000282/2022-31",
-      "vigencia_emendas": "31/12/2026"
+      "vigencia_emendas": "31/12/2026",
+      "dono_emenda": "Marcelo Castro",
+      "ponto_focal": ""
     },
     {
       "numero": "907470",
@@ -594,10 +624,10 @@
       "vigencia_fmt": "31/12/2026",
       "vigencia_inicio": "31/12/2020",
       "vigencia_suspensiva": "",
-      "vigencia_origem": "CGU",
-      "orgao_vinculado": "",
-      "orgao_tgov": "",
-      "limite_prestacao": "",
+      "vigencia_origem": "Transferegov",
+      "orgao_vinculado": "36211 - FUNDACAO NACIONAL DE SAUDE",
+      "orgao_tgov": "36000 - MINISTERIO DA SAUDE",
+      "limite_prestacao": "01/03/2027",
       "sei": "00119.000281/2022-97",
       "fiscal": "Noé",
       "dias": 136,
@@ -624,7 +654,9 @@
       "fase_emendas": "em andamento",
       "municipio_emendas": "Campo Alegre do Fidalgo",
       "sei_todos": "00119.000281/2022-97",
-      "vigencia_emendas": "31/12/2026"
+      "vigencia_emendas": "31/12/2026",
+      "dono_emenda": "Marcelo Castro",
+      "ponto_focal": ""
     },
     {
       "numero": "907469",
@@ -633,10 +665,10 @@
       "vigencia_fmt": "31/12/2026",
       "vigencia_inicio": "31/12/2020",
       "vigencia_suspensiva": "",
-      "vigencia_origem": "CGU",
-      "orgao_vinculado": "",
-      "orgao_tgov": "",
-      "limite_prestacao": "",
+      "vigencia_origem": "Transferegov",
+      "orgao_vinculado": "36211 - FUNDACAO NACIONAL DE SAUDE",
+      "orgao_tgov": "36000 - MINISTERIO DA SAUDE",
+      "limite_prestacao": "01/03/2027",
       "sei": "00119.000252/2022-25",
       "fiscal": "Felipe",
       "dias": 136,
@@ -663,7 +695,9 @@
       "fase_emendas": "em andamento",
       "municipio_emendas": "Aroeiras do Itaim",
       "sei_todos": "00119.000252/2022-25",
-      "vigencia_emendas": "31/12/2026"
+      "vigencia_emendas": "31/12/2026",
+      "dono_emenda": "Marcelo Castro",
+      "ponto_focal": ""
     },
     {
       "numero": "907008",
@@ -702,7 +736,9 @@
       "fase_emendas": "em andamento",
       "municipio_emendas": "Curimatá",
       "sei_todos": "00119.000429/2021-11",
-      "vigencia_emendas": "31/12/2026"
+      "vigencia_emendas": "31/12/2026",
+      "dono_emenda": "Marcelo Castro",
+      "ponto_focal": ""
     },
     {
       "numero": "907015",
@@ -711,10 +747,10 @@
       "vigencia_fmt": "31/12/2026",
       "vigencia_inicio": "31/12/2020",
       "vigencia_suspensiva": "",
-      "vigencia_origem": "CGU",
-      "orgao_vinculado": "",
-      "orgao_tgov": "",
-      "limite_prestacao": "",
+      "vigencia_origem": "Transferegov",
+      "orgao_vinculado": "36211 - FUNDACAO NACIONAL DE SAUDE",
+      "orgao_tgov": "36000 - MINISTERIO DA SAUDE",
+      "limite_prestacao": "01/03/2027",
       "sei": "00119.000288/2022-17",
       "fiscal": "Manoel",
       "dias": 136,
@@ -741,7 +777,9 @@
       "fase_emendas": "em andamento",
       "municipio_emendas": "Canto do Buriti",
       "sei_todos": "00119.000288/2022-17",
-      "vigencia_emendas": "31/12/2026"
+      "vigencia_emendas": "31/12/2026",
+      "dono_emenda": "Marcelo Castro",
+      "ponto_focal": ""
     },
     {
       "numero": "907031",
@@ -750,10 +788,10 @@
       "vigencia_fmt": "31/12/2026",
       "vigencia_inicio": "31/12/2020",
       "vigencia_suspensiva": "",
-      "vigencia_origem": "CGU",
-      "orgao_vinculado": "",
-      "orgao_tgov": "",
-      "limite_prestacao": "",
+      "vigencia_origem": "Transferegov",
+      "orgao_vinculado": "36211 - FUNDACAO NACIONAL DE SAUDE",
+      "orgao_tgov": "36000 - MINISTERIO DA SAUDE",
+      "limite_prestacao": "01/03/2027",
       "sei": "00119.000486/2024-34",
       "fiscal": "Kamyla",
       "dias": 136,
@@ -780,7 +818,9 @@
       "fase_emendas": "em andamento",
       "municipio_emendas": "Murici dos Portelas",
       "sei_todos": "00119.000486/2024-34",
-      "vigencia_emendas": "31/12/2026"
+      "vigencia_emendas": "31/12/2026",
+      "dono_emenda": "Marcelo Castro",
+      "ponto_focal": ""
     },
     {
       "numero": "907032",
@@ -789,10 +829,10 @@
       "vigencia_fmt": "31/12/2026",
       "vigencia_inicio": "31/12/2020",
       "vigencia_suspensiva": "",
-      "vigencia_origem": "CGU",
-      "orgao_vinculado": "",
-      "orgao_tgov": "",
-      "limite_prestacao": "",
+      "vigencia_origem": "Transferegov",
+      "orgao_vinculado": "36211 - FUNDACAO NACIONAL DE SAUDE",
+      "orgao_tgov": "36000 - MINISTERIO DA SAUDE",
+      "limite_prestacao": "01/03/2027",
       "sei": "00119.000428/2021-68",
       "fiscal": "Noé",
       "dias": 136,
@@ -819,7 +859,9 @@
       "fase_emendas": "em andamento",
       "municipio_emendas": "Parnaguá",
       "sei_todos": "00119.000428/2021-68",
-      "vigencia_emendas": "31/12/2026"
+      "vigencia_emendas": "31/12/2026",
+      "dono_emenda": "Marcelo Castro",
+      "ponto_focal": ""
     },
     {
       "numero": "907033",
@@ -828,10 +870,10 @@
       "vigencia_fmt": "31/12/2026",
       "vigencia_inicio": "31/12/2020",
       "vigencia_suspensiva": "",
-      "vigencia_origem": "CGU",
-      "orgao_vinculado": "",
-      "orgao_tgov": "",
-      "limite_prestacao": "",
+      "vigencia_origem": "Transferegov",
+      "orgao_vinculado": "36211 - FUNDACAO NACIONAL DE SAUDE",
+      "orgao_tgov": "36000 - MINISTERIO DA SAUDE",
+      "limite_prestacao": "01/03/2027",
       "sei": "00119.000456/2021-85",
       "fiscal": "Manoel",
       "dias": 136,
@@ -858,7 +900,9 @@
       "fase_emendas": "em andamento",
       "municipio_emendas": "Ilha Grande",
       "sei_todos": "00119.000456/2021-85",
-      "vigencia_emendas": "31/12/2026"
+      "vigencia_emendas": "31/12/2026",
+      "dono_emenda": "Marcelo Castro",
+      "ponto_focal": ""
     },
     {
       "numero": "907035",
@@ -867,10 +911,10 @@
       "vigencia_fmt": "31/12/2026",
       "vigencia_inicio": "31/12/2020",
       "vigencia_suspensiva": "",
-      "vigencia_origem": "CGU",
-      "orgao_vinculado": "",
-      "orgao_tgov": "",
-      "limite_prestacao": "",
+      "vigencia_origem": "Transferegov",
+      "orgao_vinculado": "36211 - FUNDACAO NACIONAL DE SAUDE",
+      "orgao_tgov": "36000 - MINISTERIO DA SAUDE",
+      "limite_prestacao": "01/03/2027",
       "sei": "00119.000397/2025-79",
       "fiscal": "Leão",
       "dias": 136,
@@ -897,7 +941,9 @@
       "fase_emendas": "em andamento",
       "municipio_emendas": "Sigefredo Pacheco",
       "sei_todos": "00119.000397/2025-79 · 00119.000454/2021-96",
-      "vigencia_emendas": "31/12/2026"
+      "vigencia_emendas": "31/12/2026",
+      "dono_emenda": "Marcelo Castro",
+      "ponto_focal": ""
     },
     {
       "numero": "907037",
@@ -906,10 +952,10 @@
       "vigencia_fmt": "31/12/2026",
       "vigencia_inicio": "31/12/2020",
       "vigencia_suspensiva": "",
-      "vigencia_origem": "CGU",
-      "orgao_vinculado": "",
-      "orgao_tgov": "",
-      "limite_prestacao": "",
+      "vigencia_origem": "Transferegov",
+      "orgao_vinculado": "36211 - FUNDACAO NACIONAL DE SAUDE",
+      "orgao_tgov": "36000 - MINISTERIO DA SAUDE",
+      "limite_prestacao": "01/03/2027",
       "sei": "00119.000426/2021-79",
       "fiscal": "Leão",
       "dias": 136,
@@ -936,7 +982,9 @@
       "fase_emendas": "em andamento",
       "municipio_emendas": "União",
       "sei_todos": "00119.000426/2021-79",
-      "vigencia_emendas": "31/12/2026"
+      "vigencia_emendas": "31/12/2026",
+      "dono_emenda": "Marcelo Castro",
+      "ponto_focal": ""
     },
     {
       "numero": "907038",
@@ -945,10 +993,10 @@
       "vigencia_fmt": "31/12/2026",
       "vigencia_inicio": "31/12/2020",
       "vigencia_suspensiva": "",
-      "vigencia_origem": "CGU",
-      "orgao_vinculado": "",
-      "orgao_tgov": "",
-      "limite_prestacao": "",
+      "vigencia_origem": "Transferegov",
+      "orgao_vinculado": "36211 - FUNDACAO NACIONAL DE SAUDE",
+      "orgao_tgov": "36000 - MINISTERIO DA SAUDE",
+      "limite_prestacao": "01/03/2027",
       "sei": "00119.000452/2021-05",
       "fiscal": "Noé",
       "dias": 136,
@@ -975,7 +1023,9 @@
       "fase_emendas": "em andamento",
       "municipio_emendas": "Ribeiro Gonçalves",
       "sei_todos": "00119.000452/2021-05",
-      "vigencia_emendas": "31/12/2026"
+      "vigencia_emendas": "31/12/2026",
+      "dono_emenda": "Marcelo Castro",
+      "ponto_focal": ""
     },
     {
       "numero": "907040",
@@ -984,10 +1034,10 @@
       "vigencia_fmt": "31/12/2026",
       "vigencia_inicio": "31/12/2020",
       "vigencia_suspensiva": "",
-      "vigencia_origem": "CGU",
-      "orgao_vinculado": "",
-      "orgao_tgov": "",
-      "limite_prestacao": "",
+      "vigencia_origem": "Transferegov",
+      "orgao_vinculado": "36211 - FUNDACAO NACIONAL DE SAUDE",
+      "orgao_tgov": "36000 - MINISTERIO DA SAUDE",
+      "limite_prestacao": "01/03/2027",
       "sei": "00119.000283/2022-86",
       "fiscal": "Felipe",
       "dias": 136,
@@ -1014,7 +1064,9 @@
       "fase_emendas": "em andamento",
       "municipio_emendas": "Luís Correia",
       "sei_todos": "00119.000283/2022-86",
-      "vigencia_emendas": "31/12/2026"
+      "vigencia_emendas": "31/12/2026",
+      "dono_emenda": "Marcelo Castro",
+      "ponto_focal": ""
     },
     {
       "numero": "907045",
@@ -1023,10 +1075,10 @@
       "vigencia_fmt": "31/12/2026",
       "vigencia_inicio": "31/12/2020",
       "vigencia_suspensiva": "",
-      "vigencia_origem": "CGU",
-      "orgao_vinculado": "",
-      "orgao_tgov": "",
-      "limite_prestacao": "",
+      "vigencia_origem": "Transferegov",
+      "orgao_vinculado": "36211 - FUNDACAO NACIONAL DE SAUDE",
+      "orgao_tgov": "36000 - MINISTERIO DA SAUDE",
+      "limite_prestacao": "01/03/2027",
       "sei": "00119.000453/2021-41",
       "fiscal": "Kamyla",
       "dias": 136,
@@ -1053,7 +1105,9 @@
       "fase_emendas": "em andamento",
       "municipio_emendas": "Simplício Mendes",
       "sei_todos": "00119.000453/2021-41",
-      "vigencia_emendas": "31/12/2026"
+      "vigencia_emendas": "31/12/2026",
+      "dono_emenda": "Marcelo Castro",
+      "ponto_focal": ""
     },
     {
       "numero": "907050",
@@ -1062,10 +1116,10 @@
       "vigencia_fmt": "31/12/2026",
       "vigencia_inicio": "31/12/2020",
       "vigencia_suspensiva": "",
-      "vigencia_origem": "CGU",
-      "orgao_vinculado": "",
-      "orgao_tgov": "",
-      "limite_prestacao": "",
+      "vigencia_origem": "Transferegov",
+      "orgao_vinculado": "36211 - FUNDACAO NACIONAL DE SAUDE",
+      "orgao_tgov": "36000 - MINISTERIO DA SAUDE",
+      "limite_prestacao": "01/03/2027",
       "sei": "00119.000427/2021-13",
       "fiscal": "Felipe",
       "dias": 136,
@@ -1092,7 +1146,9 @@
       "fase_emendas": "em andamento",
       "municipio_emendas": "São Pedro",
       "sei_todos": "00119.000427/2021-13",
-      "vigencia_emendas": "31/12/2026"
+      "vigencia_emendas": "31/12/2026",
+      "dono_emenda": "Marcelo Castro",
+      "ponto_focal": ""
     },
     {
       "numero": "737058",
@@ -1101,10 +1157,10 @@
       "vigencia_fmt": "31/12/2026",
       "vigencia_inicio": "02/07/2010",
       "vigencia_suspensiva": "",
-      "vigencia_origem": "CGU",
-      "orgao_vinculado": "",
-      "orgao_tgov": "",
-      "limite_prestacao": "",
+      "vigencia_origem": "Transferegov",
+      "orgao_vinculado": "22203 - COMPANHIA DE DESENV. DO VALE DO SAO FRANCISCO",
+      "orgao_tgov": "53000 - MINISTÉRIO DA INTEGRAÇÃO E DO DESENVOLVIMENTO REGIONAL",
+      "limite_prestacao": "30/01/2027",
       "sei": "00119.001622/2024-11",
       "fiscal": "Pierre",
       "dias": 136,
@@ -1131,7 +1187,9 @@
       "fase_emendas": "em andamento",
       "municipio_emendas": "Sebastião Barros",
       "sei_todos": "",
-      "vigencia_emendas": "31/12/2026"
+      "vigencia_emendas": "31/12/2026",
+      "dono_emenda": "",
+      "ponto_focal": ""
     },
     {
       "numero": "887234",
@@ -1140,10 +1198,10 @@
       "vigencia_fmt": "30/09/2026",
       "vigencia_inicio": "11/12/2019",
       "vigencia_suspensiva": "",
-      "vigencia_origem": "CGU",
-      "orgao_vinculado": "",
-      "orgao_tgov": "",
-      "limite_prestacao": "",
+      "vigencia_origem": "Transferegov",
+      "orgao_vinculado": "22203 - COMPANHIA DE DESENV. DO VALE DO SAO FRANCISCO",
+      "orgao_tgov": "53000 - MINISTÉRIO DA INTEGRAÇÃO E DO DESENVOLVIMENTO REGIONAL",
+      "limite_prestacao": "29/11/2026",
       "sei": "00119.002310/2023-36",
       "fiscal": "Noé",
       "dias": 44,
@@ -1170,7 +1228,9 @@
       "fase_emendas": "em andamento",
       "municipio_emendas": "Campo Alegre do Fidalgo",
       "sei_todos": "00119.000339/2021-11 · 00119.002310/2023-36",
-      "vigencia_emendas": "30/09/2026"
+      "vigencia_emendas": "30/09/2026",
+      "dono_emenda": "Paes Landim",
+      "ponto_focal": ""
     },
     {
       "numero": "902401",
@@ -1179,10 +1239,10 @@
       "vigencia_fmt": "17/08/2027",
       "vigencia_inicio": "17/08/2020",
       "vigencia_suspensiva": "",
-      "vigencia_origem": "CGU",
-      "orgao_vinculado": "",
-      "orgao_tgov": "",
-      "limite_prestacao": "",
+      "vigencia_origem": "Transferegov",
+      "orgao_vinculado": "22203 - COMPANHIA DE DESENV. DO VALE DO SAO FRANCISCO",
+      "orgao_tgov": "53000 - MINISTÉRIO DA INTEGRAÇÃO E DO DESENVOLVIMENTO REGIONAL",
+      "limite_prestacao": "16/10/2027",
       "sei": "00119.000323/2021-17",
       "fiscal": "Angela",
       "dias": 365,
@@ -1209,22 +1269,24 @@
       "fase_emendas": "em andamento",
       "municipio_emendas": "Esperantina",
       "sei_todos": "00119.000323/2021-17 · 00119.000219/2023-86",
-      "vigencia_emendas": "17/08/2026"
+      "vigencia_emendas": "17/08/2026",
+      "dono_emenda": "Marcos Aurelio",
+      "ponto_focal": ""
     },
     {
       "numero": "899533",
       "objeto": "PAVIMENTACAO DE VIAS PUBLICAS NO MUNICIPIO DE UNIAO - PI.",
-      "vigencia": "2026-07-07",
-      "vigencia_fmt": "07/07/2026",
+      "vigencia": "2027-07-07",
+      "vigencia_fmt": "07/07/2027",
       "vigencia_inicio": "07/07/2020",
       "vigencia_suspensiva": "",
-      "vigencia_origem": "CGU",
-      "orgao_vinculado": "",
-      "orgao_tgov": "",
-      "limite_prestacao": "",
+      "vigencia_origem": "Transferegov",
+      "orgao_vinculado": "22203 - COMPANHIA DE DESENV. DO VALE DO SAO FRANCISCO",
+      "orgao_tgov": "53000 - MINISTÉRIO DA INTEGRAÇÃO E DO DESENVOLVIMENTO REGIONAL",
+      "limite_prestacao": "05/09/2027",
       "sei": "00119.000695/2024-88",
       "fiscal": "Leão",
-      "dias": -41,
+      "dias": 324,
       "status": "VENCIDO",
       "situacao": "AGUARDANDO PRESTAÇÃO DE CONTAS",
       "v_total": "469.860,00",
@@ -1248,7 +1310,9 @@
       "fase_emendas": "em andamento",
       "municipio_emendas": "União",
       "sei_todos": "00119.000077/2022-76 · 00119.000985/2024-21 · 00119.000695/2024-88",
-      "vigencia_emendas": "07/07/2026"
+      "vigencia_emendas": "07/07/2026",
+      "dono_emenda": "Marcos Aurelio",
+      "ponto_focal": ""
     },
     {
       "numero": "900838",
@@ -1287,7 +1351,9 @@
       "fase_emendas": "em andamento",
       "municipio_emendas": "Boa Hora",
       "sei_todos": "00119.000029/2021-05",
-      "vigencia_emendas": "07/07/2026"
+      "vigencia_emendas": "07/07/2026",
+      "dono_emenda": "Marcos Aurelio",
+      "ponto_focal": ""
     },
     {
       "numero": "900837",
@@ -1296,10 +1362,10 @@
       "vigencia_fmt": "07/07/2027",
       "vigencia_inicio": "07/07/2020",
       "vigencia_suspensiva": "",
-      "vigencia_origem": "CGU",
-      "orgao_vinculado": "",
-      "orgao_tgov": "",
-      "limite_prestacao": "",
+      "vigencia_origem": "Transferegov",
+      "orgao_vinculado": "22203 - COMPANHIA DE DESENV. DO VALE DO SAO FRANCISCO",
+      "orgao_tgov": "53000 - MINISTÉRIO DA INTEGRAÇÃO E DO DESENVOLVIMENTO REGIONAL",
+      "limite_prestacao": "05/09/2027",
       "sei": "00119.000075/2022-87",
       "fiscal": "Ângelo",
       "dias": 324,
@@ -1326,7 +1392,9 @@
       "fase_emendas": "em andamento",
       "municipio_emendas": "Parnaiba",
       "sei_todos": "00119.000075/2022-87",
-      "vigencia_emendas": "07/07/2026"
+      "vigencia_emendas": "07/07/2026",
+      "dono_emenda": "Marcos Aurelio",
+      "ponto_focal": ""
     },
     {
       "numero": "900840",
@@ -1335,10 +1403,10 @@
       "vigencia_fmt": "07/07/2027",
       "vigencia_inicio": "07/07/2020",
       "vigencia_suspensiva": "",
-      "vigencia_origem": "CGU",
-      "orgao_vinculado": "",
-      "orgao_tgov": "",
-      "limite_prestacao": "",
+      "vigencia_origem": "Transferegov",
+      "orgao_vinculado": "22203 - COMPANHIA DE DESENV. DO VALE DO SAO FRANCISCO",
+      "orgao_tgov": "53000 - MINISTÉRIO DA INTEGRAÇÃO E DO DESENVOLVIMENTO REGIONAL",
+      "limite_prestacao": "05/09/2027",
       "sei": "00119.001924/2023-09",
       "fiscal": "Felipe",
       "dias": 324,
@@ -1365,7 +1433,9 @@
       "fase_emendas": "em andamento",
       "municipio_emendas": "Luis Correia",
       "sei_todos": "00119.001924/2023-09",
-      "vigencia_emendas": "07/07/2026"
+      "vigencia_emendas": "07/07/2026",
+      "dono_emenda": "Marcos Aurelio",
+      "ponto_focal": ""
     },
     {
       "numero": "899540",
@@ -1404,7 +1474,9 @@
       "fase_emendas": "em andamento",
       "municipio_emendas": "Brasileira",
       "sei_todos": "00119.000162/2021-53",
-      "vigencia_emendas": "07/07/2025"
+      "vigencia_emendas": "07/07/2025",
+      "dono_emenda": "Marcos Aurelio",
+      "ponto_focal": ""
     },
     {
       "numero": "899530",
@@ -1443,7 +1515,9 @@
       "fase_emendas": "em andamento",
       "municipio_emendas": "Morro do Chapéu",
       "sei_todos": "00119.000079/2022-65 · 00119.001783/2023-16 · 00119.000934/2025-81",
-      "vigencia_emendas": "07/07/2026"
+      "vigencia_emendas": "07/07/2026",
+      "dono_emenda": "Marcos Aurelio",
+      "ponto_focal": ""
     },
     {
       "numero": "847194",
@@ -1452,10 +1526,10 @@
       "vigencia_fmt": "31/12/2026",
       "vigencia_inicio": "29/12/2017",
       "vigencia_suspensiva": "",
-      "vigencia_origem": "CGU",
-      "orgao_vinculado": "",
-      "orgao_tgov": "",
-      "limite_prestacao": "",
+      "vigencia_origem": "Transferegov",
+      "orgao_vinculado": "22203 - COMPANHIA DE DESENV. DO VALE DO SAO FRANCISCO",
+      "orgao_tgov": "53000 - MINISTÉRIO DA INTEGRAÇÃO E DO DESENVOLVIMENTO REGIONAL",
+      "limite_prestacao": "01/03/2027",
       "sei": "00119.001187/2025-06",
       "fiscal": "João Victor",
       "dias": 136,
@@ -1482,7 +1556,9 @@
       "fase_emendas": "em andamento",
       "municipio_emendas": "Campo Alegre do Fidalgo, Geminiano, Curimatá, Dom Inocencio, Manoel Emídio e Padre Marcos",
       "sei_todos": "00119.001447/2023-73 · 00119.001187/2025-06",
-      "vigencia_emendas": "31/12/2026"
+      "vigencia_emendas": "31/12/2026",
+      "dono_emenda": "Elmano Ferrer",
+      "ponto_focal": ""
     },
     {
       "numero": "920090",
@@ -1491,10 +1567,10 @@
       "vigencia_fmt": "28/12/2026",
       "vigencia_inicio": "28/12/2021",
       "vigencia_suspensiva": "",
-      "vigencia_origem": "CGU",
-      "orgao_vinculado": "",
-      "orgao_tgov": "",
-      "limite_prestacao": "",
+      "vigencia_origem": "Transferegov",
+      "orgao_vinculado": "22203 - COMPANHIA DE DESENV. DO VALE DO SAO FRANCISCO",
+      "orgao_tgov": "53000 - MINISTÉRIO DA INTEGRAÇÃO E DO DESENVOLVIMENTO REGIONAL",
+      "limite_prestacao": "26/02/2027",
       "sei": "00119.001040/2023-46",
       "fiscal": "Noé",
       "dias": 133,
@@ -1521,7 +1597,9 @@
       "fase_emendas": "projeto aprovado",
       "municipio_emendas": "Capitão Gervásio",
       "sei_todos": "00119.001040/2023-46",
-      "vigencia_emendas": "28/12/2026"
+      "vigencia_emendas": "28/12/2026",
+      "dono_emenda": "Rejane Dias",
+      "ponto_focal": ""
     },
     {
       "numero": "915500",
@@ -1560,7 +1638,9 @@
       "fase_emendas": "em andamento",
       "municipio_emendas": "Conceição do Canindé",
       "sei_todos": "00119.000042/2022-37",
-      "vigencia_emendas": "08/11/2026"
+      "vigencia_emendas": "08/11/2026",
+      "dono_emenda": "Atila Lira",
+      "ponto_focal": ""
     },
     {
       "numero": "946262",
@@ -1599,7 +1679,9 @@
       "fase_emendas": "recurso recebido",
       "municipio_emendas": "CRISTALANDIA DO PIAUI-PI",
       "sei_todos": "00119.001554/2023-00",
-      "vigencia_emendas": "30/09/2026"
+      "vigencia_emendas": "30/09/2026",
+      "dono_emenda": "Marcelo Castro",
+      "ponto_focal": "Paulo Roberto"
     },
     {
       "numero": "947350",
@@ -1638,7 +1720,9 @@
       "fase_emendas": "recurso recebido",
       "municipio_emendas": "TERESINA-PI",
       "sei_todos": "00119.001553/2023-57",
-      "vigencia_emendas": "30/09/2026"
+      "vigencia_emendas": "30/09/2026",
+      "dono_emenda": "Marcelo Castro",
+      "ponto_focal": "Pantikão"
     },
     {
       "numero": "946258",
@@ -1677,7 +1761,9 @@
       "fase_emendas": "projeto aprovado",
       "municipio_emendas": "DEMERVAL LOBÃO-PI",
       "sei_todos": "00119.001552/2023-11",
-      "vigencia_emendas": "30/09/2026"
+      "vigencia_emendas": "30/09/2026",
+      "dono_emenda": "Marcelo Castro",
+      "ponto_focal": "Geraldo Junior"
     },
     {
       "numero": "946257",
@@ -1716,7 +1802,9 @@
       "fase_emendas": "recurso recebido",
       "municipio_emendas": "SÃO RAIMUNDO NONATO-PI",
       "sei_todos": "00119.001558/2023-80 · 00119.000168/2025-54",
-      "vigencia_emendas": "30/09/2026"
+      "vigencia_emendas": "30/09/2026",
+      "dono_emenda": "Marcelo Castro",
+      "ponto_focal": "Vereador Paulo"
     },
     {
       "numero": "946261",
@@ -1755,7 +1843,9 @@
       "fase_emendas": "recurso recebido",
       "municipio_emendas": "SÃO MIGUEL DO TAPUIO-PI",
       "sei_todos": "00119.001555/2023-46",
-      "vigencia_emendas": "30/09/2026"
+      "vigencia_emendas": "30/09/2026",
+      "dono_emenda": "Marcelo Castro",
+      "ponto_focal": "Ziza"
     },
     {
       "numero": "946260",
@@ -1794,7 +1884,9 @@
       "fase_emendas": "projeto aprovado",
       "municipio_emendas": "LAGOA DE SÃO FRANCISCO-PI",
       "sei_todos": "00119.001556/2023-91",
-      "vigencia_emendas": "30/09/2026"
+      "vigencia_emendas": "30/09/2026",
+      "dono_emenda": "Marcelo Castro",
+      "ponto_focal": "Ziza"
     },
     {
       "numero": "946259",
@@ -1833,7 +1925,9 @@
       "fase_emendas": "recurso recebido",
       "municipio_emendas": "NOSSA SENHORA DOS REMEDIOS-PI",
       "sei_todos": "00119.001557/2023-35",
-      "vigencia_emendas": "30/09/2026"
+      "vigencia_emendas": "30/09/2026",
+      "dono_emenda": "Marcelo Castro",
+      "ponto_focal": "Luis Lobão"
     },
     {
       "numero": "947533",
@@ -1872,7 +1966,9 @@
       "fase_emendas": "projeto aprovado",
       "municipio_emendas": "NOSSA SENHORA DOS REMEDIOS - PI",
       "sei_todos": "00119.001559/2023-24",
-      "vigencia_emendas": "30/09/2026"
+      "vigencia_emendas": "30/09/2026",
+      "dono_emenda": "Marcelo Castro",
+      "ponto_focal": "Luis Lobão"
     },
     {
       "numero": "947106",
@@ -1911,7 +2007,9 @@
       "fase_emendas": "recurso recebido",
       "municipio_emendas": "LAGOA DO SITIO - PI",
       "sei_todos": "00119.001560/2023-59",
-      "vigencia_emendas": "30/09/2026"
+      "vigencia_emendas": "30/09/2026",
+      "dono_emenda": "Marcelo Castro",
+      "ponto_focal": "Luis Lobão"
     },
     {
       "numero": "947530",
@@ -1950,7 +2048,9 @@
       "fase_emendas": "recurso recebido",
       "municipio_emendas": "SÃO JULIÃO - PI",
       "sei_todos": "00119.001561/2023-01",
-      "vigencia_emendas": "30/09/2026"
+      "vigencia_emendas": "30/09/2026",
+      "dono_emenda": "Marcelo Castro",
+      "ponto_focal": "Luis Lobão"
     },
     {
       "numero": "947531",
@@ -1989,7 +2089,9 @@
       "fase_emendas": "recurso recebido",
       "municipio_emendas": "SANTANA DO PIAUI - PI",
       "sei_todos": "00119.001567/2023-71",
-      "vigencia_emendas": "30/09/2026"
+      "vigencia_emendas": "30/09/2026",
+      "dono_emenda": "Marcelo Castro",
+      "ponto_focal": "Luis Lobão"
     },
     {
       "numero": "947532",
@@ -2028,7 +2130,9 @@
       "fase_emendas": "recurso recebido",
       "municipio_emendas": "VERA MENDES - PI",
       "sei_todos": "00119.001568/2023-15",
-      "vigencia_emendas": "30/09/2026"
+      "vigencia_emendas": "30/09/2026",
+      "dono_emenda": "Marcelo Castro",
+      "ponto_focal": "Zomin"
     },
     {
       "numero": "946801",
@@ -2037,10 +2141,10 @@
       "vigencia_fmt": "26/12/2027",
       "vigencia_inicio": "28/11/2023",
       "vigencia_suspensiva": "",
-      "vigencia_origem": "CGU",
+      "vigencia_origem": "Transferegov",
       "orgao_vinculado": "",
-      "orgao_tgov": "",
-      "limite_prestacao": "",
+      "orgao_tgov": "53000 - MINISTÉRIO DA INTEGRAÇÃO E DO DESENVOLVIMENTO REGIONAL",
+      "limite_prestacao": "24/02/2028",
       "sei": "00119.001602/2023-51",
       "fiscal": "Angela",
       "dias": 496,
@@ -2067,7 +2171,9 @@
       "fase_emendas": "projeto aprovado",
       "municipio_emendas": "CAPITÃO GERVÁSIO OLIVEIRA-PI",
       "sei_todos": "00119.001602/2023-51",
-      "vigencia_emendas": "26/12/2027"
+      "vigencia_emendas": "26/12/2027",
+      "dono_emenda": "Marcelo Castro",
+      "ponto_focal": "Castro Junior"
     },
     {
       "numero": "946378",
@@ -2076,16 +2182,16 @@
       "vigencia_fmt": "27/04/2027",
       "vigencia_inicio": "28/11/2023",
       "vigencia_suspensiva": "",
-      "vigencia_origem": "CGU",
+      "vigencia_origem": "Transferegov",
       "orgao_vinculado": "",
-      "orgao_tgov": "",
-      "limite_prestacao": "",
+      "orgao_tgov": "53000 - MINISTÉRIO DA INTEGRAÇÃO E DO DESENVOLVIMENTO REGIONAL",
+      "limite_prestacao": "26/06/2027",
       "sei": "00119.001603/2023-04",
       "fiscal": "Angela",
       "dias": 253,
       "status": "NORMAL",
       "situacao": "EM EXECUÇÃO",
-      "v_total": "12.000.000,00",
+      "v_total": "1.200,00",
       "v_liberado": "5.792.250,55",
       "v_contrapartida": "3.207.138,04",
       "v_ultima_liberacao": "5.792.250,55",
@@ -2106,7 +2212,9 @@
       "fase_emendas": "projeto aprovado",
       "municipio_emendas": "SÃO LOURENÇO-PI",
       "sei_todos": "00119.001603/2023-04",
-      "vigencia_emendas": "27/04/2027"
+      "vigencia_emendas": "27/04/2027",
+      "dono_emenda": "Marcelo Castro",
+      "ponto_focal": "Castro Junior"
     },
     {
       "numero": "947580",
@@ -2115,10 +2223,10 @@
       "vigencia_fmt": "30/09/2026",
       "vigencia_inicio": "22/11/2023",
       "vigencia_suspensiva": "",
-      "vigencia_origem": "CGU",
+      "vigencia_origem": "Transferegov",
       "orgao_vinculado": "",
-      "orgao_tgov": "",
-      "limite_prestacao": "",
+      "orgao_tgov": "53000 - MINISTÉRIO DA INTEGRAÇÃO E DO DESENVOLVIMENTO REGIONAL",
+      "limite_prestacao": "30/10/2026",
       "sei": "00119.001803/2023-59",
       "fiscal": "Leão",
       "dias": 44,
@@ -2145,7 +2253,9 @@
       "fase_emendas": "projeto aprovado",
       "municipio_emendas": "PIO IX-PI",
       "sei_todos": "00119.001803/2023-59",
-      "vigencia_emendas": "30/09/2026"
+      "vigencia_emendas": "30/09/2026",
+      "dono_emenda": "Marcelo Castro",
+      "ponto_focal": "Eliane"
     },
     {
       "numero": "953168",
@@ -2184,7 +2294,9 @@
       "fase_emendas": "projeto aprovado",
       "municipio_emendas": "COCAL - PI",
       "sei_todos": "00119.000385/2023-82",
-      "vigencia_emendas": "19/12/2028"
+      "vigencia_emendas": "19/12/2028",
+      "dono_emenda": "NOVO PAC",
+      "ponto_focal": ""
     },
     {
       "numero": "947927",
@@ -2223,7 +2335,9 @@
       "fase_emendas": "recurso recebido",
       "municipio_emendas": "TERESINA - PI",
       "sei_todos": "00119.001660/2023-85",
-      "vigencia_emendas": "30/09/2026"
+      "vigencia_emendas": "30/09/2026",
+      "dono_emenda": "Marcelo Castro",
+      "ponto_focal": "Pedro Fernandes"
     },
     {
       "numero": "946039",
@@ -2262,7 +2376,9 @@
       "fase_emendas": "projeto aprovado",
       "municipio_emendas": "TERESINA - PI",
       "sei_todos": "00119.001661/2023-20",
-      "vigencia_emendas": "30/09/2026"
+      "vigencia_emendas": "30/09/2026",
+      "dono_emenda": "Marcelo Castro",
+      "ponto_focal": "Italo Barros"
     },
     {
       "numero": "945650",
@@ -2271,10 +2387,10 @@
       "vigencia_fmt": "30/09/2026",
       "vigencia_inicio": "22/11/2023",
       "vigencia_suspensiva": "",
-      "vigencia_origem": "CGU",
+      "vigencia_origem": "Transferegov",
       "orgao_vinculado": "",
-      "orgao_tgov": "",
-      "limite_prestacao": "",
+      "orgao_tgov": "56000 - MINISTERIO DAS CIDADES",
+      "limite_prestacao": "30/10/2026",
       "sei": "00119.001662/2023-74",
       "fiscal": "Noé",
       "dias": 44,
@@ -2301,7 +2417,9 @@
       "fase_emendas": "projeto aprovado",
       "municipio_emendas": "SÃO JOÃO DA CANABRAVA - PI",
       "sei_todos": "00119.001662/2023-74",
-      "vigencia_emendas": "30/09/2026"
+      "vigencia_emendas": "30/09/2026",
+      "dono_emenda": "Marcelo Castro",
+      "ponto_focal": "Italo Barros"
     },
     {
       "numero": "947907",
@@ -2310,10 +2428,10 @@
       "vigencia_fmt": "30/09/2026",
       "vigencia_inicio": "22/11/2023",
       "vigencia_suspensiva": "",
-      "vigencia_origem": "CGU",
+      "vigencia_origem": "Transferegov",
       "orgao_vinculado": "",
-      "orgao_tgov": "",
-      "limite_prestacao": "",
+      "orgao_tgov": "56000 - MINISTERIO DAS CIDADES",
+      "limite_prestacao": "30/10/2026",
       "sei": "00119.001663/2023-19",
       "fiscal": "Noé",
       "dias": 44,
@@ -2340,7 +2458,9 @@
       "fase_emendas": "projeto aprovado",
       "municipio_emendas": "PAQUETA - PI",
       "sei_todos": "00119.001663/2023-19",
-      "vigencia_emendas": "30/09/2026"
+      "vigencia_emendas": "30/09/2026",
+      "dono_emenda": "Marcelo Castro",
+      "ponto_focal": "Italo Barros"
     },
     {
       "numero": "946738",
@@ -2349,10 +2469,10 @@
       "vigencia_fmt": "30/09/2026",
       "vigencia_inicio": "22/11/2023",
       "vigencia_suspensiva": "",
-      "vigencia_origem": "CGU",
+      "vigencia_origem": "Transferegov",
       "orgao_vinculado": "",
-      "orgao_tgov": "",
-      "limite_prestacao": "",
+      "orgao_tgov": "56000 - MINISTERIO DAS CIDADES",
+      "limite_prestacao": "30/10/2026",
       "sei": "00119.001665/2023-16",
       "fiscal": "Noé",
       "dias": 44,
@@ -2379,7 +2499,9 @@
       "fase_emendas": "projeto aprovado",
       "municipio_emendas": "JUREMA DO PIAUI-PI",
       "sei_todos": "00119.001665/2023-16",
-      "vigencia_emendas": "30/09/2026"
+      "vigencia_emendas": "30/09/2026",
+      "dono_emenda": "Marcelo Castro",
+      "ponto_focal": "Pref Kaylane"
     },
     {
       "numero": "945158",
@@ -2418,7 +2540,9 @@
       "fase_emendas": "projeto aprovado",
       "municipio_emendas": "INHUMA - PI",
       "sei_todos": "00119.001705/2023-11",
-      "vigencia_emendas": "30/09/2026"
+      "vigencia_emendas": "30/09/2026",
+      "dono_emenda": "Marcelo Castro",
+      "ponto_focal": "Amanda e P2"
     },
     {
       "numero": "947493",
@@ -2457,7 +2581,9 @@
       "fase_emendas": "recurso recebido",
       "municipio_emendas": "TERESINA - PI",
       "sei_todos": "00119.001591/2023-18",
-      "vigencia_emendas": "30/09/2026"
+      "vigencia_emendas": "30/09/2026",
+      "dono_emenda": "Marcelo Castro",
+      "ponto_focal": "Italo Barros"
     },
     {
       "numero": "946367",
@@ -2496,7 +2622,9 @@
       "fase_emendas": "projeto aprovado",
       "municipio_emendas": "PICOS - PI",
       "sei_todos": "00119.001592/2023-54",
-      "vigencia_emendas": "30/09/2026"
+      "vigencia_emendas": "30/09/2026",
+      "dono_emenda": "Marcelo Castro",
+      "ponto_focal": "Rodrigo P2"
     },
     {
       "numero": "951016",
@@ -2514,8 +2642,8 @@
       "dias": 44,
       "status": "ATENÇÃO (<60d)",
       "situacao": "EM EXECUÇÃO",
-      "v_total": "500.000,00",
-      "v_liberado": "500.000,00",
+      "v_total": "50,00",
+      "v_liberado": "50,00",
       "v_contrapartida": "20.896,00",
       "v_ultima_liberacao": "387.867,09",
       "ultima_liberacao": "01/10/2025",
@@ -2535,7 +2663,9 @@
       "fase_emendas": "projeto aprovado",
       "municipio_emendas": "PAQUETA - PI",
       "sei_todos": "00119.002108/2023-12",
-      "vigencia_emendas": "30/09/2026"
+      "vigencia_emendas": "30/09/2026",
+      "dono_emenda": "Marcelo Castro",
+      "ponto_focal": "Cristiano/Mariana"
     },
     {
       "numero": "951018",
@@ -2574,7 +2704,9 @@
       "fase_emendas": "projeto aprovado",
       "municipio_emendas": "PICOS - PI",
       "sei_todos": "00119.002099/2023-51",
-      "vigencia_emendas": "30/09/2026"
+      "vigencia_emendas": "30/09/2026",
+      "dono_emenda": "Marcelo Castro",
+      "ponto_focal": "Valdivia/ Rodrigo P2"
     },
     {
       "numero": "951943",
@@ -2613,7 +2745,9 @@
       "fase_emendas": "recurso recebido",
       "municipio_emendas": "TERESINA - PI",
       "sei_todos": "00119.002170/2023-04",
-      "vigencia_emendas": "30/09/2026"
+      "vigencia_emendas": "30/09/2026",
+      "dono_emenda": "Marcelo Castro",
+      "ponto_focal": "Bem bem"
     },
     {
       "numero": "952006",
@@ -2622,10 +2756,10 @@
       "vigencia_fmt": "15/12/2026",
       "vigencia_inicio": "15/12/2023",
       "vigencia_suspensiva": "",
-      "vigencia_origem": "CGU",
+      "vigencia_origem": "Transferegov",
       "orgao_vinculado": "",
-      "orgao_tgov": "",
-      "limite_prestacao": "",
+      "orgao_tgov": "56000 - MINISTERIO DAS CIDADES",
+      "limite_prestacao": "13/02/2027",
       "sei": "00119.002221/2023-90",
       "fiscal": "Noé",
       "dias": 120,
@@ -2652,7 +2786,9 @@
       "fase_emendas": "projeto aprovado",
       "municipio_emendas": "CORRENTE - PI",
       "sei_todos": "00119.002221/2023-90",
-      "vigencia_emendas": "15/12/2026"
+      "vigencia_emendas": "15/12/2026",
+      "dono_emenda": "Marcelo Castro",
+      "ponto_focal": "Salmeron"
     },
     {
       "numero": "967173",
@@ -2661,10 +2797,10 @@
       "vigencia_fmt": "22/08/2028",
       "vigencia_inicio": "22/08/2024",
       "vigencia_suspensiva": "",
-      "vigencia_origem": "CGU",
+      "vigencia_origem": "Transferegov",
       "orgao_vinculado": "",
-      "orgao_tgov": "",
-      "limite_prestacao": "",
+      "orgao_tgov": "56000 - MINISTERIO DAS CIDADES",
+      "limite_prestacao": "21/10/2028",
       "sei": "00119.002545/2023-28",
       "fiscal": "Angela",
       "dias": 736,
@@ -2691,7 +2827,9 @@
       "fase_emendas": "projeto aprovado",
       "municipio_emendas": "ESPERANTINA-PI",
       "sei_todos": "00119.002545/2023-28",
-      "vigencia_emendas": "22/08/2028"
+      "vigencia_emendas": "22/08/2028",
+      "dono_emenda": "NOVO PAC",
+      "ponto_focal": "Idepi"
     },
     {
       "numero": "967182",
@@ -2700,10 +2838,10 @@
       "vigencia_fmt": "22/08/2027",
       "vigencia_inicio": "22/08/2024",
       "vigencia_suspensiva": "",
-      "vigencia_origem": "CGU",
+      "vigencia_origem": "Transferegov",
       "orgao_vinculado": "",
-      "orgao_tgov": "",
-      "limite_prestacao": "",
+      "orgao_tgov": "56000 - MINISTERIO DAS CIDADES",
+      "limite_prestacao": "21/10/2027",
       "sei": "00119.000110/2025-19",
       "fiscal": "Angela",
       "dias": 370,
@@ -2730,7 +2868,9 @@
       "fase_emendas": "projeto aprovado",
       "municipio_emendas": "LAGOA DO SITIO-PI",
       "sei_todos": "00119.002546/2023-72 · 00119.000110/2025-19",
-      "vigencia_emendas": "22/08/2027"
+      "vigencia_emendas": "22/08/2027",
+      "dono_emenda": "NOVO PAC",
+      "ponto_focal": "Idepi"
     },
     {
       "numero": "945303",
@@ -2739,10 +2879,10 @@
       "vigencia_fmt": "30/09/2026",
       "vigencia_inicio": "22/11/2023",
       "vigencia_suspensiva": "",
-      "vigencia_origem": "CGU",
+      "vigencia_origem": "Transferegov",
       "orgao_vinculado": "",
-      "orgao_tgov": "",
-      "limite_prestacao": "",
+      "orgao_tgov": "51000 - MINISTERIO DO ESPORTE",
+      "limite_prestacao": "30/10/2026",
       "sei": "00119.001771/2023-91",
       "fiscal": "Samuel",
       "dias": 44,
@@ -2769,7 +2909,9 @@
       "fase_emendas": "projeto aprovado",
       "municipio_emendas": "Lagoa Alegre-PI",
       "sei_todos": "00119.001771/2023-91",
-      "vigencia_emendas": "30/09/2026"
+      "vigencia_emendas": "30/09/2026",
+      "dono_emenda": "Atila Lira",
+      "ponto_focal": "Atila Lira"
     },
     {
       "numero": "945299",
@@ -2778,10 +2920,10 @@
       "vigencia_fmt": "30/09/2026",
       "vigencia_inicio": "22/11/2023",
       "vigencia_suspensiva": "",
-      "vigencia_origem": "CGU",
+      "vigencia_origem": "Transferegov",
       "orgao_vinculado": "",
-      "orgao_tgov": "",
-      "limite_prestacao": "",
+      "orgao_tgov": "51000 - MINISTERIO DO ESPORTE",
+      "limite_prestacao": "30/10/2026",
       "sei": "00119.001772/2023-36",
       "fiscal": "Samuel",
       "dias": 44,
@@ -2808,7 +2950,9 @@
       "fase_emendas": "projeto aprovado",
       "municipio_emendas": "Pedro II-PI",
       "sei_todos": "00119.001772/2023-36",
-      "vigencia_emendas": "30/09/2026"
+      "vigencia_emendas": "30/09/2026",
+      "dono_emenda": "Atila Lira",
+      "ponto_focal": "Atila Lira / Joel Neves"
     },
     {
       "numero": "953190",
@@ -2817,10 +2961,10 @@
       "vigencia_fmt": "27/12/2027",
       "vigencia_inicio": "27/12/2023",
       "vigencia_suspensiva": "",
-      "vigencia_origem": "CGU",
+      "vigencia_origem": "Transferegov",
       "orgao_vinculado": "",
-      "orgao_tgov": "",
-      "limite_prestacao": "",
+      "orgao_tgov": "54000 - MINISTERIO DO TURISMO",
+      "limite_prestacao": "25/02/2028",
       "sei": "00119.002025/2023-15",
       "fiscal": "Noé",
       "dias": 497,
@@ -2847,7 +2991,9 @@
       "fase_emendas": "projeto aprovado",
       "municipio_emendas": "São Raimundo Nonato/PI",
       "sei_todos": "00119.002025/2023-15",
-      "vigencia_emendas": "27/12/2027"
+      "vigencia_emendas": "27/12/2027",
+      "dono_emenda": "Marcelo Castro",
+      "ponto_focal": "Rogerio Castro"
     },
     {
       "numero": "969555",
@@ -2886,7 +3032,9 @@
       "fase_emendas": "projeto aprovado",
       "municipio_emendas": "Parnaiba-PI",
       "sei_todos": "00119.001681/2024-81",
-      "vigencia_emendas": "06/12/2028"
+      "vigencia_emendas": "06/12/2028",
+      "dono_emenda": "Sec das Mulheres",
+      "ponto_focal": "Diva"
     },
     {
       "numero": "973618",
@@ -2895,10 +3043,10 @@
       "vigencia_fmt": "29/12/2028",
       "vigencia_inicio": "31/12/2024",
       "vigencia_suspensiva": "31/12/2027",
-      "vigencia_origem": "CGU",
+      "vigencia_origem": "Transferegov",
       "orgao_vinculado": "",
-      "orgao_tgov": "",
-      "limite_prestacao": "",
+      "orgao_tgov": "53000 - MINISTÉRIO DA INTEGRAÇÃO E DO DESENVOLVIMENTO REGIONAL",
+      "limite_prestacao": "27/02/2029",
       "sei": "00119.000014/2025-62",
       "fiscal": "Manoel",
       "dias": 865,
@@ -2925,7 +3073,9 @@
       "fase_emendas": "em andamento",
       "municipio_emendas": "Dom Inocencio",
       "sei_todos": "00119.000014/2025-62",
-      "vigencia_emendas": "29/12/2028"
+      "vigencia_emendas": "29/12/2028",
+      "dono_emenda": "Marcelo Castro",
+      "ponto_focal": ""
     },
     {
       "numero": "965789",
@@ -2934,10 +3084,10 @@
       "vigencia_fmt": "21/08/2029",
       "vigencia_inicio": "23/08/2024",
       "vigencia_suspensiva": "",
-      "vigencia_origem": "CGU",
+      "vigencia_origem": "Transferegov",
       "orgao_vinculado": "",
-      "orgao_tgov": "",
-      "limite_prestacao": "",
+      "orgao_tgov": "53000 - MINISTÉRIO DA INTEGRAÇÃO E DO DESENVOLVIMENTO REGIONAL",
+      "limite_prestacao": "20/10/2029",
       "sei": "00119.000128/2024-21",
       "fiscal": "Diego",
       "dias": 1100,
@@ -2964,7 +3114,9 @@
       "fase_emendas": "projeto aprovado",
       "municipio_emendas": "Juazeiro-PI",
       "sei_todos": "00119.000128/2024-21",
-      "vigencia_emendas": "21/08/2029"
+      "vigencia_emendas": "21/08/2029",
+      "dono_emenda": "NOVO PAC",
+      "ponto_focal": ""
     },
     {
       "numero": "992850",
@@ -2973,10 +3125,10 @@
       "vigencia_fmt": "01/04/2030",
       "vigencia_inicio": "11/03/2026",
       "vigencia_suspensiva": "31/08/2026",
-      "vigencia_origem": "CGU",
+      "vigencia_origem": "Transferegov",
       "orgao_vinculado": "",
-      "orgao_tgov": "",
-      "limite_prestacao": "",
+      "orgao_tgov": "56000 - MINISTERIO DAS CIDADES",
+      "limite_prestacao": "01/05/2030",
       "sei": "00119.000357/2026-16",
       "fiscal": "Angela",
       "dias": 1323,
@@ -3003,7 +3155,9 @@
       "fase_emendas": "em andamento",
       "municipio_emendas": "BELÉM-PI",
       "sei_todos": "00119.000357/2026-16",
-      "vigencia_emendas": "31/12/2028"
+      "vigencia_emendas": "31/12/2028",
+      "dono_emenda": "NOVO PAC",
+      "ponto_focal": "Ademar"
     },
     {
       "numero": "992940",
@@ -3012,10 +3166,10 @@
       "vigencia_fmt": "01/04/2030",
       "vigencia_inicio": "11/03/2026",
       "vigencia_suspensiva": "31/08/2026",
-      "vigencia_origem": "CGU",
+      "vigencia_origem": "Transferegov",
       "orgao_vinculado": "",
-      "orgao_tgov": "",
-      "limite_prestacao": "",
+      "orgao_tgov": "56000 - MINISTERIO DAS CIDADES",
+      "limite_prestacao": "01/05/2030",
       "sei": "00119.000431/2026-96",
       "fiscal": "Angela",
       "dias": 1323,
@@ -3042,7 +3196,9 @@
       "fase_emendas": "em andamento",
       "municipio_emendas": "CURRAL NOVO DO PIAUÍ-PI",
       "sei_todos": "00119.000431/2026-96",
-      "vigencia_emendas": "31/12/2028"
+      "vigencia_emendas": "31/12/2028",
+      "dono_emenda": "NOVO PAC",
+      "ponto_focal": "Ademar"
     },
     {
       "numero": "980844",
@@ -3051,10 +3207,10 @@
       "vigencia_fmt": "03/09/2028",
       "vigencia_inicio": "03/12/2025",
       "vigencia_suspensiva": "",
-      "vigencia_origem": "CGU",
+      "vigencia_origem": "Transferegov",
       "orgao_vinculado": "",
-      "orgao_tgov": "",
-      "limite_prestacao": "",
+      "orgao_tgov": "53000 - MINISTÉRIO DA INTEGRAÇÃO E DO DESENVOLVIMENTO REGIONAL",
+      "limite_prestacao": "02/11/2028",
       "sei": "00119.002012/2025-16",
       "fiscal": "Leão",
       "dias": 748,
@@ -3081,7 +3237,9 @@
       "fase_emendas": "projeto aprovado",
       "municipio_emendas": "ALTOS-PI",
       "sei_todos": "00119.002012/2025-16",
-      "vigencia_emendas": "03/09/2028"
+      "vigencia_emendas": "03/09/2028",
+      "dono_emenda": "Marcelo Castro",
+      "ponto_focal": "Miguel Ângelo"
     },
     {
       "numero": "981146",
@@ -3090,10 +3248,10 @@
       "vigencia_fmt": "08/12/2028",
       "vigencia_inicio": "08/12/2025",
       "vigencia_suspensiva": "",
-      "vigencia_origem": "CGU",
+      "vigencia_origem": "Transferegov",
       "orgao_vinculado": "",
-      "orgao_tgov": "",
-      "limite_prestacao": "",
+      "orgao_tgov": "53000 - MINISTÉRIO DA INTEGRAÇÃO E DO DESENVOLVIMENTO REGIONAL",
+      "limite_prestacao": "06/02/2029",
       "sei": "00119.002014/2025-05",
       "fiscal": "Noé",
       "dias": 844,
@@ -3120,7 +3278,9 @@
       "fase_emendas": "projeto aprovado",
       "municipio_emendas": "FRANCISCO SANTOS-PI",
       "sei_todos": "00119.002014/2025-05",
-      "vigencia_emendas": "08/12/2028"
+      "vigencia_emendas": "08/12/2028",
+      "dono_emenda": "Marcelo Castro",
+      "ponto_focal": "Henrique Cesar (Carleuza)"
     },
     {
       "numero": "983950",
@@ -3129,10 +3289,10 @@
       "vigencia_fmt": "10/08/2028",
       "vigencia_inicio": "10/12/2025",
       "vigencia_suspensiva": "10/09/2026",
-      "vigencia_origem": "CGU",
+      "vigencia_origem": "Transferegov",
       "orgao_vinculado": "",
-      "orgao_tgov": "",
-      "limite_prestacao": "",
+      "orgao_tgov": "22000 - Ministério da Agricultura e Pecuária",
+      "limite_prestacao": "09/10/2028",
       "sei": "00119.002020/2025-54",
       "fiscal": "Roberto",
       "dias": 724,
@@ -3159,7 +3319,9 @@
       "fase_emendas": "em andamento",
       "municipio_emendas": "BARRAS-PI",
       "sei_todos": "00119.002020/2025-54",
-      "vigencia_emendas": "10/08/2028"
+      "vigencia_emendas": "10/08/2028",
+      "dono_emenda": "Marcelo Castro",
+      "ponto_focal": "Ravid Lages"
     },
     {
       "numero": "986179",
@@ -3168,10 +3330,10 @@
       "vigencia_fmt": "30/08/2028",
       "vigencia_inicio": "30/12/2025",
       "vigencia_suspensiva": "",
-      "vigencia_origem": "CGU",
+      "vigencia_origem": "Transferegov",
       "orgao_vinculado": "",
-      "orgao_tgov": "",
-      "limite_prestacao": "",
+      "orgao_tgov": "22000 - Ministério da Agricultura e Pecuária",
+      "limite_prestacao": "29/10/2028",
       "sei": "00119.002028/2025-11",
       "fiscal": "Edna",
       "dias": 744,
@@ -3198,7 +3360,9 @@
       "fase_emendas": "projeto aprovado",
       "municipio_emendas": "SÃO JOSÉ DO PIAUÍ-PI",
       "sei_todos": "00119.002028/2025-11",
-      "vigencia_emendas": "30/08/2028"
+      "vigencia_emendas": "30/08/2028",
+      "dono_emenda": "Marcelo Castro",
+      "ponto_focal": "Antônio Wilson"
     },
     {
       "numero": "986155",
@@ -3207,10 +3371,10 @@
       "vigencia_fmt": "10/08/2028",
       "vigencia_inicio": "10/12/2025",
       "vigencia_suspensiva": "10/09/2026",
-      "vigencia_origem": "CGU",
+      "vigencia_origem": "Transferegov",
       "orgao_vinculado": "",
-      "orgao_tgov": "",
-      "limite_prestacao": "",
+      "orgao_tgov": "22000 - Ministério da Agricultura e Pecuária",
+      "limite_prestacao": "09/10/2028",
       "sei": "00119.002030/2025-90",
       "fiscal": "Edna",
       "dias": 724,
@@ -3237,7 +3401,9 @@
       "fase_emendas": "em andamento",
       "municipio_emendas": "MASSAPÊ DO PIAUÍ-PI",
       "sei_todos": "00119.002030/2025-90",
-      "vigencia_emendas": "10/08/2028"
+      "vigencia_emendas": "10/08/2028",
+      "dono_emenda": "Marcelo Castro",
+      "ponto_focal": "Antônio Wilson"
     },
     {
       "numero": "985797",
@@ -3246,10 +3412,10 @@
       "vigencia_fmt": "22/12/2028",
       "vigencia_inicio": "24/12/2025",
       "vigencia_suspensiva": "",
-      "vigencia_origem": "CGU",
+      "vigencia_origem": "Transferegov",
       "orgao_vinculado": "",
-      "orgao_tgov": "",
-      "limite_prestacao": "",
+      "orgao_tgov": "54000 - MINISTERIO DO TURISMO",
+      "limite_prestacao": "20/02/2029",
       "sei": "00119.002032/2025-89",
       "fiscal": "Noé",
       "dias": 858,
@@ -3276,7 +3442,9 @@
       "fase_emendas": "projeto aprovado",
       "municipio_emendas": "SÃO RAIMUNDO NONATO-PI",
       "sei_todos": "00119.002032/2025-89",
-      "vigencia_emendas": "22/12/2028"
+      "vigencia_emendas": "22/12/2028",
+      "dono_emenda": "Marcelo Castro",
+      "ponto_focal": "Ivon (Danilo/ Joaquim)"
     },
     {
       "numero": "986602",
@@ -3285,16 +3453,16 @@
       "vigencia_fmt": "31/12/2028",
       "vigencia_inicio": "24/12/2025",
       "vigencia_suspensiva": "24/09/2026",
-      "vigencia_origem": "CGU",
+      "vigencia_origem": "Transferegov",
       "orgao_vinculado": "",
-      "orgao_tgov": "",
-      "limite_prestacao": "",
+      "orgao_tgov": "65000 - MINISTÉRIO DAS MULHERES",
+      "limite_prestacao": "01/03/2029",
       "sei": "00119.001929/2025-95",
       "fiscal": "Edna",
       "dias": 867,
       "status": "NORMAL",
       "situacao": "EM EXECUÇÃO",
-      "v_total": "250,00",
+      "v_total": "2.500.000,00",
       "v_liberado": "125.000,00",
       "v_contrapartida": "51.020,41",
       "v_ultima_liberacao": "125.000,00",
@@ -3315,7 +3483,9 @@
       "fase_emendas": "em andamento",
       "municipio_emendas": "PIRIPIRI-PI",
       "sei_todos": "00119.001929/2025-95",
-      "vigencia_emendas": "31/12/2028"
+      "vigencia_emendas": "31/12/2028",
+      "dono_emenda": "Sec das Mulheres",
+      "ponto_focal": "Diva"
     },
     {
       "numero": "988101",
@@ -3324,10 +3494,10 @@
       "vigencia_fmt": "19/04/2029",
       "vigencia_inicio": "19/12/2025",
       "vigencia_suspensiva": "19/12/2028",
-      "vigencia_origem": "CGU",
+      "vigencia_origem": "Transferegov",
       "orgao_vinculado": "",
-      "orgao_tgov": "",
-      "limite_prestacao": "",
+      "orgao_tgov": "53000 - MINISTÉRIO DA INTEGRAÇÃO E DO DESENVOLVIMENTO REGIONAL",
+      "limite_prestacao": "18/06/2029",
       "sei": "00119.002036/2025-67",
       "fiscal": "Leão",
       "dias": 976,
@@ -3354,7 +3524,9 @@
       "fase_emendas": "em andamento",
       "municipio_emendas": "SÃO JOSÉ DO PIAUÍ-PI",
       "sei_todos": "00119.002036/2025-67",
-      "vigencia_emendas": "19/04/2029"
+      "vigencia_emendas": "19/04/2029",
+      "dono_emenda": "CINDRA - Dr Luizinho",
+      "ponto_focal": "Eduardo Dantas / Júlio Arcoverde"
     },
     {
       "numero": "988500",
@@ -3363,10 +3535,10 @@
       "vigencia_fmt": "19/04/2029",
       "vigencia_inicio": "19/12/2025",
       "vigencia_suspensiva": "",
-      "vigencia_origem": "CGU",
+      "vigencia_origem": "Transferegov",
       "orgao_vinculado": "",
-      "orgao_tgov": "",
-      "limite_prestacao": "",
+      "orgao_tgov": "53000 - MINISTÉRIO DA INTEGRAÇÃO E DO DESENVOLVIMENTO REGIONAL",
+      "limite_prestacao": "18/06/2029",
       "sei": "00119.002040/2025-25",
       "fiscal": "Leão",
       "dias": 976,
@@ -3374,7 +3546,7 @@
       "situacao": "EM EXECUÇÃO",
       "v_total": "1.273.333,33",
       "v_liberado": "0,00",
-      "v_contrapartida": "6,00",
+      "v_contrapartida": "60.000,00",
       "v_ultima_liberacao": "0,00",
       "ultima_liberacao": "",
       "pct_exec": "",
@@ -3393,7 +3565,9 @@
       "fase_emendas": "projeto aprovado",
       "municipio_emendas": "IPIRANGA DO PIAUÍ",
       "sei_todos": "00119.002040/2025-25",
-      "vigencia_emendas": "19/04/2029"
+      "vigencia_emendas": "19/04/2029",
+      "dono_emenda": "CINDRA - Dr Luizinho",
+      "ponto_focal": "Eduardo Dantas / Júlio Arcoverde"
     },
     {
       "numero": "989250",
@@ -3402,10 +3576,10 @@
       "vigencia_fmt": "19/04/2029",
       "vigencia_inicio": "19/12/2025",
       "vigencia_suspensiva": "19/12/2028",
-      "vigencia_origem": "CGU",
+      "vigencia_origem": "Transferegov",
       "orgao_vinculado": "",
-      "orgao_tgov": "",
-      "limite_prestacao": "",
+      "orgao_tgov": "53000 - MINISTÉRIO DA INTEGRAÇÃO E DO DESENVOLVIMENTO REGIONAL",
+      "limite_prestacao": "18/06/2029",
       "sei": "00119.002042/2025-14",
       "fiscal": "Leão",
       "dias": 976,
@@ -3413,7 +3587,7 @@
       "situacao": "EM EXECUÇÃO",
       "v_total": "1.273.333,34",
       "v_liberado": "0,00",
-      "v_contrapartida": "6,00",
+      "v_contrapartida": "60.000,00",
       "v_ultima_liberacao": "0,00",
       "ultima_liberacao": "",
       "pct_exec": "",
@@ -3432,7 +3606,9 @@
       "fase_emendas": "em andamento",
       "municipio_emendas": "DOM EXPEDITO LOPES",
       "sei_todos": "00119.002042/2025-14",
-      "vigencia_emendas": "19/04/2029"
+      "vigencia_emendas": "19/04/2029",
+      "dono_emenda": "CINDRA - Dr Luizinho",
+      "ponto_focal": "Eduardo Dantas / Júlio Arcoverde"
     },
     {
       "numero": "988784",
@@ -3441,10 +3617,10 @@
       "vigencia_fmt": "19/04/2029",
       "vigencia_inicio": "19/12/2025",
       "vigencia_suspensiva": "19/12/2028",
-      "vigencia_origem": "CGU",
+      "vigencia_origem": "Transferegov",
       "orgao_vinculado": "",
-      "orgao_tgov": "",
-      "limite_prestacao": "",
+      "orgao_tgov": "53000 - MINISTÉRIO DA INTEGRAÇÃO E DO DESENVOLVIMENTO REGIONAL",
+      "limite_prestacao": "18/06/2029",
       "sei": "00119.002045/2025-58",
       "fiscal": "Milton",
       "dias": 976,
@@ -3471,7 +3647,9 @@
       "fase_emendas": "em andamento",
       "municipio_emendas": "ALTOS",
       "sei_todos": "00119.002045/2025-58",
-      "vigencia_emendas": "19/04/2029"
+      "vigencia_emendas": "19/04/2029",
+      "dono_emenda": "",
+      "ponto_focal": "Jonas Trindade / Min. Wellington Dias"
     },
     {
       "numero": "988634",
@@ -3480,10 +3658,10 @@
       "vigencia_fmt": "16/12/2028",
       "vigencia_inicio": "16/12/2025",
       "vigencia_suspensiva": "16/12/2028",
-      "vigencia_origem": "CGU",
+      "vigencia_origem": "Transferegov",
       "orgao_vinculado": "",
-      "orgao_tgov": "",
-      "limite_prestacao": "",
+      "orgao_tgov": "53000 - MINISTÉRIO DA INTEGRAÇÃO E DO DESENVOLVIMENTO REGIONAL",
+      "limite_prestacao": "14/02/2029",
       "sei": "00119.002048/2025-91",
       "fiscal": "Milton",
       "dias": 852,
@@ -3491,7 +3669,7 @@
       "situacao": "EM EXECUÇÃO",
       "v_total": "955.000,00",
       "v_liberado": "0,00",
-      "v_contrapartida": "1,00",
+      "v_contrapartida": "10.000,00",
       "v_ultima_liberacao": "0,00",
       "ultima_liberacao": "",
       "pct_exec": "",
@@ -3510,7 +3688,9 @@
       "fase_emendas": "em andamento",
       "municipio_emendas": "BARRA D'ALCÂNTARA",
       "sei_todos": "00119.002048/2025-91",
-      "vigencia_emendas": "16/12/2028"
+      "vigencia_emendas": "16/12/2028",
+      "dono_emenda": "",
+      "ponto_focal": "Jonas Trindade / Min. Wellington Dias"
     },
     {
       "numero": "988972",
@@ -3519,10 +3699,10 @@
       "vigencia_fmt": "19/04/2029",
       "vigencia_inicio": "19/12/2025",
       "vigencia_suspensiva": "19/12/2028",
-      "vigencia_origem": "CGU",
+      "vigencia_origem": "Transferegov",
       "orgao_vinculado": "",
-      "orgao_tgov": "",
-      "limite_prestacao": "",
+      "orgao_tgov": "53000 - MINISTÉRIO DA INTEGRAÇÃO E DO DESENVOLVIMENTO REGIONAL",
+      "limite_prestacao": "18/06/2029",
       "sei": "00119.002050/2025-61",
       "fiscal": "Milton",
       "dias": 976,
@@ -3530,7 +3710,7 @@
       "situacao": "EM EXECUÇÃO",
       "v_total": "955.000,00",
       "v_liberado": "0,00",
-      "v_contrapartida": "1,00",
+      "v_contrapartida": "10.000,00",
       "v_ultima_liberacao": "0,00",
       "ultima_liberacao": "",
       "pct_exec": "",
@@ -3549,7 +3729,9 @@
       "fase_emendas": "em andamento",
       "municipio_emendas": "BARREIRAS",
       "sei_todos": "00119.002050/2025-61",
-      "vigencia_emendas": "19/04/2029"
+      "vigencia_emendas": "19/04/2029",
+      "dono_emenda": "",
+      "ponto_focal": "Jonas Trindade / Min. Wellington Dias"
     },
     {
       "numero": "988779",
@@ -3558,10 +3740,10 @@
       "vigencia_fmt": "19/04/2029",
       "vigencia_inicio": "19/12/2025",
       "vigencia_suspensiva": "19/12/2028",
-      "vigencia_origem": "CGU",
+      "vigencia_origem": "Transferegov",
       "orgao_vinculado": "",
-      "orgao_tgov": "",
-      "limite_prestacao": "",
+      "orgao_tgov": "53000 - MINISTÉRIO DA INTEGRAÇÃO E DO DESENVOLVIMENTO REGIONAL",
+      "limite_prestacao": "18/06/2029",
       "sei": "00119.002052/2025-50",
       "fiscal": "Milton",
       "dias": 976,
@@ -3569,7 +3751,7 @@
       "situacao": "EM EXECUÇÃO",
       "v_total": "955.000,00",
       "v_liberado": "0,00",
-      "v_contrapartida": "10.000,00",
+      "v_contrapartida": "1,00",
       "v_ultima_liberacao": "0,00",
       "ultima_liberacao": "",
       "pct_exec": "",
@@ -3588,7 +3770,9 @@
       "fase_emendas": "em andamento",
       "municipio_emendas": "DEMERVAL LOBÃO-PI",
       "sei_todos": "00119.002052/2025-50",
-      "vigencia_emendas": "19/04/2029"
+      "vigencia_emendas": "19/04/2029",
+      "dono_emenda": "",
+      "ponto_focal": "Jonas Trindade / Min. Wellington Dias"
     },
     {
       "numero": "988901",
@@ -3597,10 +3781,10 @@
       "vigencia_fmt": "19/04/2029",
       "vigencia_inicio": "19/12/2025",
       "vigencia_suspensiva": "19/12/2028",
-      "vigencia_origem": "CGU",
+      "vigencia_origem": "Transferegov",
       "orgao_vinculado": "",
-      "orgao_tgov": "",
-      "limite_prestacao": "",
+      "orgao_tgov": "53000 - MINISTÉRIO DA INTEGRAÇÃO E DO DESENVOLVIMENTO REGIONAL",
+      "limite_prestacao": "18/06/2029",
       "sei": "00119.002054/2025-49",
       "fiscal": "Milton",
       "dias": 976,
@@ -3608,7 +3792,7 @@
       "situacao": "EM EXECUÇÃO",
       "v_total": "955.000,00",
       "v_liberado": "0,00",
-      "v_contrapartida": "1,00",
+      "v_contrapartida": "10.000,00",
       "v_ultima_liberacao": "0,00",
       "ultima_liberacao": "",
       "pct_exec": "",
@@ -3627,7 +3811,9 @@
       "fase_emendas": "em andamento",
       "municipio_emendas": "PAULISTANA-PI",
       "sei_todos": "00119.002054/2025-49",
-      "vigencia_emendas": "19/04/2029"
+      "vigencia_emendas": "19/04/2029",
+      "dono_emenda": "",
+      "ponto_focal": "Jonas Trindade / Min. Wellington Dias"
     },
     {
       "numero": "998329",
@@ -3636,10 +3822,10 @@
       "vigencia_fmt": "30/06/2029",
       "vigencia_inicio": "30/06/2026",
       "vigencia_suspensiva": "30/03/2027",
-      "vigencia_origem": "CGU",
+      "vigencia_origem": "Transferegov",
       "orgao_vinculado": "",
-      "orgao_tgov": "",
-      "limite_prestacao": "",
+      "orgao_tgov": "53000 - MINISTÉRIO DA INTEGRAÇÃO E DO DESENVOLVIMENTO REGIONAL",
+      "limite_prestacao": "29/08/2029",
       "sei": "00119.001216/2026-11",
       "fiscal": "Felipe",
       "dias": 1048,
@@ -3666,7 +3852,9 @@
       "fase_emendas": "em andamento",
       "municipio_emendas": "TERESINA",
       "sei_todos": "00119.001216/2026-11",
-      "vigencia_emendas": "31/12/2028"
+      "vigencia_emendas": "31/12/2028",
+      "dono_emenda": "Marcelo Castro",
+      "ponto_focal": "Enzo Samuel"
     },
     {
       "numero": "999001",
@@ -3705,7 +3893,9 @@
       "fase_emendas": "em andamento",
       "municipio_emendas": "BELÉM-PI",
       "sei_todos": "00119.001246/2026-19",
-      "vigencia_emendas": "31/12/2029"
+      "vigencia_emendas": "31/12/2029",
+      "dono_emenda": "Marcelo Castro",
+      "ponto_focal": "Ademar"
     },
     {
       "numero": "999050",
@@ -3744,7 +3934,9 @@
       "fase_emendas": "em andamento",
       "municipio_emendas": "BELÉM-PI",
       "sei_todos": "00119.001265/2026-45",
-      "vigencia_emendas": "31/12/2029"
+      "vigencia_emendas": "31/12/2029",
+      "dono_emenda": "Marcelo Castro",
+      "ponto_focal": "Ademar"
     },
     {
       "numero": "999010",
@@ -3783,7 +3975,9 @@
       "fase_emendas": "em andamento",
       "municipio_emendas": "BELÉM-PI",
       "sei_todos": "00119.001267/2026-34",
-      "vigencia_emendas": "31/12/2029"
+      "vigencia_emendas": "31/12/2029",
+      "dono_emenda": "Marcelo Castro",
+      "ponto_focal": "Ademar"
     },
     {
       "numero": "999021",
@@ -3822,7 +4016,9 @@
       "fase_emendas": "em andamento",
       "municipio_emendas": "BELÉM-PI",
       "sei_todos": "00119.001268/2026-89",
-      "vigencia_emendas": "31/12/2029"
+      "vigencia_emendas": "31/12/2029",
+      "dono_emenda": "Marcelo Castro",
+      "ponto_focal": "Ademar"
     },
     {
       "numero": "7AAALY",
@@ -3861,7 +4057,9 @@
       "fase_emendas": "em andamento",
       "municipio_emendas": "BELÉM-PI",
       "sei_todos": "00119.001270/2026-58",
-      "vigencia_emendas": "31/12/2029"
+      "vigencia_emendas": "31/12/2029",
+      "dono_emenda": "Marcelo Castro",
+      "ponto_focal": "Ademar"
     }
   ],
   "exec_financeira": [

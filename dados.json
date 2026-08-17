@@ -18747,7 +18747,7 @@
     {
       "numero": "737058",
       "objeto": "Construcao da Barragem Atalaia, Tipo Terra Zoneada, localizada no municipio de Sebastiao Barros, barrando o rio Paraim,  sangradouro tipo Perfil Creager. 1a ETAPA.",
-      "coletado_em": "17/08/2026 19:37",
+      "coletado_em": "17/08/2026 19:28",
       "valor_global": "R$ 136.957.992,30",
       "valor_repasse": "R$ 119.187.005,00",
       "valor_contrapartida": "R$ 13.323.944,11",
@@ -31914,7 +31914,7 @@
     {
       "numero": "900837",
       "objeto": "PAVIMENTACAO EM VIAS PUBLICAS NO MUNICIPIO DE PARNAIBA-PI",
-      "coletado_em": "17/08/2026 17:36",
+      "coletado_em": "17/08/2026 19:43",
       "valor_global": "R$ 479.700,00",
       "valor_repasse": "R$ 469.700,00",
       "valor_contrapartida": "R$ 10.000,00",
@@ -48209,7 +48209,7 @@
       "valor_global_calculado": false
     }
   ],
-  "exec_atualizado_em": "17/08/2026 19:41",
+  "exec_atualizado_em": "17/08/2026 19:45",
   "historico_repasses": {
     "969555": {
       "objeto": "Construção e equipagem da Casa da Mulher Brasileira no Município de Parnaiba-PI",

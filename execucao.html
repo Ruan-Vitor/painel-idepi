@@ -432,6 +432,14 @@ tbody tr:hover td{background:#f5f9ff}
     <div id="inst-nome-bar" style="background:var(--surface2);border-bottom:1px solid var(--border);padding:7px 28px;display:flex;align-items:baseline;gap:12px;min-height:32px">
       <span id="inst-nome-num" style="font-size:11px;font-weight:700;color:var(--accent);white-space:nowrap">—</span>
       <span id="inst-nome-obj" style="font-size:11.5px;color:var(--text);flex:1;line-height:1.4">—</span>
+      <!-- Esta página é a principal do instrumento: quem chega aqui vindo de
+           qualquer painel quer os números de execução primeiro. Município,
+           fiscal, contato e dono da emenda ficam a um clique, em janela, para
+           não empurrar os valores para baixo da dobra. -->
+      <button class="btn-ficha" id="btnFicha" type="button" onclick="abrirFicha()"
+              title="Município, fiscal, contato, dono da emenda, órgãos e prazos">
+        <i class="fa-solid fa-id-card"></i> Ficha do instrumento
+      </button>
       <span id="inst-nome-data" style="font-size:10px;color:var(--muted);white-space:nowrap">—</span>
     </div>
 
@@ -1108,17 +1116,65 @@ function avisarSemExecucao(numero){
   var o = document.getElementById("inst-nome-obj");
   if(o) o.textContent = c.objeto || "—";
 
-  renderFichaBasica(c);
   IDEPI.esconderOverlay();
+  /* Sem execução coletada a página não tem número nenhum para mostrar, e a
+     ficha é TUDO o que existe deste instrumento — por isso ela abre sozinha
+     aqui, em vez de esperar um clique que a pessoa não tem motivo para dar.
+     O botão continua na barra para reabrir depois de fechada. */
+  abrirFicha(true);
 }
 
-/* Ficha do que EXISTE, quando a execução ainda não foi coletada.
-   Mostrar previsto, SEI e fiscal é melhor que mostrar nada — e melhor ainda
-   que abrir outro convênio no lugar, que faria a pessoa ler número errado. */
-function renderFichaBasica(c){
-  var painel = document.getElementById("fichaBasica");
-  if(!painel) return;
+/* ── FICHA DO INSTRUMENTO ─────────────────────────────────────────────────
+   Junta as TRÊS fontes que descrevem o mesmo instrumento, nesta ordem de
+   preferência:
 
+     1. `instAtual`        — o registro de execução coletado no Transferegov
+     2. `_resumo`          — o exec_index, que já carrega os campos de
+                             vigências listados em CAMPOS_DE_VIGENCIAS
+     3. `_CONVENIOS_VIG`   — o documento de vigências inteiro
+
+   Existe porque nenhuma das três sozinha responde à ficha: município, dono
+   da emenda e ponto focal só vivem no controle do setor, e a coleta de
+   execução não os conhece. Instrumento sem execução coletada tem só a (3).  */
+function dadosDoInstrumento(numero){
+  var alvo = String(numero || "").trim();
+  function achar(lista){
+    return (lista || []).find(function(x){
+      return String(x.numero).trim() === alvo;
+    }) || {};
+  }
+  var vig    = achar(_CONVENIOS_VIG);
+  var resumo = achar(INSTRUMENTOS_EXEC);
+  var exec   = (instAtual && String(instAtual.numero).trim() === alvo) ? instAtual : {};
+
+  /* Ordem invertida no merge: o que vem depois vence. A execução vence no
+     que ela mede (situação, valores movimentados); o cadastro vence no que
+     só ele sabe — e por isso os campos do setor são recolhidos à parte,
+     abaixo, em vez de dependerem de quem sobrescreveu quem. */
+  var m = Object.assign({}, vig, resumo, exec);
+
+  function primeiro(){
+    for(var i = 0; i < arguments.length; i++){
+      var v = String(arguments[i] == null ? "" : arguments[i]).trim();
+      if(v) return v;
+    }
+    return "";
+  }
+  /* Município, dono da emenda e ponto focal NUNCA vêm da coleta de execução;
+     buscar em `exec` primeiro só acharia vazio. */
+  m.municipio_emendas = primeiro(vig.municipio_emendas, resumo.municipio_emendas);
+  m.ponto_focal       = primeiro(vig.ponto_focal,       resumo.ponto_focal);
+  /* `dono_emenda` é do setor e `autor_emenda` é da CGU — o mesmo assunto em
+     fontes diferentes. O do setor ganha por estar sempre preenchido; o da
+     CGU entra quando ele faltar, em vez de a linha ficar vazia. */
+  m.dono_emenda = primeiro(vig.dono_emenda, resumo.dono_emenda,
+                           vig.autor_emenda, resumo.autor_emenda, exec.autor_emenda);
+  m.fiscal = primeiro(exec.fiscal, resumo.fiscal, vig.fiscal);
+  m.numero = alvo;
+  return m;
+}
+
+function htmlFicha(c){
   var seis = IDEPI.seisDe(c);
   var seiHtml = seis.length
     ? '<span class="fb-sei-vig">' + IDEPI.esc(seis[seis.length - 1]) + '</span>' +
@@ -1137,42 +1193,85 @@ function renderFichaBasica(c){
         : '')
     : '—';
 
-  var cp = IDEPI.contrapartidaDe(c);
-  var rp = IDEPI.repasseDe(c);
-  var st = IDEPI.calcStatus(c);
+  var cp   = IDEPI.contrapartidaDe(c);
+  var rp   = IDEPI.repasseDe(c);
+  var st   = IDEPI.calcStatus(c);
   var fase = IDEPI.faseDe(c);
+  var conc = IDEPI.concedenteDe(c);
 
-  var campos = [
-    ["Situação de vigência", (IDEPI.NOME_ST[st.st] || st.st) +
-      (st.dias !== null ? ' · ' + st.dias + ' dias' : '')],
-    ["Vigência final",       c.vigencia_fmt || c.vigencia || "—"],
-    ["Fase",                 fase ? fase.rotulo : "—"],
-    ["Repasse previsto",     IDEPI.fmtReais(rp.previsto)],
-    ["Repasse já liberado",  IDEPI.fmtReais(rp.liberado)],
-    ["Repasse a receber",    IDEPI.fmtReais(rp.falta)],
-    ["Contrapartida prevista",   cp.previsto ? IDEPI.fmtReais(cp.previsto) : "não há"],
-    ["Contrapartida depositada", cp.previsto ? IDEPI.fmtReais(cp.depositado) : "—"],
-    ["Fiscal responsável",   c.fiscal || "—"],
-    ["Município",            c.municipio_emendas || "—"],
-    ["Situação (Transferegov)",  c.situacao_tgov || "—"],
-    ["Contratação (Transferegov)", c.sit_contrat_tgov || "—"]
-  ];
-
-  painel.innerHTML =
-    '<div class="fb-titulo"><i class="fa-solid fa-id-card"></i> Dados do cadastro</div>' +
-    '<div class="fb-grid">' +
+  /* Campo vazio aparece como "—" em cinza, NUNCA some. Sumir faria o leitor
+     concluir que o instrumento não tem aquele dado, quando o que ele não tem
+     é o dado PREENCHIDO — são coisas diferentes. É o caso do ponto focal nos
+     40 do legado: a aba antiga das Emendas não tem essa coluna. */
+  function bloco(titulo, campos){
+    return '<div class="fb-titulo">' + IDEPI.esc(titulo) + '</div><div class="fb-grid">' +
       campos.map(function(p){
-        return '<div class="fb-campo"><label>' + IDEPI.esc(p[0]) + '</label>' +
-               '<span>' + IDEPI.esc(p[1]) + '</span></div>';
-      }).join('') +
+        var v = String(p[1] == null ? "" : p[1]).trim();
+        return '<div class="fb-campo' + (p[2] ? ' fb-largo' : '') + (v ? '' : ' vazio') + '">' +
+               '<label>' + IDEPI.esc(p[0]) + '</label>' +
+               '<span>' + IDEPI.esc(v || "—") + '</span></div>';
+      }).join('') + '</div>';
+  }
+
+  var vigencia = c.vigencia_fmt || c.vigencia || "";
+  if(vigencia && c.vigencia_origem) vigencia += "  (" + c.vigencia_origem + ")";
+
+  return (
+    bloco("Identificação", [
+      ["Município",       c.municipio_emendas],
+      ["Fase",            fase ? fase.rotulo : ""],
+      ["Objeto",          c.objeto, true]
+    ]) +
+    /* O bloco que o Felipe pediu: com quem se fala sobre este instrumento.
+       Nenhum dos três existe na CGU nem no Transferegov. */
+    bloco("Quem responde", [
+      ["Fiscal responsável",  c.fiscal],
+      ["Contato (ponto focal)", c.ponto_focal],
+      ["Dono da emenda",      c.dono_emenda]
+    ]) +
+    bloco("Órgãos", [
+      ["Concedente",      conc.sigla ? (conc.sigla + (conc.nome ? " — " + conc.nome : "")) : conc.nome],
+      /* Mandatária e órgão vinculado não convivem: contrato de repasse tem
+         Caixa, convênio com execução delegada tem CODEVASF ou FUNASA. Os
+         dois em campos separados, para não mostrar um no lugar do outro. */
+      ["Mandatária",      c.mandataria],
+      ["Órgão vinculado", c.orgao_vinculado],
+      ["Tipo",            c.tipo_instrumento]
+    ]) +
+    bloco("Prazos", [
+      ["Situação de vigência", (IDEPI.NOME_ST[st.st] || st.st) +
+        (st.dias !== null ? ' · ' + st.dias + ' dias' : '')],
+      ["Vigência final",             vigencia],
+      ["Situação (Transferegov)",    c.situacao_tgov],
+      ["Contratação (Transferegov)", c.sit_contrat_tgov],
+      ["Limite p/ prestação de contas", c.limite_prestacao]
+    ]) +
+    bloco("Valores", [
+      ["Repasse previsto",         IDEPI.fmtReais(rp.previsto)],
+      ["Repasse já liberado",      IDEPI.fmtReais(rp.liberado)],
+      ["Repasse a receber",        IDEPI.fmtReais(rp.falta)],
+      ["Contrapartida prevista",   cp.previsto ? IDEPI.fmtReais(cp.previsto) : "não há"],
+      ["Contrapartida depositada", cp.previsto ? IDEPI.fmtReais(cp.depositado) : ""]
+    ]) +
+    '<div class="fb-titulo">Processo</div><div class="fb-grid">' +
       '<div class="fb-campo fb-largo"><label>Processo SEI</label><span>' + seiHtml + '</span></div>' +
-      '<div class="fb-campo fb-largo"><label>Objeto</label><span>' +
-        IDEPI.esc(c.objeto || "—") + '</span></div>' +
-    '</div>' +
-    '<div class="fb-nota"><i class="fa-solid fa-circle-info"></i> ' +
+    '</div>'
+  );
+}
+
+/** Abre a ficha na janela. `semExec` acrescenta a explicação de por que a
+    página está sem números — sem ela a janela pareceria o conteúdo normal. */
+function abrirFicha(semExec){
+  var num = (instAtual && instAtual.numero) || _numPedidoURL ||
+            (document.getElementById("inst-nome-num") || {}).textContent || "";
+  var c = dadosDoInstrumento(num);
+  var corpo = htmlFicha(c);
+  if(semExec){
+    corpo += '<div class="fb-nota"><i class="fa-solid fa-circle-info"></i> ' +
       'Movimentações, notas fiscais e rateio aparecem depois que o ' +
       '<code>exec_financeiro.py</code> coletar este instrumento no Transferegov.</div>';
-  painel.hidden = false;
+  }
+  IDEPI.abrirModal("Ficha do instrumento " + (c.numero || ""), corpo);
 }
 
 function alternarSeis(){

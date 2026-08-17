@@ -889,6 +889,74 @@
     sync();
   }
 
+  /* ── JANELA POR CIMA (modal) ───────────────────────────────────────────────
+     Uma janela de cada vez, sem recarregar a página. Fecha no X, no clique
+     FORA do cartão e no Esc — as três formas que quem usa tenta.
+
+     Duas armadilhas já pagas no projeto, e por isso escritas aqui em vez de
+     em cada página:
+
+     1. TELA CHEIA. Quase todos os painéis têm botão de tela cheia, e o
+        navegador desenha o elemento em fullscreen POR CIMA de tudo: um
+        `position:fixed` pendurado no <body> simplesmente não aparece, sem
+        erro nenhum. Por isso a janela entra em `fullscreenElement || body`.
+        Mesmo defeito do balão de empresa (13/08/2026).
+
+     2. FECHAR NO CLIQUE FORA. O ouvinte tem de olhar o ALVO do clique, não
+        só onde ele caiu: sem `card.contains`, arrastar para selecionar um
+        texto de dentro do cartão e soltar sobre o fundo fecha a janela na
+        cara de quem lia. Por isso só o clique cujo alvo É o fundo fecha. */
+
+  var _modalAberta = null;
+
+  function fecharModal() {
+    if (!_modalAberta) return;
+    document.removeEventListener('keydown', _modalEsc, true);
+    if (_modalAberta.parentNode) _modalAberta.parentNode.removeChild(_modalAberta);
+    _modalAberta = null;
+  }
+
+  function _modalEsc(e) {
+    if (e.key === 'Escape' || e.key === 'Esc') fecharModal();
+  }
+
+  /** abrirModal('Ficha do instrumento', '<div>...</div>') → o elemento do fundo.
+      O HTML do corpo é montado por quem chama; esta função é só a casca. */
+  function abrirModal(titulo, htmlCorpo) {
+    fecharModal();                       // nunca duas empilhadas
+
+    var fundo = document.createElement('div');
+    fundo.className = 'mdl-fundo';
+    fundo.setAttribute('role', 'dialog');
+    fundo.setAttribute('aria-modal', 'true');
+    fundo.setAttribute('aria-label', titulo || 'Detalhes');
+
+    var card = document.createElement('div');
+    card.className = 'mdl-card';
+    card.innerHTML =
+      '<div class="mdl-head">' +
+        '<h3>' + esc(titulo || '') + '</h3>' +
+        '<button class="mdl-x" type="button" aria-label="Fechar">' +
+          '<i class="fa-solid fa-xmark"></i></button>' +
+      '</div>' +
+      '<div class="mdl-corpo"></div>';
+    card.querySelector('.mdl-corpo').innerHTML = htmlCorpo || '';
+    card.querySelector('.mdl-x').addEventListener('click', fecharModal);
+
+    /* Só fecha quando o alvo É o fundo — clique nascido dentro do cartão e
+       terminado fora não conta. */
+    fundo.addEventListener('click', function (e) {
+      if (e.target === fundo) fecharModal();
+    });
+
+    fundo.appendChild(card);
+    (document.fullscreenElement || document.body).appendChild(fundo);
+    document.addEventListener('keydown', _modalEsc, true);
+
+    _modalAberta = fundo;
+    return fundo;
+  }
+
   /* ── TOAST ─────────────────────────────────────────────────────────────── */
 
   function toast(msg) {
@@ -1160,6 +1228,8 @@
   IDEPI.setHtml = setHtml;
   IDEPI.esconderOverlay = esconderOverlay;
   IDEPI.toggleFullscreen = toggleFullscreen;
+  IDEPI.abrirModal = abrirModal;
+  IDEPI.fecharModal = fecharModal;
   IDEPI.ligarBotaoFullscreen = ligarBotaoFullscreen;
   IDEPI.toast = toast;
   IDEPI.copiar = copiar;

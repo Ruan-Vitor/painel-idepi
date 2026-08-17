@@ -150,8 +150,20 @@
                  nao lia. A vigencia passa a preferir o "Termino de Vigencia
                  Atual" do Transferegov: a CGU leva semanas para publicar um
                  aditivo e ate la o painel vence o convenio antes da hora.
-                 A origem fica escrita ao lado da data */
-const VERSAO = 'idepi-v37';
+                 A origem fica escrita ao lado da data
+     v38 — 17/08: FICHA DO INSTRUMENTO na execucao financeira, que passa a ser
+                 a pagina principal de cada instrumento — e para onde o numero
+                 clicavel de todos os paineis ja apontava. Abre em janela por
+                 cima (X, clique fora ou Esc), sem recarregar, para nao empurrar
+                 os numeros de execucao para baixo da dobra. Traz MUNICIPIO,
+                 FISCAL, CONTATO (ponto focal) e DONO DA EMENDA, os tres
+                 ultimos vindos do controle do setor — nao existem na CGU nem
+                 no Transferegov. Ponto focal so existe para os de 2023 em
+                 diante; nos 40 do legado a planilha nao tem a coluna e a linha
+                 diz "—" em vez de sumir. De quebra, a ficha que ja existia no
+                 codigo desde 04/08 passou a APARECER: ela escrevia num
+                 #fichaBasica que nunca existiu no HTML */
+const VERSAO = 'idepi-v38';
 const CACHE_SHELL = VERSAO + '-shell';
 const CACHE_PAGS  = VERSAO + '-paginas';
 

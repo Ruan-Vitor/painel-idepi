@@ -162,8 +162,17 @@
                  diante; nos 40 do legado a planilha nao tem a coluna e a linha
                  diz "—" em vez de sumir. De quebra, a ficha que ja existia no
                  codigo desde 04/08 passou a APARECER: ela escrevia num
-                 #fichaBasica que nunca existiu no HTML */
-const VERSAO = 'idepi-v38';
+                 #fichaBasica que nunca existiu no HTML
+     v39 — 17/08: STATUS DA PRESTACAO DE CONTAS FINAL na ficha: etapa, processo
+                 SEI, situacao e a OBSERVACAO, que e a unica coluna que nenhum
+                 script sabe preencher (vem do SEI, escrita a mao) e e o que diz
+                 de quem o processo esta esperando. Vem de painel/pcf, que tem
+                 regra propria no Firestore: quem nao tem o painel de PCF na
+                 lista de permissoes simplesmente nao ve o bloco. O estado tem
+                 TRES valores de proposito - lista vazia por falta de permissao
+                 nao pode virar "nao ha PCF", que seria afirmar o que nao se
+                 sabe. Carrega na 1a abertura da ficha, nao no start da pagina */
+const VERSAO = 'idepi-v39';
 const CACHE_SHELL = VERSAO + '-shell';
 const CACHE_PAGS  = VERSAO + '-paginas';
 

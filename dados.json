@@ -4066,7 +4066,7 @@
     {
       "numero": "781089",
       "objeto": "IMPLANTACAO DE INFRAESTRUTURA ESPORTIVA no Municipio de Monsenhor Hipolito  PI",
-      "coletado_em": "10/08/2026 16:37",
+      "coletado_em": "17/08/2026 16:25",
       "valor_global": "R$ 567.939,88",
       "valor_repasse": "R$ 487.500,00",
       "valor_contrapartida": "R$ 80.439,88",
@@ -5639,7 +5639,7 @@
     {
       "numero": "894024",
       "objeto": "1. PAVIMENTACAO EM PARALELEPIPEDO EM DIVERSAS RUAS DOS MUNICIPIOS DE AGRICOLANDIA,ALVORADA DO GURGUEIA, AVELINO LOPES, BETANIA DO PIAUI, BOCAINA, CABECEIRAS DO PIAUI, COLONIA DO PIAUI, ELESBAO VELOSO, FRANCINOPOLIS, IPIRANGA DO PIAUI, JOAO COSTA, MASSAPE DO PIAUI, MIGUEL LEAO, PASSAGEM FRANCA DO PIAUI, PAU D'ARCO DO PIAUI, PEDRO LAURENTINO, PORTO, QUEIMADA NOVA, SANTA FILOMENA, SANTANA DO PIAUI, SAO, FELIX DO PIAUI,",
-      "coletado_em": "10/08/2026 08:17",
+      "coletado_em": "17/08/2026 16:28",
       "valor_global": "R$ 8.607.200,00",
       "valor_repasse": "R$ 8.297.684,62",
       "valor_contrapartida": "R$ 309.515,38",
@@ -8863,7 +8863,7 @@
     {
       "numero": "897425",
       "objeto": "PAVIMENTACAO EM PARALELEPIPEDO DE DIVERSAS VIAS PUBLICAS NO MUNICIPIO DE ESPERANTINA - PI.",
-      "coletado_em": "10/08/2026 08:32",
+      "coletado_em": "17/08/2026 16:32",
       "valor_global": "R$ 2.438.000,00",
       "valor_repasse": "R$ 2.387.500,00",
       "valor_contrapartida": "R$ 50.500,00",
@@ -8889,14 +8889,44 @@
           "valor_repasse": "R$ 2.336.203,63",
           "dt_inicio": "05/10/2021",
           "dt_fim": "31/12/2022",
-          "cnpj": "29.020.209/0001-07",
-          "razao_social": "G. B. PEREIRA ENGENHARIA"
+          "cnpj": "",
+          "razao_social": ""
         }
       ],
       "movimentacoes": [
         {
+          "num": "10578297",
+          "data": "13/08/2026",
+          "tipo": "PAGAMENTO DE TRIBUTOS",
+          "v_orig": null,
+          "v_bruto": 114.49,
+          "v_liq": 114.49,
+          "v_retencao": 0.0,
+          "favorecido": "",
+          "cnpj": "",
+          "tributo": "ISS",
+          "ndl": "888",
+          "tdl": "NOTA FISCAL",
+          "situacao": "Movimentação Financeira Concluída"
+        },
+        {
+          "num": "10578257",
+          "data": "13/08/2026",
+          "tipo": "PAGAMENTO DE TRIBUTOS",
+          "v_orig": null,
+          "v_bruto": 62.45,
+          "v_liq": 62.45,
+          "v_retencao": 0.0,
+          "favorecido": "",
+          "cnpj": "",
+          "tributo": "IR",
+          "ndl": "888",
+          "tdl": "NOTA FISCAL",
+          "situacao": "Movimentação Financeira Concluída"
+        },
+        {
           "num": "10563251",
-          "data": "06/08/2026",
+          "data": "11/08/2026",
           "tipo": "PAGAMENTO A FAVORECIDO COM OBTV",
           "v_orig": 5204.18,
           "v_bruto": 5204.18,
@@ -8907,7 +8937,7 @@
           "tributo": "",
           "ndl": "888",
           "tdl": "NOTA FISCAL",
-          "situacao": "Movimentação Financeira Autorizada Gestor Financeiro"
+          "situacao": "Movimentação Financeira Conciliada"
         },
         {
           "num": "9852035",
@@ -9617,6 +9647,30 @@
       ],
       "notas_fiscais": [
         {
+          "num": "897",
+          "data": "12/08/2026",
+          "tipo": "NOTA FISCAL",
+          "razao": "G. B. PEREIRA ENGENHARIA",
+          "v_orig": 30297.31,
+          "v_bruto": 30297.31,
+          "tributos": 1030.1,
+          "v_liq": 29267.21,
+          "status": "Ativo",
+          "id_nf": "8503402",
+          "id_item": "",
+          "origem_recurso": "Repasse",
+          "itens": [
+            {
+              "desc": "EXECUÇÃO DE UMA EMPRESA DE ENGENHARIA PARA PAVIMENTAÇÃO EM PARALELEPÍPEDO NO MUNICÍPIO DE ESPERANTINA-PI.",
+              "valor": 30297.31,
+              "id_item": "14448977",
+              "repasse": 30297.31,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
           "num": "888",
           "data": "30/07/2026",
           "tipo": "NOTA FISCAL",
@@ -9961,7 +10015,7 @@
       "ateste_concedente": false,
       "status_obra": "",
       "tem_medicao": true,
-      "saldo_rendimentos": 200242.41,
+      "saldo_rendimentos": 201407.94,
       "repasse_desembolsado": {
         "previsto": 2387500.0,
         "desembolsado": 2387500.0,
@@ -9989,7 +10043,7 @@
     {
       "numero": "897099",
       "objeto": "PAVIMENTACAO EM PARALELEPIPEDO DE DIVERSAS VIAS PUBLICAS NOS MUNICIPIOS DE BATALHA, COLONIA DO GURGUEIA, LAGOA DO PIAUI, ALVORADA DO GURGUEIA E FLORESTA DO PIAUI, TODAS NO ESTADO DO PIAUI.",
-      "coletado_em": "10/08/2026 08:37",
+      "coletado_em": "17/08/2026 16:35",
       "valor_global": "R$ 2.438.000,00",
       "valor_repasse": "R$ 2.387.500,00",
       "valor_contrapartida": "R$ 50.500,00",
@@ -9999,24 +10053,14 @@
       "ano": "2019",
       "contratos": [
         {
-          "numero_contrato": "028/2020",
-          "situacao": "Contrato Concluído e Aditivação Concluída",
-          "valor": "R$ 35.501,49",
-          "valor_repasse": "R$ 35.501,49",
-          "dt_inicio": "23/04/2020",
-          "dt_fim": "31/12/2022",
-          "cnpj": "05.564.129/0001-46",
-          "razao_social": "COMPACTA ENGENHARIA E SERVICOS LTDA"
-        },
-        {
-          "numero_contrato": "090/2021",
-          "situacao": "Contrato Concluído e Aditivação Concluída",
-          "valor": "R$ 2.336.203,63",
-          "valor_repasse": "R$ 2.336.203,63",
-          "dt_inicio": "05/10/2021",
-          "dt_fim": "31/12/2022",
-          "cnpj": "",
-          "razao_social": ""
+          "numero_contrato": "—",
+          "situacao": "Rescindido (inferido)",
+          "valor": "",
+          "valor_repasse": "",
+          "dt_inicio": "",
+          "dt_fim": "",
+          "cnpj": "09.034.960/0001-47",
+          "razao_social": "ALX CONSTRUTORA LOCACOES E SERVICOS LTDA"
         }
       ],
       "movimentacoes": [
@@ -10073,7 +10117,7 @@
           "v_bruto": 84419.31,
           "v_liq": 81717.89,
           "v_retencao": 2701.42,
-          "favorecido": "COMPACTA ENGENHARIA E SERVICOS LTDA (05.564.129/0001-46)",
+          "favorecido": "",
           "cnpj": "26.578.603/0001-69",
           "tributo": "",
           "ndl": "19",
@@ -10118,7 +10162,7 @@
           "v_bruto": 34681.26,
           "v_liq": 33571.45,
           "v_retencao": 1109.81,
-          "favorecido": "COMPACTA ENGENHARIA E SERVICOS LTDA (05.564.129/0001-46)",
+          "favorecido": "",
           "cnpj": "26.578.603/0001-69",
           "tributo": "",
           "ndl": "16",
@@ -10163,7 +10207,7 @@
           "v_bruto": 35908.35,
           "v_liq": 34759.28,
           "v_retencao": 1149.07,
-          "favorecido": "COMPACTA ENGENHARIA E SERVICOS LTDA (05.564.129/0001-46)",
+          "favorecido": "",
           "cnpj": "26.578.603/0001-69",
           "tributo": "",
           "ndl": "9",
@@ -10193,7 +10237,7 @@
           "v_bruto": 12212.51,
           "v_liq": 11968.26,
           "v_retencao": 244.25,
-          "favorecido": "COMPACTA ENGENHARIA E SERVICOS LTDA (05.564.129/0001-46)",
+          "favorecido": "",
           "cnpj": "22.214.604/0001-73",
           "tributo": "",
           "ndl": "254",
@@ -10208,7 +10252,7 @@
           "v_bruto": 160553.27,
           "v_liq": 157342.21,
           "v_retencao": 3211.06,
-          "favorecido": "COMPACTA ENGENHARIA E SERVICOS LTDA (05.564.129/0001-46)",
+          "favorecido": "",
           "cnpj": "22.214.604/0001-73",
           "tributo": "",
           "ndl": "253",
@@ -10238,7 +10282,7 @@
           "v_bruto": 141565.66,
           "v_liq": 138734.35,
           "v_retencao": 2831.31,
-          "favorecido": "COMPACTA ENGENHARIA E SERVICOS LTDA (05.564.129/0001-46)",
+          "favorecido": "",
           "cnpj": "26.578.603/0001-69",
           "tributo": "",
           "ndl": "3",
@@ -10283,7 +10327,7 @@
           "v_bruto": 134605.7,
           "v_liq": 131980.89,
           "v_retencao": 2624.81,
-          "favorecido": "COMPACTA ENGENHARIA E SERVICOS LTDA (05.564.129/0001-46)",
+          "favorecido": "",
           "cnpj": "06.226.439/0001-13",
           "tributo": "",
           "ndl": "315",
@@ -10298,7 +10342,7 @@
           "v_bruto": 2786.0,
           "v_liq": 2731.68,
           "v_retencao": 54.32,
-          "favorecido": "COMPACTA ENGENHARIA E SERVICOS LTDA (05.564.129/0001-46)",
+          "favorecido": "",
           "cnpj": "06.226.439/0001-13",
           "tributo": "",
           "ndl": "312",
@@ -10343,7 +10387,7 @@
           "v_bruto": 170320.35,
           "v_liq": 168617.15,
           "v_retencao": 1703.2,
-          "favorecido": "COMPACTA ENGENHARIA E SERVICOS LTDA (05.564.129/0001-46)",
+          "favorecido": "",
           "cnpj": "26.578.603/0001-69",
           "tributo": "",
           "ndl": "2306050002",
@@ -10388,7 +10432,7 @@
           "v_bruto": 2253.29,
           "v_liq": 2209.35,
           "v_retencao": 43.94,
-          "favorecido": "COMPACTA ENGENHARIA E SERVICOS LTDA (05.564.129/0001-46)",
+          "favorecido": "",
           "cnpj": "23.559.275/0001-65",
           "tributo": "",
           "ndl": "242",
@@ -10448,7 +10492,7 @@
           "v_bruto": 213469.64,
           "v_liq": 209306.99,
           "v_retencao": 4162.65,
-          "favorecido": "COMPACTA ENGENHARIA E SERVICOS LTDA (05.564.129/0001-46)",
+          "favorecido": "",
           "cnpj": "06.226.439/0001-13",
           "tributo": "",
           "ndl": "294",
@@ -10478,7 +10522,7 @@
           "v_bruto": 157596.25,
           "v_liq": 154721.7,
           "v_retencao": 2874.55,
-          "favorecido": "COMPACTA ENGENHARIA E SERVICOS LTDA (05.564.129/0001-46)",
+          "favorecido": "",
           "cnpj": "22.214.604/0001-73",
           "tributo": "",
           "ndl": "204",
@@ -10523,7 +10567,7 @@
           "v_bruto": 137000.6,
           "v_liq": 134260.59,
           "v_retencao": 2740.01,
-          "favorecido": "COMPACTA ENGENHARIA E SERVICOS LTDA (05.564.129/0001-46)",
+          "favorecido": "",
           "cnpj": "22.214.604/0001-73",
           "tributo": "",
           "ndl": "199",
@@ -10538,7 +10582,7 @@
           "v_bruto": 185089.14,
           "v_liq": 182312.8,
           "v_retencao": 2776.34,
-          "favorecido": "COMPACTA ENGENHARIA E SERVICOS LTDA (05.564.129/0001-46)",
+          "favorecido": "",
           "cnpj": "26.578.603/0001-69",
           "tributo": "",
           "ndl": "2303030001",
@@ -10598,7 +10642,7 @@
           "v_bruto": 386198.07,
           "v_liq": 372294.94,
           "v_retencao": 13903.13,
-          "favorecido": "COMPACTA ENGENHARIA E SERVICOS LTDA (05.564.129/0001-46)",
+          "favorecido": "",
           "cnpj": "23.559.275/0001-65",
           "tributo": "",
           "ndl": "231",
@@ -10658,7 +10702,7 @@
           "v_bruto": 119375.0,
           "v_liq": 112869.06,
           "v_retencao": 6505.94,
-          "favorecido": "COMPACTA ENGENHARIA E SERVICOS LTDA (05.564.129/0001-46)",
+          "favorecido": "",
           "cnpj": "06.226.439/0001-13",
           "tributo": "",
           "ndl": "160",
@@ -10763,7 +10807,7 @@
           "v_bruto": 35501.49,
           "v_liq": 33903.93,
           "v_retencao": 1597.56,
-          "favorecido": "COMPACTA ENGENHARIA E SERVICOS LTDA (05.564.129/0001-46)",
+          "favorecido": "",
           "cnpj": "05.564.129/0001-46",
           "tributo": "",
           "ndl": "358",
@@ -11204,7 +11248,7 @@
       "ateste_concedente": false,
       "status_obra": "",
       "tem_medicao": false,
-      "saldo_rendimentos": 0.0,
+      "saldo_rendimentos": 248099.23,
       "repasse_desembolsado": {
         "previsto": 2387500.0,
         "desembolsado": 2387500.0,
@@ -11213,7 +11257,7 @@
       "_id_convenio": "811609",
       "_id_proposta": "1517662",
       "erro": "",
-      "obs_manual": "",
+      "obs_manual": "Empresa executora inferida das notas fiscais — SPA de Instrumentos Contratuais não retornou dados.",
       "perfil": "contrato_repasse_caixa",
       "concedente": "Caixa Economica Federal (inferido)",
       "mandataria": "Caixa Economica Federal",
@@ -11228,7 +11272,7 @@
     {
       "numero": "900822",
       "objeto": "1a ETAPA DO MELHORAMENTO DA IMPLANTACAO E PAVIMENTACAO ASFALTICA EM TRATAMENTO SUPERFICIAL DUPLO - TSD COM BANHO DILUIDO NA PISTA DE ROLAMENTO E TRATAMENTO SUPERFICIAL SIMPLES - TSS COM BANHO DILUIDO NOS ACOSTAMENTOS, DA RODOVIA PI-213, NO TRECHO: ESPERANTINA / ENTRONC. PI-305 (VOLTA DA JUREMA), COM 75,600 KM DE EXTENSAO.",
-      "coletado_em": "10/08/2026 08:44",
+      "coletado_em": "17/08/2026 16:42",
       "valor_global": "R$ 10.830.025,00",
       "valor_repasse": "R$ 10.610.025,00",
       "valor_contrapartida": "R$ 220.000,00",
@@ -12620,7 +12664,7 @@
     {
       "numero": "902680",
       "objeto": "2a ETAPA DO MELHORAMENTO DA IMPLANTACAO E PAVIMENTACAO ASFALTICA EM TRATAMENTO SUPERFICIAL DUPLO - TSD COM BANHO DILUIDO NA PISTA DE ROLAMENTO E TRATAMENTO SUPERFICIAL SIMPLES - TSS COM BANHO DILUIDO NOS ACOSTAMENTOS, DA RODOVIA PI-213, NO TRECHO: ESPERANTINA / ENTRONC. PI-305 (VOLTA DA JUREMA), COM 75,600 KM DE EXTENSAO.",
-      "coletado_em": "10/08/2026 08:52",
+      "coletado_em": "17/08/2026 16:44",
       "valor_global": "R$ 4.905.745,01",
       "valor_repasse": "R$ 4.591.845,00",
       "valor_contrapartida": "R$ 313.900,01",
@@ -14402,7 +14446,7 @@
     {
       "numero": "916598",
       "objeto": "PAVIMENTACAO EM PARALELEPIPEDO EM VIAS PUBLICAS NO PERIMETRO URBANO DO MUNICIPIO DE TERESINA - PI.",
-      "coletado_em": "10/08/2026 08:58",
+      "coletado_em": "17/08/2026 16:46",
       "valor_global": "R$ 605.000,00",
       "valor_repasse": "R$ 599.036,00",
       "valor_contrapartida": "R$ 5.964,00",
@@ -14611,7 +14655,7 @@
       "ateste_concedente": false,
       "status_obra": "",
       "tem_medicao": false,
-      "saldo_rendimentos": 43654.65,
+      "saldo_rendimentos": 44087.33,
       "repasse_desembolsado": {
         "previsto": 599036.0,
         "desembolsado": 345377.48,
@@ -15643,7 +15687,7 @@
     {
       "numero": "902705",
       "objeto": "OBRA DE CONSTRUCAO, ADEQUACAO E/OU READEQUACAO DE ESTRADAS VICINAIS NO MUNICIPIO DE JACOBINA-PI.",
-      "coletado_em": "10/08/2026 09:00",
+      "coletado_em": "17/08/2026 16:48",
       "valor_global": "R$ 487.500,00",
       "valor_repasse": "R$ 477.500,00",
       "valor_contrapartida": "R$ 10.000,00",
@@ -16096,7 +16140,7 @@
     {
       "numero": "838065",
       "objeto": "Implantacao de Melhorias Sanitarios Domiciliares.",
-      "coletado_em": "10/08/2026 09:03",
+      "coletado_em": "17/08/2026 16:50",
       "valor_global": "R$ 2.291.078,69",
       "valor_repasse": "R$ 2.283.948,69",
       "valor_contrapartida": "R$ 7.130,00",
@@ -17556,7 +17600,7 @@
       "ateste_concedente": false,
       "status_obra": "",
       "tem_medicao": false,
-      "saldo_rendimentos": 436916.97,
+      "saldo_rendimentos": 436558.67,
       "repasse_desembolsado": null,
       "_id_convenio": "584047",
       "_id_proposta": "",
@@ -17576,7 +17620,7 @@
     {
       "numero": "907472",
       "objeto": "IMPLANTACAO DE MELHORIAS HABITACIONAIS PARA OCONTROLE DE CHAGAS  NO MUNICIPIO DE DOM INOCENCIO - PI.",
-      "coletado_em": "10/08/2026 09:11",
+      "coletado_em": "17/08/2026 16:52",
       "valor_global": "R$ 1.000.000,00",
       "valor_repasse": "R$ 1.000.000,00",
       "valor_contrapartida": "R$ 0,00",
@@ -17615,7 +17659,7 @@
     {
       "numero": "907471",
       "objeto": "IMPLANTACAO DE MELHORIAS HABITACIONAIS PARA OCONTROLE DE CHAGAS NO MUNICIPIO DE LAGOA DE SAO FRANCISCO - PI.",
-      "coletado_em": "10/08/2026 09:14",
+      "coletado_em": "17/08/2026 16:54",
       "valor_global": "R$ 975.785,83",
       "valor_repasse": "R$ 975.785,83",
       "valor_contrapartida": "R$ 0,00",
@@ -17665,7 +17709,7 @@
     {
       "numero": "907470",
       "objeto": "IMPLANTACAO DE MELHORIAS HABITACIONAIS PARA O CONTROLE DE CHAGAS NO MUNICIPIO CAMPO ALEGRE DO FIDALGO - PI.",
-      "coletado_em": "10/08/2026 09:16",
+      "coletado_em": "17/08/2026 16:57",
       "valor_global": "R$ 1.000.000,00",
       "valor_repasse": "R$ 1.000.000,00",
       "valor_contrapartida": "R$ 0,00",
@@ -17704,7 +17748,7 @@
     {
       "numero": "907469",
       "objeto": "IMPLANTACAO DE MELHORIAS HABITACIONAIS PARA O CONTROLE DE CHAGAS NO MUNICIPIO DE AROEIRAS DO ITAIM - PI.",
-      "coletado_em": "10/08/2026 09:20",
+      "coletado_em": "17/08/2026 16:59",
       "valor_global": "R$ 1.000.000,00",
       "valor_repasse": "R$ 1.000.000,00",
       "valor_contrapartida": "R$ 0,00",
@@ -17743,7 +17787,7 @@
     {
       "numero": "907008",
       "objeto": "IMPLANTACAO DE MELHORIAS SANITARIAS DOMICILIARES EM AREAS RURAIS DO MUNICIPIO DE CURIMATA, ESTADO DO PIAUI.",
-      "coletado_em": "10/08/2026 09:23",
+      "coletado_em": "17/08/2026 17:01",
       "valor_global": "R$ 965.607,05",
       "valor_repasse": "R$ 965.607,05",
       "valor_contrapartida": "R$ 0,00",
@@ -17883,7 +17927,7 @@
       "ateste_concedente": false,
       "status_obra": "",
       "tem_medicao": false,
-      "saldo_rendimentos": 21087.11,
+      "saldo_rendimentos": 21128.75,
       "repasse_desembolsado": {
         "previsto": 965607.05,
         "desembolsado": 196670.0,
@@ -17911,7 +17955,7 @@
     {
       "numero": "907015",
       "objeto": "IMPLANTACAO DE MELHORIAS SANITARIAS DOMICILIARES EM AREAS RURAIS DO MUNICIPIO DE CANTO DO BURITI, ESTADO DO PIAUI.",
-      "coletado_em": "10/08/2026 09:25",
+      "coletado_em": "17/08/2026 17:02",
       "valor_global": "R$ 964.707,77",
       "valor_repasse": "R$ 964.707,77",
       "valor_contrapartida": "R$ 0,00",
@@ -17941,7 +17985,7 @@
       "ateste_concedente": false,
       "status_obra": "",
       "tem_medicao": false,
-      "saldo_rendimentos": 1881.7,
+      "saldo_rendimentos": 2266.38,
       "repasse_desembolsado": {
         "previsto": 964707.77,
         "desembolsado": 192941.55,
@@ -17969,7 +18013,7 @@
     {
       "numero": "907031",
       "objeto": "IMPLANTACAO DE MELHORIAS SANITARIAS DOMICILIARES EM AREAS RURAIS DO MUNICIPIO DE MURICI DOS PORTELAS, ESTADO DO PIAUI.",
-      "coletado_em": "10/08/2026 09:28",
+      "coletado_em": "17/08/2026 17:05",
       "valor_global": "R$ 968.368,62",
       "valor_repasse": "R$ 968.368,62",
       "valor_contrapartida": "R$ 0,00",
@@ -18023,7 +18067,7 @@
     {
       "numero": "907032",
       "objeto": "IMPLANTACAO DE MELHORIAS SANITARIAS DOMICILIARES EM AREAS RURAIS DO MUNICIPIO DE PARNAGUA, ESTADO DO PIAUI.",
-      "coletado_em": "10/08/2026 09:30",
+      "coletado_em": "17/08/2026 17:07",
       "valor_global": "R$ 966.163,34",
       "valor_repasse": "R$ 966.163,34",
       "valor_contrapartida": "R$ 0,00",
@@ -18109,7 +18153,7 @@
       "ateste_concedente": false,
       "status_obra": "",
       "tem_medicao": false,
-      "saldo_rendimentos": 23394.51,
+      "saldo_rendimentos": 23704.65,
       "repasse_desembolsado": {
         "previsto": 966163.34,
         "desembolsado": 196784.75,
@@ -18137,7 +18181,7 @@
     {
       "numero": "907033",
       "objeto": "IMPLANTACAO DE MELHORIAS SANITARIAS DOMICILIARES EM AREAS RURAIS DO MUNICIPIO DE ILHA GRANDE, ESTADO DO PIAUI.",
-      "coletado_em": "10/08/2026 09:32",
+      "coletado_em": "17/08/2026 17:09",
       "valor_global": "R$ 964.708,05",
       "valor_repasse": "R$ 964.708,05",
       "valor_contrapartida": "R$ 0,00",
@@ -18191,7 +18235,7 @@
     {
       "numero": "907035",
       "objeto": "IMPLANTACAO DE MELHORIAS SANITARIAS DOMICILIARES EM AREAS RURAIS DO MUNICIPIO DE SIGEFREDO PACHECO, ESTADO DO PIAUI.",
-      "coletado_em": "10/08/2026 09:34",
+      "coletado_em": "17/08/2026 17:11",
       "valor_global": "R$ 953.805,79",
       "valor_repasse": "R$ 953.805,79",
       "valor_contrapartida": "R$ 0,00",
@@ -18221,7 +18265,7 @@
       "ateste_concedente": false,
       "status_obra": "",
       "tem_medicao": false,
-      "saldo_rendimentos": 6699.98,
+      "saldo_rendimentos": 7089.86,
       "repasse_desembolsado": {
         "previsto": 953805.79,
         "desembolsado": 190761.16,
@@ -18249,7 +18293,7 @@
     {
       "numero": "907037",
       "objeto": "IMPLANTACAO DE MELHORIAS SANITARIAS DOMICILIARES EM AREAS RURAIS DO MUNICIPIO DE UNIAO, ESTADO DO PIAUI.",
-      "coletado_em": "10/08/2026 09:36",
+      "coletado_em": "17/08/2026 17:13",
       "valor_global": "R$ 975.124,31",
       "valor_repasse": "R$ 975.124,31",
       "valor_contrapartida": "R$ 0,00",
@@ -18350,7 +18394,7 @@
       "ateste_concedente": false,
       "status_obra": "",
       "tem_medicao": false,
-      "saldo_rendimentos": 19501.69,
+      "saldo_rendimentos": 19540.19,
       "repasse_desembolsado": {
         "previsto": 975124.31,
         "desembolsado": 198634.77,
@@ -18378,7 +18422,7 @@
     {
       "numero": "907038",
       "objeto": "IMPLANTACAO DE MELHORIAS SANITARIAS DOMICILIARES EM AREAS RURAIS DO MUNICIPIO DE RIBEIRO GONCALVES, ESTADO DO PIAUI.",
-      "coletado_em": "10/08/2026 09:38",
+      "coletado_em": "17/08/2026 17:15",
       "valor_global": "R$ 965.322,83",
       "valor_repasse": "R$ 965.322,83",
       "valor_contrapartida": "R$ 0,00",
@@ -18408,7 +18452,7 @@
       "ateste_concedente": false,
       "status_obra": "",
       "tem_medicao": false,
-      "saldo_rendimentos": 2120.66,
+      "saldo_rendimentos": 2506.06,
       "repasse_desembolsado": {
         "previsto": 965322.83,
         "desembolsado": 193064.56,
@@ -18436,7 +18480,7 @@
     {
       "numero": "907040",
       "objeto": "IMPLANTACAO DE MELHORIAS SANITARIAS DOMICILIARES EM AREAS RURAIS DO MUNICIPIO DE LUIS CORREIA, ESTADO DO PIAUI.",
-      "coletado_em": "10/08/2026 09:40",
+      "coletado_em": "17/08/2026 17:17",
       "valor_global": "R$ 1.250.000,00",
       "valor_repasse": "R$ 1.250.000,00",
       "valor_contrapartida": "R$ 0,00",
@@ -18475,7 +18519,7 @@
     {
       "numero": "907045",
       "objeto": "IMPLANTACAO DE MELHORIAS SANITARIAS DOMICILIARES EM AREAS RURAIS DO MUNICIPIO DE SIMPLICIO MENDES, ESTADO DO PIAUI.",
-      "coletado_em": "10/08/2026 09:44",
+      "coletado_em": "17/08/2026 17:19",
       "valor_global": "R$ 965.607,05",
       "valor_repasse": "R$ 965.607,05",
       "valor_contrapartida": "R$ 0,00",
@@ -18561,7 +18605,7 @@
       "ateste_concedente": false,
       "status_obra": "",
       "tem_medicao": false,
-      "saldo_rendimentos": 20794.89,
+      "saldo_rendimentos": 21215.67,
       "repasse_desembolsado": {
         "previsto": 965607.05,
         "desembolsado": 196670.0,
@@ -18589,7 +18633,7 @@
     {
       "numero": "907050",
       "objeto": "IMPLANTACAO DE MELHORIAS SANITARIAS DOMICILIARES EM AREAS RURAIS DO MUNICIPIO DE SAO PEDRO DO PIAUI, ESTADO DO PIAUI.",
-      "coletado_em": "10/08/2026 09:46",
+      "coletado_em": "17/08/2026 17:21",
       "valor_global": "R$ 963.647,51",
       "valor_repasse": "R$ 963.647,51",
       "valor_contrapartida": "R$ 0,00",
@@ -18675,7 +18719,7 @@
       "ateste_concedente": false,
       "status_obra": "",
       "tem_medicao": false,
-      "saldo_rendimentos": 19660.82,
+      "saldo_rendimentos": 20058.54,
       "repasse_desembolsado": {
         "previsto": 963647.51,
         "desembolsado": 196265.04,
@@ -18703,7 +18747,7 @@
     {
       "numero": "737058",
       "objeto": "Construcao da Barragem Atalaia, Tipo Terra Zoneada, localizada no municipio de Sebastiao Barros, barrando o rio Paraim,  sangradouro tipo Perfil Creager. 1a ETAPA.",
-      "coletado_em": "10/08/2026 09:48",
+      "coletado_em": "17/08/2026 17:23",
       "valor_global": "R$ 136.957.992,30",
       "valor_repasse": "R$ 119.187.005,00",
       "valor_contrapartida": "R$ 13.323.944,11",
@@ -30235,7 +30279,7 @@
     {
       "numero": "887234",
       "objeto": "PAVIMENTACAO EM DIVERSAS VIAS PUBLICAS NOS MUNICIPIOS DE CAMPO ALEGRE DO FIDALGO E JOAO COSTA - PI",
-      "coletado_em": "10/08/2026 10:52",
+      "coletado_em": "17/08/2026 17:30",
       "valor_global": "R$ 776.300,00",
       "valor_repasse": "R$ 760.000,00",
       "valor_contrapartida": "R$ 16.300,00",
@@ -30493,7 +30537,7 @@
       "ateste_concedente": false,
       "status_obra": "",
       "tem_medicao": false,
-      "saldo_rendimentos": 0.0,
+      "saldo_rendimentos": 165434.76,
       "repasse_desembolsado": {
         "previsto": 760000.0,
         "desembolsado": 760000.0,
@@ -30521,7 +30565,7 @@
     {
       "numero": "902401",
       "objeto": "PAVIMENTACAO DE VIAS PUBLICAS NO MUNICIPIO DE ESPERANTINA-PI",
-      "coletado_em": "10/08/2026 10:55",
+      "coletado_em": "17/08/2026 17:32",
       "valor_global": "R$ 1.918.800,00",
       "valor_repasse": "R$ 1.879.440,00",
       "valor_contrapartida": "R$ 39.360,00",
@@ -31288,7 +31332,7 @@
       "ateste_concedente": false,
       "status_obra": "",
       "tem_medicao": false,
-      "saldo_rendimentos": 102630.7,
+      "saldo_rendimentos": 104504.75,
       "repasse_desembolsado": {
         "previsto": 1879440.0,
         "desembolsado": 1879440.0,
@@ -31316,7 +31360,7 @@
     {
       "numero": "899533",
       "objeto": "PAVIMENTACAO DE VIAS PUBLICAS NO MUNICIPIO DE UNIAO - PI.",
-      "coletado_em": "10/08/2026 10:59",
+      "coletado_em": "17/08/2026 17:34",
       "valor_global": "R$ 479.700,00",
       "valor_repasse": "R$ 469.860,00",
       "valor_contrapartida": "R$ 9.840,00",
@@ -31870,7 +31914,7 @@
     {
       "numero": "900837",
       "objeto": "PAVIMENTACAO EM VIAS PUBLICAS NO MUNICIPIO DE PARNAIBA-PI",
-      "coletado_em": "10/08/2026 11:03",
+      "coletado_em": "17/08/2026 17:36",
       "valor_global": "R$ 479.700,00",
       "valor_repasse": "R$ 469.700,00",
       "valor_contrapartida": "R$ 10.000,00",
@@ -32094,7 +32138,7 @@
       "ateste_concedente": false,
       "status_obra": "",
       "tem_medicao": false,
-      "saldo_rendimentos": 73702.82,
+      "saldo_rendimentos": 74483.56,
       "repasse_desembolsado": {
         "previsto": 469700.0,
         "desembolsado": 469700.0,
@@ -32113,12 +32157,16 @@
       "exec_fisica_pct_financeiro": 32.9,
       "exec_fisica_medicao_travada": false,
       "valor_global_calculado": false,
-      "aio": null
+      "aio": {
+        "emitida": true,
+        "data": "09/12/2024",
+        "texto": "Emitida pelo sistema em 09/12/2024."
+      }
     },
     {
       "numero": "900840",
       "objeto": "PAVIMENTACAO DE VIAS PUBLICAS NO MUNICIPIO DE LUIS CORREIA-PI.",
-      "coletado_em": "10/08/2026 11:05",
+      "coletado_em": "17/08/2026 17:38",
       "valor_global": "R$ 487.499,74",
       "valor_repasse": "R$ 477.499,74",
       "valor_contrapartida": "R$ 10.000,00",
@@ -32273,7 +32321,7 @@
       "ateste_concedente": false,
       "status_obra": "",
       "tem_medicao": false,
-      "saldo_rendimentos": 31859.22,
+      "saldo_rendimentos": 32459.74,
       "repasse_desembolsado": {
         "previsto": 477499.74,
         "desembolsado": 477499.74,
@@ -32864,7 +32912,7 @@
     {
       "numero": "847194",
       "objeto": "IMPLANTACAO DE SISTEMAS DE ABASTECIMENTO DE AGUA EM DIVERSOS MUNICIPIOS NO ESTADO DO PIAUI",
-      "coletado_em": "10/08/2026 11:08",
+      "coletado_em": "17/08/2026 17:40",
       "valor_global": "R$ 943.463,24",
       "valor_repasse": "R$ 579.280,55",
       "valor_contrapartida": "R$ 364.182,69",
@@ -32903,7 +32951,7 @@
     {
       "numero": "920090",
       "objeto": "Pavimentacao de vias publicas no municipio de Capitao Gervasio Oliveira  PI.",
-      "coletado_em": "10/08/2026 11:10",
+      "coletado_em": "17/08/2026 17:42",
       "valor_global": "R$ 298.720,73",
       "valor_repasse": "R$ 290.032,94",
       "valor_contrapartida": "R$ 8.687,79",
@@ -33127,7 +33175,7 @@
       "ateste_concedente": false,
       "status_obra": "",
       "tem_medicao": true,
-      "saldo_rendimentos": 10424.74,
+      "saldo_rendimentos": 10509.82,
       "repasse_desembolsado": {
         "previsto": 290032.94,
         "desembolsado": 290032.94,
@@ -34783,7 +34831,7 @@
     {
       "numero": "946258",
       "objeto": "MANUTENCAO E ADEQUACAO NAS ESTRADAS VICINAIS DO MUNICIPIO DE DEMERVAL LOBAO-PI.",
-      "coletado_em": "10/08/2026 11:12",
+      "coletado_em": "17/08/2026 17:43",
       "valor_global": "R$ 701.000,00",
       "valor_repasse": "R$ 668.500,00",
       "valor_contrapartida": "R$ 32.500,00",
@@ -34899,7 +34947,7 @@
       "ateste_concedente": false,
       "status_obra": "",
       "tem_medicao": true,
-      "saldo_rendimentos": 26702.47,
+      "saldo_rendimentos": 26949.73,
       "repasse_desembolsado": {
         "previsto": 668500.0,
         "desembolsado": 668500.0,
@@ -36295,7 +36343,7 @@
     {
       "numero": "947533",
       "objeto": "MANUTENCAO E ADEQUACAO NAS ESTRADAS VICINAIS DO MUNICIPIO DE NOSSA SENHORA DOS REMEDIOS - PI.",
-      "coletado_em": "10/08/2026 11:17",
+      "coletado_em": "17/08/2026 17:45",
       "valor_global": "R$ 1.490.091,00",
       "valor_repasse": "R$ 1.421.126,91",
       "valor_contrapartida": "R$ 68.964,09",
@@ -36511,15 +36559,15 @@
           ]
         }
       ],
-      "exec_fisica_pct": 48.38,
-      "exec_fisica_str": "48,38%",
-      "exec_fisica_valor_realizado": "R$ 684.768,83",
+      "exec_fisica_pct": 100.0,
+      "exec_fisica_str": "100,00%",
+      "exec_fisica_valor_realizado": "R$ 1.415.341,70",
       "exec_fisica_valor_total": "R$ 1.415.341,75",
-      "ateste_convenente": false,
+      "ateste_convenente": true,
       "ateste_concedente": false,
       "status_obra": "",
-      "tem_medicao": false,
-      "saldo_rendimentos": 204434.74,
+      "tem_medicao": true,
+      "saldo_rendimentos": 206261.04,
       "repasse_desembolsado": {
         "previsto": 1421126.91,
         "desembolsado": 1421126.91,
@@ -38194,7 +38242,7 @@
     {
       "numero": "946801",
       "objeto": "IMPLANTACAO DO SISTEMA ADUTOR NO MUNICIPIO DE CAPITAO GERVASIO OLIVEIRA-PI.",
-      "coletado_em": "10/08/2026 11:20",
+      "coletado_em": "17/08/2026 17:47",
       "valor_global": "R$ 27.990.530,45",
       "valor_repasse": "R$ 22.000.000,00",
       "valor_contrapartida": "R$ 5.990.530,45",
@@ -38418,7 +38466,7 @@
       "ateste_concedente": false,
       "status_obra": "",
       "tem_medicao": false,
-      "saldo_rendimentos": 22701.06,
+      "saldo_rendimentos": 22874.5,
       "repasse_desembolsado": {
         "previsto": 22000000.0,
         "desembolsado": 4260623.79,
@@ -38446,7 +38494,7 @@
     {
       "numero": "946378",
       "objeto": "IMPLANTACAO DO SISTEMA ADUTOR NO MUNICIPIO DE SAO LOURENCO DO PIAUI-PI.",
-      "coletado_em": "10/08/2026 11:22",
+      "coletado_em": "17/08/2026 17:49",
       "valor_global": "R$ 15.207.138,04",
       "valor_repasse": "R$ 12.000.000,00",
       "valor_contrapartida": "R$ 3.207.138,04",
@@ -38467,6 +38515,66 @@
         }
       ],
       "movimentacoes": [
+        {
+          "num": "10581582",
+          "data": "13/08/2026",
+          "tipo": "PAGAMENTO DE TRIBUTOS",
+          "v_orig": null,
+          "v_bruto": 44090.03,
+          "v_liq": 44090.03,
+          "v_retencao": 0.0,
+          "favorecido": "",
+          "cnpj": "",
+          "tributo": "ISS",
+          "ndl": "33, 34",
+          "tdl": "NOTA FISCAL",
+          "situacao": "Movimentação Financeira Concluída"
+        },
+        {
+          "num": "10581574",
+          "data": "13/08/2026",
+          "tipo": "PAGAMENTO DE TRIBUTOS",
+          "v_orig": null,
+          "v_bruto": 38466.35,
+          "v_liq": 38466.35,
+          "v_retencao": 0.0,
+          "favorecido": "",
+          "cnpj": "",
+          "tributo": "IR",
+          "ndl": "33, 34",
+          "tdl": "NOTA FISCAL",
+          "situacao": "Movimentação Financeira Concluída"
+        },
+        {
+          "num": "10572239",
+          "data": "12/08/2026",
+          "tipo": "PAGAMENTO A FAVORECIDO COM OBTV",
+          "v_orig": 13000.0,
+          "v_bruto": 13000.0,
+          "v_liq": 12665.2,
+          "v_retencao": 334.8,
+          "favorecido": "RM SERVICOS E EMPREENDIMENTOS LTDA (34.980.920/0001-35)",
+          "cnpj": "34.980.920/0001-35",
+          "tributo": "",
+          "ndl": "34",
+          "tdl": "NOTA FISCAL",
+          "situacao": "Movimentação Financeira Conciliada"
+        },
+        {
+          "num": "10572234",
+          "data": "12/08/2026",
+          "tipo": "PAGAMENTO A FAVORECIDO COM OBTV",
+          "v_orig": 3192529.5,
+          "v_bruto": 3192529.5,
+          "v_liq": 3110307.92,
+          "v_retencao": 82221.58,
+          "favorecido": "RM SERVICOS E EMPREENDIMENTOS LTDA (34.980.920/0001-35)",
+          "cnpj": "34.980.920/0001-35",
+          "tributo": "",
+          "ndl": "33",
+          "tdl": "NOTA FISCAL",
+          "situacao": "Movimentação Financeira Conciliada"
+        },
         {
           "num": "10477325",
           "data": "03/07/2026",
@@ -38610,7 +38718,7 @@
       "ateste_concedente": false,
       "status_obra": "",
       "tem_medicao": false,
-      "saldo_rendimentos": 45392.8,
+      "saldo_rendimentos": 134179.87,
       "repasse_desembolsado": {
         "previsto": 12000000.0,
         "desembolsado": 5792250.55,
@@ -38626,7 +38734,7 @@
       "exec_fisica_sem_medicao": false,
       "exec_fisica_metas_parciais": true,
       "exec_fisica_valor_fora_obras": "R$ 526.545,75 (3.5% do global nao cobre aba obras)",
-      "exec_fisica_pct_financeiro": 15.6,
+      "exec_fisica_pct_financeiro": 36.7,
       "exec_fisica_medicao_travada": false,
       "valor_global_calculado": false,
       "aio": {
@@ -38638,7 +38746,7 @@
     {
       "numero": "947580",
       "objeto": "CONSTRUCAO DE UM PARQUE DE EXPOSICOES NO MUNICIPIO DE PIO IX-PI",
-      "coletado_em": "10/08/2026 11:25",
+      "coletado_em": "17/08/2026 17:51",
       "valor_global": "R$ 1.510.214,00",
       "valor_repasse": "R$ 1.441.714,00",
       "valor_contrapartida": "R$ 68.500,00",
@@ -38754,7 +38862,7 @@
       "ateste_concedente": false,
       "status_obra": "",
       "tem_medicao": false,
-      "saldo_rendimentos": 82899.69,
+      "saldo_rendimentos": 85735.6,
       "repasse_desembolsado": {
         "previsto": 1441714.0,
         "desembolsado": 1441714.0,
@@ -38782,8 +38890,8 @@
     {
       "numero": "953168",
       "objeto": "EXECUCAO DAS OBRAS E SERVICOS DE ENGENHARIA PARA A CONSTRUCAO DA BARRAGEM DE NOVA ALGODOES NO MUNICIPIO DE COCAL - PI",
-      "coletado_em": "10/08/2026 11:27",
-      "valor_global": "R$ 240.030.000,00",
+      "coletado_em": "17/08/2026 17:53",
+      "valor_global": "R$ 242.111.959,72",
       "valor_repasse": "R$ 240.000.000,00",
       "valor_contrapartida": "R$ 30.000,00",
       "situacao_tgov": "Em execução",
@@ -38803,6 +38911,51 @@
         }
       ],
       "movimentacoes": [
+        {
+          "num": "10584012",
+          "data": "14/08/2026",
+          "tipo": "PAGAMENTO DE TRIBUTOS",
+          "v_orig": null,
+          "v_bruto": 12601.67,
+          "v_liq": 12601.67,
+          "v_retencao": 0.0,
+          "favorecido": "",
+          "cnpj": "",
+          "tributo": "ISS",
+          "ndl": "1391",
+          "tdl": "NOTA FISCAL",
+          "situacao": "Movimentação Financeira Concluída"
+        },
+        {
+          "num": "10583983",
+          "data": "14/08/2026",
+          "tipo": "PAGAMENTO DE TRIBUTOS",
+          "v_orig": null,
+          "v_bruto": 3024.47,
+          "v_liq": 3024.47,
+          "v_retencao": 0.0,
+          "favorecido": "",
+          "cnpj": "",
+          "tributo": "IR",
+          "ndl": "1391",
+          "tdl": "NOTA FISCAL",
+          "situacao": "Movimentação Financeira Concluída"
+        },
+        {
+          "num": "10578699",
+          "data": "13/08/2026",
+          "tipo": "PAGAMENTO A FAVORECIDO COM OBTV",
+          "v_orig": 252039.51,
+          "v_bruto": 252039.51,
+          "v_liq": 236413.37,
+          "v_retencao": 15626.14,
+          "favorecido": "CONSTRUTORA OTIMA LTDA (45.776.055/0001-26)",
+          "cnpj": "04.804.189/0001-26",
+          "tributo": "",
+          "ndl": "1391",
+          "tdl": "NOTA FISCAL",
+          "situacao": "Movimentação Financeira Concluída"
+        },
         {
           "num": "10519927",
           "data": "21/07/2026",
@@ -40591,6 +40744,30 @@
       ],
       "notas_fiscais": [
         {
+          "num": "1391",
+          "data": "10/08/2026",
+          "tipo": "NOTA FISCAL",
+          "razao": "ENGECOR CONSULTORIA E PROJETOS LTDA",
+          "v_orig": 252039.51,
+          "v_bruto": 252039.51,
+          "tributos": 15626.14,
+          "v_liq": 236413.37,
+          "status": "Ativo",
+          "id_nf": "8499088",
+          "id_item": "",
+          "origem_recurso": "Repasse",
+          "itens": [
+            {
+              "desc": "CONTRATAÇÃO DE EMPRESA ESPECIALIZADA PARA ASSESSORIA E FISCALIZAÇÃO DA BARRAGEM DE NOVA ALGODÕES, NO MUNICÍPIO DE COCAL - PI.",
+              "valor": 252039.51,
+              "id_item": "14440435",
+              "repasse": 252039.51,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
           "num": "498",
           "data": "20/07/2026",
           "tipo": "NOTA FISCAL",
@@ -41847,7 +42024,7 @@
       "ateste_concedente": false,
       "status_obra": "",
       "tem_medicao": true,
-      "saldo_rendimentos": 1123932.47,
+      "saldo_rendimentos": 506671.1,
       "repasse_desembolsado": {
         "previsto": 240000000.0,
         "desembolsado": 116650000.0,
@@ -41862,10 +42039,10 @@
       "mandataria": "",
       "exec_fisica_sem_medicao": false,
       "exec_fisica_metas_parciais": true,
-      "exec_fisica_valor_fora_obras": "R$ 34.837.746,49 (14.5% do global nao cobre aba obras)",
-      "exec_fisica_pct_financeiro": 40.6,
+      "exec_fisica_valor_fora_obras": "R$ 36.919.706,21 (15.2% do global nao cobre aba obras)",
+      "exec_fisica_pct_financeiro": 40.4,
       "exec_fisica_medicao_travada": false,
-      "valor_global_calculado": true,
+      "valor_global_calculado": false,
       "aio": {
         "emitida": true,
         "data": "04/11/2024",
@@ -42203,7 +42380,7 @@
     {
       "numero": "946039",
       "objeto": "PAVIMENTACAO EM PARALELEPIPEDO EM VIAS PUBLICAS DO MUNICIPIO DE TERESINA - PI.",
-      "coletado_em": "10/08/2026 11:42",
+      "coletado_em": "17/08/2026 17:56",
       "valor_global": "R$ 658.000,00",
       "valor_repasse": "R$ 633.236,00",
       "valor_contrapartida": "R$ 24.764,00",
@@ -42544,7 +42721,7 @@
       "ateste_concedente": false,
       "status_obra": "",
       "tem_medicao": false,
-      "saldo_rendimentos": 46411.04,
+      "saldo_rendimentos": 47059.32,
       "repasse_desembolsado": {
         "previsto": 633236.0,
         "desembolsado": 633236.0,
@@ -42572,7 +42749,7 @@
     {
       "numero": "945650",
       "objeto": "PAVIMENTACAO EM PARALELEPIPEDO EM VIAS PUBLICAS DO MUNICIPIO DE SAO JOAO DA CANABRAVA - PI.",
-      "coletado_em": "10/08/2026 11:45",
+      "coletado_em": "17/08/2026 17:58",
       "valor_global": "R$ 501.000,00",
       "valor_repasse": "R$ 481.104,00",
       "valor_contrapartida": "R$ 19.896,00",
@@ -42593,6 +42770,51 @@
         }
       ],
       "movimentacoes": [
+        {
+          "num": "10583945",
+          "data": "14/08/2026",
+          "tipo": "PAGAMENTO DE TRIBUTOS",
+          "v_orig": null,
+          "v_bruto": 3607.72,
+          "v_liq": 3607.72,
+          "v_retencao": 0.0,
+          "favorecido": "",
+          "cnpj": "",
+          "tributo": "ISS",
+          "ndl": "98",
+          "tdl": "NOTA FISCAL",
+          "situacao": "Movimentação Financeira Concluída"
+        },
+        {
+          "num": "10583926",
+          "data": "14/08/2026",
+          "tipo": "PAGAMENTO DE TRIBUTOS",
+          "v_orig": null,
+          "v_bruto": 1443.08,
+          "v_liq": 1443.08,
+          "v_retencao": 0.0,
+          "favorecido": "",
+          "cnpj": "",
+          "tributo": "IR",
+          "ndl": "98",
+          "tdl": "NOTA FISCAL",
+          "situacao": "Movimentação Financeira Concluída"
+        },
+        {
+          "num": "10578660",
+          "data": "13/08/2026",
+          "tipo": "PAGAMENTO A FAVORECIDO COM OBTV",
+          "v_orig": 120257.35,
+          "v_bruto": 120257.35,
+          "v_liq": 115206.55,
+          "v_retencao": 5050.8,
+          "favorecido": "VITORIA LOCACAO E CONSTRUCAO LTDA (35.135.052/0001-50)",
+          "cnpj": "35.135.052/0001-50",
+          "tributo": "",
+          "ndl": "98",
+          "tdl": "NOTA FISCAL",
+          "situacao": "Movimentação Financeira Concluída"
+        },
         {
           "num": "10482219",
           "data": "07/07/2026",
@@ -42754,7 +42976,7 @@
           "v_bruto": 120257.35,
           "tributos": 5050.8,
           "v_liq": 115206.55,
-          "status": "Em Elaboração",
+          "status": "Ativo",
           "id_nf": "8493675",
           "id_item": "",
           "origem_recurso": "Repasse",
@@ -42850,7 +43072,7 @@
       "ateste_concedente": false,
       "status_obra": "",
       "tem_medicao": false,
-      "saldo_rendimentos": 37401.45,
+      "saldo_rendimentos": 158049.59,
       "repasse_desembolsado": {
         "previsto": 481104.0,
         "desembolsado": 481104.0,
@@ -42866,7 +43088,7 @@
       "exec_fisica_sem_medicao": false,
       "exec_fisica_metas_parciais": true,
       "exec_fisica_valor_fora_obras": "R$ 46.175,96 (9.2% do global nao cobre aba obras)",
-      "exec_fisica_pct_financeiro": 60.0,
+      "exec_fisica_pct_financeiro": 84.0,
       "exec_fisica_medicao_travada": false,
       "valor_global_calculado": false,
       "aio": {
@@ -42878,7 +43100,7 @@
     {
       "numero": "947907",
       "objeto": "PAVIMENTACAO EM PARALELEPIPEDO EM VIAS PUBLICAS DO MUNICIPIO DE PAQUETA - PI.",
-      "coletado_em": "10/08/2026 11:48",
+      "coletado_em": "17/08/2026 18:00",
       "valor_global": "R$ 594.000,00",
       "valor_repasse": "R$ 571.220,00",
       "valor_contrapartida": "R$ 22.780,00",
@@ -42988,13 +43210,13 @@
       ],
       "exec_fisica_pct": 64.18,
       "exec_fisica_str": "64,18%",
-      "exec_fisica_valor_realizado": "",
+      "exec_fisica_valor_realizado": "R$ 360.101,10",
       "exec_fisica_valor_total": "R$ 561.046,03",
       "ateste_convenente": false,
       "ateste_concedente": false,
       "status_obra": "",
       "tem_medicao": false,
-      "saldo_rendimentos": 34023.57,
+      "saldo_rendimentos": 35127.38,
       "repasse_desembolsado": {
         "previsto": 571220.0,
         "desembolsado": 571220.0,
@@ -43022,7 +43244,7 @@
     {
       "numero": "946738",
       "objeto": "PAVIMENTACAO EM PARALELEPIPEDO NA ORLA DA BARRAGEM CENTRAL EM JUREMA DO PIAUI-PI",
-      "coletado_em": "10/08/2026 11:50",
+      "coletado_em": "17/08/2026 18:02",
       "valor_global": "R$ 501.000,00",
       "valor_repasse": "R$ 481.104,00",
       "valor_contrapartida": "R$ 19.896,00",
@@ -43276,7 +43498,7 @@
       "ateste_concedente": false,
       "status_obra": "",
       "tem_medicao": false,
-      "saldo_rendimentos": 35812.27,
+      "saldo_rendimentos": 36377.24,
       "repasse_desembolsado": {
         "previsto": 481104.0,
         "desembolsado": 481104.0,
@@ -43304,7 +43526,7 @@
     {
       "numero": "945158",
       "objeto": "PAVIMENTACAO EM PARALELEPIPEDO EM VIAS PUBLICAS DO MUNICIPIO DE INHUMA - PI.",
-      "coletado_em": "10/08/2026 11:53",
+      "coletado_em": "17/08/2026 18:04",
       "valor_global": "R$ 700.700,00",
       "valor_repasse": "R$ 674.903,00",
       "valor_contrapartida": "R$ 25.797,00",
@@ -43528,7 +43750,7 @@
       "ateste_concedente": false,
       "status_obra": "",
       "tem_medicao": false,
-      "saldo_rendimentos": 34089.99,
+      "saldo_rendimentos": 34725.29,
       "repasse_desembolsado": {
         "previsto": 674903.0,
         "desembolsado": 674903.0,
@@ -43847,7 +44069,7 @@
     {
       "numero": "946367",
       "objeto": "PAVIMENTACAO EM PARALELEPIPEDO EM VIAS PUBLICAS DO MUNICIPIO DE PICOS - PI.",
-      "coletado_em": "10/08/2026 11:55",
+      "coletado_em": "17/08/2026 18:06",
       "valor_global": "R$ 502.500,00",
       "valor_repasse": "R$ 477.500,00",
       "valor_contrapartida": "R$ 25.000,00",
@@ -44173,7 +44395,7 @@
       "ateste_concedente": false,
       "status_obra": "",
       "tem_medicao": false,
-      "saldo_rendimentos": 35759.3,
+      "saldo_rendimentos": 36084.54,
       "repasse_desembolsado": {
         "previsto": 477500.0,
         "desembolsado": 477500.0,
@@ -44201,7 +44423,7 @@
     {
       "numero": "951016",
       "objeto": "PAVIMENTACAO EM PARALELEPIPEDO EM VIAS PUBLICAS DO MUNICIPIO DE PAQUETA - PI.",
-      "coletado_em": "10/08/2026 11:58",
+      "coletado_em": "17/08/2026 18:08",
       "valor_global": "R$ 520.896,00",
       "valor_repasse": "R$ 500.000,00",
       "valor_contrapartida": "R$ 20.896,00",
@@ -44650,7 +44872,7 @@
       "ateste_concedente": false,
       "status_obra": "",
       "tem_medicao": false,
-      "saldo_rendimentos": 36714.39,
+      "saldo_rendimentos": 37121.93,
       "repasse_desembolsado": {
         "previsto": 500000.0,
         "desembolsado": 500000.0,
@@ -44678,7 +44900,7 @@
     {
       "numero": "951018",
       "objeto": "PAVIMENTACAO EM PARALELEPIPEDO EM VIAS PUBLICAS DO MUNICIPIO DE PICOS - PI.",
-      "coletado_em": "10/08/2026 12:02",
+      "coletado_em": "17/08/2026 18:09",
       "valor_global": "R$ 306.500,00",
       "valor_repasse": "R$ 286.500,00",
       "valor_contrapartida": "R$ 20.000,00",
@@ -44833,7 +45055,7 @@
       "ateste_concedente": false,
       "status_obra": "",
       "tem_medicao": true,
-      "saldo_rendimentos": 11876.87,
+      "saldo_rendimentos": 12138.0,
       "repasse_desembolsado": {
         "previsto": 286500.0,
         "desembolsado": 286500.0,
@@ -45044,7 +45266,7 @@
     {
       "numero": "952006",
       "objeto": "PAVIMENTACAO EM PARALELEPIPEDO EM VIAS PUBLICAS DO MUNICIPIO DE CORRENTE - PI.",
-      "coletado_em": "10/08/2026 12:04",
+      "coletado_em": "17/08/2026 18:11",
       "valor_global": "R$ 424.993,00",
       "valor_repasse": "R$ 402.993,00",
       "valor_contrapartida": "R$ 22.000,00",
@@ -45184,7 +45406,7 @@
       "ateste_concedente": false,
       "status_obra": "",
       "tem_medicao": false,
-      "saldo_rendimentos": 36243.75,
+      "saldo_rendimentos": 36791.5,
       "repasse_desembolsado": {
         "previsto": 402993.0,
         "desembolsado": 402993.0,
@@ -45212,7 +45434,7 @@
     {
       "numero": "967173",
       "objeto": "IMPLANTACAO DE SISTEMAS DE ABASTECIMENTO DE AGUA NA ZONA RURAL DO MUNICIPIO DE ESPERANTINA-PI.",
-      "coletado_em": "10/08/2026 12:06",
+      "coletado_em": "17/08/2026 18:13",
       "valor_global": "R$ 3.237.371,00",
       "valor_repasse": "R$ 3.237.371,00",
       "valor_contrapartida": "R$ 0,00",
@@ -45266,7 +45488,7 @@
     {
       "numero": "967182",
       "objeto": "IMPLANTACAO DE SISTEMAS DE ABASTECIMENTO DE AGUA NA ZONA RURAL DO MUNICIPIO DE LAGOA DO SITIO-PI.",
-      "coletado_em": "10/08/2026 12:09",
+      "coletado_em": "17/08/2026 18:16",
       "valor_global": "R$ 675.294,81",
       "valor_repasse": "R$ 587.232,90",
       "valor_contrapartida": "R$ 88.061,91",
@@ -45287,6 +45509,21 @@
         }
       ],
       "movimentacoes": [
+        {
+          "num": "10581976",
+          "data": "14/08/2026",
+          "tipo": "PAGAMENTO A FAVORECIDO COM OBTV",
+          "v_orig": 5016.6,
+          "v_bruto": 5016.6,
+          "v_liq": 4805.92,
+          "v_retencao": 210.68,
+          "favorecido": "",
+          "cnpj": "24.400.713/0001-00",
+          "tributo": "",
+          "ndl": "989",
+          "tdl": "NOTA FISCAL",
+          "situacao": "Movimentação Financeira Concluída"
+        },
         {
           "num": "10318776",
           "data": "30/04/2026",
@@ -45470,6 +45707,30 @@
       ],
       "notas_fiscais": [
         {
+          "num": "989",
+          "data": "30/06/2026",
+          "tipo": "NOTA FISCAL",
+          "razao": "JDN EMPREENDIMENTOS URBANOS LTDA",
+          "v_orig": 5016.6,
+          "v_bruto": 5016.6,
+          "tributos": 210.68,
+          "v_liq": 4805.92,
+          "status": "Ativo",
+          "id_nf": "8501727",
+          "id_item": "",
+          "origem_recurso": "Repasse",
+          "itens": [
+            {
+              "desc": "EXECUÇÃO DOS SERVIÇOS DE IMPLANTAÇÃO DE SISTEMAS DE ABASTECIMENTO DE ÁGUA NA ZONA RURAL DO MUNICÍPIO DE LAGOA DO SITIO-PI",
+              "valor": 5016.6,
+              "id_item": "14445363",
+              "repasse": 5016.6,
+              "contrapartida": 0.0,
+              "rendimento": 0.0
+            }
+          ]
+        },
+        {
           "num": "966",
           "data": "23/04/2026",
           "tipo": "NOTA FISCAL",
@@ -45598,7 +45859,7 @@
       "ateste_concedente": false,
       "status_obra": "",
       "tem_medicao": false,
-      "saldo_rendimentos": 74146.59,
+      "saldo_rendimentos": 79420.65,
       "repasse_desembolsado": {
         "previsto": 587232.9,
         "desembolsado": 587232.9,
@@ -45614,7 +45875,7 @@
       "exec_fisica_sem_medicao": false,
       "exec_fisica_metas_parciais": true,
       "exec_fisica_valor_fora_obras": "R$ 20.259,81 (3.0% do global nao cobre aba obras)",
-      "exec_fisica_pct_financeiro": 72.3,
+      "exec_fisica_pct_financeiro": 73.1,
       "exec_fisica_medicao_travada": false,
       "valor_global_calculado": false,
       "aio": {
@@ -45626,7 +45887,7 @@
     {
       "numero": "945303",
       "objeto": "Construcao de um Campo Society no Municipio de Lagoa Alegre-PI.",
-      "coletado_em": "10/08/2026 12:11",
+      "coletado_em": "17/08/2026 18:18",
       "valor_global": "R$ 425.900,01",
       "valor_repasse": "R$ 382.000,00",
       "valor_contrapartida": "R$ 43.900,01",
@@ -45687,7 +45948,7 @@
       "ateste_concedente": false,
       "status_obra": "",
       "tem_medicao": false,
-      "saldo_rendimentos": 5950.45,
+      "saldo_rendimentos": 6725.21,
       "repasse_desembolsado": {
         "previsto": 382000.0,
         "desembolsado": 382000.0,
@@ -45715,7 +45976,7 @@
     {
       "numero": "945299",
       "objeto": "Construcao de um Campo Society no Municipio de Pedro II-PI.",
-      "coletado_em": "10/08/2026 12:13",
+      "coletado_em": "17/08/2026 18:20",
       "valor_global": "R$ 416.700,00",
       "valor_repasse": "R$ 382.000,00",
       "valor_contrapartida": "R$ 34.700,00",
@@ -45765,7 +46026,7 @@
       "ateste_concedente": false,
       "status_obra": "",
       "tem_medicao": false,
-      "saldo_rendimentos": 5707.74,
+      "saldo_rendimentos": 6465.57,
       "repasse_desembolsado": {
         "previsto": 382000.0,
         "desembolsado": 382000.0,
@@ -45793,7 +46054,7 @@
     {
       "numero": "953190",
       "objeto": "Construcao de Pracas no municipio de Sao Raimundo Nonato/PI.",
-      "coletado_em": "10/08/2026 12:15",
+      "coletado_em": "17/08/2026 18:22",
       "valor_global": "R$ 2.002.356,00",
       "valor_repasse": "R$ 1.912.356,00",
       "valor_contrapartida": "R$ 90.000,00",
@@ -45831,15 +46092,15 @@
         }
       ],
       "notas_fiscais": [],
-      "exec_fisica_pct": 18.7,
-      "exec_fisica_str": "18,70%",
-      "exec_fisica_valor_realizado": "R$ 361.011,14",
+      "exec_fisica_pct": 86.56,
+      "exec_fisica_str": "86,56%",
+      "exec_fisica_valor_realizado": "R$ 1.670.744,78",
       "exec_fisica_valor_total": "R$ 1.930.207,81",
       "ateste_convenente": false,
       "ateste_concedente": false,
       "status_obra": "",
       "tem_medicao": false,
-      "saldo_rendimentos": 2079.68,
+      "saldo_rendimentos": 2244.87,
       "repasse_desembolsado": null,
       "_id_convenio": "1096042",
       "_id_proposta": "1932127",
@@ -45863,7 +46124,7 @@
     {
       "numero": "969555",
       "objeto": "Construcao e equipagem da Casa da Mulher Brasileira no Municipio de Parnaiba-PI.",
-      "coletado_em": "10/08/2026 12:17",
+      "coletado_em": "17/08/2026 18:24",
       "valor_global": "R$ 9.510.000,00",
       "valor_repasse": "R$ 9.500.000,00",
       "valor_contrapartida": "R$ 10.000,00",
@@ -46480,13 +46741,13 @@
       ],
       "exec_fisica_pct": 100.0,
       "exec_fisica_str": "100,00%",
-      "exec_fisica_valor_realizado": "R$ 2.128.347,55",
+      "exec_fisica_valor_realizado": "R$ 2.377.583,64",
       "exec_fisica_valor_total": "R$ 9.360.435,68",
       "ateste_convenente": true,
       "ateste_concedente": false,
       "status_obra": "",
       "tem_medicao": true,
-      "saldo_rendimentos": 65549.9,
+      "saldo_rendimentos": 66784.12,
       "repasse_desembolsado": {
         "previsto": 9500000.0,
         "desembolsado": 2625000.0,
@@ -46514,7 +46775,7 @@
     {
       "numero": "973618",
       "objeto": "Implantacao da 1a Etapa do Sistema Adutor da regiao da Serra da Capivara.",
-      "coletado_em": "10/08/2026 12:21",
+      "coletado_em": "17/08/2026 18:26",
       "valor_global": "R$ 156.340.000,00",
       "valor_repasse": "R$ 156.180.000,00",
       "valor_contrapartida": "R$ 160.000,00",
@@ -46549,7 +46810,7 @@
       "ateste_concedente": false,
       "status_obra": "",
       "tem_medicao": false,
-      "saldo_rendimentos": 30011.44,
+      "saldo_rendimentos": 30352.33,
       "repasse_desembolsado": null,
       "_id_convenio": "1167026",
       "_id_proposta": "2039861",
@@ -46569,7 +46830,7 @@
     {
       "numero": "965789",
       "objeto": "ELABORACAO DE ESTUDOS E PROJETOS PARA CONSTRUCAO DA BARRAGEM DE CASTELO NO MUNICIPIO DE JUAZEIRO DO PIAUI- PI",
-      "coletado_em": "10/08/2026 12:25",
+      "coletado_em": "17/08/2026 18:29",
       "valor_global": "R$ 21.250.000,00",
       "valor_repasse": "R$ 21.240.000,00",
       "valor_contrapartida": "R$ 10.000,00",
@@ -46604,7 +46865,7 @@
       "ateste_concedente": false,
       "status_obra": "",
       "tem_medicao": false,
-      "saldo_rendimentos": 1767.59,
+      "saldo_rendimentos": 1788.7,
       "repasse_desembolsado": null,
       "_id_convenio": "1136049",
       "_id_proposta": "1956980",
@@ -46624,7 +46885,7 @@
     {
       "numero": "992850",
       "objeto": "IMPLANTACAO DE SISTEMA DE ABASTECIMENTO DE AGUA NA ZONA RURAL DO MUNICIPIO DE BELEM DO PIAUI - PI",
-      "coletado_em": "10/08/2026 12:28",
+      "coletado_em": "17/08/2026 18:30",
       "valor_global": "R$ 4.880.521,26",
       "valor_repasse": "R$ 4.880.521,26",
       "valor_contrapartida": "R$ 0,00",
@@ -46643,7 +46904,7 @@
       "ateste_concedente": false,
       "status_obra": "",
       "tem_medicao": false,
-      "saldo_rendimentos": 2171.05,
+      "saldo_rendimentos": 2529.46,
       "repasse_desembolsado": {
         "previsto": 4880521.26,
         "desembolsado": 197610.0,
@@ -46667,7 +46928,7 @@
     {
       "numero": "992940",
       "objeto": "IMPLANTACAO DE SISTEMA DE ABASTECIMENTO DE AGUA NA ZONA RURAL DO MUNICIPIO DE CURRAL NOVO DO PIAUI - PI.",
-      "coletado_em": "10/08/2026 12:32",
+      "coletado_em": "17/08/2026 18:32",
       "valor_global": "R$ 3.411.319,48",
       "valor_repasse": "R$ 3.411.319,48",
       "valor_contrapartida": "R$ 0,00",
@@ -46686,7 +46947,7 @@
       "ateste_concedente": false,
       "status_obra": "",
       "tem_medicao": false,
-      "saldo_rendimentos": 1298.89,
+      "saldo_rendimentos": 1513.33,
       "repasse_desembolsado": {
         "previsto": 3411319.48,
         "desembolsado": 118226.0,
@@ -46710,7 +46971,7 @@
     {
       "numero": "980844",
       "objeto": "PAVIMENTACAO DE VIAS VICINAIS NO MUNICIPIO DE ALTOS-PI.",
-      "coletado_em": "10/08/2026 12:35",
+      "coletado_em": "17/08/2026 18:35",
       "valor_global": "R$ 484.686,62",
       "valor_repasse": "R$ 462.875,72",
       "valor_contrapartida": "R$ 21.810,90",
@@ -46756,7 +47017,7 @@
       "ateste_concedente": false,
       "status_obra": "",
       "tem_medicao": false,
-      "saldo_rendimentos": 710.28,
+      "saldo_rendimentos": 751.92,
       "repasse_desembolsado": null,
       "_id_convenio": "1211236",
       "_id_proposta": "2128219",
@@ -46780,7 +47041,7 @@
     {
       "numero": "981146",
       "objeto": "PAVIMENTACAO DE VIAS VICINAIS NO MUNICIPIO DE FRANCISCO SANTOS-PI.",
-      "coletado_em": "10/08/2026 12:37",
+      "coletado_em": "17/08/2026 18:37",
       "valor_global": "R$ 400.000,00",
       "valor_repasse": "R$ 382.000,00",
       "valor_contrapartida": "R$ 18.000,00",
@@ -46815,7 +47076,7 @@
       "ateste_concedente": false,
       "status_obra": "",
       "tem_medicao": false,
-      "saldo_rendimentos": 568.23,
+      "saldo_rendimentos": 601.54,
       "repasse_desembolsado": null,
       "_id_convenio": "1211944",
       "_id_proposta": "2131522",
@@ -46835,7 +47096,7 @@
     {
       "numero": "983950",
       "objeto": "Execucao de obras e servicos de engenharia emestradas vicinais no Municipio de Barras - PI.",
-      "coletado_em": "10/08/2026 12:41",
+      "coletado_em": "17/08/2026 18:39",
       "valor_global": "R$ 400.000,00",
       "valor_repasse": "R$ 382.000,00",
       "valor_contrapartida": "R$ 18.000,00",
@@ -46870,7 +47131,7 @@
       "ateste_concedente": false,
       "status_obra": "",
       "tem_medicao": false,
-      "saldo_rendimentos": 1024.43,
+      "saldo_rendimentos": 1058.56,
       "repasse_desembolsado": null,
       "_id_convenio": "1218891",
       "_id_proposta": "2144089",
@@ -46890,7 +47151,7 @@
     {
       "numero": "986179",
       "objeto": "Execucao de obras e servicos de engenharia em estradas vicinais no Municipio de Sao Jose do Piaui.",
-      "coletado_em": "10/08/2026 12:44",
+      "coletado_em": "17/08/2026 18:41",
       "valor_global": "R$ 1.000.000,00",
       "valor_repasse": "R$ 955.000,00",
       "valor_contrapartida": "R$ 45.000,00",
@@ -46925,7 +47186,7 @@
       "ateste_concedente": false,
       "status_obra": "",
       "tem_medicao": false,
-      "saldo_rendimentos": 2355.18,
+      "saldo_rendimentos": 2440.14,
       "repasse_desembolsado": null,
       "_id_convenio": "1224522",
       "_id_proposta": "2140838",
@@ -46945,7 +47206,7 @@
     {
       "numero": "986155",
       "objeto": "Execucao de obras e servicos de engenharia em estradas vicinais no Municipio de Massape do Piaui.",
-      "coletado_em": "10/08/2026 12:48",
+      "coletado_em": "17/08/2026 18:43",
       "valor_global": "R$ 600.000,00",
       "valor_repasse": "R$ 573.829,90",
       "valor_contrapartida": "R$ 26.170,10",
@@ -46980,7 +47241,7 @@
       "ateste_concedente": false,
       "status_obra": "",
       "tem_medicao": false,
-      "saldo_rendimentos": 1489.41,
+      "saldo_rendimentos": 1539.03,
       "repasse_desembolsado": null,
       "_id_convenio": "1224429",
       "_id_proposta": "2140848",
@@ -47000,7 +47261,7 @@
     {
       "numero": "985797",
       "objeto": "CONSTRUCAO DE PRACAS PUBLICAS NO MUNICIPIO DE SAO RAIMUNDO NONATO/PI.",
-      "coletado_em": "10/08/2026 12:51",
+      "coletado_em": "17/08/2026 18:45",
       "valor_global": "R$ 1.216.103,00",
       "valor_repasse": "R$ 1.168.800,00",
       "valor_contrapartida": "R$ 47.303,00",
@@ -47194,7 +47455,7 @@
       "ateste_concedente": false,
       "status_obra": "",
       "tem_medicao": false,
-      "saldo_rendimentos": 26775.63,
+      "saldo_rendimentos": 28113.82,
       "repasse_desembolsado": {
         "previsto": 1168800.0,
         "desembolsado": 1168800.0,
@@ -47222,7 +47483,7 @@
     {
       "numero": "986602",
       "objeto": "Construcao e equipagem do Centro de referencia da Mulher Brasileira no Municipio de Piripiri-PI.",
-      "coletado_em": "10/08/2026 12:54",
+      "coletado_em": "17/08/2026 18:47",
       "valor_global": "R$ 2.551.020,41",
       "valor_repasse": "R$ 2.500.000,00",
       "valor_contrapartida": "R$ 51.020,41",
@@ -47257,7 +47518,7 @@
       "ateste_concedente": false,
       "status_obra": "",
       "tem_medicao": false,
-      "saldo_rendimentos": 9597.93,
+      "saldo_rendimentos": 9930.94,
       "repasse_desembolsado": {
         "previsto": 2500000.0,
         "desembolsado": 125000.0,
@@ -47281,7 +47542,7 @@
     {
       "numero": "988101",
       "objeto": "PAVIMENTACAO DE VIAS VICINAIS NO MUNICIPIO DE SAO JOSE DO PIAUI/PI",
-      "coletado_em": "10/08/2026 12:57",
+      "coletado_em": "17/08/2026 18:49",
       "valor_global": "R$ 1.333.333,33",
       "valor_repasse": "R$ 1.273.333,33",
       "valor_contrapartida": "R$ 60.000,00",
@@ -47316,7 +47577,7 @@
       "ateste_concedente": false,
       "status_obra": "",
       "tem_medicao": false,
-      "saldo_rendimentos": 1836.73,
+      "saldo_rendimentos": 1947.67,
       "repasse_desembolsado": null,
       "_id_convenio": "1228167",
       "_id_proposta": "2154206",
@@ -47336,7 +47597,7 @@
     {
       "numero": "988500",
       "objeto": "PAVIMENTACAO DE VIAS VICINAIS NO MUNICIPIO DE IPIRANGA DO PIAUI/PI",
-      "coletado_em": "10/08/2026 13:01",
+      "coletado_em": "17/08/2026 18:51",
       "valor_global": "R$ 1.333.333,33",
       "valor_repasse": "R$ 1.273.333,33",
       "valor_contrapartida": "R$ 60.000,00",
@@ -47371,7 +47632,7 @@
       "ateste_concedente": false,
       "status_obra": "",
       "tem_medicao": false,
-      "saldo_rendimentos": 1836.73,
+      "saldo_rendimentos": 1947.67,
       "repasse_desembolsado": null,
       "_id_convenio": "1229265",
       "_id_proposta": "2154419",
@@ -47391,7 +47652,7 @@
     {
       "numero": "989250",
       "objeto": "Pavimentacao de estradas vicinais",
-      "coletado_em": "10/08/2026 13:04",
+      "coletado_em": "17/08/2026 18:53",
       "valor_global": "R$ 1.333.333,34",
       "valor_repasse": "R$ 1.273.333,34",
       "valor_contrapartida": "R$ 60.000,00",
@@ -47426,7 +47687,7 @@
       "ateste_concedente": false,
       "status_obra": "",
       "tem_medicao": false,
-      "saldo_rendimentos": 3293.4,
+      "saldo_rendimentos": 3406.95,
       "repasse_desembolsado": null,
       "_id_convenio": "1231074",
       "_id_proposta": "2154455",
@@ -47446,7 +47707,7 @@
     {
       "numero": "988784",
       "objeto": "PAVIMENTACAO DE ESTRADAS VICINAIS",
-      "coletado_em": "05/08/2026 20:05",
+      "coletado_em": "17/08/2026 18:55",
       "valor_global": "R$ 965.000,00",
       "valor_repasse": "R$ 955.000,00",
       "valor_contrapartida": "R$ 10.000,00",
@@ -47481,7 +47742,7 @@
       "ateste_concedente": false,
       "status_obra": "",
       "tem_medicao": false,
-      "saldo_rendimentos": 529.73,
+      "saldo_rendimentos": 567.83,
       "repasse_desembolsado": null,
       "_id_convenio": "1229936",
       "_id_proposta": "2156706",
@@ -47501,7 +47762,7 @@
     {
       "numero": "988634",
       "objeto": "PAVIMENTACAO DE VIAS VICINAIS NO MUNICIPIO DE BARRA DALCANTARA/PI",
-      "coletado_em": "10/08/2026 16:43",
+      "coletado_em": "17/08/2026 18:57",
       "valor_global": "R$ 965.000,00",
       "valor_repasse": "R$ 955.000,00",
       "valor_contrapartida": "R$ 10.000,00",
@@ -47536,7 +47797,7 @@
       "ateste_concedente": false,
       "status_obra": "",
       "tem_medicao": false,
-      "saldo_rendimentos": 523.37,
+      "saldo_rendimentos": 542.25,
       "repasse_desembolsado": null,
       "_id_convenio": "1229519",
       "_id_proposta": "2156809",
@@ -47556,7 +47817,7 @@
     {
       "numero": "988972",
       "objeto": "PAVIMENTACAO DE ESTRADAS VICINAIS",
-      "coletado_em": "10/08/2026 16:45",
+      "coletado_em": "17/08/2026 18:59",
       "valor_global": "R$ 965.000,00",
       "valor_repasse": "R$ 955.000,00",
       "valor_contrapartida": "R$ 10.000,00",
@@ -47591,7 +47852,7 @@
       "ateste_concedente": false,
       "status_obra": "",
       "tem_medicao": false,
-      "saldo_rendimentos": 548.9,
+      "saldo_rendimentos": 567.83,
       "repasse_desembolsado": null,
       "_id_convenio": "1230293",
       "_id_proposta": "2157010",
@@ -47611,7 +47872,7 @@
     {
       "numero": "988779",
       "objeto": "PAVIMENTACAO DE ESTRADAS VICINAIS",
-      "coletado_em": "10/08/2026 16:47",
+      "coletado_em": "17/08/2026 19:00",
       "valor_global": "R$ 965.000,00",
       "valor_repasse": "R$ 955.000,00",
       "valor_contrapartida": "R$ 10.000,00",
@@ -47646,7 +47907,7 @@
       "ateste_concedente": false,
       "status_obra": "",
       "tem_medicao": false,
-      "saldo_rendimentos": 523.37,
+      "saldo_rendimentos": 542.25,
       "repasse_desembolsado": null,
       "_id_convenio": "1229927",
       "_id_proposta": "2157022",
@@ -47666,7 +47927,7 @@
     {
       "numero": "988901",
       "objeto": "PAVIMENTACAO DE ESTRADAS VICINAIS",
-      "coletado_em": "10/08/2026 16:49",
+      "coletado_em": "17/08/2026 19:02",
       "valor_global": "R$ 965.000,00",
       "valor_repasse": "R$ 955.000,00",
       "valor_contrapartida": "R$ 10.000,00",
@@ -47701,7 +47962,7 @@
       "ateste_concedente": false,
       "status_obra": "",
       "tem_medicao": false,
-      "saldo_rendimentos": 528.52,
+      "saldo_rendimentos": 547.41,
       "repasse_desembolsado": null,
       "_id_convenio": "1230211",
       "_id_proposta": "2157030",
@@ -47721,7 +47982,7 @@
     {
       "numero": "998329",
       "objeto": "PAVIMENTACAO DE ESTRADAS VICINAIS",
-      "coletado_em": "10/08/2026 16:51",
+      "coletado_em": "17/08/2026 19:04",
       "valor_global": "R$ 500.000,00",
       "valor_repasse": "R$ 477.500,00",
       "valor_contrapartida": "R$ 22.500,00",
@@ -47948,7 +48209,7 @@
       "valor_global_calculado": false
     }
   ],
-  "exec_atualizado_em": "10/08/2026 16:53",
+  "exec_atualizado_em": "17/08/2026 19:06",
   "historico_repasses": {
     "969555": {
       "objeto": "Construção e equipagem da Casa da Mulher Brasileira no Município de Parnaiba-PI",

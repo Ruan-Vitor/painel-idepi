@@ -172,7 +172,15 @@
                  TRES valores de proposito - lista vazia por falta de permissao
                  nao pode virar "nao ha PCF", que seria afirmar o que nao se
                  sabe. Carrega na 1a abertura da ficha, nao no start da pagina */
-const VERSAO = 'idepi-v39';
+     v40 — 17/08: o botao "Ficha do instrumento" deixa de MORRER CALADO quando
+                 o navegador tem o HTML novo e o app.js velho em cache. Foi o
+                 que aconteceu entre 15:29 e 16:15 de 17/08: um 503 do GitHub
+                 separou as publicacoes, o sw.js ficou em v37 e o app instalado
+                 seguiu servindo o app.js sem abrirModal. Clicar lancava
+                 TypeError no console e mostrava NADA. Agora avisa para
+                 recarregar. Versao de HTML e de JS podem divergir sempre que o
+                 cache entrar no meio; morrer calado nao e opcao */
+const VERSAO = 'idepi-v40';
 const CACHE_SHELL = VERSAO + '-shell';
 const CACHE_PAGS  = VERSAO + '-paginas';
 

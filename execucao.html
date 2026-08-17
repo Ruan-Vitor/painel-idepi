@@ -1326,6 +1326,24 @@ function htmlFicha(c){
 /** Abre a ficha na janela. `semExec` acrescenta a explicação de por que a
     página está sem números — sem ela a janela pareceria o conteúdo normal. */
 function abrirFicha(semExec){
+  /* ── BOTÃO QUE NÃO FAZ NADA É O PIOR DEFEITO POSSÍVEL ─────────────────────
+     Em 17/08/2026 o `execucao.html` novo (com este botão) ficou 46 min no ar
+     com o `sw.js` ainda em v37, porque um 503 do GitHub separou as duas
+     publicações. O app instalado seguiu servindo o `app.js` VELHO do cache —
+     sem `abrirModal` — e clicar no botão lançava `TypeError` no console e
+     mostrava NADA na tela. Quem usa conclui que o painel está quebrado, e não
+     tem como saber que basta recarregar.
+
+     Versão de HTML e de JS podem divergir sempre que o cache do navegador
+     entrar no meio. Então: em vez de morrer calado, diga o que fazer. */
+  if(!IDEPI || typeof IDEPI.abrirModal !== "function"){
+    var recado = "Esta página está desatualizada no seu navegador " +
+                 "(o HTML é novo e o JavaScript é antigo). Recarregue para " +
+                 "atualizar — no celular, puxe a tela para baixo.";
+    if(IDEPI && IDEPI.toast) IDEPI.toast(recado); else alert(recado);
+    return;
+  }
+
   var num = (instAtual && instAtual.numero) || _numPedidoURL ||
             (document.getElementById("inst-nome-num") || {}).textContent || "";
   var c = dadosDoInstrumento(num);

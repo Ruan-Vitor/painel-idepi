@@ -286,6 +286,30 @@ tbody tr:hover td{background:#f5f9ff}
   .inst-bar{padding:10px 14px;gap:8px}
   .filt-sep{display:none}
   .filt-sel{max-width:120px;font-size:11px}
+
+  /* ── A LISTA DE INSTRUMENTOS NO CELULAR (18/08/2026) ──────────────────
+     O dropdown nasceu com min-width:420px, pensado para desktop. Num
+     aparelho de 375 px ele NÃO CABE: fica ancorado no gatilho (esquerda
+     117) e a borda direita cai em 537, ou seja, 160 px fora da tela. O
+     efeito para quem usa é a página inteira parecer deslocada depois de
+     tocar na barra de seleção — foi assim que o Ruan viu, e o print
+     mostrava rótulos cortados pela esquerda ("TRUMENTO", "ÇÃO").
+
+     Aqui ele deixa de ser preso ao gatilho e passa a ocupar a largura da
+     tela, com 12 px de margem de cada lado. `left:auto/right:auto` zeram o
+     ancoramento; `position:fixed` tira-o do fluxo do pai relativo, senão a
+     largura de 100vw ainda começaria no offset do gatilho.
+
+     `max-height` + rolagem própria: com 100 instrumentos a lista passa da
+     altura da tela, e sem isso o fim dela ficaria inalcançável. */
+  .inst-list-wrap{min-width:0;width:100%}
+  .inst-list-trigger{min-width:0;max-width:100%}
+  .inst-dropdown{
+    position:fixed;
+    left:12px; right:12px; top:auto;
+    min-width:0; max-width:none; width:auto;
+    max-height:70vh; overflow-y:auto;
+  }
   .pg-title{font-size:15px}
   .pg-title-icon{width:28px;height:28px;font-size:12px}
   .pg-back{padding:8px 12px;font-size:11px}

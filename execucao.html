@@ -1237,14 +1237,29 @@ function htmlBlocoPCF(numero){
       ["Situação", "não há PCF aberta para este instrumento", true]
     ]);
 
-  return fichaBloco('Prestação de contas final', [
+  /* A etapa mostrada é a do TRANSFEREGOV desde 18/08/2026; a planilha do setor
+     ficou como fonte da Observação e do SEI. Dizer a ORIGEM importa porque
+     "concluída" lida do sistema e "concluída" digitada por alguém não valem o
+     mesmo — e quando as duas discordam, quem lê precisa ver as duas, não a
+     escolhida em silêncio. */
+  var origem = p.fonte_etapa === 'transferegov'
+    ? 'Transferegov' + (p.tgov_lido_em ? ' · lido em ' + p.tgov_lido_em : '')
+    : 'planilha do setor (ainda sem leitura do Transferegov)';
+
+  var campos = [
     ["Etapa",         p.etapa_rotulo],
+    ["Origem",        origem],
     ["Processo SEI",  p.processo],
-    ["Situação",      p.situacao, true],
-    /* A observação é a ÚNICA coluna que nenhum script sabe preencher: vem do
-       SEI, escrita à mão. É o que diz de quem o processo está esperando. */
-    ["Observação",    p.observacao, true]
-  ]);
+    ["Situação",      p.situacao_tgov || p.situacao, true]
+  ];
+  if (p.diverge_da_planilha) {
+    campos.push(["⚠ A planilha do setor ainda diz",
+                 p.etapa_rotulo_planilha || '—', true]);
+  }
+  /* A observação é a ÚNICA coluna que nenhum script sabe preencher: vem do
+     SEI, escrita à mão. É o que diz de quem o processo está esperando. */
+  campos.push(["Observação", p.observacao, true]);
+  return fichaBloco('Prestação de contas final', campos);
 }
 
 function htmlFicha(c){

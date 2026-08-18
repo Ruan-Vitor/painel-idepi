@@ -90,6 +90,22 @@
   font-weight:700;color:#92400e;background:#fffbeb;border:1px solid #fcd34d;
   border-radius:10px;padding:1px 6px;margin-left:6px}
 
+/* Selo de origem da etapa. Discreto de propósito: informa sem competir com o
+   rótulo da etapa, que é o que se lê primeiro. */
+.pcf-fonte{display:inline-flex;align-items:center;gap:4px;font-size:9px;
+  font-weight:600;padding:2px 7px;border-radius:9px;margin-left:6px;
+  border:1px solid;vertical-align:middle}
+.pcf-fonte.tg{background:#f0fdf4;color:#166534;border-color:#86efac}
+.pcf-fonte.pl{background:#f8fafc;color:#64748b;border-color:#cbd5e1}
+/* Já a divergência precisa PUXAR o olho: é ela que faz alguém ir corrigir a
+   planilha. Em âmbar, como os outros avisos do sistema. */
+.pcf-diverge{display:inline-flex;align-items:center;gap:4px;font-size:9px;
+  font-weight:700;padding:2px 7px;border-radius:9px;margin-left:6px;
+  background:var(--amber-bg);color:var(--amber);border:1px solid var(--amber-bdr);
+  vertical-align:middle}
+@media(max-width:680px){
+  .pcf-fonte,.pcf-diverge{margin-left:0;margin-top:4px}
+}
 .pcf-vazio{padding:26px 20px;text-align:center;font-size:12.5px;color:var(--muted)}
 
 @media(max-width:1000px){
@@ -256,6 +272,34 @@ function render() {
         '<i class="fa-solid fa-triangle-exclamation"></i> fora do painel</span>'
       : '';
 
+    /* DE ONDE VEM A ETAPA (18/08/2026).
+       Até esta data a etapa era a coluna B da planilha do setor, digitada à
+       mão — e em 17/08 oito de catorze estavam atrás do Transferegov, todas
+       na mesma direção. Agora a etapa MOSTRADA é a do Transferegov, e a
+       planilha ficou como fonte da Observação e do SEI, que só ela tem.
+
+       O selo existe porque "concluída" lida do sistema e "concluída" digitada
+       por alguém não valem o mesmo, e quem lê precisa saber qual das duas
+       está vendo. Sem leitura do Tgov, a etapa continua sendo a da planilha e
+       o selo diz isso — em vez de calar e deixar parecer que veio da fonte. */
+    var selo = p.fonte_etapa === 'transferegov'
+      ? '<span class="pcf-fonte tg" title="Situação lida do Transferegov' +
+        (p.tgov_lido_em ? ' em ' + IDEPI.esc(p.tgov_lido_em) : '') + '">' +
+        '<i class="fa-solid fa-circle-check"></i>Transferegov</span>'
+      : '<span class="pcf-fonte pl" title="Ainda sem leitura do Transferegov ' +
+        'para este instrumento — a etapa vem da planilha do setor">' +
+        '<i class="fa-solid fa-pen"></i>planilha</span>';
+
+    /* Divergência não pode sumir de vista: a etapa exibida virou a do
+       Transferegov, então sem este aviso a planilha ficaria desatualizada em
+       silêncio e ninguém iria corrigi-la. */
+    var diverge = p.diverge_da_planilha
+      ? '<span class="pcf-diverge" title="A planilha do setor ainda diz &quot;' +
+        IDEPI.esc(p.etapa_rotulo_planilha || '') + '&quot;. Vale atualizar.">' +
+        '<i class="fa-solid fa-triangle-exclamation"></i>planilha diz: ' +
+        IDEPI.esc(p.etapa_rotulo_planilha || '?') + '</span>'
+      : '';
+
     var meta = [];
     if (p.conta)     meta.push('<span><i class="fa-solid fa-building-columns"></i>' + IDEPI.esc(p.conta) + '</span>');
     if (p.periodo)   meta.push('<span><i class="fa-solid fa-calendar-days"></i>' + IDEPI.esc(p.periodo) + '</span>');
@@ -274,6 +318,7 @@ function render() {
           'title="Abrir a execução financeira deste instrumento">' +
           IDEPI.esc(p.numero_orig || p.numero) + '</a>' +
         '<span class="pcf-etapa ' + cls + '">' + IDEPI.esc(p.etapa_rotulo) + '</span>' +
+        selo + diverge +
       '</div>' +
       '<div>' +
         '<div class="pcf-obj">' + IDEPI.esc(p.objeto || p.objeto_oficial || '—') + fora + '</div>' +
@@ -286,11 +331,15 @@ function render() {
 
 function exportarPcf() {
   IDEPI.comBotaoOcupado('btnExcelPcf', function () {
-    var linhas = [['Nº', 'Etapa', 'Situação (planilha)', 'Objeto', 'Conta',
-                   'Período', 'Processo SEI', 'Observação (SEI)',
-                   'Vigência', 'Fiscal', 'No painel?']];
+    var linhas = [['Nº', 'Etapa', 'Origem da etapa', 'Situação (Transferegov)',
+                   'Situação (planilha do setor)', 'Etapa na planilha',
+                   'Objeto', 'Conta', 'Período', 'Processo SEI',
+                   'Observação (SEI)', 'Vigência', 'Fiscal', 'No painel?']];
     _pcfs.forEach(function (p) {
-      linhas.push([p.numero_orig || p.numero, p.etapa_rotulo, p.situacao,
+      linhas.push([p.numero_orig || p.numero, p.etapa_rotulo,
+                   p.fonte_etapa === 'transferegov' ? 'Transferegov' : 'planilha do setor',
+                   p.situacao_tgov || '', p.situacao,
+                   p.etapa_rotulo_planilha || p.etapa_rotulo,
                    p.objeto || p.objeto_oficial || '', p.conta, p.periodo,
                    p.processo, p.observacao, p.vigencia || '', p.fiscal || '',
                    p.no_painel === false ? 'NÃO' : 'sim']);

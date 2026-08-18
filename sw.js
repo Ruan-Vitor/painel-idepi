@@ -171,7 +171,7 @@
                  lista de permissoes simplesmente nao ve o bloco. O estado tem
                  TRES valores de proposito - lista vazia por falta de permissao
                  nao pode virar "nao ha PCF", que seria afirmar o que nao se
-                 sabe. Carrega na 1a abertura da ficha, nao no start da pagina */
+                 sabe. Carrega na 1a abertura da ficha, nao no start da pagina
      v40 — 17/08: o botao "Ficha do instrumento" deixa de MORRER CALADO quando
                  o navegador tem o HTML novo e o app.js velho em cache. Foi o
                  que aconteceu entre 15:29 e 16:15 de 17/08: um 503 do GitHub
@@ -179,8 +179,23 @@
                  seguiu servindo o app.js sem abrirModal. Clicar lancava
                  TypeError no console e mostrava NADA. Agora avisa para
                  recarregar. Versao de HTML e de JS podem divergir sempre que o
-                 cache entrar no meio; morrer calado nao e opcao */
-const VERSAO = 'idepi-v40';
+                 cache entrar no meio; morrer calado nao e opcao
+     v41 — 18/08: duas coisas.
+                 (1) A ETAPA da PCF passa a vir do TRANSFEREGOV, nao mais da
+                 coluna digitada a mao na planilha do setor: em 17/08 oito de
+                 catorze estavam atras da realidade, todas na mesma direcao. A
+                 planilha segue dona do que so ela tem - a OBSERVACAO do SEI, o
+                 processo e a conta. Cada linha diz a ORIGEM da etapa, porque
+                 "concluida" lida do sistema e "concluida" digitada por alguem
+                 nao valem o mesmo; discordando, a tela mostra AS DUAS.
+                 (2) CONSERTO no celular: a lista de instrumentos da execucao
+                 financeira tinha min-width:420px, pensada para desktop. Num
+                 aparelho de 375 px ela ficava presa ao gatilho e a borda
+                 direita caia 160 px FORA da tela - a pagina inteira parecia
+                 deslocada depois de tocar na barra de selecao. Abaixo de 900 px
+                 ela ocupa a largura da tela com 12 px de margem, rolagem
+                 propria e teto de 70vh. Desktop inalterado. */
+const VERSAO = 'idepi-v41';
 const CACHE_SHELL = VERSAO + '-shell';
 const CACHE_PAGS  = VERSAO + '-paginas';
 

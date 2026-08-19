@@ -653,6 +653,19 @@ div > button:has(svg):not([class]):not([id]){display:none!important}
 }
 .fb-sei-item:hover{border-color:var(--accent);color:var(--accent)}
 
+/* Botão MINI da ficha, para as listas dos painéis. Fica ao lado do número e
+   não o substitui: o número continua levando para a execução financeira
+   (decisão do Felipe, 17/08/2026), e este abre a ficha sem sair da página —
+   quem filtrou por fiscal não perde o filtro para ver um município. */
+.btn-ficha-mini{
+  border:1px solid var(--border);background:var(--surface);color:var(--muted);
+  font-size:9.5px;border-radius:5px;padding:1px 5px;cursor:pointer;
+  margin-left:5px;vertical-align:middle;line-height:1.4;
+}
+.btn-ficha-mini:hover{background:var(--surface2);border-color:var(--accent);color:var(--accent)}
+/* Alvo de toque: no celular 24px é o mínimo utilizável com o polegar. */
+@media(max-width:680px){ .btn-ficha-mini{padding:4px 8px;font-size:11px} }
+
 /* Botão que abre a ficha, na barra do nome do instrumento. */
 .btn-ficha{
   border:1px solid var(--border);background:var(--surface);color:var(--accent);

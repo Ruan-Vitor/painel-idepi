@@ -410,6 +410,7 @@ function render() {
           encodeURIComponent(p.numero || '') + '" ' +
           'title="Abrir a execução financeira deste instrumento">' +
           IDEPI.esc(p.convenio || p.numero) + '</a>' +
+        IDEPI.ficha.botao(p.numero || '') +
         '<span class="pg-data">' + IDEPI.esc(p.data || 'sem data') + '</span>' +
       '</div>' +
       '<div>' +

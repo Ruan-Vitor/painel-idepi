@@ -1160,259 +1160,31 @@ function avisarSemExecucao(numero){
    Existe porque nenhuma das três sozinha responde à ficha: município, dono
    da emenda e ponto focal só vivem no controle do setor, e a coleta de
    execução não os conhece. Instrumento sem execução coletada tem só a (3).  */
-function dadosDoInstrumento(numero){
-  var alvo = String(numero || "").trim();
-  function achar(lista){
-    return (lista || []).find(function(x){
-      return String(x.numero).trim() === alvo;
-    }) || {};
-  }
-  var vig    = achar(_CONVENIOS_VIG);
-  var resumo = achar(INSTRUMENTOS_EXEC);
-  var exec   = (instAtual && String(instAtual.numero).trim() === alvo) ? instAtual : {};
 
-  /* Ordem invertida no merge: o que vem depois vence. A execução vence no
-     que ela mede (situação, valores movimentados); o cadastro vence no que
-     só ele sabe — e por isso os campos do setor são recolhidos à parte,
-     abaixo, em vez de dependerem de quem sobrescreveu quem. */
-  var m = Object.assign({}, vig, resumo, exec);
 
-  function primeiro(){
-    for(var i = 0; i < arguments.length; i++){
-      var v = String(arguments[i] == null ? "" : arguments[i]).trim();
-      if(v) return v;
-    }
-    return "";
-  }
-  /* Município, dono da emenda e ponto focal NUNCA vêm da coleta de execução;
-     buscar em `exec` primeiro só acharia vazio. */
-  m.municipio_emendas = primeiro(vig.municipio_emendas, resumo.municipio_emendas);
-  m.ponto_focal       = primeiro(vig.ponto_focal,       resumo.ponto_focal);
-  /* `dono_emenda` é do setor e `autor_emenda` é da CGU — o mesmo assunto em
-     fontes diferentes. O do setor ganha por estar sempre preenchido; o da
-     CGU entra quando ele faltar, em vez de a linha ficar vazia. */
-  m.dono_emenda = primeiro(vig.dono_emenda, resumo.dono_emenda,
-                           vig.autor_emenda, resumo.autor_emenda, exec.autor_emenda);
-  m.fiscal = primeiro(exec.fiscal, resumo.fiscal, vig.fiscal);
-  m.numero = alvo;
-  return m;
-}
 
-/* Campo vazio aparece como "—" em cinza, NUNCA some. Sumir faria o leitor
-   concluir que o instrumento não tem aquele dado, quando o que ele não tem é o
-   dado PREENCHIDO — são coisas diferentes. É o caso do ponto focal nos 40 do
-   legado: a aba antiga das Emendas não tem essa coluna. */
-function fichaBloco(titulo, campos){
-  return '<div class="fb-titulo">' + IDEPI.esc(titulo) + '</div><div class="fb-grid">' +
-    campos.map(function(p){
-      var v = String(p[1] == null ? "" : p[1]).trim();
-      return '<div class="fb-campo' + (p[2] ? ' fb-largo' : '') + (v ? '' : ' vazio') + '">' +
-             '<label>' + IDEPI.esc(p[0]) + '</label>' +
-             '<span>' + IDEPI.esc(v || "—") + '</span></div>';
-    }).join('') + '</div>';
-}
 
-/* ── PRESTAÇÃO DE CONTAS FINAL ────────────────────────────────────────────
-   Vem de `painel/pcf`, que tem REGRA PRÓPRIA no Firestore: quem não tem o
-   painel de PCF na lista de permissões recebe negativa na leitura. O
-   `IDEPI.dados.pcf()` já engole isso e devolve lista vazia — o que resolve o
-   erro na tela e cria outro problema: lista vazia é indistinguível de "nenhum
-   instrumento tem PCF".
 
-   Por isso o estado tem TRÊS valores, e não dois. Sem permissão o bloco
-   simplesmente não aparece; com permissão e sem registro, ele aparece dizendo
-   que não há PCF aberta. Escrever "não há PCF" para quem apenas não pode ler
-   seria afirmar o que não se sabe — e sobre prestação de contas, ainda por
-   cima. Mesma regra do `tem_aio`: falta de dado não vira dispensa.
-
-   Carrega uma vez, na primeira abertura da ficha, e não no start da página:
-   a maioria de quem abre a execução financeira não vai abrir a ficha, e é
-   uma leitura de Firestore a menos por visita. */
-var _PCF = { estado: 'nao_carregado', porNumero: {} };
-
-function carregarPCF(){
-  if(_PCF.estado !== 'nao_carregado') return Promise.resolve(_PCF);
-  _PCF.estado = 'carregando';
-  return IDEPI.dados.pcf().then(function(d){
-    var lista = (d && d.pcfs) || [];
-    lista.forEach(function(p){
-      var n = String(p.numero || p.numero_orig || '').trim();
-      if(n) _PCF.porNumero[n] = p;
-    });
-    _PCF.estado = lista.length ? 'ok' : 'indisponivel';
-    return _PCF;
-  }).catch(function(){
-    _PCF.estado = 'indisponivel';
-    return _PCF;
-  });
-}
-
-function htmlBlocoPCF(numero){
-  if(_PCF.estado === 'nao_carregado' || _PCF.estado === 'carregando')
-    return '<div class="fb-titulo">Prestação de contas final</div>' +
-           '<div class="fb-grid"><div class="fb-campo fb-largo vazio">' +
-           '<span>consultando…</span></div></div>';
-
-  if(_PCF.estado === 'indisponivel') return '';   /* não afirma o que não sabe */
-
-  var p = _PCF.porNumero[String(numero || '').trim()];
-  if(!p)
-    return fichaBloco('Prestação de contas final', [
-      ["Situação", "não há PCF aberta para este instrumento", true]
-    ]);
-
-  /* A etapa mostrada é a do TRANSFEREGOV desde 18/08/2026; a planilha do setor
-     ficou como fonte da Observação e do SEI. Dizer a ORIGEM importa porque
-     "concluída" lida do sistema e "concluída" digitada por alguém não valem o
-     mesmo — e quando as duas discordam, quem lê precisa ver as duas, não a
-     escolhida em silêncio. */
-  var origem = p.fonte_etapa === 'transferegov'
-    ? 'Transferegov' + (p.tgov_lido_em ? ' · lido em ' + p.tgov_lido_em : '')
-    : 'planilha do setor (ainda sem leitura do Transferegov)';
-
-  var campos = [
-    ["Etapa",         p.etapa_rotulo],
-    ["Origem",        origem],
-    ["Processo SEI",  p.processo],
-    ["Situação",      p.situacao_tgov || p.situacao, true]
-  ];
-  if (p.diverge_da_planilha) {
-    campos.push(["⚠ A planilha do setor ainda diz",
-                 p.etapa_rotulo_planilha || '—', true]);
-  }
-  /* A observação é a ÚNICA coluna que nenhum script sabe preencher: vem do
-     SEI, escrita à mão. É o que diz de quem o processo está esperando. */
-  campos.push(["Observação", p.observacao, true]);
-  return fichaBloco('Prestação de contas final', campos);
-}
-
-function htmlFicha(c){
-  var seis = IDEPI.seisDe(c);
-  var seiHtml = seis.length
-    ? '<span class="fb-sei-vig">' + IDEPI.esc(seis[seis.length - 1]) + '</span>' +
-      (seis.length > 1
-        ? ' <button class="fb-mais" type="button" onclick="alternarSeis()">' +
-          '+' + (seis.length - 1) + ' anteriores</button>' +
-          '<div class="fb-seis" id="fbSeis" hidden>' +
-            seis.slice(0, -1).reverse().map(function(x){
-              /* data-sei + delegação: onclick inline com aspas aninhadas é
-                 onde nasce erro de sintaxe difícil de achar. */
-              return '<button class="fb-sei-item" type="button" data-sei="' +
-                     IDEPI.esc(x) + '" title="Clique para copiar">' +
-                     IDEPI.esc(x) + '<i class="fa-regular fa-copy"></i></button>';
-            }).join('') +
-          '</div>'
-        : '')
-    : '—';
-
-  var cp   = IDEPI.contrapartidaDe(c);
-  var rp   = IDEPI.repasseDe(c);
-  var st   = IDEPI.calcStatus(c);
-  var fase = IDEPI.faseDe(c);
-  var conc = IDEPI.concedenteDe(c);
-
-  var vigencia = c.vigencia_fmt || c.vigencia || "";
-  if(vigencia && c.vigencia_origem) vigencia += "  (" + c.vigencia_origem + ")";
-
-  return (
-    fichaBloco("Identificação", [
-      ["Município",       c.municipio_emendas],
-      ["Fase",            fase ? fase.rotulo : ""],
-      ["Objeto",          c.objeto, true]
-    ]) +
-    /* O bloco que o Felipe pediu: com quem se fala sobre este instrumento.
-       Nenhum dos três existe na CGU nem no Transferegov. */
-    fichaBloco("Quem responde", [
-      ["Fiscal responsável",  c.fiscal],
-      ["Contato (ponto focal)", c.ponto_focal],
-      ["Dono da emenda",      c.dono_emenda]
-    ]) +
-    fichaBloco("Órgãos", [
-      ["Concedente",      conc.sigla ? (conc.sigla + (conc.nome ? " — " + conc.nome : "")) : conc.nome],
-      /* Mandatária e órgão vinculado não convivem: contrato de repasse tem
-         Caixa, convênio com execução delegada tem CODEVASF ou FUNASA. Os
-         dois em campos separados, para não mostrar um no lugar do outro. */
-      ["Mandatária",      c.mandataria],
-      ["Órgão vinculado", c.orgao_vinculado],
-      ["Tipo",            c.tipo_instrumento]
-    ]) +
-    fichaBloco("Prazos", [
-      ["Situação de vigência", (IDEPI.NOME_ST[st.st] || st.st) +
-        (st.dias !== null ? ' · ' + st.dias + ' dias' : '')],
-      ["Vigência final",             vigencia],
-      ["Situação (Transferegov)",    c.situacao_tgov],
-      ["Contratação (Transferegov)", c.sit_contrat_tgov],
-      ["Limite p/ prestação de contas", c.limite_prestacao]
-    ]) +
-    fichaBloco("Valores", [
-      ["Repasse previsto",         IDEPI.fmtReais(rp.previsto)],
-      ["Repasse já liberado",      IDEPI.fmtReais(rp.liberado)],
-      ["Repasse a receber",        IDEPI.fmtReais(rp.falta)],
-      ["Contrapartida prevista",   cp.previsto ? IDEPI.fmtReais(cp.previsto) : "não há"],
-      ["Contrapartida depositada", cp.previsto ? IDEPI.fmtReais(cp.depositado) : ""]
-    ]) +
-    '<div class="fb-titulo">Processo</div><div class="fb-grid">' +
-      '<div class="fb-campo fb-largo"><label>Processo SEI</label><span>' + seiHtml + '</span></div>' +
-    '</div>' +
-    /* Recipiente próprio: a PCF vem de outro documento do Firestore e chega
-       depois. Preenchido aqui mesmo quando já está em memória, e trocado pelo
-       carregarPCF() na primeira vez. */
-    '<div id="fichaPCF" data-num="' + IDEPI.esc(c.numero || '') + '">' +
-      htmlBlocoPCF(c.numero) + '</div>'
-  );
-}
-
-/** Abre a ficha na janela. `semExec` acrescenta a explicação de por que a
-    página está sem números — sem ela a janela pareceria o conteúdo normal. */
+/* A ficha em si vive no app.js desde 19/08/2026, para os outros painéis
+   poderem usá-la. Aqui fica só o que é DESTA página: as fontes de dados e o
+   aviso de instrumento sem execução coletada. */
 function abrirFicha(semExec){
-  /* ── BOTÃO QUE NÃO FAZ NADA É O PIOR DEFEITO POSSÍVEL ─────────────────────
-     Em 17/08/2026 o `execucao.html` novo (com este botão) ficou 46 min no ar
-     com o `sw.js` ainda em v37, porque um 503 do GitHub separou as duas
-     publicações. O app instalado seguiu servindo o `app.js` VELHO do cache —
-     sem `abrirModal` — e clicar no botão lançava `TypeError` no console e
-     mostrava NADA na tela. Quem usa conclui que o painel está quebrado, e não
-     tem como saber que basta recarregar.
-
-     Versão de HTML e de JS podem divergir sempre que o cache do navegador
-     entrar no meio. Então: em vez de morrer calado, diga o que fazer. */
-  if(!IDEPI || typeof IDEPI.abrirModal !== "function"){
-    var recado = "Esta página está desatualizada no seu navegador " +
-                 "(o HTML é novo e o JavaScript é antigo). Recarregue para " +
-                 "atualizar — no celular, puxe a tela para baixo.";
-    if(IDEPI && IDEPI.toast) IDEPI.toast(recado); else alert(recado);
-    return;
-  }
-
   var num = (instAtual && instAtual.numero) || _numPedidoURL ||
             (document.getElementById("inst-nome-num") || {}).textContent || "";
-  var c = dadosDoInstrumento(num);
-  var corpo = htmlFicha(c);
-  if(semExec){
-    corpo += '<div class="fb-nota"><i class="fa-solid fa-circle-info"></i> ' +
-      'Movimentações, notas fiscais e rateio aparecem depois que o ' +
-      '<code>exec_financeiro.py</code> coletar este instrumento no Transferegov.</div>';
-  }
-  IDEPI.abrirModal("Ficha do instrumento " + (c.numero || ""), corpo);
-
-  /* A PCF chega depois, sem segurar a abertura da janela. O recipiente carrega
-     o número que o gerou: se a pessoa fechou e abriu OUTRO instrumento antes
-     de a leitura voltar, esta resposta não lhe pertence e é descartada.
-     Mostrar a prestação de contas do convênio errado é o mesmo defeito de
-     04/08 no `?num=` — a pessoa lê números achando que são de outro. */
-  carregarPCF().then(function(){
-    var alvo = document.getElementById("fichaPCF");
-    if(!alvo) return;                                   /* janela já fechada */
-    if(alvo.getAttribute("data-num") !== String(c.numero || "")) return;
-    alvo.innerHTML = htmlBlocoPCF(c.numero);
-  });
+  IDEPI.ficha.abrir(num, semExec
+    ? 'Movimentações, notas fiscais e rateio aparecem depois que o ' +
+      '<code>exec_financeiro.py</code> coletar este instrumento no Transferegov.'
+    : null);
 }
 
-function alternarSeis(){
-  var b = document.getElementById("fbSeis");
-  if(b) b.hidden = !b.hidden;
-}
+/* Registra as fontes DESTA página. Funções, não arrays: as listas são
+   preenchidas depois, quando o Firestore responde. */
+IDEPI.ficha.registrar({
+  vigencias: function(){ return _CONVENIOS_VIG; },
+  exec:      function(){ return INSTRUMENTOS_EXEC; },
+  atual:     function(){ return instAtual; }
+});
 
-/* Um só ouvinte para todos os botões de SEI, presentes e futuros. */
 document.addEventListener('click', function(ev){
   var b = ev.target.closest && ev.target.closest('.fb-sei-item');
   if(!b) return;

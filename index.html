@@ -688,6 +688,7 @@ function renderRepasse(conv) {
                encodeURIComponent(c.numero || '') + '" ' +
                'title="Abrir a execução financeira">' +
                IDEPI.faixaFase(c) + IDEPI.esc(c.numero) + '</a>' +
+             IDEPI.ficha.botao(c.numero || '') +
              '<div>' +
                '<div class="sus-obj" title="' + IDEPI.esc(c.objeto || '') + '">' +
                  IDEPI.esc(c.objeto || '—') + IDEPI.municipioExtra(c) + tag + '</div>' +
@@ -741,6 +742,7 @@ function renderContrapartida(conv) {
                encodeURIComponent(c.numero || '') + '" ' +
                'title="Abrir a execução financeira">' +
                IDEPI.faixaFase(c) + IDEPI.esc(c.numero) + '</a>' +
+             IDEPI.ficha.botao(c.numero || '') +
              '<div>' +
                '<div class="sus-obj" title="' + IDEPI.esc(c.objeto || '') + '">' +
                  IDEPI.esc(c.objeto || '—') + IDEPI.municipioExtra(c) + tag + '</div>' +
@@ -780,6 +782,7 @@ function renderSuspensivas(conv) {
              '<a class="sus-num" href="execucao.html?num=' +
                encodeURIComponent(c.numero || '') + '" title="Abrir a execução financeira">' +
                IDEPI.faixaFase(c) + IDEPI.esc(c.numero) + '</a>' +
+             IDEPI.ficha.botao(c.numero || '') +
              '<div class="sus-obj" title="' + IDEPI.esc(c.objeto || '') + '">' +
                IDEPI.esc(c.objeto || '—') + IDEPI.municipioExtra(c) + '</div>' +
              '<div class="sus-prazo' + cls + '">' + txt + '<small>' + sub + '</small></div>' +
@@ -814,6 +817,7 @@ function renderParada(conv) {
              '<a class="sus-num" href="execucao.html?num=' +
                encodeURIComponent(c.numero || '') + '" title="Abrir a execução financeira">' +
                IDEPI.faixaFase(c) + IDEPI.esc(c.numero) + '</a>' +
+             IDEPI.ficha.botao(c.numero || '') +
              '<div class="sus-obj" title="' + IDEPI.esc(c.objeto || '') + '">' +
                IDEPI.esc(c.objeto || '—') + IDEPI.municipioExtra(c) + '</div>' +
              '<div class="sus-prazo' +

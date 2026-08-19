@@ -513,6 +513,7 @@ function renderizar() {
     html += "<td><span class='num-cell'>" + IDEPI.faixaFase(r) +
             "<a class='num-link' href='execucao.html?num=" + encodeURIComponent(num) +
             "' title='Abrir a execucao financeira deste instrumento'>" + esc(num) + "</a>" +
+             IDEPI.ficha.botao(num) +
             "<i class='fa-regular fa-copy copy-icon' title='Copiar o numero'" +
             " onclick='event.stopPropagation();event.preventDefault();copiarNumero(\"" +
             esc(num) + "\")'></i></span></td>";

@@ -1245,8 +1245,288 @@
   IDEPI.setTxt = setTxt;
   IDEPI.setHtml = setHtml;
   IDEPI.esconderOverlay = esconderOverlay;
+
+  /* ══════════════════════════════════════════════════════════════════════
+     FICHA DO INSTRUMENTO — compartilhada por todos os painéis
+
+     Nasceu dentro do execucao.html em 17/08/2026, quando a execução
+     financeira virou a página principal do instrumento. Subiu para cá em
+     19/08 porque os outros painéis precisavam dela: quem está filtrando
+     Vigências por fiscal não deveria trocar de página só para saber com quem
+     se fala sobre aquele convênio.
+
+     O NÚMERO CONTINUA NAVEGANDO para execucao.html — decisão do Felipe em
+     17/08, e mudá-la aqui seria contrariá-la de lado. A ficha ganhou botão
+     PRÓPRIO ao lado do número: quem quer o instrumento inteiro clica no
+     número; quem só quer município, fiscal e contato abre a ficha e continua
+     onde estava, com os filtros intactos.
+
+     AS FONTES são injetadas pela página, porque cada painel carrega um
+     conjunto diferente de dados. Ninguém aqui sabe o nome das variáveis de
+     lá — só a ordem de preferência, que é a mesma em todo lugar.
+     ══════════════════════════════════════════════════════════════════════ */
+
+  var _fichaFontes = { vigencias: null, exec: null, atual: null };
+  var _fichaPCF = { estado: 'nao_carregado', porNumero: {} };
+
+  /** Cada página registra o que tem. Valor pode ser array ou função. */
+  function fichaRegistrarFontes(o) {
+    for (var k in o) if (o.hasOwnProperty(k)) _fichaFontes[k] = o[k];
+  }
+
+  function _resolve(v) {
+    try { return typeof v === 'function' ? v() : v; } catch (e) { return null; }
+  }
+
+  /** Junta as fontes disponíveis num registro só. */
+  function fichaDados(numero) {
+    var alvo = String(numero || '').trim();
+    function achar(lista) {
+      lista = _resolve(lista);
+      if (!lista || !lista.length) return {};
+      for (var i = 0; i < lista.length; i++)
+        if (String(lista[i].numero).trim() === alvo) return lista[i];
+      return {};
+    }
+    var vig    = achar(_fichaFontes.vigencias);
+    var resumo = achar(_fichaFontes.exec);
+    var at     = _resolve(_fichaFontes.atual);
+    var exec   = (at && String(at.numero).trim() === alvo) ? at : {};
+
+    /* O que vem depois vence. A execução vence no que ela mede (situação,
+       valores movimentados); o cadastro vence no que só ele sabe — por isso
+       os campos do setor são recolhidos à parte, abaixo. */
+    var m = Object.assign({}, vig, resumo, exec);
+
+    function primeiro() {
+      for (var i = 0; i < arguments.length; i++) {
+        var v = String(arguments[i] == null ? '' : arguments[i]).trim();
+        if (v) return v;
+      }
+      return '';
+    }
+    /* Município, dono da emenda e ponto focal NUNCA vêm da coleta de
+       execução; buscar em `exec` primeiro só acharia vazio. */
+    m.municipio_emendas = primeiro(vig.municipio_emendas, resumo.municipio_emendas);
+    m.ponto_focal       = primeiro(vig.ponto_focal, resumo.ponto_focal);
+    /* `dono_emenda` é do setor e `autor_emenda` é da CGU — mesmo assunto em
+       fontes diferentes. O do setor ganha por estar sempre preenchido. */
+    m.dono_emenda = primeiro(vig.dono_emenda, resumo.dono_emenda,
+                             vig.autor_emenda, resumo.autor_emenda, exec.autor_emenda);
+    m.fiscal = primeiro(exec.fiscal, resumo.fiscal, vig.fiscal);
+    m.numero = alvo;
+    return m;
+  }
+
+  /* Campo vazio aparece como "—" em cinza, NUNCA some. Sumir faria o leitor
+     concluir que o instrumento não tem aquele dado, quando o que ele não tem
+     é o dado PREENCHIDO. É o caso do ponto focal nos 40 do legado. */
+  function fichaBloco(titulo, campos) {
+    return '<div class="fb-titulo">' + esc(titulo) + '</div><div class="fb-grid">' +
+      campos.map(function (p) {
+        var v = String(p[1] == null ? '' : p[1]).trim();
+        return '<div class="fb-campo' + (p[2] ? ' fb-largo' : '') + (v ? '' : ' vazio') + '">' +
+               '<label>' + esc(p[0]) + '</label>' +
+               '<span>' + esc(v || '—') + '</span></div>';
+      }).join('') + '</div>';
+  }
+
+  /* ── PRESTAÇÃO DE CONTAS ──────────────────────────────────────────────
+     `painel/pcf` tem regra própria no Firestore: quem não tem o painel de PCF
+     na lista de permissões recebe negativa, e IDEPI.dados.pcf() devolve lista
+     vazia. Vazio é indistinguível de "ninguém tem PCF" — por isso o estado
+     tem TRÊS valores: sem permissão o bloco não aparece; com permissão e sem
+     registro, ele diz que não há PCF aberta. Afirmar "não há" para quem
+     apenas não pode ler seria dizer o que não se sabe. */
+  function fichaCarregarPCF() {
+    if (_fichaPCF.estado !== 'nao_carregado') return Promise.resolve(_fichaPCF);
+    _fichaPCF.estado = 'carregando';
+    if (!IDEPI.dados || !IDEPI.dados.pcf) {
+      _fichaPCF.estado = 'indisponivel';
+      return Promise.resolve(_fichaPCF);
+    }
+    return IDEPI.dados.pcf().then(function (d) {
+      var lista = (d && d.pcfs) || [];
+      lista.forEach(function (p) {
+        var n = String(p.numero || p.numero_orig || '').trim();
+        if (n) _fichaPCF.porNumero[n] = p;
+      });
+      _fichaPCF.estado = lista.length ? 'ok' : 'indisponivel';
+      return _fichaPCF;
+    }).catch(function () {
+      _fichaPCF.estado = 'indisponivel';
+      return _fichaPCF;
+    });
+  }
+
+  function fichaBlocoPCF(numero) {
+    if (_fichaPCF.estado === 'nao_carregado' || _fichaPCF.estado === 'carregando')
+      return '<div class="fb-titulo">Prestação de contas final</div>' +
+             '<div class="fb-grid"><div class="fb-campo fb-largo vazio">' +
+             '<span>consultando…</span></div></div>';
+    if (_fichaPCF.estado === 'indisponivel') return '';
+
+    var p = _fichaPCF.porNumero[String(numero || '').trim()];
+    if (!p)
+      return fichaBloco('Prestação de contas final', [
+        ['Situação', 'não há PCF aberta para este instrumento', true]
+      ]);
+
+    /* A etapa mostrada é a do TRANSFEREGOV desde 18/08/2026; a planilha do
+       setor ficou como fonte da Observação e do SEI. Dizer a ORIGEM importa:
+       "concluída" lida do sistema e "concluída" digitada por alguém não valem
+       o mesmo — e quando discordam, mostram-se as duas. */
+    var origem = p.fonte_etapa === 'transferegov'
+      ? 'Transferegov' + (p.tgov_lido_em ? ' · lido em ' + p.tgov_lido_em : '')
+      : 'planilha do setor (ainda sem leitura do Transferegov)';
+
+    var campos = [
+      ['Etapa', p.etapa_rotulo],
+      ['Origem', origem],
+      ['Processo SEI', p.processo],
+      ['Situação', p.situacao_tgov || p.situacao, true]
+    ];
+    if (p.diverge_da_planilha)
+      campos.push(['⚠ A planilha do setor ainda diz',
+                   p.etapa_rotulo_planilha || '—', true]);
+    campos.push(['Observação', p.observacao, true]);
+    return fichaBloco('Prestação de contas final', campos);
+  }
+
+  function fichaHtml(c) {
+    var seis = seisDe(c);
+    var seiHtml = seis.length
+      ? '<span class="fb-sei-vig">' + esc(seis[seis.length - 1]) + '</span>' +
+        (seis.length > 1
+          ? ' <button class="fb-mais" type="button" onclick="IDEPI.alternarSeis()">' +
+            '+' + (seis.length - 1) + ' anteriores</button>' +
+            '<div class="fb-seis" id="fbSeis" hidden>' +
+              seis.slice(0, -1).reverse().map(function (x) {
+                return '<button class="fb-sei-item" type="button" data-sei="' +
+                       esc(x) + '" title="Clique para copiar">' +
+                       esc(x) + '<i class="fa-regular fa-copy"></i></button>';
+              }).join('') +
+            '</div>'
+          : '')
+      : '—';
+
+    var cp = contrapartidaDe(c), rp = repasseDe(c);
+    var st = calcStatus(c), fase = faseDe(c), conc = concedenteDe(c);
+
+    var vigencia = c.vigencia_fmt || c.vigencia || '';
+    if (vigencia && c.vigencia_origem) vigencia += '  (' + c.vigencia_origem + ')';
+
+    return (
+      fichaBloco('Identificação', [
+        ['Município', c.municipio_emendas],
+        ['Fase', fase ? fase.rotulo : ''],
+        ['Objeto', c.objeto, true]
+      ]) +
+      fichaBloco('Quem responde', [
+        ['Fiscal responsável', c.fiscal],
+        ['Contato (ponto focal)', c.ponto_focal],
+        ['Dono da emenda', c.dono_emenda]
+      ]) +
+      fichaBloco('Órgãos', [
+        ['Concedente', conc.sigla ? (conc.sigla + (conc.nome ? ' — ' + conc.nome : '')) : conc.nome],
+        ['Mandatária', c.mandataria],
+        ['Órgão vinculado', c.orgao_vinculado],
+        ['Tipo', c.tipo_instrumento]
+      ]) +
+      fichaBloco('Prazos', [
+        ['Situação de vigência', (IDEPI.NOME_ST[st.st] || st.st) +
+          (st.dias !== null ? ' · ' + st.dias + ' dias' : '')],
+        ['Vigência final', vigencia],
+        ['Situação (Transferegov)', c.situacao_tgov],
+        ['Contratação (Transferegov)', c.sit_contrat_tgov],
+        ['Limite p/ prestação de contas', c.limite_prestacao]
+      ]) +
+      fichaBloco('Valores', [
+        ['Repasse previsto', fmtReais(rp.previsto)],
+        ['Repasse já liberado', fmtReais(rp.liberado)],
+        ['Repasse a receber', fmtReais(rp.falta)],
+        ['Contrapartida prevista', cp.previsto ? fmtReais(cp.previsto) : 'não há'],
+        ['Contrapartida depositada', cp.previsto ? fmtReais(cp.depositado) : '']
+      ]) +
+      '<div class="fb-titulo">Processo</div><div class="fb-grid">' +
+        '<div class="fb-campo fb-largo"><label>Processo SEI</label><span>' +
+        seiHtml + '</span></div>' +
+      '</div>' +
+      '<div id="fichaPCF" data-num="' + esc(c.numero || '') + '">' +
+        fichaBlocoPCF(c.numero) + '</div>'
+    );
+  }
+
+  /** Abre a ficha do instrumento em janela. `nota` acrescenta um aviso. */
+  function fichaAbrir(numero, nota) {
+    var c = fichaDados(numero);
+    var corpo = fichaHtml(c) + (nota
+      ? '<div class="fb-nota"><i class="fa-solid fa-circle-info"></i> ' + nota + '</div>'
+      : '');
+    abrirModal('Ficha do instrumento ' + (c.numero || ''), corpo);
+
+    /* A PCF chega depois, sem segurar a janela. O recipiente carrega o número
+       que o gerou: se a pessoa fechou e abriu OUTRO instrumento antes de a
+       leitura voltar, a resposta não lhe pertence e é descartada. Mostrar a
+       prestação de contas do convênio errado é o defeito do `?num=` de
+       04/08/2026 — ler números achando que são de outro. */
+    fichaCarregarPCF().then(function () {
+      var alvo = document.getElementById('fichaPCF');
+      if (!alvo) return;
+      if (alvo.getAttribute('data-num') !== String(c.numero || '')) return;
+      alvo.innerHTML = fichaBlocoPCF(c.numero);
+    });
+  }
+
+  function alternarSeis() {
+    var b = document.getElementById('fbSeis');
+    if (b) b.hidden = !b.hidden;
+  }
+
+  /** Botão padrão da ficha, para as listas dos painéis.
+      `stopPropagation` porque em várias tabelas a linha inteira é clicável. */
+  function botaoFicha(numero) {
+    var n = esc(numero);
+    return '<button class="btn-ficha-mini" type="button" ' +
+           'title="Ficha do instrumento ' + n + '" ' +
+           'aria-label="Ficha do instrumento ' + n + '" ' +
+           'data-ficha-num="' + n + '"><i class="fa-solid fa-id-card"></i></button>';
+  }
+
+  /* Um ouvinte só, para os botões de SEI e os de ficha — presentes e futuros.
+     Delegação em vez de onclick inline: as listas são redesenhadas a cada
+     filtro, e religar ouvinte a cada render é como se perde evento. */
+  document.addEventListener('click', function (ev) {
+    var bf = ev.target.closest && ev.target.closest('[data-ficha-num]');
+    if (bf) {
+      ev.preventDefault();
+      ev.stopPropagation();
+      fichaAbrir(bf.getAttribute('data-ficha-num'));
+      return;
+    }
+    var b = ev.target.closest && ev.target.closest('.fb-sei-item');
+    if (!b) return;
+    var txt = b.getAttribute('data-sei') || '';
+    navigator.clipboard.writeText(txt).then(function () {
+      var antes = b.innerHTML;
+      b.innerHTML = txt + ' <i class="fa-solid fa-check"></i>';
+      setTimeout(function () { b.innerHTML = antes; }, 1400);
+    });
+  });
+
   IDEPI.toggleFullscreen = toggleFullscreen;
   IDEPI.abrirModal = abrirModal;
+  IDEPI.alternarSeis = alternarSeis;
+  IDEPI.ficha = {
+    registrar: fichaRegistrarFontes,
+    dados:     fichaDados,
+    html:      fichaHtml,
+    abrir:     fichaAbrir,
+    bloco:     fichaBloco,
+    botao:     botaoFicha,
+    blocoPCF:  fichaBlocoPCF,
+    carregarPCF: fichaCarregarPCF,
+  };
   IDEPI.fecharModal = fecharModal;
   IDEPI.ligarBotaoFullscreen = ligarBotaoFullscreen;
   IDEPI.toast = toast;

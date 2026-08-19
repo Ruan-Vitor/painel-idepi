@@ -95,6 +95,20 @@
     opcoes = opcoes || {};
     if (_promessaPrincipal && !opcoes.recarregar) return _promessaPrincipal;
 
+    /* ── FONTE DA FICHA DO INSTRUMENTO (19/08/2026) ──────────────────────
+       Registrada AQUI, e não em cada painel, porque todos passam por
+       carregar(): uma linha em vez de seis, e painel novo já nasce com a
+       ficha funcionando sem ninguém lembrar de ligá-la. A função só é
+       chamada quando alguém abre a ficha, então lê sempre a versão mais
+       recente do cache — registrar o array agora congelaria o vazio. */
+    if (IDEPI.ficha && IDEPI.ficha.registrar)
+      IDEPI.ficha.registrar({
+        vigencias: function () {
+          var c = lerCache('principal');
+          return (c && c.dados && c.dados.convenios) || [];
+        }
+      });
+
     _promessaPrincipal = IDEPI.auth.pronto().then(function () {
       if (!temFirestore()) return viaLegado();
 

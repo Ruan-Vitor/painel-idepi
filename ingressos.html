@@ -802,7 +802,7 @@ function renderizar(){
             '<a class="num-link" href="execucao.html?num=' +
             encodeURIComponent(r.numero || '') +
             '" title="Abrir a execucao financeira deste instrumento">' +
-            e(r.numero) + '</a></span></td>';
+            e(r.numero) + '</a>' + IDEPI.ficha.botao(r.numero||'') + '</span></td>';
     html += '<td class="celula-destaque"><div class="obj-cell txt-exp">'+e(r.objeto)+'</div></td>';
     html += '<td class="banco-cell">'+e(r.banco)+'</td>';
     html += '<td class="banco-cell">'+e(r.agencia)+'</td>';

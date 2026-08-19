@@ -194,8 +194,17 @@
                  direita caia 160 px FORA da tela - a pagina inteira parecia
                  deslocada depois de tocar na barra de selecao. Abaixo de 900 px
                  ela ocupa a largura da tela com 12 px de margem, rolagem
-                 propria e teto de 70vh. Desktop inalterado. */
-const VERSAO = 'idepi-v41';
+                 propria e teto de 70vh. Desktop inalterado.
+     v42 — 19/08: a FICHA DO INSTRUMENTO passa a existir em TODOS os paineis.
+                 Ela vivia dentro do execucao.html; subiu para o app.js e cada
+                 numero ganhou um botao proprio ao lado. O NUMERO continua
+                 navegando para a execucao financeira (decisao do Felipe em
+                 17/08) - o botao e outra coisa: abre a ficha SEM sair da
+                 pagina, para quem filtrou por fiscal nao perder o filtro so
+                 para ver um municipio. As fontes sao registradas no data.js,
+                 por onde todos os paineis passam: painel novo ja nasce com a
+                 ficha funcionando. */
+const VERSAO = 'idepi-v42';
 const CACHE_SHELL = VERSAO + '-shell';
 const CACHE_PAGS  = VERSAO + '-paginas';
 

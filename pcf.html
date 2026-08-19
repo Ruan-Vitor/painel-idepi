@@ -317,6 +317,7 @@ function render() {
           encodeURIComponent(p.numero || '') + '" ' +
           'title="Abrir a execução financeira deste instrumento">' +
           IDEPI.esc(p.numero_orig || p.numero) + '</a>' +
+        IDEPI.ficha.botao(p.numero || '') +
         '<span class="pcf-etapa ' + cls + '">' + IDEPI.esc(p.etapa_rotulo) + '</span>' +
         selo + diverge +
       '</div>' +

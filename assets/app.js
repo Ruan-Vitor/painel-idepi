@@ -118,14 +118,15 @@
   var SIT_IGNORADA = { '': 1, '—': 1, '-': 1, 'erro': 1, 'todas': 1, 'n/a': 1, 'n/d': 1 };
 
   /** Primeiro campo que disser algo decisivo é o que vale.
-   *  @returns {'fim'|'aguarda'|null} */
+   *  @returns {'fim'|'aguarda'|'aguarda_cgu'|null}
+   *  'aguarda_cgu' distingue o sinal que veio da CGU — ver calcStatus(). */
   function leSituacao(c) {
     if (!c) return null;
     var campos = [c.situacao_tgov, c.sit_contrat_tgov, c.situacao];
     for (var i = 0; i < campos.length; i++) {
       var s = norm(campos[i]).trim();
       if (SIT_IGNORADA[s]) continue;
-      if (REGEX_AGUARDA_PC.test(s)) return 'aguarda';
+      if (REGEX_AGUARDA_PC.test(s)) return i === 2 ? 'aguarda_cgu' : 'aguarda';
       if (REGEX_FIN.test(s)) return 'fim';
     }
     return null;
@@ -137,7 +138,8 @@
 
   /** Vigência encerrada com a prestação de contas ainda por entregar. */
   function aguardaPrestacao(c) {
-    return leSituacao(c) === 'aguarda';
+    var s = leSituacao(c);
+    return s === 'aguarda' || s === 'aguarda_cgu';
   }
 
   /**
@@ -168,8 +170,24 @@
     var dias = dataEf ? diasAte(dataEf) : null;
 
     /* Aguardando PCF é vencido mesmo sem data utilizável: a própria situação
-       do Transferegov já diz que a vigência acabou. */
+       do Transferegov já diz que a vigência acabou.
+
+       SALVO quando o sinal veio da CGU e a data diz o contrário (18/08/2026).
+       O texto da CGU é derivado do término que ELA conhece, e desde 13/08 a
+       vigência vem do Transferegov, que enxerga aditivo semanas antes. O
+       899533 tinha 07/07/2027 pelo Tgov — 323 dias pela frente —, contratação
+       "Normal" e situação "Em execução", e aparecia VENCIDO porque a CGU ainda
+       estava em 07/07/2026. Vigência que não acabou não pode estar aguardando
+       prestação de contas: é contradição, e vale a fonte mais nova, que é a
+       data. Dito pelo TRANSFEREGOV, nada muda — ele continua decidindo. */
     if (sit === 'aguarda') return { st: 'vencido', dias: dias, temSusp: temSusp };
+    /* Condição ESTREITA: exige que a data tenha vindo do TRANSFEREGOV. Com
+       dados só da CGU, data futura convivendo com "aguardando PCF" é
+       contradição INTERNA dela, e ali vale a decisão de 03/08/2026 — acredita-se
+       na situação, porque o dataFinalVigencia da CGU tem defeito conhecido. */
+    if (sit === 'aguarda_cgu' &&
+        !(c.vigencia_origem === 'Transferegov' && dias !== null && dias >= 0))
+      return { st: 'vencido', dias: dias, temSusp: temSusp };
 
     /* Sem data e sem situação decisiva NÃO é finalizado — é dado que falta.
        São as propostas ainda não assinadas (999001, 999050, 999010, 999021),

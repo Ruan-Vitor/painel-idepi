@@ -421,6 +421,20 @@
         <div class="fase-legenda" id="fase-legenda"></div>
       </div>
 
+      <!-- PROPOSTAS AINDA SEM Nº DE INSTRUMENTO
+           Não estão na planilha de vigências (a coluna A é indexada pelo
+           número do instrumento, que elas não têm), então não passam pelo
+           main.py. Vêm do checar_novos_convenios.py, pelo painel/vigencias.
+           O card fica ESCONDIDO quando não há nenhuma: card vazio permanente
+           é ruído, e um dia todas viram instrumento. -->
+      <div class="fg-card" id="card-prop" hidden>
+        <div class="fg-card-head">
+          <div class="fg-card-title"><i class="fa-solid fa-file-signature"></i> Propostas sem nº de instrumento — <span id="prop-qtd">—</span></div>
+        </div>
+        <div class="sus-lista" id="prop-lista"></div>
+        <div class="fg-nota" id="prop-nota"></div>
+      </div>
+
       <!-- PERÍODO SEM EXECUÇÃO FINANCEIRA -->
       <div class="fg-card" id="card-par">
         <div class="fg-card-head">
@@ -768,6 +782,38 @@ function renderContrapartida(conv) {
   }).join('');
 }
 
+/* ── Propostas ainda sem nº de instrumento ───────────────────────────────── */
+/* Elas não entram nas contagens do painel de propósito: não são convênios,
+   não têm vigência assinada nem recurso. Ficam num card à parte, que é o
+   pedido do setor — acompanhá-las sem misturá-las com os 102. */
+function renderPropostas(props) {
+  var box = IDEPI.$('prop-lista');
+  var card = IDEPI.$('card-prop');
+  if (!box || !card) return;
+  if (!props || !props.length) { card.hidden = true; return; }
+  card.hidden = false;
+  IDEPI.setTxt('prop-qtd', props.length + (props.length === 1 ? ' proposta' : ' propostas'));
+  box.innerHTML = props.map(function (p) {
+    var valor = Number(p.valor || 0);
+    return '<div class="sus-item">' +
+             '<span class="sus-id"><span class="sus-num" style="cursor:default">' +
+               IDEPI.esc(p.proposta || '—') + '</span></span>' +
+             '<div>' +
+               '<div class="sus-obj" title="' + IDEPI.esc(p.objeto || p.situacao || '') + '">' +
+                 IDEPI.esc(p.objeto || p.situacao || '—') +
+                 (p.municipio ? ' <span class="mun">(' + IDEPI.esc(p.municipio) + ')</span>' : '') +
+               '</div>' +
+             '</div>' +
+             '<div class="sus-prazo">' + (valor ? IDEPI.fmtReais(valor) : '—') +
+               '<small>' + (p.vigencia ? 'até ' + IDEPI.esc(p.vigencia) : 'sem prazo') +
+               '</small></div>' +
+           '</div>';
+  }).join('');
+  IDEPI.setHtml('prop-nota',
+    'Sem número de instrumento: ainda não foram celebradas, então não entram ' +
+    'nos ' + (IDEPI.$('kpi-total') ? '' : '') + 'totais acima. Fonte: planilha Emendas Senador.');
+}
+
 /* ── Travados por cláusula suspensiva ────────────────────────────────────── */
 function renderSuspensivas(conv) {
   IDEPI.setHtml('fase-legenda', '<strong style="color:var(--text)">Fase:</strong>' +
@@ -961,6 +1007,7 @@ IDEPI.dados.carregar()
 
     renderCoortes(conv);
     renderSuspensivas(conv);
+    renderPropostas(j.propostas || []);
     carregarExecucao(conv);
     ajustarBuscas();
     /* Registra o histórico ANTES de qualquer cálculo: é ele que faz

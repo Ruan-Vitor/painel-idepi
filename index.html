@@ -105,6 +105,9 @@
 .sus-num{font-weight:700;color:var(--accent);text-decoration:none}
 .sus-num:hover{text-decoration:underline}
 .sus-obj{color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sus-motivo{color:var(--muted);opacity:.8;font-size:10px;margin-top:2px;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sus-motivo::before{content:'trava: ';opacity:.7}
 .sus-prazo{text-align:right;font-weight:700;font-size:11px}
 .sus-prazo small{display:block;font-weight:500;color:var(--muted);font-size:9.5px}
 .sus-prazo.perto{color:#c2410c}
@@ -795,8 +798,17 @@ function renderSuspensivas(conv) {
                  IDEPI.faixaFase(c) + IDEPI.esc(c.numero) + '</a>' +
                IDEPI.ficha.botao(c.numero || '') +
              '</span>' +
-             '<div class="sus-obj" title="' + IDEPI.esc(c.objeto || '') + '">' +
-               IDEPI.esc(c.objeto || '—') + IDEPI.municipioExtra(c) + '</div>' +
+             '<div>' +
+               '<div class="sus-obj" title="' + IDEPI.esc(c.objeto || '') + '">' +
+                 IDEPI.esc(c.objeto || '—') + IDEPI.municipioExtra(c) + '</div>' +
+               /* O prazo diz ATÉ QUANDO está travado; o motivo diz POR QUÊ —
+                  e é o porquê que o setor usa para destravar. Vem da coluna
+                  AG, escrita pelo ler_clausula_suspensiva.py; sem ela a linha
+                  simplesmente não aparece. */
+               (c.clausula_motivo
+                  ? '<div class="sus-motivo" title="' + IDEPI.esc(c.clausula_motivo) +
+                    '">' + IDEPI.esc(c.clausula_motivo) + '</div>' : '') +
+             '</div>' +
              '<div class="sus-prazo' + cls + '">' + txt + '<small>' + sub + '</small></div>' +
            '</div>';
   }).join('');

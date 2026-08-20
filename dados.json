@@ -1,5 +1,5 @@
 {
-  "gerado_em": "20/08/2026 08:46",
+  "gerado_em": "20/08/2026 08:58",
   "total": 102,
   "convenios": [
     {
@@ -41,7 +41,8 @@
       "sei_todos": "00119.000282/2022-31",
       "vigencia_emendas": "30/09/2026",
       "dono_emenda": "Iracema Portela",
-      "ponto_focal": ""
+      "ponto_focal": "",
+      "clausula_motivo": ""
     },
     {
       "numero": "889040",
@@ -82,7 +83,8 @@
       "sei_todos": "00119.001413/2023-89",
       "vigencia_emendas": "06/12/2025",
       "dono_emenda": "Marcos Aurelio",
-      "ponto_focal": ""
+      "ponto_focal": "",
+      "clausula_motivo": ""
     },
     {
       "numero": "894024",
@@ -123,7 +125,8 @@
       "sei_todos": "",
       "vigencia_emendas": "30/09/2026",
       "dono_emenda": "Iracema Portela",
-      "ponto_focal": ""
+      "ponto_focal": "",
+      "clausula_motivo": ""
     },
     {
       "numero": "897425",
@@ -164,7 +167,8 @@
       "sei_todos": "00119.000143/2021-27",
       "vigencia_emendas": "30/09/2026",
       "dono_emenda": "Marcos Aurelio",
-      "ponto_focal": ""
+      "ponto_focal": "",
+      "clausula_motivo": ""
     },
     {
       "numero": "897099",
@@ -205,7 +209,8 @@
       "sei_todos": "00119.002183/2023-75",
       "vigencia_emendas": "30/09/2026",
       "dono_emenda": "Marcos Aurelio",
-      "ponto_focal": ""
+      "ponto_focal": "",
+      "clausula_motivo": ""
     },
     {
       "numero": "900822",
@@ -246,7 +251,8 @@
       "sei_todos": "00119.000274/2020-23",
       "vigencia_emendas": "30/09/2026",
       "dono_emenda": "Marcos Aurelio",
-      "ponto_focal": ""
+      "ponto_focal": "",
+      "clausula_motivo": ""
     },
     {
       "numero": "902680",
@@ -287,7 +293,8 @@
       "sei_todos": "00119.000843/2023-83 · 00119.000765/2024-06",
       "vigencia_emendas": "04/01/2026",
       "dono_emenda": "Marcos Aurelio",
-      "ponto_focal": ""
+      "ponto_focal": "",
+      "clausula_motivo": ""
     },
     {
       "numero": "906442",
@@ -328,7 +335,8 @@
       "sei_todos": "00119.000118/2022-24",
       "vigencia_emendas": "29/12/2025",
       "dono_emenda": "Marcos Aurelio",
-      "ponto_focal": ""
+      "ponto_focal": "",
+      "clausula_motivo": ""
     },
     {
       "numero": "916598",
@@ -369,7 +377,8 @@
       "sei_todos": "00119.000022/2022-66",
       "vigencia_emendas": "30/09/2026",
       "dono_emenda": "Marcos Aurelio",
-      "ponto_focal": ""
+      "ponto_focal": "",
+      "clausula_motivo": ""
     },
     {
       "numero": "917537",
@@ -410,7 +419,8 @@
       "sei_todos": "00119.000020/2022-77 · 00119.001717/2024-27",
       "vigencia_emendas": "30/12/2026",
       "dono_emenda": "Fabio Abreu",
-      "ponto_focal": ""
+      "ponto_focal": "",
+      "clausula_motivo": ""
     },
     {
       "numero": "902704",
@@ -451,7 +461,8 @@
       "sei_todos": "00119.000053/2022-17 · 00119.002034/2023-14 · 00119.000673/2024-18",
       "vigencia_emendas": "11/04/2025",
       "dono_emenda": "Marcos Aurelio",
-      "ponto_focal": ""
+      "ponto_focal": "",
+      "clausula_motivo": ""
     },
     {
       "numero": "902705",
@@ -460,14 +471,14 @@
       "vigencia_fmt": "31/12/2025",
       "vigencia_inicio": "09/10/2020",
       "vigencia_suspensiva": "",
-      "vigencia_origem": "CGU",
+      "vigencia_origem": "Transferegov",
       "orgao_vinculado": "",
-      "orgao_tgov": "",
-      "limite_prestacao": "",
+      "orgao_tgov": "22000 - Ministério da Agricultura e Pecuária",
+      "limite_prestacao": "01/03/2026",
       "sei": "00119.000316/2023-79",
       "fiscal": "Milton",
-      "dias": -232,
-      "status": "VENCIDO",
+      "dias": null,
+      "status": "FINALIZADO",
       "situacao": "AGUARDANDO PRESTAÇÃO DE CONTAS",
       "v_total": "477.500,00",
       "v_liberado": "477.500,00",
@@ -481,18 +492,19 @@
       "concedente_sigla": "MAPA",
       "mandataria": "",
       "numero_original": "08695/2020",
-      "foto_app": "SIM (16 fotos)",
-      "medicao": "NÃO",
-      "pagamento": "SIM",
-      "apto_fiscalgov": "SIM ✅",
-      "situacao_tgov": "Aguardando Prestação de Contas",
+      "foto_app": "",
+      "medicao": "",
+      "pagamento": "",
+      "apto_fiscalgov": "",
+      "situacao_tgov": "Prestação de Contas enviada para Análise",
       "sit_contrat_tgov": "Normal",
       "fase_emendas": "em andamento",
       "municipio_emendas": "Jacobina",
       "sei_todos": "00119.000051/2022-28 · 00119.000316/2023-79",
       "vigencia_emendas": "31/12/2025",
       "dono_emenda": "Marcos Aurelio",
-      "ponto_focal": ""
+      "ponto_focal": "",
+      "clausula_motivo": ""
     },
     {
       "numero": "838065",
@@ -533,7 +545,8 @@
       "sei_todos": "00119.000970/2024-63 · 00119.000404/2023-71",
       "vigencia_emendas": "31/12/2026",
       "dono_emenda": "Fabio Abreu",
-      "ponto_focal": ""
+      "ponto_focal": "",
+      "clausula_motivo": ""
     },
     {
       "numero": "907472",
@@ -574,7 +587,8 @@
       "sei_todos": "00119.000251/2022-81",
       "vigencia_emendas": "31/12/2026",
       "dono_emenda": "Marcelo Castro",
-      "ponto_focal": ""
+      "ponto_focal": "",
+      "clausula_motivo": ""
     },
     {
       "numero": "907471",
@@ -615,7 +629,8 @@
       "sei_todos": "00119.000282/2022-31",
       "vigencia_emendas": "31/12/2026",
       "dono_emenda": "Marcelo Castro",
-      "ponto_focal": ""
+      "ponto_focal": "",
+      "clausula_motivo": ""
     },
     {
       "numero": "907470",
@@ -656,7 +671,8 @@
       "sei_todos": "00119.000281/2022-97",
       "vigencia_emendas": "31/12/2026",
       "dono_emenda": "Marcelo Castro",
-      "ponto_focal": ""
+      "ponto_focal": "",
+      "clausula_motivo": ""
     },
     {
       "numero": "907469",
@@ -697,7 +713,8 @@
       "sei_todos": "00119.000252/2022-25",
       "vigencia_emendas": "31/12/2026",
       "dono_emenda": "Marcelo Castro",
-      "ponto_focal": ""
+      "ponto_focal": "",
+      "clausula_motivo": ""
     },
     {
       "numero": "907008",
@@ -738,7 +755,8 @@
       "sei_todos": "00119.000429/2021-11",
       "vigencia_emendas": "31/12/2026",
       "dono_emenda": "Marcelo Castro",
-      "ponto_focal": ""
+      "ponto_focal": "",
+      "clausula_motivo": ""
     },
     {
       "numero": "907015",
@@ -779,7 +797,8 @@
       "sei_todos": "00119.000288/2022-17",
       "vigencia_emendas": "31/12/2026",
       "dono_emenda": "Marcelo Castro",
-      "ponto_focal": ""
+      "ponto_focal": "",
+      "clausula_motivo": ""
     },
     {
       "numero": "907031",
@@ -820,7 +839,8 @@
       "sei_todos": "00119.000486/2024-34",
       "vigencia_emendas": "31/12/2026",
       "dono_emenda": "Marcelo Castro",
-      "ponto_focal": ""
+      "ponto_focal": "",
+      "clausula_motivo": ""
     },
     {
       "numero": "907032",
@@ -861,7 +881,8 @@
       "sei_todos": "00119.000428/2021-68",
       "vigencia_emendas": "31/12/2026",
       "dono_emenda": "Marcelo Castro",
-      "ponto_focal": ""
+      "ponto_focal": "",
+      "clausula_motivo": ""
     },
     {
       "numero": "907033",
@@ -902,7 +923,8 @@
       "sei_todos": "00119.000456/2021-85",
       "vigencia_emendas": "31/12/2026",
       "dono_emenda": "Marcelo Castro",
-      "ponto_focal": ""
+      "ponto_focal": "",
+      "clausula_motivo": ""
     },
     {
       "numero": "907035",
@@ -943,7 +965,8 @@
       "sei_todos": "00119.000397/2025-79 · 00119.000454/2021-96",
       "vigencia_emendas": "31/12/2026",
       "dono_emenda": "Marcelo Castro",
-      "ponto_focal": ""
+      "ponto_focal": "",
+      "clausula_motivo": ""
     },
     {
       "numero": "907037",
@@ -984,7 +1007,8 @@
       "sei_todos": "00119.000426/2021-79",
       "vigencia_emendas": "31/12/2026",
       "dono_emenda": "Marcelo Castro",
-      "ponto_focal": ""
+      "ponto_focal": "",
+      "clausula_motivo": ""
     },
     {
       "numero": "907038",
@@ -1025,7 +1049,8 @@
       "sei_todos": "00119.000452/2021-05",
       "vigencia_emendas": "31/12/2026",
       "dono_emenda": "Marcelo Castro",
-      "ponto_focal": ""
+      "ponto_focal": "",
+      "clausula_motivo": ""
     },
     {
       "numero": "907040",
@@ -1043,7 +1068,7 @@
       "dias": 133,
       "status": "NORMAL",
       "situacao": "EM EXECUÇÃO",
-      "v_total": "125,00",
+      "v_total": "1.250.000,00",
       "v_liberado": "0,00",
       "v_contrapartida": "0,00",
       "v_ultima_liberacao": "0,00",
@@ -1066,7 +1091,8 @@
       "sei_todos": "00119.000283/2022-86",
       "vigencia_emendas": "31/12/2026",
       "dono_emenda": "Marcelo Castro",
-      "ponto_focal": ""
+      "ponto_focal": "",
+      "clausula_motivo": ""
     },
     {
       "numero": "907045",
@@ -1107,7 +1133,8 @@
       "sei_todos": "00119.000453/2021-41",
       "vigencia_emendas": "31/12/2026",
       "dono_emenda": "Marcelo Castro",
-      "ponto_focal": ""
+      "ponto_focal": "",
+      "clausula_motivo": ""
     },
     {
       "numero": "907050",
@@ -1148,7 +1175,8 @@
       "sei_todos": "00119.000427/2021-13",
       "vigencia_emendas": "31/12/2026",
       "dono_emenda": "Marcelo Castro",
-      "ponto_focal": ""
+      "ponto_focal": "",
+      "clausula_motivo": ""
     },
     {
       "numero": "737058",
@@ -1189,7 +1217,8 @@
       "sei_todos": "",
       "vigencia_emendas": "31/12/2026",
       "dono_emenda": "",
-      "ponto_focal": ""
+      "ponto_focal": "",
+      "clausula_motivo": ""
     },
     {
       "numero": "887234",
@@ -1230,7 +1259,8 @@
       "sei_todos": "00119.000339/2021-11 · 00119.002310/2023-36",
       "vigencia_emendas": "30/09/2026",
       "dono_emenda": "Paes Landim",
-      "ponto_focal": ""
+      "ponto_focal": "",
+      "clausula_motivo": ""
     },
     {
       "numero": "902401",
@@ -1271,7 +1301,8 @@
       "sei_todos": "00119.000323/2021-17 · 00119.000219/2023-86",
       "vigencia_emendas": "17/08/2026",
       "dono_emenda": "Marcos Aurelio",
-      "ponto_focal": ""
+      "ponto_focal": "",
+      "clausula_motivo": ""
     },
     {
       "numero": "899533",
@@ -1312,7 +1343,8 @@
       "sei_todos": "00119.000077/2022-76 · 00119.000985/2024-21 · 00119.000695/2024-88",
       "vigencia_emendas": "07/07/2026",
       "dono_emenda": "Marcos Aurelio",
-      "ponto_focal": ""
+      "ponto_focal": "",
+      "clausula_motivo": ""
     },
     {
       "numero": "900838",
@@ -1353,7 +1385,8 @@
       "sei_todos": "00119.000029/2021-05",
       "vigencia_emendas": "07/07/2026",
       "dono_emenda": "Marcos Aurelio",
-      "ponto_focal": ""
+      "ponto_focal": "",
+      "clausula_motivo": ""
     },
     {
       "numero": "900837",
@@ -1373,7 +1406,7 @@
       "situacao": "EM EXECUÇÃO",
       "v_total": "469.700,00",
       "v_liberado": "469.700,00",
-      "v_contrapartida": "1,00",
+      "v_contrapartida": "10.000,00",
       "v_ultima_liberacao": "469.700,00",
       "ultima_liberacao": "09/12/2024",
       "pct_exec": "",
@@ -1394,7 +1427,8 @@
       "sei_todos": "00119.000075/2022-87",
       "vigencia_emendas": "07/07/2026",
       "dono_emenda": "Marcos Aurelio",
-      "ponto_focal": ""
+      "ponto_focal": "",
+      "clausula_motivo": ""
     },
     {
       "numero": "900840",
@@ -1435,7 +1469,8 @@
       "sei_todos": "00119.001924/2023-09",
       "vigencia_emendas": "07/07/2026",
       "dono_emenda": "Marcos Aurelio",
-      "ponto_focal": ""
+      "ponto_focal": "",
+      "clausula_motivo": ""
     },
     {
       "numero": "899540",
@@ -1476,7 +1511,8 @@
       "sei_todos": "00119.000162/2021-53",
       "vigencia_emendas": "07/07/2025",
       "dono_emenda": "Marcos Aurelio",
-      "ponto_focal": ""
+      "ponto_focal": "",
+      "clausula_motivo": ""
     },
     {
       "numero": "899530",
@@ -1517,7 +1553,8 @@
       "sei_todos": "00119.000079/2022-65 · 00119.001783/2023-16 · 00119.000934/2025-81",
       "vigencia_emendas": "07/07/2026",
       "dono_emenda": "Marcos Aurelio",
-      "ponto_focal": ""
+      "ponto_focal": "",
+      "clausula_motivo": ""
     },
     {
       "numero": "847194",
@@ -1558,7 +1595,8 @@
       "sei_todos": "00119.001447/2023-73 · 00119.001187/2025-06",
       "vigencia_emendas": "31/12/2026",
       "dono_emenda": "Elmano Ferrer",
-      "ponto_focal": ""
+      "ponto_focal": "",
+      "clausula_motivo": ""
     },
     {
       "numero": "920090",
@@ -1599,7 +1637,8 @@
       "sei_todos": "00119.001040/2023-46",
       "vigencia_emendas": "28/12/2026",
       "dono_emenda": "Rejane Dias",
-      "ponto_focal": ""
+      "ponto_focal": "",
+      "clausula_motivo": ""
     },
     {
       "numero": "915500",
@@ -1640,7 +1679,8 @@
       "sei_todos": "00119.000042/2022-37",
       "vigencia_emendas": "08/11/2026",
       "dono_emenda": "Atila Lira",
-      "ponto_focal": ""
+      "ponto_focal": "",
+      "clausula_motivo": ""
     },
     {
       "numero": "946262",
@@ -1681,7 +1721,8 @@
       "sei_todos": "00119.001554/2023-00",
       "vigencia_emendas": "30/09/2026",
       "dono_emenda": "Marcelo Castro",
-      "ponto_focal": "Paulo Roberto"
+      "ponto_focal": "Paulo Roberto",
+      "clausula_motivo": ""
     },
     {
       "numero": "947350",
@@ -1722,7 +1763,8 @@
       "sei_todos": "00119.001553/2023-57",
       "vigencia_emendas": "30/09/2026",
       "dono_emenda": "Marcelo Castro",
-      "ponto_focal": "Pantikão"
+      "ponto_focal": "Pantikão",
+      "clausula_motivo": ""
     },
     {
       "numero": "946258",
@@ -1763,7 +1805,8 @@
       "sei_todos": "00119.001552/2023-11",
       "vigencia_emendas": "30/09/2026",
       "dono_emenda": "Marcelo Castro",
-      "ponto_focal": "Geraldo Junior"
+      "ponto_focal": "Geraldo Junior",
+      "clausula_motivo": ""
     },
     {
       "numero": "946257",
@@ -1804,7 +1847,8 @@
       "sei_todos": "00119.001558/2023-80 · 00119.000168/2025-54",
       "vigencia_emendas": "30/09/2026",
       "dono_emenda": "Marcelo Castro",
-      "ponto_focal": "Vereador Paulo"
+      "ponto_focal": "Vereador Paulo",
+      "clausula_motivo": ""
     },
     {
       "numero": "946261",
@@ -1845,7 +1889,8 @@
       "sei_todos": "00119.001555/2023-46",
       "vigencia_emendas": "30/09/2026",
       "dono_emenda": "Marcelo Castro",
-      "ponto_focal": "Ziza"
+      "ponto_focal": "Ziza",
+      "clausula_motivo": ""
     },
     {
       "numero": "946260",
@@ -1886,7 +1931,8 @@
       "sei_todos": "00119.001556/2023-91",
       "vigencia_emendas": "30/09/2026",
       "dono_emenda": "Marcelo Castro",
-      "ponto_focal": "Ziza"
+      "ponto_focal": "Ziza",
+      "clausula_motivo": ""
     },
     {
       "numero": "946259",
@@ -1927,7 +1973,8 @@
       "sei_todos": "00119.001557/2023-35",
       "vigencia_emendas": "30/09/2026",
       "dono_emenda": "Marcelo Castro",
-      "ponto_focal": "Luis Lobão"
+      "ponto_focal": "Luis Lobão",
+      "clausula_motivo": ""
     },
     {
       "numero": "947533",
@@ -1968,7 +2015,8 @@
       "sei_todos": "00119.001559/2023-24",
       "vigencia_emendas": "30/09/2026",
       "dono_emenda": "Marcelo Castro",
-      "ponto_focal": "Luis Lobão"
+      "ponto_focal": "Luis Lobão",
+      "clausula_motivo": ""
     },
     {
       "numero": "947106",
@@ -2009,7 +2057,8 @@
       "sei_todos": "00119.001560/2023-59",
       "vigencia_emendas": "30/09/2026",
       "dono_emenda": "Marcelo Castro",
-      "ponto_focal": "Luis Lobão"
+      "ponto_focal": "Luis Lobão",
+      "clausula_motivo": ""
     },
     {
       "numero": "947530",
@@ -2050,7 +2099,8 @@
       "sei_todos": "00119.001561/2023-01",
       "vigencia_emendas": "30/09/2026",
       "dono_emenda": "Marcelo Castro",
-      "ponto_focal": "Luis Lobão"
+      "ponto_focal": "Luis Lobão",
+      "clausula_motivo": ""
     },
     {
       "numero": "947531",
@@ -2091,7 +2141,8 @@
       "sei_todos": "00119.001567/2023-71",
       "vigencia_emendas": "30/09/2026",
       "dono_emenda": "Marcelo Castro",
-      "ponto_focal": "Luis Lobão"
+      "ponto_focal": "Luis Lobão",
+      "clausula_motivo": ""
     },
     {
       "numero": "947532",
@@ -2132,7 +2183,8 @@
       "sei_todos": "00119.001568/2023-15",
       "vigencia_emendas": "30/09/2026",
       "dono_emenda": "Marcelo Castro",
-      "ponto_focal": "Zomin"
+      "ponto_focal": "Zomin",
+      "clausula_motivo": ""
     },
     {
       "numero": "946801",
@@ -2173,7 +2225,8 @@
       "sei_todos": "00119.001602/2023-51",
       "vigencia_emendas": "26/12/2027",
       "dono_emenda": "Marcelo Castro",
-      "ponto_focal": "Castro Junior"
+      "ponto_focal": "Castro Junior",
+      "clausula_motivo": ""
     },
     {
       "numero": "946378",
@@ -2214,7 +2267,8 @@
       "sei_todos": "00119.001603/2023-04",
       "vigencia_emendas": "27/04/2027",
       "dono_emenda": "Marcelo Castro",
-      "ponto_focal": "Castro Junior"
+      "ponto_focal": "Castro Junior",
+      "clausula_motivo": ""
     },
     {
       "numero": "947580",
@@ -2255,7 +2309,8 @@
       "sei_todos": "00119.001803/2023-59",
       "vigencia_emendas": "30/09/2026",
       "dono_emenda": "Marcelo Castro",
-      "ponto_focal": "Eliane"
+      "ponto_focal": "Eliane",
+      "clausula_motivo": ""
     },
     {
       "numero": "953168",
@@ -2296,7 +2351,8 @@
       "sei_todos": "00119.000385/2023-82",
       "vigencia_emendas": "19/12/2028",
       "dono_emenda": "NOVO PAC",
-      "ponto_focal": ""
+      "ponto_focal": "",
+      "clausula_motivo": ""
     },
     {
       "numero": "947927",
@@ -2337,7 +2393,8 @@
       "sei_todos": "00119.001660/2023-85",
       "vigencia_emendas": "30/09/2026",
       "dono_emenda": "Marcelo Castro",
-      "ponto_focal": "Pedro Fernandes"
+      "ponto_focal": "Pedro Fernandes",
+      "clausula_motivo": ""
     },
     {
       "numero": "946039",
@@ -2378,7 +2435,8 @@
       "sei_todos": "00119.001661/2023-20",
       "vigencia_emendas": "30/09/2026",
       "dono_emenda": "Marcelo Castro",
-      "ponto_focal": "Italo Barros"
+      "ponto_focal": "Italo Barros",
+      "clausula_motivo": ""
     },
     {
       "numero": "945650",
@@ -2419,7 +2477,8 @@
       "sei_todos": "00119.001662/2023-74",
       "vigencia_emendas": "30/09/2026",
       "dono_emenda": "Marcelo Castro",
-      "ponto_focal": "Italo Barros"
+      "ponto_focal": "Italo Barros",
+      "clausula_motivo": ""
     },
     {
       "numero": "947907",
@@ -2460,7 +2519,8 @@
       "sei_todos": "00119.001663/2023-19",
       "vigencia_emendas": "30/09/2026",
       "dono_emenda": "Marcelo Castro",
-      "ponto_focal": "Italo Barros"
+      "ponto_focal": "Italo Barros",
+      "clausula_motivo": ""
     },
     {
       "numero": "946738",
@@ -2501,7 +2561,8 @@
       "sei_todos": "00119.001665/2023-16",
       "vigencia_emendas": "30/09/2026",
       "dono_emenda": "Marcelo Castro",
-      "ponto_focal": "Pref Kaylane"
+      "ponto_focal": "Pref Kaylane",
+      "clausula_motivo": ""
     },
     {
       "numero": "945158",
@@ -2542,7 +2603,8 @@
       "sei_todos": "00119.001705/2023-11",
       "vigencia_emendas": "30/09/2026",
       "dono_emenda": "Marcelo Castro",
-      "ponto_focal": "Amanda e P2"
+      "ponto_focal": "Amanda e P2",
+      "clausula_motivo": ""
     },
     {
       "numero": "947493",
@@ -2583,7 +2645,8 @@
       "sei_todos": "00119.001591/2023-18",
       "vigencia_emendas": "30/09/2026",
       "dono_emenda": "Marcelo Castro",
-      "ponto_focal": "Italo Barros"
+      "ponto_focal": "Italo Barros",
+      "clausula_motivo": ""
     },
     {
       "numero": "946367",
@@ -2624,7 +2687,8 @@
       "sei_todos": "00119.001592/2023-54",
       "vigencia_emendas": "30/09/2026",
       "dono_emenda": "Marcelo Castro",
-      "ponto_focal": "Rodrigo P2"
+      "ponto_focal": "Rodrigo P2",
+      "clausula_motivo": ""
     },
     {
       "numero": "951016",
@@ -2665,7 +2729,8 @@
       "sei_todos": "00119.002108/2023-12",
       "vigencia_emendas": "30/09/2026",
       "dono_emenda": "Marcelo Castro",
-      "ponto_focal": "Cristiano/Mariana"
+      "ponto_focal": "Cristiano/Mariana",
+      "clausula_motivo": ""
     },
     {
       "numero": "951018",
@@ -2706,7 +2771,8 @@
       "sei_todos": "00119.002099/2023-51",
       "vigencia_emendas": "30/09/2026",
       "dono_emenda": "Marcelo Castro",
-      "ponto_focal": "Valdivia/ Rodrigo P2"
+      "ponto_focal": "Valdivia/ Rodrigo P2",
+      "clausula_motivo": ""
     },
     {
       "numero": "951943",
@@ -2747,7 +2813,8 @@
       "sei_todos": "00119.002170/2023-04",
       "vigencia_emendas": "30/09/2026",
       "dono_emenda": "Marcelo Castro",
-      "ponto_focal": "Bem bem"
+      "ponto_focal": "Bem bem",
+      "clausula_motivo": ""
     },
     {
       "numero": "952006",
@@ -2788,7 +2855,8 @@
       "sei_todos": "00119.002221/2023-90",
       "vigencia_emendas": "15/12/2026",
       "dono_emenda": "Marcelo Castro",
-      "ponto_focal": "Salmeron"
+      "ponto_focal": "Salmeron",
+      "clausula_motivo": ""
     },
     {
       "numero": "967173",
@@ -2829,7 +2897,8 @@
       "sei_todos": "00119.002545/2023-28",
       "vigencia_emendas": "22/08/2028",
       "dono_emenda": "NOVO PAC",
-      "ponto_focal": "Idepi"
+      "ponto_focal": "Idepi",
+      "clausula_motivo": ""
     },
     {
       "numero": "967182",
@@ -2870,7 +2939,8 @@
       "sei_todos": "00119.002546/2023-72 · 00119.000110/2025-19",
       "vigencia_emendas": "22/08/2027",
       "dono_emenda": "NOVO PAC",
-      "ponto_focal": "Idepi"
+      "ponto_focal": "Idepi",
+      "clausula_motivo": ""
     },
     {
       "numero": "945303",
@@ -2911,7 +2981,8 @@
       "sei_todos": "00119.001771/2023-91",
       "vigencia_emendas": "30/09/2026",
       "dono_emenda": "Atila Lira",
-      "ponto_focal": "Atila Lira"
+      "ponto_focal": "Atila Lira",
+      "clausula_motivo": ""
     },
     {
       "numero": "945299",
@@ -2952,7 +3023,8 @@
       "sei_todos": "00119.001772/2023-36",
       "vigencia_emendas": "30/09/2026",
       "dono_emenda": "Atila Lira",
-      "ponto_focal": "Atila Lira / Joel Neves"
+      "ponto_focal": "Atila Lira / Joel Neves",
+      "clausula_motivo": ""
     },
     {
       "numero": "953190",
@@ -2993,7 +3065,8 @@
       "sei_todos": "00119.002025/2023-15",
       "vigencia_emendas": "27/12/2027",
       "dono_emenda": "Marcelo Castro",
-      "ponto_focal": "Rogerio Castro"
+      "ponto_focal": "Rogerio Castro",
+      "clausula_motivo": ""
     },
     {
       "numero": "969555",
@@ -3011,9 +3084,9 @@
       "dias": 839,
       "status": "NORMAL",
       "situacao": "EM EXECUÇÃO",
-      "v_total": "9.500.000,00",
+      "v_total": "950,00",
       "v_liberado": "2.625.000,00",
-      "v_contrapartida": "10.000,00",
+      "v_contrapartida": "1,00",
       "v_ultima_liberacao": "203.500,00",
       "ultima_liberacao": "29/07/2026",
       "pct_exec": "",
@@ -3034,7 +3107,8 @@
       "sei_todos": "00119.001681/2024-81",
       "vigencia_emendas": "06/12/2028",
       "dono_emenda": "Sec das Mulheres",
-      "ponto_focal": "Diva"
+      "ponto_focal": "Diva",
+      "clausula_motivo": ""
     },
     {
       "numero": "973618",
@@ -3075,7 +3149,8 @@
       "sei_todos": "00119.000014/2025-62",
       "vigencia_emendas": "29/12/2028",
       "dono_emenda": "Marcelo Castro",
-      "ponto_focal": ""
+      "ponto_focal": "",
+      "clausula_motivo": ""
     },
     {
       "numero": "965789",
@@ -3093,9 +3168,9 @@
       "dias": 1097,
       "status": "NORMAL",
       "situacao": "EM EXECUÇÃO",
-      "v_total": "2.124,00",
+      "v_total": "21.240.000,00",
       "v_liberado": "0,00",
-      "v_contrapartida": "1,00",
+      "v_contrapartida": "10.000,00",
       "v_ultima_liberacao": "0,00",
       "ultima_liberacao": "",
       "pct_exec": "",
@@ -3116,7 +3191,8 @@
       "sei_todos": "00119.000128/2024-21",
       "vigencia_emendas": "21/08/2029",
       "dono_emenda": "NOVO PAC",
-      "ponto_focal": ""
+      "ponto_focal": "",
+      "clausula_motivo": ""
     },
     {
       "numero": "992850",
@@ -3157,7 +3233,8 @@
       "sei_todos": "00119.000357/2026-16",
       "vigencia_emendas": "31/12/2028",
       "dono_emenda": "NOVO PAC",
-      "ponto_focal": "Ademar"
+      "ponto_focal": "Ademar",
+      "clausula_motivo": ""
     },
     {
       "numero": "992940",
@@ -3198,7 +3275,8 @@
       "sei_todos": "00119.000431/2026-96",
       "vigencia_emendas": "31/12/2028",
       "dono_emenda": "NOVO PAC",
-      "ponto_focal": "Ademar"
+      "ponto_focal": "Ademar",
+      "clausula_motivo": ""
     },
     {
       "numero": "980844",
@@ -3239,7 +3317,8 @@
       "sei_todos": "00119.002012/2025-16",
       "vigencia_emendas": "03/09/2028",
       "dono_emenda": "Marcelo Castro",
-      "ponto_focal": "Miguel Ângelo"
+      "ponto_focal": "Miguel Ângelo",
+      "clausula_motivo": ""
     },
     {
       "numero": "981146",
@@ -3280,7 +3359,8 @@
       "sei_todos": "00119.002014/2025-05",
       "vigencia_emendas": "08/12/2028",
       "dono_emenda": "Marcelo Castro",
-      "ponto_focal": "Henrique Cesar (Carleuza)"
+      "ponto_focal": "Henrique Cesar (Carleuza)",
+      "clausula_motivo": ""
     },
     {
       "numero": "983950",
@@ -3321,7 +3401,8 @@
       "sei_todos": "00119.002020/2025-54",
       "vigencia_emendas": "10/08/2028",
       "dono_emenda": "Marcelo Castro",
-      "ponto_focal": "Ravid Lages"
+      "ponto_focal": "Ravid Lages",
+      "clausula_motivo": ""
     },
     {
       "numero": "986179",
@@ -3362,7 +3443,8 @@
       "sei_todos": "00119.002028/2025-11",
       "vigencia_emendas": "30/08/2028",
       "dono_emenda": "Marcelo Castro",
-      "ponto_focal": "Antônio Wilson"
+      "ponto_focal": "Antônio Wilson",
+      "clausula_motivo": ""
     },
     {
       "numero": "986155",
@@ -3403,7 +3485,8 @@
       "sei_todos": "00119.002030/2025-90",
       "vigencia_emendas": "10/08/2028",
       "dono_emenda": "Marcelo Castro",
-      "ponto_focal": "Antônio Wilson"
+      "ponto_focal": "Antônio Wilson",
+      "clausula_motivo": ""
     },
     {
       "numero": "985797",
@@ -3444,7 +3527,8 @@
       "sei_todos": "00119.002032/2025-89",
       "vigencia_emendas": "22/12/2028",
       "dono_emenda": "Marcelo Castro",
-      "ponto_focal": "Ivon (Danilo/ Joaquim)"
+      "ponto_focal": "Ivon (Danilo/ Joaquim)",
+      "clausula_motivo": ""
     },
     {
       "numero": "986602",
@@ -3485,7 +3569,8 @@
       "sei_todos": "00119.001929/2025-95",
       "vigencia_emendas": "31/12/2028",
       "dono_emenda": "Sec das Mulheres",
-      "ponto_focal": "Diva"
+      "ponto_focal": "Diva",
+      "clausula_motivo": ""
     },
     {
       "numero": "988101",
@@ -3505,7 +3590,7 @@
       "situacao": "EM EXECUÇÃO",
       "v_total": "1.273.333,33",
       "v_liberado": "0,00",
-      "v_contrapartida": "6,00",
+      "v_contrapartida": "60.000,00",
       "v_ultima_liberacao": "0,00",
       "ultima_liberacao": "",
       "pct_exec": "",
@@ -3526,7 +3611,8 @@
       "sei_todos": "00119.002036/2025-67",
       "vigencia_emendas": "19/04/2029",
       "dono_emenda": "CINDRA - Dr Luizinho",
-      "ponto_focal": "Eduardo Dantas / Júlio Arcoverde"
+      "ponto_focal": "Eduardo Dantas / Júlio Arcoverde",
+      "clausula_motivo": ""
     },
     {
       "numero": "988500",
@@ -3567,7 +3653,8 @@
       "sei_todos": "00119.002040/2025-25",
       "vigencia_emendas": "19/04/2029",
       "dono_emenda": "CINDRA - Dr Luizinho",
-      "ponto_focal": "Eduardo Dantas / Júlio Arcoverde"
+      "ponto_focal": "Eduardo Dantas / Júlio Arcoverde",
+      "clausula_motivo": ""
     },
     {
       "numero": "989250",
@@ -3587,7 +3674,7 @@
       "situacao": "EM EXECUÇÃO",
       "v_total": "1.273.333,34",
       "v_liberado": "0,00",
-      "v_contrapartida": "60.000,00",
+      "v_contrapartida": "6,00",
       "v_ultima_liberacao": "0,00",
       "ultima_liberacao": "",
       "pct_exec": "",
@@ -3608,7 +3695,8 @@
       "sei_todos": "00119.002042/2025-14",
       "vigencia_emendas": "19/04/2029",
       "dono_emenda": "CINDRA - Dr Luizinho",
-      "ponto_focal": "Eduardo Dantas / Júlio Arcoverde"
+      "ponto_focal": "Eduardo Dantas / Júlio Arcoverde",
+      "clausula_motivo": ""
     },
     {
       "numero": "988784",
@@ -3649,7 +3737,8 @@
       "sei_todos": "00119.002045/2025-58",
       "vigencia_emendas": "19/04/2029",
       "dono_emenda": "",
-      "ponto_focal": "Jonas Trindade / Min. Wellington Dias"
+      "ponto_focal": "Jonas Trindade / Min. Wellington Dias",
+      "clausula_motivo": ""
     },
     {
       "numero": "988634",
@@ -3690,7 +3779,8 @@
       "sei_todos": "00119.002048/2025-91",
       "vigencia_emendas": "16/12/2028",
       "dono_emenda": "",
-      "ponto_focal": "Jonas Trindade / Min. Wellington Dias"
+      "ponto_focal": "Jonas Trindade / Min. Wellington Dias",
+      "clausula_motivo": ""
     },
     {
       "numero": "988972",
@@ -3731,7 +3821,8 @@
       "sei_todos": "00119.002050/2025-61",
       "vigencia_emendas": "19/04/2029",
       "dono_emenda": "",
-      "ponto_focal": "Jonas Trindade / Min. Wellington Dias"
+      "ponto_focal": "Jonas Trindade / Min. Wellington Dias",
+      "clausula_motivo": ""
     },
     {
       "numero": "988779",
@@ -3751,7 +3842,7 @@
       "situacao": "EM EXECUÇÃO",
       "v_total": "955.000,00",
       "v_liberado": "0,00",
-      "v_contrapartida": "1,00",
+      "v_contrapartida": "10.000,00",
       "v_ultima_liberacao": "0,00",
       "ultima_liberacao": "",
       "pct_exec": "",
@@ -3772,7 +3863,8 @@
       "sei_todos": "00119.002052/2025-50",
       "vigencia_emendas": "19/04/2029",
       "dono_emenda": "",
-      "ponto_focal": "Jonas Trindade / Min. Wellington Dias"
+      "ponto_focal": "Jonas Trindade / Min. Wellington Dias",
+      "clausula_motivo": ""
     },
     {
       "numero": "988901",
@@ -3792,7 +3884,7 @@
       "situacao": "EM EXECUÇÃO",
       "v_total": "955.000,00",
       "v_liberado": "0,00",
-      "v_contrapartida": "10.000,00",
+      "v_contrapartida": "1,00",
       "v_ultima_liberacao": "0,00",
       "ultima_liberacao": "",
       "pct_exec": "",
@@ -3813,7 +3905,8 @@
       "sei_todos": "00119.002054/2025-49",
       "vigencia_emendas": "19/04/2029",
       "dono_emenda": "",
-      "ponto_focal": "Jonas Trindade / Min. Wellington Dias"
+      "ponto_focal": "Jonas Trindade / Min. Wellington Dias",
+      "clausula_motivo": ""
     },
     {
       "numero": "998329",
@@ -3854,7 +3947,8 @@
       "sei_todos": "00119.001216/2026-11",
       "vigencia_emendas": "31/12/2028",
       "dono_emenda": "Marcelo Castro",
-      "ponto_focal": "Enzo Samuel"
+      "ponto_focal": "Enzo Samuel",
+      "clausula_motivo": ""
     },
     {
       "numero": "999001",
@@ -3895,7 +3989,8 @@
       "sei_todos": "00119.001246/2026-19",
       "vigencia_emendas": "31/12/2029",
       "dono_emenda": "Marcelo Castro",
-      "ponto_focal": "Ademar"
+      "ponto_focal": "Ademar",
+      "clausula_motivo": ""
     },
     {
       "numero": "999050",
@@ -3936,7 +4031,8 @@
       "sei_todos": "00119.001265/2026-45",
       "vigencia_emendas": "31/12/2029",
       "dono_emenda": "Marcelo Castro",
-      "ponto_focal": "Ademar"
+      "ponto_focal": "Ademar",
+      "clausula_motivo": ""
     },
     {
       "numero": "999010",
@@ -3977,7 +4073,8 @@
       "sei_todos": "00119.001267/2026-34",
       "vigencia_emendas": "31/12/2029",
       "dono_emenda": "Marcelo Castro",
-      "ponto_focal": "Ademar"
+      "ponto_focal": "Ademar",
+      "clausula_motivo": ""
     },
     {
       "numero": "999021",
@@ -4018,7 +4115,8 @@
       "sei_todos": "00119.001268/2026-89",
       "vigencia_emendas": "31/12/2029",
       "dono_emenda": "Marcelo Castro",
-      "ponto_focal": "Ademar"
+      "ponto_focal": "Ademar",
+      "clausula_motivo": ""
     },
     {
       "numero": "7AAALY",
@@ -4059,7 +4157,8 @@
       "sei_todos": "00119.001270/2026-58",
       "vigencia_emendas": "31/12/2029",
       "dono_emenda": "Marcelo Castro",
-      "ponto_focal": "Ademar"
+      "ponto_focal": "Ademar",
+      "clausula_motivo": ""
     },
     {
       "numero": "908650",
@@ -4100,7 +4199,8 @@
       "sei_todos": "",
       "vigencia_emendas": "",
       "dono_emenda": "",
-      "ponto_focal": ""
+      "ponto_focal": "",
+      "clausula_motivo": ""
     },
     {
       "numero": "648107",
@@ -4118,10 +4218,10 @@
       "dias": -2657,
       "status": "VENCIDO",
       "situacao": "ADIMPLENTE",
-      "v_total": "280,00",
-      "v_liberado": "280,00",
+      "v_total": "2.800.000,00",
+      "v_liberado": "2.800.000,00",
       "v_contrapartida": "312.000,00",
-      "v_ultima_liberacao": "84,00",
+      "v_ultima_liberacao": "840.000,00",
       "ultima_liberacao": "14/03/2013",
       "pct_exec": "",
       "autor_emenda": "",
@@ -4141,7 +4241,8 @@
       "sei_todos": "",
       "vigencia_emendas": "",
       "dono_emenda": "",
-      "ponto_focal": ""
+      "ponto_focal": "",
+      "clausula_motivo": ""
     },
     {
       "numero": "761370",
@@ -4182,7 +4283,8 @@
       "sei_todos": "",
       "vigencia_emendas": "",
       "dono_emenda": "",
-      "ponto_focal": ""
+      "ponto_focal": "",
+      "clausula_motivo": ""
     }
   ],
   "exec_financeira": [

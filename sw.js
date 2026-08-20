@@ -195,6 +195,17 @@
                  deslocada depois de tocar na barra de selecao. Abaixo de 900 px
                  ela ocupa a largura da tela com 12 px de margem, rolagem
                  propria e teto de 70vh. Desktop inalterado.
+     v45 — 20/08: EX-01 deixa de cobrar foto de quem nao pode ter obra.
+                 Dois casos novos, trazidos pelo setor: instrumento EM
+                 CLAUSULA SUSPENSIVA (o projeto ainda vai ser aprovado,
+                 licitado e contratado antes de sair a AIO - o recurso ja
+                 ter entrado nao antecipa isso) e instrumento que o
+                 Transferegov NAO ENCONTRA (o 648107, vencido desde 2019).
+                 Sao 3 que saem da conta por suspensiva com recurso: 992850,
+                 992940 e 986602. Mais: os dois "Processo SEI" da ficha
+                 ganharam nome - o do INSTRUMENTO e o da PRESTACAO DE
+                 CONTAS, que sao processos diferentes e apareciam com o
+                 mesmo rotulo, um embaixo do outro.
      v44 — 20/08: contrato INFERIDO deixa de mostrar R$ 0,00 e vigencia
                  vazia — o que se sabe dele e quanto ja foi PAGO, em quantas
                  parcelas e entre que datas, e e isso que a tela escreve,
@@ -220,7 +231,7 @@
                  para ver um municipio. As fontes sao registradas no data.js,
                  por onde todos os paineis passam: painel novo ja nasce com a
                  ficha funcionando. */
-const VERSAO = 'idepi-v44';
+const VERSAO = 'idepi-v45';
 const CACHE_SHELL = VERSAO + '-shell';
 const CACHE_PAGS  = VERSAO + '-paginas';
 

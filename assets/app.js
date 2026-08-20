@@ -727,15 +727,46 @@
    *  A AIO de verdade está no Transferegov em Instrumentos Contratuais >
    *  Detalhar > Checklist, e a coleta ainda não a lê. Quando ler, este filtro
    *  volta usando o dado, não a inferência. */
+  /** O Transferegov procurou este instrumento e NÃO achou.
+   *
+   *  É diferente de "ainda não foi verificado": o tgov_monitor escreve
+   *  "Não encontrado" nas colunas O, P e Q quando a consulta roda e volta
+   *  vazia. Instrumento que nunca foi lido tem as colunas em branco, e este
+   *  teste não o pega — de propósito, senão os recém-cadastrados entrariam
+   *  aqui só por serem novos. O caso real é o 648107 (FUNASA, vencido desde
+   *  2019, PCF manual): não há obra em execução para fotografar. */
+  function foraDoTransferegov(c) {
+    return norm(c && c.foto_app).indexOf('nao encontrado') !== -1;
+  }
+
+  /** Cláusula suspensiva ativa = ainda em fase de PROJETO.
+   *
+   *  Regra do setor, 20/08/2026: com a cláusula de pé, o projeto ainda vai
+   *  ser aprovado, depois licitado, depois contratado — e só então sai a AIO.
+   *  Recurso pode já ter entrado (o 992850 e o 992940 receberam), e por isso
+   *  o teste vem ANTES do de recurso: o dinheiro em conta não antecipa uma
+   *  obra que ainda não pode começar.
+   *
+   *  Cobrar foto aí é cobrar de obra que não existe, e cada cobrança indevida
+   *  gasta o crédito do indicador — foi o que aconteceu em 06/08/2026 com os
+   *  dois que a SEPLAN devolveu. */
+  function emSuspensivaAtiva(c) {
+    return REGEX_SUSPENSIVA.test(norm(c && c.sit_contrat_tgov));
+  }
+
   function motivoNaoAplica(c) {
     if (!c || isFinalizado(c)) return null;
+    if (foraDoTransferegov(c)) return 'fora_tgov';
+    if (emSuspensivaAtiva(c))  return 'em_suspensiva';
     if (!(liberadoDe(c) > 0)) return 'sem_recurso';
     if (c.tem_aio === false)  return 'sem_aio';   // só quando a coleta souber
     return null;
   }
   var ROTULO_NAO_APLICA = {
-    sem_recurso: 'Sem recurso federal recebido',
-    sem_aio:     'Sem AIO emitida'
+    fora_tgov:     'O Transferegov não encontra o instrumento',
+    em_suspensiva: 'Em cláusula suspensiva — ainda em projeto',
+    sem_recurso:   'Sem recurso federal recebido',
+    sem_aio:       'Sem AIO emitida'
   };
 
   /** Apto ao EX-01 = vigente, com recurso recebido e obra iniciada. */
@@ -1398,7 +1429,7 @@
     var campos = [
       ['Etapa', p.etapa_rotulo],
       ['Origem', origem],
-      ['Processo SEI', p.processo],
+      ['Processo SEI da prestação de contas', p.processo],
       ['Situação', p.situacao_tgov || p.situacao, true]
     ];
     if (p.diverge_da_planilha)
@@ -1463,9 +1494,15 @@
         ['Contrapartida prevista', cp.previsto ? fmtReais(cp.previsto) : 'não há'],
         ['Contrapartida depositada', cp.previsto ? fmtReais(cp.depositado) : '']
       ]) +
+      /* "Processo SEI" aparecia duas vezes na ficha, uma embaixo da outra:
+         aqui, que e o processo MAE do instrumento, e no bloco de prestacao de
+         contas, que e outro processo (conferido em 20/08/2026 — os numeros
+         sao diferentes em todos os 24). Dois rotulos iguais em blocos
+         vizinhos fazem o leitor concluir que um deles esta errado. Cada um
+         diz agora de QUEM e o processo. */
       '<div class="fb-titulo">Processo</div><div class="fb-grid">' +
-        '<div class="fb-campo fb-largo"><label>Processo SEI</label><span>' +
-        seiHtml + '</span></div>' +
+        '<div class="fb-campo fb-largo"><label>Processo SEI do instrumento' +
+        '</label><span>' + seiHtml + '</span></div>' +
       '</div>' +
       '<div id="fichaPCF" data-num="' + esc(c.numero || '') + '">' +
         fichaBlocoPCF(c.numero) + '</div>'

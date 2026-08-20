@@ -122,6 +122,11 @@
             gerado_em: vig.gerado_em || '',
             total: vig.total || vig.convenios.length,
             convenios: vig.convenios,
+            /* Propostas ainda sem nº de instrumento. Viajam no mesmo
+               documento das vigências (ver ler_propostas_vivas no
+               publicar_firestore.py). Documento antigo não tem o campo —
+               lista vazia é o certo, e a tela esconde o card. */
+            propostas: vig.propostas || [],
             historico_repasses: (rep && rep.historico_repasses) || {},
             repasses_atualizado_em: (rep && rep.repasses_atualizado_em) || '',
             _origem: 'firestore'
@@ -145,6 +150,7 @@
           gerado_em: j.gerado_em || '',
           total: j.total || (j.convenios || []).length,
           convenios: j.convenios || [],
+          propostas: j.propostas || [],
           historico_repasses: j.historico_repasses || {},
           repasses_atualizado_em: j.repasses_atualizado_em || '',
           exec_financeira: j.exec_financeira || [],

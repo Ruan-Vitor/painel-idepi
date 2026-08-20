@@ -1,5 +1,5 @@
 {
-  "gerado_em": "20/08/2026 10:14",
+  "gerado_em": "20/08/2026 12:08",
   "total": 105,
   "convenios": [
     {
@@ -3084,9 +3084,9 @@
       "dias": 839,
       "status": "NORMAL",
       "situacao": "EM EXECUÇÃO",
-      "v_total": "950,00",
+      "v_total": "9.500.000,00",
       "v_liberado": "2.625.000,00",
-      "v_contrapartida": "1,00",
+      "v_contrapartida": "10.000,00",
       "v_ultima_liberacao": "203.500,00",
       "ultima_liberacao": "29/07/2026",
       "pct_exec": "",
@@ -3126,9 +3126,9 @@
       "dias": 862,
       "status": "NORMAL",
       "situacao": "EM EXECUÇÃO",
-      "v_total": "156.180.000,00",
+      "v_total": "15.618,00",
       "v_liberado": "0,00",
-      "v_contrapartida": "160.000,00",
+      "v_contrapartida": "16,00",
       "v_ultima_liberacao": "0,00",
       "ultima_liberacao": "",
       "pct_exec": "",
@@ -3150,7 +3150,7 @@
       "vigencia_emendas": "29/12/2028",
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "",
-      "clausula_motivo": ""
+      "clausula_motivo": "Titularidade de Área, Projeto Básico, Licença Ambiental Prévia e e demais itens da CLÁUSULA TERCEIRA - DA CONDIÇÃO SUSPENSIVA."
     },
     {
       "numero": "965789",
@@ -3168,9 +3168,9 @@
       "dias": 1097,
       "status": "NORMAL",
       "situacao": "EM EXECUÇÃO",
-      "v_total": "21.240.000,00",
+      "v_total": "2.124,00",
       "v_liberado": "0,00",
-      "v_contrapartida": "10.000,00",
+      "v_contrapartida": "1,00",
       "v_ultima_liberacao": "0,00",
       "ultima_liberacao": "",
       "pct_exec": "",
@@ -3234,7 +3234,7 @@
       "vigencia_emendas": "31/12/2028",
       "dono_emenda": "NOVO PAC",
       "ponto_focal": "Ademar",
-      "clausula_motivo": ""
+      "clausula_motivo": "Titularidade de Área, Projeto Básico e Licença Ambiental Prévia"
     },
     {
       "numero": "992940",
@@ -3276,7 +3276,7 @@
       "vigencia_emendas": "31/12/2028",
       "dono_emenda": "NOVO PAC",
       "ponto_focal": "Ademar",
-      "clausula_motivo": ""
+      "clausula_motivo": "Titularidade de Área, Projeto Básico e Licença Ambiental Prévia"
     },
     {
       "numero": "980844",
@@ -3402,7 +3402,7 @@
       "vigencia_emendas": "10/08/2028",
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "Ravid Lages",
-      "clausula_motivo": ""
+      "clausula_motivo": "Titularidade de Área, Projeto Básico e Licença Ambiental Prévia"
     },
     {
       "numero": "986179",
@@ -3486,7 +3486,7 @@
       "vigencia_emendas": "10/08/2028",
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "Antônio Wilson",
-      "clausula_motivo": ""
+      "clausula_motivo": "Titularidade de Área, Projeto Básico, Licença Ambiental Prévia e Declaração sobre a sustentabilidade do objeto;"
     },
     {
       "numero": "985797",
@@ -3570,7 +3570,7 @@
       "vigencia_emendas": "31/12/2028",
       "dono_emenda": "Sec das Mulheres",
       "ponto_focal": "Diva",
-      "clausula_motivo": ""
+      "clausula_motivo": "Titularidade de Área, Projeto Básico e Licença Ambiental Prévia"
     },
     {
       "numero": "988101",
@@ -3612,7 +3612,7 @@
       "vigencia_emendas": "19/04/2029",
       "dono_emenda": "CINDRA - Dr Luizinho",
       "ponto_focal": "Eduardo Dantas / Júlio Arcoverde",
-      "clausula_motivo": ""
+      "clausula_motivo": "Titularidade de Área, Projeto Básico e Licença Ambiental Prévia"
     },
     {
       "numero": "988500",
@@ -3674,7 +3674,7 @@
       "situacao": "EM EXECUÇÃO",
       "v_total": "1.273.333,34",
       "v_liberado": "0,00",
-      "v_contrapartida": "60.000,00",
+      "v_contrapartida": "6,00",
       "v_ultima_liberacao": "0,00",
       "ultima_liberacao": "",
       "pct_exec": "",
@@ -3696,7 +3696,7 @@
       "vigencia_emendas": "19/04/2029",
       "dono_emenda": "CINDRA - Dr Luizinho",
       "ponto_focal": "Eduardo Dantas / Júlio Arcoverde",
-      "clausula_motivo": ""
+      "clausula_motivo": "Titularidade de Área, Projeto Básico e Licença Ambiental Prévia"
     },
     {
       "numero": "988784",
@@ -3716,7 +3716,7 @@
       "situacao": "EM EXECUÇÃO",
       "v_total": "955.000,00",
       "v_liberado": "0,00",
-      "v_contrapartida": "1,00",
+      "v_contrapartida": "10.000,00",
       "v_ultima_liberacao": "0,00",
       "ultima_liberacao": "",
       "pct_exec": "",
@@ -3738,7 +3738,7 @@
       "vigencia_emendas": "19/04/2029",
       "dono_emenda": "",
       "ponto_focal": "Jonas Trindade / Min. Wellington Dias",
-      "clausula_motivo": ""
+      "clausula_motivo": "Titularidade de Área, Projeto Básico e Licença Ambiental Prévia"
     },
     {
       "numero": "988634",
@@ -3780,7 +3780,7 @@
       "vigencia_emendas": "16/12/2028",
       "dono_emenda": "",
       "ponto_focal": "Jonas Trindade / Min. Wellington Dias",
-      "clausula_motivo": ""
+      "clausula_motivo": "Titularidade de Área, Projeto Básico e Licença Ambiental Prévia"
     },
     {
       "numero": "988972",
@@ -3800,7 +3800,7 @@
       "situacao": "EM EXECUÇÃO",
       "v_total": "955.000,00",
       "v_liberado": "0,00",
-      "v_contrapartida": "1,00",
+      "v_contrapartida": "10.000,00",
       "v_ultima_liberacao": "0,00",
       "ultima_liberacao": "",
       "pct_exec": "",
@@ -3822,7 +3822,7 @@
       "vigencia_emendas": "19/04/2029",
       "dono_emenda": "",
       "ponto_focal": "Jonas Trindade / Min. Wellington Dias",
-      "clausula_motivo": ""
+      "clausula_motivo": "Titularidade de Área, Projeto Básico e Licença Ambiental Prévia"
     },
     {
       "numero": "988779",
@@ -3864,7 +3864,7 @@
       "vigencia_emendas": "19/04/2029",
       "dono_emenda": "",
       "ponto_focal": "Jonas Trindade / Min. Wellington Dias",
-      "clausula_motivo": ""
+      "clausula_motivo": "Titularidade de Área, Projeto Básico e Licença Ambiental Prévia"
     },
     {
       "numero": "988901",
@@ -3884,7 +3884,7 @@
       "situacao": "EM EXECUÇÃO",
       "v_total": "955.000,00",
       "v_liberado": "0,00",
-      "v_contrapartida": "10.000,00",
+      "v_contrapartida": "1,00",
       "v_ultima_liberacao": "0,00",
       "ultima_liberacao": "",
       "pct_exec": "",
@@ -3906,7 +3906,7 @@
       "vigencia_emendas": "19/04/2029",
       "dono_emenda": "",
       "ponto_focal": "Jonas Trindade / Min. Wellington Dias",
-      "clausula_motivo": ""
+      "clausula_motivo": "Titularidade de Área, Projeto Básico e Licença Ambiental Prévia"
     },
     {
       "numero": "998329",
@@ -3948,23 +3948,24 @@
       "vigencia_emendas": "31/12/2028",
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "Enzo Samuel",
-      "clausula_motivo": ""
+      "clausula_motivo": "Titularidade de Área, Projeto Básico, Licença Ambiental Prévia e Plano de Sustentabilidade"
     },
     {
       "numero": "999001",
-      "objeto": "Não encontrado",
-      "vigencia": "",
-      "vigencia_fmt": "",
+      "objeto": "CONSTRUÇÃO DE PEQUENAS BARRAGENS NO MUNICÍPIO DE BELÉM DO PIAUÍ/PI",
+      "objeto_origem": "Emendas",
+      "vigencia": "2029-12-31",
+      "vigencia_fmt": "31/12/2029",
       "vigencia_inicio": "",
       "vigencia_suspensiva": "",
-      "vigencia_origem": "",
+      "vigencia_origem": "Emendas",
       "orgao_vinculado": "",
       "orgao_tgov": "",
       "limite_prestacao": "",
       "sei": "00119.001246/2026-19",
       "fiscal": "Artur",
-      "dias": null,
-      "status": "SEM DADOS",
+      "dias": 1229,
+      "status": "NORMAL",
       "situacao": "",
       "v_total": "",
       "v_liberado": "",
@@ -4036,19 +4037,20 @@
     },
     {
       "numero": "999010",
-      "objeto": "Não encontrado",
-      "vigencia": "",
-      "vigencia_fmt": "",
+      "objeto": "PAVIMENTAÇÃO DE ESTRADAS VICINAIS NO MUNICÍPIO DE BELÉM DO PIAUÍ/PI (TSD)",
+      "objeto_origem": "Emendas",
+      "vigencia": "2029-12-31",
+      "vigencia_fmt": "31/12/2029",
       "vigencia_inicio": "",
       "vigencia_suspensiva": "",
-      "vigencia_origem": "",
+      "vigencia_origem": "Emendas",
       "orgao_vinculado": "",
       "orgao_tgov": "",
       "limite_prestacao": "",
       "sei": "00119.001267/2026-34",
       "fiscal": "Roberto",
-      "dias": null,
-      "status": "SEM DADOS",
+      "dias": 1229,
+      "status": "NORMAL",
       "situacao": "",
       "v_total": "",
       "v_liberado": "",
@@ -4078,19 +4080,20 @@
     },
     {
       "numero": "999021",
-      "objeto": "Não encontrado",
-      "vigencia": "",
-      "vigencia_fmt": "",
+      "objeto": "PAVIMENTAÇÃO DE ESTRADAS VICINAIS NO MUNICÍPIO DE BELÉM DO PIAUÍ/PI",
+      "objeto_origem": "Emendas",
+      "vigencia": "2029-12-31",
+      "vigencia_fmt": "31/12/2029",
       "vigencia_inicio": "",
       "vigencia_suspensiva": "",
-      "vigencia_origem": "",
+      "vigencia_origem": "Emendas",
       "orgao_vinculado": "",
       "orgao_tgov": "",
       "limite_prestacao": "",
       "sei": "00119.001268/2026-89",
       "fiscal": "Leão",
-      "dias": null,
-      "status": "SEM DADOS",
+      "dias": 1229,
+      "status": "NORMAL",
       "situacao": "",
       "v_total": "",
       "v_liberado": "",
@@ -4120,19 +4123,20 @@
     },
     {
       "numero": "7AAALY",
-      "objeto": "Não encontrado",
-      "vigencia": "",
-      "vigencia_fmt": "",
+      "objeto": "PAVIMENTAÇÃO DE ESTRADAS VICINAIS NO MUNICÍPIO DE BELÉM DO PIAUÍ/PI (TSD)",
+      "objeto_origem": "Emendas",
+      "vigencia": "2029-12-31",
+      "vigencia_fmt": "31/12/2029",
       "vigencia_inicio": "",
       "vigencia_suspensiva": "",
-      "vigencia_origem": "",
+      "vigencia_origem": "Emendas",
       "orgao_vinculado": "",
       "orgao_tgov": "",
       "limite_prestacao": "",
       "sei": "00119.001270/2026-58",
       "fiscal": "Roberto",
-      "dias": null,
-      "status": "SEM DADOS",
+      "dias": 1229,
+      "status": "NORMAL",
       "situacao": "",
       "v_total": "",
       "v_liberado": "",
@@ -4288,19 +4292,20 @@
     },
     {
       "numero": "7AAFJY",
-      "objeto": "Não encontrado",
-      "vigencia": "",
-      "vigencia_fmt": "",
+      "objeto": "PAVIMENTAÇÃO DE VIAS URBANAS EM OEIRAS",
+      "objeto_origem": "Emendas",
+      "vigencia": "2028-12-31",
+      "vigencia_fmt": "31/12/2028",
       "vigencia_inicio": "",
       "vigencia_suspensiva": "",
-      "vigencia_origem": "",
+      "vigencia_origem": "Emendas",
       "orgao_vinculado": "",
       "orgao_tgov": "",
       "limite_prestacao": "",
       "sei": "00119.001243/2026-85",
-      "fiscal": "Samuel / Manoel",
-      "dias": null,
-      "status": "SEM DADOS",
+      "fiscal": "Manoel",
+      "dias": 864,
+      "status": "NORMAL",
       "situacao": "",
       "v_total": "",
       "v_liberado": "",
@@ -4330,19 +4335,20 @@
     },
     {
       "numero": "7AAFLM",
-      "objeto": "Não encontrado",
-      "vigencia": "",
-      "vigencia_fmt": "",
+      "objeto": "CONSTRUÇÃO DE PRAÇAS PÚBLICAS NO MUNICÍPIO DE OEIRAS/PI.",
+      "objeto_origem": "Emendas",
+      "vigencia": "2028-12-31",
+      "vigencia_fmt": "31/12/2028",
       "vigencia_inicio": "",
       "vigencia_suspensiva": "",
-      "vigencia_origem": "",
+      "vigencia_origem": "Emendas",
       "orgao_vinculado": "",
       "orgao_tgov": "",
       "limite_prestacao": "",
       "sei": "00119.001244/2026-20",
       "fiscal": "Samuel",
-      "dias": null,
-      "status": "SEM DADOS",
+      "dias": 864,
+      "status": "NORMAL",
       "situacao": "",
       "v_total": "",
       "v_liberado": "",
@@ -4372,19 +4378,20 @@
     },
     {
       "numero": "7AAFLN",
-      "objeto": "Não encontrado",
-      "vigencia": "",
-      "vigencia_fmt": "",
+      "objeto": "PAVIMENTAÇÃO DE VIAS URBANAS (TERESINA E CURIMATÁ)",
+      "objeto_origem": "Emendas",
+      "vigencia": "2028-12-31",
+      "vigencia_fmt": "31/12/2028",
       "vigencia_inicio": "",
       "vigencia_suspensiva": "",
-      "vigencia_origem": "",
+      "vigencia_origem": "Emendas",
       "orgao_vinculado": "",
       "orgao_tgov": "",
       "limite_prestacao": "",
       "sei": "00119.001241/2026-96",
-      "fiscal": "Samuel / Felipe",
-      "dias": null,
-      "status": "SEM DADOS",
+      "fiscal": "Felipe",
+      "dias": 864,
+      "status": "NORMAL",
       "situacao": "",
       "v_total": "",
       "v_liberado": "",

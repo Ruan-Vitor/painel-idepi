@@ -750,6 +750,14 @@ function normalizarInstrumento(c){
         situacao:    ct.situacao        || "",
         data_inicio: ct.dt_inicio       || ct.data_inicio || "",
         data_fim:    ct.dt_fim          || ct.data_fim    || "",
+        /* Empresa deduzida do que foi pago, quando o módulo de Instrumentos
+           Contratuais não tem o instrumento. NÃO são dados de contrato: o
+           valor é o que já saiu, e o período é o dos pagamentos. Por isso
+           viajam em campos próprios, e a tela os rotula como tais. */
+        inf_de:      ct.inferido_de     || "",
+        inf_qtd:     ct.inferido_qtd    || 0,
+        inf_total:   ct.inferido_total  || 0,
+        inf_periodo: ct.inferido_periodo|| "",
       };
     });
     /* Contrato principal: ativo/vigente, ou o de maior valor */
@@ -1780,6 +1788,44 @@ function renderContrato(c){
   if(lista.length > 1) _badgePrin += ' <span class="b b-slate">'+lista.length+' contratos</span>';
   document.getElementById("cc-status-badge").innerHTML = _badgePrin;
 
+  /* Valor: de contrato quando existe contrato; do que JÁ FOI PAGO quando a
+     empresa foi deduzida dos pagamentos. Escrever "Valor do Contrato" em cima
+     do total pago diria que o contrato vale o que já se gastou — e antes
+     disso a tela mostrava R$ 0,00, que é pior: parece dado perdido. */
+  function _blocoValor(ct, px){
+    if(!ct.inf_qtd)
+      return '<div class="cc-lbl">Valor do Contrato</div>'
+           + '<div class="cc-val" style="color:var(--green);font-size:'+px+'px">'
+           + fmt(ct.valor)+'</div>';
+    return '<div class="cc-lbl">Pago a esta empresa</div>'
+         + '<div class="cc-val" style="font-size:'+px+'px">'+fmt(ct.inf_total)+'</div>'
+         + '<div style="font-size:9.5px;color:var(--muted);margin-top:2px">'
+         + 'soma do que saiu · não é o valor do contrato</div>';
+  }
+
+  function _blocoPeriodo(ct){
+    if(!ct.inf_qtd)
+      return '<div class="cc-lbl">Vigência</div><div class="cc-val" style="font-size:11px">'
+           + sanitize(ct.data_inicio||"—")+' → '+sanitize(ct.data_fim||"—")+'</div>';
+    var _r = ct.inf_de === 'notas fiscais' ? 'Período das notas' : 'Período dos pagamentos';
+    return '<div class="cc-lbl">'+_r+'</div><div class="cc-val" style="font-size:11px">'
+         + sanitize(ct.inf_periodo || "—")+'</div>'
+         + '<div style="font-size:9.5px;color:var(--muted);margin-top:2px">'
+         + 'a vigência do contrato não está no módulo</div>';
+  }
+
+  /* "CNPJ não capturado" sugere falha de coleta. Quando a empresa veio da NOTA
+     FISCAL, não é falha: a nota simplesmente não traz CNPJ, e a movimentação,
+     que traz, não vem com o nome — cruzar as duas por contagem seria adivinhar. */
+  function _textoCnpj(ct, px){
+    if(ct.cnpj) return 'CNPJ: '+sanitize(ct.cnpj);
+    var _m = ct.inf_de === 'notas fiscais'
+           ? 'a nota fiscal não traz CNPJ'
+           : 'CNPJ não capturado';
+    return '<span style="color:var(--muted);font-size:'+px+'px;font-style:italic">'
+         + _m + '</span>';
+  }
+
   function _sitBadge(sit){
     var s = (sit||"").toLowerCase();
     return s.includes("conclu")  ? '<span class="b b-green" style="font-size:9px">Concluído</span>'
@@ -1796,29 +1842,32 @@ function renderContrato(c){
     /* ── Único contrato: layout plano 4 colunas ── */
     var ct = lista[0];
     var _emp = ct.empresa ? sanitize(ct.empresa) : '<span style="color:var(--muted);font-style:italic">Não disponível</span>';
-    var _cnpj = ct.cnpj ? 'CNPJ: '+sanitize(ct.cnpj) : '<span style="color:var(--muted);font-style:italic;font-size:9px">CNPJ não capturado</span>';
+    var _cnpj = _textoCnpj(ct, 9);
     html += '<div class="cc-grid">';
     html += '<div class="cc-item"><div class="cc-lbl">Nº Contrato / CTEF</div><div class="cc-val mono">'+sanitize(ct.numero)+'</div></div>';
     html += '<div class="cc-item"><div class="cc-lbl">Empresa Contratada</div><div class="cc-val">'+_emp+'</div><div style="font-size:10px;color:var(--muted);margin-top:2px">'+_cnpj+'</div></div>';
-    html += '<div class="cc-item"><div class="cc-lbl">Valor do Contrato</div><div class="cc-val" style="color:var(--green);font-size:15px">'+fmt(ct.valor)+'</div></div>';
-    html += '<div class="cc-item"><div class="cc-lbl">Vigência</div><div class="cc-val">'+sanitize(ct.data_inicio||"—")+' → '+sanitize(ct.data_fim||"—")+'</div></div>';
+    html += '<div class="cc-item">'+_blocoValor(ct, 15)+'</div>';
+    html += '<div class="cc-item">'+_blocoPeriodo(ct)+'</div>';
     html += '</div>';
   } else {
     /* ── Múltiplos contratos: accordion ── */
     lista.forEach(function(ct, idx){
       var _emp = ct.empresa ? sanitize(ct.empresa) : '<em style="color:var(--muted)">Não disponível</em>';
-      var _cnpj = ct.cnpj ? 'CNPJ: '+sanitize(ct.cnpj) : '<span style="color:var(--muted);font-size:9px;font-style:italic">CNPJ não capturado</span>';
+      var _cnpj = _textoCnpj(ct, 9);
       html += '<details style="border:1px solid var(--border);border-radius:8px;margin-bottom:5px;overflow:hidden;"'+(idx===0?' open':'')+' >';
       html += '<summary style="padding:10px 14px;cursor:pointer;display:flex;align-items:center;gap:10px;background:var(--surface2);font-size:12px;font-weight:600;list-style:none;user-select:none;">';
       html += '<span class="mono" style="color:var(--accent);min-width:70px">'+sanitize(ct.numero)+'</span>';
       html += '<span style="flex:1;color:var(--text)">'+_emp+'</span>';
-      html += '<span style="font-size:11px;color:var(--green);margin-right:6px;font-weight:700">'+fmt(ct.valor)+'</span>';
+      html += '<span style="font-size:11px;margin-right:6px;font-weight:700;color:'
+            + (ct.inf_qtd ? 'var(--muted)' : 'var(--green)') + '">'
+            + fmt(ct.inf_qtd ? ct.inf_total : ct.valor)
+            + (ct.inf_qtd ? ' pagos' : '') + '</span>';
       html += _sitBadge(ct.situacao);
       html += '</summary>';
       html += '<div style="padding:10px 14px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;">';
       html += '<div><div class="cc-lbl">Empresa</div><div class="cc-val" style="font-size:12px">'+_emp+'</div><div style="font-size:10px;color:var(--muted);margin-top:2px">'+_cnpj+'</div></div>';
-      html += '<div><div class="cc-lbl">Valor</div><div class="cc-val" style="color:var(--green)">'+fmt(ct.valor)+'</div></div>';
-      html += '<div><div class="cc-lbl">Vigência</div><div class="cc-val" style="font-size:11px">'+sanitize(ct.data_inicio||"—")+' → '+sanitize(ct.data_fim||"—")+'</div></div>';
+      html += '<div>'+_blocoValor(ct, 13)+'</div>';
+      html += '<div>'+_blocoPeriodo(ct)+'</div>';
       html += '</div>';
       html += '</details>';
     });

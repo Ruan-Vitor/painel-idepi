@@ -195,6 +195,13 @@
                  deslocada depois de tocar na barra de selecao. Abaixo de 900 px
                  ela ocupa a largura da tela com 12 px de margem, rolagem
                  propria e teto de 70vh. Desktop inalterado.
+     v43 — 20/08: o botao da ficha esticava pela coluna do objeto nos quatro
+                 cards do painel geral. Ele entrava como o SEGUNDO filho de
+                 uma grade de TRES colunas, entao ficava com os 631px da
+                 coluna do meio, o objeto era empurrado para a coluna do
+                 prazo (96px) e o prazo para fora. Nao dava erro nenhum no
+                 console. Agora numero e botao ocupam UMA celula (.sus-id),
+                 e a primeira coluna passou de 78px para 104px.
      v42 — 19/08: a FICHA DO INSTRUMENTO passa a existir em TODOS os paineis.
                  Ela vivia dentro do execucao.html; subiu para o app.js e cada
                  numero ganhou um botao proprio ao lado. O NUMERO continua
@@ -204,7 +211,7 @@
                  para ver um municipio. As fontes sao registradas no data.js,
                  por onde todos os paineis passam: painel novo ja nasce com a
                  ficha funcionando. */
-const VERSAO = 'idepi-v42';
+const VERSAO = 'idepi-v43';
 const CACHE_SHELL = VERSAO + '-shell';
 const CACHE_PAGS  = VERSAO + '-paginas';
 

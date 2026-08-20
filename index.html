@@ -95,8 +95,13 @@
    conteúdo, e com `nowrap` no objeto a coluna se recusava a encolher — ela
    ia a 0px e o texto empurrava a página para rolar na horizontal
    (04/08/2026). Com mínimo 0 a coluna cede e o text-overflow funciona. */
-.sus-item{display:grid;grid-template-columns:78px minmax(0,1fr) 96px;gap:12px;align-items:center;padding:10px 20px;border-bottom:1px solid var(--border);font-size:11.5px}
+.sus-item{display:grid;grid-template-columns:104px minmax(0,1fr) 96px;gap:12px;align-items:center;padding:10px 20px;border-bottom:1px solid var(--border);font-size:11.5px}
 .sus-item:last-child{border-bottom:none}
+/* Número + botão da ficha ocupam UMA célula do grid. Soltos, eram dois
+   filhos numa grade de TRÊS colunas: o botão esticava pela coluna do objeto,
+   empurrava o objeto para a coluna do prazo e o prazo para fora. Foi assim
+   que os cards apareceram em 20/08/2026 — sem erro nenhum no console. */
+.sus-id{display:flex;align-items:center;gap:4px;min-width:0}
 .sus-num{font-weight:700;color:var(--accent);text-decoration:none}
 .sus-num:hover{text-decoration:underline}
 .sus-obj{color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
@@ -121,7 +126,7 @@
 /* ── CONTRAPARTIDA ── */
 .cp-resumo{display:flex;gap:14px;flex-wrap:wrap;font-size:10.5px;color:var(--muted)}
 .cp-resumo b{color:var(--text);font-weight:700}
-.cp-item{display:grid;grid-template-columns:78px minmax(0,1fr) 150px;gap:12px;
+.cp-item{display:grid;grid-template-columns:104px minmax(0,1fr) 150px;gap:12px;
   align-items:center;padding:11px 20px;border-bottom:1px solid var(--border);font-size:11.5px}
 .cp-item:last-child{border-bottom:none}
 .cp-val{text-align:right;font-size:11px;line-height:1.5}
@@ -684,11 +689,13 @@ function renderRepasse(conv) {
         (rp.pct >= 1 ? rp.pct + '% liberado'
                      : IDEPI.fmtReais(rp.liberado) + ' liberados') + '</span>';
     return '<div class="cp-item">' +
-             '<a class="sus-num" href="execucao.html?num=' +
-               encodeURIComponent(c.numero || '') + '" ' +
-               'title="Abrir a execução financeira">' +
-               IDEPI.faixaFase(c) + IDEPI.esc(c.numero) + '</a>' +
-             IDEPI.ficha.botao(c.numero || '') +
+             '<span class="sus-id">' +
+               '<a class="sus-num" href="execucao.html?num=' +
+                 encodeURIComponent(c.numero || '') + '" ' +
+                 'title="Abrir a execução financeira">' +
+                 IDEPI.faixaFase(c) + IDEPI.esc(c.numero) + '</a>' +
+               IDEPI.ficha.botao(c.numero || '') +
+             '</span>' +
              '<div>' +
                '<div class="sus-obj" title="' + IDEPI.esc(c.objeto || '') + '">' +
                  IDEPI.esc(c.objeto || '—') + IDEPI.municipioExtra(c) + tag + '</div>' +
@@ -738,11 +745,13 @@ function renderContrapartida(conv) {
                      : IDEPI.fmtReais(cp.depositado) + ' depositados') +
         '</span>';
     return '<div class="cp-item">' +
-             '<a class="sus-num" href="execucao.html?num=' +
-               encodeURIComponent(c.numero || '') + '" ' +
-               'title="Abrir a execução financeira">' +
-               IDEPI.faixaFase(c) + IDEPI.esc(c.numero) + '</a>' +
-             IDEPI.ficha.botao(c.numero || '') +
+             '<span class="sus-id">' +
+               '<a class="sus-num" href="execucao.html?num=' +
+                 encodeURIComponent(c.numero || '') + '" ' +
+                 'title="Abrir a execução financeira">' +
+                 IDEPI.faixaFase(c) + IDEPI.esc(c.numero) + '</a>' +
+               IDEPI.ficha.botao(c.numero || '') +
+             '</span>' +
              '<div>' +
                '<div class="sus-obj" title="' + IDEPI.esc(c.objeto || '') + '">' +
                  IDEPI.esc(c.objeto || '—') + IDEPI.municipioExtra(c) + tag + '</div>' +
@@ -779,10 +788,13 @@ function renderSuspensivas(conv) {
       cls = it.dias < 0 ? ' passou' : (it.dias <= 60 ? ' perto' : '');
     }
     return '<div class="sus-item">' +
-             '<a class="sus-num" href="execucao.html?num=' +
-               encodeURIComponent(c.numero || '') + '" title="Abrir a execução financeira">' +
-               IDEPI.faixaFase(c) + IDEPI.esc(c.numero) + '</a>' +
-             IDEPI.ficha.botao(c.numero || '') +
+             '<span class="sus-id">' +
+               '<a class="sus-num" href="execucao.html?num=' +
+                 encodeURIComponent(c.numero || '') +
+                 '" title="Abrir a execução financeira">' +
+                 IDEPI.faixaFase(c) + IDEPI.esc(c.numero) + '</a>' +
+               IDEPI.ficha.botao(c.numero || '') +
+             '</span>' +
              '<div class="sus-obj" title="' + IDEPI.esc(c.objeto || '') + '">' +
                IDEPI.esc(c.objeto || '—') + IDEPI.municipioExtra(c) + '</div>' +
              '<div class="sus-prazo' + cls + '">' + txt + '<small>' + sub + '</small></div>' +
@@ -814,10 +826,13 @@ function renderParada(conv) {
   box.innerHTML = lista.map(function (it) {
     var c = it.c;
     return '<div class="sus-item">' +
-             '<a class="sus-num" href="execucao.html?num=' +
-               encodeURIComponent(c.numero || '') + '" title="Abrir a execução financeira">' +
-               IDEPI.faixaFase(c) + IDEPI.esc(c.numero) + '</a>' +
-             IDEPI.ficha.botao(c.numero || '') +
+             '<span class="sus-id">' +
+               '<a class="sus-num" href="execucao.html?num=' +
+                 encodeURIComponent(c.numero || '') +
+                 '" title="Abrir a execução financeira">' +
+                 IDEPI.faixaFase(c) + IDEPI.esc(c.numero) + '</a>' +
+               IDEPI.ficha.botao(c.numero || '') +
+             '</span>' +
              '<div class="sus-obj" title="' + IDEPI.esc(c.objeto || '') + '">' +
                IDEPI.esc(c.objeto || '—') + IDEPI.municipioExtra(c) + '</div>' +
              '<div class="sus-prazo' +

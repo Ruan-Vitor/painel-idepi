@@ -1321,6 +1321,21 @@
   /* Campo vazio aparece como "—" em cinza, NUNCA some. Sumir faria o leitor
      concluir que o instrumento não tem aquele dado, quando o que ele não tem
      é o dado PREENCHIDO. É o caso do ponto focal nos 40 do legado. */
+  /* Cláusula suspensiva: as linhas SÓ existem quando há cláusula. Postas
+     sempre, os 88 instrumentos sem trava ganhariam duas linhas com "—" na
+     ficha — e campo vazio repetido é como se aprende a não ler a ficha.
+     Data e motivo andam juntos: a data diz até quando a obra está parada, o
+     motivo diz o que precisa ser resolvido para ela andar. */
+  function fichaLinhasSuspensiva(c) {
+    var quando = String(c.vigencia_suspensiva || '').trim();
+    var porque = String(c.clausula_motivo || '').trim();
+    if (!quando && !porque) return [];
+    var linhas = [];
+    if (quando) linhas.push(['Cláusula suspensiva até', quando]);
+    if (porque) linhas.push(['Motivo da cláusula', porque, true]);
+    return linhas;
+  }
+
   function fichaBloco(titulo, campos) {
     return '<div class="fb-titulo">' + esc(titulo) + '</div><div class="fb-grid">' +
       campos.map(function (p) {
@@ -1440,7 +1455,7 @@
         ['Situação (Transferegov)', c.situacao_tgov],
         ['Contratação (Transferegov)', c.sit_contrat_tgov],
         ['Limite p/ prestação de contas', c.limite_prestacao]
-      ]) +
+      ].concat(fichaLinhasSuspensiva(c))) +
       fichaBloco('Valores', [
         ['Repasse previsto', fmtReais(rp.previsto)],
         ['Repasse já liberado', fmtReais(rp.liberado)],

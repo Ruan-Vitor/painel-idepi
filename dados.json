@@ -10177,13 +10177,73 @@
       "contratos": [
         {
           "numero_contrato": "—",
-          "situacao": "Rescindido (inferido)",
+          "situacao": "Inferido de 6 notas fiscais",
           "valor": "",
           "valor_repasse": "",
           "dt_inicio": "",
           "dt_fim": "",
-          "cnpj": "09.034.960/0001-47",
-          "razao_social": "ALX CONSTRUTORA LOCACOES E SERVICOS LTDA"
+          "cnpj": "",
+          "razao_social": "ALX CONSTRUTORA LOCACOES E SERVICOS LTDA",
+          "inferido_de": "notas fiscais",
+          "inferido_qtd": 6,
+          "inferido_total": 651984.07,
+          "inferido_periodo": "03/03/2023 a 04/12/2024"
+        },
+        {
+          "numero_contrato": "—",
+          "situacao": "Inferido de 4 notas fiscais",
+          "valor": "",
+          "valor_repasse": "",
+          "dt_inicio": "",
+          "dt_fim": "",
+          "cnpj": "",
+          "razao_social": "CONSTRUTORA CAXE LTDA",
+          "inferido_de": "notas fiscais",
+          "inferido_qtd": 4,
+          "inferido_total": 470236.34,
+          "inferido_periodo": "11/03/2022 a 27/07/2023"
+        },
+        {
+          "numero_contrato": "—",
+          "situacao": "Inferido de 4 notas fiscais",
+          "valor": "",
+          "valor_repasse": "",
+          "dt_inicio": "",
+          "dt_fim": "",
+          "cnpj": "",
+          "razao_social": "THECON ENGENHARIA LTDA",
+          "inferido_de": "notas fiscais",
+          "inferido_qtd": 4,
+          "inferido_total": 467362.63,
+          "inferido_periodo": "24/02/2023 a 09/10/2023"
+        },
+        {
+          "numero_contrato": "—",
+          "situacao": "Inferido de 2 notas fiscais",
+          "valor": "",
+          "valor_repasse": "",
+          "dt_inicio": "",
+          "dt_fim": "",
+          "cnpj": "",
+          "razao_social": "MP ENGENHARIA EIRELI",
+          "inferido_de": "notas fiscais",
+          "inferido_qtd": 2,
+          "inferido_total": 388451.36,
+          "inferido_periodo": "16/02/2023 a 23/05/2023"
+        },
+        {
+          "numero_contrato": "—",
+          "situacao": "Inferido de 1 nota fiscal",
+          "valor": "",
+          "valor_repasse": "",
+          "dt_inicio": "",
+          "dt_fim": "",
+          "cnpj": "",
+          "razao_social": "COMPACTA ENGENHARIA E SERVICOS LTDA",
+          "inferido_de": "notas fiscais",
+          "inferido_qtd": 1,
+          "inferido_total": 35501.49,
+          "inferido_periodo": "24/11/2021 a 24/11/2021"
         }
       ],
       "movimentacoes": [
@@ -14067,13 +14127,17 @@
       "contratos": [
         {
           "numero_contrato": "—",
-          "situacao": "Rescindido (inferido)",
+          "situacao": "Inferido de 7 notas fiscais",
           "valor": "",
           "valor_repasse": "",
           "dt_inicio": "",
           "dt_fim": "",
-          "cnpj": "16.990.345/0001-70",
-          "razao_social": "CONSTRUTOP ENGENHARIA E CONSTRUCAO LTDA"
+          "cnpj": "",
+          "razao_social": "CONSTRUTOP ENGENHARIA E CONSTRUCAO LTDA",
+          "inferido_de": "notas fiscais",
+          "inferido_qtd": 7,
+          "inferido_total": 385379.22,
+          "inferido_periodo": "30/01/2024 a 05/11/2025"
         }
       ],
       "movimentacoes": [
@@ -16274,13 +16338,17 @@
       "contratos": [
         {
           "numero_contrato": "—",
-          "situacao": "Rescindido (inferido)",
+          "situacao": "Inferido de 22 notas fiscais",
           "valor": "",
           "valor_repasse": "",
           "dt_inicio": "",
           "dt_fim": "",
-          "cnpj": "08.716.876/0001-40",
-          "razao_social": "CONSTRUTORA GUANANDI EIRELI"
+          "cnpj": "",
+          "razao_social": "CONSTRUTORA GUANANDI EIRELI",
+          "inferido_de": "notas fiscais",
+          "inferido_qtd": 22,
+          "inferido_total": 2201350.38,
+          "inferido_periodo": "14/05/2021 a 22/02/2026"
         }
       ],
       "movimentacoes": [
@@ -18870,7 +18938,7 @@
     {
       "numero": "737058",
       "objeto": "Construcao da Barragem Atalaia, Tipo Terra Zoneada, localizada no municipio de Sebastiao Barros, barrando o rio Paraim,  sangradouro tipo Perfil Creager. 1a ETAPA.",
-      "coletado_em": "17/08/2026 19:28",
+      "coletado_em": "17/08/2026 19:37",
       "valor_global": "R$ 136.957.992,30",
       "valor_repasse": "R$ 119.187.005,00",
       "valor_contrapartida": "R$ 13.323.944,11",
@@ -18881,13 +18949,59 @@
       "contratos": [
         {
           "numero_contrato": "—",
-          "situacao": "Rescindido (inferido)",
+          "situacao": "Inferido de 122 pagamentos",
+          "valor": "",
+          "valor_repasse": "",
+          "dt_inicio": "",
+          "dt_fim": "",
+          "cnpj": "05.802.590/0001-90",
+          "razao_social": "CONSTRUTORA JUREMA LTDA",
+          "inferido_de": "pagamentos",
+          "inferido_qtd": 122,
+          "inferido_total": 88335289.29,
+          "inferido_periodo": "13/09/2011 a 08/07/2026"
+        },
+        {
+          "numero_contrato": "—",
+          "situacao": "Inferido de 136 pagamentos",
           "valor": "",
           "valor_repasse": "",
           "dt_inicio": "",
           "dt_fim": "",
           "cnpj": "04.804.189/0001-26",
-          "razao_social": "ENGECOR CONSULTORIA E PROJETOS LTDA"
+          "razao_social": "ENGECOR CONSULTORIA E PROJETOS LTDA",
+          "inferido_de": "pagamentos",
+          "inferido_qtd": 136,
+          "inferido_total": 10131898.9,
+          "inferido_periodo": "14/12/2011 a 09/07/2026"
+        },
+        {
+          "numero_contrato": "—",
+          "situacao": "Inferido de 7 pagamentos",
+          "valor": "",
+          "valor_repasse": "",
+          "dt_inicio": "",
+          "dt_fim": "",
+          "cnpj": "00.083.159/0001-17",
+          "razao_social": "CEC ENGENHARIA E CONSULTORIA S/S",
+          "inferido_de": "pagamentos",
+          "inferido_qtd": 7,
+          "inferido_total": 1128679.25,
+          "inferido_periodo": "14/02/2012 a 12/12/2012"
+        },
+        {
+          "numero_contrato": "—",
+          "situacao": "Inferido de 3 pagamentos",
+          "valor": "",
+          "valor_repasse": "",
+          "dt_inicio": "",
+          "dt_fim": "",
+          "cnpj": "10.992.188/0001-55",
+          "razao_social": "CONSPLAN-CONSULTORIA E PLANEJAMENTO LTDA",
+          "inferido_de": "pagamentos",
+          "inferido_qtd": 3,
+          "inferido_total": 142241.7,
+          "inferido_periodo": "04/11/2011 a 31/08/2012"
         }
       ],
       "movimentacoes": [
@@ -43234,13 +43348,17 @@
       "contratos": [
         {
           "numero_contrato": "—",
-          "situacao": "Rescindido (inferido)",
+          "situacao": "Inferido de 1 nota fiscal",
           "valor": "",
           "valor_repasse": "",
           "dt_inicio": "",
           "dt_fim": "",
-          "cnpj": "35.135.052/0001-50",
-          "razao_social": "VITORIA LOCACAO E CONSTRUCAO LTDA"
+          "cnpj": "",
+          "razao_social": "VITORIA LOCACAO E CONSTRUCAO LTDA",
+          "inferido_de": "notas fiscais",
+          "inferido_qtd": 1,
+          "inferido_total": 12760.08,
+          "inferido_periodo": "15/06/2026 a 15/06/2026"
         }
       ],
       "movimentacoes": [
@@ -45622,13 +45740,17 @@
       "contratos": [
         {
           "numero_contrato": "—",
-          "situacao": "Rescindido (inferido)",
+          "situacao": "Inferido de 6 notas fiscais",
           "valor": "",
           "valor_repasse": "",
           "dt_inicio": "",
           "dt_fim": "",
-          "cnpj": "24.400.713/0001-00",
-          "razao_social": "JDN EMPREENDIMENTOS URBANOS LTDA"
+          "cnpj": "",
+          "razao_social": "JDN EMPREENDIMENTOS URBANOS LTDA",
+          "inferido_de": "notas fiscais",
+          "inferido_qtd": 6,
+          "inferido_total": 493521.03,
+          "inferido_periodo": "03/03/2026 a 30/06/2026"
         }
       ],
       "movimentacoes": [
@@ -48332,7 +48454,7 @@
       "valor_global_calculado": false
     }
   ],
-  "exec_atualizado_em": "17/08/2026 19:45",
+  "exec_atualizado_em": "20/08/2026 08:19",
   "historico_repasses": {
     "969555": {
       "objeto": "Construção e equipagem da Casa da Mulher Brasileira no Município de Parnaiba-PI",

@@ -195,6 +195,15 @@
                  deslocada depois de tocar na barra de selecao. Abaixo de 900 px
                  ela ocupa a largura da tela com 12 px de margem, rolagem
                  propria e teto de 70vh. Desktop inalterado.
+     v44 — 20/08: contrato INFERIDO deixa de mostrar R$ 0,00 e vigencia
+                 vazia — o que se sabe dele e quanto ja foi PAGO, em quantas
+                 parcelas e entre que datas, e e isso que a tela escreve,
+                 dizendo que nao e o valor do contrato. "CNPJ nao capturado"
+                 vira "a nota fiscal nao traz CNPJ" quando a empresa veio da
+                 NF, porque ali nao houve falha de coleta. Mais: MOTIVO da
+                 clausula suspensiva no card do painel geral e na ficha (so
+                 aparece quando existe), e card de PROPOSTAS sem numero de
+                 instrumento, que some sozinho quando nao ha nenhuma.
      v43 — 20/08: o botao da ficha esticava pela coluna do objeto nos quatro
                  cards do painel geral. Ele entrava como o SEGUNDO filho de
                  uma grade de TRES colunas, entao ficava com os 631px da
@@ -211,7 +220,7 @@
                  para ver um municipio. As fontes sao registradas no data.js,
                  por onde todos os paineis passam: painel novo ja nasce com a
                  ficha funcionando. */
-const VERSAO = 'idepi-v43';
+const VERSAO = 'idepi-v44';
 const CACHE_SHELL = VERSAO + '-shell';
 const CACHE_PAGS  = VERSAO + '-paginas';
 

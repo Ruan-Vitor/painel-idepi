@@ -13927,11 +13927,11 @@
     {
       "numero": "917537",
       "objeto": "PAVIMENTACAO E ADEQUACAO DE VIAS PUBLICAS NO PERIMETRO URBANO NO MUNICIPIO DE TERESINA - PI.",
-      "coletado_em": "05/08/2026 10:58",
+      "coletado_em": "24/08/2026 10:25",
       "valor_global": "R$ 16.417.252,00",
       "valor_repasse": "R$ 16.088.906,00",
       "valor_contrapartida": "R$ 328.346,00",
-      "situacao_tgov": "Prestação de Contas Aprovada",
+      "situacao_tgov": "Prestação de Contas Concluída",
       "regime_simplificado": false,
       "tipo_instrumento": "Contrato de Repasse",
       "ano": "2021",
@@ -47857,7 +47857,7 @@
       "aio": null
     }
   ],
-  "exec_atualizado_em": "24/08/2026 10:24",
+  "exec_atualizado_em": "24/08/2026 10:30",
   "historico_repasses": {
     "969555": {
       "objeto": "Construção e equipagem da Casa da Mulher Brasileira no Município de Parnaiba-PI",

@@ -278,6 +278,28 @@
     return docDoPainel('pagamentos', { pagamentos: [], total: 0, resumo: {} });
   }
 
+  /* ══════════════════════════════════════════════════════════════════════
+     NOTIFICAÇÕES (o sino)
+
+     São DOIS documentos de propósito, e não um:
+
+       painel/eventos_resumo  — minúsculo. Lido no carregamento de TODA
+                                página, só para o badge saber se acende.
+       painel/eventos         — a lista inteira. Só é buscada quando alguém
+                                abre o sino.
+
+     Se fossem um documento só, cada tela do painel baixaria o histórico de
+     eventos para decidir se mostra um número vermelho de 12px.
+     ══════════════════════════════════════════════════════════════════════ */
+  function eventos() {
+    return docDoPainel('eventos', { eventos: [], total: 0, atualizado_em: '' });
+  }
+
+  function eventosResumo() {
+    return docDoPainel('eventos_resumo',
+      { ultimos: [], total: 0, por_severidade: {}, atualizado_em: '' });
+  }
+
   IDEPI.dados = {
     carregar: carregar,
     execIndice: execIndice,

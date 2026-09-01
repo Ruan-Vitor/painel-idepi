@@ -195,6 +195,9 @@
                  deslocada depois de tocar na barra de selecao. Abaixo de 900 px
                  ela ocupa a largura da tela com 12 px de margem, rolagem
                  propria e teto de 70vh. Desktop inalterado.
+     v46 — 01/09: SINO DE NOTIFICACOES. O eventos.py compara o retrato de
+                 hoje com o de ontem e publica painel/eventos; o sino no
+                 header le e mostra. Arquivo novo: assets/notificacoes.js
      v45 — 20/08: EX-01 deixa de cobrar foto de quem nao pode ter obra.
                  Dois casos novos, trazidos pelo setor: instrumento EM
                  CLAUSULA SUSPENSIVA (o projeto ainda vai ser aprovado,
@@ -231,7 +234,7 @@
                  para ver um municipio. As fontes sao registradas no data.js,
                  por onde todos os paineis passam: painel novo ja nasce com a
                  ficha funcionando. */
-const VERSAO = 'idepi-v45';
+const VERSAO = 'idepi-v46';
 const CACHE_SHELL = VERSAO + '-shell';
 const CACHE_PAGS  = VERSAO + '-paginas';
 
@@ -249,6 +252,7 @@ const SHELL = [
   'assets/app.css',
   'assets/app.js',
   'assets/nav.js',
+  'assets/notificacoes.js',
   'assets/auth.js',
   'assets/data.js',
   'assets/firebase-config.js',

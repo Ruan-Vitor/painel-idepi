@@ -380,6 +380,15 @@
         '<i class="fa-solid fa-right-from-bracket"></i></button>';
     alvo.appendChild(box);
     document.getElementById('btnSair').addEventListener('click', sair);
+
+    /* O SINO entra aqui, e não no HTML de cada página: são sete cabeçalhos
+       iguais, e é assim que o menu (nav.js) e o nome do usuário já funcionam.
+       Só para quem está liberado — sem perfil não há o que notificar, e a
+       leitura de painel/eventos seria negada pelas regras de qualquer forma. */
+    if (IDEPI.notificacoes && IDEPI.notificacoes.montar) {
+      try { IDEPI.notificacoes.montar(); }
+      catch (e) { console.warn('[IDEPI] sino não montou:', e && e.message); }
+    }
   }
 
   /* ══════════════════════════════════════════════════════════════════════

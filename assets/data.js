@@ -306,6 +306,8 @@
     execInstrumento: execInstrumento,
     pcf: pcf,
     pagamentos: pagamentos,
+    eventos: eventos,
+    eventosResumo: eventosResumo,
     rotuloOrigem: rotuloOrigem,
     limparCache: limparCache
   };

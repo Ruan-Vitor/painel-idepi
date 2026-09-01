@@ -169,7 +169,10 @@
   }
 
   function atualizarBadge() {
-    if (!IDEPI.dados || !IDEPI.dados.eventosResumo) return;
+    if (!IDEPI.dados || !IDEPI.dados.eventosResumo) {
+      console.warn('[IDEPI] sino sem IDEPI.dados.eventosResumo — badge desligado.');
+      return;
+    }
     IDEPI.dados.eventosResumo().then(function (r) {
       var badge = document.getElementById('sinoBadge');
       if (!badge) return;
@@ -210,7 +213,21 @@
   }
 
   function carregar() {
-    if (!IDEPI.dados || !IDEPI.dados.eventos) return;
+    /* Saída cedo NÃO pode deixar o "Carregando…" na tela para sempre. Foi
+       exatamente o que aconteceu em 01/09/2026: as funções existiam no
+       data.js e ficaram DE FORA do objeto exportado, então `IDEPI.dados
+       .eventos` era undefined, esta função voltava calada e o painel abria
+       eternamente carregando. Código que sai cedo em silêncio é
+       indistinguível de código que funciona — a mesma lição do
+       `renderFichaBasica`. Agora ele DIZ o que faltou. */
+    if (!IDEPI.dados || !IDEPI.dados.eventos) {
+      document.getElementById('notifLista').innerHTML =
+        '<p class="notif-vazio">O leitor de notificações não carregou nesta ' +
+        'página (assets/data.js sem <code>eventos</code>). Recarregue; se ' +
+        'continuar, é defeito de publicação.</p>';
+      document.getElementById('notifRodape').innerHTML = '';
+      return;
+    }
     IDEPI.dados.eventos().then(function (d) {
       LISTA = (d && d.eventos) || [];
       CARREGOU = true;

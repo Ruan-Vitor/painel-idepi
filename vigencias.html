@@ -426,6 +426,14 @@ const COR  = {normal:'#22c55e',alerta:'#3b82f6',atencao:'#eab308',critico:'#f973
 const NOME = {normal:'Normal',alerta:'Alerta',atencao:'Atenção',critico:'Crítico',vencido:'Vencido',finalizado:'Finalizado'};
 const KIDS = {normal:'kn',alerta:'ka',atencao:'kat',critico:'kc',vencido:'kv',finalizado:'kf'};
 
+/* A ORDEM E O ELENCO dos status, num lugar só. Antes esta mesma lista existia
+   copiada em TRÊS pontos — o contador `ct`, os cards do KPI e a função do
+   gráfico. Em 04/09/2026 um status novo foi acrescentado em dois deles e
+   esquecido no terceiro: o painel passou a dizer "106 instrumentos" no topo e
+   "104" no meio do donut, e foi o Ruan quem viu. Lista copiada é lista que um
+   dia diverge; esta aqui é a única. */
+const ST_ORDEM = ['normal','alerta','atencao','critico','vencido','finalizado','sem_data'];
+
 // ── ATALHOS PARA AS FUNÇÕES COMPARTILHADAS (assets/app.js) ───────────────────
 // parseDate, esc e calcStatus moravam aqui. Foram para o app.js porque as
 // cópias em cada página tinham divergido entre si.
@@ -519,7 +527,7 @@ document.addEventListener('click', ev => {
 
 // ── DASHBOARD ────────────────────────────────────────────────────────────────
 function atualizar() {
-  const ct = {normal:0,alerta:0,atencao:0,critico:0,vencido:0,finalizado:0,sem_data:0};
+  const ct = Object.fromEntries(ST_ORDEM.map(k => [k, 0]));
   let sT=0,sL=0,sE=0,nE=0;
   dados.forEach(d => {
     ct[d._st] = (ct[d._st]||0)+1;
@@ -534,7 +542,7 @@ function atualizar() {
      vizinho — e ninguém desconfia de um card que exibe um número plausível.
      Se mexer num, mexa no outro; o console.warn abaixo cobra isso. */
   const idsKPI  = ['cn','ca','cat','cc','cv','cf','csd'];
-  const keysKPI = ['normal','alerta','atencao','critico','vencido','finalizado','sem_data'];
+  const keysKPI = ST_ORDEM;
   if (idsKPI.length !== keysKPI.length)
     console.warn('KPI: ids e chaves fora de par — os cards vão trocar de número.');
   idsKPI.forEach((id,i)=>{
@@ -558,7 +566,7 @@ function fN(n){return n.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumF
 
 // ── GRÁFICO ──────────────────────────────────────────────────────────────────
 function graf(ct) {
-  const keys=['normal','alerta','atencao','critico','vencido','finalizado','sem_data'];
+  const keys=ST_ORDEM;
   const vals=keys.map(k=>ct[k]||0), cors=keys.map(k=>COR[k]);
   const tot=vals.reduce((a,b)=>a+b,0);
   if(chart) chart.destroy();

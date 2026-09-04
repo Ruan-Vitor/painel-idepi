@@ -162,7 +162,7 @@
    * vigência normal — é ela que passa a valer como prazo efetivo.
    *
    * @returns {{st:string, dias:number|null, temSusp:boolean}}
-   *   st ∈ normal | alerta | atencao | critico | vencido | em_pcf | finalizado
+   *   st ∈ normal | alerta | atencao | critico | vencido | finalizado
    */
   function calcStatus(c) {
     var sit = leSituacao(c);
@@ -197,10 +197,15 @@
     /* PCF em análise vence os dois caminhos de "vencido" abaixo — o da
        situação e o da data. Fica ANTES deles porque a pergunta "a prestação
        de contas já está correndo?" é mais nova e mais específica do que
-       "a data passou?". */
+       "a data passou?".
+
+       Cai em FINALIZADO, e não num status próprio: decisão do Ruan em
+       04/09/2026, depois de ver o card separado no ar. É o mais coerente
+       com o resto — REGEX_FIN já trata "prestação de contas" como fim de
+       acompanhamento, e um card à parte duplicava o conceito. */
     if (pcfCorrendo(c) &&
         (sit === 'aguarda' || sit === 'aguarda_cgu' || (dias !== null && dias < 0)))
-      return { st: 'em_pcf', dias: dias, temSusp: temSusp };
+      return { st: 'finalizado', dias: null, temSusp: false };
 
     if (sit === 'aguarda') return { st: 'vencido', dias: dias, temSusp: temSusp };
     /* Condição ESTREITA: exige que a data tenha vindo do TRANSFEREGOV. Com
@@ -1609,7 +1614,7 @@
   IDEPI.comBotaoOcupado = comBotaoOcupado;
 
   /* Rótulos e cores de status — usados por mais de uma página */
-  IDEPI.NOME_ST = { normal: 'Normal', alerta: 'Alerta', atencao: 'Atenção', critico: 'Crítico', vencido: 'Vencido', em_pcf: 'Em prestação de contas', finalizado: 'Finalizado', sem_data: 'Sem data' };
-  IDEPI.COR_ST = { normal: '#22c55e', alerta: '#3b82f6', atencao: '#eab308', critico: '#f97316', vencido: '#ef4444', em_pcf: '#0ea5e9', finalizado: '#94a3b8', sem_data: '#a78bfa' };
+  IDEPI.NOME_ST = { normal: 'Normal', alerta: 'Alerta', atencao: 'Atenção', critico: 'Crítico', vencido: 'Vencido', finalizado: 'Finalizado', sem_data: 'Sem data' };
+  IDEPI.COR_ST = { normal: '#22c55e', alerta: '#3b82f6', atencao: '#eab308', critico: '#f97316', vencido: '#ef4444', finalizado: '#94a3b8', sem_data: '#a78bfa' };
 
 })(window);

@@ -117,18 +117,25 @@
   /* Ruído conhecido das colunas T/U — valor do filtro da tela que vazou. */
   var SIT_IGNORADA = { '': 1, '—': 1, '-': 1, 'erro': 1, 'todas': 1, 'n/a': 1, 'n/d': 1 };
 
-  /* Vigência acabou, mas a prestação de contas está EM ANÁLISE.
+  /* Vigência acabou, mas a prestação de contas JÁ ANDA.
      Pedido do Ruan em 04/09/2026 olhando o 648107, que a planilha de PCFs do
      setor marca como `em_analise` e a CGU dá como ADIMPLENTE — só o painel
      insistia em VENCIDO, porque olhava a data (12/05/2019) e mais nada.
-     VENCIDO e EM PRESTAÇÃO DE CONTAS pedem ações opostas de quem lê: um é
-     "corra atrás de aditivo de prazo", o outro é "acompanhe o parecer".
-     `pcf_etapa` vem do main.py, da planilha do setor. Só `em_analise` conta:
-     PCF não iniciada com vigência vencida É vencida, e das graves. */
-  var ETAPAS_PCF_CORRENDO = { 'em_analise': 1 };
 
-  function pcfCorrendo(c) {
-    return !!(c && ETAPAS_PCF_CORRENDO[String(c.pcf_etapa || '').trim()]);
+     Três etapas encerram: em análise, concluída e aprovada. A primeira versão
+     olhava só `em_analise` e deixou o 899530 (PCF CONCLUÍDA, mais adiantada
+     que "em análise") aparecendo como VENCIDO — de novo foi o Ruan quem viu.
+     PCF NÃO INICIADA com vigência vencida continua VENCIDA, e das graves:
+     ali a prestação sequer começou.
+
+     `pcf_etapa` vem do main.py, do `_estado_pcf.json`, que traz as 28 linhas
+     da planilha do setor. Ela às vezes está na FRENTE da coluna T lida do
+     Transferegov — no 899530 a planilha dizia Concluída e a coluna T ainda
+     dizia "Em execução". */
+  var ETAPAS_PCF_ENCERRA = { 'em_analise': 1, 'concluida': 1, 'aprovada': 1 };
+
+  function pcfEncerra(c) {
+    return !!(c && ETAPAS_PCF_ENCERRA[String(c.pcf_etapa || '').trim()]);
   }
 
   /** Primeiro campo que disser algo decisivo é o que vale.
@@ -203,7 +210,7 @@
        04/09/2026, depois de ver o card separado no ar. É o mais coerente
        com o resto — REGEX_FIN já trata "prestação de contas" como fim de
        acompanhamento, e um card à parte duplicava o conceito. */
-    if (pcfCorrendo(c) &&
+    if (pcfEncerra(c) &&
         (sit === 'aguarda' || sit === 'aguarda_cgu' || (dias !== null && dias < 0)))
       return { st: 'finalizado', dias: null, temSusp: false };
 

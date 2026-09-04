@@ -1,5 +1,5 @@
 {
-  "gerado_em": "04/09/2026 16:57",
+  "gerado_em": "04/09/2026 17:13",
   "total": 106,
   "convenios": [
     {
@@ -86,7 +86,7 @@
       "dono_emenda": "Marcos Aurelio",
       "ponto_focal": "",
       "clausula_motivo": "",
-      "pcf_etapa": ""
+      "pcf_etapa": "concluida"
     },
     {
       "numero": "894024",
@@ -301,7 +301,7 @@
       "dono_emenda": "Marcos Aurelio",
       "ponto_focal": "",
       "clausula_motivo": "",
-      "pcf_etapa": "nao_iniciada"
+      "pcf_etapa": "outra"
     },
     {
       "numero": "906442",
@@ -430,7 +430,7 @@
       "dono_emenda": "Fabio Abreu",
       "ponto_focal": "",
       "clausula_motivo": "",
-      "pcf_etapa": ""
+      "pcf_etapa": "concluida"
     },
     {
       "numero": "902704",
@@ -1548,7 +1548,7 @@
       "dono_emenda": "Marcos Aurelio",
       "ponto_focal": "",
       "clausula_motivo": "",
-      "pcf_etapa": ""
+      "pcf_etapa": "concluida"
     },
     {
       "numero": "899530",
@@ -1563,8 +1563,8 @@
       "limite_prestacao": "",
       "sei": "00119.000934/2025-81",
       "fiscal": "Manoel",
-      "dias": -59,
-      "status": "VENCIDO",
+      "dias": null,
+      "status": "FINALIZADO",
       "situacao": "NORMAL",
       "v_total": "469.700,00",
       "v_liberado": "469.700,00",
@@ -1578,10 +1578,10 @@
       "concedente_sigla": "MIDR",
       "mandataria": "",
       "numero_original": "70460/2020",
-      "foto_app": "NÃO ❌",
-      "medicao": "NÃO",
-      "pagamento": "NÃO",
-      "apto_fiscalgov": "NÃO ⬜",
+      "foto_app": "",
+      "medicao": "",
+      "pagamento": "",
+      "apto_fiscalgov": "",
       "situacao_tgov": "Em execução",
       "sit_contrat_tgov": "Normal",
       "fase_emendas": "em andamento",
@@ -1591,7 +1591,7 @@
       "dono_emenda": "Marcos Aurelio",
       "ponto_focal": "",
       "clausula_motivo": "",
-      "pcf_etapa": ""
+      "pcf_etapa": "concluida"
     },
     {
       "numero": "847194",
@@ -1763,7 +1763,7 @@
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "Paulo Roberto",
       "clausula_motivo": "",
-      "pcf_etapa": ""
+      "pcf_etapa": "concluida"
     },
     {
       "numero": "947350",
@@ -1806,7 +1806,7 @@
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "Pantikão",
       "clausula_motivo": "",
-      "pcf_etapa": ""
+      "pcf_etapa": "concluida"
     },
     {
       "numero": "946258",
@@ -1892,7 +1892,7 @@
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "Vereador Paulo",
       "clausula_motivo": "",
-      "pcf_etapa": ""
+      "pcf_etapa": "concluida"
     },
     {
       "numero": "946261",
@@ -1935,7 +1935,7 @@
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "Ziza",
       "clausula_motivo": "",
-      "pcf_etapa": ""
+      "pcf_etapa": "concluida"
     },
     {
       "numero": "946260",
@@ -2021,7 +2021,7 @@
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "Luis Lobão",
       "clausula_motivo": "",
-      "pcf_etapa": ""
+      "pcf_etapa": "concluida"
     },
     {
       "numero": "947533",
@@ -2107,7 +2107,7 @@
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "Luis Lobão",
       "clausula_motivo": "",
-      "pcf_etapa": ""
+      "pcf_etapa": "concluida"
     },
     {
       "numero": "947530",
@@ -2150,7 +2150,7 @@
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "Luis Lobão",
       "clausula_motivo": "",
-      "pcf_etapa": ""
+      "pcf_etapa": "concluida"
     },
     {
       "numero": "947531",
@@ -2193,7 +2193,7 @@
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "Luis Lobão",
       "clausula_motivo": "",
-      "pcf_etapa": ""
+      "pcf_etapa": "concluida"
     },
     {
       "numero": "947532",
@@ -2236,7 +2236,7 @@
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "Zomin",
       "clausula_motivo": "",
-      "pcf_etapa": ""
+      "pcf_etapa": "concluida"
     },
     {
       "numero": "946801",
@@ -2386,7 +2386,7 @@
       "v_total": "240.000.000,00",
       "v_liberado": "116.650.000,00",
       "v_contrapartida": "30.000,00",
-      "v_ultima_liberacao": "200,00",
+      "v_ultima_liberacao": "2.000.000,00",
       "ultima_liberacao": "22/07/2026",
       "pct_exec": "",
       "autor_emenda": "",
@@ -2451,7 +2451,7 @@
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "Pedro Fernandes",
       "clausula_motivo": "",
-      "pcf_etapa": ""
+      "pcf_etapa": "concluida"
     },
     {
       "numero": "946039",
@@ -2709,7 +2709,7 @@
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "Italo Barros",
       "clausula_motivo": "",
-      "pcf_etapa": ""
+      "pcf_etapa": "concluida"
     },
     {
       "numero": "946367",
@@ -2881,7 +2881,7 @@
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "Bem bem",
       "clausula_motivo": "",
-      "pcf_etapa": ""
+      "pcf_etapa": "concluida"
     },
     {
       "numero": "952006",
@@ -4386,7 +4386,7 @@
       "dono_emenda": "",
       "ponto_focal": "",
       "clausula_motivo": "",
-      "pcf_etapa": ""
+      "pcf_etapa": "concluida"
     },
     {
       "numero": "7AAFJY",
@@ -4536,7 +4536,7 @@
       "v_total": "900.000,00",
       "v_liberado": "900.000,00",
       "v_contrapartida": "263.658,80",
-      "v_ultima_liberacao": "27,00",
+      "v_ultima_liberacao": "270.000,00",
       "ultima_liberacao": "05/06/2012",
       "pct_exec": "",
       "autor_emenda": "",

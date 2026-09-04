@@ -716,9 +716,15 @@ div > button:has(svg):not([class]):not([id]){display:none!important}
 }
 .notif-painel[hidden]{display:none!important}
 
+/* flex-shrink:0 nas três faixas fixas (topo, chips e rodapé).
+   O painel é flex column com max-height, e quem tem de ceder altura é a
+   LISTA, que rola. Sem isto o navegador espreme as faixas: em 04/09/2026,
+   com 44 eventos, a faixa de chips foi de 30px para 27,6px e cada botão
+   de filtro caiu para 10px de altura, ilegível e quase inclicável. */
 .notif-topo{
   display:flex;align-items:center;justify-content:space-between;gap:10px;
   padding:12px 14px;border-bottom:1px solid var(--border);background:var(--surface2);
+  flex-shrink:0;
 }
 .notif-topo strong{font-family:'Sora',sans-serif;font-size:13px;color:var(--text)}
 .notif-topo i{color:var(--accent);margin-right:5px}
@@ -728,13 +734,20 @@ div > button:has(svg):not([class]):not([id]){display:none!important}
 }
 .notif-x:hover{background:var(--border);color:var(--text)}
 
+/* QUEBRA em vez de rolar. Eram até 9 filtros numa faixa de 400px com
+   overflow-x: cabiam cinco, e os outros ficavam escondidos atrás de uma
+   barra de rolagem horizontal que ninguém procura num painel vertical.
+   Em duas linhas todos aparecem de uma vez, que é o ponto de um filtro.
+   align-items:flex-start impede que o stretch padrão deforme os botões. */
 .notif-chips{
-  display:flex;gap:6px;padding:10px 12px;overflow-x:auto;
-  border-bottom:1px solid var(--border);scrollbar-width:thin;
+  display:flex;flex-wrap:wrap;align-items:flex-start;gap:6px;
+  padding:10px 12px;flex-shrink:0;
+  border-bottom:1px solid var(--border);
 }
 .notif-chip{
   flex-shrink:0;border:1px solid var(--border);background:var(--surface);
-  color:var(--muted);border-radius:99px;padding:4px 10px;font-size:11px;
+  color:var(--muted);border-radius:99px;padding:5px 10px;font-size:11px;
+  line-height:1.35;min-height:24px;
   font-weight:600;cursor:pointer;font-family:inherit;white-space:nowrap;
 }
 .notif-chip span{opacity:.6;margin-left:2px}
@@ -783,7 +796,7 @@ div > button:has(svg):not([class]):not([id]){display:none!important}
 
 .notif-rodape{
   border-top:1px solid var(--border);padding:9px 12px;text-align:center;
-  background:var(--surface2);
+  background:var(--surface2);flex-shrink:0;
 }
 .notif-mais{
   border:1px solid var(--border);background:var(--surface);color:var(--accent);

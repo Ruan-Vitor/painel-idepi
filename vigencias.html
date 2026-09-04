@@ -72,7 +72,7 @@ body{font-family:'Inter',sans-serif;color:var(--text)}
 .urgency strong{color:var(--v-tx)}
 
 /* KPI */
-.kgrid{display:grid;grid-template-columns:repeat(7,1fr);gap:12px;margin-bottom:18px}
+.kgrid{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-bottom:18px}
 .kcard{background:var(--surface);border-radius:var(--r);border:1.5px solid var(--border);padding:14px;cursor:pointer;transition:transform .15s,box-shadow .15s;position:relative;overflow:hidden;box-shadow:var(--sh)}
 .kcard:hover{transform:translateY(-2px);box-shadow:var(--sh2)}
 .kcard.active{border-width:2.5px}
@@ -83,7 +83,6 @@ body{font-family:'Inter',sans-serif;color:var(--text)}
 .kcard.c{color:var(--c-bd);background:var(--c-bg);border-color:var(--c-bd)}
 .kcard.v{color:var(--v-bd);background:var(--v-bg);border-color:var(--v-bd)}
 .kcard.f{color:var(--f-bd);background:var(--f-bg);border-color:var(--f-bd)}
-.kcard.pc{color:var(--pc-bd);background:var(--pc-bg);border-color:var(--pc-bd)}
 .klabel{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.6px;opacity:.75;margin-bottom:6px}
 .kcount{font-size:32px;font-weight:700;line-height:1;margin-bottom:3px}
 .kdesc{font-size:10px;opacity:.7}
@@ -123,7 +122,6 @@ body{font-family:'Inter',sans-serif;color:var(--text)}
 .chip.cv{background:var(--v-bg);color:var(--v-tx);border-color:var(--v-bd)}
 .chip.cs{background:var(--s-bg);color:var(--s-tx);border-color:var(--s-bd)}
 .chip.cf{background:var(--f-bg);color:var(--f-tx);border-color:var(--f-bd)}
-.chip.cpc{background:var(--pc-bg);color:var(--pc-tx);border-color:var(--pc-bd)}
 .chip.active{box-shadow:0 0 0 2.5px currentColor;font-weight:700;}
 
 /* COLUMN FILTERS */
@@ -310,7 +308,6 @@ tr.drow:hover td{background:var(--surface2);cursor:pointer}
     <div class="kcard at" onclick="setStatus('atencao')"    id="kat"><i class="fa-solid fa-exclamation kicon"></i><div class="klabel">Atenção</div><div class="kcount" id="cat">—</div><div class="kdesc">30–60 dias</div></div>
     <div class="kcard c"  onclick="setStatus('critico')"    id="kc"><i class="fa-solid fa-fire kicon"></i><div class="klabel">Crítico</div><div class="kcount" id="cc">—</div><div class="kdesc">&lt; 30 dias</div></div>
     <div class="kcard v"  onclick="setStatus('vencido')"    id="kv"><i class="fa-solid fa-skull kicon"></i><div class="klabel">Vencido</div><div class="kcount" id="cv">—</div><div class="kdesc">Prazo expirado</div></div>
-    <div class="kcard pc" onclick="setStatus('em_pcf')"     id="kpc"><i class="fa-solid fa-file-invoice kicon"></i><div class="klabel">Em prest. contas</div><div class="kcount" id="cpc">—</div><div class="kdesc">PCF em análise</div></div>
     <div class="kcard f"  onclick="setStatus('finalizado')" id="kf"><i class="fa-solid fa-flag-checkered kicon"></i><div class="klabel">Finalizado</div><div class="kcount" id="cf">—</div><div class="kdesc">Concluído</div></div>
   </div>
 
@@ -363,7 +360,6 @@ tr.drow:hover td{background:var(--surface2);cursor:pointer}
         <span class="chip cc"  data-status="critico"    onclick="setStatus('critico')">Crítico</span>
         <span class="chip cv"  data-status="vencido"    onclick="setStatus('vencido')">Vencido</span>
         <span class="chip cs"  data-status="suspensiva" onclick="setStatus('suspensiva')">Com Suspensiva</span>
-        <span class="chip cpc" data-status="em_pcf"     onclick="setStatus('em_pcf')">Em prest. contas</span>
         <span class="chip cf"  data-status="finalizado" onclick="setStatus('finalizado')">Finalizado</span>
         <span class="chip csd" data-status="sem_data"   onclick="setStatus('sem_data')">Sem data</span>
       </div>
@@ -424,11 +420,11 @@ let _gerado_em = '—';
 let sortCol = null, sortDir = 1;
 let _rowsVisiveis = []; // guarda as linhas visíveis para export
 
-const CLS  = {normal:'n',alerta:'a',atencao:'at',critico:'c',vencido:'v',em_pcf:'pc',finalizado:'f',suspensiva:'s'};
-const LBL  = {normal:'Normal (>90d)',alerta:'Alerta (60–90d)',atencao:'Atenção (30–60d)',critico:'Crítico (<30d)',vencido:'Vencido',em_pcf:'Em prestação de contas',finalizado:'Finalizado',sem_data:'Sem data'};
-const COR  = {normal:'#22c55e',alerta:'#3b82f6',atencao:'#eab308',critico:'#f97316',vencido:'#ef4444',em_pcf:'#0ea5e9',finalizado:'#94a3b8',sem_data:'#a78bfa'};
-const NOME = {normal:'Normal',alerta:'Alerta',atencao:'Atenção',critico:'Crítico',vencido:'Vencido',em_pcf:'Em prest. contas',finalizado:'Finalizado'};
-const KIDS = {normal:'kn',alerta:'ka',atencao:'kat',critico:'kc',vencido:'kv',em_pcf:'kpc',finalizado:'kf'};
+const CLS  = {normal:'n',alerta:'a',atencao:'at',critico:'c',vencido:'v',finalizado:'f',suspensiva:'s'};
+const LBL  = {normal:'Normal (>90d)',alerta:'Alerta (60–90d)',atencao:'Atenção (30–60d)',critico:'Crítico (<30d)',vencido:'Vencido',finalizado:'Finalizado',sem_data:'Sem data'};
+const COR  = {normal:'#22c55e',alerta:'#3b82f6',atencao:'#eab308',critico:'#f97316',vencido:'#ef4444',finalizado:'#94a3b8',sem_data:'#a78bfa'};
+const NOME = {normal:'Normal',alerta:'Alerta',atencao:'Atenção',critico:'Crítico',vencido:'Vencido',finalizado:'Finalizado'};
+const KIDS = {normal:'kn',alerta:'ka',atencao:'kat',critico:'kc',vencido:'kv',finalizado:'kf'};
 
 // ── ATALHOS PARA AS FUNÇÕES COMPARTILHADAS (assets/app.js) ───────────────────
 // parseDate, esc e calcStatus moravam aqui. Foram para o app.js porque as
@@ -468,7 +464,7 @@ async function carregar() {
     // Deep link: vigencias.html?status=critico já abre filtrado — é o que faz
     // os cards do Painel Geral e os atalhos do app instalado funcionarem.
     const param = new URLSearchParams(window.location.search).get('status');
-    if (param && ['all','normal','alerta','atencao','critico','vencido','em_pcf','finalizado','suspensiva','sem_data'].includes(param))
+    if (param && ['all','normal','alerta','atencao','critico','vencido','finalizado','suspensiva','sem_data'].includes(param))
       setStatus(param);
   } catch(e) {
     document.getElementById('ov').innerHTML = `
@@ -523,7 +519,7 @@ document.addEventListener('click', ev => {
 
 // ── DASHBOARD ────────────────────────────────────────────────────────────────
 function atualizar() {
-  const ct = {normal:0,alerta:0,atencao:0,critico:0,vencido:0,em_pcf:0,finalizado:0,sem_data:0};
+  const ct = {normal:0,alerta:0,atencao:0,critico:0,vencido:0,finalizado:0,sem_data:0};
   let sT=0,sL=0,sE=0,nE=0;
   dados.forEach(d => {
     ct[d._st] = (ct[d._st]||0)+1;
@@ -532,13 +528,13 @@ function atualizar() {
     const pe = parseFloat((d.pct_exec||'').replace('%','')) || 0;
     sT+=vt; sL+=vl; if(pe>0){sE+=pe;nE++;}
   });
-  /* Os dois vetores andam em PAR, por índice. Ao acrescentar o em_pcf em
-     04/09/2026, esquecer o 'cpc' aqui não daria erro nenhum: os contadores
-     seguintes é que passariam a mostrar o número do vizinho, e ninguém
-     desconfia de um card que exibe um número plausível. Se mexer num, mexa
-     no outro — o console.warn abaixo cobra isso. */
-  const idsKPI  = ['cn','ca','cat','cc','cv','cpc','cf','csd'];
-  const keysKPI = ['normal','alerta','atencao','critico','vencido','em_pcf','finalizado','sem_data'];
+  /* Os dois vetores andam em PAR, por índice. Ao experimentar um sétimo card
+     em 04/09/2026, ficou claro o risco: esquecer o id aqui não dá erro
+     nenhum, os contadores seguintes é que passam a mostrar o número do
+     vizinho — e ninguém desconfia de um card que exibe um número plausível.
+     Se mexer num, mexa no outro; o console.warn abaixo cobra isso. */
+  const idsKPI  = ['cn','ca','cat','cc','cv','cf','csd'];
+  const keysKPI = ['normal','alerta','atencao','critico','vencido','finalizado','sem_data'];
   if (idsKPI.length !== keysKPI.length)
     console.warn('KPI: ids e chaves fora de par — os cards vão trocar de número.');
   idsKPI.forEach((id,i)=>{

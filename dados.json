@@ -1,5 +1,5 @@
 {
-  "gerado_em": "04/09/2026 16:24",
+  "gerado_em": "04/09/2026 16:35",
   "total": 106,
   "convenios": [
     {
@@ -387,7 +387,7 @@
       "dono_emenda": "Marcos Aurelio",
       "ponto_focal": "",
       "clausula_motivo": "",
-      "pcf_etapa": ""
+      "pcf_etapa": "nao_iniciada"
     },
     {
       "numero": "917537",
@@ -4321,7 +4321,7 @@
       "v_total": "2.800.000,00",
       "v_liberado": "2.800.000,00",
       "v_contrapartida": "312.000,00",
-      "v_ultima_liberacao": "840.000,00",
+      "v_ultima_liberacao": "84,00",
       "ultima_liberacao": "14/03/2013",
       "pct_exec": "",
       "autor_emenda": "",
@@ -4531,7 +4531,7 @@
       "sei": "",
       "fiscal": "",
       "dias": -3748,
-      "status": "VENCIDO",
+      "status": "EM PREST. CONTAS",
       "situacao": "ADIMPLENTE",
       "v_total": "900.000,00",
       "v_liberado": "900.000,00",
@@ -4558,7 +4558,7 @@
       "dono_emenda": "",
       "ponto_focal": "",
       "clausula_motivo": "",
-      "pcf_etapa": ""
+      "pcf_etapa": "em_analise"
     }
   ],
   "exec_financeira": [

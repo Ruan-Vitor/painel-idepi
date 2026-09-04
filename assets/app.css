@@ -38,10 +38,6 @@
   --v-bg:#fef2f2;  --v-bd:#ef4444;  --v-tx:#b91c1c;
   --f-bg:#f8fafc;  --f-bd:#94a3b8;  --f-tx:#475569;
   --s-bg:#f5f3ff;  --s-bd:#8b5cf6;  --s-tx:#5b21b6;
-  /* EM PRESTAÇÃO DE CONTAS (novo em 04/09/2026). Ciano de propósito: longe
-     do vermelho de vencido, porque não é cobrança de prazo, e longe do
-     cinza de finalizado, porque ainda há processo correndo. */
-  --pc-bg:#ecfeff; --pc-bd:#0ea5e9; --pc-tx:#0369a1;
 
   --r:10px;
   --sh:0 1px 3px rgba(0,0,0,.08);

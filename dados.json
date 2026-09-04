@@ -1,6 +1,6 @@
 {
-  "gerado_em": "04/09/2026 15:49",
-  "total": 105,
+  "gerado_em": "04/09/2026 16:11",
+  "total": 106,
   "convenios": [
     {
       "numero": "781089",
@@ -42,7 +42,8 @@
       "vigencia_emendas": "30/09/2026",
       "dono_emenda": "Iracema Portela",
       "ponto_focal": "",
-      "clausula_motivo": ""
+      "clausula_motivo": "",
+      "pcf_etapa": ""
     },
     {
       "numero": "889040",
@@ -84,7 +85,8 @@
       "vigencia_emendas": "06/12/2025",
       "dono_emenda": "Marcos Aurelio",
       "ponto_focal": "",
-      "clausula_motivo": ""
+      "clausula_motivo": "",
+      "pcf_etapa": ""
     },
     {
       "numero": "894024",
@@ -126,7 +128,8 @@
       "vigencia_emendas": "30/09/2026",
       "dono_emenda": "Iracema Portela",
       "ponto_focal": "",
-      "clausula_motivo": ""
+      "clausula_motivo": "",
+      "pcf_etapa": ""
     },
     {
       "numero": "897425",
@@ -168,7 +171,8 @@
       "vigencia_emendas": "30/09/2026",
       "dono_emenda": "Marcos Aurelio",
       "ponto_focal": "",
-      "clausula_motivo": ""
+      "clausula_motivo": "",
+      "pcf_etapa": ""
     },
     {
       "numero": "897099",
@@ -210,7 +214,8 @@
       "vigencia_emendas": "30/09/2026",
       "dono_emenda": "Marcos Aurelio",
       "ponto_focal": "",
-      "clausula_motivo": ""
+      "clausula_motivo": "",
+      "pcf_etapa": ""
     },
     {
       "numero": "900822",
@@ -252,7 +257,8 @@
       "vigencia_emendas": "30/09/2026",
       "dono_emenda": "Marcos Aurelio",
       "ponto_focal": "",
-      "clausula_motivo": ""
+      "clausula_motivo": "",
+      "pcf_etapa": ""
     },
     {
       "numero": "902680",
@@ -294,7 +300,8 @@
       "vigencia_emendas": "04/01/2026",
       "dono_emenda": "Marcos Aurelio",
       "ponto_focal": "",
-      "clausula_motivo": ""
+      "clausula_motivo": "",
+      "pcf_etapa": "nao_iniciada"
     },
     {
       "numero": "906442",
@@ -336,7 +343,8 @@
       "vigencia_emendas": "29/12/2025",
       "dono_emenda": "Marcos Aurelio",
       "ponto_focal": "",
-      "clausula_motivo": ""
+      "clausula_motivo": "",
+      "pcf_etapa": ""
     },
     {
       "numero": "916598",
@@ -378,7 +386,8 @@
       "vigencia_emendas": "30/09/2026",
       "dono_emenda": "Marcos Aurelio",
       "ponto_focal": "",
-      "clausula_motivo": ""
+      "clausula_motivo": "",
+      "pcf_etapa": ""
     },
     {
       "numero": "917537",
@@ -420,7 +429,8 @@
       "vigencia_emendas": "30/12/2026",
       "dono_emenda": "Fabio Abreu",
       "ponto_focal": "",
-      "clausula_motivo": ""
+      "clausula_motivo": "",
+      "pcf_etapa": ""
     },
     {
       "numero": "902704",
@@ -462,7 +472,8 @@
       "vigencia_emendas": "11/04/2025",
       "dono_emenda": "Marcos Aurelio",
       "ponto_focal": "",
-      "clausula_motivo": ""
+      "clausula_motivo": "",
+      "pcf_etapa": "em_analise"
     },
     {
       "numero": "902705",
@@ -504,7 +515,8 @@
       "vigencia_emendas": "31/12/2025",
       "dono_emenda": "Marcos Aurelio",
       "ponto_focal": "",
-      "clausula_motivo": ""
+      "clausula_motivo": "",
+      "pcf_etapa": "em_analise"
     },
     {
       "numero": "838065",
@@ -546,7 +558,8 @@
       "vigencia_emendas": "31/12/2026",
       "dono_emenda": "Fabio Abreu",
       "ponto_focal": "",
-      "clausula_motivo": ""
+      "clausula_motivo": "",
+      "pcf_etapa": ""
     },
     {
       "numero": "907472",
@@ -588,7 +601,8 @@
       "vigencia_emendas": "31/12/2026",
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "",
-      "clausula_motivo": ""
+      "clausula_motivo": "",
+      "pcf_etapa": ""
     },
     {
       "numero": "907471",
@@ -630,7 +644,8 @@
       "vigencia_emendas": "31/12/2026",
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "",
-      "clausula_motivo": ""
+      "clausula_motivo": "",
+      "pcf_etapa": ""
     },
     {
       "numero": "907470",
@@ -672,7 +687,8 @@
       "vigencia_emendas": "31/12/2026",
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "",
-      "clausula_motivo": ""
+      "clausula_motivo": "",
+      "pcf_etapa": ""
     },
     {
       "numero": "907469",
@@ -714,7 +730,8 @@
       "vigencia_emendas": "31/12/2026",
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "",
-      "clausula_motivo": ""
+      "clausula_motivo": "",
+      "pcf_etapa": ""
     },
     {
       "numero": "907008",
@@ -756,7 +773,8 @@
       "vigencia_emendas": "31/12/2026",
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "",
-      "clausula_motivo": ""
+      "clausula_motivo": "",
+      "pcf_etapa": ""
     },
     {
       "numero": "907015",
@@ -798,7 +816,8 @@
       "vigencia_emendas": "31/12/2026",
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "",
-      "clausula_motivo": ""
+      "clausula_motivo": "",
+      "pcf_etapa": ""
     },
     {
       "numero": "907031",
@@ -840,7 +859,8 @@
       "vigencia_emendas": "31/12/2026",
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "",
-      "clausula_motivo": ""
+      "clausula_motivo": "",
+      "pcf_etapa": ""
     },
     {
       "numero": "907032",
@@ -882,7 +902,8 @@
       "vigencia_emendas": "31/12/2026",
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "",
-      "clausula_motivo": ""
+      "clausula_motivo": "",
+      "pcf_etapa": ""
     },
     {
       "numero": "907033",
@@ -924,7 +945,8 @@
       "vigencia_emendas": "31/12/2026",
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "",
-      "clausula_motivo": ""
+      "clausula_motivo": "",
+      "pcf_etapa": ""
     },
     {
       "numero": "907035",
@@ -966,7 +988,8 @@
       "vigencia_emendas": "31/12/2026",
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "",
-      "clausula_motivo": ""
+      "clausula_motivo": "",
+      "pcf_etapa": ""
     },
     {
       "numero": "907037",
@@ -1008,7 +1031,8 @@
       "vigencia_emendas": "31/12/2026",
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "",
-      "clausula_motivo": ""
+      "clausula_motivo": "",
+      "pcf_etapa": ""
     },
     {
       "numero": "907038",
@@ -1050,7 +1074,8 @@
       "vigencia_emendas": "31/12/2026",
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "",
-      "clausula_motivo": ""
+      "clausula_motivo": "",
+      "pcf_etapa": ""
     },
     {
       "numero": "907040",
@@ -1092,7 +1117,8 @@
       "vigencia_emendas": "31/12/2026",
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "",
-      "clausula_motivo": ""
+      "clausula_motivo": "",
+      "pcf_etapa": ""
     },
     {
       "numero": "907045",
@@ -1134,7 +1160,8 @@
       "vigencia_emendas": "31/12/2026",
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "",
-      "clausula_motivo": ""
+      "clausula_motivo": "",
+      "pcf_etapa": ""
     },
     {
       "numero": "907050",
@@ -1176,7 +1203,8 @@
       "vigencia_emendas": "31/12/2026",
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "",
-      "clausula_motivo": ""
+      "clausula_motivo": "",
+      "pcf_etapa": ""
     },
     {
       "numero": "737058",
@@ -1218,7 +1246,8 @@
       "vigencia_emendas": "31/12/2026",
       "dono_emenda": "",
       "ponto_focal": "",
-      "clausula_motivo": ""
+      "clausula_motivo": "",
+      "pcf_etapa": ""
     },
     {
       "numero": "887234",
@@ -1260,7 +1289,8 @@
       "vigencia_emendas": "30/09/2026",
       "dono_emenda": "Paes Landim",
       "ponto_focal": "",
-      "clausula_motivo": ""
+      "clausula_motivo": "",
+      "pcf_etapa": ""
     },
     {
       "numero": "902401",
@@ -1302,7 +1332,8 @@
       "vigencia_emendas": "17/08/2026",
       "dono_emenda": "Marcos Aurelio",
       "ponto_focal": "",
-      "clausula_motivo": ""
+      "clausula_motivo": "",
+      "pcf_etapa": ""
     },
     {
       "numero": "899533",
@@ -1344,7 +1375,8 @@
       "vigencia_emendas": "07/07/2026",
       "dono_emenda": "Marcos Aurelio",
       "ponto_focal": "",
-      "clausula_motivo": ""
+      "clausula_motivo": "",
+      "pcf_etapa": ""
     },
     {
       "numero": "900838",
@@ -1386,7 +1418,8 @@
       "vigencia_emendas": "07/07/2026",
       "dono_emenda": "Marcos Aurelio",
       "ponto_focal": "",
-      "clausula_motivo": ""
+      "clausula_motivo": "",
+      "pcf_etapa": "em_analise"
     },
     {
       "numero": "900837",
@@ -1428,7 +1461,8 @@
       "vigencia_emendas": "07/07/2026",
       "dono_emenda": "Marcos Aurelio",
       "ponto_focal": "",
-      "clausula_motivo": ""
+      "clausula_motivo": "",
+      "pcf_etapa": ""
     },
     {
       "numero": "900840",
@@ -1470,7 +1504,8 @@
       "vigencia_emendas": "07/07/2026",
       "dono_emenda": "Marcos Aurelio",
       "ponto_focal": "",
-      "clausula_motivo": ""
+      "clausula_motivo": "",
+      "pcf_etapa": ""
     },
     {
       "numero": "899540",
@@ -1512,7 +1547,8 @@
       "vigencia_emendas": "07/07/2025",
       "dono_emenda": "Marcos Aurelio",
       "ponto_focal": "",
-      "clausula_motivo": ""
+      "clausula_motivo": "",
+      "pcf_etapa": ""
     },
     {
       "numero": "899530",
@@ -1554,7 +1590,8 @@
       "vigencia_emendas": "07/07/2026",
       "dono_emenda": "Marcos Aurelio",
       "ponto_focal": "",
-      "clausula_motivo": ""
+      "clausula_motivo": "",
+      "pcf_etapa": ""
     },
     {
       "numero": "847194",
@@ -1596,7 +1633,8 @@
       "vigencia_emendas": "31/12/2026",
       "dono_emenda": "Elmano Ferrer",
       "ponto_focal": "",
-      "clausula_motivo": ""
+      "clausula_motivo": "",
+      "pcf_etapa": ""
     },
     {
       "numero": "920090",
@@ -1638,7 +1676,8 @@
       "vigencia_emendas": "28/12/2026",
       "dono_emenda": "Rejane Dias",
       "ponto_focal": "",
-      "clausula_motivo": ""
+      "clausula_motivo": "",
+      "pcf_etapa": ""
     },
     {
       "numero": "915500",
@@ -1680,7 +1719,8 @@
       "vigencia_emendas": "08/11/2026",
       "dono_emenda": "Atila Lira",
       "ponto_focal": "",
-      "clausula_motivo": ""
+      "clausula_motivo": "",
+      "pcf_etapa": "em_analise"
     },
     {
       "numero": "946262",
@@ -1722,7 +1762,8 @@
       "vigencia_emendas": "30/09/2026",
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "Paulo Roberto",
-      "clausula_motivo": ""
+      "clausula_motivo": "",
+      "pcf_etapa": ""
     },
     {
       "numero": "947350",
@@ -1764,7 +1805,8 @@
       "vigencia_emendas": "30/09/2026",
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "Pantikão",
-      "clausula_motivo": ""
+      "clausula_motivo": "",
+      "pcf_etapa": ""
     },
     {
       "numero": "946258",
@@ -1806,7 +1848,8 @@
       "vigencia_emendas": "30/09/2026",
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "Geraldo Junior",
-      "clausula_motivo": ""
+      "clausula_motivo": "",
+      "pcf_etapa": ""
     },
     {
       "numero": "946257",
@@ -1848,7 +1891,8 @@
       "vigencia_emendas": "30/09/2026",
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "Vereador Paulo",
-      "clausula_motivo": ""
+      "clausula_motivo": "",
+      "pcf_etapa": ""
     },
     {
       "numero": "946261",
@@ -1890,7 +1934,8 @@
       "vigencia_emendas": "30/09/2026",
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "Ziza",
-      "clausula_motivo": ""
+      "clausula_motivo": "",
+      "pcf_etapa": ""
     },
     {
       "numero": "946260",
@@ -1932,7 +1977,8 @@
       "vigencia_emendas": "30/09/2026",
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "Ziza",
-      "clausula_motivo": ""
+      "clausula_motivo": "",
+      "pcf_etapa": "aprovada"
     },
     {
       "numero": "946259",
@@ -1974,7 +2020,8 @@
       "vigencia_emendas": "30/09/2026",
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "Luis Lobão",
-      "clausula_motivo": ""
+      "clausula_motivo": "",
+      "pcf_etapa": ""
     },
     {
       "numero": "947533",
@@ -2016,7 +2063,8 @@
       "vigencia_emendas": "30/09/2026",
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "Luis Lobão",
-      "clausula_motivo": ""
+      "clausula_motivo": "",
+      "pcf_etapa": ""
     },
     {
       "numero": "947106",
@@ -2058,7 +2106,8 @@
       "vigencia_emendas": "30/09/2026",
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "Luis Lobão",
-      "clausula_motivo": ""
+      "clausula_motivo": "",
+      "pcf_etapa": ""
     },
     {
       "numero": "947530",
@@ -2100,7 +2149,8 @@
       "vigencia_emendas": "30/09/2026",
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "Luis Lobão",
-      "clausula_motivo": ""
+      "clausula_motivo": "",
+      "pcf_etapa": ""
     },
     {
       "numero": "947531",
@@ -2142,7 +2192,8 @@
       "vigencia_emendas": "30/09/2026",
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "Luis Lobão",
-      "clausula_motivo": ""
+      "clausula_motivo": "",
+      "pcf_etapa": ""
     },
     {
       "numero": "947532",
@@ -2184,7 +2235,8 @@
       "vigencia_emendas": "30/09/2026",
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "Zomin",
-      "clausula_motivo": ""
+      "clausula_motivo": "",
+      "pcf_etapa": ""
     },
     {
       "numero": "946801",
@@ -2226,7 +2278,8 @@
       "vigencia_emendas": "26/12/2027",
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "Castro Junior",
-      "clausula_motivo": ""
+      "clausula_motivo": "",
+      "pcf_etapa": ""
     },
     {
       "numero": "946378",
@@ -2268,7 +2321,8 @@
       "vigencia_emendas": "27/04/2027",
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "Castro Junior",
-      "clausula_motivo": ""
+      "clausula_motivo": "",
+      "pcf_etapa": ""
     },
     {
       "numero": "947580",
@@ -2310,7 +2364,8 @@
       "vigencia_emendas": "30/09/2026",
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "Eliane",
-      "clausula_motivo": ""
+      "clausula_motivo": "",
+      "pcf_etapa": ""
     },
     {
       "numero": "953168",
@@ -2331,7 +2386,7 @@
       "v_total": "240.000.000,00",
       "v_liberado": "116.650.000,00",
       "v_contrapartida": "30.000,00",
-      "v_ultima_liberacao": "2.000.000,00",
+      "v_ultima_liberacao": "200,00",
       "ultima_liberacao": "22/07/2026",
       "pct_exec": "",
       "autor_emenda": "",
@@ -2352,7 +2407,8 @@
       "vigencia_emendas": "19/12/2028",
       "dono_emenda": "NOVO PAC",
       "ponto_focal": "",
-      "clausula_motivo": ""
+      "clausula_motivo": "",
+      "pcf_etapa": ""
     },
     {
       "numero": "947927",
@@ -2394,7 +2450,8 @@
       "vigencia_emendas": "30/09/2026",
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "Pedro Fernandes",
-      "clausula_motivo": ""
+      "clausula_motivo": "",
+      "pcf_etapa": ""
     },
     {
       "numero": "946039",
@@ -2436,7 +2493,8 @@
       "vigencia_emendas": "30/09/2026",
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "Italo Barros",
-      "clausula_motivo": ""
+      "clausula_motivo": "",
+      "pcf_etapa": ""
     },
     {
       "numero": "945650",
@@ -2478,7 +2536,8 @@
       "vigencia_emendas": "30/09/2026",
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "Italo Barros",
-      "clausula_motivo": ""
+      "clausula_motivo": "",
+      "pcf_etapa": ""
     },
     {
       "numero": "947907",
@@ -2520,7 +2579,8 @@
       "vigencia_emendas": "30/09/2026",
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "Italo Barros",
-      "clausula_motivo": ""
+      "clausula_motivo": "",
+      "pcf_etapa": ""
     },
     {
       "numero": "946738",
@@ -2562,7 +2622,8 @@
       "vigencia_emendas": "30/09/2026",
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "Pref Kaylane",
-      "clausula_motivo": ""
+      "clausula_motivo": "",
+      "pcf_etapa": ""
     },
     {
       "numero": "945158",
@@ -2604,7 +2665,8 @@
       "vigencia_emendas": "30/09/2026",
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "Amanda e P2",
-      "clausula_motivo": ""
+      "clausula_motivo": "",
+      "pcf_etapa": ""
     },
     {
       "numero": "947493",
@@ -2646,7 +2708,8 @@
       "vigencia_emendas": "30/09/2026",
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "Italo Barros",
-      "clausula_motivo": ""
+      "clausula_motivo": "",
+      "pcf_etapa": ""
     },
     {
       "numero": "946367",
@@ -2688,7 +2751,8 @@
       "vigencia_emendas": "30/09/2026",
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "Rodrigo P2",
-      "clausula_motivo": ""
+      "clausula_motivo": "",
+      "pcf_etapa": ""
     },
     {
       "numero": "951016",
@@ -2730,7 +2794,8 @@
       "vigencia_emendas": "30/09/2026",
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "Cristiano/Mariana",
-      "clausula_motivo": ""
+      "clausula_motivo": "",
+      "pcf_etapa": ""
     },
     {
       "numero": "951018",
@@ -2772,7 +2837,8 @@
       "vigencia_emendas": "30/09/2026",
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "Valdivia/ Rodrigo P2",
-      "clausula_motivo": ""
+      "clausula_motivo": "",
+      "pcf_etapa": ""
     },
     {
       "numero": "951943",
@@ -2814,7 +2880,8 @@
       "vigencia_emendas": "30/09/2026",
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "Bem bem",
-      "clausula_motivo": ""
+      "clausula_motivo": "",
+      "pcf_etapa": ""
     },
     {
       "numero": "952006",
@@ -2856,7 +2923,8 @@
       "vigencia_emendas": "15/12/2026",
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "Salmeron",
-      "clausula_motivo": ""
+      "clausula_motivo": "",
+      "pcf_etapa": ""
     },
     {
       "numero": "967173",
@@ -2898,7 +2966,8 @@
       "vigencia_emendas": "22/08/2028",
       "dono_emenda": "NOVO PAC",
       "ponto_focal": "Idepi",
-      "clausula_motivo": ""
+      "clausula_motivo": "",
+      "pcf_etapa": ""
     },
     {
       "numero": "967182",
@@ -2940,7 +3009,8 @@
       "vigencia_emendas": "22/08/2027",
       "dono_emenda": "NOVO PAC",
       "ponto_focal": "Idepi",
-      "clausula_motivo": ""
+      "clausula_motivo": "",
+      "pcf_etapa": ""
     },
     {
       "numero": "945303",
@@ -2982,7 +3052,8 @@
       "vigencia_emendas": "30/09/2026",
       "dono_emenda": "Atila Lira",
       "ponto_focal": "Atila Lira",
-      "clausula_motivo": ""
+      "clausula_motivo": "",
+      "pcf_etapa": ""
     },
     {
       "numero": "945299",
@@ -3024,7 +3095,8 @@
       "vigencia_emendas": "30/09/2026",
       "dono_emenda": "Atila Lira",
       "ponto_focal": "Atila Lira / Joel Neves",
-      "clausula_motivo": ""
+      "clausula_motivo": "",
+      "pcf_etapa": ""
     },
     {
       "numero": "953190",
@@ -3066,7 +3138,8 @@
       "vigencia_emendas": "27/12/2027",
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "Rogerio Castro",
-      "clausula_motivo": ""
+      "clausula_motivo": "",
+      "pcf_etapa": ""
     },
     {
       "numero": "969555",
@@ -3108,7 +3181,8 @@
       "vigencia_emendas": "06/12/2028",
       "dono_emenda": "Sec das Mulheres",
       "ponto_focal": "Diva",
-      "clausula_motivo": ""
+      "clausula_motivo": "",
+      "pcf_etapa": ""
     },
     {
       "numero": "973618",
@@ -3126,9 +3200,9 @@
       "dias": 847,
       "status": "NORMAL",
       "situacao": "EM EXECUÇÃO",
-      "v_total": "15.618,00",
+      "v_total": "156.180.000,00",
       "v_liberado": "0,00",
-      "v_contrapartida": "16,00",
+      "v_contrapartida": "160.000,00",
       "v_ultima_liberacao": "0,00",
       "ultima_liberacao": "",
       "pct_exec": "",
@@ -3150,7 +3224,8 @@
       "vigencia_emendas": "29/12/2028",
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "",
-      "clausula_motivo": "Titularidade de Área, Projeto Básico, Licença Ambiental Prévia e e demais itens da CLÁUSULA TERCEIRA - DA CONDIÇÃO SUSPENSIVA."
+      "clausula_motivo": "Titularidade de Área, Projeto Básico, Licença Ambiental Prévia e e demais itens da CLÁUSULA TERCEIRA - DA CONDIÇÃO SUSPENSIVA.",
+      "pcf_etapa": ""
     },
     {
       "numero": "965789",
@@ -3192,7 +3267,8 @@
       "vigencia_emendas": "21/08/2029",
       "dono_emenda": "NOVO PAC",
       "ponto_focal": "",
-      "clausula_motivo": ""
+      "clausula_motivo": "",
+      "pcf_etapa": ""
     },
     {
       "numero": "992850",
@@ -3234,7 +3310,8 @@
       "vigencia_emendas": "31/12/2028",
       "dono_emenda": "NOVO PAC",
       "ponto_focal": "Ademar",
-      "clausula_motivo": "Titularidade de Área, Projeto Básico e Licença Ambiental Prévia"
+      "clausula_motivo": "Titularidade de Área, Projeto Básico e Licença Ambiental Prévia",
+      "pcf_etapa": ""
     },
     {
       "numero": "992940",
@@ -3276,7 +3353,8 @@
       "vigencia_emendas": "31/12/2028",
       "dono_emenda": "NOVO PAC",
       "ponto_focal": "Ademar",
-      "clausula_motivo": "Titularidade de Área, Projeto Básico e Licença Ambiental Prévia"
+      "clausula_motivo": "Titularidade de Área, Projeto Básico e Licença Ambiental Prévia",
+      "pcf_etapa": ""
     },
     {
       "numero": "980844",
@@ -3318,7 +3396,8 @@
       "vigencia_emendas": "03/09/2028",
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "Miguel Ângelo",
-      "clausula_motivo": ""
+      "clausula_motivo": "",
+      "pcf_etapa": ""
     },
     {
       "numero": "981146",
@@ -3360,7 +3439,8 @@
       "vigencia_emendas": "08/12/2028",
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "Henrique Cesar (Carleuza)",
-      "clausula_motivo": ""
+      "clausula_motivo": "",
+      "pcf_etapa": ""
     },
     {
       "numero": "983950",
@@ -3402,7 +3482,8 @@
       "vigencia_emendas": "10/08/2028",
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "Ravid Lages",
-      "clausula_motivo": "Titularidade de Área, Projeto Básico e Licença Ambiental Prévia"
+      "clausula_motivo": "Titularidade de Área, Projeto Básico e Licença Ambiental Prévia",
+      "pcf_etapa": ""
     },
     {
       "numero": "986179",
@@ -3444,7 +3525,8 @@
       "vigencia_emendas": "30/08/2028",
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "Antônio Wilson",
-      "clausula_motivo": ""
+      "clausula_motivo": "",
+      "pcf_etapa": ""
     },
     {
       "numero": "986155",
@@ -3486,7 +3568,8 @@
       "vigencia_emendas": "10/08/2028",
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "Antônio Wilson",
-      "clausula_motivo": ""
+      "clausula_motivo": "",
+      "pcf_etapa": ""
     },
     {
       "numero": "985797",
@@ -3528,7 +3611,8 @@
       "vigencia_emendas": "22/12/2028",
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "Ivon (Danilo/ Joaquim)",
-      "clausula_motivo": ""
+      "clausula_motivo": "",
+      "pcf_etapa": ""
     },
     {
       "numero": "986602",
@@ -3570,7 +3654,8 @@
       "vigencia_emendas": "31/12/2028",
       "dono_emenda": "Sec das Mulheres",
       "ponto_focal": "Diva",
-      "clausula_motivo": "Titularidade de Área, Projeto Básico e Licença Ambiental Prévia"
+      "clausula_motivo": "Titularidade de Área, Projeto Básico e Licença Ambiental Prévia",
+      "pcf_etapa": ""
     },
     {
       "numero": "988101",
@@ -3612,7 +3697,8 @@
       "vigencia_emendas": "19/04/2029",
       "dono_emenda": "CINDRA - Dr Luizinho",
       "ponto_focal": "Eduardo Dantas / Júlio Arcoverde",
-      "clausula_motivo": "Titularidade de Área, Projeto Básico e Licença Ambiental Prévia"
+      "clausula_motivo": "Titularidade de Área, Projeto Básico e Licença Ambiental Prévia",
+      "pcf_etapa": ""
     },
     {
       "numero": "988500",
@@ -3654,7 +3740,8 @@
       "vigencia_emendas": "19/04/2029",
       "dono_emenda": "CINDRA - Dr Luizinho",
       "ponto_focal": "Eduardo Dantas / Júlio Arcoverde",
-      "clausula_motivo": ""
+      "clausula_motivo": "",
+      "pcf_etapa": ""
     },
     {
       "numero": "989250",
@@ -3696,7 +3783,8 @@
       "vigencia_emendas": "19/04/2029",
       "dono_emenda": "CINDRA - Dr Luizinho",
       "ponto_focal": "Eduardo Dantas / Júlio Arcoverde",
-      "clausula_motivo": "Titularidade de Área, Projeto Básico e Licença Ambiental Prévia"
+      "clausula_motivo": "Titularidade de Área, Projeto Básico e Licença Ambiental Prévia",
+      "pcf_etapa": ""
     },
     {
       "numero": "988784",
@@ -3738,7 +3826,8 @@
       "vigencia_emendas": "19/04/2029",
       "dono_emenda": "",
       "ponto_focal": "Jonas Trindade / Min. Wellington Dias",
-      "clausula_motivo": "Titularidade de Área, Projeto Básico e Licença Ambiental Prévia"
+      "clausula_motivo": "Titularidade de Área, Projeto Básico e Licença Ambiental Prévia",
+      "pcf_etapa": ""
     },
     {
       "numero": "988634",
@@ -3780,7 +3869,8 @@
       "vigencia_emendas": "16/12/2028",
       "dono_emenda": "",
       "ponto_focal": "Jonas Trindade / Min. Wellington Dias",
-      "clausula_motivo": "Titularidade de Área, Projeto Básico e Licença Ambiental Prévia"
+      "clausula_motivo": "Titularidade de Área, Projeto Básico e Licença Ambiental Prévia",
+      "pcf_etapa": ""
     },
     {
       "numero": "988972",
@@ -3822,7 +3912,8 @@
       "vigencia_emendas": "19/04/2029",
       "dono_emenda": "",
       "ponto_focal": "Jonas Trindade / Min. Wellington Dias",
-      "clausula_motivo": "Titularidade de Área, Projeto Básico e Licença Ambiental Prévia"
+      "clausula_motivo": "Titularidade de Área, Projeto Básico e Licença Ambiental Prévia",
+      "pcf_etapa": ""
     },
     {
       "numero": "988779",
@@ -3864,7 +3955,8 @@
       "vigencia_emendas": "19/04/2029",
       "dono_emenda": "",
       "ponto_focal": "Jonas Trindade / Min. Wellington Dias",
-      "clausula_motivo": "Titularidade de Área, Projeto Básico e Licença Ambiental Prévia"
+      "clausula_motivo": "Titularidade de Área, Projeto Básico e Licença Ambiental Prévia",
+      "pcf_etapa": ""
     },
     {
       "numero": "988901",
@@ -3906,7 +3998,8 @@
       "vigencia_emendas": "19/04/2029",
       "dono_emenda": "",
       "ponto_focal": "Jonas Trindade / Min. Wellington Dias",
-      "clausula_motivo": "Titularidade de Área, Projeto Básico e Licença Ambiental Prévia"
+      "clausula_motivo": "Titularidade de Área, Projeto Básico e Licença Ambiental Prévia",
+      "pcf_etapa": ""
     },
     {
       "numero": "998329",
@@ -3948,7 +4041,8 @@
       "vigencia_emendas": "31/12/2028",
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "Enzo Samuel",
-      "clausula_motivo": "Titularidade de Área, Projeto Básico, Licença Ambiental Prévia e Plano de Sustentabilidade"
+      "clausula_motivo": "Titularidade de Área, Projeto Básico, Licença Ambiental Prévia e Plano de Sustentabilidade",
+      "pcf_etapa": ""
     },
     {
       "numero": "999001",
@@ -4033,7 +4127,8 @@
       "vigencia_emendas": "31/12/2029",
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "Ademar",
-      "clausula_motivo": ""
+      "clausula_motivo": "",
+      "pcf_etapa": ""
     },
     {
       "numero": "999010",
@@ -4204,7 +4299,8 @@
       "vigencia_emendas": "",
       "dono_emenda": "",
       "ponto_focal": "",
-      "clausula_motivo": ""
+      "clausula_motivo": "",
+      "pcf_etapa": "em_analise"
     },
     {
       "numero": "648107",
@@ -4220,7 +4316,7 @@
       "sei": "",
       "fiscal": "",
       "dias": -2672,
-      "status": "VENCIDO",
+      "status": "EM PREST. CONTAS",
       "situacao": "ADIMPLENTE",
       "v_total": "2.800.000,00",
       "v_liberado": "2.800.000,00",
@@ -4246,7 +4342,8 @@
       "vigencia_emendas": "",
       "dono_emenda": "",
       "ponto_focal": "",
-      "clausula_motivo": ""
+      "clausula_motivo": "",
+      "pcf_etapa": "em_analise"
     },
     {
       "numero": "761370",
@@ -4288,7 +4385,8 @@
       "vigencia_emendas": "",
       "dono_emenda": "",
       "ponto_focal": "",
-      "clausula_motivo": ""
+      "clausula_motivo": "",
+      "pcf_etapa": ""
     },
     {
       "numero": "7AAFJY",
@@ -4418,6 +4516,49 @@
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "Evandro Hidd / Enzo Samuel (Ver. Tarson)",
       "clausula_motivo": ""
+    },
+    {
+      "numero": "644411",
+      "objeto": "SISTEMA DE ESGOTAMENTO SANITARIO PARA ATENDER O MUNICIPIO DE MONSENHORHIPOLITO/PI, NO PROGRAMA DE ACELERACAO DO CRESCIMENTO-PAC/2008.",
+      "vigencia": "2016-05-31",
+      "vigencia_fmt": "31/05/2016",
+      "vigencia_inicio": "31/12/2008",
+      "vigencia_suspensiva": "",
+      "vigencia_origem": "CGU",
+      "orgao_vinculado": "",
+      "orgao_tgov": "",
+      "limite_prestacao": "",
+      "sei": "",
+      "fiscal": "",
+      "dias": -3748,
+      "status": "VENCIDO",
+      "situacao": "ADIMPLENTE",
+      "v_total": "90,00",
+      "v_liberado": "90,00",
+      "v_contrapartida": "263.658,80",
+      "v_ultima_liberacao": "27,00",
+      "ultima_liberacao": "05/06/2012",
+      "pct_exec": "",
+      "autor_emenda": "",
+      "prestacao": "",
+      "concedente": "Ministério da Saúde",
+      "concedente_sigla": "SAÚDE",
+      "mandataria": "",
+      "numero_original": "TC/PAC 0644/08",
+      "foto_app": "",
+      "medicao": "",
+      "pagamento": "",
+      "apto_fiscalgov": "",
+      "situacao_tgov": "",
+      "sit_contrat_tgov": "",
+      "fase_emendas": "",
+      "municipio_emendas": "",
+      "sei_todos": "",
+      "vigencia_emendas": "",
+      "dono_emenda": "",
+      "ponto_focal": "",
+      "clausula_motivo": "",
+      "pcf_etapa": ""
     }
   ],
   "exec_financeira": [

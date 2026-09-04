@@ -157,10 +157,12 @@ tr.drow:hover td{background:var(--surface2);cursor:pointer}
 .badge.v{background:var(--v-bg);color:var(--v-tx)}
 .badge.s{background:var(--s-bg);color:var(--s-tx)}
 .badge.f{background:var(--f-bg);color:var(--f-tx)}
+.badge.sd{background:#f5f3ff;color:#6d28d9}
 
 .cd{font-weight:600;font-size:12px}
 .cd.n{color:var(--n-tx)}.cd.a{color:var(--a-tx)}.cd.at{color:var(--at-tx)}
 .cd.c{color:var(--c-tx)}.cd.v{color:var(--v-tx)}.cd.s{color:var(--s-tx)}.cd.f{color:var(--f-tx)}
+.cd.sd{color:#6d28d9}
 
 .susp-tag{display:inline-flex;align-items:center;gap:3px;font-size:10px;font-weight:600;color:var(--s-tx);background:var(--s-bg);border:1px solid var(--s-bd);border-radius:6px;padding:2px 6px;white-space:nowrap}
 .num{font-weight:600;color:var(--brand);font-size:11px;white-space:nowrap}
@@ -420,10 +422,10 @@ let _gerado_em = '—';
 let sortCol = null, sortDir = 1;
 let _rowsVisiveis = []; // guarda as linhas visíveis para export
 
-const CLS  = {normal:'n',alerta:'a',atencao:'at',critico:'c',vencido:'v',finalizado:'f',suspensiva:'s'};
+const CLS  = {normal:'n',alerta:'a',atencao:'at',critico:'c',vencido:'v',finalizado:'f',suspensiva:'s',sem_data:'sd'};
 const LBL  = {normal:'Normal (>90d)',alerta:'Alerta (60–90d)',atencao:'Atenção (30–60d)',critico:'Crítico (<30d)',vencido:'Vencido',finalizado:'Finalizado',sem_data:'Sem data'};
 const COR  = {normal:'#22c55e',alerta:'#3b82f6',atencao:'#eab308',critico:'#f97316',vencido:'#ef4444',finalizado:'#94a3b8',sem_data:'#a78bfa'};
-const NOME = {normal:'Normal',alerta:'Alerta',atencao:'Atenção',critico:'Crítico',vencido:'Vencido',finalizado:'Finalizado'};
+const NOME = {normal:'Normal',alerta:'Alerta',atencao:'Atenção',critico:'Crítico',vencido:'Vencido',finalizado:'Finalizado',sem_data:'Sem data'};
 const KIDS = {normal:'kn',alerta:'ka',atencao:'kat',critico:'kc',vencido:'kv',finalizado:'kf'};
 
 /* A ORDEM E O ELENCO dos status, num lugar só. Antes esta mesma lista existia

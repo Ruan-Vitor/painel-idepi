@@ -1,5 +1,5 @@
 {
-  "gerado_em": "04/09/2026 16:11",
+  "gerado_em": "04/09/2026 16:24",
   "total": 106,
   "convenios": [
     {
@@ -2386,7 +2386,7 @@
       "v_total": "240.000.000,00",
       "v_liberado": "116.650.000,00",
       "v_contrapartida": "30.000,00",
-      "v_ultima_liberacao": "200,00",
+      "v_ultima_liberacao": "2.000.000,00",
       "ultima_liberacao": "22/07/2026",
       "pct_exec": "",
       "autor_emenda": "",
@@ -4533,10 +4533,10 @@
       "dias": -3748,
       "status": "VENCIDO",
       "situacao": "ADIMPLENTE",
-      "v_total": "90,00",
-      "v_liberado": "90,00",
+      "v_total": "900.000,00",
+      "v_liberado": "900.000,00",
       "v_contrapartida": "263.658,80",
-      "v_ultima_liberacao": "27,00",
+      "v_ultima_liberacao": "270.000,00",
       "ultima_liberacao": "05/06/2012",
       "pct_exec": "",
       "autor_emenda": "",

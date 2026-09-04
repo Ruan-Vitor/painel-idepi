@@ -117,6 +117,20 @@
   /* Ruído conhecido das colunas T/U — valor do filtro da tela que vazou. */
   var SIT_IGNORADA = { '': 1, '—': 1, '-': 1, 'erro': 1, 'todas': 1, 'n/a': 1, 'n/d': 1 };
 
+  /* Vigência acabou, mas a prestação de contas está EM ANÁLISE.
+     Pedido do Ruan em 04/09/2026 olhando o 648107, que a planilha de PCFs do
+     setor marca como `em_analise` e a CGU dá como ADIMPLENTE — só o painel
+     insistia em VENCIDO, porque olhava a data (12/05/2019) e mais nada.
+     VENCIDO e EM PRESTAÇÃO DE CONTAS pedem ações opostas de quem lê: um é
+     "corra atrás de aditivo de prazo", o outro é "acompanhe o parecer".
+     `pcf_etapa` vem do main.py, da planilha do setor. Só `em_analise` conta:
+     PCF não iniciada com vigência vencida É vencida, e das graves. */
+  var ETAPAS_PCF_CORRENDO = { 'em_analise': 1 };
+
+  function pcfCorrendo(c) {
+    return !!(c && ETAPAS_PCF_CORRENDO[String(c.pcf_etapa || '').trim()]);
+  }
+
   /** Primeiro campo que disser algo decisivo é o que vale.
    *  @returns {'fim'|'aguarda'|'aguarda_cgu'|null}
    *  'aguarda_cgu' distingue o sinal que veio da CGU — ver calcStatus(). */
@@ -148,7 +162,7 @@
    * vigência normal — é ela que passa a valer como prazo efetivo.
    *
    * @returns {{st:string, dias:number|null, temSusp:boolean}}
-   *   st ∈ normal | alerta | atencao | critico | vencido | finalizado
+   *   st ∈ normal | alerta | atencao | critico | vencido | em_pcf | finalizado
    */
   function calcStatus(c) {
     var sit = leSituacao(c);
@@ -180,6 +194,14 @@
        estava em 07/07/2026. Vigência que não acabou não pode estar aguardando
        prestação de contas: é contradição, e vale a fonte mais nova, que é a
        data. Dito pelo TRANSFEREGOV, nada muda — ele continua decidindo. */
+    /* PCF em análise vence os dois caminhos de "vencido" abaixo — o da
+       situação e o da data. Fica ANTES deles porque a pergunta "a prestação
+       de contas já está correndo?" é mais nova e mais específica do que
+       "a data passou?". */
+    if (pcfCorrendo(c) &&
+        (sit === 'aguarda' || sit === 'aguarda_cgu' || (dias !== null && dias < 0)))
+      return { st: 'em_pcf', dias: dias, temSusp: temSusp };
+
     if (sit === 'aguarda') return { st: 'vencido', dias: dias, temSusp: temSusp };
     /* Condição ESTREITA: exige que a data tenha vindo do TRANSFEREGOV. Com
        dados só da CGU, data futura convivendo com "aguardando PCF" é
@@ -1587,7 +1609,7 @@
   IDEPI.comBotaoOcupado = comBotaoOcupado;
 
   /* Rótulos e cores de status — usados por mais de uma página */
-  IDEPI.NOME_ST = { normal: 'Normal', alerta: 'Alerta', atencao: 'Atenção', critico: 'Crítico', vencido: 'Vencido', finalizado: 'Finalizado', sem_data: 'Sem data' };
-  IDEPI.COR_ST = { normal: '#22c55e', alerta: '#3b82f6', atencao: '#eab308', critico: '#f97316', vencido: '#ef4444', finalizado: '#94a3b8', sem_data: '#a78bfa' };
+  IDEPI.NOME_ST = { normal: 'Normal', alerta: 'Alerta', atencao: 'Atenção', critico: 'Crítico', vencido: 'Vencido', em_pcf: 'Em prestação de contas', finalizado: 'Finalizado', sem_data: 'Sem data' };
+  IDEPI.COR_ST = { normal: '#22c55e', alerta: '#3b82f6', atencao: '#eab308', critico: '#f97316', vencido: '#ef4444', em_pcf: '#0ea5e9', finalizado: '#94a3b8', sem_data: '#a78bfa' };
 
 })(window);

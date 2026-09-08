@@ -234,7 +234,27 @@
                  para ver um municipio. As fontes sao registradas no data.js,
                  por onde todos os paineis passam: painel novo ja nasce com a
                  ficha funcionando. */
-const VERSAO = 'idepi-v47';
+/* v48 - 08/09/2026 - o que mudou desde a v47 (que subiu em 01/09):
+
+                 . chips do sino: a faixa nao travava flex-shrink e a lista de
+                   44 eventos esmagava os botoes de filtro para 10px de altura.
+                   Agora quebram em duas linhas em vez de rolar na horizontal.
+                 . status: convenio com vigencia vencida e PCF em andamento na
+                   planilha do setor passa a FINALIZADO, e nao VENCIDO. Regra
+                   em app.js (calcStatus) e main.py, a partir de pcf_etapa.
+                 . vigencias.html: a lista de status virou UMA constante
+                   (ST_ORDEM). Estava copiada em tres lugares, divergiu, e o
+                   painel mostrava 106 no topo e 104 no donut.
+                 . badge de sem_data ganhou classe e cor propria - caia no
+                   cinza de finalizado por falta de entrada no mapa CLS.
+
+                 IMPORTANTE, e a razao desta subida: os arquivos acima foram
+                 publicados em 04/09/2026 SEM mexer nesta versao. Quem tem o
+                 app instalado continuou com o cache v47, montado em 01/09,
+                 servindo CSS e JS velhos - as correcoes estavam no ar e nao
+                 chegavam a quem mais usa. Mexeu em CSS/JS/HTML, sobe a VERSAO
+                 na mesma publicacao. */
+const VERSAO = 'idepi-v48';
 const CACHE_SHELL = VERSAO + '-shell';
 const CACHE_PAGS  = VERSAO + '-paginas';
 

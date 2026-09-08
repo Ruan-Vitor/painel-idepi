@@ -636,6 +636,19 @@ div > button:has(svg):not([class]):not([id]){display:none!important}
   border-top:1px solid var(--border);
 }
 .fb-titulo:first-child{margin-top:0;padding-top:0;border-top:none}
+/* O bloco de prestação de contas é montado num <div> PRÓPRIO (#fichaPCF),
+   porque chega depois, por leitura assíncrona. Isso faz o título dele ser
+   :first-child do próprio recipiente — e a regra acima, pensada para o
+   primeiro título da FICHA, tirava dele a linha e o espaço.
+   Resultado em 08/09/2026: "00119.001427/2023-01" aparecia colado em
+   "PRESTAÇÃO DE CONTAS FINAL", e o Ruan leu, com toda a razão, que aquele
+   número era o processo da prestação de contas. É o processo MÃE do
+   instrumento — e separar os dois era justamente o que o comentário do
+   app.js (20/08/2026) dizia estar resolvido. Estava, no HTML; o CSS
+   desfazia. */
+#fichaPCF > .fb-titulo:first-child{
+  margin-top:16px;padding-top:12px;border-top:1px solid var(--border);
+}
 .fb-nota{
   margin-top:14px;font-size:10.5px;color:var(--muted);line-height:1.5;
   background:var(--surface2);border-radius:8px;padding:9px 11px;

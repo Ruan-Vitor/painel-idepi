@@ -254,7 +254,17 @@
                  servindo CSS e JS velhos - as correcoes estavam no ar e nao
                  chegavam a quem mais usa. Mexeu em CSS/JS/HTML, sobe a VERSAO
                  na mesma publicacao. */
-const VERSAO = 'idepi-v48';
+/* v49 - 08/09/2026 (noite) - o que mudou desde a v48:
+
+                 . ficha do instrumento: o bloco "Prestacao de contas final"
+                   voltou a ter linha e espaco separando-o do bloco "Processo".
+                   O titulo dele e :first-child do proprio recipiente
+                   (#fichaPCF, montado a parte porque a PCF chega por leitura
+                   assincrona), e a regra .fb-titulo:first-child - feita para o
+                   primeiro titulo da FICHA - tirava dele a borda. O numero do
+                   processo MAE aparecia colado em "PRESTACAO DE CONTAS FINAL"
+                   e se lia como se fosse o processo da prestacao de contas. */
+const VERSAO = 'idepi-v49';
 const CACHE_SHELL = VERSAO + '-shell';
 const CACHE_PAGS  = VERSAO + '-paginas';
 

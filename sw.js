@@ -264,7 +264,18 @@
                    primeiro titulo da FICHA - tirava dele a borda. O numero do
                    processo MAE aparecia colado em "PRESTACAO DE CONTAS FINAL"
                    e se lia como se fosse o processo da prestacao de contas. */
-const VERSAO = 'idepi-v49';
+/* v50 - 08/09/2026 (noite) - a versao PRECISA subir aqui:
+
+                 a mudanca da v50 e no proprio instalador (cache:'reload' em
+                 cada arquivo do SHELL). Se o nome do cache continuasse
+                 'idepi-v49', o SW novo instalaria e REUSARIA o cache v49 -
+                 que e justamente o que esta com o CSS velho dentro. Trocar a
+                 VERSAO e o que obriga o cache a ser remontado do zero, agora
+                 buscando tudo da rede.
+
+                 Regra geral: mexeu no que o SW GUARDA (assets) ou em COMO ele
+                 guarda (este arquivo), sobe a VERSAO. */
+const VERSAO = 'idepi-v50';
 const CACHE_SHELL = VERSAO + '-shell';
 const CACHE_PAGS  = VERSAO + '-paginas';
 
@@ -306,15 +317,36 @@ const IGNORAR = [
 ];
 
 /* ── INSTALAÇÃO ────────────────────────────────────────────────────────── */
+/*  cache:'reload' em CADA arquivo, e essa parte não é detalhe.
+ *
+ *  Sem isso, o `cache.add()` aceita o que qualquer intermediário tiver em mãos
+ *  — inclusive uma cópia velha. E há uma janela em que isso é quase garantido:
+ *  o main.py publica os assets e o sw.js logo em seguida, mas o GitHub Pages
+ *  leva alguns minutos para propagar. Quem abrir o painel nesse intervalo
+ *  instala o SW NOVO e enche o cache com os arquivos VELHOS.
+ *
+ *  Foi exatamente o que houve em 08/09/2026: a correção da ficha subiu, o
+ *  cache virou 'idepi-v49' — e continha o CSS da v48. Pior do que esquecer de
+ *  subir a versão, porque a versão parecia certa: o painel dizia v49 e servia
+ *  v48. Só se descobriu abrindo a ficha no navegador e conferindo a regra.
+ *
+ *  `cache:'reload'` obriga cada item a vir da REDE, ignorando o cache HTTP do
+ *  navegador. Custa uma instalação um pouco mais lenta, uma vez por versão. */
 self.addEventListener('install', (evento) => {
   evento.waitUntil(
     caches.open(CACHE_SHELL)
       // addAll é "tudo ou nada": um 404 em qualquer item aborta a instalação
       // inteira. Guardamos um a um para o app instalar mesmo se faltar algo.
       .then((cache) => Promise.all(
-        SHELL.map((url) => cache.add(url).catch((e) => {
-          console.warn('[SW] não consegui guardar', url, e && e.message);
-        }))
+        SHELL.map((url) =>
+          fetch(new Request(url, { cache: 'reload' }))
+            .then((resp) => {
+              if (!resp || !resp.ok) throw new Error('HTTP ' + (resp && resp.status));
+              return cache.put(url, resp);
+            })
+            .catch((e) => {
+              console.warn('[SW] não consegui guardar', url, e && e.message);
+            }))
       ))
       .then(() => self.skipWaiting())
   );

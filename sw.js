@@ -275,7 +275,14 @@
 
                  Regra geral: mexeu no que o SW GUARDA (assets) ou em COMO ele
                  guarda (este arquivo), sobe a VERSAO. */
-const VERSAO = 'idepi-v50';
+/* v51 - 11/09/2026 - contrapartida: convenio FINALIZADO saiu do card
+                 "Contrapartida a depositar". A regra ja existia no repasseDe
+                 ("o que nao veio ate o fim nao vem mais, e listá-lo como
+                 pendencia transforma historico em cobranca") e nao tinha sido
+                 aplicada a contrapartida, que e a funcao vizinha no arquivo.
+                 O 648107 aparecia sendo cobrado de R$ 312 mil estando
+                 FINALIZADO e com a prestacao de contas em analise. */
+const VERSAO = 'idepi-v51';
 const CACHE_SHELL = VERSAO + '-shell';
 const CACHE_PAGS  = VERSAO + '-paginas';
 

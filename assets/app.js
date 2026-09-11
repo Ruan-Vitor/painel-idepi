@@ -569,11 +569,24 @@
     return r;
   }
 
-  /** Quem ainda deve contrapartida, do maior débito para o menor. */
+  /** Quem ainda deve contrapartida, do maior débito para o menor.
+   *
+   *  Convênio FINALIZADO fica de fora, pela MESMA razão já escrita no
+   *  `repasseDe`: o que não entrou até o fim não entra mais, e listá-lo como
+   *  pendência transforma histórico em cobrança.
+   *
+   *  A regra existia para o repasse e não tinha sido aplicada aqui — as duas
+   *  funções são vizinhas no arquivo. O Ruan viu o efeito em 11/09/2026: o
+   *  648107 aparecia em "Contrapartida a depositar" estando FINALIZADO e com
+   *  a prestação de contas EM ANÁLISE. Cobrar R$ 312 mil de um convênio que
+   *  já está prestando contas não é pendência, é ruído — e ruído no card de
+   *  cobrança é o que faz o setor parar de olhar para ele.
+   */
   function contrapartidasPendentes(convenios) {
     return (convenios || []).map(function (c) {
       return { c: c, cp: contrapartidaDe(c) };
     }).filter(function (x) {
+      if (calcStatus(x.c).st === 'finalizado') return false;
       return x.cp.situacao === 'parcial' || x.cp.situacao === 'nada';
     }).sort(function (a, b) { return b.cp.falta - a.cp.falta; });
   }
@@ -584,7 +597,10 @@
     (convenios || []).forEach(function (c) {
       var cp = contrapartidaDe(c);
       r[cp.situacao]++;
-      r.falta += cp.falta;
+      /* O QUE FALTA só conta para quem ainda pode depositar — mesma regra do
+         `resumoRepasse` e do `contrapartidasPendentes`. O previsto continua
+         somando tudo, porque ele descreve a carteira, não a cobrança. */
+      if (calcStatus(c).st !== 'finalizado') r.falta += cp.falta;
       r.previsto += cp.previsto;
     });
     r.comObrigacao = r.quitada + r.parcial + r.nada;

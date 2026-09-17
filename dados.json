@@ -51543,8 +51543,14 @@
       "banco": "BB",
       "agencia": "3791-5",
       "conta": "118443",
-      "ingressos": [],
-      "total_recebido": "",
+      "ingressos": [
+        {
+          "data": "08/09/2026",
+          "valor": "9.840,00",
+          "tipo": "C"
+        }
+      ],
+      "total_recebido": "9.840,00",
       "ultimo_ingresso_federal": {}
     },
     "847194": {
@@ -51697,5 +51703,5 @@
       }
     }
   },
-  "repasses_atualizado_em": "14/09/2026 11:11"
+  "repasses_atualizado_em": "17/09/2026 09:38"
 }

@@ -1,5 +1,5 @@
 {
-  "gerado_em": "29/09/2026 09:03",
+  "gerado_em": "29/09/2026 09:21",
   "total": 107,
   "convenios": [
     {
@@ -3620,7 +3620,7 @@
       "vigencia": "2028-12-31",
       "vigencia_fmt": "31/12/2028",
       "vigencia_inicio": "24/12/2025",
-      "vigencia_suspensiva": "24/09/2026",
+      "vigencia_suspensiva": "31/12/2028",
       "vigencia_origem": "Transferegov",
       "orgao_vinculado": "",
       "orgao_tgov": "65000 - MINISTÉRIO DAS MULHERES",

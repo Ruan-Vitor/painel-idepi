@@ -57,8 +57,45 @@
     }).filter(Boolean);
   }
 
+  /* O ESTILO MORA AQUI, e não no app.css (30/09/2026). Na primeira versão
+     ele estava no app.css, e o app instalado mostrou a barra CRUA: o service
+     worker ainda servia o app.css antigo da cache e já buscava o filtros.js
+     novo na rede. Componente que traz o próprio estilo não depende de os dois
+     arquivos chegarem juntos.
+     Desenho: pílulas compactas numa linha ("Órgão: Todos ▾"), preenchidas com
+     a cor da marca quando ligadas; no celular a linha rola de lado, que é o
+     padrão das ferramentas atuais e não empurra a lista para baixo. */
+  var CSS = [
+    '.flt-barra{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:0 0 14px;flex-shrink:0}',
+    '.flt-tit{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;color:#64748b;margin-right:2px;white-space:nowrap}',
+    '.flt-tit i{color:#1a3a6e}',
+    '.flt-pill{position:relative;display:inline-flex;align-items:center;height:32px;border:1px solid #d6dfeb;border-radius:999px;background:#fff;padding:0 28px 0 12px;font-size:12.5px;color:#1a2640;cursor:pointer;white-space:nowrap;transition:border-color .15s,background .15s,box-shadow .15s}',
+    '.flt-pill:hover{border-color:#9fb3cc;background:#f8fafc}',
+    '.flt-pill:focus-within{border-color:#1a3a6e;box-shadow:0 0 0 3px rgba(26,58,110,.14)}',
+    '.flt-pill-rot{color:#7a8ba0;margin-right:5px}',
+    '.flt-pill select{-webkit-appearance:none;appearance:none;border:0;background:transparent;font:inherit;font-weight:600;color:inherit;padding:0;margin:0;cursor:pointer;outline:none;max-width:170px;text-overflow:ellipsis;field-sizing:content}',
+    '.flt-pill select option{color:#1a2640;background:#fff;font-weight:400}',
+    '.flt-pill::after{content:"";position:absolute;right:12px;top:50%;width:5px;height:5px;border-right:1.6px solid currentColor;border-bottom:1.6px solid currentColor;transform:translateY(-70%) rotate(45deg);opacity:.5;pointer-events:none}',
+    '.flt-pill.ativo{background:#1a3a6e;border-color:#1a3a6e;color:#fff}',
+    '.flt-pill.ativo:hover{background:#224a8a}',
+    '.flt-pill.ativo .flt-pill-rot{color:rgba(255,255,255,.72)}',
+    '.flt-pill.ativo::after{opacity:.85}',
+    '.flt-res{margin-left:auto;display:inline-flex;align-items:center;gap:10px;font-size:12px;color:#64748b;white-space:nowrap}',
+    '.flt-res strong{color:#1a2640;font-weight:700}',
+    '.flt-limpar{border:0;background:none;color:#1a3a6e;font:inherit;font-size:12px;font-weight:600;cursor:pointer;padding:4px 2px;text-decoration:underline;text-underline-offset:3px}',
+    '@media (max-width:640px){.flt-barra{flex-wrap:nowrap;overflow-x:auto;padding-bottom:4px;scrollbar-width:none;-webkit-overflow-scrolling:touch}.flt-barra::-webkit-scrollbar{display:none}.flt-tit span{display:none}.flt-res{margin-left:6px}}',
+    '@media print{.flt-barra{display:none!important}}'
+  ].join('\n');
+  function injetarEstilo() {
+    if (document.getElementById('flt-estilo')) return;
+    var st = document.createElement('style');
+    st.id = 'flt-estilo';
+    st.textContent = CSS;
+    document.head.appendChild(st);
+  }
+
   var DIMENSOES = [
-    { id: 'orgao', rotulo: 'Órgão executor', valores: function (c) { return [IDEPI.orgaoExecutorDe(c).rotulo]; } },
+    { id: 'orgao', rotulo: 'Órgão executor', curto: 'Órgão', valores: function (c) { return [IDEPI.orgaoExecutorDe(c).rotulo]; } },
     { id: 'concedente', rotulo: 'Concedente', valores: function (c) { return [IDEPI.concedenteDe(c).sigla || 'Sem concedente']; } },
     { id: 'tipo', rotulo: 'Tipo', valores: function (c) { return [c.tipo_instrumento || 'Sem tipo coletado']; } },
     { id: 'municipio', rotulo: 'Município', valores: function (c) { var m = municipios(c); return m.length ? m : ['Sem município']; } },
@@ -117,7 +154,7 @@
 
   function desenhar() {
     if (!_barra) return;
-    var html = '<span class="flt-rot"><i class="fa-solid fa-sliders"></i> Filtrar por instrumento</span>';
+    var html = '<span class="flt-tit"><i class="fa-solid fa-sliders"></i><span>Filtros</span></span>';
     _dims.forEach(function (d) {
       var cont = {};
       _conv.forEach(function (c) {
@@ -129,20 +166,23 @@
       });
       var sel = _escolha[d.id] || '';
       if (sel && !cont[sel]) opcoes.unshift(sel);   // escolha sem ninguém ainda aparece
-      html += '<label class="flt-campo' + (sel ? ' ativo' : '') + '"><span>' + esc(d.rotulo) + '</span>' +
+      /* A opção escolhida aparece SEM a contagem ("FUNASA", não "FUNASA
+         (18)"): dentro da pílula, número colado no nome parece parte dele. */
+      html += '<label class="flt-pill' + (sel ? ' ativo' : '') + '" title="' + esc(d.rotulo) + '">' +
+        '<span class="flt-pill-rot">' + esc(d.curto || d.rotulo) + ':</span>' +
         '<select data-dim="' + d.id + '" aria-label="' + esc(d.rotulo) + '">' +
         '<option value="">Todos</option>' +
         opcoes.map(function (v) {
           return '<option value="' + esc(v) + '"' + (v === sel ? ' selected' : '') + '>' +
-                 esc(v) + ' (' + (cont[v] || 0) + ')</option>';
+                 esc(v) + (v === sel ? '' : ' (' + (cont[v] || 0) + ')') + '</option>';
         }).join('') + '</select></label>';
     });
     var n = ativos();
     var total = _conv.filter(function (c) { return passaConv(c); }).length;
     html += '<span class="flt-res">' + (n
-      ? '<strong>' + total + '</strong> de ' + _conv.length + ' instrumentos' +
-        ' <button type="button" class="flt-limpar"><i class="fa-solid fa-xmark"></i> Limpar</button>'
-      : _conv.length + ' instrumentos') + '</span>';
+      ? '<span><strong>' + total + '</strong> de ' + _conv.length + '</span>' +
+        '<button type="button" class="flt-limpar">Limpar filtros</button>'
+      : '<span>' + _conv.length + ' instrumentos</span>') + '</span>';
     _barra.innerHTML = html;
     _barra.classList.toggle('com-filtro', n > 0);
   }
@@ -169,6 +209,7 @@
     var sem = opts.sem || [];
     _dims = DIMENSOES.filter(function (d) { return sem.indexOf(d.id) === -1; });
     lerDaUrl();
+    injetarEstilo();
 
     var ref = opts.antes || opts.depois;
     var ancora = typeof ref === 'string' ? document.querySelector(ref) : ref;

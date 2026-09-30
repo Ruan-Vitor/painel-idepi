@@ -397,6 +397,24 @@
 
     registrarServiceWorker();
     ligarAvisoDeRede();
+    ligarMarcaAoInicio(pagina);
+  }
+
+  /* A marca no topo leva ao Painel Geral, como em quase todo site: é o
+     primeiro lugar onde se clica para "voltar ao começo". A imagem vem do
+     app.css (.hd-logo-icon), para as 8 páginas mudarem juntas. 30/09/2026. */
+  function ligarMarcaAoInicio(pagina) {
+    var logo = document.querySelector('.hd-logo');
+    if (!logo || pagina === 'index') return;
+    logo.setAttribute('role', 'link');
+    logo.setAttribute('tabindex', '0');
+    logo.setAttribute('title', 'Ir para o Painel Geral');
+    logo.classList.add('hd-logo-link');
+    function ir() { location.href = 'index.html'; }
+    logo.addEventListener('click', ir);
+    logo.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); ir(); }
+    });
   }
 
   if (document.readyState === 'loading') {

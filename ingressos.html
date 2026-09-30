@@ -441,6 +441,7 @@ tr.data-row.expanded .expand-icon{transform:rotate(180deg)}
 <script src="assets/nav.js"></script>
 <script src="assets/notificacoes.js"></script>
 <script src="assets/sobre.js"></script>
+<script src="assets/filtros.js"></script>
 
 <script>
 var _dados = null;          // historico_repasses
@@ -502,6 +503,11 @@ IDEPI.dados.carregar()
     renderRecent();
     renderizar();
     document.getElementById("overlay").classList.add("hide");
+    /* Filtros por instrumento (30/09/2026). Valem para os cards também: o
+       total no topo não pode contradizer a lista embaixo. */
+    IDEPI.filtros.ligar({ antes: '.kpi-row', aoMudar: function () {
+      calcKPIs(); renderIngressos(); renderizar();
+    } });
   })
   .catch(function(e){
     document.getElementById("overlay").classList.add("hide");
@@ -538,10 +544,13 @@ function _fmtValor(v){
 // ── KPIs ───────────────────────────────────────────────────────────────────
 function calcKPIs(){
   var ano = new Date().getFullYear();
+  var _passa = function (n) { return IDEPI.filtros ? IDEPI.filtros.passa(n) : true; };
+  var _todosF = _todos.filter(function (i) { return _passa(i.numero); });
+  var _numsF  = Object.keys(_dados).filter(_passa);
   document.getElementById("kpi-ano-label").textContent = ano;
 
   var total=0, totalAno=0, totalFed=0, totalCP=0;
-  _todos.forEach(function(ing){
+  _todosF.forEach(function(ing){
     var v = IDEPI.parseReais(ing.valor);
     if(!v) return;
     total += v;
@@ -553,23 +562,23 @@ function calcKPIs(){
   // Separa federal de contrapartida — os dois entravam somados no mesmo número,
   // o que fazia o "total recebido" parecer maior que o repasse da União.
   document.getElementById("kpi-total-desc").innerHTML =
-    _todos.length + " ingresso(s) · " +
+    _todosF.length + " ingresso(s) · " +
     '<span class="tipo-fed">Federal ' + IDEPI.fmtReais(totalFed) + '</span> ' +
     (totalCP > 0 ? '<span class="tipo-cp">Contrapartida ' + IDEPI.fmtReais(totalCP) + '</span>' : '');
 
   document.getElementById("kpi-ano").textContent = IDEPI.fmtReais(totalAno);
-  var nAno = _todos.filter(function(i){ return new Date(i.ts).getFullYear()===ano; }).length;
+  var nAno = _todosF.filter(function(i){ return new Date(i.ts).getFullYear()===ano; }).length;
   document.getElementById("kpi-ano-desc").textContent = nAno+" ingresso(s) em "+ano;
 
-  if(_todos.length){
-    var ult = _todos[0];
+  if(_todosF.length){
+    var ult = _todosF[0];
     document.getElementById("kpi-ult-val").textContent = _fmtValor(ult.valor);
     document.getElementById("kpi-ult-desc").textContent = ult.data+" · "+ult.numero+" · "+_diasAtras(ult.ts);
   }
 
-  var comIng = Object.keys(_dados).filter(function(n){ return (_dados[n].ingressos||[]).length>0; }).length;
+  var comIng = _numsF.filter(function(n){ return (_dados[n].ingressos||[]).length>0; }).length;
   document.getElementById("kpi-inst").textContent = comIng;
-  document.getElementById("kpi-inst-desc").textContent = Object.keys(_dados).length+" monitorados no total";
+  document.getElementById("kpi-inst-desc").textContent = _numsF.length+" monitorados no total";
 }
 
 /* ══════════════════════════════════════════════════════════════════════════
@@ -701,6 +710,7 @@ function filtrarIngressos(){
   var ord = document.getElementById('filtroOrdem').value;
 
   var lista = _todos.filter(function(i){
+    if (IDEPI.filtros && !IDEPI.filtros.passa(i.numero)) return false;
     if (_filtroTipo === 'F'   && i.tipo === 'C') return false;
     if (_filtroTipo === 'C'   && i.tipo !== 'C') return false;
     if (_filtroTipo === 'dup' && !i.dup)         return false;
@@ -784,6 +794,7 @@ function renderizar(){
   // campo. Os separadores são ignorados: procurar "0029-9" acha "00299".
   var qNum = q.replace(/[.\-\/\s]/g, "");
   var rows = _tabela.filter(function(r){
+    if (IDEPI.filtros && !IDEPI.filtros.passa(r.numero)) return false;
     if(!q) return true;
     var limpo = function(v){ return String(v||"").toLowerCase().replace(/[.\-\/\s]/g, ""); };
     return r.numero.toLowerCase().includes(q)

@@ -393,6 +393,36 @@
     return { sigla: sigla, nome: nome };
   }
 
+  /** Órgão executor: quem opera o instrumento (FUNASA, CODEVASF, CAIXA, ou
+   *  o ministério quando o convênio é direto). FONTE ÚNICA para filtro e tela.
+   *
+   *  A regra em cascata mora no Python (normalizar.orgao_executor) e chega
+   *  pronta no campo `orgao_executor`. Aqui só se lê, e de propósito: a regra
+   *  precisa do arquivo de correção manual e da mandatária do exec, que o
+   *  navegador não tem. Copiar a cascata para cá seria ter duas regras.
+   *
+   *  NÃO use `orgao_vinculado` nem `mandataria` para contar órgão: em
+   *  30/09/2026 o campo dava 16 da FUNASA e eram 18. */
+  var ORIGEM_ORGAO = {
+    manual: 'correção manual',
+    orgao_vinculado: 'órgão vinculado, Transferegov',
+    orgao_vinculado_cgu: 'órgão vinculado, CGU',
+    mandataria: 'mandatária',
+    mandataria_exec: 'mandatária (execução)',
+    emendas: 'mandatária na Emendas Senador',
+    concedente: 'convênio direto com o ministério'
+  };
+  function orgaoExecutorDe(c) {
+    var sigla = String(c && c.orgao_executor || '').trim();
+    var origem = String(c && c.orgao_executor_origem || '').trim();
+    return {
+      sigla: sigla,
+      rotulo: sigla || 'Sem classificação',
+      origem: origem,
+      origemTexto: ORIGEM_ORGAO[origem] || origem
+    };
+  }
+
   /* ══════════════════════════════════════════════════════════════════════
      QUANTO JÁ ENTROU — fonte única
 
@@ -1300,6 +1330,7 @@
   IDEPI.legendaFases = legendaFases;
   IDEPI.isPAC = isPAC;
   IDEPI.concedenteDe = concedenteDe;
+  IDEPI.orgaoExecutorDe = orgaoExecutorDe;
   IDEPI.FASES = FASES;
   IDEPI.gestaoDe = gestaoDe;
   IDEPI.resumoGestao = resumoGestao;
@@ -1508,6 +1539,7 @@
 
     var cp = contrapartidaDe(c), rp = repasseDe(c);
     var st = calcStatus(c), fase = faseDe(c), conc = concedenteDe(c);
+    var oe = orgaoExecutorDe(c);
 
     var vigencia = c.vigencia_fmt || c.vigencia || '';
     if (vigencia && c.vigencia_origem) vigencia += '  (' + c.vigencia_origem + ')';
@@ -1524,6 +1556,7 @@
         ['Dono da emenda', c.dono_emenda]
       ]) +
       fichaBloco('Órgãos', [
+        ['Órgão executor', oe.sigla ? oe.sigla + '  (' + oe.origemTexto + ')' : ''],
         ['Concedente', conc.sigla ? (conc.sigla + (conc.nome ? ' — ' + conc.nome : '')) : conc.nome],
         ['Mandatária', c.mandataria],
         ['Órgão vinculado', c.orgao_vinculado],

@@ -875,13 +875,13 @@ div > button:has(svg):not([class]):not([id]){display:none!important}
    tempo todo e leva ao Painel Geral. NÃO vai como marca d'água atrás de
    tabela ou card: atrapalharia ler os números, que é o trabalho do painel.
    Usa o ícone de 192 px (32 KB), não a arte de 1254 px (1 MB). */
-.hd-logo-icon{background:url(../icons/icon-192.png) center/100% 100% no-repeat;border-radius:9px}
+.hd-logo-icon{background:url(../icons/icon-192.png?v=2) center/100% 100% no-repeat;border-radius:9px}
 .hd-logo-icon>i{display:none}
 .hd-logo-link{cursor:pointer;border-radius:10px}
 .hd-logo-link:hover .hd-title{text-decoration:underline;text-underline-offset:3px}
 .hd-logo-link:focus-visible{outline:2px solid #60a5fa;outline-offset:3px}
 .lk-marca{display:block;width:72px;height:72px;margin:0 auto 14px}
-.overlay .spin,#overlay .spin{width:64px;height:64px;border:0;border-radius:0;background:url(../icons/icon-192.png) center/contain no-repeat;animation:idepi-pulsa 1.4s ease-in-out infinite}
+.overlay .spin,#overlay .spin{width:64px;height:64px;border:0;border-radius:0;background:url(../icons/icon-192.png?v=2) center/contain no-repeat;animation:idepi-pulsa 1.4s ease-in-out infinite}
 @keyframes idepi-pulsa{0%,100%{transform:scale(.9);opacity:.7}50%{transform:scale(1);opacity:1}}
 @media (prefers-reduced-motion:reduce){.overlay .spin,#overlay .spin{animation:none}}
 

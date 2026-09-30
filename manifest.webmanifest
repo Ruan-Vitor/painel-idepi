@@ -15,12 +15,12 @@
   "categories": ["government", "business", "productivity"],
   "prefer_related_applications": false,
   "icons": [
-    { "src": "icons/favicon-32.png",          "sizes": "32x32",   "type": "image/png" },
-    { "src": "icons/favicon-16.png",          "sizes": "16x16",   "type": "image/png" },
-    { "src": "icons/icon-192.png",            "sizes": "192x192", "type": "image/png", "purpose": "any" },
-    { "src": "icons/icon-512.png",            "sizes": "512x512", "type": "image/png", "purpose": "any" },
-    { "src": "icons/icon-maskable-192.png",   "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
-    { "src": "icons/icon-maskable-512.png",   "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+    { "src": "icons/favicon-32.png?v=2",          "sizes": "32x32",   "type": "image/png" },
+    { "src": "icons/favicon-16.png?v=2",          "sizes": "16x16",   "type": "image/png" },
+    { "src": "icons/icon-192.png?v=2",            "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png?v=2",            "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-maskable-192.png?v=2",   "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
+    { "src": "icons/icon-maskable-512.png?v=2",   "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
   ],
   "shortcuts": [
     {
@@ -28,28 +28,28 @@
       "short_name": "Vigências",
       "description": "Prazos, status e valores de todos os instrumentos",
       "url": "vigencias.html",
-      "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }]
+      "icons": [{ "src": "icons/icon-192.png?v=2", "sizes": "192x192" }]
     },
     {
       "name": "Vigências críticas",
       "short_name": "Críticos",
       "description": "Instrumentos com menos de 30 dias de vigência",
       "url": "vigencias.html?status=critico",
-      "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }]
+      "icons": [{ "src": "icons/icon-192.png?v=2", "sizes": "192x192" }]
     },
     {
       "name": "Ingressos de Recurso",
       "short_name": "Ingressos",
       "description": "Últimos repasses recebidos por convênio",
       "url": "ingressos.html",
-      "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }]
+      "icons": [{ "src": "icons/icon-192.png?v=2", "sizes": "192x192" }]
     },
     {
       "name": "FiscalGov EX-01",
       "short_name": "FiscalGov",
       "description": "Instrumentos aptos com e sem foto no aplicativo",
       "url": "fiscalgov.html",
-      "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }]
+      "icons": [{ "src": "icons/icon-192.png?v=2", "sizes": "192x192" }]
     }
   ]
 }

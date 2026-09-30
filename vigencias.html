@@ -417,6 +417,7 @@ tr.drow:hover td{background:var(--surface2);cursor:pointer}
 <script src="assets/nav.js"></script>
 <script src="assets/notificacoes.js"></script>
 <script src="assets/sobre.js"></script>
+<script src="assets/filtros.js"></script>
 
 <script>
 let dados = [], filtroStatus = 'all', chart = null;
@@ -473,6 +474,9 @@ async function carregar() {
     document.getElementById('ov').classList.add('hide');
     popularFiltros();
     atualizar();
+    // Filtros por instrumento (30/09/2026), junto dos filtros da tabela.
+    // Fiscal e prazo já existem aqui, nos selects e nos chips.
+    IDEPI.filtros.ligar({ antes: '.col-filters', aoMudar: render, sem: ['fiscal', 'prazo'] });
     // Deep link: vigencias.html?status=critico já abre filtrado — é o que faz
     // os cards do Painel Geral e os atalhos do app instalado funcionarem.
     const param = new URLSearchParams(window.location.search).get('status');
@@ -674,7 +678,7 @@ function render() {
     document.getElementById(id).classList.toggle('active', !!document.getElementById(id).value);
   });
 
-  let rows = dados;
+  let rows = dados.filter(IDEPI.filtros ? IDEPI.filtros.passa : () => true);
 
   if (filtroStatus === 'suspensiva')  rows = rows.filter(r => r._temSusp);
   else if (filtroStatus !== 'all')    rows = rows.filter(r => r._st === filtroStatus);

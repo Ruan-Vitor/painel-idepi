@@ -529,7 +529,10 @@
           <div class="fg-metric fg-nok"><div class="fg-val" id="fg-nok">—</div><div class="fg-lbl">Aptos sem foto ❌</div></div>
         </div>
         <div class="fg-prog-wrap">
-          <div class="fg-prog-lbl">Progresso EX-01 (aptos com foto ÷ total aptos) <span id="fg-pct">—</span></div>
+          <!-- Os dois números do EX-01 juntos (30/09/2026): o oficial é como o
+               IDTRU-DL mede; o de cobrança diz de quem cobrar foto hoje. -->
+          <div class="fg-prog-lbl">EX-01 oficial (SURPI): usam o app ÷ vigentes no Transferegov <span id="fg-ofi">—</span></div>
+          <div class="fg-prog-lbl">Cobrança: aptos com foto ÷ total aptos <span id="fg-pct">—</span></div>
           <div class="fg-track"><div class="fg-fill" id="fg-bar" style="width:0%"></div></div>
         </div>
       </div>
@@ -935,6 +938,8 @@ function renderEX01(conv) {
   IDEPI.$('fg-bar').style.width = ex.pct + '%';
   IDEPI.setTxt('pc-fg-pct', ex.pct + '%');
   IDEPI.setTxt('pc-fg-nok', ex.semFoto);
+  var of = IDEPI.resumoEX01Oficial(conv);
+  IDEPI.setTxt('fg-ofi', of.pct + '% (' + of.comApp + ' de ' + of.vigentes + ')');
 }
 
 
@@ -1119,7 +1124,8 @@ function exportarExcelGeral() {
       ['Total aptos',     ex.aptos],
       ['Aptos com foto',  ex.comFoto],
       ['Aptos sem foto',  ex.semFoto],
-      ['% EX-01 estimado', ex.pct + '%']
+      ['% de cobrança (aptos)', ex.pct + '%'],
+      ['EX-01 oficial (SURPI)', (function (o) { return o.pct + '% (' + o.comApp + ' de ' + o.vigentes + ')'; })(IDEPI.resumoEX01Oficial(_dadosGerais))]
     ]);
     wsFG['!cols'] = [{wch:24},{wch:16}];
 

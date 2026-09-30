@@ -282,7 +282,7 @@
                  aplicada a contrapartida, que e a funcao vizinha no arquivo.
                  O 648107 aparecia sendo cobrado de R$ 312 mil estando
                  FINALIZADO e com a prestacao de contas em analise. */
-const VERSAO = 'idepi-v51';
+const VERSAO = 'idepi-v52';
 const CACHE_SHELL = VERSAO + '-shell';
 const CACHE_PAGS  = VERSAO + '-paginas';
 

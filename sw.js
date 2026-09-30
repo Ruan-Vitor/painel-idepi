@@ -305,7 +305,11 @@
                  No iPhone o icone da tela inicial NAO atualiza: o iOS grava
                  na instalacao. La, so removendo e adicionando de novo.
                  Ao trocar a arte outra vez: gerar_icones.py e subir o ?v=. */
-const VERSAO = 'idepi-v56';
+/* v57 - 30/09/2026 - filtros refeitos em pilulas (pedido do Ruan: "feio demais"),
+                 com o estilo DENTRO do filtros.js: no app instalado a barra
+                 apareceu crua porque o SW servia o app.css velho e o
+                 filtros.js novo. O bloco .flt saiu do app.css. */
+const VERSAO = 'idepi-v57';
 const CACHE_SHELL = VERSAO + '-shell';
 const CACHE_PAGS  = VERSAO + '-paginas';
 

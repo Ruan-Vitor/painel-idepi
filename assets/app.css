@@ -884,3 +884,26 @@ div > button:has(svg):not([class]):not([id]){display:none!important}
 .overlay .spin,#overlay .spin{width:64px;height:64px;border:0;border-radius:0;background:url(../icons/icon-192.png) center/contain no-repeat;animation:idepi-pulsa 1.4s ease-in-out infinite}
 @keyframes idepi-pulsa{0%,100%{transform:scale(.9);opacity:.7}50%{transform:scale(1);opacity:1}}
 @media (prefers-reduced-motion:reduce){.overlay .spin,#overlay .spin{animation:none}}
+
+/* ═══ Filtros por instrumento (assets/filtros.js, 30/09/2026) ═══════════════
+   Uma barra só, igual em todas as páginas. Fica logo acima da lista que ela
+   filtra, e muda de cor quando há filtro ligado: filtro esquecido ligado é o
+   jeito mais comum de alguém achar que "sumiu" instrumento. */
+.flt-barra{display:flex;flex-wrap:wrap;align-items:flex-end;gap:8px 10px;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:10px 12px;margin:0 0 12px;flex-shrink:0}
+.flt-barra.com-filtro{border-color:var(--blue-bdr);background:var(--blue-bg)}
+.flt-rot{font-size:11px;font-weight:700;color:var(--muted);align-self:center;margin-right:2px}
+.flt-rot i{color:var(--accent)}
+.flt-campo{display:flex;flex-direction:column;gap:2px;font-size:9.5px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+.flt-campo select{font:inherit;font-size:12px;font-weight:500;text-transform:none;letter-spacing:0;color:var(--text);background:var(--surface);border:1px solid var(--border);border-radius:7px;padding:5px 8px;min-width:120px;max-width:190px;cursor:pointer}
+.flt-campo.ativo span{color:var(--blue)}
+.flt-campo.ativo select{border-color:var(--blue);box-shadow:0 0 0 2px rgba(29,78,216,.12)}
+.flt-campo select:focus-visible{outline:2px solid var(--brand);outline-offset:1px}
+.flt-res{margin-left:auto;align-self:center;font-size:11.5px;color:var(--slate);display:flex;align-items:center;gap:8px}
+.flt-limpar{border:1px solid var(--blue-bdr);background:var(--surface);color:var(--blue);border-radius:7px;padding:4px 9px;font-size:11px;font-weight:600;cursor:pointer}
+.flt-limpar:hover{background:var(--brand-light)}
+@media (max-width:600px){
+  .flt-campo{flex:1 1 44%}
+  .flt-campo select{min-width:0;max-width:none;width:100%}
+  .flt-res{margin-left:0;width:100%}
+}
+@media print{.flt-barra{display:none!important}}

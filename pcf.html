@@ -216,6 +216,7 @@
 <script src="assets/nav.js"></script>
 <script src="assets/notificacoes.js"></script>
 <script src="assets/sobre.js"></script>
+<script src="assets/filtros.js"></script>
 
 <script>
 /* ═══════════════════════════════════════════════════════════════════════
@@ -250,6 +251,7 @@ function filtrarEtapa(etapa) {
 function render() {
   var termo = IDEPI.norm(IDEPI.$('busca').value.trim());
   var lista = _pcfs.filter(function (p) {
+    if (IDEPI.filtros && !IDEPI.filtros.passa(p.numero)) return false;
     if (_filtroEtapa && p.etapa !== _filtroEtapa) return false;
     if (!termo) return true;
     return IDEPI.norm([p.numero, p.objeto, p.objeto_oficial, p.processo,
@@ -366,6 +368,8 @@ IDEPI.dados.pcf()
     IDEPI.setTxt('hd-ts', 'Atualizado: ' + (d.gerado_em || '—'));
     render();
     IDEPI.esconderOverlay();
+    // Filtros por instrumento (30/09/2026), valem para a lista.
+    IDEPI.filtros.ligar({ antes: '.pcf-card', aoMudar: render });
   })
   .catch(function (e) {
     IDEPI.esconderOverlay();

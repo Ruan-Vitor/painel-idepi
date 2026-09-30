@@ -837,3 +837,50 @@ div > button:has(svg):not([class]):not([id]){display:none!important}
   body,.content,.scroll{background:#fff!important;overflow:visible!important;height:auto!important}
   .twrap,.tbl-scroll{max-height:none!important;overflow:visible!important}
 }
+
+/* ═══ Balão "o que é esta página" (assets/sobre.js) ═════════════════════════
+   Botão pequeno ao lado do título, que é onde o olho procura "o que é isto".
+   O balão fica preso ao botão e não cobre a tela: lê-se sem perder a página. */
+.sobre-btn{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;margin-left:4px;padding:0;border:1px solid var(--border);border-radius:50%;background:var(--surface);color:var(--muted);font-size:13px;cursor:pointer;flex-shrink:0;vertical-align:middle;transition:color .15s,border-color .15s,background .15s}
+.sobre-btn:hover,.sobre-btn[aria-expanded="true"]{color:var(--accent);border-color:var(--accent);background:var(--brand-light)}
+.sobre-btn:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
+.sobre-balao{position:fixed;z-index:9000;background:var(--surface);color:var(--text);border:1px solid var(--border);border-radius:12px;box-shadow:0 12px 32px rgba(15,23,42,.18),0 2px 6px rgba(15,23,42,.08);display:flex;flex-direction:column;overflow:hidden;font-size:12.5px;line-height:1.5;animation:sobreEntra .14s ease-out}
+.sobre-balao:focus{outline:none}
+.sobre-balao::before{content:"";position:absolute;top:-6px;left:calc(var(--seta-x,20px) - 6px);width:12px;height:12px;background:var(--surface);border-left:1px solid var(--border);border-top:1px solid var(--border);transform:rotate(45deg)}
+.sobre-hd{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px 12px 8px 14px;border-bottom:1px solid var(--border);font-weight:700;color:var(--accent);font-size:12.5px}
+.sobre-hd i{margin-right:4px}
+.sobre-x{border:0;background:transparent;color:var(--muted);width:28px;height:28px;border-radius:6px;cursor:pointer;font-size:14px}
+.sobre-x:hover{background:var(--slate-bg);color:var(--text)}
+.sobre-corpo{padding:4px 14px 14px;overflow-y:auto;overscroll-behavior:contain}
+.sobre-corpo h4{margin:12px 0 4px;font-size:10.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
+.sobre-corpo p{margin:0}
+.sobre-num{margin:0;padding:8px 10px;list-style:none;background:var(--blue-bg);border:1px solid var(--blue-bdr);border-radius:8px}
+.sobre-num li{padding:1px 0;font-variant-numeric:tabular-nums}
+.sobre-num li.sobre-sub{padding-left:14px;color:var(--slate)}
+.sobre-num li.sobre-carregando{color:var(--muted);font-style:italic}
+.sobre-dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:4px 10px}
+.sobre-dl dt{font-weight:700;white-space:nowrap}
+.sobre-dl dd{margin:0;color:var(--slate)}
+@media (max-width:520px){
+  .sobre-dl{grid-template-columns:1fr;gap:0}
+  .sobre-dl dd{margin-bottom:6px}
+}
+@keyframes sobreEntra{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.sobre-balao{animation:none}}
+@media print{.sobre-btn,.sobre-balao{display:none!important}}
+
+/* ═══ A arte oficial dentro do painel (30/09/2026) ═════════════════════════
+   Três lugares, em ordem de impacto: login (primeira impressão), tela de
+   carregamento (a espera vira marca) e o logo do topo, que fica visível o
+   tempo todo e leva ao Painel Geral. NÃO vai como marca d'água atrás de
+   tabela ou card: atrapalharia ler os números, que é o trabalho do painel.
+   Usa o ícone de 192 px (32 KB), não a arte de 1254 px (1 MB). */
+.hd-logo-icon{background:url(../icons/icon-192.png) center/100% 100% no-repeat;border-radius:9px}
+.hd-logo-icon>i{display:none}
+.hd-logo-link{cursor:pointer;border-radius:10px}
+.hd-logo-link:hover .hd-title{text-decoration:underline;text-underline-offset:3px}
+.hd-logo-link:focus-visible{outline:2px solid #60a5fa;outline-offset:3px}
+.lk-marca{display:block;width:72px;height:72px;margin:0 auto 14px}
+.overlay .spin,#overlay .spin{width:64px;height:64px;border:0;border-radius:0;background:url(../icons/icon-192.png) center/contain no-repeat;animation:idepi-pulsa 1.4s ease-in-out infinite}
+@keyframes idepi-pulsa{0%,100%{transform:scale(.9);opacity:.7}50%{transform:scale(1);opacity:1}}
+@media (prefers-reduced-motion:reduce){.overlay .spin,#overlay .spin{animation:none}}

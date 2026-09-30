@@ -1,5 +1,5 @@
 {
-  "gerado_em": "30/09/2026 08:52",
+  "gerado_em": "30/09/2026 11:57",
   "total": 107,
   "convenios": [
     {
@@ -11,6 +11,7 @@
       "vigencia_suspensiva": "",
       "vigencia_origem": "Transferegov",
       "orgao_vinculado": "",
+      "orgao_vinculado_cgu": "Ministério do Esporte - Unidades com vínculo direto",
       "orgao_tgov": "51000 - MINISTERIO DO ESPORTE",
       "limite_prestacao": "29/11/2026",
       "sei": "00119.001068/2025-45",
@@ -43,7 +44,9 @@
       "dono_emenda": "Iracema Portela",
       "ponto_focal": "",
       "clausula_motivo": "",
-      "pcf_etapa": ""
+      "pcf_etapa": "",
+      "orgao_executor": "CAIXA",
+      "orgao_executor_origem": "mandataria_exec"
     },
     {
       "numero": "889040",
@@ -54,6 +57,7 @@
       "vigencia_suspensiva": "",
       "vigencia_origem": "CGU",
       "orgao_vinculado": "",
+      "orgao_vinculado_cgu": "Ministério das Cidades - Unidades com vínculo direto",
       "orgao_tgov": "",
       "limite_prestacao": "",
       "sei": "00119.001586/2024-88",
@@ -86,7 +90,9 @@
       "dono_emenda": "Marcos Aurelio",
       "ponto_focal": "",
       "clausula_motivo": "",
-      "pcf_etapa": "concluida"
+      "pcf_etapa": "concluida",
+      "orgao_executor": "CAIXA",
+      "orgao_executor_origem": "mandataria"
     },
     {
       "numero": "894024",
@@ -97,6 +103,7 @@
       "vigencia_suspensiva": "",
       "vigencia_origem": "Transferegov",
       "orgao_vinculado": "",
+      "orgao_vinculado_cgu": "Ministério da Integração e do Desenvolvimento Regional - Unidades com vínculo direto",
       "orgao_tgov": "53000 - MINISTÉRIO DA INTEGRAÇÃO E DO DESENVOLVIMENTO REGIONAL",
       "limite_prestacao": "29/11/2026",
       "sei": "00119.002039/2024-10",
@@ -129,7 +136,9 @@
       "dono_emenda": "Iracema Portela",
       "ponto_focal": "",
       "clausula_motivo": "",
-      "pcf_etapa": ""
+      "pcf_etapa": "",
+      "orgao_executor": "CAIXA",
+      "orgao_executor_origem": "mandataria"
     },
     {
       "numero": "897425",
@@ -140,6 +149,7 @@
       "vigencia_suspensiva": "",
       "vigencia_origem": "Transferegov",
       "orgao_vinculado": "",
+      "orgao_vinculado_cgu": "Ministério das Cidades - Unidades com vínculo direto",
       "orgao_tgov": "56000 - MINISTERIO DAS CIDADES",
       "limite_prestacao": "29/11/2026",
       "sei": "00119.000143/2021-27",
@@ -172,7 +182,9 @@
       "dono_emenda": "Marcos Aurelio",
       "ponto_focal": "",
       "clausula_motivo": "",
-      "pcf_etapa": ""
+      "pcf_etapa": "",
+      "orgao_executor": "CAIXA",
+      "orgao_executor_origem": "mandataria"
     },
     {
       "numero": "897099",
@@ -183,6 +195,7 @@
       "vigencia_suspensiva": "",
       "vigencia_origem": "Transferegov",
       "orgao_vinculado": "",
+      "orgao_vinculado_cgu": "Ministério das Cidades - Unidades com vínculo direto",
       "orgao_tgov": "56000 - MINISTERIO DAS CIDADES",
       "limite_prestacao": "29/11/2026",
       "sei": "00119.002183/2023-75",
@@ -215,7 +228,9 @@
       "dono_emenda": "Marcos Aurelio",
       "ponto_focal": "",
       "clausula_motivo": "",
-      "pcf_etapa": ""
+      "pcf_etapa": "",
+      "orgao_executor": "CAIXA",
+      "orgao_executor_origem": "mandataria"
     },
     {
       "numero": "900822",
@@ -226,6 +241,7 @@
       "vigencia_suspensiva": "",
       "vigencia_origem": "Transferegov",
       "orgao_vinculado": "",
+      "orgao_vinculado_cgu": "Ministério da Integração e do Desenvolvimento Regional - Unidades com vínculo direto",
       "orgao_tgov": "53000 - MINISTÉRIO DA INTEGRAÇÃO E DO DESENVOLVIMENTO REGIONAL",
       "limite_prestacao": "29/11/2026",
       "sei": "00119.000274/2020-23",
@@ -258,7 +274,9 @@
       "dono_emenda": "Marcos Aurelio",
       "ponto_focal": "",
       "clausula_motivo": "",
-      "pcf_etapa": ""
+      "pcf_etapa": "",
+      "orgao_executor": "CAIXA",
+      "orgao_executor_origem": "mandataria"
     },
     {
       "numero": "902680",
@@ -269,6 +287,7 @@
       "vigencia_suspensiva": "",
       "vigencia_origem": "Transferegov",
       "orgao_vinculado": "",
+      "orgao_vinculado_cgu": "Ministério da Integração e do Desenvolvimento Regional - Unidades com vínculo direto",
       "orgao_tgov": "53000 - MINISTÉRIO DA INTEGRAÇÃO E DO DESENVOLVIMENTO REGIONAL",
       "limite_prestacao": "29/11/2026",
       "sei": "00119.000765/2024-06",
@@ -301,7 +320,9 @@
       "dono_emenda": "Marcos Aurelio",
       "ponto_focal": "",
       "clausula_motivo": "",
-      "pcf_etapa": "outra"
+      "pcf_etapa": "outra",
+      "orgao_executor": "CAIXA",
+      "orgao_executor_origem": "mandataria"
     },
     {
       "numero": "906442",
@@ -312,6 +333,7 @@
       "vigencia_suspensiva": "",
       "vigencia_origem": "CGU",
       "orgao_vinculado": "",
+      "orgao_vinculado_cgu": "Ministério da Integração e do Desenvolvimento Regional - Unidades com vínculo direto",
       "orgao_tgov": "",
       "limite_prestacao": "",
       "sei": "00119.000118/2022-24",
@@ -344,7 +366,9 @@
       "dono_emenda": "Marcos Aurelio",
       "ponto_focal": "",
       "clausula_motivo": "",
-      "pcf_etapa": ""
+      "pcf_etapa": "",
+      "orgao_executor": "CAIXA",
+      "orgao_executor_origem": "mandataria"
     },
     {
       "numero": "916598",
@@ -355,6 +379,7 @@
       "vigencia_suspensiva": "",
       "vigencia_origem": "Transferegov",
       "orgao_vinculado": "",
+      "orgao_vinculado_cgu": "Ministério das Cidades - Unidades com vínculo direto",
       "orgao_tgov": "56000 - MINISTERIO DAS CIDADES",
       "limite_prestacao": "29/11/2026",
       "sei": "00119.000022/2022-66",
@@ -387,7 +412,9 @@
       "dono_emenda": "Marcos Aurelio",
       "ponto_focal": "",
       "clausula_motivo": "",
-      "pcf_etapa": "outra"
+      "pcf_etapa": "outra",
+      "orgao_executor": "CAIXA",
+      "orgao_executor_origem": "mandataria"
     },
     {
       "numero": "917537",
@@ -398,6 +425,7 @@
       "vigencia_suspensiva": "",
       "vigencia_origem": "Transferegov",
       "orgao_vinculado": "",
+      "orgao_vinculado_cgu": "Ministério das Cidades - Unidades com vínculo direto",
       "orgao_tgov": "56000 - MINISTERIO DAS CIDADES",
       "limite_prestacao": "28/02/2027",
       "sei": "00119.001717/2024-27",
@@ -430,7 +458,9 @@
       "dono_emenda": "Fabio Abreu",
       "ponto_focal": "",
       "clausula_motivo": "",
-      "pcf_etapa": "concluida"
+      "pcf_etapa": "concluida",
+      "orgao_executor": "CAIXA",
+      "orgao_executor_origem": "mandataria"
     },
     {
       "numero": "902704",
@@ -441,6 +471,7 @@
       "vigencia_suspensiva": "",
       "vigencia_origem": "CGU",
       "orgao_vinculado": "",
+      "orgao_vinculado_cgu": "Ministério da Agricultura e Pecuária - Unidades com vínculo direto",
       "orgao_tgov": "",
       "limite_prestacao": "",
       "sei": "00119.000673/2024-18",
@@ -473,7 +504,9 @@
       "dono_emenda": "Marcos Aurelio",
       "ponto_focal": "",
       "clausula_motivo": "",
-      "pcf_etapa": "em_analise"
+      "pcf_etapa": "em_analise",
+      "orgao_executor": "MAPA",
+      "orgao_executor_origem": "emendas"
     },
     {
       "numero": "902705",
@@ -484,6 +517,7 @@
       "vigencia_suspensiva": "",
       "vigencia_origem": "Transferegov",
       "orgao_vinculado": "",
+      "orgao_vinculado_cgu": "Ministério da Agricultura e Pecuária - Unidades com vínculo direto",
       "orgao_tgov": "22000 - Ministério da Agricultura e Pecuária",
       "limite_prestacao": "01/03/2026",
       "sei": "00119.000316/2023-79",
@@ -516,7 +550,9 @@
       "dono_emenda": "Marcos Aurelio",
       "ponto_focal": "",
       "clausula_motivo": "",
-      "pcf_etapa": "em_analise"
+      "pcf_etapa": "em_analise",
+      "orgao_executor": "MAPA",
+      "orgao_executor_origem": "emendas"
     },
     {
       "numero": "838065",
@@ -527,6 +563,7 @@
       "vigencia_suspensiva": "",
       "vigencia_origem": "Transferegov",
       "orgao_vinculado": "36211 - FUNDACAO NACIONAL DE SAUDE",
+      "orgao_vinculado_cgu": "Fundação Nacional de Saúde",
       "orgao_tgov": "36000 - MINISTERIO DA SAUDE",
       "limite_prestacao": "01/03/2027",
       "sei": "00119.000404/2023-71",
@@ -559,7 +596,9 @@
       "dono_emenda": "Fabio Abreu",
       "ponto_focal": "",
       "clausula_motivo": "",
-      "pcf_etapa": ""
+      "pcf_etapa": "",
+      "orgao_executor": "FUNASA",
+      "orgao_executor_origem": "orgao_vinculado"
     },
     {
       "numero": "907472",
@@ -570,6 +609,7 @@
       "vigencia_suspensiva": "",
       "vigencia_origem": "Transferegov",
       "orgao_vinculado": "36211 - FUNDACAO NACIONAL DE SAUDE",
+      "orgao_vinculado_cgu": "Fundação Nacional de Saúde",
       "orgao_tgov": "36000 - MINISTERIO DA SAUDE",
       "limite_prestacao": "01/03/2027",
       "sei": "00119.000251/2022-81",
@@ -602,7 +642,9 @@
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "",
       "clausula_motivo": "",
-      "pcf_etapa": ""
+      "pcf_etapa": "",
+      "orgao_executor": "FUNASA",
+      "orgao_executor_origem": "orgao_vinculado"
     },
     {
       "numero": "907471",
@@ -613,6 +655,7 @@
       "vigencia_suspensiva": "",
       "vigencia_origem": "Transferegov",
       "orgao_vinculado": "36211 - FUNDACAO NACIONAL DE SAUDE",
+      "orgao_vinculado_cgu": "Fundação Nacional de Saúde",
       "orgao_tgov": "36000 - MINISTERIO DA SAUDE",
       "limite_prestacao": "01/03/2027",
       "sei": "00119.000282/2022-31",
@@ -645,7 +688,9 @@
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "",
       "clausula_motivo": "",
-      "pcf_etapa": ""
+      "pcf_etapa": "",
+      "orgao_executor": "FUNASA",
+      "orgao_executor_origem": "orgao_vinculado"
     },
     {
       "numero": "907470",
@@ -656,6 +701,7 @@
       "vigencia_suspensiva": "",
       "vigencia_origem": "Transferegov",
       "orgao_vinculado": "36211 - FUNDACAO NACIONAL DE SAUDE",
+      "orgao_vinculado_cgu": "Fundação Nacional de Saúde",
       "orgao_tgov": "36000 - MINISTERIO DA SAUDE",
       "limite_prestacao": "01/03/2027",
       "sei": "00119.000281/2022-97",
@@ -688,7 +734,9 @@
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "",
       "clausula_motivo": "",
-      "pcf_etapa": ""
+      "pcf_etapa": "",
+      "orgao_executor": "FUNASA",
+      "orgao_executor_origem": "orgao_vinculado"
     },
     {
       "numero": "907469",
@@ -699,6 +747,7 @@
       "vigencia_suspensiva": "",
       "vigencia_origem": "Transferegov",
       "orgao_vinculado": "36211 - FUNDACAO NACIONAL DE SAUDE",
+      "orgao_vinculado_cgu": "Fundação Nacional de Saúde",
       "orgao_tgov": "36000 - MINISTERIO DA SAUDE",
       "limite_prestacao": "01/03/2027",
       "sei": "00119.000252/2022-25",
@@ -731,7 +780,9 @@
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "",
       "clausula_motivo": "",
-      "pcf_etapa": ""
+      "pcf_etapa": "",
+      "orgao_executor": "FUNASA",
+      "orgao_executor_origem": "orgao_vinculado"
     },
     {
       "numero": "907008",
@@ -742,6 +793,7 @@
       "vigencia_suspensiva": "",
       "vigencia_origem": "Transferegov",
       "orgao_vinculado": "36211 - FUNDACAO NACIONAL DE SAUDE",
+      "orgao_vinculado_cgu": "Fundação Nacional de Saúde",
       "orgao_tgov": "36000 - MINISTERIO DA SAUDE",
       "limite_prestacao": "01/03/2027",
       "sei": "00119.000429/2021-11",
@@ -774,7 +826,9 @@
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "",
       "clausula_motivo": "",
-      "pcf_etapa": ""
+      "pcf_etapa": "",
+      "orgao_executor": "FUNASA",
+      "orgao_executor_origem": "orgao_vinculado"
     },
     {
       "numero": "907015",
@@ -785,6 +839,7 @@
       "vigencia_suspensiva": "",
       "vigencia_origem": "Transferegov",
       "orgao_vinculado": "36211 - FUNDACAO NACIONAL DE SAUDE",
+      "orgao_vinculado_cgu": "Fundação Nacional de Saúde",
       "orgao_tgov": "36000 - MINISTERIO DA SAUDE",
       "limite_prestacao": "01/03/2027",
       "sei": "00119.000288/2022-17",
@@ -817,7 +872,9 @@
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "",
       "clausula_motivo": "",
-      "pcf_etapa": ""
+      "pcf_etapa": "",
+      "orgao_executor": "FUNASA",
+      "orgao_executor_origem": "orgao_vinculado"
     },
     {
       "numero": "907031",
@@ -828,6 +885,7 @@
       "vigencia_suspensiva": "",
       "vigencia_origem": "Transferegov",
       "orgao_vinculado": "36211 - FUNDACAO NACIONAL DE SAUDE",
+      "orgao_vinculado_cgu": "Fundação Nacional de Saúde",
       "orgao_tgov": "36000 - MINISTERIO DA SAUDE",
       "limite_prestacao": "01/03/2027",
       "sei": "00119.000486/2024-34",
@@ -860,7 +918,9 @@
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "",
       "clausula_motivo": "",
-      "pcf_etapa": ""
+      "pcf_etapa": "",
+      "orgao_executor": "FUNASA",
+      "orgao_executor_origem": "orgao_vinculado"
     },
     {
       "numero": "907032",
@@ -871,6 +931,7 @@
       "vigencia_suspensiva": "",
       "vigencia_origem": "Transferegov",
       "orgao_vinculado": "36211 - FUNDACAO NACIONAL DE SAUDE",
+      "orgao_vinculado_cgu": "Fundação Nacional de Saúde",
       "orgao_tgov": "36000 - MINISTERIO DA SAUDE",
       "limite_prestacao": "01/03/2027",
       "sei": "00119.000428/2021-68",
@@ -903,7 +964,9 @@
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "",
       "clausula_motivo": "",
-      "pcf_etapa": ""
+      "pcf_etapa": "",
+      "orgao_executor": "FUNASA",
+      "orgao_executor_origem": "orgao_vinculado"
     },
     {
       "numero": "907033",
@@ -914,6 +977,7 @@
       "vigencia_suspensiva": "",
       "vigencia_origem": "Transferegov",
       "orgao_vinculado": "36211 - FUNDACAO NACIONAL DE SAUDE",
+      "orgao_vinculado_cgu": "Fundação Nacional de Saúde",
       "orgao_tgov": "36000 - MINISTERIO DA SAUDE",
       "limite_prestacao": "01/03/2027",
       "sei": "00119.000456/2021-85",
@@ -946,7 +1010,9 @@
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "",
       "clausula_motivo": "",
-      "pcf_etapa": ""
+      "pcf_etapa": "",
+      "orgao_executor": "FUNASA",
+      "orgao_executor_origem": "orgao_vinculado"
     },
     {
       "numero": "907035",
@@ -957,6 +1023,7 @@
       "vigencia_suspensiva": "",
       "vigencia_origem": "Transferegov",
       "orgao_vinculado": "36211 - FUNDACAO NACIONAL DE SAUDE",
+      "orgao_vinculado_cgu": "Fundação Nacional de Saúde",
       "orgao_tgov": "36000 - MINISTERIO DA SAUDE",
       "limite_prestacao": "01/03/2027",
       "sei": "00119.000397/2025-79",
@@ -989,7 +1056,9 @@
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "",
       "clausula_motivo": "",
-      "pcf_etapa": ""
+      "pcf_etapa": "",
+      "orgao_executor": "FUNASA",
+      "orgao_executor_origem": "orgao_vinculado"
     },
     {
       "numero": "907037",
@@ -1000,6 +1069,7 @@
       "vigencia_suspensiva": "",
       "vigencia_origem": "Transferegov",
       "orgao_vinculado": "36211 - FUNDACAO NACIONAL DE SAUDE",
+      "orgao_vinculado_cgu": "Fundação Nacional de Saúde",
       "orgao_tgov": "36000 - MINISTERIO DA SAUDE",
       "limite_prestacao": "01/03/2027",
       "sei": "00119.000426/2021-79",
@@ -1032,7 +1102,9 @@
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "",
       "clausula_motivo": "",
-      "pcf_etapa": ""
+      "pcf_etapa": "",
+      "orgao_executor": "FUNASA",
+      "orgao_executor_origem": "orgao_vinculado"
     },
     {
       "numero": "907038",
@@ -1043,6 +1115,7 @@
       "vigencia_suspensiva": "",
       "vigencia_origem": "Transferegov",
       "orgao_vinculado": "36211 - FUNDACAO NACIONAL DE SAUDE",
+      "orgao_vinculado_cgu": "Fundação Nacional de Saúde",
       "orgao_tgov": "36000 - MINISTERIO DA SAUDE",
       "limite_prestacao": "01/03/2027",
       "sei": "00119.000452/2021-05",
@@ -1075,7 +1148,9 @@
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "",
       "clausula_motivo": "",
-      "pcf_etapa": ""
+      "pcf_etapa": "",
+      "orgao_executor": "FUNASA",
+      "orgao_executor_origem": "orgao_vinculado"
     },
     {
       "numero": "907040",
@@ -1086,6 +1161,7 @@
       "vigencia_suspensiva": "",
       "vigencia_origem": "Transferegov",
       "orgao_vinculado": "36211 - FUNDACAO NACIONAL DE SAUDE",
+      "orgao_vinculado_cgu": "Fundação Nacional de Saúde",
       "orgao_tgov": "36000 - MINISTERIO DA SAUDE",
       "limite_prestacao": "01/03/2027",
       "sei": "00119.000283/2022-86",
@@ -1118,7 +1194,9 @@
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "",
       "clausula_motivo": "",
-      "pcf_etapa": ""
+      "pcf_etapa": "",
+      "orgao_executor": "FUNASA",
+      "orgao_executor_origem": "orgao_vinculado"
     },
     {
       "numero": "907045",
@@ -1129,6 +1207,7 @@
       "vigencia_suspensiva": "",
       "vigencia_origem": "Transferegov",
       "orgao_vinculado": "36211 - FUNDACAO NACIONAL DE SAUDE",
+      "orgao_vinculado_cgu": "Fundação Nacional de Saúde",
       "orgao_tgov": "36000 - MINISTERIO DA SAUDE",
       "limite_prestacao": "01/03/2027",
       "sei": "00119.000453/2021-41",
@@ -1161,7 +1240,9 @@
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "",
       "clausula_motivo": "",
-      "pcf_etapa": ""
+      "pcf_etapa": "",
+      "orgao_executor": "FUNASA",
+      "orgao_executor_origem": "orgao_vinculado"
     },
     {
       "numero": "907050",
@@ -1172,6 +1253,7 @@
       "vigencia_suspensiva": "",
       "vigencia_origem": "Transferegov",
       "orgao_vinculado": "36211 - FUNDACAO NACIONAL DE SAUDE",
+      "orgao_vinculado_cgu": "Fundação Nacional de Saúde",
       "orgao_tgov": "36000 - MINISTERIO DA SAUDE",
       "limite_prestacao": "01/03/2027",
       "sei": "00119.000427/2021-13",
@@ -1204,7 +1286,9 @@
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "",
       "clausula_motivo": "",
-      "pcf_etapa": ""
+      "pcf_etapa": "",
+      "orgao_executor": "FUNASA",
+      "orgao_executor_origem": "orgao_vinculado"
     },
     {
       "numero": "737058",
@@ -1215,6 +1299,7 @@
       "vigencia_suspensiva": "",
       "vigencia_origem": "Transferegov",
       "orgao_vinculado": "22203 - COMPANHIA DE DESENV. DO VALE DO SAO FRANCISCO",
+      "orgao_vinculado_cgu": "Companhia de Desenvolvimento dos Vales do São Francisco e do Parnaíba",
       "orgao_tgov": "53000 - MINISTÉRIO DA INTEGRAÇÃO E DO DESENVOLVIMENTO REGIONAL",
       "limite_prestacao": "30/01/2027",
       "sei": "00119.001622/2024-11",
@@ -1247,7 +1332,9 @@
       "dono_emenda": "",
       "ponto_focal": "",
       "clausula_motivo": "",
-      "pcf_etapa": ""
+      "pcf_etapa": "",
+      "orgao_executor": "CODEVASF",
+      "orgao_executor_origem": "orgao_vinculado"
     },
     {
       "numero": "887234",
@@ -1258,6 +1345,7 @@
       "vigencia_suspensiva": "",
       "vigencia_origem": "Transferegov",
       "orgao_vinculado": "22203 - COMPANHIA DE DESENV. DO VALE DO SAO FRANCISCO",
+      "orgao_vinculado_cgu": "Companhia de Desenvolvimento dos Vales do São Francisco e do Parnaíba",
       "orgao_tgov": "53000 - MINISTÉRIO DA INTEGRAÇÃO E DO DESENVOLVIMENTO REGIONAL",
       "limite_prestacao": "29/11/2026",
       "sei": "00119.002310/2023-36",
@@ -1290,7 +1378,9 @@
       "dono_emenda": "Paes Landim",
       "ponto_focal": "",
       "clausula_motivo": "",
-      "pcf_etapa": ""
+      "pcf_etapa": "",
+      "orgao_executor": "CODEVASF",
+      "orgao_executor_origem": "orgao_vinculado"
     },
     {
       "numero": "902401",
@@ -1301,6 +1391,7 @@
       "vigencia_suspensiva": "",
       "vigencia_origem": "Transferegov",
       "orgao_vinculado": "22203 - COMPANHIA DE DESENV. DO VALE DO SAO FRANCISCO",
+      "orgao_vinculado_cgu": "Companhia de Desenvolvimento dos Vales do São Francisco e do Parnaíba",
       "orgao_tgov": "53000 - MINISTÉRIO DA INTEGRAÇÃO E DO DESENVOLVIMENTO REGIONAL",
       "limite_prestacao": "16/10/2027",
       "sei": "00119.000323/2021-17",
@@ -1333,7 +1424,9 @@
       "dono_emenda": "Marcos Aurelio",
       "ponto_focal": "",
       "clausula_motivo": "",
-      "pcf_etapa": ""
+      "pcf_etapa": "",
+      "orgao_executor": "CODEVASF",
+      "orgao_executor_origem": "orgao_vinculado"
     },
     {
       "numero": "899533",
@@ -1344,6 +1437,7 @@
       "vigencia_suspensiva": "",
       "vigencia_origem": "Transferegov",
       "orgao_vinculado": "22203 - COMPANHIA DE DESENV. DO VALE DO SAO FRANCISCO",
+      "orgao_vinculado_cgu": "Companhia de Desenvolvimento dos Vales do São Francisco e do Parnaíba",
       "orgao_tgov": "53000 - MINISTÉRIO DA INTEGRAÇÃO E DO DESENVOLVIMENTO REGIONAL",
       "limite_prestacao": "05/09/2027",
       "sei": "00119.000695/2024-88",
@@ -1376,7 +1470,9 @@
       "dono_emenda": "Marcos Aurelio",
       "ponto_focal": "",
       "clausula_motivo": "",
-      "pcf_etapa": ""
+      "pcf_etapa": "",
+      "orgao_executor": "CODEVASF",
+      "orgao_executor_origem": "orgao_vinculado"
     },
     {
       "numero": "900838",
@@ -1387,6 +1483,7 @@
       "vigencia_suspensiva": "",
       "vigencia_origem": "CGU",
       "orgao_vinculado": "",
+      "orgao_vinculado_cgu": "Companhia de Desenvolvimento dos Vales do São Francisco e do Parnaíba",
       "orgao_tgov": "",
       "limite_prestacao": "",
       "sei": "00119.000029/2021-05",
@@ -1419,7 +1516,9 @@
       "dono_emenda": "Marcos Aurelio",
       "ponto_focal": "",
       "clausula_motivo": "",
-      "pcf_etapa": "em_analise"
+      "pcf_etapa": "em_analise",
+      "orgao_executor": "CODEVASF",
+      "orgao_executor_origem": "orgao_vinculado_cgu"
     },
     {
       "numero": "900837",
@@ -1430,6 +1529,7 @@
       "vigencia_suspensiva": "",
       "vigencia_origem": "Transferegov",
       "orgao_vinculado": "22203 - COMPANHIA DE DESENV. DO VALE DO SAO FRANCISCO",
+      "orgao_vinculado_cgu": "Companhia de Desenvolvimento dos Vales do São Francisco e do Parnaíba",
       "orgao_tgov": "53000 - MINISTÉRIO DA INTEGRAÇÃO E DO DESENVOLVIMENTO REGIONAL",
       "limite_prestacao": "05/09/2027",
       "sei": "00119.000075/2022-87",
@@ -1462,7 +1562,9 @@
       "dono_emenda": "Marcos Aurelio",
       "ponto_focal": "",
       "clausula_motivo": "",
-      "pcf_etapa": ""
+      "pcf_etapa": "",
+      "orgao_executor": "CODEVASF",
+      "orgao_executor_origem": "orgao_vinculado"
     },
     {
       "numero": "900840",
@@ -1473,6 +1575,7 @@
       "vigencia_suspensiva": "",
       "vigencia_origem": "Transferegov",
       "orgao_vinculado": "22203 - COMPANHIA DE DESENV. DO VALE DO SAO FRANCISCO",
+      "orgao_vinculado_cgu": "Companhia de Desenvolvimento dos Vales do São Francisco e do Parnaíba",
       "orgao_tgov": "53000 - MINISTÉRIO DA INTEGRAÇÃO E DO DESENVOLVIMENTO REGIONAL",
       "limite_prestacao": "05/09/2027",
       "sei": "00119.001924/2023-09",
@@ -1505,7 +1608,9 @@
       "dono_emenda": "Marcos Aurelio",
       "ponto_focal": "",
       "clausula_motivo": "",
-      "pcf_etapa": ""
+      "pcf_etapa": "",
+      "orgao_executor": "CODEVASF",
+      "orgao_executor_origem": "orgao_vinculado"
     },
     {
       "numero": "899540",
@@ -1516,6 +1621,7 @@
       "vigencia_suspensiva": "",
       "vigencia_origem": "CGU",
       "orgao_vinculado": "",
+      "orgao_vinculado_cgu": "Companhia de Desenvolvimento dos Vales do São Francisco e do Parnaíba",
       "orgao_tgov": "",
       "limite_prestacao": "",
       "sei": "00119.000162/2021-53",
@@ -1548,7 +1654,9 @@
       "dono_emenda": "Marcos Aurelio",
       "ponto_focal": "",
       "clausula_motivo": "",
-      "pcf_etapa": "concluida"
+      "pcf_etapa": "concluida",
+      "orgao_executor": "CODEVASF",
+      "orgao_executor_origem": "orgao_vinculado_cgu"
     },
     {
       "numero": "899530",
@@ -1559,6 +1667,7 @@
       "vigencia_suspensiva": "",
       "vigencia_origem": "CGU",
       "orgao_vinculado": "",
+      "orgao_vinculado_cgu": "Companhia de Desenvolvimento dos Vales do São Francisco e do Parnaíba",
       "orgao_tgov": "",
       "limite_prestacao": "",
       "sei": "00119.000934/2025-81",
@@ -1591,7 +1700,9 @@
       "dono_emenda": "Marcos Aurelio",
       "ponto_focal": "",
       "clausula_motivo": "",
-      "pcf_etapa": "concluida"
+      "pcf_etapa": "concluida",
+      "orgao_executor": "CODEVASF",
+      "orgao_executor_origem": "orgao_vinculado_cgu"
     },
     {
       "numero": "847194",
@@ -1602,6 +1713,7 @@
       "vigencia_suspensiva": "",
       "vigencia_origem": "Transferegov",
       "orgao_vinculado": "22203 - COMPANHIA DE DESENV. DO VALE DO SAO FRANCISCO",
+      "orgao_vinculado_cgu": "Companhia de Desenvolvimento dos Vales do São Francisco e do Parnaíba",
       "orgao_tgov": "53000 - MINISTÉRIO DA INTEGRAÇÃO E DO DESENVOLVIMENTO REGIONAL",
       "limite_prestacao": "01/03/2027",
       "sei": "00119.001187/2025-06",
@@ -1634,7 +1746,9 @@
       "dono_emenda": "Elmano Ferrer",
       "ponto_focal": "",
       "clausula_motivo": "",
-      "pcf_etapa": ""
+      "pcf_etapa": "",
+      "orgao_executor": "CODEVASF",
+      "orgao_executor_origem": "orgao_vinculado"
     },
     {
       "numero": "920090",
@@ -1645,6 +1759,7 @@
       "vigencia_suspensiva": "",
       "vigencia_origem": "Transferegov",
       "orgao_vinculado": "22203 - COMPANHIA DE DESENV. DO VALE DO SAO FRANCISCO",
+      "orgao_vinculado_cgu": "Companhia de Desenvolvimento dos Vales do São Francisco e do Parnaíba",
       "orgao_tgov": "53000 - MINISTÉRIO DA INTEGRAÇÃO E DO DESENVOLVIMENTO REGIONAL",
       "limite_prestacao": "26/02/2027",
       "sei": "00119.001040/2023-46",
@@ -1677,7 +1792,9 @@
       "dono_emenda": "Rejane Dias",
       "ponto_focal": "",
       "clausula_motivo": "",
-      "pcf_etapa": ""
+      "pcf_etapa": "",
+      "orgao_executor": "CODEVASF",
+      "orgao_executor_origem": "orgao_vinculado"
     },
     {
       "numero": "915500",
@@ -1688,6 +1805,7 @@
       "vigencia_suspensiva": "",
       "vigencia_origem": "CGU",
       "orgao_vinculado": "",
+      "orgao_vinculado_cgu": "Ministério da Integração e do Desenvolvimento Regional - Unidades com vínculo direto",
       "orgao_tgov": "",
       "limite_prestacao": "",
       "sei": "00119.000042/2022-37",
@@ -1720,7 +1838,9 @@
       "dono_emenda": "Atila Lira",
       "ponto_focal": "",
       "clausula_motivo": "",
-      "pcf_etapa": "em_analise"
+      "pcf_etapa": "em_analise",
+      "orgao_executor": "MIDR",
+      "orgao_executor_origem": "concedente"
     },
     {
       "numero": "946262",
@@ -1731,6 +1851,7 @@
       "vigencia_suspensiva": "",
       "vigencia_origem": "CGU",
       "orgao_vinculado": "",
+      "orgao_vinculado_cgu": "Ministério da Integração e do Desenvolvimento Regional - Unidades com vínculo direto",
       "orgao_tgov": "",
       "limite_prestacao": "",
       "sei": "00119.001554/2023-00",
@@ -1763,7 +1884,9 @@
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "Paulo Roberto",
       "clausula_motivo": "",
-      "pcf_etapa": "concluida"
+      "pcf_etapa": "concluida",
+      "orgao_executor": "CAIXA",
+      "orgao_executor_origem": "mandataria"
     },
     {
       "numero": "947350",
@@ -1774,6 +1897,7 @@
       "vigencia_suspensiva": "",
       "vigencia_origem": "CGU",
       "orgao_vinculado": "",
+      "orgao_vinculado_cgu": "Ministério da Integração e do Desenvolvimento Regional - Unidades com vínculo direto",
       "orgao_tgov": "",
       "limite_prestacao": "",
       "sei": "00119.001553/2023-57",
@@ -1806,7 +1930,9 @@
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "Pantikão",
       "clausula_motivo": "",
-      "pcf_etapa": "concluida"
+      "pcf_etapa": "concluida",
+      "orgao_executor": "CAIXA",
+      "orgao_executor_origem": "mandataria"
     },
     {
       "numero": "946258",
@@ -1817,6 +1943,7 @@
       "vigencia_suspensiva": "",
       "vigencia_origem": "Transferegov",
       "orgao_vinculado": "",
+      "orgao_vinculado_cgu": "Ministério da Integração e do Desenvolvimento Regional - Unidades com vínculo direto",
       "orgao_tgov": "53000 - MINISTÉRIO DA INTEGRAÇÃO E DO DESENVOLVIMENTO REGIONAL",
       "limite_prestacao": "30/10/2026",
       "sei": "00119.001552/2023-11",
@@ -1849,7 +1976,9 @@
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "Geraldo Junior",
       "clausula_motivo": "",
-      "pcf_etapa": ""
+      "pcf_etapa": "",
+      "orgao_executor": "CAIXA",
+      "orgao_executor_origem": "mandataria"
     },
     {
       "numero": "946257",
@@ -1860,6 +1989,7 @@
       "vigencia_suspensiva": "",
       "vigencia_origem": "CGU",
       "orgao_vinculado": "",
+      "orgao_vinculado_cgu": "Ministério da Integração e do Desenvolvimento Regional - Unidades com vínculo direto",
       "orgao_tgov": "",
       "limite_prestacao": "",
       "sei": "00119.000168/2025-54",
@@ -1892,7 +2022,9 @@
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "Vereador Paulo",
       "clausula_motivo": "",
-      "pcf_etapa": "concluida"
+      "pcf_etapa": "concluida",
+      "orgao_executor": "CAIXA",
+      "orgao_executor_origem": "mandataria"
     },
     {
       "numero": "946261",
@@ -1903,6 +2035,7 @@
       "vigencia_suspensiva": "",
       "vigencia_origem": "CGU",
       "orgao_vinculado": "",
+      "orgao_vinculado_cgu": "Ministério da Integração e do Desenvolvimento Regional - Unidades com vínculo direto",
       "orgao_tgov": "",
       "limite_prestacao": "",
       "sei": "00119.001555/2023-46",
@@ -1935,7 +2068,9 @@
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "Ziza",
       "clausula_motivo": "",
-      "pcf_etapa": "concluida"
+      "pcf_etapa": "concluida",
+      "orgao_executor": "CAIXA",
+      "orgao_executor_origem": "mandataria"
     },
     {
       "numero": "946260",
@@ -1946,6 +2081,7 @@
       "vigencia_suspensiva": "",
       "vigencia_origem": "CGU",
       "orgao_vinculado": "",
+      "orgao_vinculado_cgu": "Ministério da Integração e do Desenvolvimento Regional - Unidades com vínculo direto",
       "orgao_tgov": "",
       "limite_prestacao": "",
       "sei": "00119.001556/2023-91",
@@ -1978,7 +2114,9 @@
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "Ziza",
       "clausula_motivo": "",
-      "pcf_etapa": "aprovada"
+      "pcf_etapa": "aprovada",
+      "orgao_executor": "CAIXA",
+      "orgao_executor_origem": "mandataria"
     },
     {
       "numero": "946259",
@@ -1989,6 +2127,7 @@
       "vigencia_suspensiva": "",
       "vigencia_origem": "CGU",
       "orgao_vinculado": "",
+      "orgao_vinculado_cgu": "Ministério da Integração e do Desenvolvimento Regional - Unidades com vínculo direto",
       "orgao_tgov": "",
       "limite_prestacao": "",
       "sei": "00119.001557/2023-35",
@@ -2021,7 +2160,9 @@
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "Luis Lobão",
       "clausula_motivo": "",
-      "pcf_etapa": "concluida"
+      "pcf_etapa": "concluida",
+      "orgao_executor": "CAIXA",
+      "orgao_executor_origem": "mandataria"
     },
     {
       "numero": "947533",
@@ -2032,6 +2173,7 @@
       "vigencia_suspensiva": "",
       "vigencia_origem": "Transferegov",
       "orgao_vinculado": "",
+      "orgao_vinculado_cgu": "Ministério da Integração e do Desenvolvimento Regional - Unidades com vínculo direto",
       "orgao_tgov": "53000 - MINISTÉRIO DA INTEGRAÇÃO E DO DESENVOLVIMENTO REGIONAL",
       "limite_prestacao": "30/10/2026",
       "sei": "00119.001559/2023-24",
@@ -2064,7 +2206,9 @@
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "Luis Lobão",
       "clausula_motivo": "",
-      "pcf_etapa": ""
+      "pcf_etapa": "",
+      "orgao_executor": "CAIXA",
+      "orgao_executor_origem": "mandataria"
     },
     {
       "numero": "947106",
@@ -2075,6 +2219,7 @@
       "vigencia_suspensiva": "",
       "vigencia_origem": "CGU",
       "orgao_vinculado": "",
+      "orgao_vinculado_cgu": "Ministério da Integração e do Desenvolvimento Regional - Unidades com vínculo direto",
       "orgao_tgov": "",
       "limite_prestacao": "",
       "sei": "00119.001560/2023-59",
@@ -2107,7 +2252,9 @@
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "Luis Lobão",
       "clausula_motivo": "",
-      "pcf_etapa": "concluida"
+      "pcf_etapa": "concluida",
+      "orgao_executor": "CAIXA",
+      "orgao_executor_origem": "mandataria"
     },
     {
       "numero": "947530",
@@ -2118,6 +2265,7 @@
       "vigencia_suspensiva": "",
       "vigencia_origem": "CGU",
       "orgao_vinculado": "",
+      "orgao_vinculado_cgu": "Ministério da Integração e do Desenvolvimento Regional - Unidades com vínculo direto",
       "orgao_tgov": "",
       "limite_prestacao": "",
       "sei": "00119.001561/2023-01",
@@ -2150,7 +2298,9 @@
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "Luis Lobão",
       "clausula_motivo": "",
-      "pcf_etapa": "concluida"
+      "pcf_etapa": "concluida",
+      "orgao_executor": "CAIXA",
+      "orgao_executor_origem": "mandataria"
     },
     {
       "numero": "947531",
@@ -2161,6 +2311,7 @@
       "vigencia_suspensiva": "",
       "vigencia_origem": "CGU",
       "orgao_vinculado": "",
+      "orgao_vinculado_cgu": "Ministério da Integração e do Desenvolvimento Regional - Unidades com vínculo direto",
       "orgao_tgov": "",
       "limite_prestacao": "",
       "sei": "00119.001567/2023-71",
@@ -2193,7 +2344,9 @@
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "Luis Lobão",
       "clausula_motivo": "",
-      "pcf_etapa": "concluida"
+      "pcf_etapa": "concluida",
+      "orgao_executor": "CAIXA",
+      "orgao_executor_origem": "mandataria"
     },
     {
       "numero": "947532",
@@ -2204,6 +2357,7 @@
       "vigencia_suspensiva": "",
       "vigencia_origem": "CGU",
       "orgao_vinculado": "",
+      "orgao_vinculado_cgu": "Ministério da Integração e do Desenvolvimento Regional - Unidades com vínculo direto",
       "orgao_tgov": "",
       "limite_prestacao": "",
       "sei": "00119.001568/2023-15",
@@ -2236,7 +2390,9 @@
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "Zomin",
       "clausula_motivo": "",
-      "pcf_etapa": "concluida"
+      "pcf_etapa": "concluida",
+      "orgao_executor": "CAIXA",
+      "orgao_executor_origem": "mandataria"
     },
     {
       "numero": "946801",
@@ -2247,6 +2403,7 @@
       "vigencia_suspensiva": "",
       "vigencia_origem": "Transferegov",
       "orgao_vinculado": "",
+      "orgao_vinculado_cgu": "Ministério da Integração e do Desenvolvimento Regional - Unidades com vínculo direto",
       "orgao_tgov": "53000 - MINISTÉRIO DA INTEGRAÇÃO E DO DESENVOLVIMENTO REGIONAL",
       "limite_prestacao": "24/02/2028",
       "sei": "00119.001602/2023-51",
@@ -2279,7 +2436,9 @@
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "Castro Junior",
       "clausula_motivo": "",
-      "pcf_etapa": ""
+      "pcf_etapa": "",
+      "orgao_executor": "MIDR",
+      "orgao_executor_origem": "concedente"
     },
     {
       "numero": "946378",
@@ -2290,6 +2449,7 @@
       "vigencia_suspensiva": "",
       "vigencia_origem": "Transferegov",
       "orgao_vinculado": "",
+      "orgao_vinculado_cgu": "Ministério da Integração e do Desenvolvimento Regional - Unidades com vínculo direto",
       "orgao_tgov": "53000 - MINISTÉRIO DA INTEGRAÇÃO E DO DESENVOLVIMENTO REGIONAL",
       "limite_prestacao": "26/06/2027",
       "sei": "00119.001603/2023-04",
@@ -2322,7 +2482,9 @@
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "Castro Junior",
       "clausula_motivo": "",
-      "pcf_etapa": ""
+      "pcf_etapa": "",
+      "orgao_executor": "MIDR",
+      "orgao_executor_origem": "concedente"
     },
     {
       "numero": "947580",
@@ -2333,6 +2495,7 @@
       "vigencia_suspensiva": "",
       "vigencia_origem": "Transferegov",
       "orgao_vinculado": "",
+      "orgao_vinculado_cgu": "Ministério da Integração e do Desenvolvimento Regional - Unidades com vínculo direto",
       "orgao_tgov": "53000 - MINISTÉRIO DA INTEGRAÇÃO E DO DESENVOLVIMENTO REGIONAL",
       "limite_prestacao": "30/10/2026",
       "sei": "00119.001803/2023-59",
@@ -2365,7 +2528,9 @@
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "Eliane",
       "clausula_motivo": "",
-      "pcf_etapa": ""
+      "pcf_etapa": "",
+      "orgao_executor": "CAIXA",
+      "orgao_executor_origem": "mandataria"
     },
     {
       "numero": "953168",
@@ -2376,6 +2541,7 @@
       "vigencia_suspensiva": "",
       "vigencia_origem": "Transferegov",
       "orgao_vinculado": "",
+      "orgao_vinculado_cgu": "Ministério da Integração e do Desenvolvimento Regional - Unidades com vínculo direto",
       "orgao_tgov": "53000 - MINISTÉRIO DA INTEGRAÇÃO E DO DESENVOLVIMENTO REGIONAL",
       "limite_prestacao": "17/02/2029",
       "sei": "00119.000385/2023-82",
@@ -2408,7 +2574,9 @@
       "dono_emenda": "NOVO PAC",
       "ponto_focal": "",
       "clausula_motivo": "",
-      "pcf_etapa": ""
+      "pcf_etapa": "",
+      "orgao_executor": "MIDR",
+      "orgao_executor_origem": "concedente"
     },
     {
       "numero": "947927",
@@ -2419,6 +2587,7 @@
       "vigencia_suspensiva": "",
       "vigencia_origem": "CGU",
       "orgao_vinculado": "",
+      "orgao_vinculado_cgu": "Ministério das Cidades - Unidades com vínculo direto",
       "orgao_tgov": "",
       "limite_prestacao": "",
       "sei": "00119.001660/2023-85",
@@ -2451,7 +2620,9 @@
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "Pedro Fernandes",
       "clausula_motivo": "",
-      "pcf_etapa": "concluida"
+      "pcf_etapa": "concluida",
+      "orgao_executor": "CAIXA",
+      "orgao_executor_origem": "mandataria"
     },
     {
       "numero": "946039",
@@ -2462,6 +2633,7 @@
       "vigencia_suspensiva": "",
       "vigencia_origem": "Transferegov",
       "orgao_vinculado": "",
+      "orgao_vinculado_cgu": "Ministério das Cidades - Unidades com vínculo direto",
       "orgao_tgov": "56000 - MINISTERIO DAS CIDADES",
       "limite_prestacao": "30/10/2026",
       "sei": "00119.001661/2023-20",
@@ -2494,7 +2666,9 @@
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "Italo Barros",
       "clausula_motivo": "",
-      "pcf_etapa": ""
+      "pcf_etapa": "",
+      "orgao_executor": "CAIXA",
+      "orgao_executor_origem": "mandataria"
     },
     {
       "numero": "945650",
@@ -2505,6 +2679,7 @@
       "vigencia_suspensiva": "",
       "vigencia_origem": "Transferegov",
       "orgao_vinculado": "",
+      "orgao_vinculado_cgu": "Ministério das Cidades - Unidades com vínculo direto",
       "orgao_tgov": "56000 - MINISTERIO DAS CIDADES",
       "limite_prestacao": "30/10/2026",
       "sei": "00119.001662/2023-74",
@@ -2537,7 +2712,9 @@
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "Italo Barros",
       "clausula_motivo": "",
-      "pcf_etapa": ""
+      "pcf_etapa": "",
+      "orgao_executor": "CAIXA",
+      "orgao_executor_origem": "mandataria"
     },
     {
       "numero": "947907",
@@ -2548,6 +2725,7 @@
       "vigencia_suspensiva": "",
       "vigencia_origem": "Transferegov",
       "orgao_vinculado": "",
+      "orgao_vinculado_cgu": "Ministério das Cidades - Unidades com vínculo direto",
       "orgao_tgov": "56000 - MINISTERIO DAS CIDADES",
       "limite_prestacao": "30/10/2026",
       "sei": "00119.001663/2023-19",
@@ -2580,7 +2758,9 @@
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "Italo Barros",
       "clausula_motivo": "",
-      "pcf_etapa": ""
+      "pcf_etapa": "",
+      "orgao_executor": "CAIXA",
+      "orgao_executor_origem": "mandataria"
     },
     {
       "numero": "946738",
@@ -2591,6 +2771,7 @@
       "vigencia_suspensiva": "",
       "vigencia_origem": "Transferegov",
       "orgao_vinculado": "",
+      "orgao_vinculado_cgu": "Ministério das Cidades - Unidades com vínculo direto",
       "orgao_tgov": "56000 - MINISTERIO DAS CIDADES",
       "limite_prestacao": "30/10/2026",
       "sei": "00119.001665/2023-16",
@@ -2623,7 +2804,9 @@
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "Pref Kaylane",
       "clausula_motivo": "",
-      "pcf_etapa": ""
+      "pcf_etapa": "",
+      "orgao_executor": "CAIXA",
+      "orgao_executor_origem": "mandataria"
     },
     {
       "numero": "945158",
@@ -2634,6 +2817,7 @@
       "vigencia_suspensiva": "",
       "vigencia_origem": "Transferegov",
       "orgao_vinculado": "",
+      "orgao_vinculado_cgu": "Ministério das Cidades - Unidades com vínculo direto",
       "orgao_tgov": "56000 - MINISTERIO DAS CIDADES",
       "limite_prestacao": "30/10/2026",
       "sei": "00119.001705/2023-11",
@@ -2666,7 +2850,9 @@
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "Amanda e P2",
       "clausula_motivo": "",
-      "pcf_etapa": ""
+      "pcf_etapa": "",
+      "orgao_executor": "CAIXA",
+      "orgao_executor_origem": "mandataria"
     },
     {
       "numero": "947493",
@@ -2677,6 +2863,7 @@
       "vigencia_suspensiva": "",
       "vigencia_origem": "CGU",
       "orgao_vinculado": "",
+      "orgao_vinculado_cgu": "Ministério das Cidades - Unidades com vínculo direto",
       "orgao_tgov": "",
       "limite_prestacao": "",
       "sei": "00119.001586/2024-88",
@@ -2709,7 +2896,9 @@
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "Italo Barros",
       "clausula_motivo": "",
-      "pcf_etapa": "concluida"
+      "pcf_etapa": "concluida",
+      "orgao_executor": "CAIXA",
+      "orgao_executor_origem": "mandataria"
     },
     {
       "numero": "946367",
@@ -2720,6 +2909,7 @@
       "vigencia_suspensiva": "",
       "vigencia_origem": "Transferegov",
       "orgao_vinculado": "",
+      "orgao_vinculado_cgu": "Ministério das Cidades - Unidades com vínculo direto",
       "orgao_tgov": "56000 - MINISTERIO DAS CIDADES",
       "limite_prestacao": "30/10/2026",
       "sei": "00119.001592/2023-54",
@@ -2752,7 +2942,9 @@
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "Rodrigo P2",
       "clausula_motivo": "",
-      "pcf_etapa": ""
+      "pcf_etapa": "",
+      "orgao_executor": "CAIXA",
+      "orgao_executor_origem": "mandataria"
     },
     {
       "numero": "951016",
@@ -2763,6 +2955,7 @@
       "vigencia_suspensiva": "",
       "vigencia_origem": "Transferegov",
       "orgao_vinculado": "",
+      "orgao_vinculado_cgu": "Ministério das Cidades - Unidades com vínculo direto",
       "orgao_tgov": "56000 - MINISTERIO DAS CIDADES",
       "limite_prestacao": "29/11/2026",
       "sei": "00119.002108/2023-12",
@@ -2795,7 +2988,9 @@
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "Cristiano/Mariana",
       "clausula_motivo": "",
-      "pcf_etapa": ""
+      "pcf_etapa": "",
+      "orgao_executor": "CAIXA",
+      "orgao_executor_origem": "mandataria"
     },
     {
       "numero": "951018",
@@ -2806,6 +3001,7 @@
       "vigencia_suspensiva": "",
       "vigencia_origem": "Transferegov",
       "orgao_vinculado": "",
+      "orgao_vinculado_cgu": "Ministério das Cidades - Unidades com vínculo direto",
       "orgao_tgov": "56000 - MINISTERIO DAS CIDADES",
       "limite_prestacao": "29/11/2026",
       "sei": "00119.002099/2023-51",
@@ -2838,7 +3034,9 @@
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "Valdivia/ Rodrigo P2",
       "clausula_motivo": "",
-      "pcf_etapa": ""
+      "pcf_etapa": "",
+      "orgao_executor": "CAIXA",
+      "orgao_executor_origem": "mandataria"
     },
     {
       "numero": "951943",
@@ -2849,6 +3047,7 @@
       "vigencia_suspensiva": "",
       "vigencia_origem": "CGU",
       "orgao_vinculado": "",
+      "orgao_vinculado_cgu": "Ministério das Cidades - Unidades com vínculo direto",
       "orgao_tgov": "",
       "limite_prestacao": "",
       "sei": "00119.002170/2023-04",
@@ -2881,7 +3080,9 @@
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "Bem bem",
       "clausula_motivo": "",
-      "pcf_etapa": "concluida"
+      "pcf_etapa": "concluida",
+      "orgao_executor": "CAIXA",
+      "orgao_executor_origem": "mandataria"
     },
     {
       "numero": "952006",
@@ -2892,6 +3093,7 @@
       "vigencia_suspensiva": "",
       "vigencia_origem": "Transferegov",
       "orgao_vinculado": "",
+      "orgao_vinculado_cgu": "Ministério das Cidades - Unidades com vínculo direto",
       "orgao_tgov": "56000 - MINISTERIO DAS CIDADES",
       "limite_prestacao": "13/02/2027",
       "sei": "00119.002221/2023-90",
@@ -2924,7 +3126,9 @@
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "Salmeron",
       "clausula_motivo": "",
-      "pcf_etapa": ""
+      "pcf_etapa": "",
+      "orgao_executor": "CAIXA",
+      "orgao_executor_origem": "mandataria"
     },
     {
       "numero": "967173",
@@ -2935,6 +3139,7 @@
       "vigencia_suspensiva": "",
       "vigencia_origem": "Transferegov",
       "orgao_vinculado": "",
+      "orgao_vinculado_cgu": "Ministério das Cidades - Unidades com vínculo direto",
       "orgao_tgov": "56000 - MINISTERIO DAS CIDADES",
       "limite_prestacao": "21/10/2028",
       "sei": "00119.002545/2023-28",
@@ -2967,7 +3172,9 @@
       "dono_emenda": "NOVO PAC",
       "ponto_focal": "Idepi",
       "clausula_motivo": "",
-      "pcf_etapa": ""
+      "pcf_etapa": "",
+      "orgao_executor": "CAIXA",
+      "orgao_executor_origem": "mandataria"
     },
     {
       "numero": "967182",
@@ -2978,6 +3185,7 @@
       "vigencia_suspensiva": "",
       "vigencia_origem": "Transferegov",
       "orgao_vinculado": "",
+      "orgao_vinculado_cgu": "Ministério das Cidades - Unidades com vínculo direto",
       "orgao_tgov": "56000 - MINISTERIO DAS CIDADES",
       "limite_prestacao": "21/10/2027",
       "sei": "00119.000110/2025-19",
@@ -3010,7 +3218,9 @@
       "dono_emenda": "NOVO PAC",
       "ponto_focal": "Idepi",
       "clausula_motivo": "",
-      "pcf_etapa": ""
+      "pcf_etapa": "",
+      "orgao_executor": "CAIXA",
+      "orgao_executor_origem": "mandataria"
     },
     {
       "numero": "945303",
@@ -3021,6 +3231,7 @@
       "vigencia_suspensiva": "",
       "vigencia_origem": "Transferegov",
       "orgao_vinculado": "",
+      "orgao_vinculado_cgu": "Ministério do Esporte - Unidades com vínculo direto",
       "orgao_tgov": "51000 - MINISTERIO DO ESPORTE",
       "limite_prestacao": "30/10/2026",
       "sei": "00119.001771/2023-91",
@@ -3053,7 +3264,9 @@
       "dono_emenda": "Atila Lira",
       "ponto_focal": "Atila Lira",
       "clausula_motivo": "",
-      "pcf_etapa": ""
+      "pcf_etapa": "",
+      "orgao_executor": "CAIXA",
+      "orgao_executor_origem": "mandataria_exec"
     },
     {
       "numero": "945299",
@@ -3064,6 +3277,7 @@
       "vigencia_suspensiva": "",
       "vigencia_origem": "Transferegov",
       "orgao_vinculado": "",
+      "orgao_vinculado_cgu": "Ministério do Esporte - Unidades com vínculo direto",
       "orgao_tgov": "51000 - MINISTERIO DO ESPORTE",
       "limite_prestacao": "30/10/2026",
       "sei": "00119.001772/2023-36",
@@ -3096,7 +3310,9 @@
       "dono_emenda": "Atila Lira",
       "ponto_focal": "Atila Lira / Joel Neves",
       "clausula_motivo": "",
-      "pcf_etapa": ""
+      "pcf_etapa": "",
+      "orgao_executor": "CAIXA",
+      "orgao_executor_origem": "mandataria_exec"
     },
     {
       "numero": "953190",
@@ -3107,6 +3323,7 @@
       "vigencia_suspensiva": "",
       "vigencia_origem": "Transferegov",
       "orgao_vinculado": "",
+      "orgao_vinculado_cgu": "Ministério do Turismo - Unidades com vínculo direto",
       "orgao_tgov": "54000 - MINISTERIO DO TURISMO",
       "limite_prestacao": "25/02/2028",
       "sei": "00119.002025/2023-15",
@@ -3139,7 +3356,9 @@
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "Rogerio Castro",
       "clausula_motivo": "",
-      "pcf_etapa": ""
+      "pcf_etapa": "",
+      "orgao_executor": "CAIXA",
+      "orgao_executor_origem": "mandataria"
     },
     {
       "numero": "969555",
@@ -3150,6 +3369,7 @@
       "vigencia_suspensiva": "",
       "vigencia_origem": "Transferegov",
       "orgao_vinculado": "",
+      "orgao_vinculado_cgu": "Ministério das Mulheres - Unidades com vínculo direto",
       "orgao_tgov": "65000 - MINISTÉRIO DAS MULHERES",
       "limite_prestacao": "04/02/2029",
       "sei": "00119.001681/2024-81",
@@ -3182,7 +3402,9 @@
       "dono_emenda": "Sec das Mulheres",
       "ponto_focal": "Diva",
       "clausula_motivo": "",
-      "pcf_etapa": ""
+      "pcf_etapa": "",
+      "orgao_executor": "CAIXA",
+      "orgao_executor_origem": "mandataria"
     },
     {
       "numero": "973618",
@@ -3193,6 +3415,7 @@
       "vigencia_suspensiva": "30/11/2026",
       "vigencia_origem": "Transferegov",
       "orgao_vinculado": "",
+      "orgao_vinculado_cgu": "Ministério da Integração e do Desenvolvimento Regional - Unidades com vínculo direto",
       "orgao_tgov": "53000 - MINISTÉRIO DA INTEGRAÇÃO E DO DESENVOLVIMENTO REGIONAL",
       "limite_prestacao": "29/07/2030",
       "sei": "00119.000014/2025-62",
@@ -3225,7 +3448,9 @@
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "",
       "clausula_motivo": "Titularidade de Área, Projeto Básico, Licença Ambiental Prévia e e demais itens da CLÁUSULA TERCEIRA - DA CONDIÇÃO SUSPENSIVA.",
-      "pcf_etapa": ""
+      "pcf_etapa": "",
+      "orgao_executor": "MIDR",
+      "orgao_executor_origem": "concedente"
     },
     {
       "numero": "965789",
@@ -3236,6 +3461,7 @@
       "vigencia_suspensiva": "",
       "vigencia_origem": "Transferegov",
       "orgao_vinculado": "",
+      "orgao_vinculado_cgu": "Ministério da Integração e do Desenvolvimento Regional - Unidades com vínculo direto",
       "orgao_tgov": "53000 - MINISTÉRIO DA INTEGRAÇÃO E DO DESENVOLVIMENTO REGIONAL",
       "limite_prestacao": "20/10/2029",
       "sei": "00119.000128/2024-21",
@@ -3268,7 +3494,9 @@
       "dono_emenda": "NOVO PAC",
       "ponto_focal": "",
       "clausula_motivo": "",
-      "pcf_etapa": ""
+      "pcf_etapa": "",
+      "orgao_executor": "MIDR",
+      "orgao_executor_origem": "concedente"
     },
     {
       "numero": "992850",
@@ -3279,6 +3507,7 @@
       "vigencia_suspensiva": "09/11/2026",
       "vigencia_origem": "Transferegov",
       "orgao_vinculado": "",
+      "orgao_vinculado_cgu": "Ministério das Cidades - Unidades com vínculo direto",
       "orgao_tgov": "56000 - MINISTERIO DAS CIDADES",
       "limite_prestacao": "01/05/2030",
       "sei": "00119.000357/2026-16",
@@ -3311,7 +3540,9 @@
       "dono_emenda": "NOVO PAC",
       "ponto_focal": "Ademar",
       "clausula_motivo": "Titularidade de Área, Projeto Básico e Licença Ambiental Prévia",
-      "pcf_etapa": ""
+      "pcf_etapa": "",
+      "orgao_executor": "CAIXA",
+      "orgao_executor_origem": "mandataria"
     },
     {
       "numero": "992940",
@@ -3322,6 +3553,7 @@
       "vigencia_suspensiva": "09/11/2026",
       "vigencia_origem": "Transferegov",
       "orgao_vinculado": "",
+      "orgao_vinculado_cgu": "Ministério das Cidades - Unidades com vínculo direto",
       "orgao_tgov": "56000 - MINISTERIO DAS CIDADES",
       "limite_prestacao": "01/05/2030",
       "sei": "00119.000431/2026-96",
@@ -3354,7 +3586,9 @@
       "dono_emenda": "NOVO PAC",
       "ponto_focal": "Ademar",
       "clausula_motivo": "Titularidade de Área, Projeto Básico e Licença Ambiental Prévia",
-      "pcf_etapa": ""
+      "pcf_etapa": "",
+      "orgao_executor": "CAIXA",
+      "orgao_executor_origem": "mandataria"
     },
     {
       "numero": "980844",
@@ -3365,6 +3599,7 @@
       "vigencia_suspensiva": "",
       "vigencia_origem": "Transferegov",
       "orgao_vinculado": "",
+      "orgao_vinculado_cgu": "Ministério da Integração e do Desenvolvimento Regional - Unidades com vínculo direto",
       "orgao_tgov": "53000 - MINISTÉRIO DA INTEGRAÇÃO E DO DESENVOLVIMENTO REGIONAL",
       "limite_prestacao": "02/11/2028",
       "sei": "00119.002012/2025-16",
@@ -3397,7 +3632,9 @@
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "Miguel Ângelo",
       "clausula_motivo": "",
-      "pcf_etapa": ""
+      "pcf_etapa": "",
+      "orgao_executor": "MIDR",
+      "orgao_executor_origem": "emendas"
     },
     {
       "numero": "981146",
@@ -3408,6 +3645,7 @@
       "vigencia_suspensiva": "",
       "vigencia_origem": "Transferegov",
       "orgao_vinculado": "",
+      "orgao_vinculado_cgu": "Ministério da Integração e do Desenvolvimento Regional - Unidades com vínculo direto",
       "orgao_tgov": "53000 - MINISTÉRIO DA INTEGRAÇÃO E DO DESENVOLVIMENTO REGIONAL",
       "limite_prestacao": "06/02/2029",
       "sei": "00119.002014/2025-05",
@@ -3440,7 +3678,9 @@
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "Henrique Cesar (Carleuza)",
       "clausula_motivo": "",
-      "pcf_etapa": ""
+      "pcf_etapa": "",
+      "orgao_executor": "MIDR",
+      "orgao_executor_origem": "emendas"
     },
     {
       "numero": "983950",
@@ -3451,6 +3691,7 @@
       "vigencia_suspensiva": "10/06/2027",
       "vigencia_origem": "Transferegov",
       "orgao_vinculado": "",
+      "orgao_vinculado_cgu": "Ministério da Agricultura e Pecuária - Unidades com vínculo direto",
       "orgao_tgov": "22000 - Ministério da Agricultura e Pecuária",
       "limite_prestacao": "09/10/2028",
       "sei": "00119.002020/2025-54",
@@ -3483,7 +3724,9 @@
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "Ravid Lages",
       "clausula_motivo": "Titularidade de Área, Projeto Básico e Licença Ambiental Prévia",
-      "pcf_etapa": ""
+      "pcf_etapa": "",
+      "orgao_executor": "MAPA",
+      "orgao_executor_origem": "emendas"
     },
     {
       "numero": "986179",
@@ -3494,6 +3737,7 @@
       "vigencia_suspensiva": "",
       "vigencia_origem": "Transferegov",
       "orgao_vinculado": "",
+      "orgao_vinculado_cgu": "Ministério da Agricultura e Pecuária - Unidades com vínculo direto",
       "orgao_tgov": "22000 - Ministério da Agricultura e Pecuária",
       "limite_prestacao": "29/10/2028",
       "sei": "00119.002028/2025-11",
@@ -3526,7 +3770,9 @@
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "Antônio Wilson",
       "clausula_motivo": "",
-      "pcf_etapa": ""
+      "pcf_etapa": "",
+      "orgao_executor": "MAPA",
+      "orgao_executor_origem": "emendas"
     },
     {
       "numero": "986155",
@@ -3537,6 +3783,7 @@
       "vigencia_suspensiva": "",
       "vigencia_origem": "Transferegov",
       "orgao_vinculado": "",
+      "orgao_vinculado_cgu": "Ministério da Agricultura e Pecuária - Unidades com vínculo direto",
       "orgao_tgov": "22000 - Ministério da Agricultura e Pecuária",
       "limite_prestacao": "09/10/2028",
       "sei": "00119.002030/2025-90",
@@ -3569,7 +3816,9 @@
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "Antônio Wilson",
       "clausula_motivo": "",
-      "pcf_etapa": ""
+      "pcf_etapa": "",
+      "orgao_executor": "MAPA",
+      "orgao_executor_origem": "emendas"
     },
     {
       "numero": "985797",
@@ -3580,6 +3829,7 @@
       "vigencia_suspensiva": "",
       "vigencia_origem": "Transferegov",
       "orgao_vinculado": "",
+      "orgao_vinculado_cgu": "Ministério do Turismo - Unidades com vínculo direto",
       "orgao_tgov": "54000 - MINISTERIO DO TURISMO",
       "limite_prestacao": "20/02/2029",
       "sei": "00119.002032/2025-89",
@@ -3612,7 +3862,9 @@
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "Ivon (Danilo/ Joaquim)",
       "clausula_motivo": "",
-      "pcf_etapa": ""
+      "pcf_etapa": "",
+      "orgao_executor": "CAIXA",
+      "orgao_executor_origem": "mandataria"
     },
     {
       "numero": "986602",
@@ -3623,6 +3875,7 @@
       "vigencia_suspensiva": "31/12/2028",
       "vigencia_origem": "Transferegov",
       "orgao_vinculado": "",
+      "orgao_vinculado_cgu": "Ministério das Mulheres - Unidades com vínculo direto",
       "orgao_tgov": "65000 - MINISTÉRIO DAS MULHERES",
       "limite_prestacao": "01/03/2029",
       "sei": "00119.001929/2025-95",
@@ -3655,7 +3908,9 @@
       "dono_emenda": "Sec das Mulheres",
       "ponto_focal": "Diva",
       "clausula_motivo": "Titularidade de Área, Projeto Básico e Licença Ambiental Prévia",
-      "pcf_etapa": ""
+      "pcf_etapa": "",
+      "orgao_executor": "CAIXA",
+      "orgao_executor_origem": "mandataria"
     },
     {
       "numero": "988101",
@@ -3666,6 +3921,7 @@
       "vigencia_suspensiva": "19/12/2028",
       "vigencia_origem": "Transferegov",
       "orgao_vinculado": "",
+      "orgao_vinculado_cgu": "Ministério da Integração e do Desenvolvimento Regional - Unidades com vínculo direto",
       "orgao_tgov": "53000 - MINISTÉRIO DA INTEGRAÇÃO E DO DESENVOLVIMENTO REGIONAL",
       "limite_prestacao": "18/06/2029",
       "sei": "00119.002036/2025-67",
@@ -3698,7 +3954,9 @@
       "dono_emenda": "CINDRA - Dr Luizinho",
       "ponto_focal": "Eduardo Dantas / Júlio Arcoverde",
       "clausula_motivo": "Titularidade de Área, Projeto Básico e Licença Ambiental Prévia",
-      "pcf_etapa": ""
+      "pcf_etapa": "",
+      "orgao_executor": "MIDR",
+      "orgao_executor_origem": "emendas"
     },
     {
       "numero": "988500",
@@ -3709,6 +3967,7 @@
       "vigencia_suspensiva": "",
       "vigencia_origem": "Transferegov",
       "orgao_vinculado": "",
+      "orgao_vinculado_cgu": "Ministério da Integração e do Desenvolvimento Regional - Unidades com vínculo direto",
       "orgao_tgov": "53000 - MINISTÉRIO DA INTEGRAÇÃO E DO DESENVOLVIMENTO REGIONAL",
       "limite_prestacao": "18/06/2029",
       "sei": "00119.002040/2025-25",
@@ -3741,7 +4000,9 @@
       "dono_emenda": "CINDRA - Dr Luizinho",
       "ponto_focal": "Eduardo Dantas / Júlio Arcoverde",
       "clausula_motivo": "",
-      "pcf_etapa": ""
+      "pcf_etapa": "",
+      "orgao_executor": "MIDR",
+      "orgao_executor_origem": "emendas"
     },
     {
       "numero": "989250",
@@ -3752,6 +4013,7 @@
       "vigencia_suspensiva": "19/12/2028",
       "vigencia_origem": "Transferegov",
       "orgao_vinculado": "",
+      "orgao_vinculado_cgu": "Ministério da Integração e do Desenvolvimento Regional - Unidades com vínculo direto",
       "orgao_tgov": "53000 - MINISTÉRIO DA INTEGRAÇÃO E DO DESENVOLVIMENTO REGIONAL",
       "limite_prestacao": "18/06/2029",
       "sei": "00119.002042/2025-14",
@@ -3784,7 +4046,9 @@
       "dono_emenda": "CINDRA - Dr Luizinho",
       "ponto_focal": "Eduardo Dantas / Júlio Arcoverde",
       "clausula_motivo": "Titularidade de Área, Projeto Básico e Licença Ambiental Prévia",
-      "pcf_etapa": ""
+      "pcf_etapa": "",
+      "orgao_executor": "MIDR",
+      "orgao_executor_origem": "emendas"
     },
     {
       "numero": "988784",
@@ -3795,6 +4059,7 @@
       "vigencia_suspensiva": "19/12/2028",
       "vigencia_origem": "Transferegov",
       "orgao_vinculado": "",
+      "orgao_vinculado_cgu": "Ministério da Integração e do Desenvolvimento Regional - Unidades com vínculo direto",
       "orgao_tgov": "53000 - MINISTÉRIO DA INTEGRAÇÃO E DO DESENVOLVIMENTO REGIONAL",
       "limite_prestacao": "18/06/2029",
       "sei": "00119.002045/2025-58",
@@ -3827,7 +4092,9 @@
       "dono_emenda": "",
       "ponto_focal": "Jonas Trindade / Min. Wellington Dias",
       "clausula_motivo": "Titularidade de Área, Projeto Básico e Licença Ambiental Prévia",
-      "pcf_etapa": ""
+      "pcf_etapa": "",
+      "orgao_executor": "MIDR",
+      "orgao_executor_origem": "emendas"
     },
     {
       "numero": "988634",
@@ -3838,6 +4105,7 @@
       "vigencia_suspensiva": "16/12/2028",
       "vigencia_origem": "Transferegov",
       "orgao_vinculado": "",
+      "orgao_vinculado_cgu": "Ministério da Integração e do Desenvolvimento Regional - Unidades com vínculo direto",
       "orgao_tgov": "53000 - MINISTÉRIO DA INTEGRAÇÃO E DO DESENVOLVIMENTO REGIONAL",
       "limite_prestacao": "14/02/2029",
       "sei": "00119.002048/2025-91",
@@ -3870,7 +4138,9 @@
       "dono_emenda": "",
       "ponto_focal": "Jonas Trindade / Min. Wellington Dias",
       "clausula_motivo": "Titularidade de Área, Projeto Básico e Licença Ambiental Prévia",
-      "pcf_etapa": ""
+      "pcf_etapa": "",
+      "orgao_executor": "MIDR",
+      "orgao_executor_origem": "emendas"
     },
     {
       "numero": "988972",
@@ -3881,6 +4151,7 @@
       "vigencia_suspensiva": "19/12/2028",
       "vigencia_origem": "Transferegov",
       "orgao_vinculado": "",
+      "orgao_vinculado_cgu": "Ministério da Integração e do Desenvolvimento Regional - Unidades com vínculo direto",
       "orgao_tgov": "53000 - MINISTÉRIO DA INTEGRAÇÃO E DO DESENVOLVIMENTO REGIONAL",
       "limite_prestacao": "18/06/2029",
       "sei": "00119.002050/2025-61",
@@ -3913,7 +4184,9 @@
       "dono_emenda": "",
       "ponto_focal": "Jonas Trindade / Min. Wellington Dias",
       "clausula_motivo": "Titularidade de Área, Projeto Básico e Licença Ambiental Prévia",
-      "pcf_etapa": ""
+      "pcf_etapa": "",
+      "orgao_executor": "MIDR",
+      "orgao_executor_origem": "emendas"
     },
     {
       "numero": "988779",
@@ -3924,6 +4197,7 @@
       "vigencia_suspensiva": "19/12/2028",
       "vigencia_origem": "Transferegov",
       "orgao_vinculado": "",
+      "orgao_vinculado_cgu": "Ministério da Integração e do Desenvolvimento Regional - Unidades com vínculo direto",
       "orgao_tgov": "53000 - MINISTÉRIO DA INTEGRAÇÃO E DO DESENVOLVIMENTO REGIONAL",
       "limite_prestacao": "18/06/2029",
       "sei": "00119.002052/2025-50",
@@ -3956,7 +4230,9 @@
       "dono_emenda": "",
       "ponto_focal": "Jonas Trindade / Min. Wellington Dias",
       "clausula_motivo": "Titularidade de Área, Projeto Básico e Licença Ambiental Prévia",
-      "pcf_etapa": ""
+      "pcf_etapa": "",
+      "orgao_executor": "MIDR",
+      "orgao_executor_origem": "emendas"
     },
     {
       "numero": "988901",
@@ -3967,6 +4243,7 @@
       "vigencia_suspensiva": "19/12/2028",
       "vigencia_origem": "Transferegov",
       "orgao_vinculado": "",
+      "orgao_vinculado_cgu": "Ministério da Integração e do Desenvolvimento Regional - Unidades com vínculo direto",
       "orgao_tgov": "53000 - MINISTÉRIO DA INTEGRAÇÃO E DO DESENVOLVIMENTO REGIONAL",
       "limite_prestacao": "18/06/2029",
       "sei": "00119.002054/2025-49",
@@ -3999,7 +4276,9 @@
       "dono_emenda": "",
       "ponto_focal": "Jonas Trindade / Min. Wellington Dias",
       "clausula_motivo": "Titularidade de Área, Projeto Básico e Licença Ambiental Prévia",
-      "pcf_etapa": ""
+      "pcf_etapa": "",
+      "orgao_executor": "MIDR",
+      "orgao_executor_origem": "emendas"
     },
     {
       "numero": "998329",
@@ -4010,6 +4289,7 @@
       "vigencia_suspensiva": "30/03/2027",
       "vigencia_origem": "Transferegov",
       "orgao_vinculado": "",
+      "orgao_vinculado_cgu": "Ministério da Integração e do Desenvolvimento Regional - Unidades com vínculo direto",
       "orgao_tgov": "53000 - MINISTÉRIO DA INTEGRAÇÃO E DO DESENVOLVIMENTO REGIONAL",
       "limite_prestacao": "29/08/2029",
       "sei": "00119.001216/2026-11",
@@ -4042,7 +4322,9 @@
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "Enzo Samuel",
       "clausula_motivo": "Titularidade de Área, Projeto Básico, Licença Ambiental Prévia e Plano de Sustentabilidade",
-      "pcf_etapa": ""
+      "pcf_etapa": "",
+      "orgao_executor": "MIDR",
+      "orgao_executor_origem": "emendas"
     },
     {
       "numero": "999001",
@@ -4055,6 +4337,7 @@
       "vigencia_origem": "Emendas",
       "orgao_vinculado": "",
       "orgao_tgov": "",
+      "orgao_vinculado_cgu": "",
       "limite_prestacao": "",
       "sei": "00119.001246/2026-19",
       "fiscal": "Artur",
@@ -4085,7 +4368,9 @@
       "vigencia_emendas": "31/12/2029",
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "Ademar",
-      "clausula_motivo": ""
+      "clausula_motivo": "",
+      "orgao_executor": "MIDR",
+      "orgao_executor_origem": "emendas"
     },
     {
       "numero": "999050",
@@ -4096,6 +4381,7 @@
       "vigencia_suspensiva": "",
       "vigencia_origem": "CGU",
       "orgao_vinculado": "",
+      "orgao_vinculado_cgu": "Ministério da Integração e do Desenvolvimento Regional - Unidades com vínculo direto",
       "orgao_tgov": "",
       "limite_prestacao": "",
       "sei": "00119.001265/2026-45",
@@ -4128,7 +4414,9 @@
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "Ademar",
       "clausula_motivo": "",
-      "pcf_etapa": ""
+      "pcf_etapa": "",
+      "orgao_executor": "MIDR",
+      "orgao_executor_origem": "emendas"
     },
     {
       "numero": "999010",
@@ -4141,6 +4429,7 @@
       "vigencia_origem": "Emendas",
       "orgao_vinculado": "",
       "orgao_tgov": "",
+      "orgao_vinculado_cgu": "",
       "limite_prestacao": "",
       "sei": "00119.001267/2026-34",
       "fiscal": "Roberto",
@@ -4171,7 +4460,9 @@
       "vigencia_emendas": "31/12/2029",
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "Ademar",
-      "clausula_motivo": ""
+      "clausula_motivo": "",
+      "orgao_executor": "MIDR",
+      "orgao_executor_origem": "emendas"
     },
     {
       "numero": "999021",
@@ -4184,6 +4475,7 @@
       "vigencia_origem": "Emendas",
       "orgao_vinculado": "",
       "orgao_tgov": "",
+      "orgao_vinculado_cgu": "",
       "limite_prestacao": "",
       "sei": "00119.001268/2026-89",
       "fiscal": "Leão",
@@ -4214,7 +4506,9 @@
       "vigencia_emendas": "31/12/2029",
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "Ademar",
-      "clausula_motivo": ""
+      "clausula_motivo": "",
+      "orgao_executor": "MIDR",
+      "orgao_executor_origem": "emendas"
     },
     {
       "numero": "7AAALY",
@@ -4227,6 +4521,7 @@
       "vigencia_origem": "Emendas",
       "orgao_vinculado": "",
       "orgao_tgov": "",
+      "orgao_vinculado_cgu": "",
       "limite_prestacao": "",
       "sei": "00119.001270/2026-58",
       "fiscal": "Roberto",
@@ -4257,7 +4552,9 @@
       "vigencia_emendas": "31/12/2029",
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "Ademar",
-      "clausula_motivo": ""
+      "clausula_motivo": "",
+      "orgao_executor": "MIDR",
+      "orgao_executor_origem": "emendas"
     },
     {
       "numero": "908650",
@@ -4268,6 +4565,7 @@
       "vigencia_suspensiva": "",
       "vigencia_origem": "Transferegov",
       "orgao_vinculado": "",
+      "orgao_vinculado_cgu": "Ministério da Agricultura e Pecuária - Unidades com vínculo direto",
       "orgao_tgov": "22000 - Ministério da Agricultura e Pecuária",
       "limite_prestacao": "01/03/2025",
       "sei": "",
@@ -4300,7 +4598,9 @@
       "dono_emenda": "",
       "ponto_focal": "",
       "clausula_motivo": "",
-      "pcf_etapa": "em_analise"
+      "pcf_etapa": "em_analise",
+      "orgao_executor": "MAPA",
+      "orgao_executor_origem": "concedente"
     },
     {
       "numero": "648107",
@@ -4311,6 +4611,7 @@
       "vigencia_suspensiva": "",
       "vigencia_origem": "CGU",
       "orgao_vinculado": "",
+      "orgao_vinculado_cgu": "Fundação Nacional de Saúde",
       "orgao_tgov": "",
       "limite_prestacao": "",
       "sei": "",
@@ -4343,7 +4644,9 @@
       "dono_emenda": "",
       "ponto_focal": "",
       "clausula_motivo": "",
-      "pcf_etapa": "em_analise"
+      "pcf_etapa": "em_analise",
+      "orgao_executor": "FUNASA",
+      "orgao_executor_origem": "manual"
     },
     {
       "numero": "761370",
@@ -4354,6 +4657,7 @@
       "vigencia_suspensiva": "",
       "vigencia_origem": "Transferegov",
       "orgao_vinculado": "22203 - COMPANHIA DE DESENV. DO VALE DO SAO FRANCISCO",
+      "orgao_vinculado_cgu": "Companhia de Desenvolvimento dos Vales do São Francisco e do Parnaíba",
       "orgao_tgov": "53000 - MINISTÉRIO DA INTEGRAÇÃO E DO DESENVOLVIMENTO REGIONAL",
       "limite_prestacao": "11/04/2026",
       "sei": "",
@@ -4386,7 +4690,9 @@
       "dono_emenda": "",
       "ponto_focal": "",
       "clausula_motivo": "",
-      "pcf_etapa": "concluida"
+      "pcf_etapa": "concluida",
+      "orgao_executor": "CODEVASF",
+      "orgao_executor_origem": "orgao_vinculado"
     },
     {
       "numero": "7AAFJY",
@@ -4399,6 +4705,7 @@
       "vigencia_origem": "Emendas",
       "orgao_vinculado": "",
       "orgao_tgov": "",
+      "orgao_vinculado_cgu": "",
       "limite_prestacao": "",
       "sei": "00119.001243/2026-85",
       "fiscal": "Manoel",
@@ -4429,7 +4736,9 @@
       "vigencia_emendas": "31/12/2028",
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "Mauro Tapety",
-      "clausula_motivo": ""
+      "clausula_motivo": "",
+      "orgao_executor": "CAIXA",
+      "orgao_executor_origem": "emendas"
     },
     {
       "numero": "7AAFLM",
@@ -4442,6 +4751,7 @@
       "vigencia_origem": "Emendas",
       "orgao_vinculado": "",
       "orgao_tgov": "",
+      "orgao_vinculado_cgu": "",
       "limite_prestacao": "",
       "sei": "00119.001244/2026-20",
       "fiscal": "Samuel",
@@ -4472,7 +4782,9 @@
       "vigencia_emendas": "31/12/2028",
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "Mauro Tapety",
-      "clausula_motivo": ""
+      "clausula_motivo": "",
+      "orgao_executor": "CAIXA",
+      "orgao_executor_origem": "emendas"
     },
     {
       "numero": "7AAFLN",
@@ -4485,6 +4797,7 @@
       "vigencia_origem": "Emendas",
       "orgao_vinculado": "",
       "orgao_tgov": "",
+      "orgao_vinculado_cgu": "",
       "limite_prestacao": "",
       "sei": "00119.001241/2026-96",
       "fiscal": "Felipe",
@@ -4515,7 +4828,9 @@
       "vigencia_emendas": "31/12/2028",
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "Evandro Hidd / Enzo Samuel (Ver. Tarson)",
-      "clausula_motivo": ""
+      "clausula_motivo": "",
+      "orgao_executor": "CAIXA",
+      "orgao_executor_origem": "emendas"
     },
     {
       "numero": "644411",
@@ -4526,6 +4841,7 @@
       "vigencia_suspensiva": "",
       "vigencia_origem": "CGU",
       "orgao_vinculado": "",
+      "orgao_vinculado_cgu": "Fundação Nacional de Saúde",
       "orgao_tgov": "",
       "limite_prestacao": "",
       "sei": "",
@@ -4558,7 +4874,9 @@
       "dono_emenda": "",
       "ponto_focal": "",
       "clausula_motivo": "",
-      "pcf_etapa": "em_analise"
+      "pcf_etapa": "em_analise",
+      "orgao_executor": "FUNASA",
+      "orgao_executor_origem": "manual"
     },
     {
       "numero": "673792",
@@ -4569,6 +4887,7 @@
       "vigencia_suspensiva": "",
       "vigencia_origem": "CGU",
       "orgao_vinculado": "",
+      "orgao_vinculado_cgu": "Ministério da Integração e do Desenvolvimento Regional - Unidades com vínculo direto",
       "orgao_tgov": "",
       "limite_prestacao": "",
       "sei": "00119.001427/2023-01",
@@ -4601,7 +4920,9 @@
       "dono_emenda": "",
       "ponto_focal": "",
       "clausula_motivo": "",
-      "pcf_etapa": ""
+      "pcf_etapa": "",
+      "orgao_executor": "CAIXA",
+      "orgao_executor_origem": "mandataria"
     }
   ],
   "exec_financeira": [

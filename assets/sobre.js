@@ -184,9 +184,11 @@
     },
 
     fiscalgov: {
-      oque: 'O indicador EX-01 do IDTRU-DL: dos instrumentos que já têm obra, quantos ' +
-            'mandaram relatório fotográfico georreferenciado pelo APP. Mostra de quem ' +
-            'cobrar a foto e quem ainda não pode ser cobrado.',
+      oque: 'O indicador EX-01 do IDTRU-DL em dois números. O OFICIAL, como a SURPI ' +
+            'define: instrumentos que usam o app ÷ instrumentos vigentes no Transferegov, ' +
+            'obra ou não. O de COBRANÇA: entre os que já podem ter obra, quantos têm foto. ' +
+            'A tabela diz de quem cobrar foto, e de quem cobrar nova fiscalização porque ' +
+            'a última foto passou de 80 dias.',
       fonte: 'Transferegov, lido pelo tgov_monitor na rotina de segunda (foto, ' +
              'medição e pagamento), mais a execução financeira para saber se a obra ' +
              'começou.',
@@ -195,7 +197,9 @@
         ['Em projeto', 'vigentes de quem ainda não se cobra foto: sem recurso federal, em cláusula suspensiva, sem AIO, ou que o Transferegov não encontra.'],
         ['Aptos com foto', 'obra iniciada e relatório fotográfico enviado.'],
         ['Aptos sem foto', 'obra iniciada e sem foto: é a lista de cobrança.'],
-        ['% EX-01', 'aptos com foto dividido pelo total de aptos.']
+        ['Foto desatualizada', 'apto com foto, mas a mais recente tem mais de 80 dias. A SEPLAN cobra nova fiscalização.'],
+        ['EX-01 oficial', 'usam o app ÷ vigentes no Transferegov (em execução, aguardando ou com prestação de contas em análise, em complementação, inadimplente).'],
+        ['Cobrança', 'aptos com foto ÷ aptos.']
       ],
       numeros: function () {
         return convs().then(function (cv) {
@@ -216,7 +220,13 @@
             n(r.emProjeto) + ' em projeto, de quem ainda não se cobra foto:'
           ].concat(partes).concat([
             n(r.aptos) + ' aptos: ' + n(r.comFoto) + ' com foto e ' + n(r.semFoto) + ' sem foto.',
-            'EX-01 estimado: ' + r.pct + '%.'
+            'Cobrança: ' + r.pct + '%.',
+            (function (o) {
+              return 'EX-01 oficial (SURPI): ' + o.pct + '%, ' + n(o.comApp) + ' de ' +
+                     n(o.vigentes) + ' vigentes no Transferegov usam o app.';
+            })(IDEPI.resumoEX01Oficial(cv)),
+            n(cv.filter(function (c) { return IDEPI.isApto(c) && IDEPI.fotoDesatualizada(c); }).length) +
+              ' aptos com foto desatualizada (mais de ' + IDEPI.DIAS_FOTO_DESATUALIZADA + ' dias).'
           ]);
         });
       }

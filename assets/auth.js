@@ -71,7 +71,9 @@
   }
 
   var CABECALHO =
-    '<div class="lk-icon"><i class="fa-solid fa-lock"></i></div>' +
+    /* A arte oficial no lugar do cadeado (30/09/2026): é a primeira tela que
+       se vê, e o "acesso restrito" já está escrito logo abaixo. */
+    '<img class="lk-marca" src="icons/icon-192.png" alt="" width="72" height="72">' +
     '<div class="lk-title">IDEPI — Convênios Federais</div>';
 
   var RODAPE =

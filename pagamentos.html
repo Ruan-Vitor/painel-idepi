@@ -317,6 +317,7 @@
 <script src="assets/nav.js"></script>
 <script src="assets/notificacoes.js"></script>
 <script src="assets/sobre.js"></script>
+<script src="assets/filtros.js"></script>
 
 <script>
 /* ═══════════════════════════════════════════════════════════════════════
@@ -371,6 +372,7 @@ function visiveis() {
      `slice()` antes de inverter: `reverse()` altera o array no lugar, e
      `_pagamentos` é a fonte de todas as outras contas da página. */
   return _pagamentos.slice().reverse().filter(function (p) {
+    if (IDEPI.filtros && !IDEPI.filtros.passa(p.numero)) return false;
     if (_filtroSit && p.situacao !== _filtroSit) return false;
     /* Por CHAVE, não pelo nome escrito: é o que faz "ver só esta empresa"
        trazer também as linhas em que ela foi digitada de outro jeito. */
@@ -896,6 +898,8 @@ IDEPI.dados.pagamentos()
     renderMesAtual(r);
     render();
     IDEPI.esconderOverlay();
+    // Filtros por instrumento (30/09/2026), valem para a lista de pagamentos.
+    IDEPI.filtros.ligar({ antes: '#pgCard', aoMudar: render });
   })
   .catch(function (e) {
     IDEPI.esconderOverlay();

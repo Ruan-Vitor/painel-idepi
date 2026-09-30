@@ -89,6 +89,27 @@
 .kpi.k-pct .kpi-val{color:var(--amber)}
 .kpi.k-proj .kpi-val{color:var(--slate)}
 
+.kpi.k-desat{border-top-color:#d97706}
+.kpi.k-desat .kpi-val{color:#b45309}
+
+/* ── OS DOIS NÚMEROS DO EX-01 (30/09/2026) ──
+   Lado a lado de propósito: são respostas a perguntas diferentes, e um sem o
+   outro faz alguém ler o número de cobrança achando que é o do IDTRU-DL. */
+.ex01-par{display:grid;grid-template-columns:1fr 1fr;gap:12px;flex-shrink:0}
+.ex01-card{background:var(--surface);border:1px solid var(--border);border-radius:11px;padding:16px 18px;display:flex;gap:16px;align-items:center}
+.ex01-card.oficial{border-left:4px solid #1a3a6e}
+.ex01-card.cobranca{border-left:4px solid #f59e0b}
+.ex01-pct{font-family:'Sora',sans-serif;font-size:34px;font-weight:800;line-height:1;min-width:88px}
+.ex01-card.oficial .ex01-pct{color:#1a3a6e}
+.ex01-card.cobranca .ex01-pct{color:var(--amber)}
+.ex01-tit{font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.6px}
+.ex01-conta{font-size:13px;font-weight:600;color:var(--text);margin:3px 0}
+.ex01-regra{font-size:11px;color:var(--slate);line-height:1.45}
+@media (max-width:760px){ .ex01-par{grid-template-columns:1fr} .ex01-pct{font-size:28px;min-width:70px} }
+
+.b-desat{background:#fffbeb;color:#b45309;border-color:#fcd34d}
+.fc-desat{background:#fffbeb;color:#b45309;border-color:#fcd34d}
+
 /* FIX: estado de erro nos KPIs */
 .kpi.k-err .kpi-val{color:#dc2626;font-size:16px}
 .kpi.k-err .kpi-desc{color:#ef4444}
@@ -260,14 +281,40 @@ tbody tr:hover td{background:#f5f9ff}
       <div class="banner">
         <div class="banner-icon"><i class="fa-solid fa-medal"></i></div>
         <div class="banner-body">
-          <h3>O que torna um instrumento apto ao FiscalGov?</h3>
+          <h3>Dois números para o EX-01</h3>
+          <p>
+            <strong>Oficial (SURPI):</strong> instrumentos que usam o app ÷ instrumentos vigentes no Transferegov. É como o IDTRU-DL mede,
+            e vale para todo instrumento, não só obra. <strong>Cobrança:</strong> entre os que já podem ter obra, quantos têm foto. É a lista de quem cobrar hoje.
+            Foto com mais de 80 dias conta como <strong>desatualizada</strong>: a SEPLAN cobra nova fiscalização.
+          </p>
+          <h3 style="margin-top:10px">O que torna um instrumento apto à cobrança?</h3>
           <p>
             Para pontuar no <strong>EX-01</strong>, o instrumento precisa estar <strong>vigente</strong> (não finalizado/encerrado) e com a obra <strong>efetivamente iniciada</strong> —
             ou seja, já ter ao menos uma <strong>medição registrada</strong> (aba Acompanhamento de Obras no Transferegov) <em>ou</em> um <strong>pagamento registrado</strong> (aba Movimentação Financeira).
             Instrumentos ainda em fase de projeto, sem nenhuma medição ou pagamento, não abriram a aba de relatório fotográfico no Transferegov e não contam no denominador do EX-01.
             Entre os aptos, o objetivo do IDEPI é chegar a <strong>100% com foto enviada pelo APP</strong>.
           </p>
-          <div class="banner-formula"><i class="fa-solid fa-chart-bar"></i>&nbsp; EX-01 = Aptos com foto APP ÷ Total aptos &nbsp;·&nbsp; Sentido: MAIOR = MELHOR</div>
+          <div class="banner-formula"><i class="fa-solid fa-chart-bar"></i>&nbsp; Oficial = usam o app ÷ vigentes &nbsp;·&nbsp; Cobrança = aptos com foto ÷ aptos &nbsp;·&nbsp; MAIOR = MELHOR</div>
+        </div>
+      </div>
+
+      <!-- OS DOIS NÚMEROS -->
+      <div class="ex01-par">
+        <div class="ex01-card oficial">
+          <div class="ex01-pct" id="ofi-pct">—</div>
+          <div>
+            <div class="ex01-tit">EX-01 oficial (SURPI / IDTRU-DL)</div>
+            <div class="ex01-conta" id="ofi-conta">—</div>
+            <div class="ex01-regra">usam o app ÷ vigentes no Transferegov (em execução, aguardando ou com prestação de contas em análise, em complementação, inadimplente)</div>
+          </div>
+        </div>
+        <div class="ex01-card cobranca">
+          <div class="ex01-pct" id="kpi-pct">—</div>
+          <div>
+            <div class="ex01-tit">Cobrança (aptos)</div>
+            <div class="ex01-conta" id="cob-conta">—</div>
+            <div class="ex01-regra">aptos com foto ÷ aptos; apto é quem já tem recurso, obra iniciada e não está em cláusula suspensiva</div>
+          </div>
         </div>
       </div>
 
@@ -294,10 +341,10 @@ tbody tr:hover td{background:#f5f9ff}
           <div class="kpi-val" id="kpi-nok">—</div>
           <div class="kpi-desc">ação necessária — enviar foto pelo APP</div>
         </div>
-        <div class="kpi k-pct">
-          <div class="kpi-label">% EX-01 estimado</div>
-          <div class="kpi-val" id="kpi-pct">—</div>
-          <div class="kpi-desc">com foto ÷ total aptos</div>
+        <div class="kpi k-desat">
+          <div class="kpi-label">Foto desatualizada ⏳</div>
+          <div class="kpi-val" id="kpi-desat">—</div>
+          <div class="kpi-desc">aptos com foto de mais de 80 dias: pedir nova fiscalização</div>
         </div>
       </div>
 
@@ -326,6 +373,7 @@ tbody tr:hover td{background:#f5f9ff}
               <span class="fchip fc-all sel" id="fc-all"  onclick="filtrar('all')">Todos<span class="fchip-cnt" id="cnt-all"></span></span>
               <span class="fchip fc-ok"      id="fc-ok"   onclick="filtrar('ok')">Aptos + foto ✅<span class="fchip-cnt" id="cnt-ok"></span></span>
               <span class="fchip fc-nok"     id="fc-nok"  onclick="filtrar('nok')">Aptos sem foto ❌<span class="fchip-cnt" id="cnt-nok"></span></span>
+              <span class="fchip fc-desat"   id="fc-desat" onclick="filtrar('desat')">Foto desatualizada ⏳<span class="fchip-cnt" id="cnt-desat"></span></span>
               <span class="fchip fc-proj"    id="fc-proj" onclick="filtrar('proj')">Em projeto<span class="fchip-cnt" id="cnt-proj"></span></span>
             </div>
             <button class="btn-excel" id="btnExcelFG" onclick="exportarExcelFiscalGov()" title="Exportar dados visíveis para Excel">
@@ -383,9 +431,11 @@ tbody tr:hover td{background:#f5f9ff}
 <script src="assets/nav.js"></script>
 <script src="assets/notificacoes.js"></script>
 <script src="assets/sobre.js"></script>
+<script src="assets/filtros.js"></script>
 
 <script>
 var todos = [], filtroAtual = "all";
+var _oficial = null;   // EX-01 pelo critério da SURPI, sobre a carteira inteira
 var _rowsVisiveis = [];
 
 /* O controle do menu (drawer no celular, recolher no desktop) saiu daqui e
@@ -424,13 +474,53 @@ function vigBadge(st, dias) {
   return '<span class="b b-norm"><i class="fa-solid fa-circle-check"></i> Normal ('+dias+'d)</span>';
 }
 
+/* Cards do topo e os dois números do EX-01. Seguem os filtros por
+   instrumento: quem escolhe FUNASA quer o EX-01 da FUNASA (30/09/2026). */
+var _conv = [];
+function atualizarKPIs() {
+  var passa = function (c) { return !IDEPI.filtros || IDEPI.filtros.passa(c); };
+  var base     = todos.filter(passa);
+  var totalVig = base.length;
+  var emProj   = base.filter(function(c){ return c._proj; }).length;
+  var semRec   = base.filter(function(c){ return c._naoAplica === 'sem_recurso'; }).length;
+  var semIni   = base.filter(function(c){ return c._naoAplica === 'sem_aio'; }).length;
+  var aptos    = base.filter(function(c){ return c._apto; }).length;
+  var comFoto  = base.filter(function(c){ return c._apto && c._foto; }).length;
+  var desat    = base.filter(function(c){ return c._apto && c._desat; }).length;
+  /* O oficial conta a carteira INTEIRA pela situação do Transferegov, não
+     só os vigentes do painel: quem está em prestação de contas em análise
+     continua aparecendo no app. */
+  _oficial = IDEPI.resumoEX01Oficial(_conv.filter(passa));
+  var semFoto  = aptos - comFoto;
+  var pct      = aptos > 0 ? Math.round(comFoto/aptos*100) : 0;
+
+  document.getElementById("kpi-total").textContent = totalVig;
+  document.getElementById("kpi-proj").textContent  = emProj;
+  var _rot = document.getElementById("kpi-proj-nota");
+  if(_rot) _rot.textContent = semRec + " sem recurso" + (semIni ? " · " + semIni + " sem AIO" : "");
+  document.getElementById("kpi-ok").textContent    = comFoto;
+  document.getElementById("kpi-nok").textContent   = semFoto;
+  document.getElementById("kpi-pct").textContent   = pct+"%";
+  document.getElementById("kpi-desat").textContent = desat;
+  document.getElementById("ofi-pct").textContent   = _oficial.pct + "%";
+  document.getElementById("ofi-conta").textContent = _oficial.comApp + " de " + _oficial.vigentes + " usam o app";
+  document.getElementById("cob-conta").textContent = comFoto + " de " + aptos + " aptos têm foto";
+  document.getElementById("prog-pct-label").textContent = pct+"%";
+  document.getElementById("prog-bar").style.width  = pct+"%";
+  atualizarContadoresChips();
+}
+
 /* FIX: atualiza contadores dos chips */
 function atualizarContadoresChips() {
+  var passa = function (c) { return !IDEPI.filtros || IDEPI.filtros.passa(c); };
+  var todos = window.todos.filter(passa);
   var tot   = todos.length;
   var ok    = todos.filter(function(c){ return c._apto && c._foto; }).length;
   var nok   = todos.filter(function(c){ return c._apto && !c._foto; }).length;
   var proj  = todos.filter(function(c){ return c._proj; }).length;
+  var desat = todos.filter(function(c){ return c._apto && c._desat; }).length;
   var el;
+  el = document.getElementById('cnt-desat'); if(el) el.textContent = ' ('+desat+')';
   el = document.getElementById('cnt-all');  if(el) el.textContent = ' ('+tot+')';
   el = document.getElementById('cnt-ok');   if(el) el.textContent = ' ('+ok+')';
   el = document.getElementById('cnt-nok');  if(el) el.textContent = ' ('+nok+')';
@@ -441,17 +531,19 @@ function renderizar() {
   var busca = (document.getElementById("busca").value||"").toLowerCase();
   var fFisc = (document.getElementById("fFiscal").value||"").trim();
   var rows = todos.filter(function(c) {
+    if (IDEPI.filtros && !IDEPI.filtros.passa(c))            return false;
     if (filtroAtual === "ok"   && !(c._apto && c._foto))    return false;
     if (filtroAtual === "nok"  && !(c._apto && !c._foto))   return false;
     if (filtroAtual === "proj" && !c._proj)                  return false;
+    if (filtroAtual === "desat" && !(c._apto && c._desat))   return false;
     if (busca && !((c.numero||"").toLowerCase().includes(busca) || (c.objeto||"").toLowerCase().includes(busca))) return false;
     if (fFisc && (c.fiscal||"").trim() !== fFisc)            return false;
     return true;
   });
 
   rows.sort(function(a,b){
-    var ra = a._apto && !a._foto ? 0 : (a._apto && a._foto ? 1 : 2);
-    var rb = b._apto && !b._foto ? 0 : (b._apto && b._foto ? 1 : 2);
+    function rank(x){ return x._apto && !x._foto ? 0 : (x._apto && x._desat ? 1 : (x._apto ? 2 : 3)); }
+    var ra = rank(a), rb = rank(b);
     if (ra !== rb) return ra - rb;
     var da = (a._dias !== null ? a._dias : 9999);
     var db = (b._dias !== null ? b._dias : 9999);
@@ -491,15 +583,22 @@ function renderizar() {
       ? '<span class="b b-ok"><i class="fa-solid fa-circle-check"></i> Apto</span>'
       : '<span class="b b-proj"><i class="fa-solid fa-hourglass-half"></i> Em projeto</span>';
 
-    var fotoBadge = r._apto
-      ? (r._foto
-          ? '<span class="b b-ok"><i class="fa-solid fa-camera"></i> SIM</span>'
-          : '<span class="b b-nok"><i class="fa-solid fa-camera-slash"></i> NÃO</span>')
-      : '<span class="b b-proj" style="opacity:.55"><i class="fa-solid fa-minus"></i> N/A</span>';
+    /* A data da última foto aparece sempre que existe, inclusive para quem
+       não é apto: pelo critério oficial, todo vigente conta. */
+    var dataFoto = r.ultima_foto ? '<div style="font-size:9.5px;color:#64748b;margin-top:2px">última ' + IDEPI.esc(r.ultima_foto) + '</div>' : '';
+    var fotoBadge = r._foto
+      ? (r._desat
+          ? '<span class="b b-desat"><i class="fa-solid fa-hourglass-end"></i> Desatualizada (' + r._diasFoto + 'd)</span>'
+          : '<span class="b b-ok"><i class="fa-solid fa-camera"></i> SIM</span>') + dataFoto
+      : (r._apto
+          ? '<span class="b b-nok"><i class="fa-solid fa-camera-slash"></i> NÃO</span>'
+          : '<span class="b b-proj" style="opacity:.55"><i class="fa-solid fa-minus"></i> N/A</span>');
 
     var acao = "";
     if (!r._apto) {
       acao = '<span class="acao neutr"><i class="fa-solid fa-hourglass-half"></i> Aguardar início da obra</span>';
+    } else if (r._foto && r._desat) {
+      acao = '<span class="acao pend"><i class="fa-solid fa-mobile-screen"></i> Nova fiscalização: última foto há ' + r._diasFoto + ' dias</span>';
     } else if (r._foto) {
       acao = '<span class="acao ok"><i class="fa-solid fa-circle-check"></i> OK — manter envio regular</span>';
     } else {
@@ -539,7 +638,7 @@ function renderizar() {
 
 function filtrar(f) {
   filtroAtual = f;
-  ["all","ok","nok","proj"].forEach(function(id){
+  ["all","ok","nok","desat","proj"].forEach(function(id){
     var el = document.getElementById("fc-"+id);
     if (el) el.classList.toggle("sel", id === f);
   });
@@ -566,15 +665,17 @@ function exportarExcelFiscalGov() {
         'Vigência Final','Status Vigência','Dias Restantes',
         'Medição Registrada','Pagamento Registrado',
         'Aptidão FiscalGov','Foto APP (EX-01)','Ação Recomendada',
-        'Situação Transferegov','Situação API CGU'
+        'Situação Transferegov','Situação API CGU',
+        'Última foto','Dias desde a última foto','Vigente no critério oficial (SURPI)'
       ];
 
       var linhas = _rowsVisiveis.map(function(r) {
         var aptidao = r._apto ? 'Apto' : 'Em projeto';
         var foto    = !r._apto ? 'N/A' : (r._foto ? 'SIM' : 'NÃO');
         var acao    = !r._apto ? 'Aguardar início da obra'
-                    : (r._foto ? 'OK — manter envio regular'
-                               : 'Fiscal deve enviar foto pelo APP');
+                    : (!r._foto ? 'Fiscal deve enviar foto pelo APP'
+                    : (r._desat ? 'Nova fiscalização (foto de ' + r._diasFoto + ' dias)'
+                                : 'OK — manter envio regular'));
         var stNome  = {normal:'Normal',alerta:'Alerta',atencao:'Atenção',critico:'Crítico',vencido:'Vencido',sem_data:'Sem data'};
         return [
           r.numero || '',
@@ -589,7 +690,10 @@ function exportarExcelFiscalGov() {
           foto,
           acao,
           r.situacao_tgov || '',
-          r.situacao || ''
+          r.situacao || '',
+          r.ultima_foto || '',
+          r._diasFoto !== null && r._diasFoto !== undefined ? r._diasFoto : '',
+          IDEPI.vigenteSurpi(r) ? 'SIM' : 'NÃO'
         ];
       });
 
@@ -598,7 +702,7 @@ function exportarExcelFiscalGov() {
       ws['!cols'] = [
         {wch:22},{wch:50},{wch:18},{wch:14},{wch:12},{wch:10},
         {wch:10},{wch:10},{wch:14},{wch:10},{wch:36},
-        {wch:32},{wch:28}
+        {wch:32},{wch:28},{wch:12},{wch:10},{wch:14}
       ];
 
       var aptos    = _rowsVisiveis.filter(function(r){ return r._apto; }).length;
@@ -616,9 +720,11 @@ function exportarExcelFiscalGov() {
         ['Total aptos ao EX-01', aptos],
         ['Aptos COM foto (✅)', comFoto],
         ['Aptos SEM foto (❌)', semFoto],
-        ['% EX-01 estimado', pct+'%'],
+        ['% de cobrança (aptos)', pct+'%'],
+        ['EX-01 oficial (SURPI)', _oficial ? _oficial.pct + '% (' + _oficial.comApp + ' de ' + _oficial.vigentes + ')' : ''],
         ['',''],
-        ['Fórmula EX-01', 'Aptos com foto ÷ Total aptos'],
+        ['Fórmula de cobrança', 'Aptos com foto ÷ Total aptos'],
+        ['Fórmula oficial', 'Usam o app ÷ vigentes no Transferegov'],
         ['Sentido', 'Maior = Melhor'],
       ]);
       wsRes['!cols'] = [{wch:36},{wch:20}];
@@ -683,32 +789,15 @@ IDEPI.dados.carregar()
       item._apto = isApto(c);
       item._proj = isProjeto(c);
       item._naoAplica = IDEPI.motivoNaoAplica(c);   /* null | sem_recurso | sem_inicio */
-      item._foto = item._apto ? temFoto(c) : false;
+      item._foto = temFoto(c);
+      item._diasFoto = IDEPI.diasDesdeUltimaFoto(c);
+      item._desat = IDEPI.fotoDesatualizada(c);
       todos.push(item);
     }
 
-    var totalVig = todos.length;
-    var emProj   = todos.filter(function(c){ return c._proj; }).length;
-    var semRec   = todos.filter(function(c){ return c._naoAplica === 'sem_recurso'; }).length;
-    var semIni   = todos.filter(function(c){ return c._naoAplica === 'sem_aio'; }).length;
-    var aptos    = todos.filter(function(c){ return c._apto; }).length;
-    var comFoto  = todos.filter(function(c){ return c._apto && c._foto; }).length;
-    var semFoto  = aptos - comFoto;
-    var pct      = aptos > 0 ? Math.round(comFoto/aptos*100) : 0;
-
-    document.getElementById("kpi-total").textContent = totalVig;
-    document.getElementById("kpi-proj").textContent  = emProj;
-    var _rot = document.getElementById("kpi-proj-nota");
-    if(_rot) _rot.textContent = semRec + " sem recurso" + (semIni ? " · " + semIni + " sem AIO" : "");
-    document.getElementById("kpi-ok").textContent    = comFoto;
-    document.getElementById("kpi-nok").textContent   = semFoto;
-    document.getElementById("kpi-pct").textContent   = pct+"%";
-    document.getElementById("prog-pct-label").textContent = pct+"%";
-    document.getElementById("prog-bar").style.width  = pct+"%";
+    _conv = conv;
+    atualizarKPIs();
     document.getElementById("overlay").classList.add("hide");
-
-    /* FIX: atualiza contadores dos chips */
-    atualizarContadoresChips();
 
     var fiscais = {};
     todos.forEach(function(c){ var f=(c.fiscal||"").trim(); if(f) fiscais[f]=1; });
@@ -719,6 +808,8 @@ IDEPI.dados.carregar()
     });
 
     renderizar();
+    // Filtros por instrumento (30/09/2026). O fiscal já tem select próprio.
+    IDEPI.filtros.ligar({ antes: '.ex01-par', aoMudar: function () { atualizarKPIs(); renderizar(); }, sem: ['fiscal'] });
   })
   .catch(function(e){
     document.getElementById("overlay").classList.add("hide");

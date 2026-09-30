@@ -290,7 +290,12 @@
                  login, no carregamento e no logo do topo (app.css, auth.js,
                  nav.js), e o valor da Emendas Senador na ficha de quem a CGU
                  ainda nao conhece (app.js). */
-const VERSAO = 'idepi-v54';
+/* v55 - 30/09/2026 - filtros por instrumento em 6 paginas (assets/filtros.js,
+                 arquivo NOVO no SHELL); FiscalGov com o EX-01 oficial da
+                 SURPI ao lado do de cobranca e foto desatualizada (> 80 dias);
+                 "fora do Transferegov" so sem situacao lida; icones novos
+                 (documento com selo, no lugar das argolas). */
+const VERSAO = 'idepi-v55';
 const CACHE_SHELL = VERSAO + '-shell';
 const CACHE_PAGS  = VERSAO + '-paginas';
 
@@ -310,6 +315,7 @@ const SHELL = [
   'assets/nav.js',
   'assets/notificacoes.js',
   'assets/sobre.js',
+  'assets/filtros.js',
   'assets/auth.js',
   'assets/data.js',
   'assets/firebase-config.js',

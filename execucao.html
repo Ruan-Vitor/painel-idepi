@@ -681,6 +681,7 @@ tbody tr:hover td{background:#f5f9ff}
 <script src="assets/nav.js"></script>
 <script src="assets/notificacoes.js"></script>
 <script src="assets/sobre.js"></script>
+<script src="assets/filtros.js"></script>
 
 <script>
 /* ══════════════════════════════════════════════════════
@@ -961,7 +962,9 @@ function atualizarTriggerLabel(){
 
 function filtrarDdLista(){
   var q = document.getElementById("instDdSearch").value.toLowerCase().trim();
-  var lista = INSTRUMENTOS_EXEC;
+  var lista = INSTRUMENTOS_EXEC.filter(function(c){
+    return !IDEPI.filtros || IDEPI.filtros.passa(c.numero);
+  });
   if(q){
     lista = lista.filter(function(c){
       // Busca em: número, objeto, razão social do contrato, CNPJ, município
@@ -1024,6 +1027,7 @@ function aplicarFiltros(){
   var regime = document.getElementById("filtRegime").value;
 
   var filtrados = INSTRUMENTOS_EXEC.filter(function(c){
+    if(IDEPI.filtros && !IDEPI.filtros.passa(c.numero)) return false;
     if(tipo && (c.tipo_instrumento || "") !== tipo) return false;
     if(ano  && (c.ano || "") !== ano)               return false;
     if(sit){ var s = c.situacao_tgov || c.situacao || ""; if(s !== sit) return false; }
@@ -2385,6 +2389,9 @@ IDEPI.auth.comPainel('execucao', function () {
       }
       popularSelector(INSTRUMENTOS_EXEC);
       document.getElementById("overlay").classList.add("hide");
+      // Filtros por instrumento (30/09/2026): restringem o seletor, como os
+      // filtros de tipo, ano e situação desta barra. O tipo já existe aqui.
+      IDEPI.filtros.ligar({ depois: '.inst-bar', aoMudar: aplicarFiltros, sem: ['tipo'] });
     })
     .catch(function(e){
       console.error('[IDEPI]', e);

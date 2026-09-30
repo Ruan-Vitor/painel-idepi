@@ -184,54 +184,41 @@
     },
 
     fiscalgov: {
-      oque: 'O indicador EX-01 do IDTRU-DL em dois números. O OFICIAL, como a SURPI ' +
-            'define: instrumentos que usam o app ÷ instrumentos vigentes no Transferegov, ' +
-            'obra ou não. O de COBRANÇA: entre os que já podem ter obra, quantos têm foto. ' +
-            'A tabela diz de quem cobrar foto, e de quem cobrar nova fiscalização porque ' +
-            'a última foto passou de 80 dias.',
-      fonte: 'Transferegov, lido pelo tgov_monitor na rotina de segunda (foto, ' +
-             'medição e pagamento), mais a execução financeira para saber se a obra ' +
-             'começou.',
+      oque: 'De quem cobrar fiscalização pelo app FiscalGov (indicador EX-01 do IDTRU-DL). ' +
+            'A página abre nas pendências: instrumentos em execução, com obra, que não ' +
+            'têm foto no app ou cuja última foto passou de 80 dias.',
+      fonte: 'Transferegov, lido pelo tgov_monitor na rotina de segunda (foto e data da ' +
+             'foto mais recente, medição e pagamento), mais a execução financeira para ' +
+             'saber se a obra começou.',
       cards: [
-        ['Total vigentes', 'instrumentos não finalizados e não anulados.'],
-        ['Em projeto', 'vigentes de quem ainda não se cobra foto: sem recurso federal, em cláusula suspensiva, sem AIO, ou que o Transferegov não encontra.'],
-        ['Aptos com foto', 'obra iniciada e relatório fotográfico enviado.'],
-        ['Aptos sem foto', 'obra iniciada e sem foto: é a lista de cobrança.'],
-        ['Foto desatualizada', 'apto com foto, mas a mais recente tem mais de 80 dias. A SEPLAN cobra nova fiscalização.'],
-        ['EX-01 oficial', 'usam o app ÷ vigentes no Transferegov (em execução, aguardando ou com prestação de contas em análise, em complementação, inadimplente).'],
-        ['Cobrança', 'aptos com foto ÷ aptos.']
+        ['Pendências', 'sem foto no app, ou com a foto mais recente há mais de 80 dias. É a lista de cobrança.'],
+        ['Em dia', 'foto enviada pelo app nos últimos 80 dias.'],
+        ['Ainda não se cobra', 'obra que não pode ter começado: sem recurso federal, em cláusula suspensiva, sem AIO, ou proposta que ainda não é instrumento.'],
+        ['Quem entra', 'só instrumento com a vigência correndo. Vencido ou encerrado não tem como receber foto.'],
+        ['80 dias', 'calibrado na lista da SEPLAN de 30/09/2026: ela cobrou quem estava parado de 88 dias para cima.'],
+        ['EX-01 oficial', 'a SURPI mede de outro jeito: usam o app ÷ todos os vigentes no Transferegov, obra ou não. O número está abaixo, em "Quem entra, agora".']
       ],
       numeros: function () {
         return convs().then(function (cv) {
-          var r = IDEPI.resumoEX01(cv);
-          var mot = {};
-          IDEPI.vigentesEX01(cv).forEach(function (c) {
-            var m = IDEPI.motivoNaoAplica(c);
-            if (m) mot[m] = (mot[m] || 0) + 1;
+          var vig = IDEPI.vigentesEX01(cv);
+          var nok = 0, desat = 0, dia = 0, proj = 0;
+          vig.forEach(function (c) {
+            if (!IDEPI.isApto(c)) proj++;
+            else if (!IDEPI.temFoto(c)) nok++;
+            else if (IDEPI.fotoDesatualizada(c)) desat++;
+            else dia++;
           });
-          var ROT = { em_suspensiva: 'em cláusula suspensiva', sem_recurso: 'sem recurso federal',
-                      sem_aio: 'sem AIO', fora_tgov: 'que o Transferegov não encontra' };
-          var partes = ['em_suspensiva', 'sem_recurso', 'sem_aio', 'fora_tgov']
-            .filter(function (k) { return mot[k]; })
-            .map(function (k) { return '  ' + n(mot[k]) + ' ' + ROT[k] + ';'; });
+          var o = IDEPI.resumoEX01Oficial(cv);
           return [
-            n(cv.length) + ' acompanhados, ' + n(r.vigentes) + ' vigentes para o indicador ' +
-              '(finalizados e anulados ficam fora).',
-            n(r.emProjeto) + ' em projeto, de quem ainda não se cobra foto:'
-          ].concat(partes).concat([
-            n(r.aptos) + ' aptos: ' + n(r.comFoto) + ' com foto e ' + n(r.semFoto) + ' sem foto.',
-            'Cobrança: ' + r.pct + '%.',
-            (function (o) {
-              return 'EX-01 oficial (SURPI): ' + o.pct + '%, ' + n(o.comApp) + ' de ' +
-                     n(o.vigentes) + ' vigentes no Transferegov usam o app.';
-            })(IDEPI.resumoEX01Oficial(cv)),
-            n(cv.filter(function (c) { return IDEPI.isApto(c) && IDEPI.fotoDesatualizada(c); }).length) +
-              ' aptos com foto desatualizada (mais de ' + IDEPI.DIAS_FOTO_DESATUALIZADA + ' dias).'
-          ]);
+            n(vig.length) + ' instrumentos em execução, de ' + n(cv.length) + ' acompanhados.',
+            n(nok + desat) + ' pendências: ' + n(nok) + ' sem foto e ' + n(desat) + ' com foto desatualizada.',
+            n(dia) + ' em dia e ' + n(proj) + ' que ainda não se cobra.',
+            'EX-01 oficial (SURPI): ' + o.pct + '%, ' + n(o.comApp) + ' de ' + n(o.vigentes) +
+              ' vigentes no Transferegov usam o app.'
+          ];
         });
       }
     },
-
     pcf: {
       oque: 'As prestações de contas finais em andamento: etapa, conta, período e ' +
             'processo SEI de cada uma. A Observação é a única coluna que o sistema ' +

@@ -194,7 +194,7 @@
 .fg-card-title i{color:var(--accent)}
 .fg-link{display:flex;align-items:center;gap:5px;font-size:11px;font-weight:700;color:var(--accent);text-decoration:none;white-space:nowrap}
 .fg-link:hover{text-decoration:underline}
-.fg-metrics{display:grid;grid-template-columns:repeat(4,1fr)}
+.fg-metrics{display:grid;grid-template-columns:repeat(3,1fr)}
 .fg-metric{padding:16px 20px;border-right:1px solid var(--border);text-align:center}
 .fg-metric:last-child{border-right:none}
 .fg-val{font-family:'Sora',sans-serif;font-size:26px;font-weight:800;color:var(--text);line-height:1;margin-bottom:3px}
@@ -523,16 +523,16 @@
           </div>
         </div>
         <div class="fg-metrics">
-          <div class="fg-metric"><div class="fg-val" id="fg-total">—</div><div class="fg-lbl">Vigentes</div></div>
-          <div class="fg-metric"><div class="fg-val" id="fg-proj">—</div><div class="fg-lbl">Em projeto</div></div>
-          <div class="fg-metric fg-ok"><div class="fg-val" id="fg-ok">—</div><div class="fg-lbl">Aptos c/ foto ✅</div></div>
-          <div class="fg-metric fg-nok"><div class="fg-val" id="fg-nok">—</div><div class="fg-lbl">Aptos sem foto ❌</div></div>
+          <!-- Simplificado em 30/09/2026, igual à página do FiscalGov: direto
+               às pendências. Detalhes no balão (i) da página. -->
+          <div class="fg-metric fg-nok"><div class="fg-val" id="fg-nok">—</div><div class="fg-lbl">Pendências</div></div>
+          <div class="fg-metric fg-ok"><div class="fg-val" id="fg-ok">—</div><div class="fg-lbl">Em dia</div></div>
+          <div class="fg-metric"><div class="fg-val" id="fg-proj">—</div><div class="fg-lbl">Ainda não se cobra</div></div>
         </div>
         <div class="fg-prog-wrap">
           <!-- Os dois números do EX-01 juntos (30/09/2026): o oficial é como o
                IDTRU-DL mede; o de cobrança diz de quem cobrar foto hoje. -->
-          <div class="fg-prog-lbl">EX-01 oficial (SURPI): usam o app ÷ vigentes no Transferegov <span id="fg-ofi">—</span></div>
-          <div class="fg-prog-lbl">Cobrança: aptos com foto ÷ total aptos <span id="fg-pct">—</span></div>
+          <div class="fg-prog-lbl">Obras com fiscalização em dia <span id="fg-pct">—</span></div>
           <div class="fg-track"><div class="fg-fill" id="fg-bar" style="width:0%"></div></div>
         </div>
       </div>
@@ -565,7 +565,7 @@
             </div>
           </div>
           <div class="pc-footer">
-            <div class="pc-kpi"><strong id="pc-fg-pct" style="color:var(--green)">—</strong><span>% com foto</span></div>
+            <div class="pc-kpi"><strong id="pc-fg-pct" style="color:var(--green)">—</strong><span>% em dia</span></div>
             <div class="pc-kpi"><strong id="pc-fg-nok" style="color:var(--red)">—</strong><span>pendentes</span></div>
             <div class="pc-cta" style="color:var(--green)">Abrir <i class="fa-solid fa-arrow-right"></i></div>
           </div>
@@ -929,17 +929,23 @@ function carregarExecucao(conv) {
 }
 
 function renderEX01(conv) {
-  var ex = IDEPI.resumoEX01(conv);
-  IDEPI.setTxt('fg-total', ex.vigentes);
-  IDEPI.setTxt('fg-proj',  ex.emProjeto);
-  IDEPI.setTxt('fg-ok',    ex.comFoto);
-  IDEPI.setTxt('fg-nok',   ex.semFoto);
-  IDEPI.setTxt('fg-pct',   ex.pct + '%');
-  IDEPI.$('fg-bar').style.width = ex.pct + '%';
-  IDEPI.setTxt('pc-fg-pct', ex.pct + '%');
-  IDEPI.setTxt('pc-fg-nok', ex.semFoto);
-  var of = IDEPI.resumoEX01Oficial(conv);
-  IDEPI.setTxt('fg-ofi', of.pct + '% (' + of.comApp + ' de ' + of.vigentes + ')');
+  /* Mesmas categorias da página do FiscalGov: pendência = apto sem foto ou
+     com foto de mais de 80 dias; em dia = apto com foto recente. */
+  var vig = IDEPI.vigentesEX01(conv);
+  var pend = 0, dia = 0, proj = 0;
+  vig.forEach(function (c) {
+    if (!IDEPI.isApto(c)) proj++;
+    else if (!IDEPI.temFoto(c) || IDEPI.fotoDesatualizada(c)) pend++;
+    else dia++;
+  });
+  var pct = (pend + dia) ? Math.round(dia / (pend + dia) * 100) : 0;
+  IDEPI.setTxt('fg-nok',  pend);
+  IDEPI.setTxt('fg-ok',   dia);
+  IDEPI.setTxt('fg-proj', proj);
+  IDEPI.setTxt('fg-pct',  pct + '%');
+  IDEPI.$('fg-bar').style.width = pct + '%';
+  IDEPI.setTxt('pc-fg-pct', pct + '%');
+  IDEPI.setTxt('pc-fg-nok', pend);
 }
 
 

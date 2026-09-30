@@ -919,8 +919,15 @@
    *  os dois lados contarem igual por construção. */
   var REGEX_FORA_EX01 = /cancelad|anulad|sem\s*dados/;
 
+  /* PRIMEIRO filtro (Ruan, 30/09/2026): "se o instrumento não está mais em
+     execução, não tem como tirar foto". Só a situação escrita não bastava:
+     899530, 648107 e 644411 dizem "Normal"/"Adimplente" e a vigência acabou
+     em 2026, 2019 e 2016; entravam como aptos e eram cobrados. Quem decide é
+     o status do próprio painel (calcStatus): só a vigência CORRENDO entra. */
+  var ST_EM_EXECUCAO = { normal: 1, alerta: 1, atencao: 1, critico: 1 };
   function vigentesEX01(convenios) {
     return (convenios || []).filter(function (c) {
+      if (!ST_EM_EXECUCAO[calcStatus(c).st]) return false;
       if (isFinalizado(c)) return false;
       return !REGEX_FORA_EX01.test(norm(c.situacao));
     });

@@ -816,7 +816,14 @@
    *  aqui só por serem novos. O caso real é o 648107 (FUNASA, vencido desde
    *  2019, PCF manual): não há obra em execução para fotografar. */
   function foraDoTransferegov(c) {
-    return norm(c && c.foto_app).indexOf('nao encontrado') !== -1;
+    if (norm(c && c.foto_app).indexOf('nao encontrado') === -1) return false;
+    /* Contraprova (30/09/2026): se o Transferegov devolveu a SITUAÇÃO do
+       instrumento, ele existe lá, e o "Não encontrado" da coluna O é falha
+       de leitura. Foi o caso de 22 instrumentos na rodada de 28/09, com a
+       rede caindo: todos saíam da cobrança do EX-01. A SEPLAN cobrou seis
+       deles. Errar cobrando é menos grave que dispensar quem deve. */
+    var sit = norm(c && c.situacao_tgov).replace(/[—\-\s]/g, '');
+    return !sit || sit === 'erro';
   }
 
   /** Cláusula suspensiva ativa = ainda em fase de PROJETO.
@@ -917,6 +924,54 @@
       if (isFinalizado(c)) return false;
       return !REGEX_FORA_EX01.test(norm(c.situacao));
     });
+  }
+
+  /* ── EX-01 OFICIAL (SURPI) e FOTO DESATUALIZADA (30/09/2026) ──────────────
+   *  O informativo da SURPI de setembro/2026 define o EX-01 do IDTRU-DL como
+   *  "instrumentos que utilizam o app ÷ instrumentos VIGENTES", e diz que a
+   *  exigência não é só para obra. O número que o painel mostrava até aqui é
+   *  outro: aptos com foto ÷ aptos, que tira quem ainda não pode ter obra. Os
+   *  dois servem, para perguntas diferentes, e a tela mostra os dois:
+   *    OFICIAL   — como o IDTRU-DL vai medir o IDEPI;
+   *    COBRANÇA  — de quem faz sentido cobrar foto hoje.
+   *  "Vigente" para a SURPI é o que aparece no app, e o informativo lista as
+   *  situações: Em execução, Aguardando Prestação de Contas, Prestação de
+   *  Contas em Análise, em Complementação, Comprovada em Análise e
+   *  Inadimplente. Lidas da situação do Transferegov (coluna T); sem ela, a
+   *  da CGU. */
+  var REGEX_VIGENTE_SURPI = /em\s*execucao|aguardando\s*prestacao\s*de\s*contas|prestacao\s*de\s*contas\s*(em\s*analise|em\s*complementacao|comprovada\s*em\s*analise)|inadimplent/;
+  function vigenteSurpi(c) {
+    var sit = norm(c && c.situacao_tgov).replace(/^[—\-\s]+$/, '');
+    if (!sit || sit === 'erro') sit = norm(c && c.situacao);
+    return REGEX_VIGENTE_SURPI.test(sit);
+  }
+  function resumoEX01Oficial(convenios) {
+    var vig = (convenios || []).filter(vigenteSurpi);
+    var comApp = vig.filter(temFoto).length;
+    return {
+      vigentes: vig.length,
+      comApp: comApp,
+      semApp: vig.length - comApp,
+      pct: vig.length ? Math.round(comApp / vig.length * 100) : 0
+    };
+  }
+
+  /* A SEPLAN cobra quem tem foto ANTIGA ("última fiscalização em março"):
+   *  foto existe, fiscalização parou. A data vem do tgov_monitor (coluna AI,
+   *  a foto mais recente do Relatório Fotográfico). O limite foi CALIBRADO
+   *  na lista que a SEPLAN mandou em 30/09/2026, contra as datas colhidas no
+   *  mesmo dia: o caso mais recente que ela marcou tinha 88 dias (967173), e
+   *  ela NÃO marcou o 907050 (65 dias) nem o 946258 (72). O corte dela fica
+   *  entre 72 e 88; 80 fica no meio. A primeira versão usava 60 e acusaria
+   *  dois que a SEPLAN considera em dia. */
+  var DIAS_FOTO_DESATUALIZADA = 80;
+  function diasDesdeUltimaFoto(c) {
+    var d = parseDateBR(c && c.ultima_foto);
+    return d ? Math.floor((hoje() - d) / 86400000) : null;
+  }
+  function fotoDesatualizada(c) {
+    var d = diasDesdeUltimaFoto(c);
+    return temFoto(c) && d !== null && d > DIAS_FOTO_DESATUALIZADA;
   }
 
   function resumoEX01(convenios) {
@@ -1351,6 +1406,11 @@
   IDEPI.resumoEX01 = resumoEX01;
   IDEPI.juntarExecucao = juntarExecucao;
   IDEPI.vigentesEX01 = vigentesEX01;
+  IDEPI.vigenteSurpi = vigenteSurpi;
+  IDEPI.resumoEX01Oficial = resumoEX01Oficial;
+  IDEPI.DIAS_FOTO_DESATUALIZADA = DIAS_FOTO_DESATUALIZADA;
+  IDEPI.diasDesdeUltimaFoto = diasDesdeUltimaFoto;
+  IDEPI.fotoDesatualizada = fotoDesatualizada;
   IDEPI.tipoIngresso = tipoIngresso;
   IDEPI.rotuloTipoIngresso = rotuloTipoIngresso;
   IDEPI.$ = $;
@@ -1572,9 +1632,12 @@
       ].concat(fichaLinhasSuspensiva(c))) +
       fichaBloco('Valores', [
         /* A CGU ainda não conhece o instrumento (proposta ou pré-instrumento):
-           o valor veio da Emendas Senador, e a tela diz isso. */
+           o valor veio da proposta no Transferegov ou, em último caso, da
+           Emendas Senador (que dá o valor GLOBAL), e a tela diz qual. */
         ['Repasse previsto', fmtReais(rp.previsto) +
-          (c.dados_origem === 'Emendas' && rp.previsto ? '  (Emendas Senador)' : '')],
+          (rp.previsto && c.dados_origem
+            ? '  (' + (c.dados_origem === 'Emendas' ? 'Emendas Senador, valor global' : 'proposta no Transferegov') + ')'
+            : '')],
         ['Repasse já liberado', fmtReais(rp.liberado)],
         ['Repasse a receber', fmtReais(rp.falta)],
         ['Contrapartida prevista', cp.previsto ? fmtReais(cp.previsto) : 'não há'],

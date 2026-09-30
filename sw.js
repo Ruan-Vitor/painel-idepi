@@ -285,7 +285,12 @@
 /* v53 - 30/09/2026 - orgao executor: IDEPI.orgaoExecutorDe() no app.js e a
                  linha "Orgao executor" na ficha do instrumento. Base dos
                  filtros por FUNASA, CODEVASF, CAIXA, MIDR e MAPA. */
-const VERSAO = 'idepi-v53';
+/* v54 - 30/09/2026 - balao "o que e esta pagina" nas 8 paginas
+                 (assets/sobre.js, arquivo NOVO no SHELL), arte oficial no
+                 login, no carregamento e no logo do topo (app.css, auth.js,
+                 nav.js), e o valor da Emendas Senador na ficha de quem a CGU
+                 ainda nao conhece (app.js). */
+const VERSAO = 'idepi-v54';
 const CACHE_SHELL = VERSAO + '-shell';
 const CACHE_PAGS  = VERSAO + '-paginas';
 
@@ -304,6 +309,7 @@ const SHELL = [
   'assets/app.js',
   'assets/nav.js',
   'assets/notificacoes.js',
+  'assets/sobre.js',
   'assets/auth.js',
   'assets/data.js',
   'assets/firebase-config.js',

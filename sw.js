@@ -309,7 +309,10 @@
                  com o estilo DENTRO do filtros.js: no app instalado a barra
                  apareceu crua porque o SW servia o app.css velho e o
                  filtros.js novo. O bloco .flt saiu do app.css. */
-const VERSAO = 'idepi-v57';
+/* v58 - 30/09/2026 - FiscalGov simplificado (Pendencias / Em dia / Ainda nao
+                 se cobra, abrindo nas pendencias) e so vigencia correndo
+                 conta no EX-01 (app.js). Painel Geral alinhado. */
+const VERSAO = 'idepi-v58';
 const CACHE_SHELL = VERSAO + '-shell';
 const CACHE_PAGS  = VERSAO + '-paginas';
 

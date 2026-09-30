@@ -1571,7 +1571,10 @@
         ['Limite p/ prestação de contas', c.limite_prestacao]
       ].concat(fichaLinhasSuspensiva(c))) +
       fichaBloco('Valores', [
-        ['Repasse previsto', fmtReais(rp.previsto)],
+        /* A CGU ainda não conhece o instrumento (proposta ou pré-instrumento):
+           o valor veio da Emendas Senador, e a tela diz isso. */
+        ['Repasse previsto', fmtReais(rp.previsto) +
+          (c.dados_origem === 'Emendas' && rp.previsto ? '  (Emendas Senador)' : '')],
         ['Repasse já liberado', fmtReais(rp.liberado)],
         ['Repasse a receber', fmtReais(rp.falta)],
         ['Contrapartida prevista', cp.previsto ? fmtReais(cp.previsto) : 'não há'],

@@ -52967,8 +52967,14 @@
       "banco": "",
       "agencia": "",
       "conta": "",
-      "ingressos": [],
-      "total_recebido": "",
+      "ingressos": [
+        {
+          "data": "08/09/2026",
+          "valor": "22.500,00",
+          "tipo": "C"
+        }
+      ],
+      "total_recebido": "22.500,00",
       "ultimo_ingresso_federal": {}
     },
     "999001": {
@@ -53008,5 +53014,5 @@
       "ultimo_ingresso_federal": {}
     }
   },
-  "repasses_atualizado_em": "30/09/2026 08:46"
+  "repasses_atualizado_em": "30/09/2026 09:54"
 }

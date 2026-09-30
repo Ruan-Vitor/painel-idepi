@@ -295,7 +295,17 @@
                  SURPI ao lado do de cobranca e foto desatualizada (> 80 dias);
                  "fora do Transferegov" so sem situacao lida; icones novos
                  (documento com selo, no lugar das argolas). */
-const VERSAO = 'idepi-v55';
+/* v56 - 30/09/2026 - VERSAO NOS ENDERECOS DOS ICONES (?v=2), no manifesto, nas
+                 8 paginas, no CSS e no login. O Chrome do Android so troca o
+                 icone do app instalado quando o ENDERECO do icone muda no
+                 manifesto: a imagem nova no endereco antigo nao e percebida.
+                 Com isso o celular Android passa a mostrar o documento com
+                 selo sem reinstalar (o Chrome confere o manifesto ao abrir o
+                 app, no maximo uma vez por dia, e pode pedir confirmacao).
+                 No iPhone o icone da tela inicial NAO atualiza: o iOS grava
+                 na instalacao. La, so removendo e adicionando de novo.
+                 Ao trocar a arte outra vez: gerar_icones.py e subir o ?v=. */
+const VERSAO = 'idepi-v56';
 const CACHE_SHELL = VERSAO + '-shell';
 const CACHE_PAGS  = VERSAO + '-paginas';
 
@@ -320,12 +330,12 @@ const SHELL = [
   'assets/data.js',
   'assets/firebase-config.js',
   'manifest.webmanifest',
-  'icons/icon-192.png',
-  'icons/icon-512.png',
-  'icons/icon-maskable-192.png',
-  'icons/icon-maskable-512.png',
-  'icons/apple-touch-icon.png',
-  'icons/favicon-32.png'
+  'icons/icon-192.png?v=2',
+  'icons/icon-512.png?v=2',
+  'icons/icon-maskable-192.png?v=2',
+  'icons/icon-maskable-512.png?v=2',
+  'icons/apple-touch-icon.png?v=2',
+  'icons/favicon-32.png?v=2'
 ];
 
 /* Domínios que o service worker deve ignorar por completo. */

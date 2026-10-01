@@ -327,7 +327,11 @@
                  PCF), Excel com escolha (todas ou so as colunas da tela),
                  barra de rolagem lateral tambem em cima, botao da ficha mais
                  afastado do numero. */
-const VERSAO = 'idepi-v62';
+/* v63 - 01/10/2026 - CONSERTO do app.css: o content do icone de copiado foi
+                 gravado com um caractere de controle (0x0C) no lugar da
+                 barra invertida, e o navegador descartou as ~230 regras dali
+                 para baixo (v60 a v62, das 12:45 ate agora). */
+const VERSAO = 'idepi-v63';
 const CACHE_SHELL = VERSAO + '-shell';
 const CACHE_PAGS  = VERSAO + '-paginas';
 

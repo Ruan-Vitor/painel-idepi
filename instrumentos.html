@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<!-- IDEPI · Todos os Instrumentos — v20261001 -->
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Todos os Instrumentos — IDEPI Convênios Federais</title>
+<meta name="description" content="Todos os instrumentos do IDEPI, com filtros combinados e exportação para Excel.">
+<meta name="theme-color" content="#0b1527">
+
+<!-- ── APP INSTALÁVEL (PWA) ────────────────────────────────────────────── -->
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png?v=2">
+<link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16.png?v=2">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png?v=2">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="IDEPI">
+
+<!-- ── FONTES E ÍCONES ─────────────────────────────────────────────────── -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+
+<!-- ── CASCA COMPARTILHADA (header, menu, login, responsivo) ───────────── -->
+<link rel="stylesheet" href="assets/app.css">
+
+<style>
+/* ═══ Estilos exclusivos de Todos os Instrumentos ═════════════════════════
+   Pedido do Ruan (passagem de 30/09/2026, item 13): ver TODOS os
+   instrumentos sem a ordem por vigência, filtrar combinando, abrir o
+   detalhe e levar para o Excel. Casca, cartão no celular (.tbl-cards) e
+   texto que abre com um toque (.txt-exp) vêm do app.css.                  */
+:root{--surface2:#f0f4f8;--border:#e2e8f0;--text:#1e293b;--muted:#64748b}
+body{font-family:'Inter',sans-serif;color:var(--text)}
+
+.main{max-width:1400px;margin:0 auto;padding:24px}
+.ptitle{font-size:19px;font-weight:700;display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.ptitle i{color:var(--brand);font-size:16px}
+
+.panel{background:var(--surface);border-radius:var(--r);border:1px solid var(--border);box-shadow:var(--sh);overflow:hidden}
+.phead{padding:12px 16px 0;display:flex;flex-direction:column;gap:12px}
+.ins-topo{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.sbar{flex:1;min-width:220px;display:flex;align-items:center;gap:8px;height:36px;padding:0 12px;border:1px solid var(--border);border-radius:10px;background:var(--surface)}
+.sbar:focus-within{border-color:var(--brand);box-shadow:0 0 0 3px rgba(26,58,110,.12)}
+.sbar i{color:#94a3b8;font-size:13px}
+.sbar input{border:none;outline:none;font-size:13px;color:var(--text);background:transparent;flex:1;font-family:'Inter',sans-serif;min-width:0}
+
+.twrap{overflow:auto;max-height:calc(100vh - 290px);min-height:240px;border-top:1px solid var(--border)}
+table{width:100%;border-collapse:collapse;font-size:12px}
+th{position:sticky;top:0;background:var(--surface2);padding:9px 12px;text-align:left;font-weight:600;font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;border-bottom:1px solid var(--border);z-index:1;white-space:nowrap;cursor:pointer;user-select:none}
+th:hover{color:var(--brand)}
+th.sorted-asc::after{content:' ▲';color:var(--brand);font-size:9px}
+th.sorted-desc::after{content:' ▼';color:var(--brand);font-size:9px}
+th.dir,td.dir{text-align:right}
+td{padding:9px 12px;border-bottom:1px solid var(--border);vertical-align:top}
+tbody tr:hover td{background:#f8fafc}
+.num{font-weight:600;color:var(--brand);font-size:11.5px;white-space:nowrap}
+.obj{max-width:360px;min-width:220px}
+.muni{font-size:10.5px;color:#94a3b8;margin-top:3px}
+.val{white-space:nowrap;font-variant-numeric:tabular-nums}
+.org{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.3px;padding:2px 8px;border-radius:999px;background:var(--brand-light);color:var(--brand);white-space:nowrap}
+.vig{white-space:nowrap}
+.prz{display:block;font-size:10px;font-weight:600;margin-top:2px}
+.prz.normal{color:var(--n-tx)}.prz.alerta{color:var(--a-tx)}.prz.atencao{color:var(--at-tx)}
+.prz.critico{color:var(--c-tx)}.prz.vencido{color:var(--v-tx)}.prz.finalizado{color:var(--f-tx)}
+.prz.sem_data{color:#6d28d9}
+.cinza{color:#94a3b8}
+.empty{text-align:center;padding:40px 24px;color:var(--muted)}
+.empty i{font-size:36px;opacity:.3;margin-bottom:10px;display:block}
+
+@media(max-width:900px){
+  .main{padding:14px 12px}
+  .ptitle{font-size:16px}
+  .twrap{max-height:none;overflow:visible;border-top:0;padding:12px 12px 2px}
+  .obj{min-width:0}
+}
+@media print{.phead,.sidebar,.hd{display:none!important}.twrap{max-height:none;overflow:visible}}
+</style>
+</head>
+<body data-page="instrumentos">
+
+<!-- Tela de login: cobre tudo até o Firebase confirmar o acesso -->
+<div id="lockscreen"></div>
+
+<div class="overlay" id="ov">
+  <div class="spin"></div>
+  <p>Carregando dados...</p>
+  <small>Buscando convênios atualizados</small>
+</div>
+
+<div class="hd">
+  <div class="hd-left">
+    <div class="hd-logo">
+      <div class="hd-logo-icon"><i class="fa-solid fa-handshake"></i></div>
+      <div>
+        <div class="hd-title">IDEPI</div>
+        <div class="hd-sub">Convênios Federais</div>
+      </div>
+    </div>
+  </div>
+  <div class="hd-right">
+    <div class="hd-stat"><strong id="hs-lib">—</strong><span>Total liberado</span></div>
+    <div class="hd-div"></div>
+    <div class="hd-stat"><strong id="hs-tot">—</strong><span>Instrumentos</span></div>
+    <div class="hd-div"></div>
+    <div class="hd-ts" id="hd-ts">—</div>
+  </div>
+</div>
+
+<!-- BODY = SIDEBAR + CONTENT -->
+<div class="body">
+
+  <!-- O menu é montado por assets/nav.js — não escreva os itens aqui. -->
+  <nav class="sidebar" id="mainSidebar"></nav>
+
+  <div class="content">
+
+<div class="main">
+  <div class="ptitle"><i class="fa-solid fa-layer-group"></i> Todos os Instrumentos</div>
+
+  <div class="panel">
+    <div class="phead">
+      <div class="ins-topo">
+        <div class="sbar">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="search" id="busca" placeholder="Buscar nº, objeto, SEI ou município" autocomplete="off">
+        </div>
+        <button class="btn-excel" id="btnExcelIns" onclick="exportarExcel()" title="Exportar para Excel o que está na tela">
+          <i class="fa-solid fa-file-excel"></i> Exportar Excel
+        </button>
+      </div>
+      <!-- A barra de filtros (assets/filtros.js) entra logo depois desta âncora. -->
+      <div id="ancoraFiltros"></div>
+    </div>
+
+    <div class="twrap">
+      <table class="tbl-cards">
+        <thead><tr>
+          <th data-col="numero">Nº</th>
+          <th data-col="objeto">Objeto / município</th>
+          <th data-col="orgao">Órgão</th>
+          <th data-col="concedente">Concedente</th>
+          <th data-col="fiscal">Fiscal</th>
+          <th data-col="vigencia">Vigência</th>
+          <th data-col="total" class="dir">Valor total</th>
+          <th data-col="liberado" class="dir">Liberado</th>
+        </tr></thead>
+        <tbody id="tbody"></tbody>
+      </table>
+      <div class="empty" id="empty" style="display:none;"><i class="fa-solid fa-inbox"></i><p>Nenhum instrumento com esses filtros.</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SDK do Firebase (login + banco) ══════════════════════════════════ -->
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore-compat.js"></script>
+<!-- ══ Casca compartilhada ═════════════════════════════════════════════ -->
+<script src="assets/firebase-config.js"></script>
+<script src="assets/app.js"></script>
+<script src="assets/auth.js"></script>
+<script src="assets/data.js"></script>
+<script src="assets/nav.js"></script>
+<script src="assets/notificacoes.js"></script>
+<script src="assets/sobre.js"></script>
+<script src="assets/filtros.js"></script>
+
+<script>
+const esc = IDEPI.esc;
+let dados = [], _gerado_em = '';
+let sortCol = 'numero', sortDir = 1;
+
+/* A LISTA QUE O EXCEL LÊ. Guardada aqui no fim de cada render, já filtrada
+   e na ordem da tela. O Excel nunca raspa o HTML: a tabela vira cartão no
+   celular e tem texto recolhido, e o que se lê dela não é o dado. */
+let _visiveis = [];
+
+/* Valor de cada coluna para ordenar. Mesmas funções do app.js que a tela
+   e os filtros usam, para a ordem nunca discordar do que está escrito. */
+const ORDEM = {
+  /* Os instrumentos novos do Transferegov têm código com letras (7AAALY).
+     Na ordem por número eles vêm depois dos numéricos, e não no meio deles. */
+  numero:     r => (/^\d+$/.test(r.numero || '') ? '0 ' : '1 ') + (r.numero || ''),
+  objeto:     r => (r.objeto || '').toLowerCase(),
+  orgao:      r => r._orgao,
+  concedente: r => r._conc,
+  fiscal:     r => (r.fiscal || '').toLowerCase(),
+  vigencia:   r => { const d = IDEPI.parseDateBR(r.vigencia_fmt || r.vigencia); return d ? d.getTime() : Infinity; },
+  total:      r => IDEPI.parseReais(r.v_total),
+  liberado:   r => r._lib
+};
+
+function comparar(a, b) {
+  const va = ORDEM[sortCol](a), vb = ORDEM[sortCol](b);
+  if (typeof va === 'number' && typeof vb === 'number') return (va - vb) * sortDir;
+  /* Número do instrumento é texto com dígitos ("781089", "1012345"):
+     a comparação numérica do localeCompare põe 99 antes de 100. */
+  return String(va).localeCompare(String(vb), 'pt-BR', { numeric: true }) * sortDir;
+}
+
+async function carregar() {
+  try {
+    const j = await IDEPI.dados.carregar();
+    _gerado_em = j.gerado_em || '';
+    IDEPI.usarHistorico(j.historico_repasses || {});
+    // Tipo do instrumento e % de execução só chegam pela execução financeira.
+    await IDEPI.juntarExecucao(j.convenios || []);
+    dados = (j.convenios || []).map(c => {
+      const s = IDEPI.calcStatus(c);
+      return Object.assign(c, {
+        _st: s.st, _dias: s.dias,
+        _orgao: IDEPI.orgaoExecutorDe(c).rotulo,
+        _conc: IDEPI.concedenteDe(c).sigla || '',
+        _lib: IDEPI.liberadoDe(c)
+      });
+    });
+    document.getElementById('ov').classList.add('hide');
+    document.getElementById('hs-tot').textContent = dados.length;
+    document.getElementById('hs-lib').textContent =
+      IDEPI.fmtCompacto(dados.reduce((s, r) => s + r._lib, 0));
+    document.getElementById('hd-ts').textContent = _gerado_em ? 'Dados de ' + _gerado_em : '';
+
+    // Todas as 7 dimensões: esta é a página de ver tudo, nenhuma fica de fora.
+    const q = new URLSearchParams(location.search).get('q');
+    if (q) document.getElementById('busca').value = q;
+    render();
+    // Espera a barra se desenhar para o contador dela já sair certo.
+    await IDEPI.filtros.ligar({ depois: '#ancoraFiltros', aoMudar: render });
+    render();
+  } catch (e) {
+    document.getElementById('ov').innerHTML = `
+      <div style="color:#fca5a5;font-size:44px;margin-bottom:8px;"><i class="fa-solid fa-triangle-exclamation"></i></div>
+      <p style="color:#fff;">Não foi possível carregar os dados</p>
+      <small>${esc(e.message || '')}<br>Verifique a conexão ou se os scripts Python já publicaram os dados.</small>`;
+  }
+}
+
+function textoBusca(r) {
+  if (!r._busca) r._busca = [r.numero, r.numero_original, r.objeto, r.municipio_emendas,
+    IDEPI.seisDe(r).join(' ')].join(' ').toLowerCase()
+    .normalize('NFD').replace(/[̀-ͯ]/g, '');
+  return r._busca;
+}
+
+/* O contador da barra é do filtros.js e não sabe da busca. Com busca ligada
+   ele diria "18 de 107" com 1 linha na tela; aqui ele passa a contar o que
+   está à vista. Roda depois do desenho da barra, a cada render. */
+function contador(q) {
+  const res = document.querySelector('.flt-res > span');
+  if (!res) return;
+  if (q || IDEPI.filtros.ativos())
+    res.innerHTML = '<strong>' + _visiveis.length + '</strong> de ' + dados.length;
+  else res.textContent = dados.length + ' instrumentos';
+}
+
+function render() {
+  const q = document.getElementById('busca').value.trim().toLowerCase()
+    .normalize('NFD').replace(/[̀-ͯ]/g, '');
+  let rows = dados.filter(IDEPI.filtros.passa);
+  if (q) rows = rows.filter(r => textoBusca(r).includes(q));
+  rows.sort(comparar);
+  _visiveis = rows;
+  contador(q);
+
+  document.querySelectorAll('th[data-col]').forEach(th => {
+    th.classList.toggle('sorted-asc',  th.dataset.col === sortCol && sortDir === 1);
+    th.classList.toggle('sorted-desc', th.dataset.col === sortCol && sortDir === -1);
+  });
+
+  const tb = document.getElementById('tbody');
+  document.getElementById('empty').style.display = rows.length ? 'none' : 'block';
+  tb.innerHTML = rows.map(r => {
+    const muni = (IDEPI.filtros.municipios(r) || []).join(', ');
+    return `<tr>
+      <td><span class="num">${IDEPI.faixaFase(r)}<a class="num-link" href="execucao.html?num=${encodeURIComponent(r.numero || '')}" title="Abrir este instrumento">${esc(r.numero) || '—'}</a>${IDEPI.ficha.botao(r.numero || '')}</span></td>
+      <td class="celula-destaque"><div class="obj txt-exp">${esc(r.objeto) || '—'}</div>${muni ? `<div class="muni"><i class="fa-solid fa-location-dot"></i> ${esc(muni)}</div>` : ''}</td>
+      <td><div><span class="org">${esc(r._orgao)}</span></div></td>
+      <td>${esc(r._conc) || '<span class="cinza">—</span>'}</td>
+      <td>${esc(r.fiscal) || '<span class="cinza">—</span>'}</td>
+      <td><div><span class="vig">${esc(r.vigencia_fmt || r.vigencia) || '—'}</span><span class="prz ${r._st}">${esc(IDEPI.NOME_ST[r._st] || r._st)}</span></div></td>
+      <td class="dir"><span class="val">${r.v_total ? esc(IDEPI.fmtReais(r.v_total)) : '—'}</span></td>
+      <td class="dir"><span class="val">${esc(IDEPI.fmtReais(r._lib))}</span></td>
+    </tr>`;
+  }).join('');
+}
+
+document.getElementById('busca').addEventListener('input', () => {
+  const v = document.getElementById('busca').value.trim();
+  const p = new URLSearchParams(location.search);
+  if (v) p.set('q', v); else p.delete('q');
+  const s = p.toString();
+  try { history.replaceState(null, '', location.pathname + (s ? '?' + s : '')); } catch (e) {}
+  render();
+});
+
+document.querySelector('thead').addEventListener('click', e => {
+  const th = e.target.closest('th[data-col]');
+  if (!th) return;
+  if (sortCol === th.dataset.col) sortDir = -sortDir;
+  else { sortCol = th.dataset.col; sortDir = 1; }
+  render();
+});
+
+/* ── EXCEL ────────────────────────────────────────────────────────────────
+   Lê _visiveis (o que a tela mostra, na ordem da tela). Valores em número,
+   para somar no Excel. A aba "Filtros" diz o que estava ligado: arquivo
+   encaminhado precisa se explicar sem quem o gerou. */
+function exportarExcel() {
+  if (!dados.length) { alert('Dados ainda não carregados. Aguarde.'); return; }
+  IDEPI.comBotaoOcupado('btnExcelIns', '<i class="fa-solid fa-file-excel"></i> Exportar Excel', function () {
+    const GEST = { legado: 'Legado (até 2022)', nova: 'Nova gestão (2023 em diante)', proposta: 'Proposta' };
+    const num = v => { const n = IDEPI.parseReais(v); return n || n === 0 ? n : ''; };
+    const cab = ['Nº Instrumento','Nº original','Objeto','Município','Órgão executor','Concedente',
+      'Tipo','Gestão','Fiscal','Ponto focal','Situação (Transferegov)','Início da vigência',
+      'Fim da vigência','Status do prazo','Dias','Suspensiva','Valor total (R$)','Contrapartida (R$)',
+      'Liberado (R$)','Última liberação','Valor da última liberação (R$)','% execução','Nº SEI',
+      'Mandatária','Autor da emenda','Limite da prestação','Etapa da PCF'];
+    const linhas = _visiveis.map(r => [
+      r.numero || '', r.numero_original || '', r.objeto || '',
+      (IDEPI.filtros.municipios(r) || []).join(', '),
+      r._orgao, IDEPI.concedenteDe(r).nome || r._conc, r.tipo_instrumento || '',
+      GEST[IDEPI.gestaoDe(r)] || '', r.fiscal || '', r.ponto_focal || '',
+      r.situacao_tgov || '', r.vigencia_inicio || r.vigencia_inicio_tgov || '',
+      r.vigencia_fmt || r.vigencia || '', IDEPI.NOME_ST[r._st] || r._st,
+      r._dias === null || r._dias === undefined ? '' : r._dias,
+      r.vigencia_suspensiva || '', num(r.v_total), num(r.v_contrapartida), r._lib,
+      r.ultima_liberacao || '', r.ultima_liberacao ? num(r.v_ultima_liberacao) : '',
+      r.pct_exec || '', IDEPI.seiVigenteDe(r), r.mandataria || '',
+      r.autor_emenda || r.dono_emenda || '', r.limite_prestacao || '', r.pcf_etapa || ''
+    ]);
+    const ws = XLSX.utils.aoa_to_sheet([cab].concat(linhas));
+    ws['!cols'] = [12,12,60,24,12,30,22,24,16,18,24,12,12,12,7,12,16,16,16,12,16,9,24,24,24,12,12].map(w => ({ wch: w }));
+    ws['!autofilter'] = { ref: XLSX.utils.encode_range({ s: { r: 0, c: 0 }, e: { r: linhas.length, c: cab.length - 1 } }) };
+    ws['!freeze'] = { xSplit: 1, ySplit: 1 };
+
+    const p = new URLSearchParams(location.search), fil = [['Filtro', 'Escolha']];
+    p.forEach((v, k) => {
+      if (k.indexOf('f_') === 0) fil.push([k.slice(2).replace(/^./, x => x.toUpperCase()), v]);
+    });
+    const busca = document.getElementById('busca').value.trim();
+    if (busca) fil.push(['Busca', busca]);
+    if (fil.length === 1) fil.push(['Nenhum', 'todos os instrumentos']);
+    const wsF = XLSX.utils.aoa_to_sheet([['IDEPI · Todos os Instrumentos', ''], ['', '']].concat(fil).concat([
+      ['', ''],
+      ['Instrumentos no arquivo', _visiveis.length + ' de ' + dados.length],
+      ['Ordem', 'a mesma da tela'],
+      ['Dados de', _gerado_em || ''],
+      ['Gerado em', new Date().toLocaleString('pt-BR')]
+    ]));
+    wsF['!cols'] = [{ wch: 24 }, { wch: 40 }];
+
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Instrumentos');
+    XLSX.utils.book_append_sheet(wb, wsF, 'Filtros');
+    XLSX.writeFile(wb, 'IDEPI_Instrumentos_' + IDEPI.carimboData() + '.xlsx');
+  });
+}
+
+/* Lê o mesmo documento de Vigências, então segue a mesma liberação. */
+IDEPI.auth.comPainel('vigencias', carregar);
+</script>
+
+  </div><!-- /content -->
+</div><!-- /body -->
+
+</body>
+</html>

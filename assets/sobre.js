@@ -113,6 +113,29 @@
       }
     },
 
+    instrumentos: {
+      oque: 'Todos os instrumentos numa lista só, em ordem de número e sem ' +
+            'separar por prazo. Os filtros e a busca combinam entre si; o número ' +
+            'abre a página do instrumento. O Excel sai com o que está na tela, na ' +
+            'mesma ordem, e traz uma aba dizendo quais filtros estavam ligados.',
+      fonte: FONTE_VIGENCIAS,
+      cards: [
+        ['Filtros', 'cada opção mostra quantos sobram somando os outros filtros já escolhidos. O link copiado abre com os mesmos filtros.'],
+        ['Busca', 'procura no número, no número original, no objeto, no município e nos processos SEI, sem ligar para acento.'],
+        ['Ordem', 'clique no título de uma coluna para ordenar por ela; outro clique inverte.'],
+        ['Liberado', 'o que a União já mandou, pelo Transferegov.']
+      ],
+      numeros: function () {
+        return convs().then(function (cv) {
+          return [
+            n(cv.length) + ' instrumentos: todos os da coluna A da planilha de vigências, finalizados inclusive.',
+            'Por prazo: ' + linhaStatus(contarStatus(cv)) + '.',
+            'Por órgão executor: ' + contarOrgao(cv) + '.'
+          ];
+        });
+      }
+    },
+
     execucao: {
       oque: 'Tudo de UM instrumento: dinheiro que entrou e saiu, notas fiscais, ' +
             'contratos, medições e atestes. É a página principal do instrumento: o ' +

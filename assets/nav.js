@@ -19,6 +19,8 @@
     { secao: 'Convênios Federais' },
     { id: 'index',      icone: 'fa-gauge-high',           rotulo: 'Painel Geral',          href: 'index.html' },
     { id: 'vigencias',  icone: 'fa-table-list',           rotulo: 'Vigências',             href: 'vigencias.html' },
+    /* Lê o mesmo documento de Vigências, então segue a liberação dela (painel). */
+    { id: 'instrumentos', painel: 'vigencias', icone: 'fa-layer-group', rotulo: 'Todos os Instrumentos', href: 'instrumentos.html' },
     { id: 'execucao',   icone: 'fa-chart-line',           rotulo: 'Execução Financeira',   href: 'execucao.html' },
     { id: 'ingressos',  icone: 'fa-money-bill-transfer',  rotulo: 'Ingressos de Recurso',  href: 'ingressos.html' },
     { id: 'pcf',        icone: 'fa-file-invoice',         rotulo: 'Prestação de Contas',   href: 'pcf.html' },
@@ -119,7 +121,7 @@
     MENU.forEach(function (it) {
       if (it.secao || it.embreve || !it.href) return;
       if (it.id === 'index') return;                 // Painel Geral é de todos
-      if (IDEPI.auth.podeVer(it.id)) return;
+      if (IDEPI.auth.podeVer(it.painel || it.id)) return;
 
       var link = sidebar.querySelector('.sb-item[href="' + it.href + '"]');
       if (link) link.remove();

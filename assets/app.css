@@ -676,7 +676,7 @@ div > button:has(svg):not([class]):not([id]){display:none!important}
   font-size:12px;flex-shrink:0}
 .btn-copiar:hover{background:var(--surface2,#f0f4f8);color:var(--brand)}
 .btn-copiar.copiado{color:var(--n-tx,#15803d)}
-.btn-copiar.copiado i::before{content:"00c";font-family:'Font Awesome 6 Free';font-weight:900}
+.btn-copiar.copiado i::before{content:"\f00c";font-family:'Font Awesome 6 Free';font-weight:900}
 .fb-sei-vig{font-family:'IBM Plex Mono',monospace;font-size:11.5px}
 .fb-mais{
   border:1px solid var(--border);background:var(--surface2);color:var(--muted);

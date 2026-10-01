@@ -1174,26 +1174,23 @@
 
   function copiar(texto) {
     if (!texto || texto === '—') return;
-    /* A API moderna pode recusar (página sem foco, permissão negada). Antes a
-       recusa morria calada e o botão parecia não fazer nada; agora cai no
-       caminho antigo, que funciona nesses casos. */
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(texto).then(function () { toast(texto + ' copiado!'); },
-                                                 function () { copiarAntigo(texto); });
-      return;
-    }
-    copiarAntigo(texto);
-  }
-
-  function copiarAntigo(texto) {
+    /* O caminho clássico PRIMEIRO (01/10/2026): responde na hora, dentro do
+       clique. A API moderna pode ficar pendurada esperando permissão, sem
+       responder nem recusar (visto no Chrome), e o botão parecia morto. Ela
+       fica de reserva para quando o clássico não existir. */
     var el = document.createElement('textarea');
     el.value = texto;
+    el.setAttribute('readonly', '');
     el.style.position = 'fixed';
     el.style.opacity = '0';
     document.body.appendChild(el);
     el.select();
-    try { document.execCommand('copy'); toast(texto + ' copiado!'); } catch (e) { /* ignora */ }
+    var foi = false;
+    try { foi = document.execCommand('copy'); } catch (e) { foi = false; }
     document.body.removeChild(el);
+    if (foi) { toast(texto + ' copiado!'); return; }
+    if (navigator.clipboard && navigator.clipboard.writeText)
+      navigator.clipboard.writeText(texto).then(function () { toast(texto + ' copiado!'); }, function () {});
   }
 
   /* ── EXPORTAÇÃO ────────────────────────────────────────────────────────── */

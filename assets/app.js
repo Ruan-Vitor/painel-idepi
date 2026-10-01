@@ -1174,10 +1174,18 @@
 
   function copiar(texto) {
     if (!texto || texto === '—') return;
+    /* A API moderna pode recusar (página sem foco, permissão negada). Antes a
+       recusa morria calada e o botão parecia não fazer nada; agora cai no
+       caminho antigo, que funciona nesses casos. */
     if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(texto).then(function () { toast(texto + ' copiado!'); });
+      navigator.clipboard.writeText(texto).then(function () { toast(texto + ' copiado!'); },
+                                                 function () { copiarAntigo(texto); });
       return;
     }
+    copiarAntigo(texto);
+  }
+
+  function copiarAntigo(texto) {
     var el = document.createElement('textarea');
     el.value = texto;
     el.style.position = 'fixed';
@@ -1587,6 +1595,50 @@
     return fichaBloco('Prestação de contas final', campos);
   }
 
+  /* ── NÚMERO COM LINK E BOTÃO DE COPIAR (01/10/2026) ──────────────────────
+     Pedido do Ruan: o número do instrumento e o SEI clicáveis, indo direto ao
+     Transferegov e ao processo no SEI, com um botão de copiar ao lado. Os
+     links vêm do painel/links (publicar_links.py): nenhum dos dois se monta
+     só com o número. Sem link conhecido, o número fica como texto e o botão
+     de copiar continua. */
+  var URL_TGOV = 'https://discricionarias.transferegov.sistema.gov.br/voluntarias/' +
+                 'ConsultarProposta/ResultadoDaConsultaDeConvenioSelecionarConvenio.do?destino=&idConvenio=';
+  var _links = null;   // o documento painel/links, quando já chegou
+
+  function carregarLinks() {
+    if (!IDEPI.dados || !IDEPI.dados.links) return Promise.resolve(null);
+    return IDEPI.dados.links().then(function (d) { _links = d || { tgov: {}, sei: {} }; return _links; },
+                                    function () { return null; });
+  }
+  function linkTgov(numero) {
+    var id = _links && _links.tgov && _links.tgov[String(numero || '').trim()];
+    return id ? URL_TGOV + encodeURIComponent(id) : '';
+  }
+  function linkSei(processo) {
+    return (_links && _links.sei && _links.sei[String(processo || '').trim()]) || '';
+  }
+  function numeroCopiavel(texto, href, titulo) {
+    texto = String(texto || '').trim();
+    if (!texto) return '<span class="cp-vazio">—</span>';
+    var t = esc(texto);
+    return '<span class="cp-par">' +
+      (href ? '<a class="cp-link" href="' + esc(href) + '" target="_blank" rel="noopener" title="' +
+              esc(titulo || '') + '">' + t + '</a>'
+            : '<span class="cp-txt">' + t + '</span>') +
+      '<button type="button" class="btn-copiar" data-copiar="' + t + '" title="Copiar ' + t +
+      '" aria-label="Copiar ' + t + '"><i class="fa-regular fa-copy"></i></button></span>';
+  }
+
+  function fichaTopoHtml(c) {
+    var sei = seiVigenteDe(c);
+    return '<div class="fb-topo" id="fichaTopo" data-num="' + esc(c.numero || '') + '">' +
+      '<div class="fb-topo-item"><label>Instrumento</label>' +
+        numeroCopiavel(c.numero, linkTgov(c.numero), 'Abrir no Transferegov') + '</div>' +
+      '<div class="fb-topo-item"><label>Processo SEI</label>' +
+        numeroCopiavel(sei, linkSei(sei), 'Abrir o processo no SEI') + '</div>' +
+    '</div>';
+  }
+
   function fichaHtml(c) {
     var seis = seisDe(c);
     var seiHtml = seis.length
@@ -1612,6 +1664,7 @@
     if (vigencia && c.vigencia_origem) vigencia += '  (' + c.vigencia_origem + ')';
 
     return (
+      fichaTopoHtml(c) +
       fichaBloco('Identificação', [
         ['Município', c.municipio_emendas],
         ['Fase', fase ? fase.rotulo : ''],
@@ -1678,6 +1731,12 @@
        leitura voltar, a resposta não lhe pertence e é descartada. Mostrar a
        prestação de contas do convênio errado é o defeito do `?num=` de
        04/08/2026 — ler números achando que são de outro. */
+    carregarLinks().then(function () {
+      var topo = document.getElementById('fichaTopo');
+      if (!topo || topo.getAttribute('data-num') !== String(c.numero || '')) return;
+      topo.outerHTML = fichaTopoHtml(c);
+    });
+
     fichaCarregarPCF().then(function () {
       var alvo = document.getElementById('fichaPCF');
       if (!alvo) return;
@@ -1712,6 +1771,15 @@
       fichaAbrir(bf.getAttribute('data-ficha-num'));
       return;
     }
+    var bc = ev.target.closest && ev.target.closest('[data-copiar]');
+    if (bc) {
+      ev.preventDefault();
+      ev.stopPropagation();
+      copiar(bc.getAttribute('data-copiar'));
+      bc.classList.add('copiado');
+      setTimeout(function () { bc.classList.remove('copiado'); }, 1400);
+      return;
+    }
     var b = ev.target.closest && ev.target.closest('.fb-sei-item');
     if (!b) return;
     var txt = b.getAttribute('data-sei') || '';
@@ -1739,6 +1807,10 @@
   IDEPI.ligarBotaoFullscreen = ligarBotaoFullscreen;
   IDEPI.toast = toast;
   IDEPI.copiar = copiar;
+  IDEPI.numeroCopiavel = numeroCopiavel;
+  IDEPI.carregarLinks = carregarLinks;
+  IDEPI.linkTgov = linkTgov;
+  IDEPI.linkSei = linkSei;
   IDEPI.carimboData = carimboData;
   IDEPI.comBotaoOcupado = comBotaoOcupado;
 

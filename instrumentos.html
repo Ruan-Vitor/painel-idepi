@@ -37,29 +37,51 @@
 :root{--surface2:#f0f4f8;--border:#e2e8f0;--text:#1e293b;--muted:#64748b}
 body{font-family:'Inter',sans-serif;color:var(--text)}
 
-.main{max-width:1400px;margin:0 auto;padding:24px}
+/* width:100% (01/10/2026). Dentro do .content, que é coluna flexível, a
+   margem automática faz a .main medir pelo conteúdo, e o conteúdo mais largo
+   é a barra de filtros, que no celular fica numa linha só e rola de lado
+   (1.100 px). O cartão ficava largo e os valores caíam fora da tela. */
+.main{max-width:1400px;width:100%;min-width:0;margin:0 auto;padding:24px}
 .ptitle{font-size:19px;font-weight:700;display:flex;align-items:center;gap:10px;margin-bottom:14px}
 .ptitle i{color:var(--brand);font-size:16px}
 
 .panel{background:var(--surface);border-radius:var(--r);border:1px solid var(--border);box-shadow:var(--sh);overflow:hidden}
-.phead{padding:12px 16px 0;display:flex;flex-direction:column;gap:12px}
-.ins-topo{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-.sbar{flex:1;min-width:220px;display:flex;align-items:center;gap:8px;height:36px;padding:0 12px;border:1px solid var(--border);border-radius:10px;background:var(--surface)}
+.phead{padding:12px 16px 0;display:block}
+.ins-topo{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.sbar{flex:1 1 240px;min-width:0;display:flex;align-items:center;gap:8px;height:36px;padding:0 12px;border:1px solid var(--border);border-radius:10px;background:var(--surface)}
 .sbar:focus-within{border-color:var(--brand);box-shadow:0 0 0 3px rgba(26,58,110,.12)}
 .sbar i{color:#94a3b8;font-size:13px}
 .sbar input{border:none;outline:none;font-size:13px;color:var(--text);background:transparent;flex:1;font-family:'Inter',sans-serif;min-width:0}
+.btn-col{display:inline-flex;align-items:center;gap:6px;height:36px;padding:0 12px;border:1px solid var(--border);border-radius:10px;background:var(--surface);color:var(--text);font:inherit;font-size:12.5px;font-weight:600;cursor:pointer}
+.btn-col:hover{border-color:#9fb3cc}
+.btn-col[aria-expanded="true"]{border-color:var(--brand);color:var(--brand);background:var(--brand-light)}
+
+/* Colunas: um botão por coluna, ligado = preenchido */
+.cols-painel{display:flex;flex-wrap:wrap;align-items:center;gap:6px;padding:10px 12px;margin:0 0 12px;background:var(--surface2);border-radius:10px}
+.cols-painel[hidden]{display:none}
+.cols-tit{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.4px;margin-right:4px}
+.col-chip{display:inline-flex;align-items:center;gap:5px;height:28px;padding:0 11px;border-radius:999px;border:1px solid #d6dfeb;background:#fff;color:#1a2640;font:inherit;font-size:12px;cursor:pointer}
+.col-chip i{font-size:10px;opacity:.6}
+.col-chip[aria-pressed="true"]{background:#1a3a6e;border-color:#1a3a6e;color:#fff}
+.col-chip[aria-pressed="true"] i{opacity:.9}
+.col-padrao{border:0;background:none;color:#1a3a6e;font:inherit;font-size:12px;font-weight:600;cursor:pointer;text-decoration:underline;text-underline-offset:3px;margin-left:auto}
 
 .twrap{overflow:auto;max-height:calc(100vh - 290px);min-height:240px;border-top:1px solid var(--border)}
-table{width:100%;border-collapse:collapse;font-size:12px}
-th{position:sticky;top:0;background:var(--surface2);padding:9px 12px;text-align:left;font-weight:600;font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;border-bottom:1px solid var(--border);z-index:1;white-space:nowrap;cursor:pointer;user-select:none}
+table{border-collapse:collapse;font-size:12px;table-layout:fixed}
+th{position:sticky;top:0;background:var(--surface2);padding:9px 14px 9px 12px;text-align:left;font-weight:600;font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;border-bottom:1px solid var(--border);z-index:1;white-space:nowrap;cursor:pointer;user-select:none;overflow:hidden;text-overflow:ellipsis}
 th:hover{color:var(--brand)}
 th.sorted-asc::after{content:' ▲';color:var(--brand);font-size:9px}
 th.sorted-desc::after{content:' ▼';color:var(--brand);font-size:9px}
 th.dir,td.dir{text-align:right}
-td{padding:9px 12px;border-bottom:1px solid var(--border);vertical-align:top}
+/* A alça de largura: arrastar a borda direita do título */
+.col-alca{position:absolute;top:0;right:0;width:9px;height:100%;cursor:col-resize;touch-action:none}
+.col-alca::after{content:'';position:absolute;top:25%;bottom:25%;right:3px;width:2px;border-radius:2px;background:#cbd5e1;opacity:0;transition:opacity .15s}
+th:hover .col-alca::after,.col-alca.ativa::after{opacity:1}
+.col-alca.ativa::after{background:var(--brand)}
+body.redimensionando,body.redimensionando *{cursor:col-resize!important;user-select:none!important}
+td{padding:9px 12px;border-bottom:1px solid var(--border);vertical-align:top;overflow:hidden;overflow-wrap:anywhere}
 tbody tr:hover td{background:#f8fafc}
 .num{font-weight:600;color:var(--brand);font-size:11.5px;white-space:nowrap}
-.obj{max-width:360px;min-width:220px}
 .muni{font-size:10.5px;color:#94a3b8;margin-top:3px}
 .val{white-space:nowrap;font-variant-numeric:tabular-nums}
 .org{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.3px;padding:2px 8px;border-radius:999px;background:var(--brand-light);color:var(--brand);white-space:nowrap}
@@ -68,6 +90,7 @@ tbody tr:hover td{background:#f8fafc}
 .prz.normal{color:var(--n-tx)}.prz.alerta{color:var(--a-tx)}.prz.atencao{color:var(--at-tx)}
 .prz.critico{color:var(--c-tx)}.prz.vencido{color:var(--v-tx)}.prz.finalizado{color:var(--f-tx)}
 .prz.sem_data{color:#6d28d9}
+td .cp-par{font-size:11.5px}
 .cinza{color:#94a3b8}
 .empty{text-align:center;padding:40px 24px;color:var(--muted)}
 .empty i{font-size:36px;opacity:.3;margin-bottom:10px;display:block}
@@ -75,8 +98,14 @@ tbody tr:hover td{background:#f8fafc}
 @media(max-width:900px){
   .main{padding:14px 12px}
   .ptitle{font-size:16px}
+  .phead{padding:12px 12px 0}
   .twrap{max-height:none;overflow:visible;border-top:0;padding:12px 12px 2px}
-  .obj{min-width:0}
+  /* No celular a tabela vira cartão: largura de coluna não se aplica */
+  table.tbl-cards{width:100%!important;table-layout:auto}
+  table.tbl-cards colgroup{display:none}
+  .col-alca{display:none}
+  td{overflow:visible}
+  .btn-col span{display:none}
 }
 @media print{.phead,.sidebar,.hd{display:none!important}.twrap{max-height:none;overflow:visible}}
 </style>
@@ -129,26 +158,24 @@ tbody tr:hover td{background:#f8fafc}
           <i class="fa-solid fa-magnifying-glass"></i>
           <input type="search" id="busca" placeholder="Buscar nº, objeto, SEI ou município" autocomplete="off">
         </div>
+        <button type="button" class="btn-col" id="btnColunas" aria-expanded="false" aria-controls="painelColunas" title="Escolher as colunas da tabela">
+          <i class="fa-solid fa-table-columns"></i> <span>Colunas</span>
+        </button>
         <button class="btn-excel" id="btnExcelIns" onclick="exportarExcel()" title="Exportar para Excel o que está na tela">
           <i class="fa-solid fa-file-excel"></i> Exportar Excel
         </button>
       </div>
+      <!-- Um botão por coluna. Ligado = aparece na tabela. A escolha e as
+           larguras ficam guardadas neste aparelho. -->
+      <div class="cols-painel" id="painelColunas" hidden></div>
       <!-- A barra de filtros (assets/filtros.js) entra logo depois desta âncora. -->
       <div id="ancoraFiltros"></div>
     </div>
 
     <div class="twrap">
-      <table class="tbl-cards">
-        <thead><tr>
-          <th data-col="numero">Nº</th>
-          <th data-col="objeto">Objeto / município</th>
-          <th data-col="orgao">Órgão</th>
-          <th data-col="concedente">Concedente</th>
-          <th data-col="fiscal">Fiscal</th>
-          <th data-col="vigencia">Vigência</th>
-          <th data-col="total" class="dir">Valor total</th>
-          <th data-col="liberado" class="dir">Liberado</th>
-        </tr></thead>
+      <table class="tbl-cards" id="tabela">
+        <colgroup id="colunas"></colgroup>
+        <thead><tr id="cabecalho"></tr></thead>
         <tbody id="tbody"></tbody>
       </table>
       <div class="empty" id="empty" style="display:none;"><i class="fa-solid fa-inbox"></i><p>Nenhum instrumento com esses filtros.</p></div>
@@ -180,26 +207,110 @@ let sortCol = 'numero', sortDir = 1;
    celular e tem texto recolhido, e o que se lê dela não é o dado. */
 let _visiveis = [];
 
-/* Valor de cada coluna para ordenar. Mesmas funções do app.js que a tela
-   e os filtros usam, para a ordem nunca discordar do que está escrito. */
-const ORDEM = {
-  /* Os instrumentos novos do Transferegov têm código com letras (7AAALY).
-     Na ordem por número eles vêm depois dos numéricos, e não no meio deles. */
-  numero:     r => (/^\d+$/.test(r.numero || '') ? '0 ' : '1 ') + (r.numero || ''),
-  objeto:     r => (r.objeto || '').toLowerCase(),
-  orgao:      r => r._orgao,
-  concedente: r => r._conc,
-  fiscal:     r => (r.fiscal || '').toLowerCase(),
-  vigencia:   r => { const d = IDEPI.parseDateBR(r.vigencia_fmt || r.vigencia); return d ? d.getTime() : Infinity; },
-  total:      r => IDEPI.parseReais(r.v_total),
-  liberado:   r => r._lib
-};
+const vazio = '<span class="cinza">—</span>';
+const txt = v => esc(v) || vazio;
+const GESTAO = { legado: 'Legado', nova: 'Nova gestão', proposta: 'Proposta' };
+
+/* ── AS COLUNAS (01/10/2026) ──────────────────────────────────────────────
+   Pedido do Ruan: botões para pôr e tirar coluna, largura ajustável, e a
+   coluna SEI presente por padrão, com botão de copiar. Uma lista só decide
+   cabeçalho, célula, ordem e largura: coluna nova entra AQUI e em nenhum
+   outro lugar. `fixa` não sai (sem número e objeto a linha não diz de quem
+   é); `padrao` é o que aparece para quem nunca escolheu.
+   Os valores saem das mesmas funções do app.js que a tela e os filtros usam,
+   para a ordem nunca discordar do que está escrito. */
+const COLS = [
+  { id: 'numero', rot: 'Nº', fixa: true, larg: 140,
+    ord: r => (/^\d+$/.test(r.numero || '') ? '0 ' : '1 ') + (r.numero || ''),
+    /* Os de código com letras (7AAALY) vêm depois dos numéricos. */
+    cel: r => `<span class="num">${IDEPI.faixaFase(r)}<a class="num-link" href="execucao.html?num=${encodeURIComponent(r.numero || '')}" title="Abrir este instrumento">${esc(r.numero) || '—'}</a>${IDEPI.ficha.botao(r.numero || '')}</span>` },
+  { id: 'objeto', rot: 'Objeto / município', fixa: true, larg: 340, destaque: true,
+    ord: r => (r.objeto || '').toLowerCase(),
+    cel: r => { const m = (IDEPI.filtros.municipios(r) || []).join(', ');
+      return `<div class="obj txt-exp">${esc(r.objeto) || '—'}</div>${m ? `<div class="muni"><i class="fa-solid fa-location-dot"></i> ${esc(m)}</div>` : ''}`; } },
+  { id: 'sei', rot: 'Nº SEI', padrao: true, larg: 210,
+    ord: r => IDEPI.seiVigenteDe(r),
+    cel: r => { const s = IDEPI.seiVigenteDe(r); return IDEPI.numeroCopiavel(s, IDEPI.linkSei(s), 'Abrir o processo no SEI'); } },
+  { id: 'orgao', rot: 'Órgão', padrao: true, larg: 100, ord: r => r._orgao,
+    cel: r => `<div><span class="org">${esc(r._orgao)}</span></div>` },
+  { id: 'concedente', rot: 'Concedente', padrao: true, larg: 110, ord: r => r._conc, cel: r => txt(r._conc) },
+  { id: 'fiscal', rot: 'Fiscal', padrao: true, larg: 110, ord: r => (r.fiscal || '').toLowerCase(), cel: r => txt(r.fiscal) },
+  { id: 'vigencia', rot: 'Vigência', padrao: true, larg: 110,
+    ord: r => { const d = IDEPI.parseDateBR(r.vigencia_fmt || r.vigencia); return d ? d.getTime() : Infinity; },
+    cel: r => `<div><span class="vig">${esc(r.vigencia_fmt || r.vigencia) || '—'}</span><span class="prz ${r._st}">${esc(IDEPI.NOME_ST[r._st] || r._st)}</span></div>` },
+  { id: 'total', rot: 'Valor total', padrao: true, dir: true, larg: 140,
+    ord: r => IDEPI.parseReais(r.v_total),
+    cel: r => `<span class="val">${r.v_total ? esc(IDEPI.fmtReais(r.v_total)) : '—'}</span>` },
+  { id: 'liberado', rot: 'Liberado', padrao: true, dir: true, larg: 140, ord: r => r._lib,
+    cel: r => `<span class="val">${esc(IDEPI.fmtReais(r._lib))}</span>` },
+  { id: 'dias', rot: 'Dias', dir: true, larg: 80, ord: r => (r._dias === null || r._dias === undefined) ? Infinity : r._dias,
+    cel: r => (r._dias === null || r._dias === undefined) ? vazio : `<span class="val">${r._dias}</span>` },
+  { id: 'suspensiva', rot: 'Suspensiva', larg: 110,
+    ord: r => { const d = IDEPI.parseDateBR(r.vigencia_suspensiva); return d ? d.getTime() : Infinity; },
+    cel: r => txt(r.vigencia_suspensiva) },
+  { id: 'inicio', rot: 'Início da vigência', larg: 120,
+    ord: r => { const d = IDEPI.parseDateBR(r.vigencia_inicio || r.vigencia_inicio_tgov); return d ? d.getTime() : Infinity; },
+    cel: r => txt(r.vigencia_inicio || r.vigencia_inicio_tgov) },
+  { id: 'situacao', rot: 'Situação (Transferegov)', larg: 170, ord: r => r.situacao_tgov || '', cel: r => txt(r.situacao_tgov) },
+  { id: 'tipo', rot: 'Tipo', larg: 150, ord: r => r.tipo_instrumento || '', cel: r => txt(r.tipo_instrumento) },
+  { id: 'gestao', rot: 'Gestão', larg: 110, ord: r => GESTAO[IDEPI.gestaoDe(r)] || '', cel: r => txt(GESTAO[IDEPI.gestaoDe(r)]) },
+  { id: 'contrapartida', rot: 'Contrapartida', dir: true, larg: 130, ord: r => IDEPI.parseReais(r.v_contrapartida),
+    cel: r => r.v_contrapartida ? `<span class="val">${esc(IDEPI.fmtReais(r.v_contrapartida))}</span>` : vazio },
+  { id: 'pct', rot: '% execução', dir: true, larg: 100, ord: r => parseFloat(String(r.pct_exec || '').replace(',', '.')) || -1,
+    cel: r => txt(r.pct_exec) },
+  { id: 'mandataria', rot: 'Mandatária', larg: 160, ord: r => r.mandataria || '', cel: r => txt(r.mandataria) },
+  { id: 'emenda', rot: 'Dono da emenda', larg: 150, ord: r => r.dono_emenda || r.autor_emenda || '', cel: r => txt(r.dono_emenda || r.autor_emenda) },
+  { id: 'ponto', rot: 'Ponto focal', larg: 140, ord: r => r.ponto_focal || '', cel: r => txt(r.ponto_focal) },
+  { id: 'limite', rot: 'Limite da prestação', larg: 130,
+    ord: r => { const d = IDEPI.parseDateBR(r.limite_prestacao); return d ? d.getTime() : Infinity; },
+    cel: r => txt(r.limite_prestacao) },
+  { id: 'pcf', rot: 'Etapa da PCF', larg: 120, ord: r => r.pcf_etapa || '', cel: r => txt(r.pcf_etapa) }
+];
+const COL = Object.fromEntries(COLS.map(c => [c.id, c]));
+
+/* Escolha e larguras ficam NESTE aparelho (localStorage). Sem armazenamento
+   (aba anônima, bloqueio), a página funciona com o padrão. */
+const GUARDA = 'idepi.instrumentos.colunas.v1';
+let _ligadas = COLS.filter(c => c.fixa || c.padrao).map(c => c.id);
+let _larg = {};
+try {
+  const g = JSON.parse(localStorage.getItem(GUARDA) || 'null');
+  if (g && Array.isArray(g.ligadas)) _ligadas = COLS.filter(c => c.fixa || g.ligadas.includes(c.id)).map(c => c.id);
+  if (g && g.larg) _larg = g.larg;
+} catch (e) {}
+function guardar() {
+  try { localStorage.setItem(GUARDA, JSON.stringify({ ligadas: _ligadas, larg: _larg })); } catch (e) {}
+}
+const visiveis = () => COLS.filter(c => _ligadas.includes(c.id));
+const largDe = c => _larg[c.id] || c.larg;
+
+function desenharPainelColunas() {
+  document.getElementById('painelColunas').innerHTML =
+    '<span class="cols-tit">Colunas</span>' +
+    COLS.filter(c => !c.fixa).map(c => {
+      const on = _ligadas.includes(c.id);
+      return `<button type="button" class="col-chip" data-colchip="${c.id}" aria-pressed="${on}">` +
+             `<i class="fa-solid ${on ? 'fa-check' : 'fa-plus'}"></i>${esc(c.rot)}</button>`;
+    }).join('') +
+    '<button type="button" class="col-padrao" data-colpadrao>Voltar ao padrão</button>';
+}
+
+function desenharCabecalho() {
+  const cols = visiveis();
+  document.getElementById('colunas').innerHTML = cols.map(c => `<col style="width:${largDe(c)}px">`).join('');
+  document.getElementById('tabela').style.width = cols.reduce((s, c) => s + largDe(c), 0) + 'px';
+  document.getElementById('cabecalho').innerHTML = cols.map(c =>
+    `<th data-col="${c.id}" class="${c.dir ? 'dir' : ''}${c.id === sortCol ? (sortDir === 1 ? ' sorted-asc' : ' sorted-desc') : ''}" style="position:sticky">` +
+    `${esc(c.rot)}<span class="col-alca" data-alca="${c.id}" title="Arraste para mudar a largura (duplo clique volta ao padrão)"></span></th>`
+  ).join('');
+}
 
 function comparar(a, b) {
-  const va = ORDEM[sortCol](a), vb = ORDEM[sortCol](b);
-  if (typeof va === 'number' && typeof vb === 'number') return (va - vb) * sortDir;
-  /* Número do instrumento é texto com dígitos ("781089", "1012345"):
-     a comparação numérica do localeCompare põe 99 antes de 100. */
+  const f = (COL[sortCol] || COL.numero).ord;
+  const va = f(a), vb = f(b);
+  if (typeof va === 'number' && typeof vb === 'number') return (va === vb ? 0 : (va < vb ? -1 : 1)) * sortDir;
+  /* Número do instrumento é texto com dígitos: a comparação numérica do
+     localeCompare põe 99 antes de 100. */
   return String(va).localeCompare(String(vb), 'pt-BR', { numeric: true }) * sortDir;
 }
 
@@ -225,10 +336,14 @@ async function carregar() {
       IDEPI.fmtCompacto(dados.reduce((s, r) => s + r._lib, 0));
     document.getElementById('hd-ts').textContent = _gerado_em ? 'Dados de ' + _gerado_em : '';
 
-    // Todas as 7 dimensões: esta é a página de ver tudo, nenhuma fica de fora.
     const q = new URLSearchParams(location.search).get('q');
     if (q) document.getElementById('busca').value = q;
+    desenharPainelColunas();
+    desenharCabecalho();
     render();
+    // Os links do SEI chegam à parte; quando chegam, a coluna ganha o link.
+    IDEPI.carregarLinks().then(render);
+    // Todas as 7 dimensões: esta é a página de ver tudo, nenhuma fica de fora.
     // Espera a barra se desenhar para o contador dela já sair certo.
     await IDEPI.filtros.ligar({ depois: '#ancoraFiltros', aoMudar: render });
     render();
@@ -261,32 +376,19 @@ function contador(q) {
 function render() {
   const q = document.getElementById('busca').value.trim().toLowerCase()
     .normalize('NFD').replace(/[̀-ͯ]/g, '');
-  let rows = dados.filter(IDEPI.filtros.passa);
+  let rows = dados.filter(r => IDEPI.filtros.passa(r));
   if (q) rows = rows.filter(r => textoBusca(r).includes(q));
   rows.sort(comparar);
   _visiveis = rows;
   contador(q);
 
-  document.querySelectorAll('th[data-col]').forEach(th => {
-    th.classList.toggle('sorted-asc',  th.dataset.col === sortCol && sortDir === 1);
-    th.classList.toggle('sorted-desc', th.dataset.col === sortCol && sortDir === -1);
-  });
-
-  const tb = document.getElementById('tbody');
+  const cols = visiveis();
   document.getElementById('empty').style.display = rows.length ? 'none' : 'block';
-  tb.innerHTML = rows.map(r => {
-    const muni = (IDEPI.filtros.municipios(r) || []).join(', ');
-    return `<tr>
-      <td><span class="num">${IDEPI.faixaFase(r)}<a class="num-link" href="execucao.html?num=${encodeURIComponent(r.numero || '')}" title="Abrir este instrumento">${esc(r.numero) || '—'}</a>${IDEPI.ficha.botao(r.numero || '')}</span></td>
-      <td class="celula-destaque"><div class="obj txt-exp">${esc(r.objeto) || '—'}</div>${muni ? `<div class="muni"><i class="fa-solid fa-location-dot"></i> ${esc(muni)}</div>` : ''}</td>
-      <td><div><span class="org">${esc(r._orgao)}</span></div></td>
-      <td>${esc(r._conc) || '<span class="cinza">—</span>'}</td>
-      <td>${esc(r.fiscal) || '<span class="cinza">—</span>'}</td>
-      <td><div><span class="vig">${esc(r.vigencia_fmt || r.vigencia) || '—'}</span><span class="prz ${r._st}">${esc(IDEPI.NOME_ST[r._st] || r._st)}</span></div></td>
-      <td class="dir"><span class="val">${r.v_total ? esc(IDEPI.fmtReais(r.v_total)) : '—'}</span></td>
-      <td class="dir"><span class="val">${esc(IDEPI.fmtReais(r._lib))}</span></td>
-    </tr>`;
-  }).join('');
+  document.getElementById('tbody').innerHTML = rows.map(r =>
+    '<tr>' + cols.map(c =>
+      `<td${c.destaque ? ' class="celula-destaque"' : (c.dir ? ' class="dir"' : '')}>${c.cel(r)}</td>`
+    ).join('') + '</tr>'
+  ).join('');
 }
 
 document.getElementById('busca').addEventListener('input', () => {
@@ -298,18 +400,91 @@ document.getElementById('busca').addEventListener('input', () => {
   render();
 });
 
-document.querySelector('thead').addEventListener('click', e => {
+/* Ordenar: clique no título. A alça de largura fica DENTRO do título, então o
+   clique que termina um arraste não pode virar ordenação. */
+let _arrastou = false;
+document.getElementById('cabecalho').addEventListener('click', e => {
+  if (_arrastou || e.target.closest('.col-alca')) return;
   const th = e.target.closest('th[data-col]');
   if (!th) return;
   if (sortCol === th.dataset.col) sortDir = -sortDir;
   else { sortCol = th.dataset.col; sortDir = 1; }
+  desenharCabecalho();
+  render();
+});
+
+/* Largura: arrastar a alça (mouse, caneta ou dedo). Duplo clique volta ao
+   padrão daquela coluna. */
+document.getElementById('cabecalho').addEventListener('pointerdown', e => {
+  const alca = e.target.closest('.col-alca');
+  if (!alca) return;
+  e.preventDefault();
+  const id = alca.dataset.alca, c = COL[id];
+  const idx = visiveis().findIndex(x => x.id === id);
+  const col = document.getElementById('colunas').children[idx];
+  const tabela = document.getElementById('tabela');
+  const x0 = e.clientX, w0 = largDe(c), t0 = parseFloat(tabela.style.width) || 0;
+  _arrastou = false;
+  alca.classList.add('ativa');
+  document.body.classList.add('redimensionando');
+  try { alca.setPointerCapture(e.pointerId); } catch (er) {}
+  const mover = ev => {
+    const w = Math.max(60, Math.round(w0 + ev.clientX - x0));
+    if (Math.abs(ev.clientX - x0) > 2) _arrastou = true;
+    _larg[id] = w;
+    col.style.width = w + 'px';
+    tabela.style.width = (t0 + w - w0) + 'px';
+  };
+  const soltar = () => {
+    alca.removeEventListener('pointermove', mover);
+    alca.removeEventListener('pointerup', soltar);
+    alca.removeEventListener('pointercancel', soltar);
+    alca.classList.remove('ativa');
+    document.body.classList.remove('redimensionando');
+    guardar();
+    setTimeout(() => { _arrastou = false; }, 0);
+  };
+  alca.addEventListener('pointermove', mover);
+  alca.addEventListener('pointerup', soltar);
+  alca.addEventListener('pointercancel', soltar);
+});
+document.getElementById('cabecalho').addEventListener('dblclick', e => {
+  const alca = e.target.closest('.col-alca');
+  if (!alca) return;
+  delete _larg[alca.dataset.alca];
+  guardar();
+  desenharCabecalho();
+});
+
+/* Pôr e tirar colunas */
+document.getElementById('btnColunas').addEventListener('click', () => {
+  const p = document.getElementById('painelColunas'), b = document.getElementById('btnColunas');
+  p.hidden = !p.hidden;
+  b.setAttribute('aria-expanded', String(!p.hidden));
+});
+document.getElementById('painelColunas').addEventListener('click', e => {
+  const chip = e.target.closest('[data-colchip]');
+  if (chip) {
+    const id = chip.dataset.colchip;
+    if (_ligadas.includes(id)) _ligadas = _ligadas.filter(x => x !== id);
+    else _ligadas = COLS.filter(c => c.id === id || _ligadas.includes(c.id)).map(c => c.id);  // mantém a ordem da lista
+    if (!_ligadas.includes(sortCol)) { sortCol = 'numero'; sortDir = 1; }
+  } else if (e.target.closest('[data-colpadrao]')) {
+    _ligadas = COLS.filter(c => c.fixa || c.padrao).map(c => c.id);
+    _larg = {};
+  } else return;
+  guardar();
+  desenharPainelColunas();
+  desenharCabecalho();
   render();
 });
 
 /* ── EXCEL ────────────────────────────────────────────────────────────────
    Lê _visiveis (o que a tela mostra, na ordem da tela). Valores em número,
-   para somar no Excel. A aba "Filtros" diz o que estava ligado: arquivo
-   encaminhado precisa se explicar sem quem o gerou. */
+   para somar no Excel. Sai com TODAS as colunas, não só as ligadas na tela:
+   o arquivo é para trabalhar o dado, e a escolha de colunas é de leitura.
+   A aba "Filtros" diz o que estava ligado: arquivo encaminhado precisa se
+   explicar sem quem o gerou. */
 function exportarExcel() {
   if (!dados.length) { alert('Dados ainda não carregados. Aguarde.'); return; }
   IDEPI.comBotaoOcupado('btnExcelIns', '<i class="fa-solid fa-file-excel"></i> Exportar Excel', function () {
@@ -331,17 +506,15 @@ function exportarExcel() {
       r.vigencia_suspensiva || '', num(r.v_total), num(r.v_contrapartida), r._lib,
       r.ultima_liberacao || '', r.ultima_liberacao ? num(r.v_ultima_liberacao) : '',
       r.pct_exec || '', IDEPI.seiVigenteDe(r), r.mandataria || '',
-      r.autor_emenda || r.dono_emenda || '', r.limite_prestacao || '', r.pcf_etapa || ''
+      r.dono_emenda || r.autor_emenda || '', r.limite_prestacao || '', r.pcf_etapa || ''
     ]);
     const ws = XLSX.utils.aoa_to_sheet([cab].concat(linhas));
     ws['!cols'] = [12,12,60,24,12,30,22,24,16,18,24,12,12,12,7,12,16,16,16,12,16,9,24,24,24,12,12].map(w => ({ wch: w }));
     ws['!autofilter'] = { ref: XLSX.utils.encode_range({ s: { r: 0, c: 0 }, e: { r: linhas.length, c: cab.length - 1 } }) };
-    ws['!freeze'] = { xSplit: 1, ySplit: 1 };
 
-    const p = new URLSearchParams(location.search), fil = [['Filtro', 'Escolha']];
-    p.forEach((v, k) => {
-      if (k.indexOf('f_') === 0) fil.push([k.slice(2).replace(/^./, x => x.toUpperCase()), v]);
-    });
+    const fil = [['Filtro', 'Escolha']];
+    const esc_ = IDEPI.filtros.escolhas();
+    Object.keys(esc_).forEach(k => fil.push([k, esc_[k].join(', ')]));
     const busca = document.getElementById('busca').value.trim();
     if (busca) fil.push(['Busca', busca]);
     if (fil.length === 1) fil.push(['Nenhum', 'todos os instrumentos']);
@@ -352,7 +525,7 @@ function exportarExcel() {
       ['Dados de', _gerado_em || ''],
       ['Gerado em', new Date().toLocaleString('pt-BR')]
     ]));
-    wsF['!cols'] = [{ wch: 24 }, { wch: 40 }];
+    wsF['!cols'] = [{ wch: 24 }, { wch: 50 }];
 
     const wb = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, 'Instrumentos');

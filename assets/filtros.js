@@ -24,6 +24,11 @@
    4. Instrumento que não está na lista de vigências passa quando não há
       filtro ligado, e não passa quando há: não se sabe o órgão dele, e
       "não sei" não é "sim".
+   5. ESCOLHA MÚLTIPLA (01/10/2026, pedido do Ruan: "normal, atenção e
+      alerta" de uma vez). Dentro de um filtro vale QUALQUER um dos marcados;
+      entre filtros diferentes vale TODOS. No endereço, um parâmetro por
+      valor (?f_prazo=Normal&f_prazo=Alerta): o link antigo, com um valor
+      só, continua abrindo igual.
    ═══════════════════════════════════════════════════════════════════════════ */
 (function () {
   'use strict';
@@ -73,8 +78,19 @@
     '.flt-pill:hover{border-color:#9fb3cc;background:#f8fafc}',
     '.flt-pill:focus-within{border-color:#1a3a6e;box-shadow:0 0 0 3px rgba(26,58,110,.14)}',
     '.flt-pill-rot{color:#7a8ba0;margin-right:5px}',
-    '.flt-pill select{-webkit-appearance:none;appearance:none;border:0;background:transparent;font:inherit;font-weight:600;color:inherit;padding:0;margin:0;cursor:pointer;outline:none;max-width:170px;text-overflow:ellipsis;field-sizing:content}',
-    '.flt-pill select option{color:#1a2640;background:#fff;font-weight:400}',
+    'button.flt-pill{font:inherit;font-size:12.5px;line-height:1;margin:0}',
+    '.flt-pill:focus-visible{outline:none;border-color:#1a3a6e;box-shadow:0 0 0 3px rgba(26,58,110,.14)}',
+    '.flt-pill-val{font-weight:600;max-width:170px;overflow:hidden;text-overflow:ellipsis}',
+    '.flt-menu{position:fixed;z-index:3000;min-width:220px;max-width:min(320px,calc(100vw - 16px));background:#fff;border:1px solid #d6dfeb;border-radius:12px;box-shadow:0 12px 32px rgba(15,23,42,.18);padding:6px;overflow:auto;font-size:13px;color:#1a2640}',
+    '.flt-menu-topo{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:6px 8px 8px;border-bottom:1px solid #eef2f7;margin-bottom:4px}',
+    '.flt-menu-topo strong{font-size:12px;color:#64748b;font-weight:600}',
+    '.flt-menu-todos{border:0;background:none;color:#1a3a6e;font:inherit;font-size:12px;font-weight:600;cursor:pointer;padding:2px 4px;text-decoration:underline;text-underline-offset:3px}',
+    '.flt-op{display:flex;align-items:center;gap:10px;padding:8px;border-radius:8px;cursor:pointer;user-select:none}',
+    '.flt-op:hover{background:#f1f5f9}',
+    '.flt-op input{width:16px;height:16px;margin:0;accent-color:#1a3a6e;flex-shrink:0;cursor:pointer}',
+    '.flt-op span{flex:1;min-width:0}',
+    '.flt-op small{color:#94a3b8;font-variant-numeric:tabular-nums}',
+    '.flt-op.zero{opacity:.55}',
     '.flt-pill::after{content:"";position:absolute;right:12px;top:50%;width:5px;height:5px;border-right:1.6px solid currentColor;border-bottom:1.6px solid currentColor;transform:translateY(-70%) rotate(45deg);opacity:.5;pointer-events:none}',
     '.flt-pill.ativo{background:#1a3a6e;border-color:#1a3a6e;color:#fff}',
     '.flt-pill.ativo:hover{background:#224a8a}',
@@ -83,7 +99,7 @@
     '.flt-res{margin-left:auto;display:inline-flex;align-items:center;gap:10px;font-size:12px;color:#64748b;white-space:nowrap}',
     '.flt-res strong{color:#1a2640;font-weight:700}',
     '.flt-limpar{border:0;background:none;color:#1a3a6e;font:inherit;font-size:12px;font-weight:600;cursor:pointer;padding:4px 2px;text-decoration:underline;text-underline-offset:3px}',
-    '@media (max-width:640px){.flt-barra{flex-wrap:nowrap;overflow-x:auto;padding-bottom:4px;scrollbar-width:none;-webkit-overflow-scrolling:touch}.flt-barra::-webkit-scrollbar{display:none}.flt-tit span{display:none}.flt-res{margin-left:6px}}',
+    '@media (max-width:640px){.flt-barra{flex-wrap:nowrap;overflow-x:auto;min-width:0;max-width:100%;padding-bottom:4px;scrollbar-width:none;-webkit-overflow-scrolling:touch}.flt-barra::-webkit-scrollbar{display:none}.flt-tit span{display:none}.flt-res{margin-left:6px}}',
     '@media print{.flt-barra{display:none!important}}'
   ].join('\n');
   function injetarEstilo() {
@@ -106,6 +122,7 @@
   ];
 
   var _conv = [], _porNum = {}, _escolha = {}, _dims = [], _barra = null, _aoMudar = null;
+  var _opcoes = {}, _menu = null, _menuDim = null;
 
   function valoresDe(dim, c) {
     if (!c._fv) c._fv = {};
@@ -113,17 +130,21 @@
     return c._fv[dim.id];
   }
 
+  function marcados(id) { return _escolha[id] || []; }
+
   function passaConv(c, ignorar) {
     for (var i = 0; i < _dims.length; i++) {
-      var d = _dims[i];
-      if (d.id === ignorar || !_escolha[d.id]) continue;
-      if (valoresDe(d, c).indexOf(_escolha[d.id]) === -1) return false;
+      var d = _dims[i], quer = marcados(d.id);
+      if (d.id === ignorar || !quer.length) continue;
+      var vs = valoresDe(d, c), bate = false;
+      for (var j = 0; j < vs.length && !bate; j++) bate = quer.indexOf(vs[j]) !== -1;
+      if (!bate) return false;
     }
     return true;
   }
 
   function ativos() {
-    return _dims.filter(function (d) { return !!_escolha[d.id]; }).length;
+    return _dims.filter(function (d) { return marcados(d.id).length > 0; }).length;
   }
 
   /** Aceita o convênio ou o número dele. */
@@ -137,16 +158,16 @@
   function lerDaUrl() {
     var q = new URLSearchParams(location.search);
     _dims.forEach(function (d) {
-      var v = q.get('f_' + d.id);
-      if (v) _escolha[d.id] = v;
+      var v = q.getAll('f_' + d.id).filter(Boolean);
+      if (v.length) _escolha[d.id] = v;
     });
   }
 
   function gravarNaUrl() {
     var q = new URLSearchParams(location.search);
     _dims.forEach(function (d) {
-      if (_escolha[d.id]) q.set('f_' + d.id, _escolha[d.id]);
-      else q.delete('f_' + d.id);
+      q.delete('f_' + d.id);
+      marcados(d.id).forEach(function (v) { q.append('f_' + d.id, v); });
     });
     var s = q.toString();
     try { history.replaceState(null, '', location.pathname + (s ? '?' + s : '') + location.hash); } catch (e) {}
@@ -155,6 +176,7 @@
   function desenhar() {
     if (!_barra) return;
     var html = '<span class="flt-tit"><i class="fa-solid fa-sliders"></i><span>Filtros</span></span>';
+    _opcoes = {};
     _dims.forEach(function (d) {
       var cont = {};
       _conv.forEach(function (c) {
@@ -164,18 +186,18 @@
       var opcoes = Object.keys(cont).sort(function (a, b) {
         return cont[b] - cont[a] || a.localeCompare(b, 'pt-BR');
       });
-      var sel = _escolha[d.id] || '';
-      if (sel && !cont[sel]) opcoes.unshift(sel);   // escolha sem ninguém ainda aparece
-      /* A opção escolhida aparece SEM a contagem ("FUNASA", não "FUNASA
-         (18)"): dentro da pílula, número colado no nome parece parte dele. */
-      html += '<label class="flt-pill' + (sel ? ' ativo' : '') + '" title="' + esc(d.rotulo) + '">' +
+      var sel = marcados(d.id);
+      // escolha sem ninguém ainda aparece, para poder ser desmarcada
+      sel.forEach(function (v) { if (!cont[v]) opcoes.unshift(v); });
+      _opcoes[d.id] = { lista: opcoes, cont: cont };
+      /* Na pílula, a escolha sem contagem ("FUNASA", não "FUNASA (18)"):
+         número colado no nome parece parte dele. Várias: a primeira e "+N". */
+      var rot = !sel.length ? 'Todos' : (sel[0] + (sel.length > 1 ? ' +' + (sel.length - 1) : ''));
+      html += '<button type="button" class="flt-pill' + (sel.length ? ' ativo' : '') + '" data-dim="' + d.id +
+        '" title="' + esc(d.rotulo + (sel.length ? ': ' + sel.join(', ') : '')) + '" aria-haspopup="true"' +
+        ' aria-expanded="' + (_menu && _menuDim === d.id ? 'true' : 'false') + '">' +
         '<span class="flt-pill-rot">' + esc(d.curto || d.rotulo) + ':</span>' +
-        '<select data-dim="' + d.id + '" aria-label="' + esc(d.rotulo) + '">' +
-        '<option value="">Todos</option>' +
-        opcoes.map(function (v) {
-          return '<option value="' + esc(v) + '"' + (v === sel ? ' selected' : '') + '>' +
-                 esc(v) + (v === sel ? '' : ' (' + (cont[v] || 0) + ')') + '</option>';
-        }).join('') + '</select></label>';
+        '<span class="flt-pill-val">' + esc(rot) + '</span></button>';
     });
     var n = ativos();
     var total = _conv.filter(function (c) { return passaConv(c); }).length;
@@ -187,17 +209,96 @@
     _barra.classList.toggle('com-filtro', n > 0);
   }
 
-  function aoEscolher(e) {
-    var s = e.target.closest('select[data-dim]');
-    if (s) {
-      _escolha[s.getAttribute('data-dim')] = s.value;
-      mudou();
+  /* ── O MENU DE CAIXAS ────────────────────────────────────────────────────
+     Fica FORA da barra: no celular a barra rola de lado (overflow), e um
+     menu dentro dela seria cortado. Pendura em fullscreenElement || body
+     (CLAUDE.md, seção 9) e fica aberto enquanto se marca, para escolher
+     várias de uma vez; fecha no clique fora, no Esc e na rolagem de fora. */
+  function desenharMenu() {
+    if (!_menu) return;
+    var d = _dims.filter(function (x) { return x.id === _menuDim; })[0];
+    var o = _opcoes[_menuDim] || { lista: [], cont: {} }, sel = marcados(_menuDim);
+    var rolagem = _menu.scrollTop;
+    _menu.innerHTML = '<div class="flt-menu-topo"><strong>' + esc(d ? d.rotulo : '') + '</strong>' +
+      (sel.length ? '<button type="button" class="flt-menu-todos" data-todos>Todos</button>' : '') + '</div>' +
+      o.lista.map(function (v) {
+        var n = o.cont[v] || 0;
+        return '<label class="flt-op' + (n ? '' : ' zero') + '"><input type="checkbox" value="' + esc(v) + '"' +
+          (sel.indexOf(v) !== -1 ? ' checked' : '') + '><span>' + esc(v) + '</span><small>' + n + '</small></label>';
+      }).join('');
+    _menu.scrollTop = rolagem;
+    posicionarMenu();
+  }
+
+  function posicionarMenu() {
+    if (!_menu || !_barra) return;
+    var pill = _barra.querySelector('.flt-pill[data-dim="' + _menuDim + '"]');
+    if (!pill) { fecharMenu(); return; }
+    var r = pill.getBoundingClientRect(), larg = _menu.offsetWidth;
+    var esq = Math.max(8, Math.min(r.left, window.innerWidth - larg - 8));
+    var abaixo = window.innerHeight - r.bottom - 12, acima = r.top - 12;
+    _menu.style.left = esq + 'px';
+    if (abaixo >= 220 || abaixo >= acima) {
+      _menu.style.top = (r.bottom + 6) + 'px'; _menu.style.bottom = 'auto';
+      _menu.style.maxHeight = Math.max(160, abaixo) + 'px';
+    } else {
+      _menu.style.top = 'auto'; _menu.style.bottom = (window.innerHeight - r.top + 6) + 'px';
+      _menu.style.maxHeight = Math.max(160, acima) + 'px';
     }
   }
+
+  function abrirMenu(dim) {
+    if (_menu && _menuDim === dim) { fecharMenu(); return; }
+    fecharMenu();
+    _menuDim = dim;
+    _menu = document.createElement('div');
+    _menu.className = 'flt-menu';
+    _menu.setAttribute('role', 'dialog');
+    _menu.addEventListener('change', function (e) {
+      var cb = e.target.closest('input[type=checkbox]');
+      if (!cb) return;
+      var lista = marcados(_menuDim).slice(), i = lista.indexOf(cb.value);
+      if (cb.checked && i === -1) lista.push(cb.value);
+      if (!cb.checked && i !== -1) lista.splice(i, 1);
+      if (lista.length) _escolha[_menuDim] = lista; else delete _escolha[_menuDim];
+      mudou();
+    });
+    _menu.addEventListener('click', function (e) {
+      if (e.target.closest('[data-todos]')) { delete _escolha[_menuDim]; mudou(); }
+    });
+    (document.fullscreenElement || document.body).appendChild(_menu);
+    desenharMenu();
+    var pill = _barra && _barra.querySelector('.flt-pill[data-dim="' + dim + '"]');
+    if (pill) pill.setAttribute('aria-expanded', 'true');
+    var primeiro = _menu.querySelector('input');
+    if (primeiro) primeiro.focus({ preventScroll: true });
+  }
+
+  function fecharMenu(devolverFoco) {
+    if (!_menu) return;
+    var dim = _menuDim;
+    _menu.remove();
+    _menu = null; _menuDim = null;
+    var pill = _barra && _barra.querySelector('.flt-pill[data-dim="' + dim + '"]');
+    if (pill) { pill.setAttribute('aria-expanded', 'false'); if (devolverFoco) pill.focus(); }
+  }
+
+  document.addEventListener('click', function (e) {
+    if (!_menu) return;
+    if (_menu.contains(e.target) || (e.target.closest && e.target.closest('.flt-pill'))) return;
+    fecharMenu();
+  });
+  document.addEventListener('keydown', function (e) { if (_menu && e.key === 'Escape') fecharMenu(true); });
+  document.addEventListener('scroll', function (e) {
+    if (_menu && !_menu.contains(e.target)) fecharMenu();
+  }, true);
+  window.addEventListener('resize', function () { posicionarMenu(); });
+  document.addEventListener('fullscreenchange', function () { fecharMenu(); });
 
   function mudou() {
     gravarNaUrl();
     desenhar();
+    desenharMenu();
     if (_aoMudar) _aoMudar();
   }
 
@@ -219,9 +320,10 @@
       _barra.setAttribute('role', 'group');
       _barra.setAttribute('aria-label', 'Filtros por instrumento');
       ancora.parentNode.insertBefore(_barra, opts.antes ? ancora : ancora.nextSibling);
-      _barra.addEventListener('change', aoEscolher);
       _barra.addEventListener('click', function (e) {
-        if (e.target.closest('.flt-limpar')) { _escolha = {}; mudou(); }
+        if (e.target.closest('.flt-limpar')) { _escolha = {}; fecharMenu(); mudou(); return; }
+        var pill = e.target.closest('.flt-pill[data-dim]');
+        if (pill) abrirMenu(pill.getAttribute('data-dim'));
       });
     }
 
@@ -247,6 +349,12 @@
     passa: passa,
     ativos: ativos,
     municipios: municipios,
-    limpar: function () { _escolha = {}; mudou(); }
+    limpar: function () { _escolha = {}; fecharMenu(); mudou(); },
+    /** O que está marcado, por rótulo: { 'Prazo': ['Normal', 'Alerta'] }. */
+    escolhas: function () {
+      var r = {};
+      _dims.forEach(function (d) { if (marcados(d.id).length) r[d.rotulo] = marcados(d.id).slice(); });
+      return r;
+    }
   };
 })();

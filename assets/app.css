@@ -653,6 +653,26 @@ div > button:has(svg):not([class]):not([id]){display:none!important}
   margin-top:14px;font-size:10.5px;color:var(--muted);line-height:1.5;
   background:var(--surface2);border-radius:8px;padding:9px 11px;
 }
+/* Topo da ficha (01/10/2026): instrumento e SEI, clicáveis e copiáveis */
+.fb-topo{display:flex;flex-wrap:wrap;gap:10px 28px;padding:12px 14px;margin:0 0 6px;
+  background:var(--brand-light);border-radius:10px}
+.fb-topo-item{min-width:0}
+.fb-topo-item label{display:block;font-size:10px;font-weight:700;text-transform:uppercase;
+  letter-spacing:.4px;color:var(--muted);margin-bottom:3px}
+.fb-topo .cp-par{font-size:15px;font-weight:700}
+/* Número com link e botão de copiar, usado na ficha e nas tabelas */
+.cp-par{display:inline-flex;align-items:center;gap:4px;white-space:nowrap;
+  font-family:'IBM Plex Mono',monospace;font-variant-numeric:tabular-nums}
+.cp-link{color:var(--brand);text-decoration:underline;text-underline-offset:3px;
+  text-decoration-thickness:1px}
+.cp-link:hover{color:var(--accent)}
+.cp-vazio{color:var(--light)}
+.btn-copiar{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;
+  border:0;border-radius:6px;background:transparent;color:var(--muted);cursor:pointer;
+  font-size:12px;flex-shrink:0}
+.btn-copiar:hover{background:var(--surface2,#f0f4f8);color:var(--brand)}
+.btn-copiar.copiado{color:var(--n-tx,#15803d)}
+.btn-copiar.copiado i::before{content:"00c";font-family:'Font Awesome 6 Free';font-weight:900}
 .fb-sei-vig{font-family:'IBM Plex Mono',monospace;font-size:11.5px}
 .fb-mais{
   border:1px solid var(--border);background:var(--surface2);color:var(--muted);

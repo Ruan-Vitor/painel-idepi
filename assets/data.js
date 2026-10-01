@@ -278,6 +278,15 @@
     return docDoPainel('pagamentos', { pagamentos: [], total: 0, resumo: {} });
   }
 
+  /** Documento painel/links, publicado pelo publicar_links.py (01/10/2026):
+   *  { tgov: {numero: idConvenio}, sei: {processo: LinkAcesso} }. Nenhum dos
+   *  dois se monta no navegador só com o número. Lido uma vez por página. */
+  var _links = null;
+  function links() {
+    if (!_links) _links = docDoPainel('links', { tgov: {}, sei: {} });
+    return _links;
+  }
+
   /* ══════════════════════════════════════════════════════════════════════
      NOTIFICAÇÕES (o sino)
 
@@ -306,6 +315,7 @@
     execInstrumento: execInstrumento,
     pcf: pcf,
     pagamentos: pagamentos,
+    links: links,
     eventos: eventos,
     eventosResumo: eventosResumo,
     rotuloOrigem: rotuloOrigem,

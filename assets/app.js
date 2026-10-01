@@ -1626,13 +1626,28 @@
       '" aria-label="Copiar ' + t + '"><i class="fa-regular fa-copy"></i></button></span>';
   }
 
+  /* O SEI que a tela mostra: o do instrumento e, sem ele, o da PCF
+     (01/10/2026, pedido do Ruan). Os 4 sem processo próprio (644411, 648107,
+     761370, 908650) são antigos e só têm o da prestação de contas. Devolve a
+     ORIGEM junto: são processos diferentes, e a tela marca "PCF" ao lado para
+     ninguém tomar um pelo outro. O da PCF só aparece depois de
+     IDEPI.ficha.carregarPCF() e só para quem pode ler o painel de PCF. */
+  function seiDaTela(c) {
+    var s = seiVigenteDe(c);
+    if (s) return { sei: s, origem: 'instrumento' };
+    var p = _fichaPCF.porNumero[String((c && c.numero) || '').trim()];
+    var proc = p && String(p.processo || '').trim();
+    return proc ? { sei: proc, origem: 'pcf' } : { sei: '', origem: '' };
+  }
+
   function fichaTopoHtml(c) {
-    var sei = seiVigenteDe(c);
+    var s = seiDaTela(c);
     return '<div class="fb-topo" id="fichaTopo" data-num="' + esc(c.numero || '') + '">' +
       '<div class="fb-topo-item"><label>Instrumento</label>' +
         numeroCopiavel(c.numero, linkTgov(c.numero), 'Abrir no Transferegov') + '</div>' +
-      '<div class="fb-topo-item"><label>Processo SEI</label>' +
-        numeroCopiavel(sei, linkSei(sei), 'Abrir o processo no SEI') + '</div>' +
+      '<div class="fb-topo-item"><label>Processo SEI' +
+        (s.origem === 'pcf' ? ' <span class="sei-pcf" title="O instrumento não tem processo SEI próprio; este é o da prestação de contas">da PCF</span>' : '') +
+        '</label>' + numeroCopiavel(s.sei, linkSei(s.sei), 'Abrir o processo no SEI') + '</div>' +
     '</div>';
   }
 
@@ -1735,6 +1750,8 @@
     });
 
     fichaCarregarPCF().then(function () {
+      var topo = document.getElementById('fichaTopo');
+      if (topo && topo.getAttribute('data-num') === String(c.numero || '')) topo.outerHTML = fichaTopoHtml(c);
       var alvo = document.getElementById('fichaPCF');
       if (!alvo) return;
       if (alvo.getAttribute('data-num') !== String(c.numero || '')) return;
@@ -1808,6 +1825,7 @@
   IDEPI.carregarLinks = carregarLinks;
   IDEPI.linkTgov = linkTgov;
   IDEPI.linkSei = linkSei;
+  IDEPI.seiDaTela = seiDaTela;
   IDEPI.carimboData = carimboData;
   IDEPI.comBotaoOcupado = comBotaoOcupado;
 

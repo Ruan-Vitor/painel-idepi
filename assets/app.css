@@ -660,6 +660,10 @@ div > button:has(svg):not([class]):not([id]){display:none!important}
 .fb-topo-item label{display:block;font-size:10px;font-weight:700;text-transform:uppercase;
   letter-spacing:.4px;color:var(--muted);margin-bottom:3px}
 .fb-topo .cp-par{font-size:15px;font-weight:700}
+/* Marca de que o SEI mostrado é o da prestação de contas (01/10/2026) */
+.sei-pcf{display:inline-block;font-family:'Inter',sans-serif;font-size:9px;font-weight:700;
+  letter-spacing:.3px;text-transform:uppercase;padding:1px 6px;border-radius:999px;
+  background:var(--s-bg,#fef3c7);color:var(--s-tx,#92400e);vertical-align:1px;margin-left:4px}
 /* Número com link e botão de copiar, usado na ficha e nas tabelas */
 .cp-par{display:inline-flex;align-items:center;gap:4px;white-space:nowrap;
   font-family:'IBM Plex Mono',monospace;font-variant-numeric:tabular-nums}
@@ -693,7 +697,7 @@ div > button:has(svg):not([class]):not([id]){display:none!important}
 .btn-ficha-mini{
   border:1px solid var(--border);background:var(--surface);color:var(--muted);
   font-size:9.5px;border-radius:5px;padding:1px 5px;cursor:pointer;
-  margin-left:5px;vertical-align:middle;line-height:1.4;
+  margin-left:9px;vertical-align:middle;line-height:1.4;
 }
 .btn-ficha-mini:hover{background:var(--surface2);border-color:var(--accent);color:var(--accent)}
 /* Alvo de toque: no celular 24px é o mínimo utilizável com o polegar. */

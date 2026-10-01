@@ -121,8 +121,9 @@
       fonte: FONTE_VIGENCIAS,
       cards: [
         ['Filtros', 'dá para marcar várias opções no mesmo filtro (Normal, Atenção e Alerta, por exemplo). Cada opção mostra quantos sobram somando os outros filtros. O link copiado abre com os mesmos filtros.'],
-        ['Colunas', 'o botão Colunas põe e tira colunas; arrastar a borda do título muda a largura. A escolha fica guardada neste aparelho. O Excel sai sempre com todas.'],
-        ['Nº SEI', 'abre o processo no SEI (é preciso estar logado nele); o botão ao lado copia o número.'],
+        ['Colunas', 'o botão Colunas põe e tira colunas; arrastar a borda do título muda a largura. A escolha fica guardada neste aparelho.'],
+        ['Excel', 'pergunta se vêm todas as colunas ou só as da tela. As linhas são sempre as da tela, na mesma ordem.'],
+        ['Nº SEI', 'abre o processo no SEI (é preciso estar logado nele); o botão ao lado copia o número. Sem processo próprio, aparece o da prestação de contas, marcado PCF.'],
         ['Busca', 'procura no número, no número original, no objeto, no município e nos processos SEI, sem ligar para acento.'],
         ['Ordem', 'clique no título de uma coluna para ordenar por ela; outro clique inverte.'],
         ['Liberado', 'o que a União já mandou, pelo Transferegov.']

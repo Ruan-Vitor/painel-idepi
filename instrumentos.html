@@ -67,6 +67,19 @@ body{font-family:'Inter',sans-serif;color:var(--text)}
 .col-padrao{border:0;background:none;color:#1a3a6e;font:inherit;font-size:12px;font-weight:600;cursor:pointer;text-decoration:underline;text-underline-offset:3px;margin-left:auto}
 
 .twrap{overflow:auto;max-height:calc(100vh - 290px);min-height:240px;border-top:1px solid var(--border)}
+/* Barra de rolagem lateral TAMBÉM em cima (01/10/2026, pedido do Ruan): com
+   muitas colunas, a de baixo fica longe quando a lista é comprida. É uma
+   faixa vazia da largura da tabela, sincronizada com a rolagem dela. */
+.rolagem-topo{overflow-x:auto;overflow-y:hidden;height:14px;border-top:1px solid var(--border)}
+.rolagem-topo div{height:1px}
+.rolagem-topo[hidden]{display:none}
+/* A escolha do Excel: todas as colunas ou só as da tela. Os botões PRECISAM
+   de classe: o app.css esconde botão sem classe nem id. */
+.xls-escolha{position:fixed;z-index:3000;background:#fff;border:1px solid #d6dfeb;border-radius:12px;box-shadow:0 12px 32px rgba(15,23,42,.18);padding:8px;display:flex;flex-direction:column;gap:4px;min-width:250px}
+.xls-escolha .xls-op{display:flex;flex-direction:column;align-items:flex-start;gap:2px;border:0;background:none;text-align:left;padding:9px 10px;border-radius:8px;cursor:pointer;font:inherit;color:#1a2640}
+.xls-escolha .xls-op:hover,.xls-escolha .xls-op:focus-visible{background:#f1f5f9;outline:none}
+.xls-escolha strong{font-size:13px}
+.xls-escolha small{font-size:11.5px;color:#64748b}
 table{border-collapse:collapse;font-size:12px;table-layout:fixed}
 th{position:sticky;top:0;background:var(--surface2);padding:9px 14px 9px 12px;text-align:left;font-weight:600;font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;border-bottom:1px solid var(--border);z-index:1;white-space:nowrap;cursor:pointer;user-select:none;overflow:hidden;text-overflow:ellipsis}
 th:hover{color:var(--brand)}
@@ -104,6 +117,7 @@ td .cp-par{font-size:11.5px}
   table.tbl-cards{width:100%!important;table-layout:auto}
   table.tbl-cards colgroup{display:none}
   .col-alca{display:none}
+  .rolagem-topo{display:none}
   td{overflow:visible}
   .btn-col span{display:none}
 }
@@ -161,7 +175,7 @@ td .cp-par{font-size:11.5px}
         <button type="button" class="btn-col" id="btnColunas" aria-expanded="false" aria-controls="painelColunas" title="Escolher as colunas da tabela">
           <i class="fa-solid fa-table-columns"></i> <span>Colunas</span>
         </button>
-        <button class="btn-excel" id="btnExcelIns" onclick="exportarExcel()" title="Exportar para Excel o que está na tela">
+        <button class="btn-excel" id="btnExcelIns" onclick="escolherExcel(event)" title="Exportar para Excel o que está na tela" aria-haspopup="true">
           <i class="fa-solid fa-file-excel"></i> Exportar Excel
         </button>
       </div>
@@ -172,7 +186,8 @@ td .cp-par{font-size:11.5px}
       <div id="ancoraFiltros"></div>
     </div>
 
-    <div class="twrap">
+    <div class="rolagem-topo" id="rolagemTopo" hidden aria-hidden="true"><div></div></div>
+    <div class="twrap" id="twrap">
       <table class="tbl-cards" id="tabela">
         <colgroup id="colunas"></colgroup>
         <thead><tr id="cabecalho"></tr></thead>
@@ -220,51 +235,55 @@ const GESTAO = { legado: 'Legado', nova: 'Nova gestão', proposta: 'Proposta' };
    Os valores saem das mesmas funções do app.js que a tela e os filtros usam,
    para a ordem nunca discordar do que está escrito. */
 const COLS = [
-  { id: 'numero', rot: 'Nº', fixa: true, larg: 140,
+  { id: 'numero', xls: r => r.numero || '', rot: 'Nº', fixa: true, larg: 140,
     ord: r => (/^\d+$/.test(r.numero || '') ? '0 ' : '1 ') + (r.numero || ''),
     /* Os de código com letras (7AAALY) vêm depois dos numéricos. */
     cel: r => `<span class="num">${IDEPI.faixaFase(r)}<a class="num-link" href="execucao.html?num=${encodeURIComponent(r.numero || '')}" title="Abrir este instrumento">${esc(r.numero) || '—'}</a>${IDEPI.ficha.botao(r.numero || '')}</span>` },
-  { id: 'objeto', rot: 'Objeto / município', fixa: true, larg: 340, destaque: true,
+  { id: 'objeto', xls: r => r.objeto || '', rot: 'Objeto / município', fixa: true, larg: 340, destaque: true,
     ord: r => (r.objeto || '').toLowerCase(),
     cel: r => { const m = (IDEPI.filtros.municipios(r) || []).join(', ');
       return `<div class="obj txt-exp">${esc(r.objeto) || '—'}</div>${m ? `<div class="muni"><i class="fa-solid fa-location-dot"></i> ${esc(m)}</div>` : ''}`; } },
-  { id: 'sei', rot: 'Nº SEI', padrao: true, larg: 210,
-    ord: r => IDEPI.seiVigenteDe(r),
-    cel: r => { const s = IDEPI.seiVigenteDe(r); return IDEPI.numeroCopiavel(s, IDEPI.linkSei(s), 'Abrir o processo no SEI'); } },
-  { id: 'orgao', rot: 'Órgão', padrao: true, larg: 100, ord: r => r._orgao,
+  /* Sem SEI do instrumento, o da PCF, marcado (01/10/2026). */
+  { id: 'sei', rot: 'Nº SEI', padrao: true, larg: 230,
+    ord: r => IDEPI.seiDaTela(r).sei,
+    xls: r => { const s = IDEPI.seiDaTela(r); return s.sei + (s.origem === 'pcf' ? ' (PCF)' : ''); },
+    cel: r => { const s = IDEPI.seiDaTela(r);
+      return IDEPI.numeroCopiavel(s.sei, IDEPI.linkSei(s.sei), 'Abrir o processo no SEI') +
+        (s.origem === 'pcf' ? '<span class="sei-pcf" title="O instrumento não tem processo SEI próprio; este é o da prestação de contas">PCF</span>' : ''); } },
+  { id: 'orgao', xls: r => r._orgao, rot: 'Órgão', padrao: true, larg: 100, ord: r => r._orgao,
     cel: r => `<div><span class="org">${esc(r._orgao)}</span></div>` },
-  { id: 'concedente', rot: 'Concedente', padrao: true, larg: 110, ord: r => r._conc, cel: r => txt(r._conc) },
-  { id: 'fiscal', rot: 'Fiscal', padrao: true, larg: 110, ord: r => (r.fiscal || '').toLowerCase(), cel: r => txt(r.fiscal) },
-  { id: 'vigencia', rot: 'Vigência', padrao: true, larg: 110,
+  { id: 'concedente', xls: r => r._conc, rot: 'Concedente', padrao: true, larg: 110, ord: r => r._conc, cel: r => txt(r._conc) },
+  { id: 'fiscal', xls: r => r.fiscal || '', rot: 'Fiscal', padrao: true, larg: 110, ord: r => (r.fiscal || '').toLowerCase(), cel: r => txt(r.fiscal) },
+  { id: 'vigencia', xls: r => r.vigencia_fmt || r.vigencia || '', rot: 'Vigência', padrao: true, larg: 110,
     ord: r => { const d = IDEPI.parseDateBR(r.vigencia_fmt || r.vigencia); return d ? d.getTime() : Infinity; },
     cel: r => `<div><span class="vig">${esc(r.vigencia_fmt || r.vigencia) || '—'}</span><span class="prz ${r._st}">${esc(IDEPI.NOME_ST[r._st] || r._st)}</span></div>` },
-  { id: 'total', rot: 'Valor total', padrao: true, dir: true, larg: 140,
+  { id: 'total', xls: r => IDEPI.parseReais(r.v_total) || '', rot: 'Valor total', padrao: true, dir: true, larg: 140,
     ord: r => IDEPI.parseReais(r.v_total),
     cel: r => `<span class="val">${r.v_total ? esc(IDEPI.fmtReais(r.v_total)) : '—'}</span>` },
-  { id: 'liberado', rot: 'Liberado', padrao: true, dir: true, larg: 140, ord: r => r._lib,
+  { id: 'liberado', xls: r => r._lib, rot: 'Liberado', padrao: true, dir: true, larg: 140, ord: r => r._lib,
     cel: r => `<span class="val">${esc(IDEPI.fmtReais(r._lib))}</span>` },
-  { id: 'dias', rot: 'Dias', dir: true, larg: 80, ord: r => (r._dias === null || r._dias === undefined) ? Infinity : r._dias,
+  { id: 'dias', xls: r => (r._dias === null || r._dias === undefined) ? '' : r._dias, rot: 'Dias', dir: true, larg: 80, ord: r => (r._dias === null || r._dias === undefined) ? Infinity : r._dias,
     cel: r => (r._dias === null || r._dias === undefined) ? vazio : `<span class="val">${r._dias}</span>` },
-  { id: 'suspensiva', rot: 'Suspensiva', larg: 110,
+  { id: 'suspensiva', xls: r => r.vigencia_suspensiva || '', rot: 'Suspensiva', larg: 110,
     ord: r => { const d = IDEPI.parseDateBR(r.vigencia_suspensiva); return d ? d.getTime() : Infinity; },
     cel: r => txt(r.vigencia_suspensiva) },
-  { id: 'inicio', rot: 'Início da vigência', larg: 120,
+  { id: 'inicio', xls: r => r.vigencia_inicio || r.vigencia_inicio_tgov || '', rot: 'Início da vigência', larg: 120,
     ord: r => { const d = IDEPI.parseDateBR(r.vigencia_inicio || r.vigencia_inicio_tgov); return d ? d.getTime() : Infinity; },
     cel: r => txt(r.vigencia_inicio || r.vigencia_inicio_tgov) },
-  { id: 'situacao', rot: 'Situação (Transferegov)', larg: 170, ord: r => r.situacao_tgov || '', cel: r => txt(r.situacao_tgov) },
-  { id: 'tipo', rot: 'Tipo', larg: 150, ord: r => r.tipo_instrumento || '', cel: r => txt(r.tipo_instrumento) },
-  { id: 'gestao', rot: 'Gestão', larg: 110, ord: r => GESTAO[IDEPI.gestaoDe(r)] || '', cel: r => txt(GESTAO[IDEPI.gestaoDe(r)]) },
-  { id: 'contrapartida', rot: 'Contrapartida', dir: true, larg: 130, ord: r => IDEPI.parseReais(r.v_contrapartida),
+  { id: 'situacao', xls: r => r.situacao_tgov || '', rot: 'Situação (Transferegov)', larg: 170, ord: r => r.situacao_tgov || '', cel: r => txt(r.situacao_tgov) },
+  { id: 'tipo', xls: r => r.tipo_instrumento || '', rot: 'Tipo', larg: 150, ord: r => r.tipo_instrumento || '', cel: r => txt(r.tipo_instrumento) },
+  { id: 'gestao', xls: r => GESTAO[IDEPI.gestaoDe(r)] || '', rot: 'Gestão', larg: 110, ord: r => GESTAO[IDEPI.gestaoDe(r)] || '', cel: r => txt(GESTAO[IDEPI.gestaoDe(r)]) },
+  { id: 'contrapartida', xls: r => IDEPI.parseReais(r.v_contrapartida) || '', rot: 'Contrapartida', dir: true, larg: 130, ord: r => IDEPI.parseReais(r.v_contrapartida),
     cel: r => r.v_contrapartida ? `<span class="val">${esc(IDEPI.fmtReais(r.v_contrapartida))}</span>` : vazio },
-  { id: 'pct', rot: '% execução', dir: true, larg: 100, ord: r => parseFloat(String(r.pct_exec || '').replace(',', '.')) || -1,
+  { id: 'pct', xls: r => r.pct_exec || '', rot: '% execução', dir: true, larg: 100, ord: r => parseFloat(String(r.pct_exec || '').replace(',', '.')) || -1,
     cel: r => txt(r.pct_exec) },
-  { id: 'mandataria', rot: 'Mandatária', larg: 160, ord: r => r.mandataria || '', cel: r => txt(r.mandataria) },
-  { id: 'emenda', rot: 'Dono da emenda', larg: 150, ord: r => r.dono_emenda || r.autor_emenda || '', cel: r => txt(r.dono_emenda || r.autor_emenda) },
-  { id: 'ponto', rot: 'Ponto focal', larg: 140, ord: r => r.ponto_focal || '', cel: r => txt(r.ponto_focal) },
-  { id: 'limite', rot: 'Limite da prestação', larg: 130,
+  { id: 'mandataria', xls: r => r.mandataria || '', rot: 'Mandatária', larg: 160, ord: r => r.mandataria || '', cel: r => txt(r.mandataria) },
+  { id: 'emenda', xls: r => r.dono_emenda || r.autor_emenda || '', rot: 'Dono da emenda', larg: 150, ord: r => r.dono_emenda || r.autor_emenda || '', cel: r => txt(r.dono_emenda || r.autor_emenda) },
+  { id: 'ponto', xls: r => r.ponto_focal || '', rot: 'Ponto focal', larg: 140, ord: r => r.ponto_focal || '', cel: r => txt(r.ponto_focal) },
+  { id: 'limite', xls: r => r.limite_prestacao || '', rot: 'Limite da prestação', larg: 130,
     ord: r => { const d = IDEPI.parseDateBR(r.limite_prestacao); return d ? d.getTime() : Infinity; },
     cel: r => txt(r.limite_prestacao) },
-  { id: 'pcf', rot: 'Etapa da PCF', larg: 120, ord: r => r.pcf_etapa || '', cel: r => txt(r.pcf_etapa) }
+  { id: 'pcf', xls: r => r.pcf_etapa || '', rot: 'Etapa da PCF', larg: 120, ord: r => r.pcf_etapa || '', cel: r => txt(r.pcf_etapa) }
 ];
 const COL = Object.fromEntries(COLS.map(c => [c.id, c]));
 
@@ -305,6 +324,29 @@ function desenharCabecalho() {
   ).join('');
 }
 
+const _topo = document.getElementById('rolagemTopo'), _twrap = document.getElementById('twrap');
+function ajustarRolagemTopo() {
+  const tab = document.getElementById('tabela');
+  const sobra = tab.scrollWidth > _twrap.clientWidth + 1 && window.innerWidth > 900;
+  _topo.hidden = !sobra;
+  _topo.firstElementChild.style.width = tab.scrollWidth + 'px';
+  if (sobra) _topo.scrollLeft = _twrap.scrollLeft;
+}
+let _sincronizando = false;
+_topo.addEventListener('scroll', () => {
+  if (_sincronizando) { _sincronizando = false; return; }
+  _sincronizando = true; _twrap.scrollLeft = _topo.scrollLeft;
+});
+_twrap.addEventListener('scroll', () => {
+  if (_sincronizando) { _sincronizando = false; return; }
+  _sincronizando = true; _topo.scrollLeft = _twrap.scrollLeft;
+});
+if (window.ResizeObserver) {
+  const ro = new ResizeObserver(ajustarRolagemTopo);
+  ro.observe(document.getElementById('tabela'));
+  ro.observe(_twrap);
+} else window.addEventListener('resize', ajustarRolagemTopo);
+
 function comparar(a, b) {
   const f = (COL[sortCol] || COL.numero).ord;
   const va = f(a), vb = f(b);
@@ -341,8 +383,10 @@ async function carregar() {
     desenharPainelColunas();
     desenharCabecalho();
     render();
-    // Os links do SEI chegam à parte; quando chegam, a coluna ganha o link.
+    // Os links do SEI e a PCF chegam à parte; quando chegam, a coluna SEI
+    // ganha o link e, para quem não tem SEI próprio, o processo da PCF.
     IDEPI.carregarLinks().then(render);
+    IDEPI.ficha.carregarPCF().then(() => { dados.forEach(r => { delete r._busca; }); render(); });
     // Todas as 7 dimensões: esta é a página de ver tudo, nenhuma fica de fora.
     // Espera a barra se desenhar para o contador dela já sair certo.
     await IDEPI.filtros.ligar({ depois: '#ancoraFiltros', aoMudar: render });
@@ -357,7 +401,7 @@ async function carregar() {
 
 function textoBusca(r) {
   if (!r._busca) r._busca = [r.numero, r.numero_original, r.objeto, r.municipio_emendas,
-    IDEPI.seisDe(r).join(' ')].join(' ').toLowerCase()
+    IDEPI.seisDe(r).join(' '), IDEPI.seiDaTela(r).sei].join(' ').toLowerCase()
     .normalize('NFD').replace(/[̀-ͯ]/g, '');
   return r._busca;
 }
@@ -389,6 +433,7 @@ function render() {
       `<td${c.destaque ? ' class="celula-destaque"' : (c.dir ? ' class="dir"' : '')}>${c.cel(r)}</td>`
     ).join('') + '</tr>'
   ).join('');
+  ajustarRolagemTopo();
 }
 
 document.getElementById('busca').addEventListener('input', () => {
@@ -481,11 +526,44 @@ document.getElementById('painelColunas').addEventListener('click', e => {
 
 /* ── EXCEL ────────────────────────────────────────────────────────────────
    Lê _visiveis (o que a tela mostra, na ordem da tela). Valores em número,
-   para somar no Excel. Sai com TODAS as colunas, não só as ligadas na tela:
-   o arquivo é para trabalhar o dado, e a escolha de colunas é de leitura.
+   para somar no Excel. Com todas as colunas (27 + de onde veio o SEI) ou só
+   as ligadas na tela, conforme a escolha no botão.
    A aba "Filtros" diz o que estava ligado: arquivo encaminhado precisa se
    explicar sem quem o gerou. */
-function exportarExcel() {
+/* O botão Excel pergunta (01/10/2026, pedido do Ruan): todas as colunas, que
+   é o arquivo para trabalhar o dado, ou só as que estão na tela, que é o que
+   se leva para mostrar. As LINHAS são as mesmas nos dois: as da tela. */
+let _xlsMenu = null;
+function fecharEscolhaExcel() { if (_xlsMenu) { _xlsMenu.remove(); _xlsMenu = null; } }
+function escolherExcel(ev) {
+  if (ev) ev.stopPropagation();
+  if (_xlsMenu) { fecharEscolhaExcel(); return; }
+  if (!dados.length) { alert('Dados ainda não carregados. Aguarde.'); return; }
+  const b = document.getElementById('btnExcelIns'), r = b.getBoundingClientRect();
+  _xlsMenu = document.createElement('div');
+  _xlsMenu.className = 'xls-escolha';
+  _xlsMenu.setAttribute('role', 'menu');
+  _xlsMenu.innerHTML =
+    `<button type="button" class="xls-op" role="menuitem" data-xls="todas"><strong>Todas as colunas</strong><small>28 colunas · ${_visiveis.length} instrumentos</small></button>` +
+    `<button type="button" class="xls-op" role="menuitem" data-xls="tela"><strong>Só as colunas da tela</strong><small>${visiveis().length} colunas · ${_visiveis.length} instrumentos</small></button>`;
+  (document.fullscreenElement || document.body).appendChild(_xlsMenu);
+  const larg = _xlsMenu.offsetWidth;
+  _xlsMenu.style.top = (r.bottom + 6) + 'px';
+  _xlsMenu.style.left = Math.max(8, Math.min(r.right - larg, window.innerWidth - larg - 8)) + 'px';
+  _xlsMenu.addEventListener('click', e => {
+    const op = e.target.closest('[data-xls]');
+    if (!op) return;
+    const qual = op.dataset.xls;
+    fecharEscolhaExcel();
+    exportarExcel(qual === 'tela');
+  });
+  _xlsMenu.querySelector('button').focus();
+}
+document.addEventListener('click', e => { if (_xlsMenu && !_xlsMenu.contains(e.target)) fecharEscolhaExcel(); });
+document.addEventListener('keydown', e => { if (_xlsMenu && e.key === 'Escape') { fecharEscolhaExcel(); document.getElementById('btnExcelIns').focus(); } });
+window.addEventListener('resize', fecharEscolhaExcel);
+
+function exportarExcel(soDaTela) {
   if (!dados.length) { alert('Dados ainda não carregados. Aguarde.'); return; }
   IDEPI.comBotaoOcupado('btnExcelIns', '<i class="fa-solid fa-file-excel"></i> Exportar Excel', function () {
     const GEST = { legado: 'Legado (até 2022)', nova: 'Nova gestão (2023 em diante)', proposta: 'Proposta' };
@@ -493,9 +571,15 @@ function exportarExcel() {
     const cab = ['Nº Instrumento','Nº original','Objeto','Município','Órgão executor','Concedente',
       'Tipo','Gestão','Fiscal','Ponto focal','Situação (Transferegov)','Início da vigência',
       'Fim da vigência','Status do prazo','Dias','Suspensiva','Valor total (R$)','Contrapartida (R$)',
-      'Liberado (R$)','Última liberação','Valor da última liberação (R$)','% execução','Nº SEI',
+      'Liberado (R$)','Última liberação','Valor da última liberação (R$)','% execução','Nº SEI','SEI de onde',
       'Mandatária','Autor da emenda','Limite da prestação','Etapa da PCF'];
-    const linhas = _visiveis.map(r => [
+    let cabF = cab, linhasF;
+    if (soDaTela) {
+      const cols = visiveis();
+      cabF = cols.map(c => c.rot);
+      linhasF = _visiveis.map(r => cols.map(c => c.xls(r)));
+    }
+    const linhas = soDaTela ? linhasF : _visiveis.map(r => [
       r.numero || '', r.numero_original || '', r.objeto || '',
       (IDEPI.filtros.municipios(r) || []).join(', '),
       r._orgao, IDEPI.concedenteDe(r).nome || r._conc, r.tipo_instrumento || '',
@@ -505,12 +589,14 @@ function exportarExcel() {
       r._dias === null || r._dias === undefined ? '' : r._dias,
       r.vigencia_suspensiva || '', num(r.v_total), num(r.v_contrapartida), r._lib,
       r.ultima_liberacao || '', r.ultima_liberacao ? num(r.v_ultima_liberacao) : '',
-      r.pct_exec || '', IDEPI.seiVigenteDe(r), r.mandataria || '',
+      r.pct_exec || '', IDEPI.seiDaTela(r).sei, IDEPI.seiDaTela(r).origem === 'pcf' ? 'PCF' : (IDEPI.seiDaTela(r).sei ? 'Instrumento' : ''), r.mandataria || '',
       r.dono_emenda || r.autor_emenda || '', r.limite_prestacao || '', r.pcf_etapa || ''
     ]);
-    const ws = XLSX.utils.aoa_to_sheet([cab].concat(linhas));
-    ws['!cols'] = [12,12,60,24,12,30,22,24,16,18,24,12,12,12,7,12,16,16,16,12,16,9,24,24,24,12,12].map(w => ({ wch: w }));
-    ws['!autofilter'] = { ref: XLSX.utils.encode_range({ s: { r: 0, c: 0 }, e: { r: linhas.length, c: cab.length - 1 } }) };
+    const ws = XLSX.utils.aoa_to_sheet([cabF].concat(linhas));
+    ws['!cols'] = soDaTela
+      ? visiveis().map(c => ({ wch: Math.max(10, Math.min(60, Math.round(largDe(c) / 7))) }))
+      : [12,12,60,24,12,30,22,24,16,18,24,12,12,12,7,12,16,16,16,12,16,9,24,11,24,24,12,12].map(w => ({ wch: w }));
+    ws['!autofilter'] = { ref: XLSX.utils.encode_range({ s: { r: 0, c: 0 }, e: { r: linhas.length, c: cabF.length - 1 } }) };
 
     const fil = [['Filtro', 'Escolha']];
     const esc_ = IDEPI.filtros.escolhas();
@@ -522,6 +608,7 @@ function exportarExcel() {
       ['', ''],
       ['Instrumentos no arquivo', _visiveis.length + ' de ' + dados.length],
       ['Ordem', 'a mesma da tela'],
+      ['Colunas', soDaTela ? 'só as da tela' : 'todas'],
       ['Dados de', _gerado_em || ''],
       ['Gerado em', new Date().toLocaleString('pt-BR')]
     ]));
@@ -530,7 +617,7 @@ function exportarExcel() {
     const wb = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, 'Instrumentos');
     XLSX.utils.book_append_sheet(wb, wsF, 'Filtros');
-    XLSX.writeFile(wb, 'IDEPI_Instrumentos_' + IDEPI.carimboData() + '.xlsx');
+    XLSX.writeFile(wb, 'IDEPI_Instrumentos' + (soDaTela ? '_colunas_da_tela' : '') + '_' + IDEPI.carimboData() + '.xlsx');
   });
 }
 

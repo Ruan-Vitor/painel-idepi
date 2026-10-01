@@ -322,7 +322,8 @@
                  painel/links do publicar_links.py); Todos os Instrumentos com
                  colunas a escolher, largura ajustavel e coluna SEI; celular
                  da pagina nova consertado (.main com width:100%). */
-const VERSAO = 'idepi-v60';
+/* v61 - 01/10/2026 - copiar pelo caminho classico primeiro (app.js). */
+const VERSAO = 'idepi-v61';
 const CACHE_SHELL = VERSAO + '-shell';
 const CACHE_PAGS  = VERSAO + '-paginas';
 

@@ -323,7 +323,11 @@
                  colunas a escolher, largura ajustavel e coluna SEI; celular
                  da pagina nova consertado (.main com width:100%). */
 /* v61 - 01/10/2026 - copiar pelo caminho classico primeiro (app.js). */
-const VERSAO = 'idepi-v61';
+/* v62 - 01/10/2026 - SEI da PCF para quem nao tem processo proprio (marcado
+                 PCF), Excel com escolha (todas ou so as colunas da tela),
+                 barra de rolagem lateral tambem em cima, botao da ficha mais
+                 afastado do numero. */
+const VERSAO = 'idepi-v62';
 const CACHE_SHELL = VERSAO + '-shell';
 const CACHE_PAGS  = VERSAO + '-paginas';
 

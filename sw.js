@@ -316,7 +316,13 @@
                  lista inteira por numero, filtros combinados, Excel do que
                  esta na tela). Entra no SHELL, no menu (nav.js, seguindo a
                  liberacao de Vigencias) e no balao (sobre.js). */
-const VERSAO = 'idepi-v59';
+/* v60 - 01/10/2026 - FILTROS MULTIPLOS (filtros.js: caixas de marcar,
+                 qualquer um dentro do filtro, todos entre filtros); ficha com
+                 instrumento e SEI clicaveis e copiaveis (app.js, data.js le o
+                 painel/links do publicar_links.py); Todos os Instrumentos com
+                 colunas a escolher, largura ajustavel e coluna SEI; celular
+                 da pagina nova consertado (.main com width:100%). */
+const VERSAO = 'idepi-v60';
 const CACHE_SHELL = VERSAO + '-shell';
 const CACHE_PAGS  = VERSAO + '-paginas';
 

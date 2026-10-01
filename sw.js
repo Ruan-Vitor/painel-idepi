@@ -312,7 +312,11 @@
 /* v58 - 30/09/2026 - FiscalGov simplificado (Pendencias / Em dia / Ainda nao
                  se cobra, abrindo nas pendencias) e so vigencia correndo
                  conta no EX-01 (app.js). Painel Geral alinhado. */
-const VERSAO = 'idepi-v58';
+/* v59 - 01/10/2026 - pagina NOVA instrumentos.html (Todos os Instrumentos:
+                 lista inteira por numero, filtros combinados, Excel do que
+                 esta na tela). Entra no SHELL, no menu (nav.js, seguindo a
+                 liberacao de Vigencias) e no balao (sobre.js). */
+const VERSAO = 'idepi-v59';
 const CACHE_SHELL = VERSAO + '-shell';
 const CACHE_PAGS  = VERSAO + '-paginas';
 
@@ -321,6 +325,7 @@ const SHELL = [
   './',
   'index.html',
   'vigencias.html',
+  'instrumentos.html',
   'execucao.html',
   'fiscalgov.html',
   'ingressos.html',

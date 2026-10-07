@@ -1,5 +1,5 @@
 {
-  "gerado_em": "07/10/2026 08:58",
+  "gerado_em": "07/10/2026 09:06",
   "total": 107,
   "convenios": [
     {
@@ -4477,7 +4477,7 @@
       "vigencia": "2030-06-30",
       "vigencia_fmt": "30/06/2030",
       "vigencia_inicio": "30/06/2026",
-      "vigencia_suspensiva": "",
+      "vigencia_suspensiva": "30/03/2027",
       "vigencia_origem": "Transferegov",
       "orgao_vinculado": "",
       "orgao_vinculado_cgu": "Ministério da Integração e do Desenvolvimento Regional - Unidades com vínculo direto",
@@ -4512,7 +4512,7 @@
       "vigencia_emendas": "31/12/2029",
       "dono_emenda": "Marcelo Castro",
       "ponto_focal": "Ademar",
-      "clausula_motivo": "",
+      "clausula_motivo": "Titularidade de Área, Projeto Básico, Licença Ambiental Prévia e Plano de Sustentabilidade",
       "pcf_etapa": "",
       "ultima_foto": "",
       "orgao_executor": "MIDR",

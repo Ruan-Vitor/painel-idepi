@@ -51839,8 +51839,8 @@
       ],
       "total_recebido": "136.680.000,00",
       "ultimo_ingresso_federal": {
-        "data": "22/07/2026",
-        "valor": "2.000.000,00"
+        "data": "28/09/2026",
+        "valor": "20.000.000,00"
       }
     },
     "945303": {
@@ -52692,9 +52692,24 @@
           "data": "29/09/2025",
           "valor": "1.753.031,34",
           "tipo": "C"
+        },
+        {
+          "data": "07/10/2026",
+          "valor": "30.000,00",
+          "tipo": "F"
+        },
+        {
+          "data": "07/10/2026",
+          "valor": "16.077.430,00",
+          "tipo": "F"
+        },
+        {
+          "data": "07/10/2026",
+          "valor": "6.215.288,00",
+          "tipo": "F"
         }
       ],
-      "total_recebido": "107.707.929,11",
+      "total_recebido": "130.030.647,11",
       "ultimo_ingresso_federal": {
         "data": "31/10/2025",
         "valor": "15.777.282,00"
@@ -53579,8 +53594,8 @@
       ],
       "total_recebido": "15.416.100,00",
       "ultimo_ingresso_federal": {
-        "data": "01/07/2026",
-        "valor": "4.260.623,79"
+        "data": "29/09/2026",
+        "valor": "11.132.476,21"
       }
     },
     "946258": {
@@ -54288,5 +54303,5 @@
       "ultimo_ingresso_federal": {}
     }
   },
-  "repasses_atualizado_em": "05/10/2026 21:04"
+  "repasses_atualizado_em": "08/10/2026 08:46"
 }

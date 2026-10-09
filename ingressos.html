@@ -458,6 +458,7 @@ IDEPI.dados.carregar()
       IDEPI.dados.rotuloOrigem(json).replace("Atualizado ", "Atualizado<br>");
 
     _dados = json.historico_repasses || {};
+    IDEPI.usarHistorico(_dados);   // é dele que o IDEPI.casaConta lê a conta
 
     // Achata todos os ingressos numa lista só, já com o tipo normalizado
     // ("F" federal / "C" contrapartida) — ver IDEPI.tipoIngresso.
@@ -718,9 +719,11 @@ function filtrarIngressos(){
     if (!q) return true;
     // Busca ampla: número, objeto, banco, agência, conta, data e valor.
     // É o que permite achar "953168", "Belém", "CAIXA" ou "5.792.250".
+    // A conta também sem traço: "8351-8" acha a "83518" (IDEPI.casaConta).
     return (i.numero  + ' ' + i.objeto + ' ' + i.banco + ' ' +
             i.agencia + ' ' + i.conta  + ' ' + i.data  + ' ' + i.valor)
-           .toLowerCase().indexOf(q) !== -1;
+           .toLowerCase().indexOf(q) !== -1
+        || IDEPI.casaConta(i.numero, q);
   });
 
   lista.sort(function(a,b){

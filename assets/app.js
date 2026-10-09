@@ -457,6 +457,28 @@
     return s;
   }
 
+  /* Busca pela CONTA BANCÁRIA (09/10/2026). A conta só existe no histórico de
+     ingressos (93 dos 108) e é guardada sem o traço do dígito ("83518" para a
+     8351-8 do BB), enquanto a agência vem com traço ("3791-5"). Por isso os
+     dois lados perdem ponto, traço, barra e espaço antes de comparar:
+     "8351-8", "83518" e "8.351-8" acham o mesmo convênio. Mínimo de 3
+     caracteres, senão "1" casaria com quase toda conta. */
+  function _semSeparador(v) { return String(v || '').toLowerCase().replace(/[.\-\/\s]/g, ''); }
+
+  /** {banco, agencia, conta} do convênio, ou null sem histórico. */
+  function contaDe(numero) {
+    var h = _historico[numero];
+    if (!h || !(h.conta || h.agencia)) return null;
+    return { banco: h.banco || '', agencia: h.agencia || '', conta: h.conta || '' };
+  }
+
+  /** O texto buscado casa com a conta ou a agência do convênio? */
+  function casaConta(numero, q) {
+    var b = _semSeparador(q), c = contaDe(numero);
+    if (b.length < 3 || !c) return false;
+    return _semSeparador(c.conta).indexOf(b) !== -1 || _semSeparador(c.agencia).indexOf(b) !== -1;
+  }
+
   /** Repasse FEDERAL já recebido. Transferegov primeiro, CGU como reserva. */
   function liberadoDe(c) {
     if (!c) return 0;
@@ -1385,6 +1407,8 @@
   IDEPI.seisDe = seisDe;
   IDEPI.seiVigenteDe = seiVigenteDe;
   IDEPI.usarHistorico = usarHistorico;
+  IDEPI.contaDe       = contaDe;
+  IDEPI.casaConta     = casaConta;
   IDEPI.liberadoDe = liberadoDe;
   IDEPI.contrapartidaRecebidaDe = contrapartidaRecebidaDe;
   IDEPI.repasseDe = repasseDe;

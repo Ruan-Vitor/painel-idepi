@@ -351,7 +351,7 @@ tr.drow:hover td{background:var(--surface2);cursor:pointer}
       <!-- Busca -->
       <div class="sbar">
         <i class="fa-solid fa-magnifying-glass"></i>
-        <input type="text" id="busca" placeholder="Buscar por número, objeto ou autor da emenda..." oninput="render()">
+        <input type="text" id="busca" placeholder="Buscar por número, objeto, autor da emenda ou conta bancária..." oninput="render()">
       </div>
 
       <!-- Chips de status -->
@@ -686,7 +686,8 @@ function render() {
   if (q) rows = rows.filter(r =>
     (r.numero||'').toLowerCase().includes(q) ||
     (r.objeto||'').toLowerCase().includes(q) ||
-    (r.autor_emenda||'').toLowerCase().includes(q)
+    (r.autor_emenda||'').toLowerCase().includes(q) ||
+    IDEPI.casaConta(r.numero, q)
   );
 
   if (fMand) rows = rows.filter(r => (r.mandataria||r.mandatária||'').trim() === fMand);

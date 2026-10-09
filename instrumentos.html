@@ -170,7 +170,7 @@ td .cp-par{font-size:11.5px}
       <div class="ins-topo">
         <div class="sbar">
           <i class="fa-solid fa-magnifying-glass"></i>
-          <input type="search" id="busca" placeholder="Buscar nº, objeto, SEI ou município" autocomplete="off">
+          <input type="search" id="busca" placeholder="Buscar nº, objeto, SEI, município ou conta bancária" autocomplete="off">
         </div>
         <button type="button" class="btn-col" id="btnColunas" aria-expanded="false" aria-controls="painelColunas" title="Escolher as colunas da tabela">
           <i class="fa-solid fa-table-columns"></i> <span>Colunas</span>
@@ -421,7 +421,7 @@ function render() {
   const q = document.getElementById('busca').value.trim().toLowerCase()
     .normalize('NFD').replace(/[̀-ͯ]/g, '');
   let rows = dados.filter(r => IDEPI.filtros.passa(r));
-  if (q) rows = rows.filter(r => textoBusca(r).includes(q));
+  if (q) rows = rows.filter(r => textoBusca(r).includes(q) || IDEPI.casaConta(r.numero, q));
   rows.sort(comparar);
   _visiveis = rows;
   contador(q);

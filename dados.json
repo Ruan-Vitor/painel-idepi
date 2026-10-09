@@ -52707,9 +52707,14 @@
           "data": "07/10/2026",
           "valor": "6.215.288,00",
           "tipo": "F"
+        },
+        {
+          "data": "05/10/2026",
+          "valor": "2.480.302,00",
+          "tipo": "C"
         }
       ],
-      "total_recebido": "130.030.647,11",
+      "total_recebido": "132.510.949,11",
       "ultimo_ingresso_federal": {
         "data": "31/10/2025",
         "valor": "15.777.282,00"
@@ -54303,5 +54308,5 @@
       "ultimo_ingresso_federal": {}
     }
   },
-  "repasses_atualizado_em": "08/10/2026 08:46"
+  "repasses_atualizado_em": "09/10/2026 08:02"
 }

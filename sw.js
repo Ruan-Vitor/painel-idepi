@@ -331,7 +331,7 @@
                  gravado com um caractere de controle (0x0C) no lugar da
                  barra invertida, e o navegador descartou as ~230 regras dali
                  para baixo (v60 a v62, das 12:45 ate agora). */
-const VERSAO = 'idepi-v67';
+const VERSAO = 'idepi-v68';
 const CACHE_SHELL = VERSAO + '-shell';
 const CACHE_PAGS  = VERSAO + '-paginas';
 
@@ -488,4 +488,43 @@ function cachePrimeiro(req, nomeCache) {
 /* Permite que a página force a atualização do worker (botão "Atualizar"). */
 self.addEventListener('message', (evento) => {
   if (evento.data === 'pular-espera') self.skipWaiting();
+});
+
+/* ── AVISO NO CELULAR (Web Push, 10/10/2026) ────────────────────────────── */
+/*  Quem manda é o notificar_push.py (chamado pelo eventos.py), com os mesmos
+ *  avisos urgentes que vão para o Telegram. Aqui só se desenha.
+ *
+ *  O conteúdo chega em JSON: { titulo, corpo, url, tag }. A `tag` faz o aviso
+ *  novo SUBSTITUIR o anterior, em vez de empilhar um por rodada na barra do
+ *  celular. Sem conteúdo legível, mostra um aviso genérico: o Chrome exige
+ *  que todo push vire notificação visível. */
+self.addEventListener('push', (evento) => {
+  let d = {};
+  try { d = evento.data ? evento.data.json() : {}; } catch (e) { d = {}; }
+  const titulo = d.titulo || 'IDEPI · Convênios Federais';
+  evento.waitUntil(self.registration.showNotification(titulo, {
+    body: d.corpo || 'Há novidade no painel de convênios.',
+    icon: 'icons/icon-192.png?v=2',
+    tag: d.tag || 'idepi-eventos',
+    renotify: true,
+    data: { url: d.url || 'index.html' }
+  }));
+});
+
+/* Tocar no aviso: se o painel já está aberto, traz ele para a frente e leva
+ *  ao endereço; senão, abre. */
+self.addEventListener('notificationclick', (evento) => {
+  evento.notification.close();
+  const alvo = new URL((evento.notification.data && evento.notification.data.url) || 'index.html',
+                       self.registration.scope).href;
+  evento.waitUntil(
+    self.clients.matchAll({ type: 'window', includeUncontrolled: true }).then((janelas) => {
+      for (const j of janelas) {
+        if (j.url.startsWith(self.registration.scope) && 'focus' in j) {
+          return j.focus().then((f) => (f && 'navigate' in f ? f.navigate(alvo) : f));
+        }
+      }
+      return self.clients.openWindow(alvo);
+    })
+  );
 });

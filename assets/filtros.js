@@ -170,7 +170,7 @@
       marcados(d.id).forEach(function (v) { q.append('f_' + d.id, v); });
     });
     var s = q.toString();
-    try { history.replaceState(null, '', location.pathname + (s ? '?' + s : '') + location.hash); } catch (e) {}
+    try { history.replaceState(history.state, '', location.pathname + (s ? '?' + s : '') + location.hash); } catch (e) {}
   }
 
   function desenhar() {

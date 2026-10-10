@@ -400,6 +400,143 @@
     registrarServiceWorker();
     ligarAvisoDeRede();
     ligarMarcaAoInicio(pagina);
+    ligarVoltar(pagina);
+  }
+
+  /* ── VOLTAR QUE NÃO SAI SEM QUERER (10/10/2026) ───────────────────────────
+     Pedido do Ruan: no app, o voltar do celular fechava o app "do nada". Agora
+     é como nos apps grandes:
+       1. Há algo aberto por cima (ficha, sino, filtro, balão, menu)? Fecha.
+       2. Numa página aberta a partir de outra, volta para ela.
+       3. Numa página sem nada atrás (aberta por link), vai ao Painel Geral.
+       4. No Painel Geral, sobe ao topo e avisa "toque em voltar de novo para
+          sair". O voltar seguinte sai de verdade.
+     Trocar de página pelo MENU não empilha (como as abas do Instagram): o
+     voltar de qualquer página do menu leva ao Painel Geral, que recarrega.
+
+     COMO: uma entrada "guarda" no histórico, empilhada sobre a página. O
+     voltar consome a guarda (popstate) e quem decide o que fazer somos nós.
+
+     ⚠️ UMA GUARDA POR TOQUE. O Chrome pula, no botão voltar, entrada criada
+     sem interação: é a defesa dele contra site que prende o usuário. Testado
+     em 10/10/2026: guarda rearmada dentro do popstate (ou por timer) é pulada,
+     e o voltar seguinte SAI do app sem aviso. Por isso ela só é armada no
+     toque (pointerdown/keydown), nunca pelo código. Depois de um voltar, se a
+     pessoa não tocar em nada, o próximo voltar sai, e o aviso diz isso.
+     ⚠️ Nunca prender: o 4 tem de deixar sair no segundo voltar. Prender a
+     pessoa é o que o Chrome pune, e é o que faria ela desinstalar.
+     Só vale no app instalado ou no celular; no navegador do computador o
+     voltar continua sendo o do navegador. */
+  var GUARDA = 'idepiGuarda';
+  var _destinoMenu = null;
+  var AVISO_SAIR = 'Toque em voltar de novo para sair';
+
+  function naGuarda() { return !!(history.state && history.state[GUARDA]); }
+
+  function armar() {
+    if (naGuarda()) return;
+    var st = {};
+    if (history.state && typeof history.state === 'object') {
+      for (var k in history.state) st[k] = history.state[k];
+    }
+    st[GUARDA] = 1;
+    try { history.pushState(st, '', location.href); } catch (e) {}
+  }
+
+  /* Há alguma camada aberta? Fecha a de cima e diz que fechou. */
+  function fecharSobreposto() {
+    if (document.querySelector('.mdl-fundo') && IDEPI.fecharModal) {
+      IDEPI.fecharModal(); return true;
+    }
+    var notif = document.getElementById('notifPainel');
+    if ((notif && !notif.hidden) || document.querySelector('[aria-expanded="true"]')) {
+      document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
+      return true;
+    }
+    if (sidebar && sidebar.classList.contains('sb-open')) { fechar(); return true; }
+    return false;
+  }
+
+  /* Há página do próprio app atrás desta? */
+  function temAnteriorNoApp() {
+    var nav = global.navigation;
+    if (nav && nav.currentEntry && typeof nav.currentEntry.index === 'number') {
+      return nav.currentEntry.index > 0;
+    }
+    try { return !!document.referrer && new URL(document.referrer).origin === location.origin; }
+    catch (e) { return false; }
+  }
+
+  function ehInicio(url) {
+    try { var p = new URL(url, location.href).pathname; return /(\/|index\.html)$/.test(p); }
+    catch (e) { return false; }
+  }
+
+  /* Ir ao Painel Geral reaproveitando a entrada dele, se houver: assim o
+     histórico não ganha um segundo Painel Geral para o voltar atravessar. */
+  function irAoInicio() {
+    var nav = global.navigation;
+    if (nav && nav.entries) {
+      var ents = nav.entries(), idx = nav.currentEntry ? nav.currentEntry.index : -1;
+      for (var i = idx - 1; i >= 0; i--) {
+        if (ents[i] && ehInicio(ents[i].url)) { nav.traverseTo(ents[i].key); return; }
+      }
+    }
+    location.replace('index.html');
+  }
+
+  function ligarVoltar(pagina) {
+    var modoApp = jaInstalado() || isMobile();
+    if (!modoApp || !global.history || !history.pushState) return;
+    var inicio = pagina === 'index';
+
+    // Toque ou tecla: arma a guarda (o Chrome só respeita a que vem depois de
+    // interação). Barato: não faz nada se ela já está armada.
+    ['pointerdown', 'keydown'].forEach(function (ev) {
+      document.addEventListener(ev, armar, true);
+    });
+
+    // Menu: trocar de página SUBSTITUI a atual em vez de empilhar.
+    if (!inicio) {
+      document.addEventListener('click', function (e) {
+        var a = e.target.closest && e.target.closest('a.sb-item[href]');
+        if (!a || e.ctrlKey || e.metaKey || e.shiftKey) return;
+        e.preventDefault();
+        var href = a.getAttribute('href');
+        if (ehInicio(href)) { irAoInicio(); return; }
+        // Se a guarda está por cima, o replace trocaria a GUARDA e deixaria
+        // esta página para trás. Primeiro desce da guarda; o popstate segue.
+        if (naGuarda()) { _destinoMenu = href; history.back(); }
+        else location.replace(href);
+      });
+    }
+
+    global.addEventListener('popstate', function () {
+      if (naGuarda()) return;                 // chegou na guarda indo para a frente
+      if (_destinoMenu) { var d = _destinoMenu; _destinoMenu = null; location.replace(d); return; }
+      // Nada de armar() aqui: guarda sem toque é pulada pelo Chrome (ver acima).
+      if (fecharSobreposto()) return;
+      if (!inicio) {
+        if (temAnteriorNoApp()) { history.back(); return; }
+        // Nada atrás: o Painel Geral entra no lugar desta página, sem guarda
+        // ainda. Ele mostra o aviso ao abrir (marca na sessão).
+        try { sessionStorage.setItem('idepiAvisoSair', '1'); } catch (e) {}
+        location.replace('index.html');
+        return;
+      }
+      global.scrollTo(0, 0);
+      document.querySelectorAll('.scroll').forEach(function (s) { s.scrollTop = 0; });
+      IDEPI.toast && IDEPI.toast(AVISO_SAIR);
+    });
+
+    // Voltar ao Painel Geral é voltar para dados frescos. Se o navegador o
+    // trouxe da memória (bfcache), recarrega.
+    if (inicio) {
+      global.addEventListener('pageshow', function (e) { if (e.persisted) location.reload(); });
+      var avisar = false;
+      try { avisar = sessionStorage.getItem('idepiAvisoSair') === '1'; sessionStorage.removeItem('idepiAvisoSair'); } catch (e) {}
+      if (avisar) setTimeout(function () { IDEPI.toast && IDEPI.toast(AVISO_SAIR); }, 600);
+    }
   }
 
   /* A marca no topo leva ao Painel Geral, como em quase todo site: é o
@@ -412,7 +549,10 @@
     logo.setAttribute('tabindex', '0');
     logo.setAttribute('title', 'Ir para o Painel Geral');
     logo.classList.add('hd-logo-link');
-    function ir() { location.href = 'index.html'; }
+    function ir() {
+      if (jaInstalado() || isMobile()) irAoInicio();   // ver ligarVoltar
+      else location.href = 'index.html';
+    }
     logo.addEventListener('click', ir);
     logo.addEventListener('keydown', function (e) {
       if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); ir(); }

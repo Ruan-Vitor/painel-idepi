@@ -441,7 +441,7 @@ document.getElementById('busca').addEventListener('input', () => {
   const p = new URLSearchParams(location.search);
   if (v) p.set('q', v); else p.delete('q');
   const s = p.toString();
-  try { history.replaceState(null, '', location.pathname + (s ? '?' + s : '')); } catch (e) {}
+  try { history.replaceState(history.state, '', location.pathname + (s ? '?' + s : '')); } catch (e) {}
   render();
 });
 

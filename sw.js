@@ -331,7 +331,7 @@
                  gravado com um caractere de controle (0x0C) no lugar da
                  barra invertida, e o navegador descartou as ~230 regras dali
                  para baixo (v60 a v62, das 12:45 ate agora). */
-const VERSAO = 'idepi-v65';
+const VERSAO = 'idepi-v66';
 const CACHE_SHELL = VERSAO + '-shell';
 const CACHE_PAGS  = VERSAO + '-paginas';
 

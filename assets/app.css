@@ -830,6 +830,22 @@ div > button:has(svg):not([class]):not([id]){display:none!important}
 .notif-hora{flex-shrink:0;font-size:10px;color:var(--light);margin-top:2px}
 
 .notif-vazio{padding:26px 18px;text-align:center;font-size:12px;color:var(--muted);line-height:1.6}
+/* Cartão "Quer ser avisado no celular?" (10/10/2026). Azul: é convite, não
+   alerta. O de bloqueado é âmbar: falta ligar uma coisa, não é erro. */
+.notif-celular:empty{display:none}
+.notif-celular{padding:10px 14px 0}
+.notif-cartao{background:var(--blue-bg);border:1px solid var(--blue-bdr);border-radius:var(--r);padding:11px 12px;font-size:12.5px;line-height:1.5;color:var(--text)}
+.notif-cartao p{margin:0}
+.notif-cartao p+p{margin-top:4px;color:var(--slate)}
+.notif-cartao-titulo{font-weight:700;font-size:13.5px}
+.notif-cartao-botoes{display:flex;gap:8px;justify-content:flex-end;margin-top:10px}
+.notif-cartao-botoes button{font:inherit;font-weight:600;font-size:13px;min-height:40px;padding:0 14px;border-radius:var(--r);cursor:pointer}
+.notif-cartao-nao{background:transparent;border:1px solid var(--border);color:var(--slate)}
+.notif-cartao-sim{background:var(--brand);border:1px solid var(--brand);color:#fff}
+.notif-cartao-botoes button:disabled{opacity:.6;cursor:default}
+.notif-bloq{background:var(--amber-bg);border:1px solid var(--amber-bdr);border-radius:var(--r);padding:9px 11px;font-size:12px;line-height:1.5;color:var(--amber)}
+.notif-bloq p{margin:0}
+.notif-bloq p+p{margin-top:4px}
 
 .notif-rodape{
   border-top:1px solid var(--border);padding:9px 12px;text-align:center;

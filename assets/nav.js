@@ -403,43 +403,55 @@
     ligarVoltar(pagina);
   }
 
-  /* ── VOLTAR QUE NÃO SAI SEM QUERER (10/10/2026) ───────────────────────────
-     Pedido do Ruan: no app, o voltar do celular fechava o app "do nada". Agora
-     é como nos apps grandes:
-       1. Há algo aberto por cima (ficha, sino, filtro, balão, menu)? Fecha.
-       2. Numa página aberta a partir de outra, volta para ela.
-       3. Numa página sem nada atrás (aberta por link), vai ao Painel Geral.
-       4. No Painel Geral, sobe ao topo e avisa "toque em voltar de novo para
-          sair". O voltar seguinte sai de verdade.
+  /* ── VOLTAR DO CELULAR QUE NÃO SAI SEM QUERER (10/10/2026, refeito) ──────────
+     Receita de D:\Estudos\GUIA_BOTAO_VOLTAR_PWA.md, conferida num Android de
+     verdade no app Estudo Diário. LEIA O GUIA antes de mexer aqui.
+
+     O que o voltar faz, na ordem:
+       1. Algo aberto por cima (ficha, sino, filtro, balão, menu)? Fecha.
+       2. Página aberta a partir de outra? Volta para ela.
+       3. Página sem nada atrás (aberta por link)? Vai ao Painel Geral.
+       4. Painel Geral rolado para baixo? Sobe ao topo e recarrega.
+       5. Topo do Painel Geral: "Toque em voltar de novo para sair". O voltar
+          seguinte, em até 2 s, sai.
      Trocar de página pelo MENU não empilha (como as abas do Instagram): o
-     voltar de qualquer página do menu leva ao Painel Geral, que recarrega.
+     voltar de qualquer página do menu leva ao Painel Geral.
 
-     COMO: uma entrada "guarda" no histórico, empilhada sobre a página. O
-     voltar consome a guarda (popstate) e quem decide o que fazer somos nós.
+     AS 4 REGRAS DO CHROME (o guia conta como cada uma derrubou uma versão):
+       1. pushState sem toque vira "pulável": o voltar passa direto e SAI.
+          Nunca pushState ao carregar nem dentro do popstate.
+       2. Cada toque vale para UM pushState só. UMA guarda por toque, até 6.
+       3. No celular o toque só conta ao SOLTAR o dedo: evento `click`, nunca
+          `pointerdown`. A 1ª versão daqui usava pointerdown e passou em todos
+          os testes no computador, porque mouse conta.
+       4. Nenhum teste no computador reproduz isso. Teste de verdade é no
+          Android, com o app fechado de vez e aberto de novo (sw.js novo).
 
-     ⚠️ UMA GUARDA POR TOQUE. O Chrome pula, no botão voltar, entrada criada
-     sem interação: é a defesa dele contra site que prende o usuário. Testado
-     em 10/10/2026: guarda rearmada dentro do popstate (ou por timer) é pulada,
-     e o voltar seguinte SAI do app sem aviso. Por isso ela só é armada no
-     toque (pointerdown/keydown), nunca pelo código. Depois de um voltar, se a
-     pessoa não tocar em nada, o próximo voltar sai, e o aviso diz isso.
-     ⚠️ Nunca prender: o 4 tem de deixar sair no segundo voltar. Prender a
-     pessoa é o que o Chrome pune, e é o que faria ela desinstalar.
-     Só vale no app instalado ou no celular; no navegador do computador o
-     voltar continua sendo o do navegador. */
+     Cada página é um documento: as guardas de uma página são só dela. Para ir
+     à página anterior, desce todas de uma vez com history.go(-(n + 1)).
+
+     Só vale no app instalado ou no celular. A mesma regra está no Severo
+     (Controle Severo/idepi/js/voltar.js): mudou um, confira o outro. */
   var GUARDA = 'idepiGuarda';
-  var _destinoMenu = null;
+  var GUARDAS = 6;
   var AVISO_SAIR = 'Toque em voltar de novo para sair';
+  var _destinoMenu = null, _saidaPedidaEm = 0, _ignorarPop = false;
 
-  function naGuarda() { return !!(history.state && history.state[GUARDA]); }
+  function nivelGuarda() {
+    return (history.state && history.state[GUARDA]) ? (history.state.n || 0) : 0;
+  }
 
-  function armar() {
-    if (naGuarda()) return;
+  // UMA guarda por toque (regras 1, 2 e 3).
+  function porGuarda() {
+    _saidaPedidaEm = 0;
+    var n = nivelGuarda();
+    if (n >= GUARDAS) return;
     var st = {};
     if (history.state && typeof history.state === 'object') {
       for (var k in history.state) st[k] = history.state[k];
     }
     st[GUARDA] = 1;
+    st.n = n + 1;
     try { history.pushState(st, '', location.href); } catch (e) {}
   }
 
@@ -457,11 +469,12 @@
     return false;
   }
 
-  /* Há página do próprio app atrás desta? */
+  /* Há OUTRA página do app atrás desta? As guardas desta página não contam:
+     a entrada de verdade dela fica `nivelGuarda()` passos atrás. */
   function temAnteriorNoApp() {
     var nav = global.navigation;
     if (nav && nav.currentEntry && typeof nav.currentEntry.index === 'number') {
-      return nav.currentEntry.index > 0;
+      return nav.currentEntry.index - nivelGuarda() > 0;
     }
     try { return !!document.referrer && new URL(document.referrer).origin === location.origin; }
     catch (e) { return false; }
@@ -485,18 +498,21 @@
     location.replace('index.html');
   }
 
+  function rolagem() {
+    var s = document.querySelector('.scroll');
+    return Math.max(global.scrollY || 0, s ? s.scrollTop : 0);
+  }
+
   function ligarVoltar(pagina) {
     var modoApp = jaInstalado() || isMobile();
     if (!modoApp || !global.history || !history.pushState) return;
     var inicio = pagina === 'index';
 
-    // Toque ou tecla: arma a guarda (o Chrome só respeita a que vem depois de
-    // interação). Barato: não faz nada se ela já está armada.
-    ['pointerdown', 'keydown'].forEach(function (ev) {
-      document.addEventListener(ev, armar, true);
-    });
+    document.addEventListener('click', porGuarda, true);     // NÃO pointerdown (regra 3)
+    document.addEventListener('keydown', porGuarda, true);
 
-    // Menu: trocar de página SUBSTITUI a atual em vez de empilhar.
+    // Menu: trocar de página SUBSTITUI a atual em vez de empilhar. Antes
+    // desce das guardas desta página; o popstate termina o serviço.
     if (!inicio) {
       document.addEventListener('click', function (e) {
         var a = e.target.closest && e.target.closest('a.sb-item[href]');
@@ -504,29 +520,44 @@
         e.preventDefault();
         var href = a.getAttribute('href');
         if (ehInicio(href)) { irAoInicio(); return; }
-        // Se a guarda está por cima, o replace trocaria a GUARDA e deixaria
-        // esta página para trás. Primeiro desce da guarda; o popstate segue.
-        if (naGuarda()) { _destinoMenu = href; history.back(); }
+        var n = nivelGuarda();
+        if (n > 0) { _destinoMenu = href; history.go(-n); }
         else location.replace(href);
       });
     }
 
     global.addEventListener('popstate', function () {
-      if (naGuarda()) return;                 // chegou na guarda indo para a frente
       if (_destinoMenu) { var d = _destinoMenu; _destinoMenu = null; location.replace(d); return; }
-      // Nada de armar() aqui: guarda sem toque é pulada pelo Chrome (ver acima).
+      if (_ignorarPop) { _ignorarPop = false; return; }
+      if (_saidaPedidaEm) return;            // já avisou: este voltar é o de sair
+
+      // Nada de pushState aqui (regra 1). Só navegar.
       if (fecharSobreposto()) return;
+
       if (!inicio) {
-        if (temAnteriorNoApp()) { history.back(); return; }
-        // Nada atrás: o Painel Geral entra no lugar desta página, sem guarda
-        // ainda. Ele mostra o aviso ao abrir (marca na sessão).
+        // Desce as guardas que sobraram e mais a página: chega na anterior.
+        if (temAnteriorNoApp()) { history.go(-(nivelGuarda() + 1)); return; }
+        // Nada atrás: o Painel Geral entra no lugar desta página. Ele mostra
+        // o aviso ao abrir (marca na sessão), porque ainda não tem guarda.
         try { sessionStorage.setItem('idepiAvisoSair', '1'); } catch (e) {}
         location.replace('index.html');
         return;
       }
-      global.scrollTo(0, 0);
-      document.querySelectorAll('.scroll').forEach(function (s) { s.scrollTop = 0; });
+
+      if (rolagem() > 150) {                 // rolado: topo + recarregar
+        global.scrollTo(0, 0);
+        document.querySelectorAll('.scroll').forEach(function (s) { s.scrollTop = 0; });
+        location.reload();
+        return;
+      }
+
+      _saidaPedidaEm = Date.now();
       IDEPI.toast && IDEPI.toast(AVISO_SAIR);
+      var resto = nivelGuarda();
+      if (resto > 0) { _ignorarPop = true; history.go(-resto); }
+      setTimeout(function () {
+        if (_saidaPedidaEm && Date.now() - _saidaPedidaEm >= 2000) _saidaPedidaEm = 0;
+      }, 2200);
     });
 
     // Voltar ao Painel Geral é voltar para dados frescos. Se o navegador o

@@ -52594,9 +52594,14 @@
           "data": "28/09/2026",
           "valor": "20.000.000,00",
           "tipo": "F"
+        },
+        {
+          "data": "16/10/2026",
+          "valor": "17.881.472,00",
+          "tipo": "F"
         }
       ],
-      "total_recebido": "136.680.000,00",
+      "total_recebido": "154.561.472,00",
       "ultimo_ingresso_federal": {
         "data": "28/09/2026",
         "valor": "20.000.000,00"
@@ -52861,7 +52866,10 @@
         }
       ],
       "total_recebido": "485.375,22",
-      "ultimo_ingresso_federal": {}
+      "ultimo_ingresso_federal": {
+        "data": "08/10/2026",
+        "valor": "462.875,22"
+      }
     },
     "981146": {
       "objeto": "PAVIMENTAÇÃO DE VIAS VICINAIS NO MUNICÍPIO DE FRANCISCO SANTOS-PI.",
@@ -53480,8 +53488,8 @@
       ],
       "total_recebido": "132.510.949,11",
       "ultimo_ingresso_federal": {
-        "data": "31/10/2025",
-        "valor": "15.777.282,00"
+        "data": "07/10/2026",
+        "valor": "30.000,00"
       }
     },
     "946261": {
@@ -54340,8 +54348,8 @@
       ],
       "total_recebido": "9.616.900,00",
       "ultimo_ingresso_federal": {
-        "data": "01/07/2026",
-        "valor": "5.792.250,55"
+        "data": "08/10/2026",
+        "valor": "3.811.649,45"
       }
     },
     "946801": {
@@ -54868,9 +54876,14 @@
           "data": "03/07/2026",
           "valor": "100.000,00",
           "tipo": "F"
+        },
+        {
+          "data": "16/10/2026",
+          "valor": "46.416,00",
+          "tipo": "F"
         }
       ],
-      "total_recebido": "197.610,00",
+      "total_recebido": "244.026,00",
       "ultimo_ingresso_federal": {
         "data": "03/07/2026",
         "valor": "97.610,00"
@@ -54891,9 +54904,14 @@
           "data": "03/07/2026",
           "valor": "50.000,00",
           "tipo": "F"
+        },
+        {
+          "data": "16/10/2026",
+          "valor": "52.339,97",
+          "tipo": "F"
         }
       ],
-      "total_recebido": "118.226,00",
+      "total_recebido": "170.565,97",
       "ultimo_ingresso_federal": {
         "data": "03/07/2026",
         "valor": "68.226,00"
@@ -55077,5 +55095,5 @@
       "ultimo_ingresso_federal": {}
     }
   },
-  "repasses_atualizado_em": "14/10/2026 08:48"
+  "repasses_atualizado_em": "20/10/2026 11:42"
 }

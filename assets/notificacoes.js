@@ -114,9 +114,11 @@
     var hojeIso = hoje.getFullYear() + '-' + p(hoje.getMonth() + 1) + '-' + p(hoje.getDate());
     var ontem = new Date(hoje.getTime() - 86400000);
     var ontemIso = ontem.getFullYear() + '-' + p(ontem.getMonth() + 1) + '-' + p(ontem.getDate());
-    if (iso === hojeIso) return 'Hoje';
-    if (iso === ontemIso) return 'Ontem';
-    return iso.slice(8, 10) + '/' + iso.slice(5, 7) + '/' + iso.slice(0, 4);
+    /* O dia é o da DESCOBERTA pelo sistema, não o do fato: a CGU e o
+       Transferegov atrasam. A data real vai no texto de cada aviso. */
+    if (iso === hojeIso) return 'Detectado hoje';
+    if (iso === ontemIso) return 'Detectado ontem';
+    return 'Detectado em ' + iso.slice(8, 10) + '/' + iso.slice(5, 7) + '/' + iso.slice(0, 4);
   }
 
   /* ── MONTAGEM ──────────────────────────────────────────────────────────── */

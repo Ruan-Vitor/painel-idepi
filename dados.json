@@ -52687,8 +52687,8 @@
       ],
       "total_recebido": "6.388.500,00",
       "ultimo_ingresso_federal": {
-        "data": "29/07/2026",
-        "valor": "203.500,00"
+        "data": "13/10/2026",
+        "valor": "178.500,00"
       }
     },
     "985797": {
@@ -52803,8 +52803,8 @@
       ],
       "total_recebido": "154.561.472,00",
       "ultimo_ingresso_federal": {
-        "data": "28/09/2026",
-        "valor": "20.000.000,00"
+        "data": "16/10/2026",
+        "valor": "17.881.472,00"
       }
     },
     "945303": {
@@ -55085,8 +55085,8 @@
       ],
       "total_recebido": "244.026,00",
       "ultimo_ingresso_federal": {
-        "data": "03/07/2026",
-        "valor": "97.610,00"
+        "data": "16/10/2026",
+        "valor": "46.416,00"
       }
     },
     "992940": {
@@ -55113,8 +55113,8 @@
       ],
       "total_recebido": "170.565,97",
       "ultimo_ingresso_federal": {
-        "data": "03/07/2026",
-        "valor": "68.226,00"
+        "data": "16/10/2026",
+        "valor": "52.339,97"
       }
     },
     "644411": {
@@ -55295,5 +55295,5 @@
       "ultimo_ingresso_federal": {}
     }
   },
-  "repasses_atualizado_em": "20/10/2026 11:55"
+  "repasses_atualizado_em": "26/10/2026 12:29"
 }

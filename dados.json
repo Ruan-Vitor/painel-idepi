@@ -1,5 +1,5 @@
 {
-  "gerado_em": "24/11/2026 07:35",
+  "gerado_em": "24/11/2026 07:47",
   "total": 107,
   "convenios": [
     {
@@ -3580,7 +3580,7 @@
       "vigencia": "2030-04-01",
       "vigencia_fmt": "01/04/2030",
       "vigencia_inicio": "11/03/2026",
-      "vigencia_suspensiva": "09/11/2026",
+      "vigencia_suspensiva": "25/01/2027",
       "vigencia_origem": "Transferegov",
       "orgao_vinculado": "",
       "orgao_vinculado_cgu": "Ministério das Cidades - Unidades com vínculo direto",
@@ -3627,7 +3627,7 @@
       "vigencia": "2030-04-01",
       "vigencia_fmt": "01/04/2030",
       "vigencia_inicio": "11/03/2026",
-      "vigencia_suspensiva": "09/11/2026",
+      "vigencia_suspensiva": "03/02/2027",
       "vigencia_origem": "Transferegov",
       "orgao_vinculado": "",
       "orgao_vinculado_cgu": "Ministério das Cidades - Unidades com vínculo direto",
@@ -4003,7 +4003,7 @@
       "vigencia": "2029-04-19",
       "vigencia_fmt": "19/04/2029",
       "vigencia_inicio": "19/12/2025",
-      "vigencia_suspensiva": "19/12/2028",
+      "vigencia_suspensiva": "",
       "vigencia_origem": "Transferegov",
       "orgao_vinculado": "",
       "orgao_vinculado_cgu": "Ministério da Integração e do Desenvolvimento Regional - Unidades com vínculo direto",
@@ -4038,7 +4038,7 @@
       "vigencia_emendas": "19/04/2029",
       "dono_emenda": "CINDRA - Dr Luizinho",
       "ponto_focal": "Eduardo Dantas / Júlio Arcoverde",
-      "clausula_motivo": "Titularidade de Área, Projeto Básico e Licença Ambiental Prévia",
+      "clausula_motivo": "",
       "pcf_etapa": "",
       "ultima_foto": "",
       "orgao_executor": "MIDR",

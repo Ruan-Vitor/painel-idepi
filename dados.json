@@ -57358,8 +57358,14 @@
       "banco": "",
       "agencia": "",
       "conta": "",
-      "ingressos": [],
-      "total_recebido": "",
+      "ingressos": [
+        {
+          "data": "25/11/2026",
+          "valor": "24.366,46",
+          "tipo": "F"
+        }
+      ],
+      "total_recebido": "24.366,46",
       "ultimo_ingresso_federal": {}
     },
     "7AAFLM": {
@@ -57367,8 +57373,14 @@
       "banco": "",
       "agencia": "",
       "conta": "",
-      "ingressos": [],
-      "total_recebido": "",
+      "ingressos": [
+        {
+          "data": "25/11/2026",
+          "valor": "73.099,39",
+          "tipo": "F"
+        }
+      ],
+      "total_recebido": "73.099,39",
       "ultimo_ingresso_federal": {}
     },
     "7AAFLN": {
@@ -57376,8 +57388,14 @@
       "banco": "",
       "agencia": "",
       "conta": "",
-      "ingressos": [],
-      "total_recebido": "",
+      "ingressos": [
+        {
+          "data": "25/11/2026",
+          "valor": "73.099,39",
+          "tipo": "F"
+        }
+      ],
+      "total_recebido": "73.099,39",
       "ultimo_ingresso_federal": {}
     },
     "908650": {
@@ -57450,5 +57468,5 @@
       "ultimo_ingresso_federal": {}
     }
   },
-  "repasses_atualizado_em": "24/11/2026 07:40"
+  "repasses_atualizado_em": "26/11/2026 08:48"
 }
